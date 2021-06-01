@@ -1,3 +1,30 @@
+:root {
+  --bg: #2D2C39;
+  --responsive-menu: white;
+  --text: white;
+  --link: #E54343;
+  --text-background: #2d2c39d3;
+  --default-border: 1px solid white;
+}
+
+.dark-mode {
+  --bg: #2D2C39;
+  --responsive-menu: white;
+  --text: white;
+  --link: #E54343;
+  --text-background: #2d2c39d3;
+  --default-border: 1px solid white;
+}
+
+.light-mode {
+  --bg: white;
+  --responsive-menu: #2D2C39;
+  --text: #2D2C39;
+  --link: #E54343;
+  --text-background: #ffffffd3;
+  --default-border: 1px solid #2D2C39;
+}
+
 h1 {
   font-size: 4rem;
   font-weight: bold;
