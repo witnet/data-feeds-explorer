@@ -1,0 +1,27 @@
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  font-family: 'Almarai', sans-serif;
+}
+p {
+  font-size: 1.4rem;
+  font-family: 'Almarai', sans-serif;
+
+  &.subtitle {
+    font-size: 0.87rem;
+  }
+  &.title {
+    font-size: 1.12rem;
+  }
+  &.small-description {
+    font-size: 0.75rem;
+  }
+  &.copyright {
+    font-size: 0.625rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  font-size: 1rem;
+}

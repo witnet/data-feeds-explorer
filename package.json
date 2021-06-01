@@ -1,0 +1,37 @@
+{
+  "name": "data-feed-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "GPL-3.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "yarn lerna bootstrap",
+    "build": "yarn lerna run build --stream --concurrency 1",
+    "test": "yarn lerna run test --stream ",
+    "lint": "yarn lerna run lint --stream --concurrency 1",
+    "clean": "yarn lerna run clean --concurrency 4"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/config-lerna-scopes": "^11.0.0",
+    "commitlint": "^11.0.0",
+    "husky": "^4.3.0",
+    "prettier-standard": "^16.4.1"
+  },
+  "volta": {
+    "node": "14.15.4",
+    "yarn": "1.22.10"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
