@@ -2,6 +2,11 @@
   <div class="section">
     <NavBar />
     <div class="main">
+      <!-- <Select
+        :options="options"
+        :default-option="selected"
+        @update-selected="updateSelected"
+      /> -->
       <h1>
         <span class="text">{{ $t('hero.title') }}</span>
       </h1>
@@ -13,6 +18,27 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      options: [
+        { label: 'All' },
+        { label: 'Rinkeby' },
+        { label: 'Goerly' },
+        { label: 'Mainnet' },
+      ],
+      selected: { label: 'All' },
+    }
+  },
+  methods: {
+    updateSelected(selectedOption) {
+      this.selected = selectedOption
+    },
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 .section {
