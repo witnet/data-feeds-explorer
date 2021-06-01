@@ -90,7 +90,7 @@ export default {
   css: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
   // You will have to add this new object if it doesn't exist already
   styleResources: {
-    scss: ['~/assets/styles/main.scss', '~/assets/styles/colors.scss'],
+    scss: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
   },
   // ...
   modules: ['@nuxtjs/style-resources', 'nuxt-i18n'],
@@ -105,11 +105,19 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/color-mode',
+    '@nuxtjs/fontawesome',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
   ],
+
+  fontawesome: {
+    icons: {
+      solid: ['faMoon', 'faSun'],
+    },
+  },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},

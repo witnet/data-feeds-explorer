@@ -5,13 +5,7 @@
       <transition name="dropdown" class="dropdown">
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
           <li @mouseover="hover = true" @mouseleave="hover = false">
-            <a class="tab" href="https://github.com/witnet" target="_blank">
-              <img
-                class="social"
-                src="~/assets/svg/github.svg"
-                alt="github-logo"
-              />
-            </a>
+            <ThemeSwitch />
           </li>
         </ul>
       </transition>
@@ -20,7 +14,9 @@
 </template>
 
 <script>
+import ThemeSwitch from './ThemeSwitch.vue'
 export default {
+  components: { ThemeSwitch },
   data() {
     return {
       hover: false,
@@ -63,7 +59,7 @@ export default {
     }
   }
   .responsive-menu {
-    color: $white;
+    color: var(--text);
     display: none;
     font-size: 34px;
   }
@@ -77,20 +73,10 @@ export default {
     .tab {
       font-size: 1.12rem;
       display: flex;
-      color: $white;
+      color: var(--text);
       align-items: center;
       text-decoration: none;
       padding: 24px 32px;
-      .social {
-        width: 20px;
-        margin: auto 8px;
-      }
-      .slash {
-        color: $green-1;
-      }
-      &:hover {
-        color: $green-1;
-      }
     }
     .language-btn {
       //until we have translations
@@ -126,7 +112,7 @@ export default {
         cursor: pointer;
         border: none;
         background-color: none;
-        color: $white;
+        color: var(--text);
         padding: 8px;
         border-bottom: 1px solid $white;
         &:hover {
@@ -181,7 +167,7 @@ export default {
       .tab {
         border-bottom: 1px solid $white;
         display: block;
-        color: $white;
+        color: var(--text);
         align-items: center;
         text-decoration: none;
         padding: 24px 32px;
@@ -191,7 +177,7 @@ export default {
       }
       .language-btn {
         display: none;
-        color: $white;
+        color: var(--text);
         justify-content: space-between;
         margin: 16px 50px 0 50px;
         border: none;

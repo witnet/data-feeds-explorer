@@ -16,7 +16,7 @@
 
 <style lang="scss" scoped>
 .section {
-  color: $white;
+  color: var(--text);
   padding: 0 180px;
   min-height: 100vh;
   display: grid;
@@ -32,7 +32,7 @@
     justify-self: center;
   }
   .text {
-    background-color: $dark-blur;
+    background-color: var(--text-background);
     line-height: 1.5;
   }
   .highlight {
