@@ -1,0 +1,41 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "lint": "prettier-standard --format",
+    "dev": "nodemon",
+    "start": "node dist/server.js",
+    "test": "jest"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.5",
+    "@graphql-codegen/typescript-mongodb": "^1.19.1",
+    "@graphql-codegen/typescript-resolvers": "^1.19.2",
+    "@graphql-codegen/typescript": "^1.22.1",
+    "@graphql-tools/schema": "^7.1.5",
+    "@types/jest": "^26.0.23",
+    "@types/mongodb": "^3.6.16",
+    "@types/node": "^15.6.1",
+    "apollo-datasource-mongodb": "^0.4.1",
+    "apollo-server-testing": "^2.25.0",
+    "husky": "^6.0.0",
+    "mongodb-memory-server": "^6.9.6",
+    "nodemon": "^2.0.7",
+    "prettier-standard": "^16.4.1",
+    "ts-jest": "^27.0.1",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "apollo-server": "^2.22.1",
+    "dotenv": "^10.0.0",
+    "graphql": "^15.5.0",
+    "jest": "^27.0.1",
+    "mongodb": "^3.6.9"
+  }
+}
