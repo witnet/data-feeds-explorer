@@ -96,7 +96,12 @@ export default {
   modules: ['@nuxtjs/style-resources', 'nuxt-i18n'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    {
+      src: '~/plugins/lightweightcharts.js',
+      ssr: false,
+    },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {
