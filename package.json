@@ -17,23 +17,14 @@
     "clean": "yarn lerna run clean --concurrency 4"
   },
   "dependencies": {
-    "@nuxt/content": "^1.11.1",
     "@nuxtjs/style-resources": "^1.0.0",
-    "add": "^2.0.6",
     "core-js": "^3.8.3",
     "lightweight-charts": "^3.3.0",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.20.2",
-    "vue-select": "^3.11.2",
-    "yarn": "^1.22.10"
+    "vue-select": "^3.11.2"
   },
   "devDependencies": {
-    "lerna": "^3.22.1",
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@commitlint/config-lerna-scopes": "^11.0.0",
-    "commitlint": "^11.0.0",
-    "husky": "^4.3.0",
     "prettier-standard": "^16.4.1",
     "sass-loader": "^10.1.1",
     "node-sass": "^5.0.0",
