@@ -30,6 +30,19 @@
 
   --fieldset-title: white;
   --fieldset-background: #FFFFFF08;
+
+  //Logo
+
+  --logo-main: white;
+  --logo-dot: #41BEA5;
+
+  //NavBar
+
+  --nav-bar-background: #2d2c39a2;
+
+  // links
+
+  --text-hover: #41BEA5;
 }
 
 .dark-mode {
@@ -65,6 +78,19 @@
 
   --fieldset-title: white;
   --fieldset-background: #FFFFFF08;
+
+  //Logo
+
+  --logo-main: white;
+  --logo-dot: #41BEA5;
+
+  //NavBar
+
+  --nav-bar-background: #2d2c399d;
+
+  // links
+
+  --text-hover: #41BEA5;
 }
 
 .light-mode {
@@ -102,6 +128,18 @@
 
   --fieldset-title: #2D2C39;
   --fieldset-background: #2d2c3910;
+
+  //Logo
+  --logo-dot: #41BEA5;
+  --logo-main: #1F1F24;
+
+  //NavBar
+
+  --nav-bar-background: #ffffffb0;
+
+  // links
+
+  --text-hover: #41BEA5;
 }
 
 h1 {

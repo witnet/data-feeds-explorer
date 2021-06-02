@@ -16,25 +16,11 @@
     "lint": "yarn lerna run lint --stream --concurrency 1",
     "clean": "yarn lerna run clean --concurrency 4"
   },
-  "dependencies": {
-    "@nuxtjs/style-resources": "^1.0.0",
-    "core-js": "^3.8.3",
-    "lightweight-charts": "^3.3.0",
-    "nuxt": "^2.14.12",
-    "nuxt-i18n": "^6.20.2",
-    "vue-select": "^3.11.2"
-  },
   "devDependencies": {
+    "lerna": "^3.22.1",
     "prettier-standard": "^16.4.1",
     "sass-loader": "^10.1.1",
     "node-sass": "^5.0.0",
-    "@fortawesome/free-brands-svg-icons": "^5.15.3",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@nuxtjs/color-mode": "^2.0.9",
-    "@nuxtjs/eslint-config": "^5.0.0",
-    "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/fontawesome": "^1.1.2",
-    "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",

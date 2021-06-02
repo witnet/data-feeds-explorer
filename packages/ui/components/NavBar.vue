@@ -1,12 +1,23 @@
 <template>
-  <div :class="{ drop: isMenuVisible }">
+  <div class="nav-container" :class="{ drop: isMenuVisible }">
     <nav class="navbar">
+      <h1 class="logo-container">
+        <WitnetLogo class="witnet-logo" />
+        <p class="logo-subtitle">DATA</p>
+        <p class="logo-subtitle-color">FEED</p>
+      </h1>
       <label class="responsive-menu" @click="toggleMenu">&#9776;</label>
       <transition name="dropdown" class="dropdown">
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
-          <li @mouseover="hover = true" @mouseleave="hover = false">
-            <ThemeSwitch />
+          <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
+            About
           </li>
+          <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
+            <GithubLogo />
+          </li>
+          <!-- <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
+            <ThemeSwitch />
+          </li> -->
         </ul>
       </transition>
     </nav>
@@ -14,9 +25,7 @@
 </template>
 
 <script>
-import ThemeSwitch from './ThemeSwitch.vue'
 export default {
-  components: { ThemeSwitch },
   data() {
     return {
       hover: false,
@@ -44,18 +53,35 @@ export default {
 <style scoped lang="scss">
 .navbar {
   display: flex;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  height: 10vh;
-  justify-content: flex-end;
+  background: var(--nav-bar-background);
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 16px 140px 16px 140px;
+
   .logo-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-rows: 1fr 1fr;
     align-items: center;
     text-decoration: none;
-    .logo {
-      width: 80px;
+    column-gap: 8px;
+
+    .witnet-logo {
+      grid-row: 1 / span 2;
+    }
+    .logo-subtitle-color {
+      align-self: flex-start;
+      color: var(--logo-dot);
+    }
+    .logo-subtitle {
+      align-self: flex-end;
+      color: var(--logo-main);
     }
   }
   .responsive-menu {
@@ -71,57 +97,16 @@ export default {
       display: block;
     }
     .tab {
+      cursor: pointer;
       font-size: 1.12rem;
       display: flex;
+      font-weight: 600;
       color: var(--text);
       align-items: center;
       text-decoration: none;
-      padding: 24px 32px;
-    }
-    .language-btn {
-      //until we have translations
-      display: none;
-      //
-      display: flex;
-      padding: 0 8px;
-      height: 30px;
-      margin-right: 1vw;
-      align-items: center;
-      text-justify: center;
-      border: 1px solid $green-1;
-      color: $green-1;
-      cursor: pointer;
-      &:active {
-        outline: none;
-      }
+      margin: 24px 32px;
       &:hover {
-        opacity: 0.75;
-      }
-      .arrow {
-        padding-left: 8px;
-        width: 8px;
-      }
-    }
-    .drop-down {
-      position: absolute;
-      display: block;
-      width: 100px;
-      // margin-top: 16px;
-      flex-direction: column;
-      & .drop-down-item {
-        cursor: pointer;
-        border: none;
-        background-color: none;
-        color: var(--text);
-        padding: 8px;
-        border-bottom: 1px solid $white;
-        &:hover {
-          opacity: 0.75;
-        }
-        &:active {
-          box-shadow: none;
-          outline: none;
-        }
+        color: var(--text-hover);
       }
     }
   }
@@ -136,14 +121,14 @@ export default {
     overflow-y: hidden;
   }
   .navbar {
-    background-color: transparent;
+    left: 0;
+    right: 0;
+    top: 0;
     display: block;
-    position: fixed;
+    position: relative;
+    padding: 0;
     .logo-container {
-      .logo {
-        margin: 10px;
-        width: 70px;
-      }
+      padding: 16px;
     }
     .responsive-menu {
       display: block;
@@ -153,7 +138,6 @@ export default {
       right: 10px;
     }
     .tab-container {
-      background-color: transparent;
       list-style: none;
       display: none;
       text-align: center;
@@ -161,11 +145,12 @@ export default {
       width: 100vw;
       padding: 0;
       margin: 0;
+      cursor: pointer;
       &.visible {
         display: block;
       }
       .tab {
-        border-bottom: 1px solid $white;
+        cursor: pointer;
         display: block;
         color: var(--text);
         align-items: center;
@@ -173,32 +158,6 @@ export default {
         padding: 24px 32px;
         .social {
           display: none;
-        }
-      }
-      .language-btn {
-        display: none;
-        color: var(--text);
-        justify-content: space-between;
-        margin: 16px 50px 0 50px;
-        border: none;
-        border-bottom: 1px solid $white;
-        &:hover {
-          color: $green-1;
-        }
-        .arrow {
-          display: block;
-        }
-      }
-      .drop-down {
-        position: relative;
-        border-top: none;
-        margin: 0 auto;
-        padding: 0;
-        width: 275px;
-        .drop-down-item {
-          border-bottom: 1px solid $white;
-          padding: 10px;
-          text-align: left;
         }
       }
     }

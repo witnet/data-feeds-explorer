@@ -31,7 +31,7 @@ async function createApp (): Promise<any> {
 
   const resolvers = {
     Query: {
-      feeds: () =>  feeds
+      feeds: () => feeds
     }
   }
 

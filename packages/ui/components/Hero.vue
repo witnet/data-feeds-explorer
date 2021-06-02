@@ -2,6 +2,7 @@
   <div class="section">
     <NavBar />
     <div class="main">
+      <ChartExample />
       <!-- Select example -->
       <!-- <Select
         :options="options"
@@ -60,11 +61,10 @@ export default {
   padding: 0 180px;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: max-content 1fr;
+  grid-template-rows: 150px 1fr;
   grid-template-columns: 1fr;
 
   .main {
-    margin-top: 15vh;
     display: flex;
     flex-direction: column;
     align-items: left;
