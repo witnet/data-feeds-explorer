@@ -6,16 +6,25 @@
   --text-background: #2d2c39d3;
   --default-border: 1px solid white;
 
-  // select
+  // Select
 
   --selected-background: #37414c;
-  --selected-text: white;
+  --selected-text: rgb(233, 231, 231);
   --selected-icon: #62B1B058;
   --selected-options-background: #37414c;
-  --selected-options-text: white;
+  --selected-options-text: rgb(231, 231, 231);
   --selected-options-border: 1px solid #1F1F24;
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
+
+  // FeedCard
+
+  --card-border: 2px solid #62B1B015;
+  --card-background: #62B1B015;
+  --network-color: #41BEA562;
+  --mainnet-network-color: #41BEA562;
+  --rinkeby-network-color: #BEA24162;
+  --goerly-network-color: #4182BE62;
 }
 
 .dark-mode {
@@ -26,7 +35,7 @@
   --text-background: #2d2c39d3;
   --default-border: 1px solid white;
 
-  // select
+  // Select
 
   --selected-background: #37414c;
   --selected-text: white;
@@ -37,6 +46,15 @@
   --selected-options-border: 1px solid #1F1F24;
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
+
+  // FeedCard
+
+  --card-border: 2px solid #62B1B015;
+  --card-background: #62B1B015;
+  --network-color: #41BEA562;
+  --mainnet-network-color: #41BEA562;
+  --rinkeby-network-color: #BEA24162;
+  --goerly-network-color: #4182BE62;
 }
 
 .light-mode {
@@ -47,7 +65,7 @@
   --text-background: #ffffffd3;
   --default-border: 1px solid #2D2C39;
 
-  // select
+  // Select
 
   --selected-background: linear-gradient(90deg, #3f92a5 0%, #41bea5 57%);;
   --selected-text: white;
@@ -58,6 +76,17 @@
   --selected-options-border: 1px solid white;
   --selected-options-shadow: 1px 1px 10 2px #1F1F24;
   --selected-options-highlight: #1F1F2414;
+
+  // FeedCard
+
+  --card-border: 2px solid #41BEA5;
+  --card-background: white;
+  --network-color: #41BEA5;
+  --name-color: #1F1F24;
+  --value-color: #1F1F24;
+  --mainnet-network-color: #41BEA5;
+  --rinkeby-network-color: #E9BD28;
+  --goerly-network-color: #2584DC;
 }
 
 h1 {

@@ -2,10 +2,20 @@
   <div class="section">
     <NavBar />
     <div class="main">
+      <!-- Select example -->
       <!-- <Select
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
+      /> -->
+      <!-- FeedCard example -->
+      <!-- <FeedCard
+        details-path="/home"
+        name="USD/BTC"
+        :img="img"
+        value="38213.18"
+        label="$"
+        network="mainnet"
       /> -->
       <h1>
         <span class="text">{{ $t('hero.title') }}</span>
@@ -30,6 +40,10 @@ export default {
         { label: 'Mainnet' },
       ],
       selected: { label: 'All' },
+      img: {
+        name: 'bitcoin-card',
+        alt: 'BTC/USD',
+      },
     }
   },
   methods: {
