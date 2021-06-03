@@ -1,0 +1,7 @@
+query feed($name: String!) {
+  feed(name: $name) {
+    id
+    name
+    address
+  }
+}

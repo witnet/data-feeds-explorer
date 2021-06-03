@@ -1,5 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server'
-import { MongoMemoryServer } from 'mongodb-memory-server'
+// import { MongoMemoryServer } from 'mongodb-memory-server'
 import { createServer } from '../src/server'
 import { ApolloServerTestClient, createTestClient } from 'apollo-server-testing'
 
@@ -16,13 +16,15 @@ const state: {
 
 describe('user', function () {
   beforeAll(async function () {
-    const mongod = new MongoMemoryServer()
-    const uri = await mongod.getUri()
+    const ciUri= 'mongodb://localhost'
     const mongoManager = new MongoManager()
-    const db = await mongoManager.start(uri)
+    const db = await mongoManager.start(process.env.CI ? ciUri : null)
     const server = await createServer(db)
-    await server.listen()
-
+    await new Promise(resolve => {
+      server.listen(info => {
+        resolve(info)
+      })
+    })
     state.mongoManager = mongoManager
     state.server = server
     state.testClient = createTestClient(server)

@@ -1,0 +1,7 @@
+{
+  feeds {
+    id
+    name
+    address
+  }
+}

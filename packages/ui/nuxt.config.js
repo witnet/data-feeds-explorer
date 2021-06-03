@@ -93,7 +93,7 @@ export default {
     scss: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
   },
   // ...
-  modules: ['@nuxtjs/style-resources', 'nuxt-i18n'],
+  modules: ['@nuxtjs/style-resources', 'nuxt-i18n', '@nuxtjs/apollo'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -149,4 +149,11 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://localhost:4000',
+      },
+    },
+  },
 }

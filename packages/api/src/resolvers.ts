@@ -12,7 +12,6 @@ const resolvers = {
     },
 
     feed: async (_parent, args, { feedRepository }: Context) => {
-      console.log('ARGS', args)
       return await feedRepository.get(args.name)
     }
   },

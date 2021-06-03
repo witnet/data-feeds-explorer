@@ -81,5 +81,6 @@ export async function createServer (db: Db): Promise<ApolloServer> {
 
   return server
 }
-
-main()
+if (!process.env.CI) {
+  main()
+}

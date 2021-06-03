@@ -8,6 +8,7 @@ export class MongoManager {
     uri =
       uri ||
       `mongodb://${process.env.MONGO_DATABASE_USERNAME}:${process.env.MONGO_DATABASE_PASSWORD}@${process.env.DB_HOSTNAME}:${process.env.MONGO_PORT}/${process.env.MONGO_INITDB_DATABASE}`
+    console.log('uri', uri)
     return this.connect(uri, process.env.MONGO_INITDB_DATABASE)
   }
 
@@ -32,6 +33,9 @@ export class MongoManager {
   }
 
   async drop (): Promise<void> {
-    this.db.dropDatabase()
+    const collections = await this.db.collections()
+    for (const collection of collections) {
+      await this.db.dropCollection(collection.collectionName)
+    }
   }
 }

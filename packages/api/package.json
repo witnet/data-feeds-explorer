@@ -10,7 +10,7 @@
     "dev": "nodemon",
     "start": "node dist/server.js",
     "test": "jest",
-    "prepare": "yarn codengen"
+    "prepare": "yarn codegen"
   },
   "license": "ISC",
   "devDependencies": {
