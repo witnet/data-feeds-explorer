@@ -1,16 +1,16 @@
 <template>
   <div class="section">
     <NavBar />
-    <div class="main">
-      <ChartExample />
-      <!-- Select example -->
-      <!-- <Select
+    <TransactionsList />
+    <!-- <div class="main"> -->
+    <!-- Select example -->
+    <!-- <Select
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
       /> -->
-      <!-- FeedCard example -->
-      <!-- <FeedCard
+    <!-- FeedCard example -->
+    <!-- <FeedCard
         details-path="/home"
         name="USD/BTC"
         :img="img"
@@ -18,15 +18,7 @@
         label="$"
         network="mainnet"
       /> -->
-      <h1>
-        <span class="text">{{ $t('hero.title') }}</span>
-      </h1>
-      <p>
-        <i18n class="text" path="hero.text.main" tag="span">
-          <span class="highlight">{{ $t('hero.text.highlight') }}</span>
-        </i18n>
-      </p>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -63,14 +55,8 @@ export default {
   display: grid;
   grid-template-rows: 150px 1fr;
   grid-template-columns: 1fr;
-
-  .main {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    max-width: 40vw;
-    justify-self: center;
-  }
+  max-width: 1500px;
+  margin: 0 auto;
   .text {
     background-color: var(--text-background);
     line-height: 1.5;

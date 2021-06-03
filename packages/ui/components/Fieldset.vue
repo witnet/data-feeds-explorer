@@ -30,7 +30,6 @@ export default {
     padding: 16px 0 16px 0;
   }
   .content {
-    padding: 34px;
     background: var(--fieldset-background);
     border-radius: 4px;
   }
