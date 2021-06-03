@@ -110,6 +110,9 @@ export default {
       }
     }
   }
+  .drop {
+    position: absolute;
+  }
 }
 @media screen and (max-width: 1200px) {
   .drop {

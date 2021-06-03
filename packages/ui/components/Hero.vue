@@ -1,8 +1,8 @@
 <template>
   <div class="section">
     <NavBar />
-    <TransactionsList />
-    <!-- <div class="main"> -->
+    <!-- Chart example -->
+    <!-- <ChartExample name="USD/BTC" data-label="$" :data="data" /> -->
     <!-- Select example -->
     <!-- <Select
         :options="options"
@@ -18,7 +18,6 @@
         label="$"
         network="mainnet"
       /> -->
-    <!-- </div> -->
   </div>
 </template>
 
@@ -26,6 +25,18 @@
 export default {
   data() {
     return {
+      data: [
+        { time: '2019-04-11', value: 80.01 },
+        { time: '2019-04-12', value: 96.63 },
+        { time: '2019-04-13', value: 76.64 },
+        { time: '2019-04-14', value: 81.89 },
+        { time: '2019-04-15', value: 74.43 },
+        { time: '2019-04-16', value: 80.01 },
+        { time: '2019-04-17', value: 96.63 },
+        { time: '2019-04-18', value: 76.64 },
+        { time: '2019-04-19', value: 81.89 },
+        { time: '2019-04-20', value: 74.43 },
+      ],
       options: [
         { label: 'All' },
         { label: 'Rinkeby' },
@@ -38,6 +49,27 @@ export default {
         alt: 'BTC/USD',
       },
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.data = [
+        { time: '2019-04-11', value: 80.01 },
+        { time: '2019-04-12', value: 96.63 },
+        { time: '2019-04-13', value: 76.64 },
+        { time: '2019-04-14', value: 81.89 },
+        { time: '2019-04-15', value: 74.43 },
+        { time: '2019-04-16', value: 80.01 },
+        { time: '2019-04-17', value: 96.63 },
+        { time: '2019-04-18', value: 76.64 },
+        { time: '2019-04-19', value: 81.89 },
+        { time: '2019-04-20', value: 74.43 },
+        { time: '2019-04-21', value: 5.43 },
+        { time: '2019-04-22', value: 6.43 },
+        { time: '2019-04-23', value: 7.43 },
+        { time: '2019-04-24', value: 8.43 },
+        { time: '2019-04-25', value: 9.43 },
+      ]
+    }, 10000)
   },
   methods: {
     updateSelected(selectedOption) {
@@ -68,10 +100,6 @@ export default {
 @media (max-width: 1200px) {
   .section {
     padding: 0 0;
-    .main {
-      max-width: 100%;
-      padding: 40px 40px;
-    }
   }
 }
 </style>

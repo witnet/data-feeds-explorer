@@ -1,35 +1,38 @@
 <template>
   <div ref="container">
-    <div
-      v-show="tooltip"
-      class="tooltip"
-      :style="{ left: `${tooltipLeftPosition}px` }"
-    >
-      {{ tooltipContent }}
+    <div v-show="tooltip" class="tooltip">
+      <span class="value">
+        {{ value }} <span class="date"> {{ date }}</span></span
+      >
+      <span class="name"> {{ name }} </span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Array,
+      required: true,
+    },
+    dataLabel: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       tooltip: true,
-      data: [
-        { time: '2019-04-11', value: 80.01 },
-        { time: '2019-04-12', value: 96.63 },
-        { time: '2019-04-13', value: 76.64 },
-        { time: '2019-04-14', value: 81.89 },
-        { time: '2019-04-15', value: 74.43 },
-        { time: '2019-04-16', value: 80.01 },
-        { time: '2019-04-17', value: 96.63 },
-        { time: '2019-04-18', value: 76.64 },
-        { time: '2019-04-19', value: 81.89 },
-        { time: '2019-04-20', value: 74.43 },
-      ],
+      dateTooltip: true,
       width: 400,
       height: 300,
-      tooltipContent: '',
+      value: '',
+      date: '',
       toolTipWidth: 100,
       tooltipLeftPosition: 10,
     }
@@ -38,29 +41,19 @@ export default {
     chart() {
       const { LightWeightCharts } = this.$lwcCore()
       return LightWeightCharts.createChart(this.$refs.container, {
-        width: 400,
-        height: 300,
-        leftPriceScale: {
-          visible: false,
+        rightPriceScale: {
+          borderVisible: false,
         },
         timeScale: {
-          visible: false,
+          visible: true,
         },
         crosshair: {
           horzLine: {
             visible: false,
           },
           vertLine: {
-            visible: false,
+            visible: true,
           },
-        },
-        rightPriceScale: {
-          scaleMargins: {
-            top: 0.5,
-            bottom: 0.5,
-          },
-          visible: false,
-          borderVisible: false,
         },
         layout: {
           backgroundColor: 'transparent',
@@ -78,9 +71,9 @@ export default {
     },
     lineChart() {
       return this.chart.addAreaSeries({
-        topColor: 'rgba(38,198,218, 0.56)',
-        bottomColor: 'rgba(38,198,218, 0.04)',
-        lineColor: 'rgba(38,198,218, 1)',
+        topColor: '#41BEA556',
+        bottomColor: '#41BEA504',
+        lineColor: '#41BEA5',
         lineWidth: 2,
       })
     },
@@ -104,25 +97,8 @@ export default {
   mounted() {
     this.setData()
     this.updateTooltip()
-    setTimeout(() => {
-      this.data = [
-        { time: '2019-04-11', value: 80.01 },
-        { time: '2019-04-12', value: 96.63 },
-        { time: '2019-04-13', value: 76.64 },
-        { time: '2019-04-14', value: 81.89 },
-        { time: '2019-04-15', value: 74.43 },
-        { time: '2019-04-16', value: 80.01 },
-        { time: '2019-04-17', value: 96.63 },
-        { time: '2019-04-18', value: 76.64 },
-        { time: '2019-04-19', value: 81.89 },
-        { time: '2019-04-20', value: 74.43 },
-        { time: '2019-04-21', value: 5.43 },
-        { time: '2019-04-22', value: 6.43 },
-        { time: '2019-04-23', value: 7.43 },
-        { time: '2019-04-24', value: 8.43 },
-        { time: '2019-04-25', value: 9.43 },
-      ]
-    }, 10000)
+    this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
+    this.date = this.dateToString(this.data[this.data.length - 1].time)
   },
   methods: {
     setData() {
@@ -138,31 +114,15 @@ export default {
     updateTooltip() {
       const { LightWeightCharts } = this.$lwcCore()
       this.chart.subscribeCrosshairMove((param) => {
-        if (
-          !param.time ||
-          param.point.x < 0 ||
-          param.point.x > this.width ||
-          param.point.y < 0 ||
-          param.point.y > this.height
-        ) {
-          this.tooltip = false
-          return
-        }
-
-        this.tooltip = true
         const price = param.seriesPrices.get(this.lineChart)
-        const dateStr = LightWeightCharts.isBusinessDay(param.time)
-          ? this.dateToString(param.time)
-          : new Date(param.time * 1000).toLocaleDateString()
+        if (param.time) {
+          const dateStr = LightWeightCharts.isBusinessDay(param.time)
+            ? this.dateToString(param.time)
+            : new Date(param.time * 1000).toLocaleDateString()
 
-        this.tooltipContent =
-          '' + Math.round(price * 100) / 100 + ' | ' + dateStr
-
-        const leftPosition = param.point.x - this.toolTipWidth / 2
-        this.tooltipLeftPosition = Math.max(
-          0,
-          Math.min(this.width - this.toolTipWidth, leftPosition)
-        )
+          this.value = `${this.dataLabel} ${Math.round(price * 100) / 100}`
+          this.date = dateStr
+        }
       })
     },
   },
@@ -171,21 +131,53 @@ export default {
 
 <style lang="scss">
 .container {
+  width: 100%;
+  max-width: 1500px;
   position: relative;
 }
 .tooltip {
+  display: flex;
+  flex-direction: column;
   width: max-content;
   height: max-content;
   position: relative;
   padding: 6px;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 32px;
   border-radius: 2px;
   background-color: var(--text-background);
-  text-align: center;
-  z-index: 1000;
-  top: 3px;
+  text-align: left;
+  top: 60px;
+  font-weight: bold;
   pointer-events: none;
   color: var(--text);
+  .name {
+    font-size: 24px;
+    margin-top: 8px;
+  }
+  .value {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    .date {
+      font-size: 24px;
+      margin-left: 16px;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .tooltip {
+    padding-left: 24px;
+    font-size: 24px;
+    .name {
+      font-size: 16px;
+    }
+    .value {
+      font-size: 24px;
+      .date {
+        font-size: 16px;
+      }
+    }
+  }
 }
 </style>
