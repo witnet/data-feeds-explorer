@@ -2,7 +2,7 @@
   <div class="section">
     <NavBar />
     <!-- Chart example -->
-    <!-- <ChartExample name="USD/BTC" data-label="$" :data="data" /> -->
+    <ChartExample name="USD/BTC" data-label="$" :data="data" />
     <!-- Select example -->
     <!-- <Select
         :options="options"
@@ -85,7 +85,7 @@ export default {
   padding: 0 180px;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 150px 1fr;
+  grid-template-rows: 110px 1fr;
   grid-template-columns: 1fr;
   max-width: 1500px;
   margin: 0 auto;
