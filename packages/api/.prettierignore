@@ -1,2 +1,4 @@
 **/*.sh
 **/*.yml
+dist/
+**/generated/**
