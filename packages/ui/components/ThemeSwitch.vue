@@ -34,11 +34,10 @@ export default {
     toggleMode() {
       if (this.$colorMode.value === this.themes.dark.key) {
         this.$colorMode.preference = 'light'
-        this.currentTheme = this.$colorMode.preference
       } else {
         this.$colorMode.preference = 'dark'
-        this.currentTheme = this.$colorMode.preference
       }
+      this.currentTheme = this.$colorMode.preference
     },
   },
 }
