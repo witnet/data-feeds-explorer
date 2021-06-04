@@ -1,8 +1,8 @@
 <template>
   <li class="item-container">
     <div class="attribute-container links">
-      <div class="attribute">{{ croppedWitnetLink }}</div>
-      <div class="attribute">{{ croppedEtherscanLink }}</div>
+      <div class="attribute truncate">{{ witnetLink }}</div>
+      <div class="attribute truncate">{{ etherscanLink }}</div>
     </div>
     <div class="attribute-container values-time">
       <div class="attribute">{{ value }}</div>
@@ -16,7 +16,6 @@
 <script>
 import { formatNumber } from '@/utils/formatNumber'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
-import { cropString } from '@/utils/cropString'
 
 export default {
   name: 'Transaction',
@@ -42,15 +41,17 @@ export default {
     value() {
       return `${this.data.label} ${formatNumber(this.data.value)}`
     },
-    croppedEtherscanLink() {
-      return cropString(this.etherscanLink, 28)
-    },
-    croppedWitnetLink() {
-      return cropString(this.witnetLink, 28)
-    },
   },
   methods: {
     calculateTimeAgo,
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>

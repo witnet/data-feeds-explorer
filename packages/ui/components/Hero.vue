@@ -2,7 +2,8 @@
   <div class="section">
     <NavBar />
     <!-- Chart example -->
-    <ChartExample name="USD/BTC" data-label="$" :data="data" />
+    <!-- <ChartExample name="USD/BTC" data-label="$" :data="data" /> -->
+    <TransactionsList />
     <!-- Select example -->
     <!-- <Select
         :options="options"

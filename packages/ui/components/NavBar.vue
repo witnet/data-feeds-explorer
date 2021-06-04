@@ -15,9 +15,6 @@
           <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
             <GithubLogo />
           </li>
-          <!-- <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
-            <ThemeSwitch />
-          </li> -->
         </ul>
       </transition>
     </nav>

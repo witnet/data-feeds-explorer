@@ -19,8 +19,9 @@
         </div>
       </li>
       <Transaction
-        v-for="transaction in transactionsExample"
+        v-for="(transaction, index) in transactionsExample"
         :key="transaction.witnetLink"
+        :class="{ blur: index % 2 }"
         :witnet-link="transaction.witnetLink"
         :etherscan-link="transaction.etherscanLink"
         :data="transaction.data"
@@ -79,8 +80,8 @@ export default {
 .item-container {
   padding: 16px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  column-gap: 8px;
+  grid-template-columns: 3fr 1fr;
+  column-gap: 16px;
   row-gap: 24px;
   &.blur {
     background-color: var(--transaction-blur-background);
@@ -92,7 +93,7 @@ export default {
       auto-fit,
       minmax(var(--column-width-min), 1fr)
     );
-    column-gap: 8px;
+    column-gap: 16px;
     row-gap: 24px;
   }
   .links {
