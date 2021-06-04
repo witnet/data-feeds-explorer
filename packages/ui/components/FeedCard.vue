@@ -10,10 +10,9 @@
 </template>
 
 <script>
-import { defineComponent, computed } from '@nuxtjs/composition-api'
 import { formatNumber } from '@/utils/formatNumber'
 
-export default defineComponent({
+export default {
   name: 'FeedCard',
   props: {
     detailsPath: {
@@ -41,13 +40,18 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const formatedValue = formatNumber(props.value)
-    const networkName = computed(() => props.network.toUpperCase())
-    const url = computed(() => require(`~/assets/svg/${props.img.name}.svg`))
-    return { formatedValue, networkName, url }
+  computed: {
+    formatedValue() {
+      return formatNumber(this.value)
+    },
+    networkName() {
+      return this.network.toUpperCase()
+    },
+    url() {
+      return require(`~/assets/svg/${this.img.name}.svg`)
+    },
   },
-})
+}
 </script>
 
 <style lang="scss" scoped>

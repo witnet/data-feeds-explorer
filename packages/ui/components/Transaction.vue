@@ -14,12 +14,11 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
 import { formatNumber } from '@/utils/formatNumber'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 import { cropString } from '@/utils/cropString'
 
-export default defineComponent({
+export default {
   name: 'Transaction',
   props: {
     witnetLink: {
@@ -39,11 +38,19 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const value = `${props.data.label} ${formatNumber(props.data.value)}`
-    const croppedEtherscanLink = cropString(props.etherscanLink, 28)
-    const croppedWitnetLink = cropString(props.witnetLink, 28)
-    return { value, calculateTimeAgo, croppedWitnetLink, croppedEtherscanLink }
+  computed: {
+    value() {
+      return `${this.data.label} ${formatNumber(this.data.value)}`
+    },
+    croppedEtherscanLink() {
+      return cropString(this.etherscanLink, 28)
+    },
+    croppedWitnetLink() {
+      return cropString(this.witnetLink, 28)
+    },
   },
-})
+  methods: {
+    calculateTimeAgo,
+  },
+}
 </script>
