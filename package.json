@@ -18,6 +18,11 @@
     "prepare": "lerna run prepare"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/config-lerna-scopes": "^11.0.0",
+    "commitlint": "^11.0.0",
+    "husky": "^4.3.0",
     "lerna": "^3.22.1",
     "prettier-standard": "^16.4.1",
     "sass-loader": "^10.1.1",
