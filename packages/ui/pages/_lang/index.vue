@@ -1,31 +1,15 @@
 <template>
   <div>
-    <h2>Feeds</h2>
-    <div v-for="feed in feeds" :key="feed.id">
-      <p>{{ feed }}</p>
-    </div>
-    <h2>Feed</h2>
-    <p>{{ feed }}</p>
+    <Main />
   </div>
 </template>
 
 <script>
-import feeds from '@/apollo/queries/feeds.gql'
-import feed from '@/apollo/queries/feed.gql'
+import Main from '@/components/Main.vue'
 
 export default {
-  apollo: {
-    feeds: {
-      prefetch: true,
-      query: feeds,
-    },
-    feed: {
-      prefetch: true,
-      query: feed,
-      variables: {
-        name: 'btc/usd',
-      },
-    },
+  components: {
+    Main,
   },
 }
 </script>

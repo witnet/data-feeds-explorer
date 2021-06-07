@@ -1,6 +1,9 @@
 <template>
   <div class="background">
-    <Nuxt />
+    <MainSection>
+      <NavBar slot="navbar" />
+      <Nuxt slot="content" />
+    </MainSection>
   </div>
 </template>
 
@@ -30,7 +33,15 @@ body {
   margin: 0;
   padding: 0;
 }
+.nuxt-link-exact-active {
+  color: var(--text);
+}
+.nuxt-link-active {
+  color: var(--text);
+}
+
 a {
+  color: var(--text);
   text-decoration: none;
 }
 *,

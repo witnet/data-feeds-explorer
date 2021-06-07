@@ -1,5 +1,7 @@
 <template>
-  <font-awesome-icon class="mode-icon" :icon="icon" @click="toggleMode" />
+  <div class="icon-container">
+    <font-awesome-icon class="mode-icon" :icon="icon" @click="toggleMode" />
+  </div>
 </template>
 
 <script>
@@ -45,8 +47,18 @@ export default {
 
 <style scoped lang="scss">
 .mode-icon {
-  color: $green-1;
-  font-size: 24px;
-  margin: 16px 24px 16px 16px;
+  color: var(--icon-color);
+  font-size: 20px;
+}
+.icon-container {
+  cursor: pointer;
+  background-color: var(--icon-background);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  margin: 16px;
 }
 </style>

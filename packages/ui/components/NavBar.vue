@@ -10,10 +10,14 @@
       <transition name="dropdown" class="dropdown">
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
           <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
-            About
+            <a class="tab" href="https://witnet.io" target="_blank">{{
+              $t('about')
+            }}</a>
           </li>
           <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
-            <GithubLogo />
+            <a href="https://github.com/witnet" target="_blank">
+              <GithubLogo />
+            </a>
           </li>
         </ul>
       </transition>
@@ -59,7 +63,7 @@ export default {
   align-items: center;
   max-width: 1500px;
   margin: 0 auto;
-  padding: 16px 140px 16px 140px;
+  padding: 16px 200px 16px 200px;
 
   .logo-container {
     display: grid;
@@ -128,14 +132,14 @@ export default {
     position: relative;
     padding: 0;
     .logo-container {
-      padding: 16px;
+      padding: 32px;
     }
     .responsive-menu {
       display: block;
       cursor: pointer;
       position: absolute;
-      top: 4px;
-      right: 10px;
+      top: 16px;
+      right: 32px;
     }
     .tab-container {
       list-style: none;
@@ -160,6 +164,17 @@ export default {
           display: none;
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .navbar {
+    .logo-container {
+      padding: 16px;
+    }
+    .responsive-menu {
+      top: 16px;
+      right: 16px;
     }
   }
 }

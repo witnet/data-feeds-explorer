@@ -1,24 +1,22 @@
 <template>
-  <div class="section">
-    <NavBar />
-    <!-- Chart example -->
-    <!-- <ChartExample name="USD/BTC" data-label="$" :data="data" /> -->
-    <TransactionsList />
-    <!-- Select example -->
-    <!-- <Select
-        :options="options"
-        :default-option="selected"
-        @update-selected="updateSelected"
-      /> -->
-    <!-- FeedCard example -->
-    <!-- <FeedCard
-        details-path="/home"
-        name="USD/BTC"
-        :img="img"
-        value="38213.18"
-        label="$"
-        network="mainnet"
-      /> -->
+  <div class="content">
+    <div class="section-header">
+      <nuxt-link class="back-to-list" :to="localePath('/')">
+        <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />
+      </nuxt-link>
+      <SvgIcon name="bitcoin" />
+    </div>
+    <Chart class="chart" :data="data" data-label="$" name="BTC/USD" />
+    <Fieldset :title="$t('contract_address')" class="contract-container">
+      <a
+        href="https://rinkeby.etherscan.io/address/0x6cEEa6Bf8C6D914b3723678D4FDA51c5A4b30507#code"
+        target="_blank"
+        class="contract-address"
+      >
+        0x6cEEa6Bf8C6D914b3723678D4FDA51c5A4b30507
+      </a>
+    </Fieldset>
+    <TransactionsList class="transactions" />
   </div>
 </template>
 
@@ -38,17 +36,6 @@ export default {
         { time: '2019-04-19', value: 81.89 },
         { time: '2019-04-20', value: 74.43 },
       ],
-      options: [
-        { label: 'All' },
-        { label: 'Rinkeby' },
-        { label: 'Goerly' },
-        { label: 'Mainnet' },
-      ],
-      selected: { label: 'All' },
-      img: {
-        name: 'bitcoin-card',
-        alt: 'BTC/USD',
-      },
     }
   },
   mounted() {
@@ -72,35 +59,55 @@ export default {
       ]
     }, 10000)
   },
-  methods: {
-    updateSelected(selectedOption) {
-      this.selected = selectedOption
-    },
-  },
 }
 </script>
 
 <style lang="scss" scoped>
-.section {
-  color: var(--text);
-  padding: 0 180px;
-  min-height: 100vh;
+.content {
   display: grid;
-  grid-template-rows: 110px 1fr;
+  grid-template-rows: max-content max-content max-content 1fr;
   grid-template-columns: 1fr;
-  max-width: 1500px;
-  margin: 0 auto;
-  .text {
-    background-color: var(--text-background);
-    line-height: 1.5;
+  row-gap: 16px;
+}
+.contract-container {
+  margin: 16px;
+  margin-top: 150px;
+  .contract-address {
+    font-size: 24px;
+    padding: 24px;
+    display: block;
+    cursor: pointer;
+    color: var(--contract-address);
   }
-  .highlight {
-    color: $red;
+}
+.chart {
+  height: 400px;
+}
+.section-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 16px;
+  width: 100%;
+  .back-to-list {
+    position: absolute;
+    left: 120px;
+    .icon {
+      font-size: 24px;
+      color: var(--text);
+    }
+    &:hover {
+      .icon {
+        color: var(--text-hover);
+      }
+    }
   }
 }
 @media (max-width: 1200px) {
-  .section {
-    padding: 0 0;
+  .section-header {
+    .back-to-list {
+      left: 16px;
+    }
   }
 }
 </style>

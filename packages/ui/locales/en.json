@@ -1,4 +1,5 @@
 {
+    "transactions": "transactions",
     "hero": {
         "title": "Lorem ipsum dolor",
         "text": {

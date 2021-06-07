@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: 'Chart',
   props: {
     data: {
       type: Array,
@@ -29,8 +30,6 @@ export default {
     return {
       tooltip: true,
       dateTooltip: true,
-      width: 400,
-      height: 300,
       value: '',
       date: '',
       toolTipWidth: 100,
@@ -45,7 +44,7 @@ export default {
           borderVisible: false,
         },
         timeScale: {
-          visible: true,
+          borderVisible: false,
         },
         crosshair: {
           horzLine: {
@@ -70,6 +69,7 @@ export default {
       })
     },
     lineChart() {
+      this.chart.timeScale().fitContent()
       return this.chart.addAreaSeries({
         topColor: '#41BEA556',
         bottomColor: '#41BEA504',
@@ -91,6 +91,7 @@ export default {
           )
           dataToUpdate.forEach((el) => this.updateData(el))
         }
+        this.chart.timeScale().fitContent()
       },
     },
   },

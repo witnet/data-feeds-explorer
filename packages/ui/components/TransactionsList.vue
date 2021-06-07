@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style lang="scss">
+.transactions-container {
+  margin: 16px;
+}
 .item-container {
   padding: 16px;
   display: grid;
@@ -97,7 +100,7 @@ export default {
     row-gap: 24px;
   }
   .links {
-    --column-width-min: 250px;
+    --column-width-min: 150px;
   }
   .values-time {
     --column-width-min: 100px;

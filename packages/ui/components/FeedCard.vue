@@ -1,10 +1,10 @@
 <template>
-  <nuxt-link :to="detailsPath">
+  <nuxt-link :to="localeRoute(detailsPath)">
     <div class="card-container">
       <p class="network" :class="network">{{ networkName }}</p>
       <p class="name">{{ name }}</p>
       <p class="value">{{ label }} {{ formatedValue }}</p>
-      <img class="img" :src="url" :alt="img.alt" />
+      <SvgIcon class="img" :name="img.name" />
     </div>
   </nuxt-link>
 </template>
@@ -16,7 +16,7 @@ export default {
   name: 'FeedCard',
   props: {
     detailsPath: {
-      type: String,
+      type: Object,
       required: true,
     },
     name: {
@@ -46,9 +46,6 @@ export default {
     },
     networkName() {
       return this.network.toUpperCase()
-    },
-    url() {
-      return require(`~/assets/svg/${this.img.name}.svg`)
     },
   },
 }

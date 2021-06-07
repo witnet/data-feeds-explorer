@@ -1,5 +1,5 @@
 import { languages } from './constants'
-import { fallbackLocale } from './default'
+import { fallbackLocale, defaultLocale } from './default'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -118,11 +118,12 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/svg',
   ],
 
   fontawesome: {
     icons: {
-      solid: ['faMoon', 'faSun'],
+      solid: ['faMoon', 'faSun', 'faArrowAltCircleLeft'],
     },
   },
 
@@ -145,7 +146,7 @@ export default {
       onlyOnRoot: true,
       alwaysRedirect: true,
     },
-    defaultLocale: 'en',
+    defaultLocale,
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

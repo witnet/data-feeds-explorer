@@ -10,10 +10,11 @@
 
   --selected-background: #37414c;
   --selected-text: rgb(233, 231, 231);
+  --selected-border: 2px solid #62B1B015;
   --selected-icon: #62B1B058;
   --selected-options-background: #37414c;
   --selected-options-text: rgb(231, 231, 231);
-  --selected-options-border: 1px solid #1F1F24;
+  --selected-options-border: 2px solid #62B1B015;;
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
 
@@ -47,6 +48,15 @@
   // links
 
   --transaction-blur-background: #FFFFFF10;
+
+  //ThemeSwitch
+
+  --icon-color: #fff;
+  --icon-background: #37414c94;
+
+  //ContractAddress
+
+  --contract-address: #41BEA5;
 }
 
 .dark-mode {
@@ -62,10 +72,10 @@
   --selected-background: #37414c;
   --selected-text: white;
   --selected-icon: #62B1B058;
-  --selected-border: 1px solid #1F1F24;
+  --selected-border: 2px solid #62B1B015;
   --selected-options-background: #37414c;
   --selected-options-text: white;
-  --selected-options-border: 1px solid #1F1F24;
+  --selected-options-border: 2px solid #62B1B015;
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
 
@@ -99,6 +109,15 @@
   // links
 
   --transaction-blur-background: #FFFFFF10;
+
+  //ThemeSwitch
+
+  --icon-color: #fff;
+  --icon-background: #37414c94;
+
+  //ContractAddress
+
+  --contract-address: #41BEA5;
 }
 
 .light-mode {
@@ -152,6 +171,15 @@
   // links
 
   --transaction-blur-background: #2d2c3909;
+
+  //ThemeSwitch
+
+  --icon-color: #2D2C39;
+  --icon-background: #ffffffd3;
+
+  //ContractAddress
+
+  --contract-address: #41BEA5;
 }
 
 h1 {

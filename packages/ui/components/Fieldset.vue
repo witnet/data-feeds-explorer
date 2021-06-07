@@ -22,7 +22,7 @@ export default {
 <style scoped lang="scss">
 .fieldset {
   display: grid;
-  grid-template-rows: max-content 1fr;
+  grid-template-rows: max-content max-content;
   .title {
     color: var(--fieldset-title);
     font-weight: bold;
@@ -32,6 +32,7 @@ export default {
   .content {
     background: var(--fieldset-background);
     border-radius: 4px;
+    height: max-content;
   }
 }
 </style>
