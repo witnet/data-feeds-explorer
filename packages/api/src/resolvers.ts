@@ -18,6 +18,9 @@ const resolvers = {
   Feed: {
     requests: async (parent, _args, { priceRequestRepository }: Context) => {
       return await priceRequestRepository.getFeedRequests(parent.id)
+    },
+    lastPrice: async (parent, _args, { priceRequestRepository }: Context) => {
+      return await priceRequestRepository.getLastPrice(parent.id)
     }
   }
 }

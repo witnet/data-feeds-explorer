@@ -6,7 +6,6 @@ import { Db } from 'mongodb'
 import { FeedRepository } from './repository/Feed'
 import { PriceRequestRepository } from './repository/PriceRequest'
 
-
 // async function addSampleData(feedRepository: FeedRepository, priceRequestRepository: PriceRequestRepository) {
 //   await feedRepository.collection.drop()
 //   await priceRequestRepository.collection.drop()

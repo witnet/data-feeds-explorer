@@ -13,9 +13,9 @@ const state: {
   server: null
 }
 
-describe('user', function () {
+describe('feeds', function () {
   beforeAll(async function () {
-    const ciUri= 'mongodb://localhost'
+    const ciUri = 'mongodb://localhost'
     const mongoManager = new MongoManager()
     const db = await mongoManager.start(process.env.CI ? ciUri : null)
     const server = await createServer(db)
@@ -79,21 +79,37 @@ describe('user', function () {
     const feedResponse = await state.mongoManager.db
       .collection('feed')
       .insertOne(feedExample)
-    const priceRequestExample = {
-      price: 1000.0,
+    const priceRequestExample1 = {
+      price: 1111.0,
       feedId: feedResponse.ops[0]._id.toString(),
       requestId: '1',
-      timestamp: Date.now().toString()
+      timestamp: '1623085320000'
     }
-    const priceRequestResponse = await state.mongoManager.db
+    const priceRequestExample2 = {
+      price: 2222.0,
+      feedId: feedResponse.ops[0]._id.toString(),
+      requestId: '1',
+      timestamp: '1623085329000'
+    }
+    const priceRequestResponse1 = await state.mongoManager.db
       .collection('price_request')
-      .insertOne(priceRequestExample)
+      .insertOne(priceRequestExample1)
+    const priceRequestResponse2 = await state.mongoManager.db
+      .collection('price_request')
+      .insertOne(priceRequestExample2)
 
     await state.mongoManager.db
       .collection('feed')
       .findOneAndUpdate(
         { _id: feedResponse.ops[0]._id },
-        { $push: { requests: priceRequestResponse.ops[0]._id.toString() } },
+        { $push: { requests: priceRequestResponse1.ops[0]._id.toString() } },
+        { returnDocument: 'after' }
+      )
+    await state.mongoManager.db
+      .collection('feed')
+      .findOneAndUpdate(
+        { _id: feedResponse.ops[0]._id },
+        { $push: { requests: priceRequestResponse2.ops[0]._id.toString() } },
         { returnDocument: 'after' }
       )
 
@@ -103,6 +119,7 @@ describe('user', function () {
           id
           address
           name
+          lastPrice
           requests {
             id
             feedId
@@ -120,26 +137,26 @@ describe('user', function () {
     } = await state.testClient.query({
       query: GET_FEEDS
     })
-
     expect(feeds.length).toBe(1)
     expect(feeds[0]).toHaveProperty('address', feedExample.address)
     expect(feeds[0]).toHaveProperty('name', feedExample.name)
-    expect(feeds[0].requests.length).toBe(1)
+    expect(feeds[0]).toHaveProperty('lastPrice', priceRequestExample2.price)
+    expect(feeds[0].requests.length).toBe(2)
     expect(feeds[0].requests[0]).toHaveProperty(
       'feedId',
-      priceRequestExample.feedId
+      priceRequestExample1.feedId
     )
     expect(feeds[0].requests[0]).toHaveProperty(
       'price',
-      priceRequestExample.price
+      priceRequestExample1.price
     )
     expect(feeds[0].requests[0]).toHaveProperty(
       'requestId',
-      priceRequestExample.requestId
+      priceRequestExample1.requestId
     )
     expect(feeds[0].requests[0]).toHaveProperty(
       'timestamp',
-      priceRequestExample.timestamp
+      priceRequestExample1.timestamp
     )
     expect(feeds[0].id).toBeTruthy()
   })

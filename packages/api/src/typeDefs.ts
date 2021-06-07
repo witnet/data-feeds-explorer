@@ -6,6 +6,7 @@ const typeDefs = gql`
     name: String! @column
     address: String! @column
     requests: [PriceRequest]! @link
+    lastPrice: Float! @column
   }
 
   type PriceRequest @entity {

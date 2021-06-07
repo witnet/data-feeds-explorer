@@ -18,6 +18,25 @@ export class PriceRequestRepository {
     ).map(this.normalizeId)
   }
 
+  async getLastPrice (feedId: ObjectId) {
+    const lastPriceRequest = await this.collection.findOne(
+      {
+        feedId: feedId.toString()
+      },
+      {
+        sort: {
+          timestamp: -1
+        },
+        collation: {
+          locale: 'en_US',
+          numericOrdering: true
+        }
+      }
+    )
+
+    return lastPriceRequest?.price
+  }
+
   async insert (priceRequest: Omit<PriceRequestDbObject, '_id'>) {
     const response = await this.collection.insertOne(priceRequest)
 
