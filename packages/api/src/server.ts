@@ -2,20 +2,10 @@ import { ApolloServer } from 'apollo-server'
 import typeDefs from './typeDefs'
 import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb'
 import resolvers from './resolvers'
-import { MongoManager } from './database'
 import { Db } from 'mongodb'
 import { FeedRepository } from './repository/Feed'
 import { PriceRequestRepository } from './repository/PriceRequest'
 
-async function main () {
-  const mongoManager = new MongoManager()
-  const db = await mongoManager.start()
-  const server = await createServer(db)
-
-  server.listen().then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`)
-  })
-}
 
 // async function addSampleData(feedRepository: FeedRepository, priceRequestRepository: PriceRequestRepository) {
 //   await feedRepository.collection.drop()
@@ -80,7 +70,4 @@ export async function createServer (db: Db): Promise<ApolloServer> {
   })
 
   return server
-}
-if (!process.env.CI) {
-  main()
 }

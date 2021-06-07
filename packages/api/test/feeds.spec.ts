@@ -1,5 +1,4 @@
 import { ApolloServer, gql } from 'apollo-server'
-// import { MongoMemoryServer } from 'mongodb-memory-server'
 import { createServer } from '../src/server'
 import { ApolloServerTestClient, createTestClient } from 'apollo-server-testing'
 
