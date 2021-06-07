@@ -14,7 +14,8 @@
     "build": "yarn lerna run build --stream --concurrency 1",
     "test": "yarn lerna run test --stream ",
     "lint": "yarn lerna run lint --stream --concurrency 1",
-    "clean": "yarn lerna run clean --concurrency 4"
+    "clean": "yarn lerna run clean --concurrency 4",
+    "prepare": "lerna run prepare"
   },
   "devDependencies": {
     "lerna": "^3.22.1",
