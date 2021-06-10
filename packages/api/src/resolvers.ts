@@ -2,7 +2,7 @@ import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
 type Context = {
   feedRepository: FeedRepository
-  resultRequestRepository: ResultRequestRepository 
+  resultRequestRepository: ResultRequestRepository
 }
 
 const resolvers = {
@@ -12,7 +12,7 @@ const resolvers = {
     },
 
     feed: async (_parent, args, { feedRepository }: Context) => {
-      return await feedRepository.get(args.name)
+      return await feedRepository.get(args.id)
     }
   },
   Feed: {

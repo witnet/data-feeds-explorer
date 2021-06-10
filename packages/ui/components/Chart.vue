@@ -2,7 +2,7 @@
   <div ref="container">
     <div v-show="tooltip" class="tooltip">
       <span class="value">
-        {{ value }} <span class="date"> {{ date }}</span></span
+        {{ formatNumber(value) }} <span class="date"> {{ date }}</span></span
       >
       <span class="name"> {{ name }} </span>
     </div>
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { formatNumber } from '@/utils/formatNumber'
+
 export default {
   name: 'Chart',
   props: {
@@ -102,6 +104,7 @@ export default {
     this.date = this.dateToString(this.data[this.data.length - 1].time)
   },
   methods: {
+    formatNumber,
     setData() {
       this.lineChart.setData(this.data)
     },

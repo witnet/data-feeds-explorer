@@ -6,48 +6,69 @@ import { Db } from 'mongodb'
 import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
 
-// async function addSampleData(feedRepository: FeedRepository, resultRequestRepository: ResultRequestRepository) {
+// async function addSampleData (
+//   feedRepository: FeedRepository,
+//   resultRequestRepository: ResultRequestRepository
+// ) {
 //   await feedRepository.collection.drop()
 //   await resultRequestRepository.collection.drop()
 
 //   const feed1 = await feedRepository.insert({
-//     address: "1",
-//     name: "btc/eur",
+//     name: 'btc/eur',
+//     address: '1',
+//     lastResult: '1000.0',
+//     label: '$',
+//     network: 'mainnet',
 //     requests: []
 //   })
 
 //   const resultRequest1 = await resultRequestRepository.insert({
-//     result: 1000.00,
 //     feedId: feed1._id.toString(),
+//     address: '0x00000000',
+//     result: '1000.0',
+//     label: '$',
 //     requestId: '1',
 //     timestamp: Date.now().toString(),
+//     drTxHash: 'drTxHash12345'
 //   })
 //   await feedRepository.addResultRequest(feed1._id, resultRequest1._id)
 
 //   const resultRequest2 = await resultRequestRepository.insert({
-//     result: 2000.00,
 //     feedId: feed1._id.toString(),
-//     requestId: '2',
+//     address: '0x00000000',
+//     result: '2000.0',
+//     label: '$',
+//     requestId: '1',
 //     timestamp: Date.now().toString(),
+//     drTxHash: 'drTxHash12345'
 //   })
 //   await feedRepository.addResultRequest(feed1._id, resultRequest2._id)
 
 //   const feed2 = await feedRepository.insert({
-//     address: "2",
-//     name: "btc/usd",
+//     name: 'btc/usd',
+//     address: '2',
+//     lastResult: '2000.0',
+//     label: '$',
+//     network: 'mainnet',
 //     requests: []
 //   })
 //   const resultRequest3 = await resultRequestRepository.insert({
-//     result: 3000.00,
-//     feedId: feed2._id.toString(),
-//     requestId: '3',
+//     feedId: feed1._id.toString(),
+//     address: '0x00000000',
+//     result: '3000.0',
+//     label: '$',
+//     requestId: '1',
 //     timestamp: Date.now().toString(),
+//     drTxHash: 'drTxHash12345'
 //   })
 //   await feedRepository.addResultRequest(feed2._id, resultRequest3._id)
 
 //   await feedRepository.insert({
-//     address: "3",
-//     name: "eth/eur",
+//     name: 'btc/usd',
+//     address: '3',
+//     lastResult: '3000.0',
+//     label: '$',
+//     network: 'mainnet',
 //     requests: []
 //   })
 // }
@@ -55,7 +76,6 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 export async function createServer (db: Db): Promise<ApolloServer> {
   const feedRepository = new FeedRepository(db)
   const resultRequestRepository = new ResultRequestRepository(db)
-
   // addSampleData(feedRepository, resultRequestRepository)
 
   const context = () => {

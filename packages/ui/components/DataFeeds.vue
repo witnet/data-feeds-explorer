@@ -2,7 +2,7 @@
   <div class="feeds-container">
     <FeedCard
       v-for="feed in feeds"
-      :key="feed.name"
+      :key="feed.name + feed.network"
       :details-path="feed.detailsPath"
       :name="feed.name"
       :img="feed.img"
@@ -28,10 +28,11 @@ export default {
 <style>
 .feeds-container {
   display: grid;
-  column-gap: 24px;
-  row-gap: 24px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 24px;
+  grid-template: repeat(auto-fill, minmax(150px, 1fr)) / repeat(
+      auto-fill,
+      minmax(300px, 1fr)
+    );
   justify-items: center;
   align-items: center;
 }

@@ -1,63 +1,86 @@
 <template>
-  <div class="content">
+  <div v-if="!$apollo.loading" class="content">
     <div class="section-header">
       <nuxt-link class="back-to-list" :to="localePath('/')">
         <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />
       </nuxt-link>
       <SvgIcon name="bitcoin" />
     </div>
-    <Chart class="chart" :data="data" data-label="$" name="BTC/USD" />
+    <Chart class="chart" :data="chartData" data-label="$" :name="feedName" />
     <Fieldset :title="$t('contract_address')" class="contract-container">
       <a
-        href="https://rinkeby.etherscan.io/address/0x6cEEa6Bf8C6D914b3723678D4FDA51c5A4b30507#code"
+        :href="`https://rinkeby.etherscan.io/address/${feedAddress}#code`"
         target="_blank"
         class="contract-address"
       >
-        0x6cEEa6Bf8C6D914b3723678D4FDA51c5A4b30507
+        {{ id }}
       </a>
     </Fieldset>
-    <TransactionsList class="transactions" />
+    <TransactionsList
+      v-if="transactions"
+      class="transactions"
+      :transactions="transactions"
+    />
   </div>
 </template>
 
 <script>
+import feed from '@/apollo/queries/feed.gql'
+import { formatTimestamp } from '@/utils/formatTimestamp'
+
 export default {
+  apollo: {
+    feed: {
+      prefetch: true,
+      query: feed,
+      variables() {
+        return {
+          id: this.id,
+        }
+      },
+    },
+  },
   data() {
     return {
-      data: [
-        { time: '2019-04-11', value: 80.01 },
-        { time: '2019-04-12', value: 96.63 },
-        { time: '2019-04-13', value: 76.64 },
-        { time: '2019-04-14', value: 81.89 },
-        { time: '2019-04-15', value: 74.43 },
-        { time: '2019-04-16', value: 80.01 },
-        { time: '2019-04-17', value: 96.63 },
-        { time: '2019-04-18', value: 76.64 },
-        { time: '2019-04-19', value: 81.89 },
-        { time: '2019-04-20', value: 74.43 },
-      ],
+      id: this.$route.params.id,
     }
   },
-  mounted() {
-    setTimeout(() => {
-      this.data = [
-        { time: '2019-04-11', value: 80.01 },
-        { time: '2019-04-12', value: 96.63 },
-        { time: '2019-04-13', value: 76.64 },
-        { time: '2019-04-14', value: 81.89 },
-        { time: '2019-04-15', value: 74.43 },
-        { time: '2019-04-16', value: 80.01 },
-        { time: '2019-04-17', value: 96.63 },
-        { time: '2019-04-18', value: 76.64 },
-        { time: '2019-04-19', value: 81.89 },
-        { time: '2019-04-20', value: 74.43 },
-        { time: '2019-04-21', value: 5.43 },
-        { time: '2019-04-22', value: 6.43 },
-        { time: '2019-04-23', value: 7.43 },
-        { time: '2019-04-24', value: 8.43 },
-        { time: '2019-04-25', value: 9.43 },
-      ]
-    }, 10000)
+  computed: {
+    feedName() {
+      return this.feed.name.toUpperCase()
+    },
+    feedAddress() {
+      return this.feed.address
+    },
+    chartData() {
+      if (this.feed.requests.length > 0) {
+        return this.feed.requests.map((request) => {
+          return {
+            time: formatTimestamp(request.timestamp),
+            value: request.result,
+          }
+        })
+      } else {
+        return [{ time: formatTimestamp('0'), value: 0 }]
+      }
+    },
+    transactions() {
+      if (this.feed.requests.length > 0) {
+        return this.feed.requests.map((request) => {
+          return {
+            witnetLink: request.drTxHash,
+            etherscanLink: request.address,
+            data: {
+              label: request.label,
+              value: request.result,
+            },
+            timestamp: request.timestamp,
+          }
+        })
+      } else {
+        return null
+      }
+    },
   },
 }
 </script>
@@ -65,48 +88,49 @@ export default {
 <style lang="scss" scoped>
 .content {
   display: grid;
-  grid-template-rows: max-content max-content max-content 1fr;
-  grid-template-columns: 1fr;
+  grid-template: max-content max-content max-content 1fr / 1fr;
   row-gap: 16px;
-}
-.contract-container {
-  margin: 16px;
-  margin-top: 150px;
-  .contract-address {
-    font-size: 24px;
-    padding: 24px;
-    display: block;
-    cursor: pointer;
-    color: var(--contract-address);
-  }
-}
-.chart {
-  height: 400px;
-}
-.section-header {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 16px;
-  width: 100%;
-  .back-to-list {
-    position: absolute;
-    left: 120px;
-    .icon {
+  .contract-container {
+    margin-top: 150px;
+    .contract-address {
+      word-break: break-all;
       font-size: 24px;
-      color: var(--text);
+      padding: 24px;
+      display: block;
+      cursor: pointer;
+      color: var(--contract-address);
     }
-    &:hover {
+  }
+  .chart {
+    height: 400px;
+  }
+  .section-header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 16px;
+    width: 100%;
+    .back-to-list {
+      position: absolute;
+      left: 120px;
       .icon {
-        color: var(--text-hover);
+        font-size: 24px;
+        color: var(--text);
+      }
+      &:hover {
+        .icon {
+          color: var(--text-hover);
+        }
       }
     }
   }
 }
 @media (max-width: 1200px) {
-  .section-header {
-    .back-to-list {
-      left: 16px;
+  .content {
+    .section-header {
+      .back-to-list {
+        left: 16px;
+      }
     }
   }
 }

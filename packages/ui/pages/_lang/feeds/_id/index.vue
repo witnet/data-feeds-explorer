@@ -1,15 +1,3 @@
 <template>
-  <div>
-    <DataFeedDetails />
-  </div>
+  <DataFeedDetails />
 </template>
-
-<script>
-import DataFeedDetails from '@/components/DataFeedDetails.vue'
-
-export default {
-  components: {
-    DataFeedDetails,
-  },
-}
-</script>

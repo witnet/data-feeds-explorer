@@ -1,15 +1,16 @@
 <template>
-  <div>
-    <Main />
-  </div>
+  <Main />
 </template>
 
 <script>
-import Main from '@/components/Main.vue'
+import feeds from '@/apollo/queries/feeds.gql'
 
 export default {
-  components: {
-    Main,
+  apollo: {
+    feeds: {
+      prefetch: true,
+      query: feeds,
+    },
   },
 }
 </script>

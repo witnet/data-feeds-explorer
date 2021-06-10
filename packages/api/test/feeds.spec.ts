@@ -80,13 +80,13 @@ describe('feeds', function () {
       .collection('feed')
       .insertOne(feedExample)
     const resultRequestExample1 = {
-      result: 1111.0,
+      result: '1111.0',
       feedId: feedResponse.ops[0]._id.toString(),
       requestId: '1',
       timestamp: '1623085320000'
     }
     const resultRequestExample2 = {
-      result: 2222.0,
+      result: '2222.0',
       feedId: feedResponse.ops[0]._id.toString(),
       requestId: '1',
       timestamp: '1623085329000'
@@ -167,28 +167,32 @@ describe('feeds', function () {
       name: 'btc/usd',
       requests: []
     }
-    await state.mongoManager.db.collection('feed').insertOne(feedExample)
+    const result = await state.mongoManager.db
+      .collection('feed')
+      .insertOne(feedExample)
+
+    const { _id } = result.ops[0]
 
     const GET_FEED = gql`
-      query Feed($name: String!) {
-        feed(name: $name) {
+      query Feed($id: String!) {
+        feed(id: $id) {
           id
-          address
           name
+          address
           requests {
-            id
+            feedId
           }
         }
       }
     `
-    const {
-      data: { feed }
-    } = await state.testClient.query({
+    const result2 = await state.testClient.query({
       query: GET_FEED,
       variables: {
-        name: 'btc/usd'
+        id: _id.toString()
       }
     })
+
+    const feed = result2.data.feed
 
     expect(feed).toHaveProperty('address', feedExample.address)
     expect(feed).toHaveProperty('name', feedExample.name)

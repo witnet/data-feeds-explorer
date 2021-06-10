@@ -23,6 +23,8 @@ export default {
 .fieldset {
   display: grid;
   grid-template-rows: max-content max-content;
+  max-width: 100vw;
+  padding: 16px;
   .title {
     color: var(--fieldset-title);
     font-weight: bold;
