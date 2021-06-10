@@ -1,7 +1,14 @@
-query feed($name: String!) {
-  feed(name: $name) {
+query feed($feedId: String!) {
+  feed(feedId: $feedId) {
     id
     name
     address
+    lastResult
+    requests {
+      feedId,
+      result,
+      requestId,
+      timestamp,
+    }
   }
 }

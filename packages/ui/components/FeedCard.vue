@@ -2,7 +2,7 @@
   <nuxt-link :to="localeRoute(detailsPath)">
     <div class="card-container">
       <p class="network" :class="network">{{ networkName }}</p>
-      <p class="name">{{ name }}</p>
+      <p class="name">{{ name.toUpperCase() }}</p>
       <p class="value">{{ label }} {{ formatedValue }}</p>
       <SvgIcon class="img" :name="img.name" />
     </div>

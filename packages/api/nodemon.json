@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": [".git", "node_modules"],
-  "exec": "npx ts-node --require dotenv/config ./src/server.ts"
+  "exec": "npx ts-node --require dotenv/config ./src/index.ts"
 }

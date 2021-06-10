@@ -1,7 +1,6 @@
 <template>
   <Fieldset :title="$t('transactions')" class="transactions-container">
     <div class="collection collection-container">
-      <!-- The first list item is the header of the table -->
       <li class="item-container blur">
         <div class="attribute-container links">
           <div class="attribute">
@@ -19,7 +18,7 @@
         </div>
       </li>
       <Transaction
-        v-for="(transaction, index) in transactionsExample"
+        v-for="(transaction, index) in transactions"
         :key="transaction.witnetLink"
         :class="{ blur: index % 2 }"
         :witnet-link="transaction.witnetLink"

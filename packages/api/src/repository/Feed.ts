@@ -28,11 +28,8 @@ export class FeedRepository {
     return this._normalizeId(response.value)
   }
 
-  async get (name: string) {
-    const a = await this.collection.findOne({
-      name
-    })
-
+  async get (feedId: string) {
+    const a = await this.collection.findOne({ _id: new ObjectId(feedId) })
     return this._normalizeId(a)
   }
 

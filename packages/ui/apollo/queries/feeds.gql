@@ -3,5 +3,8 @@
     id
     name
     address
+    lastResult
+    network
+    label
   }
 }

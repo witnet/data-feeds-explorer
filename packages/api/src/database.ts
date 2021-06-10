@@ -7,8 +7,8 @@ export class MongoManager {
   async start (uri?: string): Promise<Db | null> {
     uri =
       uri ||
+      process.env.MONGO_CLUSTER_URL ||
       `mongodb://${process.env.MONGO_DATABASE_USERNAME}:${process.env.MONGO_DATABASE_PASSWORD}@${process.env.DB_HOSTNAME}:${process.env.MONGO_PORT}/${process.env.MONGO_INITDB_DATABASE}`
-
     return this.connect(uri, process.env.MONGO_INITDB_DATABASE)
   }
 
