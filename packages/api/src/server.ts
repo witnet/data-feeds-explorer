@@ -4,11 +4,11 @@ import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb'
 import resolvers from './resolvers'
 import { Db } from 'mongodb'
 import { FeedRepository } from './repository/Feed'
-import { PriceRequestRepository } from './repository/PriceRequest'
+import { ResultRequestRepository } from './repository/ResultRequest'
 
-// async function addSampleData(feedRepository: FeedRepository, priceRequestRepository: PriceRequestRepository) {
+// async function addSampleData(feedRepository: FeedRepository, resultRequestRepository: ResultRequestRepository) {
 //   await feedRepository.collection.drop()
-//   await priceRequestRepository.collection.drop()
+//   await resultRequestRepository.collection.drop()
 
 //   const feed1 = await feedRepository.insert({
 //     address: "1",
@@ -16,34 +16,34 @@ import { PriceRequestRepository } from './repository/PriceRequest'
 //     requests: []
 //   })
 
-//   const priceRequest1 = await priceRequestRepository.insert({
-//     price: 1000.00,
+//   const resultRequest1 = await resultRequestRepository.insert({
+//     result: 1000.00,
 //     feedId: feed1._id.toString(),
 //     requestId: '1',
 //     timestamp: Date.now().toString(),
 //   })
-//   await feedRepository.addPriceRequest(feed1._id, priceRequest1._id)
+//   await feedRepository.addResultRequest(feed1._id, resultRequest1._id)
 
-//   const priceRequest2 = await priceRequestRepository.insert({
-//     price: 2000.00,
+//   const resultRequest2 = await resultRequestRepository.insert({
+//     result: 2000.00,
 //     feedId: feed1._id.toString(),
 //     requestId: '2',
 //     timestamp: Date.now().toString(),
 //   })
-//   await feedRepository.addPriceRequest(feed1._id, priceRequest2._id)
+//   await feedRepository.addResultRequest(feed1._id, resultRequest2._id)
 
 //   const feed2 = await feedRepository.insert({
 //     address: "2",
 //     name: "btc/usd",
 //     requests: []
 //   })
-//   const priceRequest3 = await priceRequestRepository.insert({
-//     price: 3000.00,
+//   const resultRequest3 = await resultRequestRepository.insert({
+//     result: 3000.00,
 //     feedId: feed2._id.toString(),
 //     requestId: '3',
 //     timestamp: Date.now().toString(),
 //   })
-//   await feedRepository.addPriceRequest(feed2._id, priceRequest3._id)
+//   await feedRepository.addResultRequest(feed2._id, resultRequest3._id)
 
 //   await feedRepository.insert({
 //     address: "3",
@@ -54,12 +54,12 @@ import { PriceRequestRepository } from './repository/PriceRequest'
 
 export async function createServer (db: Db): Promise<ApolloServer> {
   const feedRepository = new FeedRepository(db)
-  const priceRequestRepository = new PriceRequestRepository(db)
+  const resultRequestRepository = new ResultRequestRepository(db)
 
-  // addSampleData(feedRepository, priceRequestRepository)
+  // addSampleData(feedRepository, resultRequestRepository)
 
   const context = () => {
-    return { feedRepository, priceRequestRepository }
+    return { feedRepository, resultRequestRepository }
   }
 
   const server = new ApolloServer({

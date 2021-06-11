@@ -18,10 +18,10 @@ export class FeedRepository {
     return this._normalizeId(response.ops[0])
   }
 
-  async addPriceRequest (feedId: ObjectId, priceRequestId: ObjectId) {
+  async addResultRequest (feedId: ObjectId, resultRequestId: ObjectId) {
     const response = await this.collection.findOneAndUpdate(
       { _id: feedId },
-      { $push: { requests: priceRequestId } },
+      { $push: { requests: resultRequestId } },
       { returnDocument: 'after' }
     )
 

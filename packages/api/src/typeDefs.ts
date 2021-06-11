@@ -5,14 +5,14 @@ const typeDefs = gql`
     id: String! @id
     name: String! @column
     address: String! @column
-    requests: [PriceRequest]! @link
-    lastPrice: Float! @column
+    requests: [ResultRequest]! @link
+    lastResult: Float! @column
   }
 
-  type PriceRequest @entity {
+  type ResultRequest @entity {
     id: String! @id
     feedId: String! @column
-    price: Float! @column
+    result: Float! @column
     requestId: String! @column
     timestamp: String! @column
     # request: DataRequest @embedded

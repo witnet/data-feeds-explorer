@@ -79,37 +79,37 @@ describe('feeds', function () {
     const feedResponse = await state.mongoManager.db
       .collection('feed')
       .insertOne(feedExample)
-    const priceRequestExample1 = {
-      price: 1111.0,
+    const resultRequestExample1 = {
+      result: 1111.0,
       feedId: feedResponse.ops[0]._id.toString(),
       requestId: '1',
       timestamp: '1623085320000'
     }
-    const priceRequestExample2 = {
-      price: 2222.0,
+    const resultRequestExample2 = {
+      result: 2222.0,
       feedId: feedResponse.ops[0]._id.toString(),
       requestId: '1',
       timestamp: '1623085329000'
     }
-    const priceRequestResponse1 = await state.mongoManager.db
-      .collection('price_request')
-      .insertOne(priceRequestExample1)
-    const priceRequestResponse2 = await state.mongoManager.db
-      .collection('price_request')
-      .insertOne(priceRequestExample2)
+    const resultRequestResponse1 = await state.mongoManager.db
+      .collection('result_request')
+      .insertOne(resultRequestExample1)
+    const resultRequestResponse2 = await state.mongoManager.db
+      .collection('result_request')
+      .insertOne(resultRequestExample2)
 
     await state.mongoManager.db
       .collection('feed')
       .findOneAndUpdate(
         { _id: feedResponse.ops[0]._id },
-        { $push: { requests: priceRequestResponse1.ops[0]._id.toString() } },
+        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
         { returnDocument: 'after' }
       )
     await state.mongoManager.db
       .collection('feed')
       .findOneAndUpdate(
         { _id: feedResponse.ops[0]._id },
-        { $push: { requests: priceRequestResponse2.ops[0]._id.toString() } },
+        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
         { returnDocument: 'after' }
       )
 
@@ -119,11 +119,11 @@ describe('feeds', function () {
           id
           address
           name
-          lastPrice
+          lastResult
           requests {
             id
             feedId
-            price
+            result
             requestId
             timestamp
             error
@@ -140,23 +140,23 @@ describe('feeds', function () {
     expect(feeds.length).toBe(1)
     expect(feeds[0]).toHaveProperty('address', feedExample.address)
     expect(feeds[0]).toHaveProperty('name', feedExample.name)
-    expect(feeds[0]).toHaveProperty('lastPrice', priceRequestExample2.price)
+    expect(feeds[0]).toHaveProperty('lastResult', resultRequestExample2.result)
     expect(feeds[0].requests.length).toBe(2)
     expect(feeds[0].requests[0]).toHaveProperty(
       'feedId',
-      priceRequestExample1.feedId
+      resultRequestExample1.feedId
     )
     expect(feeds[0].requests[0]).toHaveProperty(
-      'price',
-      priceRequestExample1.price
+      'result',
+      resultRequestExample1.result
     )
     expect(feeds[0].requests[0]).toHaveProperty(
       'requestId',
-      priceRequestExample1.requestId
+      resultRequestExample1.requestId
     )
     expect(feeds[0].requests[0]).toHaveProperty(
       'timestamp',
-      priceRequestExample1.timestamp
+      resultRequestExample1.timestamp
     )
     expect(feeds[0].id).toBeTruthy()
   })

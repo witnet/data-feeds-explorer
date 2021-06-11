@@ -1,8 +1,8 @@
 import { FeedRepository } from './repository/Feed'
-import { PriceRequestRepository } from './repository/PriceRequest'
+import { ResultRequestRepository } from './repository/ResultRequest'
 type Context = {
   feedRepository: FeedRepository
-  priceRequestRepository: PriceRequestRepository
+  resultRequestRepository: ResultRequestRepository 
 }
 
 const resolvers = {
@@ -16,11 +16,11 @@ const resolvers = {
     }
   },
   Feed: {
-    requests: async (parent, _args, { priceRequestRepository }: Context) => {
-      return await priceRequestRepository.getFeedRequests(parent.id)
+    requests: async (parent, _args, { resultRequestRepository }: Context) => {
+      return await resultRequestRepository.getFeedRequests(parent.id)
     },
-    lastPrice: async (parent, _args, { priceRequestRepository }: Context) => {
-      return await priceRequestRepository.getLastPrice(parent.id)
+    lastResult: async (parent, _args, { resultRequestRepository }: Context) => {
+      return await resultRequestRepository.getLastResult(parent.id)
     }
   }
 }
