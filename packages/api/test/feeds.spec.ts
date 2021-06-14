@@ -185,14 +185,14 @@ describe('feeds', function () {
         }
       }
     `
-    const result2 = await state.testClient.query({
+    const {
+      data: { feed }
+    } = await state.testClient.query({
       query: GET_FEED,
       variables: {
         id: _id.toString()
       }
     })
-
-    const feed = result2.data.feed
 
     expect(feed).toHaveProperty('address', feedExample.address)
     expect(feed).toHaveProperty('name', feedExample.name)

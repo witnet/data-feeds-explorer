@@ -14,6 +14,7 @@ const typeDefs = gql`
   type ResultRequest @entity {
     id: String! @id
     feedId: String! @column
+    address: String! @column
     result: String! @column
     label: String! @column
     requestId: String! @column

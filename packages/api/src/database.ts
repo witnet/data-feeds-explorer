@@ -5,7 +5,7 @@ export class MongoManager {
   client: MongoClient
 
   async start (uri?: string): Promise<Db | null> {
-    const mongoDbUri =`${uri || process.env.MONGO_URI}`
+    const mongoDbUri = `${uri || process.env.MONGO_URI}`
     return this.connect(mongoDbUri, process.env.MONGO_INITDB_DATABASE)
   }
 

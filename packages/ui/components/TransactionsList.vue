@@ -1,20 +1,23 @@
 <template>
-  <Fieldset :title="$t('transactions')" class="transactions-container">
+  <Fieldset
+    :title="$t('transactions_list.transactions')"
+    class="transactions-container"
+  >
     <div class="collection collection-container">
       <li class="item-container blur">
         <div class="attribute-container links">
           <div class="attribute">
-            {{ $t('witnet_explorer') }}
+            {{ $t('transactions_list.witnet_explorer') }}
           </div>
           <div class="attribute">
-            {{ $t('etherscan') }}
+            {{ $t('transactions_list.etherscan') }}
           </div>
         </div>
         <div class="attribute-container values-time">
           <div class="attribute">
-            {{ $t('value') }}
+            {{ $t('transactions_list.value') }}
           </div>
-          <div class="attribute">{{ $t('time') }}</div>
+          <div class="attribute">{{ $t('transactions_list.time') }}</div>
         </div>
       </li>
       <Transaction

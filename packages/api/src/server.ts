@@ -24,6 +24,7 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 
 //   const resultRequest1 = await resultRequestRepository.insert({
 //     feedId: feed1._id.toString(),
+//     address: '0x00000000',
 //     result: '1000.0',
 //     label: '$',
 //     requestId: '1',
@@ -34,6 +35,7 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 
 //   const resultRequest2 = await resultRequestRepository.insert({
 //     feedId: feed1._id.toString(),
+//     address: '0x00000000',
 //     result: '2000.0',
 //     label: '$',
 //     requestId: '1',
@@ -52,6 +54,7 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 //   })
 //   const resultRequest3 = await resultRequestRepository.insert({
 //     feedId: feed1._id.toString(),
+//     address: '0x00000000',
 //     result: '3000.0',
 //     label: '$',
 //     requestId: '1',

@@ -29,7 +29,9 @@ export class FeedRepository {
   }
 
   async get (id: string) {
-    return this._normalizeId(await this.collection.findOne({ _id: new ObjectId(id) }))
+    return this._normalizeId(
+      await this.collection.findOne({ _id: new ObjectId(id) })
+    )
   }
 
   private _normalizeId (feed: FeedDbObject) {
