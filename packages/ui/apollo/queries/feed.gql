@@ -1,5 +1,5 @@
-query feed($feedId: String!) {
-  feed(feedId: $feedId) {
+query feed($id: String!) {
+  feed(id: $id) {
     id
     name
     address

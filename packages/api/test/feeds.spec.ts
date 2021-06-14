@@ -174,8 +174,8 @@ describe('feeds', function () {
     const { _id } = result.ops[0]
 
     const GET_FEED = gql`
-      query Feed($feedId: String!) {
-        feed(feedId: $feedId) {
+      query Feed($id: String!) {
+        feed(id: $id) {
           id
           name
           address
@@ -188,7 +188,7 @@ describe('feeds', function () {
     const result2 = await state.testClient.query({
       query: GET_FEED,
       variables: {
-        feedId: _id.toString()
+        id: _id.toString()
       }
     })
 

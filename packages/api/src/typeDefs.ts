@@ -31,7 +31,7 @@ const typeDefs = gql`
 
   type Query {
     feeds: [Feed]!
-    feed(feedId: String!): Feed
+    feed(id: String!): Feed
   }
 `
 

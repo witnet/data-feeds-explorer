@@ -35,7 +35,7 @@ export default {
       query: feed,
       variables() {
         return {
-          feedId: this.id,
+          id: this.id,
         }
       },
     },

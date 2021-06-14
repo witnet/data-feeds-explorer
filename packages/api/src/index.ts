@@ -3,7 +3,7 @@ import { createServer } from './server'
 
 async function main () {
   const mongoManager = new MongoManager()
-  const db = await mongoManager.start(process.env.MONGO_CLUSTER_URL)
+  const db = await mongoManager.start(process.env.MONGO_URI)
   const server = await createServer(db)
 
   server.listen().then(({ url }) => {
