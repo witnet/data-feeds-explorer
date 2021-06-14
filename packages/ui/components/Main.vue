@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="section-header">
-      <p class="section-title">{{ $t('data_feeds') }}</p>
+      <p class="section-title">{{ $t('main.data_feeds') }}</p>
       <!-- <Select
         :options="options"
         :default-option="selected"

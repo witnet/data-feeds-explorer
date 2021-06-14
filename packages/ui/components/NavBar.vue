@@ -11,7 +11,7 @@
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
           <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
             <a class="tab" href="https://witnet.io" target="_blank">{{
-              $t('about')
+              $t('navbar.about')
             }}</a>
           </li>
           <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">

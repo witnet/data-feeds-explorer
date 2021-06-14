@@ -7,7 +7,10 @@
       <SvgIcon name="bitcoin" />
     </div>
     <Chart class="chart" :data="chartData" data-label="$" :name="feedName" />
-    <Fieldset :title="$t('contract_address')" class="contract-container">
+    <Fieldset
+      :title="$t('data_feed_details.contract_address')"
+      class="contract-container"
+    >
       <a
         :href="`https://rinkeby.etherscan.io/address/${feedAddress}#code`"
         target="_blank"

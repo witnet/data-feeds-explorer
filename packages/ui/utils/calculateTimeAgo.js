@@ -12,7 +12,7 @@ export function calculateTimeAgo(date, currentLocale) {
   const d = timestampLength < 13 ? date + '000' : date
   const currentDate = new Date(Number(d))
   const formatedTime = formatDistanceToNow(currentDate, {
-    addSuffix: false,
+    addSuffix: true,
     locale: LANGUAGES[currentLocale].fnsLocale,
   })
   return `${formatedTime}`
