@@ -39,50 +39,15 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      transactionsExample: [
-        {
-          witnetLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf74',
-          etherscanLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf75',
-          data: {
-            label: '$',
-            value: '38213.18',
-          },
-          timestamp: '1622717935',
-        },
-        {
-          witnetLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf72',
-          etherscanLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf73',
-          data: {
-            label: '$',
-            value: '38213.18',
-          },
-          timestamp: '1622717935',
-        },
-        {
-          witnetLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf70',
-          etherscanLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf71',
-          data: {
-            label: '$',
-            value: '38213.18',
-          },
-          timestamp: '1622717935',
-        },
-      ],
-    }
-  },
 }
 </script>
 
 <style lang="scss">
-.transactions-container {
-  margin: 16px;
-}
 .item-container {
   padding: 16px;
   display: grid;
   grid-template-columns: 3fr 1fr;
+  align-items: center;
   column-gap: 16px;
   row-gap: 24px;
   &.blur {

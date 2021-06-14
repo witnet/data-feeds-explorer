@@ -7,6 +7,9 @@ query feed($id: String!) {
     requests {
       feedId,
       result,
+      drTxHash,
+      label,
+      address,
       requestId,
       timestamp,
     }

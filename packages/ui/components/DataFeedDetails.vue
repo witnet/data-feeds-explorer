@@ -42,7 +42,6 @@ export default {
   },
   data() {
     return {
-      name: 'btc/eur',
       id: this.$route.params.id,
     }
   },
@@ -89,13 +88,12 @@ export default {
 <style lang="scss" scoped>
 .content {
   display: grid;
-  grid-template-rows: max-content max-content max-content 1fr;
-  grid-template-columns: 1fr;
+  grid-template: max-content max-content max-content 1fr / 1fr;
   row-gap: 16px;
   .contract-container {
-    margin: 16px;
     margin-top: 150px;
     .contract-address {
+      word-break: break-all;
       font-size: 24px;
       padding: 24px;
       display: block;
@@ -128,9 +126,11 @@ export default {
   }
 }
 @media (max-width: 1200px) {
-  .section-header {
-    .back-to-list {
-      left: 16px;
+  .content {
+    .section-header {
+      .back-to-list {
+        left: 16px;
+      }
     }
   }
 }
