@@ -35,17 +35,9 @@
   margin: auto;
 }
 .main {
-  /* // white */
   fill: var(--logo-main);
 }
 .dot {
-  /* // #41BEA5 */
   fill: var(--logo-dot);
 }
-
-// @keyframes appear {
-//   0% {
-//     opacity: 0;
-//   }
-// }
 </style>

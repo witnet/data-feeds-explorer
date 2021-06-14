@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import Main from '@/components/Main.vue'
 import feeds from '@/apollo/queries/feeds.gql'
 
 export default {
@@ -14,9 +13,6 @@ export default {
       prefetch: true,
       query: feeds,
     },
-  },
-  components: {
-    Main,
   },
 }
 </script>

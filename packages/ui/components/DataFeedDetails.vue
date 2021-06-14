@@ -69,10 +69,10 @@ export default {
       if (this.feed.requests.length > 0) {
         return this.feed.requests.map((request) => {
           return {
-            witnetLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf74',
-            etherscanLink: '0x9aa619d0afa25ddbf71db619d0afa25ddbf71dbf74',
+            witnetLink: request.drTxHash,
+            etherscanLink: request.address,
             data: {
-              label: '$',
+              label: request.label,
               value: request.result,
             },
             timestamp: request.timestamp,
@@ -92,37 +92,37 @@ export default {
   grid-template-rows: max-content max-content max-content 1fr;
   grid-template-columns: 1fr;
   row-gap: 16px;
-}
-.contract-container {
-  margin: 16px;
-  margin-top: 150px;
-  .contract-address {
-    font-size: 24px;
-    padding: 24px;
-    display: block;
-    cursor: pointer;
-    color: var(--contract-address);
-  }
-}
-.chart {
-  height: 400px;
-}
-.section-header {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 16px;
-  width: 100%;
-  .back-to-list {
-    position: absolute;
-    left: 120px;
-    .icon {
+  .contract-container {
+    margin: 16px;
+    margin-top: 150px;
+    .contract-address {
       font-size: 24px;
-      color: var(--text);
+      padding: 24px;
+      display: block;
+      cursor: pointer;
+      color: var(--contract-address);
     }
-    &:hover {
+  }
+  .chart {
+    height: 400px;
+  }
+  .section-header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 16px;
+    width: 100%;
+    .back-to-list {
+      position: absolute;
+      left: 120px;
       .icon {
-        color: var(--text-hover);
+        font-size: 24px;
+        color: var(--text);
+      }
+      &:hover {
+        .icon {
+          color: var(--text-hover);
+        }
       }
     }
   }

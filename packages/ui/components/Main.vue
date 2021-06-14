@@ -2,11 +2,11 @@
   <div>
     <div class="section-header">
       <p class="section-title">{{ $t('data_feeds') }}</p>
-      <Select
+      <!-- <Select
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
-      />
+      /> -->
     </div>
     <DataFeeds v-if="!$apollo.loading" :feeds="dataFeeds" class="data-feeds" />
   </div>
