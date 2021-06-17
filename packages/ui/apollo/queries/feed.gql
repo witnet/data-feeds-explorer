@@ -4,12 +4,12 @@ query feed($id: String!) {
     name
     address
     lastResult
+    network
+    label
     requests {
       feedId,
       result,
       drTxHash,
-      label,
-      address,
       requestId,
       timestamp,
     }

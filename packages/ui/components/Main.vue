@@ -46,7 +46,7 @@ export default {
           value: feed.lastResult,
           label: feed.label,
           img: {
-            name: 'bitcoin',
+            name: 'btcusd',
             alt: 'BTC/USD',
           },
           network: feed.network,

@@ -1,19 +1,19 @@
 :root {
   --bg: #2D2C39;
-  --responsive-menu: white;
-  --text: white;
+  --responsive-menu: #fdfdfd;
+  --text: #fdfdfd;
   --link: #E54343;
   --text-background: #2d2c39d3;
-  --default-border: 1px solid white;
+  --default-border: 1px solid #fdfdfd;
 
   // Select
 
   --selected-background: #37414c;
-  --selected-text: rgb(233, 231, 231);
+  --selected-text: #e9e7e7;
   --selected-border: 2px solid #62B1B015;
   --selected-icon: #62B1B058;
   --selected-options-background: #37414c;
-  --selected-options-text: rgb(231, 231, 231);
+  --selected-options-text: #e7e7e7;
   --selected-options-border: 2px solid #62B1B015;;
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
@@ -25,16 +25,17 @@
   --network-color: #41BEA562;
   --mainnet-network-color: #41BEA562;
   --rinkeby-network-color: #BEA24162;
-  --goerly-network-color: #4182BE62;
+  --goerli-network-color: #4182BE62;
+  --kovan-network-color: #be419862;
 
   //Fieledset
 
-  --fieldset-title: white;
+  --fieldset-title: #fdfdfd;
   --fieldset-background: #FFFFFF08;
 
   //Logo
 
-  --logo-main: white;
+  --logo-main: #fdfdfd;
   --logo-dot: #41BEA5;
 
   //NavBar
@@ -51,7 +52,7 @@
 
   //ThemeSwitch
 
-  --icon-color: #fff;
+  --icon-color: #fdfdfd;
   --icon-background: #37414c94;
 
   //ContractAddress
@@ -61,41 +62,42 @@
 
 .dark-mode {
   --bg: #2D2C39;
-  --responsive-menu: white;
-  --text: white;
+  --responsive-menu: #fdfdfd;
+  --text: #fdfdfd;
   --link: #E54343;
   --text-background: #2d2c39d3;
-  --default-border: 1px solid white;
+  --default-border: 1px solid #fdfdfd;
 
   // Select
 
   --selected-background: #37414c;
-  --selected-text: white;
+  --selected-text: #fdfdfd;
   --selected-icon: #62B1B058;
   --selected-border: 2px solid #62B1B015;
   --selected-options-background: #37414c;
-  --selected-options-text: white;
+  --selected-options-text: #fdfdfd;
   --selected-options-border: 2px solid #62B1B015;
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
 
   // FeedCard
 
-  --card-border: 2px solid #62B1B015;
+  --card-border: 2px solid #62b1b048;
   --card-background: #62B1B015;
-  --network-color: #41BEA562;
-  --mainnet-network-color: #41BEA562;
-  --rinkeby-network-color: #BEA24162;
-  --goerly-network-color: #4182BE62;
+  --network-color: #41BEA5de;
+  --mainnet-network-color: #41BEA5de;
+  --rinkeby-network-color: #BEA241de;
+  --goerli-network-color: #4d97ddde;
+  --kovan-network-color: #be4198de;
 
   //Fieledset
 
-  --fieldset-title: white;
-  --fieldset-background: #FFFFFF08;
+  --fieldset-title: #fdfdfd;
+  --fieldset-background: #FFFFFF10;
 
   //Logo
 
-  --logo-main: white;
+  --logo-main: #fdfdfd;
   --logo-dot: #41BEA5;
 
   //NavBar
@@ -108,11 +110,11 @@
 
   // links
 
-  --transaction-blur-background: #FFFFFF10;
+  --transaction-blur-background: #ffffff08;
 
   //ThemeSwitch
 
-  --icon-color: #fff;
+  --icon-color: #fdfdfd;
   --icon-background: #37414c94;
 
   //ContractAddress
@@ -121,7 +123,7 @@
 }
 
 .light-mode {
-  --bg: white;
+  --bg: #fdfdfd;
   --responsive-menu: #2D2C39;
   --text: #2D2C39;
   --link: #E54343;
@@ -131,25 +133,27 @@
   // Select
 
   --selected-background: linear-gradient(90deg, #3f92a5 0%, #41bea5 57%);;
-  --selected-text: white;
-  --selected-icon: white;
+  --selected-text: #fdfdfd;
+  --selected-icon: #fdfdfd;
   --selected-border: none;
   --selected-options-background: #F6F6F6;
   --selected-options-text: #1F1F24;
-  --selected-options-border: 1px solid white;
+  --selected-options-border: 1px solid #fdfdfd;
   --selected-options-shadow: 1px 1px 10 2px #1F1F24;
   --selected-options-highlight: #1F1F2414;
 
   // FeedCard
 
-  --card-border: 2px solid #41BEA5;
-  --card-background: white;
+  --card-border: 2px solid hsl(168, 49%, 50%);
+  --card-background: #fdfdfd;
   --network-color: #41BEA5;
   --name-color: #1F1F24;
   --value-color: #1F1F24;
-  --mainnet-network-color: #41BEA5;
-  --rinkeby-network-color: #E9BD28;
-  --goerly-network-color: #2584DC;
+  --card-box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+  --mainnet-network-color: #41BEA5de;
+  --rinkeby-network-color: #BEA241de;
+  --goerli-network-color: #4182bede;
+  --kovan-network-color: #be4198de;
 
   //Fieledset
 
@@ -162,7 +166,7 @@
 
   //NavBar
 
-  --nav-bar-background: #fff;
+  --nav-bar-background: #fdfdfd;
 
   // links
 
@@ -170,7 +174,7 @@
 
   // links
 
-  --transaction-blur-background: #2d2c3909;
+  --transaction-blur-background: #2d2c3907;
 
   //ThemeSwitch
 

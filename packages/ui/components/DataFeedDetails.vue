@@ -4,7 +4,8 @@
       <nuxt-link class="back-to-list" :to="localePath('/')">
         <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />
       </nuxt-link>
-      <SvgIcon name="bitcoin" />
+      <SvgIcon name="btcusd" />
+      <p class="network" :class="feed.network">{{ network }}</p>
     </div>
     <Chart class="chart" :data="chartData" data-label="$" :name="feedName" />
     <Fieldset
@@ -55,6 +56,9 @@ export default {
     feedAddress() {
       return this.feed.address
     },
+    network() {
+      return this.feed.network.toUpperCase()
+    },
     chartData() {
       if (this.feed.requests.length > 0) {
         return this.feed.requests.map((request) => {
@@ -74,7 +78,7 @@ export default {
             witnetLink: request.drTxHash,
             etherscanLink: request.address,
             data: {
-              label: request.label,
+              label: this.feed.label,
               value: request.result,
             },
             timestamp: request.timestamp,
@@ -108,14 +112,31 @@ export default {
     height: 400px;
   }
   .section-header {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
     margin-top: 16px;
     width: 100%;
+    .network {
+      font-size: 16px;
+      justify-self: flex-end;
+      font-weight: bold;
+      &.mainnet {
+        color: var(--mainnet-network-color);
+      }
+      &.rinkeby {
+        color: var(--rinkeby-network-color);
+      }
+      &.goerli {
+        color: var(--goerli-network-color);
+      }
+      &.kovan {
+        color: var(--kovan-network-color);
+      }
+    }
     .back-to-list {
-      position: absolute;
-      left: 120px;
+      justify-self: flex-start;
       .icon {
         font-size: 24px;
         color: var(--text);
@@ -132,7 +153,10 @@ export default {
   .content {
     .section-header {
       .back-to-list {
-        left: 16px;
+        margin-left: 16px;
+      }
+      .network {
+        margin-right: 16px;
       }
     }
   }

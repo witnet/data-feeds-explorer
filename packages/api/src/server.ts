@@ -18,7 +18,7 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 //     address: '1',
 //     lastResult: '1000.0',
 //     label: '$',
-//     network: 'mainnet',
+//     network: 'goerli',
 //     requests: []
 //   })
 
@@ -49,7 +49,7 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 //     address: '2',
 //     lastResult: '2000.0',
 //     label: '$',
-//     network: 'mainnet',
+//     network: 'rinkeby',
 //     requests: []
 //   })
 //   const resultRequest3 = await resultRequestRepository.insert({
@@ -68,7 +68,7 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 //     address: '3',
 //     lastResult: '3000.0',
 //     label: '$',
-//     network: 'mainnet',
+//     network: 'kovan',
 //     requests: []
 //   })
 // }

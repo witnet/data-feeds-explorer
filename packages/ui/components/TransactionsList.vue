@@ -9,9 +9,6 @@
           <div class="attribute">
             {{ $t('transactions_list.witnet_explorer') }}
           </div>
-          <div class="attribute">
-            {{ $t('transactions_list.etherscan') }}
-          </div>
         </div>
         <div class="attribute-container values-time">
           <div class="attribute">
@@ -49,7 +46,7 @@ export default {
 .item-container {
   padding: 16px;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   align-items: center;
   column-gap: 16px;
   row-gap: 24px;
@@ -63,6 +60,7 @@ export default {
       auto-fit,
       minmax(var(--column-width-min), 1fr)
     );
+    align-items: center;
     column-gap: 16px;
     row-gap: 24px;
   }

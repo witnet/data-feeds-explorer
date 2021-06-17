@@ -2,7 +2,6 @@
   <li class="item-container">
     <div class="attribute-container links">
       <div class="attribute truncate">{{ witnetLink }}</div>
-      <div class="attribute truncate">{{ etherscanLink }}</div>
     </div>
     <div class="attribute-container values-time">
       <div class="attribute">{{ value }}</div>

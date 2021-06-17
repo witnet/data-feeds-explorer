@@ -66,6 +66,7 @@ a {
   height: max-content;
   border: var(--card-border);
   background: var(--card-background);
+  box-shadow: var(--card-box-shadow);
   font-weight: bold;
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -83,8 +84,11 @@ a {
     &.rinkeby {
       color: var(--rinkeby-network-color);
     }
-    &.goerly {
-      color: var(--goerly-network-color);
+    &.goerli {
+      color: var(--goerli-network-color);
+    }
+    &.kovan {
+      color: var(--kovan-network-color);
     }
   }
   .img {
