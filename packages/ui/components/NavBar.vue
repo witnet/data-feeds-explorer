@@ -105,7 +105,7 @@ export default {
       color: var(--text);
       align-items: center;
       text-decoration: none;
-      margin: 24px 32px;
+      margin: 16px 24px;
       &:hover {
         color: var(--text-hover);
       }

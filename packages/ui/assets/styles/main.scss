@@ -2,7 +2,6 @@
   --bg: #2D2C39;
   --responsive-menu: #fdfdfd;
   --text: #fdfdfd;
-  --link: #E54343;
   --text-background: #2d2c39d3;
   --default-border: 1px solid #fdfdfd;
 
@@ -68,6 +67,10 @@
   --text-background: #2d2c39d3;
   --default-border: 1px solid #fdfdfd;
 
+  //Tooltip
+
+  --tooltip-background: #FFFFFF10;
+
   // Select
 
   --selected-background: #37414c;
@@ -130,6 +133,10 @@
   --text-background: #ffffffd3;
   --default-border: 1px solid #2D2C39;
 
+  //Tooltip
+
+  --tooltip-background: #2d2c3910;
+
   // Select
 
   --selected-background: linear-gradient(90deg, #3f92a5 0%, #41bea5 57%);;
@@ -149,7 +156,7 @@
   --network-color: #41BEA5;
   --name-color: #1F1F24;
   --value-color: #1F1F24;
-  --card-box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+  --card-box-shadow: #1f1f2421 0 4px 16px;
   --mainnet-network-color: #41BEA5de;
   --rinkeby-network-color: #BEA241de;
   --goerli-network-color: #4182bede;

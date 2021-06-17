@@ -1,10 +1,14 @@
 <template>
   <li class="item-container">
     <div class="attribute-container links">
-      <div class="attribute truncate">{{ witnetLink }}</div>
+      <DataTooltip
+        :label="`${witnetLink}1`"
+        class="attribute"
+        :value="witnetLink"
+      />
     </div>
     <div class="attribute-container values-time">
-      <div class="attribute">{{ value }}</div>
+      <DataTooltip :label="`${value}2`" class="attribute" :value="value" />
       <div class="attribute">
         {{ calculateTimeAgo(timestamp, $i18n.locale) }}
       </div>
@@ -20,10 +24,6 @@ export default {
   name: 'Transaction',
   props: {
     witnetLink: {
-      type: String,
-      required: true,
-    },
-    etherscanLink: {
       type: String,
       required: true,
     },
@@ -46,11 +46,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-</style>

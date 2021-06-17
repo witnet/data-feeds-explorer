@@ -33,6 +33,7 @@ export default {
   }
   .content {
     background: var(--fieldset-background);
+    box-shadow: var(--card-box-shadow);
     border-radius: 4px;
     height: max-content;
   }

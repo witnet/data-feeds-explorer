@@ -123,7 +123,7 @@ export default {
 
   fontawesome: {
     icons: {
-      solid: ['faMoon', 'faSun', 'faArrowAltCircleLeft'],
+      solid: ['faMoon', 'faSun', 'faArrowAltCircleLeft', 'faCopy'],
     },
   },
 

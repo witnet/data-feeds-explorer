@@ -76,7 +76,6 @@ export default {
         return this.feed.requests.map((request) => {
           return {
             witnetLink: request.drTxHash,
-            etherscanLink: request.address,
             data: {
               label: this.feed.label,
               value: request.result,

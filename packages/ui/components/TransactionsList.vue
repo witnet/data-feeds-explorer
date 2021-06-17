@@ -22,7 +22,6 @@
         :key="transaction.witnetLink"
         :class="{ blur: index % 2 }"
         :witnet-link="transaction.witnetLink"
-        :etherscan-link="transaction.etherscanLink"
         :data="transaction.data"
         :timestamp="transaction.timestamp"
       />
