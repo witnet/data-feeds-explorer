@@ -6,11 +6,24 @@
       >
       <span class="name"> {{ name }} </span>
     </div>
+    <div class="switcher">
+      <div
+        v-for="(serie, index) in seriesData"
+        :key="serie[0]"
+        class="item"
+        :class="{ active: serie[0] === activeItem }"
+        @click="onItemClicked(index)"
+      >
+        {{ $t(`${serie[0]}`) }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { formatNumber } from '@/utils/formatNumber'
+import { getRangeData } from '@/utils/getRangeData'
+import { RANGE_DATA } from '@/constants'
 
 export default {
   name: 'Chart',
@@ -36,9 +49,18 @@ export default {
       date: '',
       toolTipWidth: 100,
       tooltipLeftPosition: 10,
+      activeItem: 'd',
     }
   },
   computed: {
+    seriesData() {
+      return [
+        ['d', this.data],
+        ['w', getRangeData(this.data, RANGE_DATA.week)],
+        ['m', getRangeData(this.data, RANGE_DATA.month)],
+        ['y', getRangeData(this.data, RANGE_DATA.year)],
+      ]
+    },
     chart() {
       const { LightWeightCharts } = this.$lwcCore()
       return LightWeightCharts.createChart(this.$refs.container, {
@@ -108,6 +130,10 @@ export default {
     setData() {
       this.lineChart.setData(this.data)
     },
+    onItemClicked(index) {
+      this.activeItem = this.seriesData[index][0]
+      this.lineChart.setData(this.seriesData[index][1])
+    },
     updateData(data) {
       this.lineChart.update(data)
     },
@@ -138,6 +164,24 @@ export default {
   width: 100%;
   max-width: 1500px;
   position: relative;
+}
+.switcher {
+  display: grid;
+  grid-gap: 8px;
+  grid-template: 1fr / max-content max-content max-content max-content;
+  margin-right: 16px;
+  justify-content: flex-end;
+  margin-bottom: 32px;
+  .item {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--switcher-item-color);
+  }
+  .active {
+    background-color: var(--switcher-item-background);
+  }
 }
 .tooltip {
   display: flex;

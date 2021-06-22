@@ -9,3 +9,9 @@ export const languages = [
     iso: 'es-ES',
   },
 ]
+
+export const RANGE_DATA = {
+  week: 'week',
+  month: 'month',
+  year: 'year',
+}
