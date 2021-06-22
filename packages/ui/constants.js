@@ -11,3 +11,9 @@ export const languages = [
     iso: 'es-ES',
   },
 ]
+
+export const CHART_UNITS = {
+  week: 'week',
+  month: 'month',
+  year: 'year',
+}

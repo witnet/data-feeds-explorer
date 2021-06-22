@@ -9,11 +9,13 @@
     "lint:js": "eslint --ext \".js,.vue\" . --fix",
     "i18n:report": "yarn run vue-i18n-extract use-config",
     "lint:style": "stylelint \"**/*.{vue,css}\" --fix",
-    "lint": "yarn lint:js && yarn lint:style"
+    "lint": "yarn lint:js && yarn lint:style",
+    "test": "yarn jest"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",
     "@nuxtjs/style-resources": "^1.0.0",
+    "big.js": "^6.1.1",
     "core-js": "^3.8.3",
     "graphql-tag": "^2.12.4",
     "lightweight-charts": "^3.3.0",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@nuxt/test-utils": "^0.2.2",
     "@nuxtjs/color-mode": "^2.0.9",
     "@nuxtjs/date-fns": "^1.5.0",
     "@nuxtjs/eslint-config": "^5.0.0",
@@ -33,6 +36,7 @@
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@nuxtjs/svg": "^0.1.12",
+    "jest": "^27.0.4",
     "vue-i18n-extract": "^1.2.3"
   }
 }
