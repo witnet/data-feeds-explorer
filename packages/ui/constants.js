@@ -1,3 +1,5 @@
+export const witnetBlockExplorerUrl = 'https://witnet.network/search'
+
 export const languages = [
   {
     code: 'en',

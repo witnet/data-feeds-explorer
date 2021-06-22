@@ -17,7 +17,7 @@
         target="_blank"
         class="contract-address"
       >
-        {{ id }}
+        {{ feedAddress }}
       </a>
     </Fieldset>
     <TransactionsList
@@ -31,6 +31,7 @@
 <script>
 import feed from '@/apollo/queries/feed.gql'
 import { formatTimestamp } from '@/utils/formatTimestamp'
+import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 
 export default {
   apollo: {
@@ -73,16 +74,15 @@ export default {
     },
     transactions() {
       if (this.feed.requests.length > 0) {
-        return this.feed.requests.map((request) => {
-          return {
-            witnetLink: request.drTxHash,
-            data: {
-              label: this.feed.label,
-              value: request.result,
-            },
-            timestamp: request.timestamp,
-          }
-        })
+        return this.feed.requests.map((request) => ({
+          witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
+          drTxHash: request.drTxHash,
+          data: {
+            label: this.feed.label,
+            value: request.result,
+          },
+          timestamp: request.timestamp,
+        }))
       } else {
         return null
       }

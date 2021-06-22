@@ -1,11 +1,9 @@
 <template>
   <li class="item-container">
     <div class="attribute-container links">
-      <DataTooltip
-        :label="`${witnetLink}1`"
-        class="attribute"
-        :value="witnetLink"
-      />
+      <a :href="witnetLink" target="_blank" class="link truncate">
+        {{ drTxHash }}
+      </a>
     </div>
     <div class="attribute-container values-time">
       <DataTooltip :label="`${value}2`" class="attribute" :value="value" />
@@ -23,6 +21,10 @@ import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 export default {
   name: 'Transaction',
   props: {
+    drTxHash: {
+      type: String,
+      required: true,
+    },
     witnetLink: {
       type: String,
       required: true,
@@ -46,3 +48,14 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.link {
+  text-decoration: none;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
