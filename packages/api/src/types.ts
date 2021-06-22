@@ -1,3 +1,7 @@
+import { AbiItem } from 'web3-utils'
+import { FeedDbObject, ResultRequestDbObject } from './generated/types'
+import { Contract } from 'web3-eth-contract'
+
 import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
 
@@ -8,6 +12,12 @@ export { Db, Collection, ObjectId } from 'mongodb'
 export type Context = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
+}
+
+export enum Network {
+  Goerli = 'goerli',
+  Kovan = 'kovan',
+  Rinkeby = 'rinkeby'
 }
 
 export type FeedInfo = {
@@ -31,4 +41,16 @@ export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {
 export type Repositories = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
+}
+
+export type ContractsState = {
+  lastPrice: string
+  lastTimestamp: string
+  lastRequestId: string
+  drTxHash: string
+}
+
+export type Contracts = {
+  feedContract: Contract
+  proxyContract: Contract
 }

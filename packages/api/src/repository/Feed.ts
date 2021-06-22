@@ -39,6 +39,10 @@ export class FeedRepository {
     )
   }
 
+  async getByAddress (address: string) {
+    return this.normalizeId(await this.collection.findOne({ address }))
+  }
+
   private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized {
     if (feed && feed._id) {
       return { ...feed, id: feed._id.toString() }

@@ -3,6 +3,9 @@ import { createServer } from '../src/server'
 import { ApolloServerTestClient, createTestClient } from 'apollo-server-testing'
 
 import { MongoManager } from './../src/database'
+import { FeedRepository } from '../src/repository/Feed'
+import { ResultRequestRepository } from '../src/repository/ResultRequest'
+
 const state: {
   mongoManager: MongoManager
   testClient: ApolloServerTestClient
@@ -18,7 +21,10 @@ describe('feeds', function () {
     const ciUri = 'mongodb://localhost'
     const mongoManager = new MongoManager()
     const db = await mongoManager.start(process.env.CI ? ciUri : null)
-    const server = await createServer(db)
+    const server = await createServer({
+      feedRepository: new FeedRepository(db),
+      resultRequestRepository: new ResultRequestRepository(db)
+    })
     await new Promise(resolve => {
       server.listen(info => {
         resolve(info)
