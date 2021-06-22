@@ -1,9 +1,4 @@
-import { FeedRepository } from './repository/Feed'
-import { ResultRequestRepository } from './repository/ResultRequest'
-type Context = {
-  feedRepository: FeedRepository
-  resultRequestRepository: ResultRequestRepository
-}
+import { Context } from './types'
 
 const resolvers = {
   Query: {
@@ -20,7 +15,7 @@ const resolvers = {
       return await resultRequestRepository.getFeedRequests(parent.id)
     },
     lastResult: async (parent, _args, { resultRequestRepository }: Context) => {
-      return await resultRequestRepository.getLastResult(parent.id)
+      return (await resultRequestRepository.getLastResult(parent.id))?.result
     }
   }
 }

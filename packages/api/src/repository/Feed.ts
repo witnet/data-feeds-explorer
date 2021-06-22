@@ -1,5 +1,10 @@
-import { Db, Collection, ObjectId } from 'mongodb'
-import { FeedDbObject } from '../generated/types'
+import {
+  FeedDbObjectNormalized,
+  FeedDbObject,
+  Collection,
+  Db,
+  ObjectId
+} from '../types'
 
 export class FeedRepository {
   collection: Collection<FeedDbObject>
@@ -9,13 +14,13 @@ export class FeedRepository {
   }
 
   async getAll () {
-    return (await this.collection.find({}).toArray()).map(this._normalizeId)
+    return (await this.collection.find({}).toArray()).map(this.normalizeId)
   }
 
   async insert (feed: Omit<FeedDbObject, '_id'>) {
     const response = await this.collection.insertOne(feed)
 
-    return this._normalizeId(response.ops[0])
+    return this.normalizeId(response.ops[0])
   }
 
   async addResultRequest (feedId: ObjectId, resultRequestId: ObjectId) {
@@ -25,18 +30,18 @@ export class FeedRepository {
       { returnDocument: 'after' }
     )
 
-    return this._normalizeId(response.value)
+    return this.normalizeId(response.value)
   }
 
   async get (id: string) {
-    return this._normalizeId(
+    return this.normalizeId(
       await this.collection.findOne({ _id: new ObjectId(id) })
     )
   }
 
-  private _normalizeId (feed: FeedDbObject) {
+  private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized {
     if (feed && feed._id) {
-      return { ...feed, id: feed._id }
+      return { ...feed, id: feed._id.toString() }
     }
   }
 }

@@ -2,9 +2,7 @@ import { ApolloServer } from 'apollo-server'
 import typeDefs from './typeDefs'
 import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb'
 import resolvers from './resolvers'
-import { Db } from 'mongodb'
-import { FeedRepository } from './repository/Feed'
-import { ResultRequestRepository } from './repository/ResultRequest'
+import { Repositories } from './types'
 
 // async function addSampleData (
 //   feedRepository: FeedRepository,

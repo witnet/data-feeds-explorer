@@ -1,5 +1,10 @@
-import { Db, Collection, ObjectId } from 'mongodb'
-import { ResultRequestDbObject } from '../generated/types'
+import {
+  ResultRequestDbObjectNormalized,
+  ResultRequestDbObject,
+  Db,
+  Collection,
+  ObjectId
+} from '../types'
 
 export class ResultRequestRepository {
   collection: Collection<ResultRequestDbObject>
@@ -34,7 +39,7 @@ export class ResultRequestRepository {
       }
     )
 
-    return lastResultRequest?.result
+    return this.normalizeId(lastResultRequest)
   }
 
   async insert (resultRequest: Omit<ResultRequestDbObject, '_id'>) {
@@ -43,7 +48,10 @@ export class ResultRequestRepository {
     return this.normalizeId(response.ops[0])
   }
 
-  private normalizeId (resultRequest: ResultRequestDbObject) {
-    return { ...resultRequest, id: resultRequest._id }
+  private normalizeId (
+    resultRequest: ResultRequestDbObject
+  ): ResultRequestDbObjectNormalized {
+    if (resultRequest?._id)
+      return { ...resultRequest, id: resultRequest._id.toString() }
   }
 }

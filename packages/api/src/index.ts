@@ -1,5 +1,6 @@
 import { MongoManager } from './database'
 import { createServer } from './server'
+import { Repositories } from './types'
 
 async function main () {
   const mongoManager = new MongoManager()
