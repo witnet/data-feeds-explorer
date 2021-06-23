@@ -87,13 +87,30 @@ export default {
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
+  css: [
+    '~/assets/styles/colors.scss',
+    '~/assets/styles/main.scss',
+    '~/assets/styles/element-ui.scss',
+  ],
   // You will have to add this new object if it doesn't exist already
   styleResources: {
-    scss: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
+    scss: [
+      '~/assets/styles/colors.scss',
+      '~/assets/styles/main.scss',
+      '~/assets/styles/element-ui.scss',
+    ],
   },
   // ...
-  modules: ['@nuxtjs/style-resources', 'nuxt-i18n', '@nuxtjs/apollo'],
+  modules: [
+    '@nuxtjs/style-resources',
+    'nuxt-i18n',
+    '@nuxtjs/apollo',
+    'nuxt-element-ui',
+  ],
+
+  elementUI: {
+    components: ['Pagination'],
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
