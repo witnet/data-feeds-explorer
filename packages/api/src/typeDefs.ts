@@ -11,6 +11,11 @@ const typeDefs = gql`
     requests: [ResultRequest]! @link
   }
 
+  type FeedsPage {
+    feeds: [Feed]
+    total: Int!
+  }
+
   type ResultRequest @entity {
     id: String! @id
     feedId: String! @column
@@ -33,6 +38,7 @@ const typeDefs = gql`
   type Query {
     feeds: [Feed]!
     feed(id: String!): Feed
+    feedsPage(page: Int!, pageSize: Int!): FeedsPage!
   }
 `
 
