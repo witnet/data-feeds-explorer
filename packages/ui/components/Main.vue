@@ -8,7 +8,21 @@
         @update-selected="updateSelected"
       /> -->
     </div>
-    <DataFeeds v-if="!$apollo.loading" :feeds="dataFeeds" class="data-feeds" />
+    <div class="feeds-container">
+      <DataFeeds
+        v-if="!$apollo.loading"
+        :feeds="dataFeeds"
+        class="data-feeds"
+      />
+      <el-pagination
+        v-if="numberOfPages > 1"
+        class="pagination"
+        layout="prev, pager, next"
+        :page-count="numberOfPages"
+        :current-page="currentPage"
+        @current-change="handleCurrentChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -25,6 +39,8 @@ export default {
   data() {
     return {
       dataFeeds: [],
+      currentPage: 1,
+      itemsPerPage: 6,
       // options: [
       //   { label: 'All' },
       //   { label: 'Rinkeby' },
@@ -35,6 +51,9 @@ export default {
     }
   },
   computed: {
+    numberOfPages() {
+      return Math.ceil(this.feeds.length / this.itemsPerPage)
+    },
     allFeeds() {
       return this.feeds.map((feed) => {
         return {
@@ -54,21 +73,29 @@ export default {
       })
     },
   },
+  watch: {
+    currentPage(value) {
+      // get page from server
+    },
+  },
   mounted() {
     this.dataFeeds = this.allFeeds
   },
-  // methods: {
-  //   updateSelected(selectedOption) {
-  //     this.selected = selectedOption
-  //     if (this.selected.label === 'All') {
-  //       this.dataFeeds = this.allFeeds
-  //     } else {
-  //       this.dataFeeds = this.allFeeds.filter((feed) => {
-  //         return feed.network === this.selected.label.toLowerCase()
-  //       })
-  //     }
-  //   },
-  // },
+  methods: {
+    handleCurrentChange(val) {
+      this.currentPage = val
+    },
+    //   updateSelected(selectedOption) {
+    //     this.selected = selectedOption
+    //     if (this.selected.label === 'All') {
+    //       this.dataFeeds = this.allFeeds
+    //     } else {
+    //       this.dataFeeds = this.allFeeds.filter((feed) => {
+    //         return feed.network === this.selected.label.toLowerCase()
+    //       })
+    //     }
+    //   },
+  },
 }
 </script>
 
@@ -82,6 +109,17 @@ export default {
     font-size: 20px;
     align-self: flex-end;
     font-weight: 600;
+  }
+}
+
+.feeds-container {
+  display: grid;
+  min-height: 60vh;
+  grid-template: 1fr max-content/ 1fr;
+  justify-items: flex-start;
+  align-items: flex-start;
+  .pagination {
+    justify-self: center;
   }
 }
 

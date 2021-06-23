@@ -20,6 +20,7 @@
     "node-fetch": "^2.6.1",
     "node-sass": "^5.0.0",
     "nuxt": "^2.14.12",
+    "nuxt-element-ui": "^1.0.10",
     "nuxt-i18n": "^6.20.2",
     "vue-select": "^3.11.2"
   },

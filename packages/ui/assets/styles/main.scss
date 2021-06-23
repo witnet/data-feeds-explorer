@@ -5,6 +5,16 @@
   --text-background: #2d2c39d3;
   --default-border: 1px solid #fdfdfd;
 
+  //Pagination
+
+  --pagination-number: white; 
+  --pagination-button-active: green;
+  --pagination-number-active: green;
+  --pagination-number-active-text: white;
+  --app-background-color: #2D2C39;
+  --pagination-button: grey;
+
+
   // Select
 
   --selected-background: #37414c;
@@ -66,6 +76,15 @@
   --link: #E54343;
   --text-background: #2d2c39d3;
   --default-border: 1px solid #fdfdfd;
+
+  //Pagination
+
+  --pagination-number: #fdfdfd; 
+  --pagination-button-active: #41BEA5;
+  --pagination-number-active: #41BEA5;
+  --pagination-number-active-text: #2D2C39;
+  --app-background-color: #2D2C39;
+  --pagination-button: #fdfdfd;
 
   //Tooltip
 
@@ -132,6 +151,14 @@
   --link: #E54343;
   --text-background: #ffffffd3;
   --default-border: 1px solid #2D2C39;
+
+  //Pagination
+
+  --pagination-number: #2D2C39; 
+  --pagination-button-active: #41BEA5;
+  --pagination-number-active: #41BEA5;
+  --pagination-number-active-text: #fdfdfd;
+  --pagination-button: #2D2C39;
 
   //Tooltip
 
