@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!$apollo.loading">
     <div class="section-header">
       <p class="section-title">{{ $t('main.data_feeds') }}</p>
       <!-- <Select
@@ -8,14 +8,9 @@
         @update-selected="updateSelected"
       /> -->
     </div>
-    <div class="feeds-container">
-      <DataFeeds
-        v-if="!$apollo.loading"
-        :feeds="dataFeeds"
-        class="data-feeds"
-      />
+    <div class="list-container">
+      <DataFeeds :feeds="allFeeds" />
       <el-pagination
-        v-if="numberOfPages > 1"
         class="pagination"
         layout="prev, pager, next"
         :page-count="numberOfPages"
@@ -27,18 +22,23 @@
 </template>
 
 <script>
-import feeds from '@/apollo/queries/feeds.gql'
+import feedsPage from '@/apollo/queries/feedsPage.gql'
 
 export default {
   apollo: {
-    feeds: {
+    feedsPage: {
       prefetch: true,
-      query: feeds,
+      query: feedsPage,
+      variables() {
+        return {
+          page: this.currentPage,
+          pageSize: this.itemsPerPage,
+        }
+      },
     },
   },
   data() {
     return {
-      dataFeeds: [],
       currentPage: 1,
       itemsPerPage: 6,
       // options: [
@@ -52,10 +52,10 @@ export default {
   },
   computed: {
     numberOfPages() {
-      return Math.ceil(this.feeds.length / this.itemsPerPage)
+      return Math.ceil(this.feedsPage.total / this.itemsPerPage)
     },
     allFeeds() {
-      return this.feeds.map((feed) => {
+      return this.feedsPage.feeds.map((feed) => {
         return {
           detailsPath: {
             name: 'feeds-id',
@@ -72,14 +72,6 @@ export default {
         }
       })
     },
-  },
-  watch: {
-    currentPage(value) {
-      // get page from server
-    },
-  },
-  mounted() {
-    this.dataFeeds = this.allFeeds
   },
   methods: {
     handleCurrentChange(val) {
@@ -112,9 +104,9 @@ export default {
   }
 }
 
-.feeds-container {
+.list-container {
   display: grid;
-  min-height: 60vh;
+  min-height: 90%;
   grid-template: 1fr max-content/ 1fr;
   justify-items: flex-start;
   align-items: flex-start;
@@ -131,6 +123,11 @@ export default {
 @media (max-width: 600px) {
   .section-header {
     padding: 0 16px 24px 16px;
+  }
+  .list-container {
+    .pagination {
+      margin-bottom: 48px;
+    }
   }
 }
 </style>

@@ -23,6 +23,17 @@ export class ResultRequestRepository {
     ).map(this.normalizeId)
   }
 
+  async getFeedsPage (page, size) {
+    return (
+      await this.collection
+        .find({
+          page,
+          size,
+        })
+        .toArray()
+    ).map(this.normalizeId)
+  }
+
   async getLastResult (feedId: ObjectId) {
     const lastResultRequest = await this.collection.findOne(
       {

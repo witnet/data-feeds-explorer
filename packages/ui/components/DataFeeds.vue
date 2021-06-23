@@ -1,8 +1,8 @@
 <template>
   <div class="feeds-container">
     <FeedCard
-      v-for="feed in feeds"
-      :key="feed.name + feed.network"
+      v-for="(feed, index) in feeds"
+      :key="feed.name + feed.network + index"
       :details-path="feed.detailsPath"
       :name="feed.name"
       :img="feed.img"
@@ -25,10 +25,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .feeds-container {
   display: grid;
   grid-gap: 24px;
+  width: 100%;
   grid-template: repeat(auto-fill, minmax(150px, 1fr)) / repeat(
       auto-fill,
       minmax(300px, 1fr)

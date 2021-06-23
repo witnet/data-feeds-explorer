@@ -1,0 +1,50 @@
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import '~element-ui/packages/theme-chalk/src/base';
+@import '~element-ui/packages/theme-chalk/src/pagination';
+
+
+.el-pagination {
+  .el-pager {
+    color: var(--pagination-number);
+  }
+
+  button:hover {
+    color: var(--pagination-button-active);
+  }
+
+  button:disabled {
+    background-color: inherit;
+  }
+
+
+  .el-pager li {
+    background-color: inherit;
+    margin: 4px;
+  }
+
+  .el-pager li.active {
+    background-color: var(--pagination-number-active);
+    border-radius: 12%;
+    color: var(--pagination-number-active-text);
+  }
+
+  .el-pager li:hover {
+    background-color: var(--pagination-number-active);
+    border-radius: 12%;
+    color: var(--pagination-number-active-text);
+    opacity: 0.7;
+  }
+
+  .btn-next {
+    background-color: var(--bg);
+    color: var(--pagination-button);
+    margin: 4px;
+  }
+
+  .btn-prev {
+    background-color: var(--bg);
+    color: var(--pagination-button);
+    margin: 4px;
+  }
+}

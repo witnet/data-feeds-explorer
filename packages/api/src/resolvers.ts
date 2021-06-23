@@ -6,6 +6,13 @@ const resolvers = {
       return await feedRepository.getAll()
     },
 
+    feedsPage: async (_parent, args, { feedRepository }: Context) => {
+      return {
+        feeds: await feedRepository.getFeedsPage(args.page, args.pageSize),
+        total: await feedRepository.getTotalCount()
+      }
+    },
+
     feed: async (_parent, args, { feedRepository }: Context) => {
       return await feedRepository.get(args.id)
     }

@@ -173,5 +173,6 @@ export default {
         httpEndpoint: 'http://localhost:4000',
       },
     },
+    errorHandler: '~/plugins/apollo-error-handler.js',
   },
 }

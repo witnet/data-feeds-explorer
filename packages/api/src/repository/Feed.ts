@@ -39,8 +39,16 @@ export class FeedRepository {
     )
   }
 
+  async getFeedsPage (page: number, size: number) {
+    return (await this.collection.find({}).skip(size * (page - 1)).limit(size).toArray()).map(this.normalizeId)
+  }
+
   async getByAddress (address: string) {
     return this.normalizeId(await this.collection.findOne({ address }))
+  }
+
+  public getTotalCount () {
+    return this.collection.count()
   }
 
   private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized {
