@@ -11,6 +11,7 @@
     <div class="list-container">
       <DataFeeds :feeds="allFeeds" />
       <el-pagination
+        v-if="numberOfPages > 1"
         class="pagination"
         layout="prev, pager, next"
         :page-count="numberOfPages"
@@ -22,13 +23,13 @@
 </template>
 
 <script>
-import feedsPage from '@/apollo/queries/feedsPage.gql'
+import feeds from '@/apollo/queries/feeds.gql'
 
 export default {
   apollo: {
-    feedsPage: {
+    feeds: {
       prefetch: true,
-      query: feedsPage,
+      query: feeds,
       variables() {
         return {
           page: this.currentPage,
@@ -52,10 +53,10 @@ export default {
   },
   computed: {
     numberOfPages() {
-      return Math.ceil(this.feedsPage.total / this.itemsPerPage)
+      return Math.ceil(this.feeds.total / this.itemsPerPage)
     },
     allFeeds() {
-      return this.feedsPage.feeds.map((feed) => {
+      return this.feeds.feeds.map((feed) => {
         return {
           detailsPath: {
             name: 'feeds-id',

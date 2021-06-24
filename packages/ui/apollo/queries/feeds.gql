@@ -1,5 +1,5 @@
-query feedsPage ($page: Int!, $pageSize: Int!) {
-  feedsPage (page: $page, pageSize: $pageSize) {
+query feeds ($page: Int!, $pageSize: Int!) {
+  feeds (page: $page, pageSize: $pageSize) {
     feeds {
       id
       name
