@@ -7,7 +7,7 @@
     >
       {{ value }}
     </div>
-    <div :ref="label" class="truncate" @mousemove="show()">
+    <div :ref="label" class="value truncate" @mousemove="show()">
       {{ value }}
     </div>
     <div
@@ -96,6 +96,8 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-right: 0;
+  margin-right: 8px;
 }
 .tooltip,
 .copy-tooltip {
@@ -109,7 +111,6 @@ export default {
 }
 .container {
   display: flex;
-  justify-content: space-between;
 }
 .copy {
   padding: 16px;

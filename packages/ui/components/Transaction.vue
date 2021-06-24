@@ -52,6 +52,7 @@ export default {
 <style lang="scss" scoped>
 .link {
   text-decoration: none;
+  color: var(--witnet-transaction);
 }
 .truncate {
   white-space: nowrap;
