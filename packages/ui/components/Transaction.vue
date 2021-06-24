@@ -3,6 +3,7 @@
     <div class="attribute-container links">
       <a :href="witnetLink" target="_blank" class="link truncate">
         {{ drTxHash }}
+        <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
     </div>
     <div class="attribute-container values-time">
@@ -50,9 +51,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.link {
+.links {
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.link {
   color: var(--witnet-transaction);
+  .icon {
+    margin-left: 16px;
+  }
 }
 .truncate {
   white-space: nowrap;

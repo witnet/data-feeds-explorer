@@ -18,6 +18,7 @@
         class="contract-address"
       >
         {{ feedAddress }}
+        <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
     </Fieldset>
     <TransactionsList
@@ -133,12 +134,17 @@ export default {
   .contract-container {
     margin-top: 150px;
     .contract-address {
+      display: flex;
+      align-items: center;
+      line-break: loose;
       word-break: break-all;
       font-size: 24px;
       padding: 24px;
-      display: block;
       cursor: pointer;
       color: var(--contract-address);
+      .icon {
+        margin-left: 16px;
+      }
     }
   }
   .pagination {

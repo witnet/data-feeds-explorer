@@ -140,7 +140,13 @@ export default {
 
   fontawesome: {
     icons: {
-      solid: ['faMoon', 'faSun', 'faArrowAltCircleLeft', 'faCopy'],
+      solid: [
+        'faMoon',
+        'faSun',
+        'faArrowAltCircleLeft',
+        'faCopy',
+        'faExternalLinkAlt',
+      ],
     },
   },
 
