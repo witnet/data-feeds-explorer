@@ -36,6 +36,7 @@ export default {
           pageSize: this.itemsPerPage,
         }
       },
+      pollInterval: 60000,
     },
   },
   data() {

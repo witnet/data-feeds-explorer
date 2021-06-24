@@ -43,6 +43,7 @@ export default {
           id: this.id,
         }
       },
+      pollInterval: 60000,
     },
   },
   data() {
