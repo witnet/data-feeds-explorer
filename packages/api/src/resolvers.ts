@@ -2,11 +2,7 @@ import { Context } from './types'
 
 const resolvers = {
   Query: {
-    feeds: async (_parent, _args, { feedRepository }: Context) => {
-      return await feedRepository.getAll()
-    },
-
-    feedsPage: async (_parent, args, { feedRepository }: Context) => {
+    feeds: async (_parent, args, { feedRepository }: Context) => {
       return {
         feeds: await feedRepository.getFeedsPage(args.page, args.pageSize),
         total: await feedRepository.getTotalCount()
