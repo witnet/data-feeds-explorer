@@ -14,5 +14,7 @@
     "etherscan": "Etherscan",
     "value": "Resultado",
     "time": "Tiempo"
-  }
+  },
+  "copied": "Copiado",
+  "copy": "Copiar"
 }
