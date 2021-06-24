@@ -48,31 +48,41 @@ describe('feeds', function () {
     await state.mongoManager.db.collection('feed').insertOne({
       address: '1',
       name: 'btc/eur',
+      network: 'mainnet',
+      label: '$',
       requests: []
     })
 
     const GET_FEEDS = gql`
-      query Feeds {
-        feeds {
-          id
-          address
-          name
-          requests {
+      query feeds($page: Int!, $pageSize: Int!) {
+        feeds(page: $page, pageSize: $pageSize) {
+          feeds {
             id
+            name
+            address
+            lastResult
+            network
+            label
           }
+          total
         }
       }
     `
     const {
-      data: { feeds }
+      data: {
+        feeds: { feeds }
+      }
     } = await state.testClient.query({
-      query: GET_FEEDS
+      query: GET_FEEDS,
+      variables: {
+        page: 1,
+        pageSize: 6
+      }
     })
 
     expect(feeds.length).toBe(1)
     expect(feeds[0]).toHaveProperty('address', '1')
     expect(feeds[0]).toHaveProperty('name', 'btc/eur')
-    expect(feeds[0]).toHaveProperty('requests', [])
     expect(feeds[0].id).toBeTruthy()
   })
 
@@ -80,7 +90,9 @@ describe('feeds', function () {
     const feedExample = {
       address: '1',
       name: 'btc/eur',
-      requests: []
+      requests: [],
+      label: '$',
+      network: 'mainnet'
     }
     const feedResponse = await state.mongoManager.db
       .collection('feed')
@@ -120,28 +132,39 @@ describe('feeds', function () {
       )
 
     const GET_FEEDS = gql`
-      query Feeds {
-        feeds {
-          id
-          address
-          name
-          lastResult
-          requests {
+      query feeds($page: Int!, $pageSize: Int!) {
+        feeds(page: $page, pageSize: $pageSize) {
+          feeds {
             id
-            feedId
-            result
-            requestId
-            timestamp
-            error
+            name
+            address
+            lastResult
+            network
+            label
+            requests {
+              id
+              feedId
+              result
+              requestId
+              timestamp
+              error
+            }
           }
+          total
         }
       }
     `
 
     const {
-      data: { feeds }
+      data: {
+        feeds: { feeds }
+      }
     } = await state.testClient.query({
-      query: GET_FEEDS
+      query: GET_FEEDS,
+      variables: {
+        page: 1,
+        pageSize: 6
+      }
     })
     expect(feeds.length).toBe(1)
     expect(feeds[0]).toHaveProperty('address', feedExample.address)
