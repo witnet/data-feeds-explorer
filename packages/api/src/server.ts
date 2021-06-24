@@ -6,7 +6,6 @@ import { Repositories } from './types'
 // import { FeedRepository } from './repository/Feed'
 // import { ResultRequestRepository } from './repository/ResultRequest'
 
-
 // async function addSampleData (
 //   feedRepository: FeedRepository,
 //   resultRequestRepository: ResultRequestRepository
@@ -82,6 +81,6 @@ export async function createServer (
   return new ApolloServer({
     typeDefs: [DIRECTIVES, typeDefs],
     resolvers,
-    context: () => repositories,
+    context: () => repositories
   })
 }

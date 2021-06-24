@@ -40,7 +40,13 @@ export class FeedRepository {
   }
 
   async getFeedsPage (page: number, size: number) {
-    return (await this.collection.find({}).skip(size * (page - 1)).limit(size).toArray()).map(this.normalizeId)
+    return (
+      await this.collection
+        .find({})
+        .skip(size * (page - 1))
+        .limit(size)
+        .toArray()
+    ).map(this.normalizeId)
   }
 
   async getByAddress (address: string) {

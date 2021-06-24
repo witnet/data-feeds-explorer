@@ -28,7 +28,7 @@ export class ResultRequestRepository {
       await this.collection
         .find({
           page,
-          size,
+          size
         })
         .toArray()
     ).map(this.normalizeId)
