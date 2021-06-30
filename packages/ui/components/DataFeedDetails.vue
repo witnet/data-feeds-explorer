@@ -20,7 +20,7 @@
       :title="$t('data_feed_details.contract_address')"
       class="contract-container"
     >
-      <a :href="url" target="_blank" class="contract-address">
+      <a :href="feedAddressUrl" target="_blank" class="contract-address">
         {{ feedAddress }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
@@ -108,6 +108,15 @@ export default {
     },
     feedAddress() {
       return this.feed ? this.feed.address : ''
+    },
+    feedAddressUrl() {
+      if (this.feed.network === 'conflux') {
+        return `https://testnet.confluxscan.io/address/${this.feedAddress}`
+      } else if (this.feed.network === 'mainnet') {
+        return `https://etherscan.io/address/${this.feedAddress}#code`
+      } else {
+        return `https://${this.feed.network}.etherscan.io/address/${this.feedAddress}#code`
+      }
     },
     network() {
       return this.feed ? this.feed.network.toUpperCase() : ''

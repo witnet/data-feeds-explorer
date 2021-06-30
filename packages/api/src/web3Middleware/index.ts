@@ -54,7 +54,11 @@ export class Web3Middleware {
       return feed
     })
 
-    return await Promise.all(promises)
+    try {
+      return await Promise.all(promises)
+    } catch (err) {
+      console.error('[ERROR]', err.message)
+    }
   }
 
   async listen () {
@@ -77,7 +81,9 @@ export class Web3Middleware {
       async entry => await this.listenToDataFeed(entry.feedInfo, entry.feedId)
     )
 
-    Promise.all(promises)
+    Promise.all(promises).catch(err => {
+      console.error('[ERROR]', err.message)
+    })
   }
 
   stop () {

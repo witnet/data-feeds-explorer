@@ -23,7 +23,8 @@ export enum Network {
   Mainnet = 'mainnet',
   Goerli = 'goerli',
   Kovan = 'kovan',
-  Rinkeby = 'rinkeby'
+  Rinkeby = 'rinkeby',
+  Conflux = 'conflux'
 }
 
 export type FeedInfoGeneric<ABI> = {

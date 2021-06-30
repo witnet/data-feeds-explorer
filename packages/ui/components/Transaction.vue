@@ -2,7 +2,7 @@
   <li class="item-container">
     <div class="attribute-container links">
       <a :href="witnetLink" target="_blank" class="link truncate">
-        {{ drTxHash }}
+        0x{{ drTxHash }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
     </div>
