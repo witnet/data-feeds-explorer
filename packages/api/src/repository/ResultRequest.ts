@@ -23,13 +23,12 @@ export class ResultRequestRepository {
     ).map(this.normalizeId)
   }
 
-  async getFeedsPage (page, size) {
+  async getFeedRequestsPage (feedId: ObjectId, page, size) {
     return (
       await this.collection
-        .find({
-          page,
-          size
-        })
+        .find({ feedId: feedId.toString() })
+        .skip(size * (page - 1))
+        .limit(size)
         .toArray()
     ).map(this.normalizeId)
   }

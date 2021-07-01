@@ -25,11 +25,20 @@
       class="transactions"
       :transactions="transactions"
     />
+    <el-pagination
+      v-if="numberOfPages > 1"
+      class="pagination"
+      layout="prev, pager, next"
+      :page-count="numberOfPages"
+      :current-page="currentPage"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
 
 <script>
 import feed from '@/apollo/queries/feed.gql'
+import requests from '@/apollo/queries/requests.gql'
 import { formatTimestamp } from '@/utils/formatTimestamp'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 
@@ -45,13 +54,30 @@ export default {
       },
       pollInterval: 60000,
     },
+    requests: {
+      prefetch: true,
+      query: requests,
+      variables() {
+        return {
+          feedId: this.id,
+          page: this.currentPage,
+          size: this.itemsPerPage,
+        }
+      },
+      pollInterval: 60000,
+    },
   },
   data() {
     return {
+      currentPage: 1,
+      itemsPerPage: 6,
       id: this.$route.params.id,
     }
   },
   computed: {
+    numberOfPages() {
+      return Math.ceil(this.feed.requests.length / this.itemsPerPage)
+    },
     feedName() {
       return this.feed.name.toUpperCase()
     },
@@ -74,8 +100,8 @@ export default {
       }
     },
     transactions() {
-      if (this.feed.requests.length > 0) {
-        return this.feed.requests.map((request) => ({
+      if (this.requests.length > 0) {
+        return this.requests.map((request) => ({
           witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
           drTxHash: request.drTxHash,
           data: {
@@ -87,6 +113,11 @@ export default {
       } else {
         return null
       }
+    },
+  },
+  methods: {
+    handleCurrentChange(val) {
+      this.currentPage = val
     },
   },
 }
@@ -107,6 +138,9 @@ export default {
       cursor: pointer;
       color: var(--contract-address);
     }
+  }
+  .pagination {
+    justify-self: center;
   }
   .chart {
     height: 400px;

@@ -1,8 +1,8 @@
 <template>
   <div class="feeds-container">
     <FeedCard
-      v-for="(feed, index) in feeds"
-      :key="feed.name + feed.network + index"
+      v-for="feed in feeds"
+      :key="feed.name + feed.network"
       :details-path="feed.detailsPath"
       :name="feed.name"
       :img="feed.img"
