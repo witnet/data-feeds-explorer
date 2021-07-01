@@ -7,10 +7,7 @@ query feed($id: String!) {
     network
     label
     requests {
-      feedId,
       result,
-      drTxHash,
-      requestId,
       timestamp,
     }
   }

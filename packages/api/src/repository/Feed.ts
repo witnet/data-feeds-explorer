@@ -39,7 +39,7 @@ export class FeedRepository {
     )
   }
 
-  async getFeedsPage (page: number, size: number) {
+  async getFeeds (page: number, size: number) {
     return (
       await this.collection
         .find({})

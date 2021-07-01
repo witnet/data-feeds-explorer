@@ -1,0 +1,9 @@
+query requests($feedId: String!, $page: Int!, $size: Int!) {
+  requests(feedId: $feedId, page: $page, size: $size) {
+    feedId,
+    result,
+    drTxHash,
+    requestId,
+    timestamp,
+  }
+}

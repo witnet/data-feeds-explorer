@@ -38,6 +38,7 @@ const typeDefs = gql`
   type Query {
     feed(id: String!): Feed
     feeds(page: Int!, pageSize: Int!): FeedsPage!
+    requests(feedId: String!, page: Int!, size: Int!): [ResultRequest]!
   }
 `
 
