@@ -8,7 +8,7 @@ const typeDefs = gql`
     lastResult: String @column
     label: String! @column
     network: String! @column
-    requests: [ResultRequest]! @link
+    requests(feedId: String!, page: Int!, size: Int!): [ResultRequest]! @link
   }
 
   type FeedsPage {

@@ -1,4 +1,4 @@
-query feed($id: String!) {
+query feed($id: String!, $page: Int!, $size: Int!) {
   feed(id: $id) {
     id
     name
@@ -6,9 +6,12 @@ query feed($id: String!) {
     lastResult
     network
     label
-    requests {
-      result,
-      timestamp,
+    requests(feedId: $id, page: $page, size: $size) {
+      feedId
+      result
+      drTxHash
+      requestId
+      timestamp
     }
   }
 }

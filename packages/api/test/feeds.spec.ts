@@ -132,7 +132,7 @@ describe('feeds', function () {
       )
 
     const GET_FEEDS = gql`
-      query feeds($page: Int!, $pageSize: Int!) {
+      query feeds($page: Int!, $pageSize: Int!, $id: String!) {
         feeds(page: $page, pageSize: $pageSize) {
           feeds {
             id
@@ -141,7 +141,7 @@ describe('feeds', function () {
             lastResult
             network
             label
-            requests {
+            requests (feedId: $id, page: $page, size: $pageSize){
               id
               feedId
               result
@@ -163,7 +163,8 @@ describe('feeds', function () {
       query: GET_FEEDS,
       variables: {
         page: 1,
-        pageSize: 6
+        pageSize: 6,
+        id: feedResponse.ops[0]._id.toString(),
       }
     })
     expect(feeds.length).toBe(1)
@@ -203,12 +204,12 @@ describe('feeds', function () {
     const { _id } = result.ops[0]
 
     const GET_FEED = gql`
-      query Feed($id: String!) {
+      query Feed($id: String!, $page: Int!, $size: Int!) {
         feed(id: $id) {
           id
           name
           address
-          requests {
+          requests(feedId: $id, page: $page, size: $size) {
             feedId
           }
         }
@@ -219,7 +220,9 @@ describe('feeds', function () {
     } = await state.testClient.query({
       query: GET_FEED,
       variables: {
-        id: _id.toString()
+        id: _id.toString(),
+        page: 1,
+        size: 3,
       }
     })
 

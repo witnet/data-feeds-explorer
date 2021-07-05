@@ -50,6 +50,8 @@ export default {
       variables() {
         return {
           id: this.id,
+          page: this.currentPage,
+          size: this.itemsPerPage,
         }
       },
       pollInterval: 60000,
