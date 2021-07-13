@@ -172,11 +172,13 @@ export default {
     defaultLocale,
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: [/^element-ui/],
+  },
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://localhost:4000',
+        httpEndpoint: process.env.API_ENDPOINT || 'http://localhost:4000',
       },
     },
     errorHandler: '~/plugins/apollo-error-handler.js',

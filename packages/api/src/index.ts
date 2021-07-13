@@ -1,10 +1,12 @@
+require('dotenv/config')
+
 import Web3 from 'web3'
 import { MongoManager } from './database'
 import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
 import { createServer } from './server'
 import { Repositories } from './types'
-import { Web3Middleware } from './web3Middleware'
+import { Web3Middleware } from './web3Middleware/index'
 import { dataFeeds } from './web3Middleware/dataFeeds'
 
 async function main () {

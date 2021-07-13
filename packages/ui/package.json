@@ -28,6 +28,7 @@
     "nuxt": "^2.14.12",
     "nuxt-element-ui": "^1.0.10",
     "nuxt-i18n": "^6.20.2",
+    "sass-loader": "^10",
     "vue-select": "^3.11.2"
   },
   "devDependencies": {
