@@ -9,7 +9,7 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'new-website',
+    title: 'Witnet data feeds',
     htmlAttrs: {
       lang: 'en',
     },
