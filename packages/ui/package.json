@@ -13,7 +13,11 @@
     "test": "yarn jest"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
+    "@nuxtjs/color-mode": "^2.0.9",
+    "@nuxtjs/date-fns": "^1.5.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "big.js": "^6.1.1",
     "core-js": "^3.8.3",
@@ -27,17 +31,13 @@
     "vue-select": "^3.11.2"
   },
   "devDependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.15.3",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@nuxt/test-utils": "^0.2.2",
-    "@nuxtjs/color-mode": "^2.0.9",
-    "@nuxtjs/date-fns": "^1.5.0",
     "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@nuxtjs/svg": "^0.1.12",
-    "jest": "^27.0.4",
+    "jest": "^27.0.6",
     "vue-i18n-extract": "^1.2.3"
   }
 }

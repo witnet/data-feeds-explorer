@@ -141,7 +141,7 @@ describe('feeds', function () {
             lastResult
             network
             label
-            requests (feedId: $id, page: $page, size: $pageSize){
+            requests(feedId: $id, page: $page, size: $pageSize) {
               id
               feedId
               result
@@ -164,7 +164,7 @@ describe('feeds', function () {
       variables: {
         page: 1,
         pageSize: 6,
-        id: feedResponse.ops[0]._id.toString(),
+        id: feedResponse.ops[0]._id.toString()
       }
     })
     expect(feeds.length).toBe(1)
@@ -222,7 +222,7 @@ describe('feeds', function () {
       variables: {
         id: _id.toString(),
         page: 1,
-        size: 3,
+        size: 3
       }
     })
 
