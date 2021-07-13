@@ -1,11 +1,9 @@
-version: "3.8"
-
-x-var: &DB_NAME database
+version: "2"
 
 services:
-  *DB_NAME:
+  database:
     image: mongo:4
-    container_name: *DB_NAME
+    container_name: database
     ports:
       - $MONGO_PORT:27017
     environment:
@@ -17,22 +15,56 @@ services:
     volumes:
       - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
       - mongodb_data_container:/data/db
-
+  
   mongo-express:
     image: "mongo-express"
     container_name: mongo-express
     ports:
       - "8081:8081"
     depends_on:
-      - *DB_NAME
+      - database
     environment:
-      ME_CONFIG_MONGODB_SERVER: *DB_NAME
+      ME_CONFIG_MONGODB_SERVER: database
       ME_CONFIG_MONGODB_AUTH_DATABASE: $MONGO_INITDB_DATABASE
       ME_CONFIG_MONGODB_AUTH_USERNAME: $MONGO_DATABASE_USERNAME
       ME_CONFIG_MONGODB_AUTH_PASSWORD: $MONGO_DATABASE_PASSWORD
       ME_CONFIG_BASICAUTH_USERNAME: $ME_CONFIG_BASICAUTH_USERNAME
       ME_CONFIG_BASICAUTH_PASSWORD: $ME_CONFIG_BASICAUTH_PASSWORD
       ME_CONFIG_MONGODB_ENABLE_ADMIN: "false"
+  
+  api:
+    image: data-feed-app-api
+    ports:
+      - "4000:4000"
+    links:
+      - database
+    depends_on: 
+      - database
+    environment: 
+      SERVER_PORT: $SERVER_PORT
+      DB_HOSTNAME: $DB_HOSTNAME 
+      MONGO_PORT: $MONGO_PORT
+      MONGO_DATABASE_USERNAME: $MONGO_DATABASE_USERNAME
+      MONGO_DATABASE_PASSWORD: $MONGO_DATABASE_PASSWORD
+      MONGO_INITDB_DATABASE: $MONGO_INITDB_DATABASE
+      MONGO_INITDB_ROOT_USERNAME: $MONGO_INITDB_ROOT_USERNAME
+      MONGO_INITDB_ROOT_PASSWORD: $MONGO_INITDB_ROOT_PASSWORD
+      ME_CONFIG_BASICAUTH_USERNAME: $ME_CONFIG_BASICAUTH_USERNAME
+      ME_CONFIG_BASICAUTH_PASSWORD: $ME_CONFIG_BASICAUTH_PASSWORD
+      GOERLI_PROVIDER: $GOERLI_PROVIDER
+      KOVAN_PROVIDER: $KOVAN_PROVIDER
+      RINKEBY_PROVIDER: $RINKEBY_PROVIDER
+
+  ui:
+    image: data-feed-app-ui
+    links: 
+      - api
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - api
+    environment:
+      API_ENDPOINT: "http://api:4000"
 
 volumes:
   mongodb_data_container:
