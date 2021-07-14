@@ -106,6 +106,7 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/apollo',
     'nuxt-element-ui',
+    '@nuxtjs/color-mode',
   ],
 
   elementUI: {
@@ -129,7 +130,6 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/date-fns',
-    '@nuxtjs/color-mode',
     '@nuxtjs/fontawesome',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',

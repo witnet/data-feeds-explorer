@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$apollo.loading">
+  <div v-if="feeds">
     <div class="section-header">
       <p class="section-title">{{ $t('main.data_feeds') }}</p>
       <!-- <Select

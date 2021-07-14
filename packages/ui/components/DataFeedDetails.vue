@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$apollo.loading" class="content">
+  <div v-if="feed" class="content">
     <div class="section-header">
       <nuxt-link class="back-to-list" :to="localePath('/')">
         <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />

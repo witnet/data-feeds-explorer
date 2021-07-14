@@ -22,15 +22,19 @@ export default {
     }
   },
   computed: {
-    current() {
-      return this.$colorMode.value
-    },
     icon() {
       return this.themes[this.currentTheme].icon
     },
   },
-  beforeMount() {
-    this.currentTheme = this.$colorMode.value
+  mounted() {
+    if (this.$colorMode.value === 'system') {
+      this.currentTheme = window.matchMedia('(prefers-color-scheme: dark)')
+        .matches
+        ? 'dark'
+        : 'light'
+    } else {
+      this.currentTheme = this.$colorMode
+    }
   },
   methods: {
     toggleMode() {
