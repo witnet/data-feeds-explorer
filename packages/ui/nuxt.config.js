@@ -177,10 +177,12 @@ export default {
   },
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: process.env.API_ENDPOINT || 'http://localhost:4000',
-      },
+      // load httpEndpoint on runtime to be able to read it from env variable
+      default: '~/apollo.config.js',
     },
     errorHandler: '~/plugins/apollo-error-handler.js',
+  },
+  publicRuntimeConfig: {
+    baseUrl: process.env.API_ENDPOINT,
   },
 }
