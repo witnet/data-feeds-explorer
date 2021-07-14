@@ -10,7 +10,8 @@
     "dev": "nodemon",
     "start": "node dist/index.js",
     "test": "jest",
-    "prepare": "yarn codegen"
+    "prepare": "yarn codegen",
+    "docker:build": "docker build . --no-cache -t data-feed-api --stream"
   },
   "license": "ISC",
   "devDependencies": {

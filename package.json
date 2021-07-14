@@ -15,7 +15,8 @@
     "test": "yarn lerna run test --stream ",
     "lint": "yarn lerna run lint --stream --concurrency 1",
     "clean": "yarn lerna run clean --concurrency 4",
-    "prepare": "lerna run prepare"
+    "prepare": "lerna run prepare",
+    "docker:build": "lerna run docker:build"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
