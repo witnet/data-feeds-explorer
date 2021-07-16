@@ -4,7 +4,7 @@
       <nuxt-link class="back-to-list" :to="localePath('/')">
         <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />
       </nuxt-link>
-      <SvgIcon name="btcusd" />
+      <SvgIcon :name="svgIcon" />
       <p class="network" :class="feed.network">{{ network }}</p>
     </div>
     <Chart class="chart" :data="chartData" data-label="$" :name="feedName" />
@@ -78,6 +78,9 @@ export default {
     }
   },
   computed: {
+    svgIcon() {
+      return this.feed.name.split('/').join('')
+    },
     numberOfPages() {
       return Math.ceil(this.feed.requests.length / this.itemsPerPage)
     },
