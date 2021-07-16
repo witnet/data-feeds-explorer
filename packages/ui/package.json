@@ -11,7 +11,7 @@
     "lint:style": "stylelint \"**/*.{vue,css}\" --fix",
     "lint": "yarn lint:js && yarn lint:style",
     "test": "yarn jest",
-    "docker:build": "docker build . --no-cache -t data-feed-ui"
+    "docker:build": "docker build . --no-cache -t witnet/data-feed-app-ui"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.3",

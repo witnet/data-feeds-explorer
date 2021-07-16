@@ -8,8 +8,7 @@ export class MongoManager {
   async start (uri?: string): Promise<Db | null> {
     const mongoDbUri =
       uri ||
-      `mongodb://${process.env.MONGO_DATABASE_USERNAME}:${process.env.MONGO_DATABASE_PASSWORD}@${process.env.DB_HOSTNAME}:${process.env.MONGO_PORT}/${process.env.DB_HOSTNAME}`
-
+      `mongodb://${process.env.MONGO_DATABASE_USERNAME}:${process.env.MONGO_DATABASE_PASSWORD}@${process.env.DB_HOSTNAME}:${process.env.MONGO_PORT}`
     return this.connect(mongoDbUri, process.env.MONGO_INITDB_DATABASE as string)
   }
 

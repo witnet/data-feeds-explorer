@@ -14,35 +14,35 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: $MONGO_INITDB_ROOT_PASSWORD
     volumes:
       - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
-      - mongodb_data_container:/data/db
-  
-  mongo-express:
-    image: "mongo-express"
-    container_name: mongo-express
-    ports:
-      - "8081:8081"
-    depends_on:
-      - database
-    environment:
-      ME_CONFIG_MONGODB_SERVER: database
-      ME_CONFIG_MONGODB_AUTH_DATABASE: $MONGO_INITDB_DATABASE
-      ME_CONFIG_MONGODB_AUTH_USERNAME: $MONGO_DATABASE_USERNAME
-      ME_CONFIG_MONGODB_AUTH_PASSWORD: $MONGO_DATABASE_PASSWORD
-      ME_CONFIG_BASICAUTH_USERNAME: $ME_CONFIG_BASICAUTH_USERNAME
-      ME_CONFIG_BASICAUTH_PASSWORD: $ME_CONFIG_BASICAUTH_PASSWORD
-      ME_CONFIG_MONGODB_ENABLE_ADMIN: "false"
-  
+      - ./mongodb_data:/data/db
+
+  # mongo-express:
+  #   image: "mongo-express"
+  #   container_name: mongo-express
+  #   ports:
+  #     - "8081:8081"
+  #   depends_on:
+  #     - database
+  #   environment:
+  #     ME_CONFIG_MONGODB_SERVER: database
+  #     ME_CONFIG_MONGODB_AUTH_DATABASE: $MONGO_INITDB_DATABASE
+  #     ME_CONFIG_MONGODB_AUTH_USERNAME: $MONGO_DATABASE_USERNAME
+  #     ME_CONFIG_MONGODB_AUTH_PASSWORD: $MONGO_DATABASE_PASSWORD
+  #     ME_CONFIG_BASICAUTH_USERNAME: $ME_CONFIG_BASICAUTH_USERNAME
+  #     ME_CONFIG_BASICAUTH_PASSWORD: $ME_CONFIG_BASICAUTH_PASSWORD
+  #     ME_CONFIG_MONGODB_ENABLE_ADMIN: "false"
+
   api:
-    image: data-feed-app-api
+    image: witnet/data-feed-app-api
     ports:
       - "4000:4000"
     links:
       - database
-    depends_on: 
+    depends_on:
       - database
-    environment: 
+    environment:
       SERVER_PORT: $SERVER_PORT
-      DB_HOSTNAME: $DB_HOSTNAME 
+      DB_HOSTNAME: $DB_HOSTNAME
       MONGO_PORT: $MONGO_PORT
       MONGO_DATABASE_USERNAME: $MONGO_DATABASE_USERNAME
       MONGO_DATABASE_PASSWORD: $MONGO_DATABASE_PASSWORD
@@ -57,15 +57,12 @@ services:
       RINKEBY_PROVIDER: $RINKEBY_PROVIDER
 
   ui:
-    image: data-feed-app-ui
-    links: 
+    image: witnet/data-feed-app-ui
+    links:
       - api
     ports:
       - "8080:8080"
-    depends_on: 
+    depends_on:
       - api
     environment:
       API_ENDPOINT: "http://api:4000"
-
-volumes:
-  mongodb_data_container:

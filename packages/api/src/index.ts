@@ -26,9 +26,11 @@ async function main () {
 
   const server = await createServer(repositories)
 
-  server.listen().then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`)
-  })
+  server
+    .listen({ host: '0.0.0.0', port: process.env.SERVER_PORT })
+    .then(({ url }) => {
+      console.log(`🚀  Server ready at ${url}`)
+    })
 }
 
 main()
