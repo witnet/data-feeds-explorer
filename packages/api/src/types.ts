@@ -15,6 +15,7 @@ export type Context = {
 }
 
 export enum Network {
+  Mainnet = 'mainnet',
   Goerli = 'goerli',
   Kovan = 'kovan',
   Rinkeby = 'rinkeby'
