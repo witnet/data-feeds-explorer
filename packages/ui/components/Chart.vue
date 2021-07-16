@@ -90,6 +90,7 @@ export default {
             color: 'transparent',
           },
         },
+        priceFormat: { type: 'price', minMove: 0.001, precision: 3 },
       })
     },
     lineChart() {
@@ -149,8 +150,7 @@ export default {
           const dateStr = LightWeightCharts.isBusinessDay(param.time)
             ? this.dateToString(param.time)
             : new Date(param.time * 1000).toLocaleDateString()
-
-          this.value = `${this.dataLabel} ${Math.round(price * 100) / 100}`
+          this.value = `${this.dataLabel} ${Math.round(price * 1000) / 1000}`
           this.date = dateStr
         }
       })

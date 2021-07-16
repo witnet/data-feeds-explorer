@@ -95,7 +95,7 @@ export default {
         return this.feed.requests.map((request) => {
           return {
             time: formatTimestamp(request.timestamp),
-            value: request.result,
+            value: request.result.slice(0, -3) + '.' + request.result.slice(-3),
           }
         })
       } else {
