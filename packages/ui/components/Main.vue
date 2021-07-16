@@ -67,8 +67,8 @@ export default {
           value: feed.lastResult,
           label: feed.label,
           img: {
-            name: 'btcusd',
-            alt: 'BTC/USD',
+            name: this.formatSvgName(feed.name),
+            alt: feed.name,
           },
           network: feed.network,
         }
@@ -78,6 +78,9 @@ export default {
   methods: {
     handleCurrentChange(val) {
       this.currentPage = val
+    },
+    formatSvgName(name) {
+      return name.split('/').join('')
     },
     //   updateSelected(selectedOption) {
     //     this.selected = selectedOption

@@ -1,11 +1,13 @@
 <template>
   <div class="nav-container" :class="{ drop: isMenuVisible }">
     <nav class="navbar">
-      <h1 class="logo-container">
-        <WitnetLogo class="witnet-logo" />
-        <p class="logo-subtitle">DATA</p>
-        <p class="logo-subtitle-color">FEED</p>
-      </h1>
+      <nuxt-link :to="localePath('/')">
+        <h1 class="logo-container">
+          <WitnetLogo class="witnet-logo" />
+          <p class="logo-subtitle">DATA</p>
+          <p class="logo-subtitle-color">FEED</p>
+        </h1>
+      </nuxt-link>
       <label class="responsive-menu" @click="toggleMenu">&#9776;</label>
       <transition name="dropdown" class="dropdown">
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
