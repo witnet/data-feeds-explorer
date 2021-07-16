@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      currentTheme: 'dark',
+      currentTheme: 'light',
       themes: {
         light: {
           icon: 'moon',
@@ -30,7 +30,9 @@ export default {
     },
   },
   beforeMount() {
-    this.currentTheme = this.$colorMode.value
+    if (this.$colorMode.value !== 'system') {
+      this.currentTheme = this.$colorMode.value
+    }
   },
   methods: {
     toggleMode() {
