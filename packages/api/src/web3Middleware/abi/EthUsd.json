@@ -38,7 +38,7 @@
   },
   {
     "inputs": [],
-    "name": "BTCUSD3ID",
+    "name": "ETHUSD3ID",
     "outputs": [
       {
         "internalType": "bytes32",
