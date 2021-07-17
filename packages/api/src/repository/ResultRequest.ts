@@ -27,6 +27,7 @@ export class ResultRequestRepository {
     return (
       await this.collection
         .find({ feedId: feedId.toString() })
+        .sort({ timestamp: -1 })
         .skip(size * (page - 1))
         .limit(size)
         .toArray()
