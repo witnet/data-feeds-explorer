@@ -9,7 +9,7 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Witnet data feeds',
+    title: 'Data Feeds Explorer | Witnet',
     htmlAttrs: {
       lang: 'en',
     },
@@ -20,57 +20,60 @@ export default {
       {
         hid: 'title',
         name: 'title',
-        content: 'title',
+        content: 'Data Feeds Explorer | Witnet',
       },
       {
         hid: 'description',
         name: 'description',
-        content: 'description',
+        content:
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witet oracle network',
       },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'title',
+        content: 'Data Feeds Explorer | Witnet',
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content: 'description',
+        content:
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witet oracle network',
       },
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: '/',
+        content: 'images/witnet_green.png',
       },
       {
         hid: 'twitter:image:alt',
         name: 'twitter:image:alt',
-        content: 'alt',
+        content: 'Witnet data feeds explorer',
       },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'title',
+        content: 'Data Feeds Explorer | Witnet',
       },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: 'description',
+        content:
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witet oracle network',
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: '/',
+        content: 'images/witnet_green.png',
       },
       {
         hid: 'og:image:secure_url',
         property: 'og:image:secure_url',
-        content: '/',
+        content: 'images/witnet_green.png',
       },
       {
         hid: 'og:image:alt',
         property: 'og:image:alt',
-        content: 'EXAMPLE',
+        content: 'Witnet data feeds explorer',
       },
     ],
     link: [
