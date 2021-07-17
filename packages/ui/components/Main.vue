@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      itemsPerPage: 6,
+      itemsPerPage: 25,
       // options: [
       //   { label: 'All' },
       //   { label: 'Rinkeby' },
