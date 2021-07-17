@@ -92,18 +92,18 @@ export const dataFeeds: Array<FeedInfo> = [
   // * BtcUsdPriceFeed: [0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E](https://kovan.etherscan.io/address/0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E#contracts)
   // * EthUsdPriceFeed: [0xA996939e6a07a0D1D6376c59BE515d8441f5E9b8](https://kovan.etherscan.io/address/0xA996939e6a07a0D1D6376c59BE515d8441f5E9b8#contracts)
   // * WitnetRequestBoardProxy: [0xD9a6d1Ea0d0f4795985725C7Bd40C31a667c033d](https://kovan.etherscan.io/address/0xD9a6d1Ea0d0f4795985725C7Bd40C31a667c033d#contracts)
-  {
-    abi: BtcUsdAbi as Array<AbiItem>,
-    address: '0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E',
-    network: Network.Kovan,
-    name: 'btc/usd',
-    label: '$',
-    pollingPeriod: 1000,
-    witnetRequestBoard: {
-      address: '0xD9a6d1Ea0d0f4795985725C7Bd40C31a667c033d',
-      abi: WitnetRequestBoardProxy as Array<AbiItem>
-    }
-  },
+  // {
+  //   abi: BtcUsdAbi as Array<AbiItem>,
+  //   address: '0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E',
+  //   network: Network.Kovan,
+  //   name: 'btc/usd',
+  //   label: '$',
+  //   pollingPeriod: 1000,
+  //   witnetRequestBoard: {
+  //     address: '0xD9a6d1Ea0d0f4795985725C7Bd40C31a667c033d',
+  //     abi: WitnetRequestBoardProxy as Array<AbiItem>
+  //   }
+  // },
   {
     abi: EthUsdAbi as Array<AbiItem>,
     address: '0xA996939e6a07a0D1D6376c59BE515d8441f5E9b8',
