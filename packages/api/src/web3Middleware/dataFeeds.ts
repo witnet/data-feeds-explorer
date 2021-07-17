@@ -87,7 +87,7 @@ export const dataFeeds: Array<FeedInfo> = [
       address: '0x0C4be6AA667df48de54BA174bE7948875fdf152B',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
     }
-  },
+  }
   // // Kovan (id. 42) - v0.2.0:
   // // * BtcUsdPriceFeed: [0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E](https://kovan.etherscan.io/address/0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E#contracts)
   // // * EthUsdPriceFeed: [0xA996939e6a07a0D1D6376c59BE515d8441f5E9b8](https://kovan.etherscan.io/address/0xA996939e6a07a0D1D6376c59BE515d8441f5E9b8#contracts)
