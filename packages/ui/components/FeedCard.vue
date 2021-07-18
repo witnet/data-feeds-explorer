@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="localeRoute(detailsPath)">
+  <nuxt-link v-if="value" :to="localeRoute(detailsPath)">
     <div class="card-container">
       <p class="network" :class="network">{{ networkName }}</p>
       <p class="name">{{ name.toUpperCase() }}</p>
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     formatedValue() {
-      return formatNumber(this.value)
+      return formatNumber(this.value.slice(0, -3) + '.' + this.value.slice(-3))
     },
     networkName() {
       return this.network.toUpperCase()

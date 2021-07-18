@@ -40,7 +40,6 @@
 <script>
 import feed from '@/apollo/queries/feed.gql'
 import requests from '@/apollo/queries/requests.gql'
-import { formatTimestamp } from '@/utils/formatTimestamp'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 
 export default {
@@ -95,14 +94,17 @@ export default {
     },
     chartData() {
       if (this.feed.requests.length > 0) {
-        return this.feed.requests.map((request) => {
-          return {
-            time: formatTimestamp(request.timestamp),
-            value: request.result.slice(0, -3) + '.' + request.result.slice(-3),
-          }
-        })
+        return this.feed.requests
+          .map((request) => {
+            return {
+              time: Number(request.timestamp),
+              value:
+                request.result.slice(0, -3) + '.' + request.result.slice(-3),
+            }
+          })
+          .sort((t1, t2) => t1.time - t2.time)
       } else {
-        return [{ time: formatTimestamp('0'), value: 0 }]
+        return [{ time: 0, value: 0 }]
       }
     },
     transactions() {
@@ -154,6 +156,7 @@ export default {
     justify-self: center;
   }
   .chart {
+    margin-top: 24px;
     height: 400px;
   }
   .section-header {

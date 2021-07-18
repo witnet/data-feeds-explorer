@@ -101,13 +101,13 @@ describe('feeds', function () {
       result: '1111.0',
       feedId: feedResponse.ops[0]._id.toString(),
       requestId: '1',
-      timestamp: '1623085320000'
+      timestamp: '1623085329000'
     }
     const resultRequestExample2 = {
       result: '2222.0',
       feedId: feedResponse.ops[0]._id.toString(),
       requestId: '1',
-      timestamp: '1623085329000'
+      timestamp: '1623085320000'
     }
     const resultRequestResponse1 = await state.mongoManager.db
       .collection('result_request')
@@ -170,7 +170,7 @@ describe('feeds', function () {
     expect(feeds.length).toBe(1)
     expect(feeds[0]).toHaveProperty('address', feedExample.address)
     expect(feeds[0]).toHaveProperty('name', feedExample.name)
-    expect(feeds[0]).toHaveProperty('lastResult', resultRequestExample2.result)
+    expect(feeds[0]).toHaveProperty('lastResult', resultRequestExample1.result)
     expect(feeds[0].requests.length).toBe(2)
     expect(feeds[0].requests[0]).toHaveProperty(
       'feedId',

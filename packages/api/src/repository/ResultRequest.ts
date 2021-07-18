@@ -19,6 +19,7 @@ export class ResultRequestRepository {
         .find({
           feedId: feedId.toString()
         })
+        .sort({ timestamp: -1 })
         .toArray()
     ).map(this.normalizeId)
   }

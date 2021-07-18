@@ -41,7 +41,9 @@ export default {
   },
   computed: {
     value() {
-      return `${this.data.label} ${formatNumber(this.data.value)}`
+      return `${this.data.label} ${formatNumber(
+        this.data.value.slice(0, -3) + '.' + this.data.value.slice(-3)
+      )}`
     },
   },
   methods: {

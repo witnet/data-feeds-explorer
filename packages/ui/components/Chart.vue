@@ -1,10 +1,8 @@
 <template>
   <div ref="container">
     <div v-show="tooltip" class="tooltip">
-      <span class="value">
-        {{ formatNumber(value) }} <span class="date"> {{ date }}</span></span
-      >
-      <span class="name"> {{ name }} </span>
+      <span class="value">{{ formatNumber(value) }}</span>
+      <span class="date"> {{ date }}</span>
     </div>
     <div class="switcher">
       <div
@@ -24,6 +22,7 @@
 import { formatNumber } from '@/utils/formatNumber'
 import { getRangeData } from '@/utils/getRangeData'
 import { CHART_UNITS } from '@/constants'
+import { formatTimestamp } from '@/utils/formatTimestamp'
 
 export default {
   name: 'Chart',
@@ -65,6 +64,11 @@ export default {
       const { LightWeightCharts } = this.$lwcCore()
       return LightWeightCharts.createChart(this.$refs.container, {
         rightPriceScale: {
+          scaleMargins: {
+            top: 0.1,
+            bottom: 0.1,
+          },
+          mode: LightWeightCharts.PriceScaleMode.Logarithmic,
           borderVisible: false,
         },
         timeScale: {
@@ -139,17 +143,14 @@ export default {
       this.lineChart.update(data)
     },
     dateToString(date) {
-      const month = date.month > 10 ? date.month : `0${date.month}`
-      return `${date.year}-${month}-${date.day}`
+      return formatTimestamp(date)
     },
     updateTooltip() {
-      const { LightWeightCharts } = this.$lwcCore()
       this.chart.subscribeCrosshairMove((param) => {
         const price = param.seriesPrices.get(this.lineChart)
         if (param.time) {
-          const dateStr = LightWeightCharts.isBusinessDay(param.time)
-            ? this.dateToString(param.time)
-            : new Date(param.time * 1000).toLocaleDateString()
+          const dateStr = this.dateToString(param.time)
+
           this.value = `${this.dataLabel} ${Math.round(price * 1000) / 1000}`
           this.date = dateStr
         }
@@ -196,22 +197,19 @@ export default {
   border-radius: 2px;
   background-color: var(--text-background);
   text-align: left;
-  top: 60px;
+  top: 0;
   font-weight: bold;
   pointer-events: none;
   color: var(--text);
-  .name {
-    font-size: 24px;
+  .date {
+    font-size: 16px;
     margin-top: 8px;
+    color: var(--text-medium-emphasis);
   }
   .value {
     font-size: 32px;
     display: flex;
     align-items: center;
-    .date {
-      font-size: 24px;
-      margin-left: 16px;
-    }
   }
 }
 @media (max-width: 1200px) {

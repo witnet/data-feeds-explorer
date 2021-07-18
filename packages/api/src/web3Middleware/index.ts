@@ -112,19 +112,27 @@ export class Web3Middleware {
   }
 
   async readContractsState ({ feedContract, proxyContract }: Contracts) {
-    const feedContractState = {
-      lastPrice: await feedContract.methods.lastPrice().call(),
-      lastTimestamp: await feedContract.methods.timestamp().call(),
-      lastRequestId: await feedContract.methods.lastRequestId().call()
-    }
-
-    const drTxHash = await proxyContract.methods
-      .readDrTxHash(feedContractState.lastRequestId)
-      .call()
-
-    return {
-      ...feedContractState,
-      drTxHash: toHex(drTxHash).slice(2)
+    try {
+      const feedContractState = {
+        lastPrice: await feedContract.methods.lastPrice().call(),
+        lastTimestamp: await feedContract.methods.timestamp().call(),
+        lastRequestId: await feedContract.methods.lastRequestId().call()
+      }
+      const drTxHash = await proxyContract.methods
+        .readDrTxHash(feedContractState.lastRequestId)
+        .call()
+      return {
+        ...feedContractState,
+        drTxHash: toHex(drTxHash).slice(2)
+      }
+    } catch (err) {
+      console.log('[ERROR]', err)
+      return {
+        lastPrice: null,
+        lastTimestamp: null,
+        lastRequestId: null,
+        drTxHash: null
+      }
     }
   }
 
@@ -146,7 +154,8 @@ export class Web3Middleware {
     const lastStoredResult = this.lastStoredResult[address]
 
     const isAlreadyStored = lastStoredResult?.timestamp === lastTimestamp
-    if (!isAlreadyStored) {
+    const isDrSolved = drTxHash !== '0'
+    if (!isAlreadyStored && isDrSolved) {
       const result = await this.repositories.resultRequestRepository.insert({
         feedId: feed.id.toString(),
         result: lastPrice,
