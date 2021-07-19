@@ -12,11 +12,7 @@
       :title="$t('data_feed_details.contract_address')"
       class="contract-container"
     >
-      <a
-        :href="`https://rinkeby.etherscan.io/address/${feedAddress}#code`"
-        target="_blank"
-        class="contract-address"
-      >
+      <a :href="url" target="_blank" class="contract-address">
         {{ feedAddress }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
@@ -79,6 +75,11 @@ export default {
   computed: {
     svgIcon() {
       return this.feed.name.split('/').join('')
+    },
+    url() {
+      return this.feed.network === 'mainnet'
+        ? `https://etherscan.io/address/${this.feedAddress}#code`
+        : `https://${this.feed.network}.etherscan.io/address/${this.feedAddress}#code`
     },
     numberOfPages() {
       return Math.ceil(this.feed.requests.length / this.itemsPerPage)
