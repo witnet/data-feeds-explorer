@@ -4,7 +4,7 @@
       <span class="value">{{ formatNumber(value) }}</span>
       <span class="date"> {{ date }}</span>
     </div>
-    <div class="switcher">
+    <!-- <div class="switcher">
       <div
         v-for="(serie, index) in seriesData"
         :key="serie[0]"
@@ -14,7 +14,7 @@
       >
         {{ $t(`${serie[0]}`) }}
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -129,16 +129,17 @@ export default {
     this.updateTooltip()
     this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
     this.date = this.dateToString(this.data[this.data.length - 1].time)
+    this.lineChart.setData(this.seriesData[0][1])
   },
   methods: {
     formatNumber,
     setData() {
       this.lineChart.setData(this.data)
     },
-    onItemClicked(index) {
-      this.activeItem = this.seriesData[index][0]
-      this.lineChart.setData(this.seriesData[index][1])
-    },
+    // onItemClicked(index) {
+    //   this.activeItem = this.seriesData[index][0]
+    //   this.lineChart.setData(this.seriesData[index][1])
+    // },
     updateData(data) {
       this.lineChart.update(data)
     },
