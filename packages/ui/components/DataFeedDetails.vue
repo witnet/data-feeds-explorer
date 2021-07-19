@@ -47,7 +47,7 @@ export default {
         return {
           id: this.id,
           page: this.currentPage,
-          size: this.itemsPerPage,
+          size: 10000,
         }
       },
       pollInterval: 60000,
