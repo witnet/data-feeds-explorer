@@ -14,7 +14,7 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Mainnet,
     name: 'btc/usd',
     label: '$',
-    pollingPeriod: 10000,
+    pollingPeriod: 3600000,
     witnetRequestBoard: {
       address: '0x400DbF3645b345823124aaB22D04013A46D9ceD5',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
@@ -26,7 +26,7 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Mainnet,
     name: 'eth/usd',
     label: '$',
-    pollingPeriod: 10000,
+    pollingPeriod: 3600000,
     witnetRequestBoard: {
       address: '0x400DbF3645b345823124aaB22D04013A46D9ceD5',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
@@ -46,7 +46,7 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Rinkeby,
     name: 'btc/usd',
     label: '$',
-    pollingPeriod: 10000
+    pollingPeriod: 900000
   },
   {
     abi: EthUsdAbi as Array<AbiItem>,
@@ -58,7 +58,7 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Rinkeby,
     name: 'eth/usd',
     label: '$',
-    pollingPeriod: 10000
+    pollingPeriod: 900000
   },
   // Goerli (id. 5) - v0.2.0:
   // * BtcUsdPriceFeed: [0x4958806608D2E3Aa22BD8818B555A0a24fe6c38E](https://goerli.etherscan.io/address/0x4958806608D2E3Aa22BD8818B555A0a24fe6c38E#contracts)
@@ -70,7 +70,7 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Goerli,
     name: 'btc/usd',
     label: '$',
-    pollingPeriod: 10000,
+    pollingPeriod: 900000,
     witnetRequestBoard: {
       address: '0x0C4be6AA667df48de54BA174bE7948875fdf152B',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
@@ -82,7 +82,7 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Goerli,
     name: 'eth/usd',
     label: '$',
-    pollingPeriod: 10000,
+    pollingPeriod: 900000,
     witnetRequestBoard: {
       address: '0x0C4be6AA667df48de54BA174bE7948875fdf152B',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
