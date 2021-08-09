@@ -35,7 +35,8 @@ describe('web3Middleware', () => {
   it('should read the state of each datafeed provided', async () => {
     const feedInfos: Array<FeedInfo> = [dataFeeds[0]]
     const resultRequestRepository = new ResultRequestRepository(
-      ('' as unknown) as Db
+      ('' as unknown) as Db,
+      feedInfos
     )
     resultRequestRepository.insert = jest.fn(async () => {
       return {
@@ -50,7 +51,7 @@ describe('web3Middleware', () => {
         drTxHash: 'hash'
       }
     })
-    const feedRepository = new FeedRepository(('' as unknown) as Db)
+    const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
     feedRepository.insert = jest.fn(async () => ({
       _id: new ObjectId('507f1f77bcf86cd799439011'),
       address: feedInfos[0].address,
@@ -83,7 +84,8 @@ describe('web3Middleware', () => {
   it('should insert each new contract snapshot', async () => {
     const feedInfos: Array<FeedInfo> = [dataFeeds[0]]
     const resultRequestRepository = new ResultRequestRepository(
-      ('' as unknown) as Db
+      ('' as unknown) as Db,
+      feedInfos
     )
     resultRequestRepository.insert = jest.fn(async () => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
@@ -96,7 +98,7 @@ describe('web3Middleware', () => {
       timestamp: '1624363045259',
       drTxHash: 'hash'
     }))
-    const feedRepository = new FeedRepository(('' as unknown) as Db)
+    const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
     feedRepository.insert = jest.fn(async () => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
       address: feedInfos[0].address,
@@ -131,7 +133,8 @@ describe('web3Middleware', () => {
     })
 
     const resultRequestRepository = new ResultRequestRepository(
-      ('' as unknown) as Db
+      ('' as unknown) as Db,
+      feedInfos
     )
     resultRequestRepository.insert = jest.fn(async () => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
@@ -155,7 +158,7 @@ describe('web3Middleware', () => {
       timestamp: '1624363045259',
       drTxHash: 'hash'
     }))
-    const feedRepository = new FeedRepository(('' as unknown) as Db)
+    const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
     feedRepository.insert = jest.fn(async () => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
       address: feedInfos[0].address,
@@ -194,7 +197,8 @@ describe('web3Middleware', () => {
   it('should initialize data feed if not exists', async () => {
     const feedInfos: Array<FeedInfo> = dataFeeds
     const resultRequestRepository = new ResultRequestRepository(
-      ('' as unknown) as Db
+      ('' as unknown) as Db,
+      feedInfos
     )
     resultRequestRepository.insert = jest.fn(async ({ address }) => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
@@ -207,7 +211,7 @@ describe('web3Middleware', () => {
       timestamp: '1624363045259',
       drTxHash: 'hash'
     }))
-    const feedRepository = new FeedRepository(('' as unknown) as Db)
+    const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
     feedRepository.insert = jest.fn(async ({ address }) => ({
       _id: new ObjectId('507f1f77bcf86cd799439011'),
       address: address,
@@ -238,7 +242,8 @@ describe('web3Middleware', () => {
   it('should not initialize data feed if exists', async () => {
     const feedInfos: Array<FeedInfo> = dataFeeds
     const resultRequestRepository = new ResultRequestRepository(
-      ('' as unknown) as Db
+      ('' as unknown) as Db,
+      feedInfos
     )
     resultRequestRepository.getLastResult = jest.fn(async () => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
@@ -264,7 +269,7 @@ describe('web3Middleware', () => {
         drTxHash: 'hash'
       }
     })
-    const feedRepository = new FeedRepository(('' as unknown) as Db)
+    const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
     feedRepository.insert = jest.fn(async ({ address }) => ({
       _id: new ObjectId('507f1f77bcf86cd799439011'),
       address: address,

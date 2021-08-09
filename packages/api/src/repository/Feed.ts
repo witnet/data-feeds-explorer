@@ -3,18 +3,26 @@ import {
   FeedDbObject,
   Collection,
   Db,
-  ObjectId
+  ObjectId,
+  FeedInfo
 } from '../types'
 
 export class FeedRepository {
   collection: Collection<FeedDbObject>
+  // list of addresses to include in the search queries using address as an id for each data feed
+  dataFeedsAddresses: Array<string>
 
-  constructor (db: Db) {
+  constructor (db: Db, dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('feed')
+    this.dataFeedsAddresses = dataFeeds.map(dataFeed => dataFeed.address)
   }
 
   async getAll () {
-    return (await this.collection.find({}).toArray()).map(this.normalizeId)
+    return (
+      await this.collection
+        .find({ address: { $in: this.dataFeedsAddresses } })
+        .toArray()
+    ).map(this.normalizeId)
   }
 
   async insert (feed: Omit<FeedDbObject, '_id'>) {
@@ -42,7 +50,7 @@ export class FeedRepository {
   async getFeeds (page: number, size: number) {
     return (
       await this.collection
-        .find({})
+        .find({ address: { $in: this.dataFeedsAddresses } })
         .skip(size * (page - 1))
         .limit(size)
         .toArray()

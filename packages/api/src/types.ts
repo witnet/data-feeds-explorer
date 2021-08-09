@@ -21,8 +21,8 @@ export enum Network {
   Rinkeby = 'rinkeby'
 }
 
-export type FeedInfo = {
-  abi: Array<AbiItem>
+export type FeedInfoGeneric<ABI> = {
+  abi: ABI
   address: string
   network: Network
   name: string
@@ -30,9 +30,11 @@ export type FeedInfo = {
   label: string
   witnetRequestBoard: {
     address: string
-    abi: Array<AbiItem>
+    abi: ABI
   }
 }
+export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
+export type FeedInfoConfig = FeedInfoGeneric<string>
 
 export type FeedDbObjectNormalized = FeedDbObject & { id: string }
 export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {

@@ -3,14 +3,18 @@ import {
   ResultRequestDbObject,
   Db,
   Collection,
-  ObjectId
+  ObjectId,
+  FeedInfo
 } from '../types'
 
 export class ResultRequestRepository {
   collection: Collection<ResultRequestDbObject>
+  // list of addresses to include in the search queries using address as an id for each data feed
+  dataFeedsAddresses: Array<string>
 
-  constructor (db: Db) {
+  constructor (db: Db, dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
+    this.dataFeedsAddresses = dataFeeds.map(dataFeed => dataFeed.address)
   }
 
   async getFeedRequests (feedId: ObjectId) {
@@ -27,7 +31,9 @@ export class ResultRequestRepository {
   async getFeedRequestsPage (feedId: ObjectId, page, size) {
     return (
       await this.collection
-        .find({ feedId: feedId.toString() })
+        .find({
+          feedId: feedId.toString()
+        })
         .sort({ timestamp: -1 })
         .skip(size * (page - 1))
         .limit(size)

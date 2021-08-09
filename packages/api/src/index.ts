@@ -1,21 +1,23 @@
 require('dotenv/config')
 
+import fs from 'fs'
+import path from 'path'
 import Web3 from 'web3'
 import { MongoManager } from './database'
 import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
 import { createServer } from './server'
-import { Repositories } from './types'
+import { FeedInfo, FeedInfoConfig, Repositories } from './types'
 import { Web3Middleware } from './web3Middleware/index'
-import { dataFeeds } from './web3Middleware/dataFeeds'
 
 async function main () {
   const mongoManager = new MongoManager()
   const db = await mongoManager.start()
+  const dataFeeds = readDataFeeds()
 
   const repositories: Repositories = {
-    feedRepository: new FeedRepository(db),
-    resultRequestRepository: new ResultRequestRepository(db)
+    feedRepository: new FeedRepository(db, dataFeeds),
+    resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
   }
 
   const web3Middleware = new Web3Middleware(
@@ -31,6 +33,28 @@ async function main () {
     .then(({ url }) => {
       console.log(`🚀  Server ready at ${url}`)
     })
+}
+
+function readDataFeeds (): Array<FeedInfo> {
+  const dataFeeds: Array<FeedInfoConfig> = JSON.parse(
+    fs.readFileSync(path.join(__dirname, process.env.DATA_FEED_CONFIG_PATH || '/dataFeeds.json'), 'utf-8')
+  )
+
+  return dataFeeds.map(dataFeed => ({
+    ...dataFeed,
+    abi: JSON.parse(
+      fs.readFileSync(path.join(__dirname, dataFeed.abi), 'utf-8')
+    ),
+    witnetRequestBoard: {
+      ...dataFeed.witnetRequestBoard,
+      abi: JSON.parse(
+        fs.readFileSync(
+          path.join(__dirname, dataFeed.witnetRequestBoard.abi),
+          'utf-8'
+        )
+      )
+    }
+  }))
 }
 
 main()
