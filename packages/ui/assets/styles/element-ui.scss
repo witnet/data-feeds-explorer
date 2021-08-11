@@ -40,11 +40,17 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
     background-color: var(--bg);
     color: var(--pagination-button);
     margin: 4px;
+    padding-left: 4px;
   }
 
   .btn-prev {
     background-color: var(--bg);
     color: var(--pagination-button);
     margin: 4px;
+    padding-right: 4px;
+  }
+
+  .el-pager li.btn-quicknext, .el-pager li.btn-quickprev {
+    color: var(--pagination-button);
   }
 }

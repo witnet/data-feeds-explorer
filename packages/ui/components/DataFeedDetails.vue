@@ -24,8 +24,10 @@
     />
     <el-pagination
       v-if="numberOfPages > 1"
+      :small="small"
       class="pagination"
       layout="prev, pager, next"
+      :pager-count="4"
       :page-count="numberOfPages"
       :current-page="currentPage"
       @current-change="handleCurrentChange"
@@ -73,6 +75,9 @@ export default {
     }
   },
   computed: {
+    small() {
+      return this.numberOfPages > 10
+    },
     svgIcon() {
       return this.feed.name.split('/').join('')
     },
@@ -154,6 +159,7 @@ export default {
     }
   }
   .pagination {
+    padding-bottom: 72px;
     justify-self: center;
   }
   .chart {
