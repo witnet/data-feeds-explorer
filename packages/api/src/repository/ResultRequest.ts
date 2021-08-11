@@ -61,9 +61,16 @@ export class ResultRequestRepository {
   }
 
   async insert (resultRequest: Omit<ResultRequestDbObject, '_id'>) {
-    const response = await this.collection.insertOne(resultRequest)
+    if (this.isValidResultRequest(resultRequest)) {
+      const response = await this.collection.insertOne(resultRequest)
 
-    return this.normalizeId(response.ops[0])
+      return this.normalizeId(response.ops[0])
+    } else {
+      console.error(
+        'Error inserting result request: Validation Error',
+        resultRequest
+      )
+    }
   }
 
   private normalizeId (
@@ -71,5 +78,11 @@ export class ResultRequestRepository {
   ): ResultRequestDbObjectNormalized {
     if (resultRequest?._id)
       return { ...resultRequest, id: resultRequest._id.toString() }
+  }
+
+  private isValidResultRequest (
+    resultRequest: Omit<ResultRequestDbObject, '_id'>
+  ): boolean {
+    return containFalsyValues(resultRequest)
   }
 }

@@ -26,9 +26,13 @@ export class FeedRepository {
   }
 
   async insert (feed: Omit<FeedDbObject, '_id'>) {
-    const response = await this.collection.insertOne(feed)
+    if (this.isValidFeed(feed)) {
+      const response = await this.collection.insertOne(feed)
 
-    return this.normalizeId(response.ops[0])
+      return this.normalizeId(response.ops[0])
+    } else {
+      console.error('Error inserting feed: Validation Error', feed)
+    }
   }
 
   async addResultRequest (feedId: ObjectId, resultRequestId: ObjectId) {
@@ -69,5 +73,9 @@ export class FeedRepository {
     if (feed && feed._id) {
       return { ...feed, id: feed._id.toString() }
     }
+  }
+
+  private isValidFeed (feed: Omit<FeedDbObject, '_id'>): boolean {
+    return !containFalsyValues(feed) 
   }
 }
