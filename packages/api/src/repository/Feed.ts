@@ -6,6 +6,7 @@ import {
   ObjectId,
   FeedInfo
 } from '../types'
+import { containFalsyValues } from './containFalsyValues'
 
 export class FeedRepository {
   collection: Collection<FeedDbObject>
@@ -17,7 +18,7 @@ export class FeedRepository {
     this.dataFeedsAddresses = dataFeeds.map(dataFeed => dataFeed.address)
   }
 
-  async getAll () {
+  async getAll (): Promise<Array<FeedDbObjectNormalized>> {
     return (
       await this.collection
         .find({ address: { $in: this.dataFeedsAddresses } })
@@ -25,17 +26,19 @@ export class FeedRepository {
     ).map(this.normalizeId)
   }
 
-  async insert (feed: Omit<FeedDbObject, '_id'>) {
+  async insert (feed: Omit<FeedDbObject, '_id'>): Promise<FeedDbObjectNormalized | null> {
     if (this.isValidFeed(feed)) {
       const response = await this.collection.insertOne(feed)
 
       return this.normalizeId(response.ops[0])
     } else {
       console.error('Error inserting feed: Validation Error', feed)
+
+      return null
     }
   }
 
-  async addResultRequest (feedId: ObjectId, resultRequestId: ObjectId) {
+  async addResultRequest (feedId: ObjectId, resultRequestId: ObjectId): Promise<FeedDbObjectNormalized> {
     const response = await this.collection.findOneAndUpdate(
       { _id: feedId },
       { $push: { requests: resultRequestId } },
@@ -45,13 +48,13 @@ export class FeedRepository {
     return this.normalizeId(response.value)
   }
 
-  async get (id: string) {
+  async get (id: string): Promise<FeedDbObjectNormalized> {
     return this.normalizeId(
       await this.collection.findOne({ _id: new ObjectId(id) })
     )
   }
 
-  async getFeeds (page: number, size: number) {
+  async getFeeds (page: number, size: number): Promise<Array<FeedDbObjectNormalized>> {
     return (
       await this.collection
         .find({ address: { $in: this.dataFeedsAddresses } })
@@ -61,17 +64,20 @@ export class FeedRepository {
     ).map(this.normalizeId)
   }
 
-  async getByAddress (address: string) {
+  async getByAddress (address: string): Promise<FeedDbObjectNormalized> {
     return this.normalizeId(await this.collection.findOne({ address }))
   }
 
-  public getTotalCount () {
+  public getTotalCount (): Promise<number> {
     return this.collection.count()
   }
 
-  private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized {
+  private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized | null {
     if (feed && feed._id) {
       return { ...feed, id: feed._id.toString() }
+    } else {
+      // this code should be unreachable: value from db always contains _id
+      return null
     }
   }
 

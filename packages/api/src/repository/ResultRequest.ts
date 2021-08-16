@@ -6,6 +6,7 @@ import {
   ObjectId,
   FeedInfo
 } from '../types'
+import { containFalsyValues } from './containFalsyValues'
 
 export class ResultRequestRepository {
   collection: Collection<ResultRequestDbObject>
@@ -17,7 +18,7 @@ export class ResultRequestRepository {
     this.dataFeedsAddresses = dataFeeds.map(dataFeed => dataFeed.address)
   }
 
-  async getFeedRequests (feedId: ObjectId) {
+  async getFeedRequests (feedId: ObjectId): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find({
@@ -28,7 +29,7 @@ export class ResultRequestRepository {
     ).map(this.normalizeId)
   }
 
-  async getFeedRequestsPage (feedId: ObjectId, page, size) {
+  async getFeedRequestsPage (feedId: ObjectId, page: number, size: number): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find({
@@ -41,7 +42,7 @@ export class ResultRequestRepository {
     ).map(this.normalizeId)
   }
 
-  async getLastResult (feedId: ObjectId) {
+  async getLastResult (feedId: ObjectId): Promise<ResultRequestDbObjectNormalized> {
     const lastResultRequest = await this.collection.findOne(
       {
         feedId: feedId.toString()
@@ -60,7 +61,7 @@ export class ResultRequestRepository {
     return this.normalizeId(lastResultRequest)
   }
 
-  async insert (resultRequest: Omit<ResultRequestDbObject, '_id'>) {
+  async insert (resultRequest: Omit<ResultRequestDbObject, '_id'>): Promise<ResultRequestDbObjectNormalized | null> {
     if (this.isValidResultRequest(resultRequest)) {
       const response = await this.collection.insertOne(resultRequest)
 
@@ -70,14 +71,19 @@ export class ResultRequestRepository {
         'Error inserting result request: Validation Error',
         resultRequest
       )
+      return null
     }
   }
 
   private normalizeId (
     resultRequest: ResultRequestDbObject
   ): ResultRequestDbObjectNormalized {
-    if (resultRequest?._id)
+    if (resultRequest?._id) {
       return { ...resultRequest, id: resultRequest._id.toString() }
+    } else {
+      // This should be unreachable: obj from db always contains _id
+      return null
+    }
   }
 
   private isValidResultRequest (
