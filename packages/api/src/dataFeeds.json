@@ -1,6 +1,6 @@
 [
   {
-    "abi": "./abi/BtcUsd.json",
+    "abi": "./src/abi/BtcUsd.json",
     "address": "0xF2712e7114A237625EFC8bBA6a6ed1Bb8b6029c9",
     "network": "mainnet",
     "name": "btc/usd",
@@ -8,11 +8,11 @@
     "pollingPeriod": 3600000,
     "witnetRequestBoard": {
       "address": "0x400DbF3645b345823124aaB22D04013A46D9ceD5",
-      "abi": "./abi/WitnetRequestBoardProxy.json"
+      "abi": "./src/abi/WitnetRequestBoardProxy.json"
     }
   },
   {
-    "abi": "./abi/EthUsd.json",
+    "abi": "./src/abi/EthUsd.json",
     "address": "0x1ebD93231a7fE551E1d6405404Df34909eff4c2C",
     "network": "mainnet",
     "name": "eth/usd",
@@ -20,15 +20,15 @@
     "pollingPeriod": 3600000,
     "witnetRequestBoard": {
       "address": "0x400DbF3645b345823124aaB22D04013A46D9ceD5",
-      "abi": "./abi/WitnetRequestBoardProxy.json"
+      "abi": "./src/abi/WitnetRequestBoardProxy.json"
     }
   },
   {
-    "abi": "./abi/BtcUsd.json",
+    "abi": "./src/abi/BtcUsd.json",
     "address": "0x58995FaD03158fB9cd64397347bA97714EF8fC12",
     "witnetRequestBoard": {
       "address": "0x9b42b0D80C428B17A5828dF5C2c96454ca54bD04",
-      "abi": "./abi/WitnetRequestBoardProxy.json"
+      "abi": "./src/abi/WitnetRequestBoardProxy.json"
     },
     "network": "rinkeby",
     "name": "btc/usd",
@@ -36,11 +36,11 @@
     "pollingPeriod": 900000
   },
   {
-    "abi": "./abi/EthUsd.json",
+    "abi": "./src/abi/EthUsd.json",
     "address": "0xAe9821fbA4Bd76fd6D39859bd7c3d4A90b2ceE40",
     "witnetRequestBoard": {
       "address": "0x9b42b0D80C428B17A5828dF5C2c96454ca54bD04",
-      "abi": "./abi/WitnetRequestBoardProxy.json"
+      "abi": "./src/abi/WitnetRequestBoardProxy.json"
     },
     "network": "rinkeby",
     "name": "eth/usd",
@@ -48,7 +48,7 @@
     "pollingPeriod": 900000
   },
   {
-    "abi": "./abi/BtcUsd.json",
+    "abi": "./src/abi/BtcUsd.json",
     "address": "0x4958806608D2E3Aa22BD8818B555A0a24fe6c38E",
     "network": "goerli",
     "name": "btc/usd",
@@ -56,11 +56,11 @@
     "pollingPeriod": 900000,
     "witnetRequestBoard": {
       "address": "0x0C4be6AA667df48de54BA174bE7948875fdf152B",
-      "abi": "./abi/WitnetRequestBoardProxy.json"
+      "abi": "./src/abi/WitnetRequestBoardProxy.json"
     }
   },
   {
-    "abi": "./abi/EthUsd.json",
+    "abi": "./src/abi/EthUsd.json",
     "address": "0xAa0AA725aEb1d382F909a8dE3041e9eaD6507501",
     "network": "goerli",
     "name": "eth/usd",
@@ -68,7 +68,7 @@
     "pollingPeriod": 900000,
     "witnetRequestBoard": {
       "address": "0x0C4be6AA667df48de54BA174bE7948875fdf152B",
-      "abi": "./abi/WitnetRequestBoardProxy.json"
+      "abi": "./src/abi/WitnetRequestBoardProxy.json"
     }
   }
 ]

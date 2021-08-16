@@ -36,20 +36,24 @@ async function main () {
 }
 
 function readDataFeeds (): Array<FeedInfo> {
+  console.log('DIRNAME', __dirname)
+  console.log('DATA_FEED_CONFIG_PATH:>', process.env.DATA_FEED_CONFIG_PATH)
+  console.log('resolve path: ', path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'))
+
   const dataFeeds: Array<FeedInfoConfig> = JSON.parse(
-    fs.readFileSync(path.join(__dirname, process.env.DATA_FEED_CONFIG_PATH || '/dataFeeds.json'), 'utf-8')
+    fs.readFileSync(path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'), 'utf-8')
   )
 
   return dataFeeds.map(dataFeed => ({
     ...dataFeed,
     abi: JSON.parse(
-      fs.readFileSync(path.join(__dirname, dataFeed.abi), 'utf-8')
+      fs.readFileSync(path.resolve(dataFeed.abi), 'utf-8')
     ),
     witnetRequestBoard: {
       ...dataFeed.witnetRequestBoard,
       abi: JSON.parse(
         fs.readFileSync(
-          path.join(__dirname, dataFeed.witnetRequestBoard.abi),
+          path.resolve(dataFeed.witnetRequestBoard.abi),
           'utf-8'
         )
       )
