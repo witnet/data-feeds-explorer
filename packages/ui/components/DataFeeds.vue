@@ -9,6 +9,7 @@
       :value="feed.value"
       :label="feed.label"
       :network="feed.network"
+      :color="feed.color"
     />
   </div>
 </template>

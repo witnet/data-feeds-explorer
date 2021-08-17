@@ -22,10 +22,14 @@ describe('feeds', function () {
     const ciUri = 'mongodb://localhost'
     const mongoManager = new MongoManager()
     const db = await mongoManager.start(process.env.CI ? ciUri : null)
-    const server = await createServer({
-      feedRepository: new FeedRepository(db, dataFeeds),
-      resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
-    })
+
+    const server = await createServer(
+      {
+        feedRepository: new FeedRepository(db, dataFeeds),
+        resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
+      },
+      dataFeeds
+    )
     await new Promise(resolve => {
       server.listen(info => {
         resolve(info)

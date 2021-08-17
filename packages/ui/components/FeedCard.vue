@@ -1,7 +1,7 @@
 <template>
   <nuxt-link v-if="value" :to="localeRoute(detailsPath)">
     <div class="card-container">
-      <p class="network" :class="network">{{ networkName }}</p>
+      <p class="network" :style="{ color }">{{ networkName }}</p>
       <p class="name">{{ name.toUpperCase() }}</p>
       <p class="value">{{ label }} {{ formatedValue }}</p>
       <SvgIcon class="img" :name="img.name" />
@@ -36,6 +36,10 @@ export default {
       required: true,
     },
     network: {
+      type: String,
+      required: true,
+    },
+    color: {
       type: String,
       required: true,
     },
@@ -77,19 +81,6 @@ a {
   cursor: pointer;
   .network {
     font-size: 24px;
-
-    &.mainnet {
-      color: var(--mainnet-network-color);
-    }
-    &.rinkeby {
-      color: var(--rinkeby-network-color);
-    }
-    &.goerli {
-      color: var(--goerli-network-color);
-    }
-    &.kovan {
-      color: var(--kovan-network-color);
-    }
   }
   .img {
     grid-row: 1 / span 3;

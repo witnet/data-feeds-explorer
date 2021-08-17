@@ -9,7 +9,9 @@
     "witnetRequestBoard": {
       "address": "0x400DbF3645b345823124aaB22D04013A46D9ceD5",
       "abi": "./src/abi/WitnetRequestBoardProxy.json"
-    }
+    },
+    "color": "#41BEA5de",
+    "blockExplorer": "https://etherscan.io/address/{address}"
   },
   {
     "abi": "./src/abi/EthUsd.json",
@@ -21,7 +23,9 @@
     "witnetRequestBoard": {
       "address": "0x400DbF3645b345823124aaB22D04013A46D9ceD5",
       "abi": "./src/abi/WitnetRequestBoardProxy.json"
-    }
+    },
+    "color": "#41BEA5de",
+    "blockExplorer": "https://etherscan.io/address/{address}"
   },
   {
     "abi": "./src/abi/BtcUsd.json",
@@ -33,7 +37,9 @@
     "network": "rinkeby",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 900000
+    "pollingPeriod": 900000,
+    "color": "#BEA241de",
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
     "abi": "./src/abi/EthUsd.json",
@@ -45,7 +51,9 @@
     "network": "rinkeby",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 900000
+    "pollingPeriod": 900000,
+    "color": "#BEA241de",
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
     "abi": "./src/abi/BtcUsd.json",
@@ -57,7 +65,9 @@
     "witnetRequestBoard": {
       "address": "0x0C4be6AA667df48de54BA174bE7948875fdf152B",
       "abi": "./src/abi/WitnetRequestBoardProxy.json"
-    }
+    },
+    "color": "#4182bede",
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
     "abi": "./src/abi/EthUsd.json",
@@ -69,6 +79,8 @@
     "witnetRequestBoard": {
       "address": "0x0C4be6AA667df48de54BA174bE7948875fdf152B",
       "abi": "./src/abi/WitnetRequestBoardProxy.json"
-    }
+    },
+    "color": "#4182bede",
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   }
 ]

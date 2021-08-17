@@ -12,6 +12,11 @@ export { Db, Collection, ObjectId } from 'mongodb'
 export type Context = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
+  config: ConfigByAddress
+}
+
+export type ConfigByAddress = {
+  [key: string]: FeedInfo
 }
 
 export enum Network {
@@ -32,6 +37,8 @@ export type FeedInfoGeneric<ABI> = {
     address: string
     abi: ABI
   }
+  color: string
+  blockExplorer: string
 }
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
 export type FeedInfoConfig = FeedInfoGeneric<string>

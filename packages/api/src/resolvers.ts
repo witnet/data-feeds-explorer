@@ -27,6 +27,12 @@ const resolvers = {
     },
     lastResult: async (parent, _args, { resultRequestRepository }: Context) => {
       return (await resultRequestRepository.getLastResult(parent.id))?.result
+    },
+    color: async (parent, _args, { config }: Context) => {
+      return config[`${parent.network}_${parent.address}`]?.color || ''
+    },
+    blockExplorer: async (parent, _args, { config }: Context) => {
+      return config[`${parent.network}_${parent.address}`]?.blockExplorer || ''
     }
   }
 }

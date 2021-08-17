@@ -26,7 +26,7 @@ async function main () {
   )
   web3Middleware.listen()
 
-  const server = await createServer(repositories)
+  const server = await createServer(repositories, dataFeeds)
 
   server
     .listen({ host: '0.0.0.0', port: process.env.SERVER_PORT })

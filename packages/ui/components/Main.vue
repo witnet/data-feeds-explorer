@@ -71,6 +71,8 @@ export default {
             alt: feed.name,
           },
           network: feed.network,
+          color: feed.color,
+          blockExplorer: feed.blockExplorer,
         }
       })
     },

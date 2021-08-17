@@ -18,7 +18,9 @@ export const dataFeeds: Array<FeedInfo> = [
     witnetRequestBoard: {
       address: '0x400DbF3645b345823124aaB22D04013A46D9ceD5',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
-    }
+    },
+    color: 'blue',
+    blockExplorer: 'blockexplorer/<address>'
   },
   {
     abi: EthUsdAbi as Array<AbiItem>,
@@ -30,7 +32,9 @@ export const dataFeeds: Array<FeedInfo> = [
     witnetRequestBoard: {
       address: '0x400DbF3645b345823124aaB22D04013A46D9ceD5',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
-    }
+    },
+    color: 'blue',
+    blockExplorer: 'blockexplorer/<address>'
   },
   // Rinkeby (id. 4) - v0.2.0:
   // * BtcUsdPriceFeed: [0x58995FaD03158fB9cd64397347bA97714EF8fC12](https://rinkeby.etherscan.io/address/0x58995FaD03158fB9cd64397347bA97714EF8fC12)
@@ -46,7 +50,9 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Rinkeby,
     name: 'btc/usd',
     label: '$',
-    pollingPeriod: 1000
+    pollingPeriod: 1000,
+    color: 'blue',
+    blockExplorer: 'blockexplorer/<address>'
   },
   {
     abi: EthUsdAbi as Array<AbiItem>,
@@ -58,7 +64,9 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Rinkeby,
     name: 'eth/usd',
     label: '$',
-    pollingPeriod: 1000
+    pollingPeriod: 1000,
+    color: 'blue',
+    blockExplorer: 'blockexplorer/<address>'
   },
   // Goerli (id. 5) - v0.2.0:
   // * BtcUsdPriceFeed: [0x4958806608D2E3Aa22BD8818B555A0a24fe6c38E](https://goerli.etherscan.io/address/0x4958806608D2E3Aa22BD8818B555A0a24fe6c38E#contracts)
@@ -74,7 +82,9 @@ export const dataFeeds: Array<FeedInfo> = [
     witnetRequestBoard: {
       address: '0x0C4be6AA667df48de54BA174bE7948875fdf152B',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
-    }
+    },
+    color: 'blue',
+    blockExplorer: 'blockexplorer/<address>'
   },
   {
     abi: EthUsdAbi as Array<AbiItem>,
@@ -86,7 +96,9 @@ export const dataFeeds: Array<FeedInfo> = [
     witnetRequestBoard: {
       address: '0x0C4be6AA667df48de54BA174bE7948875fdf152B',
       abi: WitnetRequestBoardProxy as Array<AbiItem>
-    }
+    },
+    color: 'blue',
+    blockExplorer: 'blockexplorer/<address>'
   },
   // Kovan (id. 42) - v0.2.0:
   // * BtcUsdPriceFeed: [0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E](https://kovan.etherscan.io/address/0x9b3C5A6cB55E027d9ae6f265f6FB6fFA86e7b35E#contracts)
@@ -114,6 +126,8 @@ export const dataFeeds: Array<FeedInfo> = [
     network: Network.Rinkeby,
     name: 'eth/usd',
     label: '$',
-    pollingPeriod: 1000
+    pollingPeriod: 1000,
+    color: 'blue',
+    blockExplorer: 'blockexplorer/<address>'
   }
 ]

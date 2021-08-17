@@ -5,7 +5,7 @@
         <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />
       </nuxt-link>
       <SvgIcon :name="svgIcon" />
-      <p class="network" :class="feed.network">{{ network }}</p>
+      <p class="network" :style="{ color: feed.color }">{{ network }}</p>
     </div>
     <Chart class="chart" :data="chartData" data-label="$" :name="feedName" />
     <Fieldset
@@ -82,9 +82,7 @@ export default {
       return this.feed.name.split('/').join('')
     },
     url() {
-      return this.feed.network === 'mainnet'
-        ? `https://etherscan.io/address/${this.feedAddress}#code`
-        : `https://${this.feed.network}.etherscan.io/address/${this.feedAddress}#code`
+      return this.feed.blockExplorer.replace(`{address}`, this.feedAddress)
     },
     numberOfPages() {
       return Math.ceil(this.feed.requests.length / this.itemsPerPage)
@@ -177,18 +175,6 @@ export default {
       font-size: 16px;
       justify-self: flex-end;
       font-weight: bold;
-      &.mainnet {
-        color: var(--mainnet-network-color);
-      }
-      &.rinkeby {
-        color: var(--rinkeby-network-color);
-      }
-      &.goerli {
-        color: var(--goerli-network-color);
-      }
-      &.kovan {
-        color: var(--kovan-network-color);
-      }
     }
     .back-to-list {
       justify-self: flex-start;
