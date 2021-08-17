@@ -89,6 +89,6 @@ export class ResultRequestRepository {
   private isValidResultRequest (
     resultRequest: Omit<ResultRequestDbObject, '_id'>
   ): boolean {
-    return containFalsyValues(resultRequest)
+    return !containFalsyValues(resultRequest)
   }
 }
