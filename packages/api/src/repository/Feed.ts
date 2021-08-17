@@ -26,7 +26,9 @@ export class FeedRepository {
     ).map(this.normalizeId)
   }
 
-  async insert (feed: Omit<FeedDbObject, '_id'>): Promise<FeedDbObjectNormalized | null> {
+  async insert (
+    feed: Omit<FeedDbObject, '_id'>
+  ): Promise<FeedDbObjectNormalized | null> {
     if (this.isValidFeed(feed)) {
       const response = await this.collection.insertOne(feed)
 
@@ -38,7 +40,10 @@ export class FeedRepository {
     }
   }
 
-  async addResultRequest (feedId: ObjectId, resultRequestId: ObjectId): Promise<FeedDbObjectNormalized> {
+  async addResultRequest (
+    feedId: ObjectId,
+    resultRequestId: ObjectId
+  ): Promise<FeedDbObjectNormalized> {
     const response = await this.collection.findOneAndUpdate(
       { _id: feedId },
       { $push: { requests: resultRequestId } },
@@ -54,7 +59,10 @@ export class FeedRepository {
     )
   }
 
-  async getFeeds (page: number, size: number): Promise<Array<FeedDbObjectNormalized>> {
+  async getFeeds (
+    page: number,
+    size: number
+  ): Promise<Array<FeedDbObjectNormalized>> {
     return (
       await this.collection
         .find({ address: { $in: this.dataFeedsAddresses } })
@@ -82,6 +90,6 @@ export class FeedRepository {
   }
 
   private isValidFeed (feed: Omit<FeedDbObject, '_id'>): boolean {
-    return !containFalsyValues(feed) 
+    return !containFalsyValues(feed)
   }
 }

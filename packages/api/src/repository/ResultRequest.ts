@@ -18,7 +18,9 @@ export class ResultRequestRepository {
     this.dataFeedsAddresses = dataFeeds.map(dataFeed => dataFeed.address)
   }
 
-  async getFeedRequests (feedId: ObjectId): Promise<Array<ResultRequestDbObjectNormalized>> {
+  async getFeedRequests (
+    feedId: ObjectId
+  ): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find({
@@ -29,7 +31,11 @@ export class ResultRequestRepository {
     ).map(this.normalizeId)
   }
 
-  async getFeedRequestsPage (feedId: ObjectId, page: number, size: number): Promise<Array<ResultRequestDbObjectNormalized>> {
+  async getFeedRequestsPage (
+    feedId: ObjectId,
+    page: number,
+    size: number
+  ): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find({
@@ -42,7 +48,9 @@ export class ResultRequestRepository {
     ).map(this.normalizeId)
   }
 
-  async getLastResult (feedId: ObjectId): Promise<ResultRequestDbObjectNormalized> {
+  async getLastResult (
+    feedId: ObjectId
+  ): Promise<ResultRequestDbObjectNormalized> {
     const lastResultRequest = await this.collection.findOne(
       {
         feedId: feedId.toString()
@@ -61,7 +69,9 @@ export class ResultRequestRepository {
     return this.normalizeId(lastResultRequest)
   }
 
-  async insert (resultRequest: Omit<ResultRequestDbObject, '_id'>): Promise<ResultRequestDbObjectNormalized | null> {
+  async insert (
+    resultRequest: Omit<ResultRequestDbObject, '_id'>
+  ): Promise<ResultRequestDbObjectNormalized | null> {
     if (this.isValidResultRequest(resultRequest)) {
       const response = await this.collection.insertOne(resultRequest)
 

@@ -4,7 +4,7 @@ describe('containFalsyValues', () => {
   it('should return FALSE when no falsy value is found on the object', () => {
     const obj = {
       a: 'a',
-      b: 'b',
+      b: 'b'
     }
 
     expect(containFalsyValues(obj)).toBe(false)
@@ -13,7 +13,7 @@ describe('containFalsyValues', () => {
   it('should return TRUE when falsy value is found on the object', () => {
     const obj = {
       a: 'a',
-      b: null,
+      b: null
     }
 
     expect(containFalsyValues(obj)).toBe(true)
