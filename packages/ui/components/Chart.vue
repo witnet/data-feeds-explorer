@@ -4,7 +4,7 @@
       <span class="value">{{ formatNumber(value) }}</span>
       <span class="date"> {{ date }}</span>
     </div>
-    <!-- <div class="switcher">
+    <div class="switcher">
       <div
         v-for="(serie, index) in seriesData"
         :key="serie[0]"
@@ -12,9 +12,9 @@
         :class="{ active: serie[0] === activeItem }"
         @click="onItemClicked(index)"
       >
-        {{ $t(`${serie[0]}`) }}
+        {{ $t(`chart.${serie[0]}`) }}
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -98,7 +98,6 @@ export default {
       })
     },
     lineChart() {
-      this.chart.timeScale().fitContent()
       return this.chart.addAreaSeries({
         topColor: '#41BEA556',
         bottomColor: '#41BEA504',
@@ -136,10 +135,15 @@ export default {
     setData() {
       this.lineChart.setData(this.data)
     },
-    // onItemClicked(index) {
-    //   this.activeItem = this.seriesData[index][0]
-    //   this.lineChart.setData(this.seriesData[index][1])
-    // },
+    onItemClicked(index) {
+      this.activeItem = this.seriesData[index][0]
+      this.setData()
+      this.updateTooltip()
+      this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
+      this.date = this.dateToString(this.data[this.data.length - 1].time)
+      this.lineChart.setData(this.seriesData[index][1])
+      this.chart.timeScale().fitContent()
+    },
     updateData(data) {
       this.lineChart.update(data)
     },
