@@ -98,6 +98,7 @@ export default {
       })
     },
     lineChart() {
+      this.chart.timeScale().fitContent()
       return this.chart.addAreaSeries({
         topColor: '#41BEA556',
         bottomColor: '#41BEA504',
