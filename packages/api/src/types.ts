@@ -34,10 +34,6 @@ export type FeedInfoGeneric<ABI> = {
   name: string
   pollingPeriod: number
   label: string
-  witnetRequestBoard: {
-    address: string
-    abi: ABI
-  }
   color: string
   blockExplorer: string
 }
@@ -56,12 +52,15 @@ export type Repositories = {
 
 export type ContractsState = {
   lastPrice: string
-  lastTimestamp: string
-  lastRequestId: string
+  lastResponse: LastResponse
+  requestId: string
+}
+
+export type LastResponse = {
+  timestamp: string
   drTxHash: string
 }
 
 export type Contracts = {
   feedContract: Contract
-  proxyContract: Contract
 }

@@ -44,29 +44,24 @@ function readDataFeeds (): Array<FeedInfo> {
   )
   // Throw and error if config file is not valid
   validateDataFeeds(dataFeeds)
-
   return dataFeeds.map(dataFeed => ({
     ...dataFeed,
-    abi: JSON.parse(fs.readFileSync(path.resolve(dataFeed.abi), 'utf-8')),
-    witnetRequestBoard: {
-      ...dataFeed.witnetRequestBoard,
-      abi: JSON.parse(
-        fs.readFileSync(path.resolve(dataFeed.witnetRequestBoard.abi), 'utf-8')
+    abi: JSON.parse(
+      fs.readFileSync(
+        path.resolve(process.env.DATA_FEED_ABI_PATH || './abi/PriceFeed.json'),
+        'utf-8'
       )
-    }
+    )
   }))
 }
 
 // Throw an error if a field is missing in the data feed config file
 function validateDataFeeds (dataFeeds: Array<FeedInfoConfig>) {
   const fields = [
-    'abi',
     'address',
     'network',
     'name',
     'pollingPeriod',
-    'witnetRequestBoard.address',
-    'witnetRequestBoard.abi',
     'color',
     'blockExplorer'
   ]

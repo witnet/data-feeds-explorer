@@ -54,11 +54,7 @@ export class Web3Middleware {
       return feed
     })
 
-    try {
-      return await Promise.all(promises)
-    } catch (err) {
-      console.error('[ERROR]', err.message)
-    }
+    return await Promise.all(promises)
   }
 
   async listen () {
@@ -98,14 +94,11 @@ export class Web3Middleware {
     const provider = getProvider(feedInfo.network)
     const web3 = new this.Web3(provider)
     const feedContract = new web3.eth.Contract(feedInfo.abi, feedInfo.address)
-    const proxyContract = new web3.eth.Contract(
-      feedInfo.witnetRequestBoard.abi,
-      feedInfo.witnetRequestBoard.address
-    )
+
     const interval = setInterval(async () => {
       console.log(`Reading contract state at address: ${feedInfo.address}`)
       await this.fetchAndSaveContractSnapshot(
-        { feedContract, proxyContract },
+        { feedContract },
         {
           address: feedInfo.address,
           id: feedId,
@@ -117,19 +110,13 @@ export class Web3Middleware {
     this.intervals.push(interval)
   }
 
-  async readContractsState ({ feedContract, proxyContract }: Contracts) {
+  async readContractsState ({ feedContract }: Contracts) {
     try {
-      const feedContractState = {
-        lastPrice: await feedContract.methods.lastPrice().call(),
-        lastTimestamp: await feedContract.methods.timestamp().call(),
-        lastRequestId: await feedContract.methods.lastRequestId().call()
-      }
-      const drTxHash = await proxyContract.methods
-        .readDrTxHash(feedContractState.lastRequestId)
-        .call()
       return {
-        ...feedContractState,
-        drTxHash: toHex(drTxHash).slice(2)
+        lastPrice: await feedContract.methods.lastPrice().call(),
+        // lastResponse contains { timestamp, drTxHash }
+        lastResponse: await feedContract.methods.lastResponse().call(),
+        requestId: await feedContract.methods.requestId().call()
       }
     } catch (err) {
       throw new Error(`Error reading contract state`)
@@ -146,24 +133,28 @@ export class Web3Middleware {
   ) {
     try {
       const {
-        drTxHash,
         lastPrice,
-        lastRequestId,
-        lastTimestamp
+        lastResponse,
+        requestId
       }: ContractsState = await this.readContractsState(contracts)
       const address = feed.address
+      const { timestamp, drTxHash } = lastResponse
+      const decodedDrTxHash = toHex(drTxHash).slice(2)
       const lastStoredResult = this.lastStoredResult[address]
+      const isAlreadyStored = lastStoredResult?.timestamp === timestamp
+      const isDrSolved =
+        decodedDrTxHash &&
+        decodedDrTxHash !==
+          '0000000000000000000000000000000000000000000000000000000000000000'
 
-      const isAlreadyStored = lastStoredResult?.timestamp === lastTimestamp
-      const isDrSolved = drTxHash !== '0'
       if (!isAlreadyStored && isDrSolved) {
         const result = await this.repositories.resultRequestRepository.insert({
           feedId: feed.id.toString(),
           result: lastPrice,
-          timestamp: lastTimestamp,
-          requestId: lastRequestId,
+          timestamp: lastResponse.timestamp,
+          requestId: requestId,
           address: feed.address,
-          drTxHash: drTxHash,
+          drTxHash: decodedDrTxHash,
           label: feed.label
         })
         this.lastStoredResult[feed.address] = result
