@@ -27,7 +27,8 @@ export enum Network {
   EthereumKovan = 'ethereum-kovan',
   EthereumRinkeby = 'ethereum-rinkeby',
   ConfluxTestnet = 'conflux-testnet',
-  ConfluxMainnet = 'conflux-mainnet'
+  ConfluxMainnet = 'conflux-mainnet',
+  BobaRinkeby = 'boba-rinkeby'
 }
 
 export type FeedInfoGeneric<ABI> = {

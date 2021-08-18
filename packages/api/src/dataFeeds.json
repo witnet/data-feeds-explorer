@@ -86,5 +86,38 @@
     "pollingPeriod": 15000,
     "color": "#be4141de",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+  },
+  {
+    "feedFullName": "boba-rinkeby_omg-btc_9",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x74fcc16D8d17BCF9D2b5028a345b398449BEe63f",
+    "network": "boba-rinkeby",
+    "name": "omg/btc",
+    "label": "$",
+    "pollingPeriod": 120000,
+    "color": "#1cd8d2",
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}/transactions"
+  },
+  {
+    "feedFullName": "boba-rinkeby_omg-eth_9",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x904D5786ab5C21726e7b324487a4Adf57BC9Cd1c",
+    "network": "boba-rinkeby",
+    "name": "omg/eth",
+    "label": "$",
+    "pollingPeriod": 120000,
+    "color": "#1cd8d2",
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}/transactions"
+  },
+  {
+    "feedFullName": "boba-rinkeby_omg-usdt_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x1553c2F110C443FA485E233DAa611243fC2f4A47",
+    "network": "boba-rinkeby",
+    "name": "omg/usdt",
+    "label": "$",
+    "pollingPeriod": 120000,
+    "color": "#1cd8d2",
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}/transactions"
   }
 ]

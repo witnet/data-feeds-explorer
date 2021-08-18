@@ -39,7 +39,7 @@ export default {
       required: true,
     },
     decimals: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
