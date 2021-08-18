@@ -126,9 +126,7 @@ export class Web3Middleware {
         drTxHash: toHex(drTxHash).slice(2)
       }
     } catch (err) {
-      throw new Error(
-        `Error reading contract state`
-      )
+      throw new Error(`Error reading contract state`)
     }
   }
 

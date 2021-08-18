@@ -36,19 +36,14 @@ async function main () {
 }
 
 function readDataFeeds (): Array<FeedInfo> {
-  console.log('DIRNAME', __dirname)
-  console.log('DATA_FEED_CONFIG_PATH:>', process.env.DATA_FEED_CONFIG_PATH)
-  console.log(
-    'resolve path: ',
-    path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json')
-  )
-
   const dataFeeds: Array<FeedInfoConfig> = JSON.parse(
     fs.readFileSync(
       path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'),
       'utf-8'
     )
   )
+  // Throw and error if config file is not valid
+  validateDataFeeds(dataFeeds)
 
   return dataFeeds.map(dataFeed => ({
     ...dataFeed,
@@ -60,6 +55,37 @@ function readDataFeeds (): Array<FeedInfo> {
       )
     }
   }))
+}
+
+// Throw an error if a field is missing in the data feed config file
+function validateDataFeeds (dataFeeds: Array<FeedInfoConfig>) {
+  const fields = [
+    'abi',
+    'address',
+    'network',
+    'name',
+    'pollingPeriod',
+    'witnetRequestBoard.address',
+    'witnetRequestBoard.abi',
+    'color',
+    'blockExplorer'
+  ]
+
+  dataFeeds.forEach((feedInfoConfig, index) => {
+    fields.forEach(field => {
+      // Validate nested keys in a field
+      field.split('.').reduce((acc, val) => {
+        // Throw error if the key is not found or has a falsy value
+        if (!(val in acc) || !acc[val]) {
+          throw new Error(
+            `Missing field ${field} in index ${index} in data feed config file`
+          )
+        } else {
+          return acc[val]
+        }
+      }, feedInfoConfig)
+    })
+  })
 }
 
 main()
