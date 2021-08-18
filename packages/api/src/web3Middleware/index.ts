@@ -126,13 +126,9 @@ export class Web3Middleware {
         drTxHash: toHex(drTxHash).slice(2)
       }
     } catch (err) {
-      console.log('[ERROR]', err)
-      return {
-        lastPrice: null,
-        lastTimestamp: null,
-        lastRequestId: null,
-        drTxHash: null
-      }
+      throw new Error(
+        `Error reading contract state`
+      )
     }
   }
 
@@ -144,28 +140,32 @@ export class Web3Middleware {
       address: string
     }
   ) {
-    const {
-      drTxHash,
-      lastPrice,
-      lastRequestId,
-      lastTimestamp
-    }: ContractsState = await this.readContractsState(contracts)
-    const address = feed.address
-    const lastStoredResult = this.lastStoredResult[address]
+    try {
+      const {
+        drTxHash,
+        lastPrice,
+        lastRequestId,
+        lastTimestamp
+      }: ContractsState = await this.readContractsState(contracts)
+      const address = feed.address
+      const lastStoredResult = this.lastStoredResult[address]
 
-    const isAlreadyStored = lastStoredResult?.timestamp === lastTimestamp
-    const isDrSolved = drTxHash !== '0'
-    if (!isAlreadyStored && isDrSolved) {
-      const result = await this.repositories.resultRequestRepository.insert({
-        feedId: feed.id.toString(),
-        result: lastPrice,
-        timestamp: lastTimestamp,
-        requestId: lastRequestId,
-        address: feed.address,
-        drTxHash: drTxHash,
-        label: feed.label
-      })
-      this.lastStoredResult[feed.address] = result
+      const isAlreadyStored = lastStoredResult?.timestamp === lastTimestamp
+      const isDrSolved = drTxHash !== '0'
+      if (!isAlreadyStored && isDrSolved) {
+        const result = await this.repositories.resultRequestRepository.insert({
+          feedId: feed.id.toString(),
+          result: lastPrice,
+          timestamp: lastTimestamp,
+          requestId: lastRequestId,
+          address: feed.address,
+          drTxHash: drTxHash,
+          label: feed.label
+        })
+        this.lastStoredResult[feed.address] = result
+      }
+    } catch (error) {
+      console.error(`Error reading contracts state: ${feed}`)
     }
   }
 }
