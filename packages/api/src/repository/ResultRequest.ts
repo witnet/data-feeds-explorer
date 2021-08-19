@@ -19,16 +19,21 @@ export class ResultRequestRepository {
   }
 
   async getFeedRequests (
-    feedId: ObjectId
+    feedId: ObjectId,
+    timestamp: number
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
-    return (
-      await this.collection
-        .find({
-          feedId: feedId.toString()
-        })
-        .sort({ timestamp: -1 })
-        .toArray()
-    ).map(this.normalizeId)
+    const request = await this.collection
+      .find(
+        {
+          feedId: feedId.toString(),
+          timestamp: { $gt: timestamp.toString() }
+        },
+        {
+          sort: { timestamp: -1 }
+        }
+      )
+      .toArray()
+    return request.map(this.normalizeId)
   }
 
   async getFeedRequestsPage (

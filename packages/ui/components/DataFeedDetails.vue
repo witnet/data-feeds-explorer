@@ -7,7 +7,13 @@
       <SvgIcon :name="svgIcon" />
       <p class="network" :style="{ color: feed.color }">{{ network }}</p>
     </div>
-    <Chart class="chart" :data="chartData" data-label="$" :name="feedName" />
+    <Chart
+      class="chart"
+      :data="chartData"
+      data-label="$"
+      :name="feedName"
+      @change-range="updateQuery"
+    />
     <Fieldset
       :title="$t('data_feed_details.contract_address')"
       class="contract-container"
@@ -39,6 +45,7 @@
 import feed from '@/apollo/queries/feed.gql'
 import requests from '@/apollo/queries/requests.gql'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
+import { CHART_RANGE } from '@/constants'
 
 export default {
   apollo: {
@@ -48,8 +55,7 @@ export default {
       variables() {
         return {
           id: this.id,
-          page: this.currentPage,
-          size: this.itemsPerPage,
+          timestamp: this.timestamp,
         }
       },
       pollInterval: 60000,
@@ -69,9 +75,13 @@ export default {
   },
   data() {
     return {
+      ranges: CHART_RANGE,
       currentPage: 1,
       itemsPerPage: 25,
       id: this.$route.params.id,
+      range: 24,
+      timestamp:
+        Math.round(new Date().getTime() / 1000) - 24 * 3600 - 24 * 3600,
     }
   },
   computed: {
@@ -130,6 +140,11 @@ export default {
   methods: {
     handleCurrentChange(val) {
       this.currentPage = val
+    },
+    updateQuery(val) {
+      const currentTimestamp =
+        Math.round(new Date().getTime() / 1000) - 24 * 3600
+      this.timestamp = currentTimestamp - this.ranges[val].value * 3600
     },
   },
 }

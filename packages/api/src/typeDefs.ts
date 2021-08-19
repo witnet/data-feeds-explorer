@@ -8,9 +8,9 @@ const typeDefs = gql`
     lastResult: String @column
     label: String! @column
     network: String! @column
-    requests(feedId: String!, page: Int!, size: Int!): [ResultRequest]! @link
     color: String!
     blockExplorer: String!
+    requests(id: String!, timestamp: Int!): [ResultRequest]! @link
   }
 
   type FeedsPage {

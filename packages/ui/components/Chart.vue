@@ -6,13 +6,13 @@
     </div>
     <div class="switcher">
       <div
-        v-for="(serie, index) in seriesData"
-        :key="serie[0]"
+        v-for="serie in ranges"
+        :key="serie.key"
         class="item"
-        :class="{ active: serie[0] === activeItem }"
-        @click="onItemClicked(index)"
+        :class="{ active: serie.key === activeItem }"
+        @click="onItemClicked(serie.key)"
       >
-        {{ $t(`chart.${serie[0]}`) }}
+        {{ $t(`chart.${serie.key}`) }}
       </div>
     </div>
   </div>
@@ -20,8 +20,7 @@
 
 <script>
 import { formatNumber } from '@/utils/formatNumber'
-import { getRangeData } from '@/utils/getRangeData'
-import { CHART_UNITS } from '@/constants'
+import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
 
 export default {
@@ -48,17 +47,15 @@ export default {
       date: '',
       toolTipWidth: 100,
       tooltipLeftPosition: 10,
-      activeItem: 'd',
+      ranges: CHART_RANGE,
     }
   },
   computed: {
-    seriesData() {
-      return [
-        ['d', this.data],
-        ['w', getRangeData(this.data, CHART_UNITS.week)],
-        ['m', getRangeData(this.data, CHART_UNITS.month)],
-        ['y', getRangeData(this.data, CHART_UNITS.year)],
-      ]
+    activeItem() {
+      const saveItem = process.browser
+        ? window.localStorage.getItem('range')
+        : null
+      return saveItem || this.ranges.d.key
     },
     chart() {
       const { LightWeightCharts } = this.$lwcCore()
@@ -129,21 +126,19 @@ export default {
     this.updateTooltip()
     this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
     this.date = this.dateToString(this.data[this.data.length - 1].time)
-    this.lineChart.setData(this.seriesData[0][1])
+    this.$emit('change-range', this.activeItem)
+    this.setData()
   },
   methods: {
     formatNumber,
     setData() {
       this.lineChart.setData(this.data)
     },
-    onItemClicked(index) {
-      this.activeItem = this.seriesData[index][0]
-      this.setData()
-      this.updateTooltip()
-      this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
-      this.date = this.dateToString(this.data[this.data.length - 1].time)
-      this.lineChart.setData(this.seriesData[index][1])
-      this.chart.timeScale().fitContent()
+    async onItemClicked(currentRange) {
+      if (process.browser) {
+        await window.localStorage.setItem('range', currentRange)
+      }
+      this.$emit('change-range', currentRange)
     },
     updateData(data) {
       this.lineChart.update(data)

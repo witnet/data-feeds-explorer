@@ -22,8 +22,11 @@ const resolvers = {
     }
   },
   Feed: {
-    requests: async (parent, _args, { resultRequestRepository }: Context) => {
-      return await resultRequestRepository.getFeedRequests(parent.id)
+    requests: async (parent, args, { resultRequestRepository }: Context) => {
+      return await resultRequestRepository.getFeedRequests(
+        parent.id,
+        args.timestamp
+      )
     },
     lastResult: async (parent, _args, { resultRequestRepository }: Context) => {
       return (await resultRequestRepository.getLastResult(parent.id))?.result

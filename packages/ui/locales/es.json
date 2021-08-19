@@ -15,6 +15,12 @@
     "value": "Resultado",
     "time": "Tiempo"
   },
+  "chart": {
+    "d": "d",
+    "w": "w",
+    "m": "m",
+    "y": "y"
+  },
   "copied": "Copiado",
   "copy": "Copiar"
 }

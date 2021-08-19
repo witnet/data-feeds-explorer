@@ -55,7 +55,9 @@ export class FeedRepository {
 
   async get (id: string): Promise<FeedDbObjectNormalized> {
     return this.normalizeId(
-      await this.collection.findOne({ _id: new ObjectId(id) })
+      await this.collection.findOne({
+        _id: new ObjectId(id)
+      })
     )
   }
 

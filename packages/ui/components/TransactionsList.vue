@@ -19,7 +19,7 @@
       </li>
       <Transaction
         v-for="(transaction, index) in transactions"
-        :key="transaction.drTxHash"
+        :key="transaction.drTxHash + index"
         :class="{ blur: index % 2 }"
         :witnet-link="transaction.witnetLink"
         :data="transaction.data"
