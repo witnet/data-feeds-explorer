@@ -16,10 +16,8 @@
     "time": "Tiempo"
   },
   "chart": {
-    "d": "d",
-    "w": "w",
-    "m": "m",
-    "y": "y"
+    "w": "7d",
+    "m": "30d"
   },
   "copied": "Copiado",
   "copy": "Copiar"

@@ -13,10 +13,6 @@ export const languages = [
 ]
 
 export const CHART_RANGE = {
-  d: {
-    key: 'd',
-    value: 24,
-  },
   w: {
     key: 'w',
     value: 24 * 7,
@@ -24,9 +20,5 @@ export const CHART_RANGE = {
   m: {
     key: 'm',
     value: 24 * 30,
-  },
-  y: {
-    key: 'y',
-    value: 24 * 365,
   },
 }
