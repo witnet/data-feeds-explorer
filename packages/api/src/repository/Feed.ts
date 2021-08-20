@@ -79,7 +79,7 @@ export class FeedRepository {
   }
 
   public getTotalCount (): Promise<number> {
-    return this.collection.countDocuments()
+    return this.collection.count()
   }
 
   private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized | null {

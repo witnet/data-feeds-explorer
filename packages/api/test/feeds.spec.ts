@@ -126,7 +126,7 @@ describe('feeds', function () {
       )
 
     const GET_FEEDS = gql`
-      query feeds($page: Int!, $pageSize: Int!, $id: String!) {
+      query feeds($page: Int!, $pageSize: Int!) {
         feeds(page: $page, pageSize: $pageSize) {
           feeds {
             id
@@ -135,20 +135,11 @@ describe('feeds', function () {
             lastResult
             network
             label
-            requests(feedId: $id, page: $page, size: $pageSize) {
-              id
-              feedId
-              result
-              requestId
-              timestamp
-              error
-            }
           }
           total
         }
       }
     `
-
     const {
       data: {
         feeds: { feeds }
@@ -157,31 +148,13 @@ describe('feeds', function () {
       query: GET_FEEDS,
       variables: {
         page: 1,
-        pageSize: 6,
-        id: feedResponse.ops[0]._id.toString()
+        pageSize: 6
       }
     })
     expect(feeds.length).toBe(1)
     expect(feeds[0]).toHaveProperty('address', dataFeed.address)
     expect(feeds[0]).toHaveProperty('name', dataFeed.name)
-    expect(feeds[0]).toHaveProperty('lastResult', resultRequestExample1.result)
-    expect(feeds[0].requests.length).toBe(2)
-    expect(feeds[0].requests[0]).toHaveProperty(
-      'feedId',
-      resultRequestExample1.feedId
-    )
-    expect(feeds[0].requests[0]).toHaveProperty(
-      'result',
-      resultRequestExample1.result
-    )
-    expect(feeds[0].requests[0]).toHaveProperty(
-      'requestId',
-      resultRequestExample1.requestId
-    )
-    expect(feeds[0].requests[0]).toHaveProperty(
-      'timestamp',
-      resultRequestExample1.timestamp
-    )
+    expect(feeds[0]).toHaveProperty('network', dataFeed.network)
     expect(feeds[0].id).toBeTruthy()
   })
 
@@ -193,12 +166,12 @@ describe('feeds', function () {
     const { _id } = result.ops[0]
 
     const GET_FEED = gql`
-      query Feed($id: String!, $page: Int!, $size: Int!) {
+      query Feed($id: String!, $timestamp: Int!) {
         feed(id: $id) {
           id
           name
           address
-          requests(feedId: $id, page: $page, size: $size) {
+          requests(id: $id, timestamp: $timestamp) {
             feedId
           }
         }
@@ -210,8 +183,8 @@ describe('feeds', function () {
       query: GET_FEED,
       variables: {
         id: _id.toString(),
-        page: 1,
-        size: 3
+        timestamp:
+          Math.round(new Date().getTime() / 1000) - 24 * 30 * 3600 - 24 * 3600
       }
     })
 
