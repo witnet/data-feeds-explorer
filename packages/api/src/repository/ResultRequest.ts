@@ -33,6 +33,13 @@ export class ResultRequestRepository {
         }
       )
       .toArray()
+    console.log(
+      'request.......',
+      feedId.toString(),
+      timestamp.toString(),
+      request
+    )
+    console.log('normalized', request.map(this.normalizeId))
     return request.map(this.normalizeId)
   }
 

@@ -88,42 +88,7 @@ describe('feeds', function () {
 
   it('get feed list with data feeds', async () => {
     const dataFeed = dataFeeds[0]
-    const feedResponse = await state.mongoManager.db
-      .collection('feed')
-      .insertOne(dataFeed)
-    const resultRequestExample1 = {
-      result: '1111.0',
-      feedId: feedResponse.ops[0]._id.toString(),
-      requestId: '1',
-      timestamp: '1623085329000'
-    }
-    const resultRequestExample2 = {
-      result: '2222.0',
-      feedId: feedResponse.ops[0]._id.toString(),
-      requestId: '1',
-      timestamp: '1623085320000'
-    }
-    const resultRequestResponse1 = await state.mongoManager.db
-      .collection('result_request')
-      .insertOne(resultRequestExample1)
-    const resultRequestResponse2 = await state.mongoManager.db
-      .collection('result_request')
-      .insertOne(resultRequestExample2)
-
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
+    await state.mongoManager.db.collection('feed').insertOne(dataFeed)
 
     const GET_FEEDS = gql`
       query feeds($page: Int!, $pageSize: Int!) {
@@ -159,21 +124,83 @@ describe('feeds', function () {
   })
 
   it('get feed', async () => {
-    const result = await state.mongoManager.db
+    const feedResponse = await state.mongoManager.db
       .collection('feed')
-      .insertOne(dataFeeds[0])
+      .insert(dataFeeds[0])
 
-    const { _id } = result.ops[0]
+    const { _id } = feedResponse.ops[0]
 
+    const resultRequestExample1 = {
+      result: '1111.0',
+      feedId: _id.toString(),
+      requestId: '1',
+      timestamp: (
+        Math.round(new Date().getTime() / 1000) -
+        24 * 30 * 3600 -
+        24 * 3600 +
+        10000
+      ).toString(),
+      address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
+      drTxHash:
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
+      label: '$'
+    }
+    const resultRequestExample2 = {
+      result: '2222.0',
+      feedId: _id.toString(),
+      requestId: '1',
+      timestamp: (
+        Math.round(new Date().getTime() / 1000) -
+        24 * 30 * 3600 -
+        24 * 3600 +
+        10000
+      ).toString(),
+      address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
+      drTxHash:
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
+      label: '$'
+    }
+    const resultRequestResponse1 = await state.mongoManager.db
+      .collection('result_request')
+      .insert(resultRequestExample1)
+    const resultRequestResponse2 = await state.mongoManager.db
+      .collection('result_request')
+      .insert(resultRequestExample2)
+    await state.mongoManager.db
+      .collection('feed')
+      .findOneAndUpdate(
+        { _id: feedResponse.ops[0]._id },
+        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
+        { returnDocument: 'after' }
+      )
+    await state.mongoManager.db
+      .collection('feed')
+      .findOneAndUpdate(
+        { _id: feedResponse.ops[0]._id },
+        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
+        { returnDocument: 'after' }
+      )
+    const prueba = await state.mongoManager.db
+      .collection('result_request')
+      .find({ feedId: _id.toString() })
     const GET_FEED = gql`
       query Feed($id: String!, $timestamp: Int!) {
         feed(id: $id) {
           id
           name
           address
+          lastResult
+          network
+          label
           requests(id: $id, timestamp: $timestamp) {
             feedId
+            result
+            drTxHash
+            requestId
+            timestamp
           }
+          blockExplorer
+          color
         }
       }
     `
@@ -188,9 +215,207 @@ describe('feeds', function () {
       }
     })
 
-    expect(feed).toHaveProperty('address', dataFeeds[0].address)
-    expect(feed).toHaveProperty('name', dataFeeds[0].name)
-    expect(feed).toHaveProperty('requests', [])
+    expect(feed).toHaveProperty('address', feed.address)
+    expect(feed).toHaveProperty('name', feed.name)
+    expect(feed).toHaveProperty('requests', feed.requests)
+    expect(feed.requests).toHaveLength(2)
+    expect(feed.id).toBeTruthy()
+  })
+
+  it('get feeds with range 7d', async () => {
+    const feedResponse = await state.mongoManager.db
+      .collection('feed')
+      .insert(dataFeeds[0])
+
+    const { _id } = feedResponse.ops[0]
+
+    const resultRequestExample1 = {
+      result: '1111.0',
+      feedId: _id.toString(),
+      requestId: '1',
+      timestamp: (
+        Math.round(new Date().getTime() / 1000) -
+        24 * 7 * 3600 -
+        24 * 3600 +
+        10
+      ).toString(),
+      address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
+      drTxHash:
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
+      label: '$'
+    }
+    const resultRequestExample2 = {
+      result: '2222.0',
+      feedId: _id.toString(),
+      requestId: '1',
+      timestamp: (
+        Math.round(new Date().getTime() / 1000) -
+        24 * 30 * 3600 -
+        24 * 3600 +
+        10
+      ).toString(),
+      address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
+      drTxHash:
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
+      label: '$'
+    }
+    const resultRequestResponse1 = await state.mongoManager.db
+      .collection('result_request')
+      .insert(resultRequestExample1)
+    const resultRequestResponse2 = await state.mongoManager.db
+      .collection('result_request')
+      .insert(resultRequestExample2)
+    await state.mongoManager.db
+      .collection('feed')
+      .findOneAndUpdate(
+        { _id: feedResponse.ops[0]._id },
+        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
+        { returnDocument: 'after' }
+      )
+    await state.mongoManager.db
+      .collection('feed')
+      .findOneAndUpdate(
+        { _id: feedResponse.ops[0]._id },
+        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
+        { returnDocument: 'after' }
+      )
+    const prueba = await state.mongoManager.db
+      .collection('result_request')
+      .find({ feedId: _id.toString() })
+    const GET_FEED = gql`
+      query Feed($id: String!, $timestamp: Int!) {
+        feed(id: $id) {
+          id
+          name
+          address
+          lastResult
+          network
+          label
+          requests(id: $id, timestamp: $timestamp) {
+            feedId
+            result
+            drTxHash
+            requestId
+            timestamp
+          }
+          blockExplorer
+          color
+        }
+      }
+    `
+    const {
+      data: { feed }
+    } = await state.testClient.query({
+      query: GET_FEED,
+      variables: {
+        id: _id.toString(),
+        timestamp:
+          Math.round(new Date().getTime() / 1000) - 24 * 7 * 3600 - 24 * 3600
+      }
+    })
+
+    expect(feed).toHaveProperty('address', feed.address)
+    expect(feed).toHaveProperty('name', feed.name)
+    expect(feed).toHaveProperty('requests', feed.requests)
+    expect(feed.requests[0].timestamp).toBe(resultRequestExample1.timestamp)
+    expect(feed.id).toBeTruthy()
+  })
+
+  it('get feeds with range 30d', async () => {
+    const feedResponse = await state.mongoManager.db
+      .collection('feed')
+      .insert(dataFeeds[0])
+
+    const { _id } = feedResponse.ops[0]
+
+    const resultRequestExample1 = {
+      result: '1111.0',
+      feedId: _id.toString(),
+      requestId: '1',
+      timestamp: (
+        Math.round(new Date().getTime() / 1000) -
+        24 * 3600 -
+        24 * 3600 +
+        10
+      ).toString(),
+      address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
+      drTxHash:
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
+      label: '$'
+    }
+    const resultRequestExample2 = {
+      result: '2222.0',
+      feedId: _id.toString(),
+      requestId: '1',
+      timestamp: (
+        Math.round(new Date().getTime() / 1000) -
+        24 * 30 * 3600 -
+        24 * 3600 +
+        10
+      ).toString(),
+      address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
+      drTxHash:
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
+      label: '$'
+    }
+    const resultRequestResponse1 = await state.mongoManager.db
+      .collection('result_request')
+      .insert(resultRequestExample1)
+    const resultRequestResponse2 = await state.mongoManager.db
+      .collection('result_request')
+      .insert(resultRequestExample2)
+    await state.mongoManager.db
+      .collection('feed')
+      .findOneAndUpdate(
+        { _id: feedResponse.ops[0]._id },
+        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
+        { returnDocument: 'after' }
+      )
+    await state.mongoManager.db
+      .collection('feed')
+      .findOneAndUpdate(
+        { _id: feedResponse.ops[0]._id },
+        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
+        { returnDocument: 'after' }
+      )
+    const GET_FEED = gql`
+      query Feed($id: String!, $timestamp: Int!) {
+        feed(id: $id) {
+          id
+          name
+          address
+          lastResult
+          network
+          label
+          requests(id: $id, timestamp: $timestamp) {
+            feedId
+            result
+            drTxHash
+            requestId
+            timestamp
+          }
+          blockExplorer
+          color
+        }
+      }
+    `
+    const {
+      data: { feed }
+    } = await state.testClient.query({
+      query: GET_FEED,
+      variables: {
+        id: _id.toString(),
+        timestamp:
+          Math.round(new Date().getTime() / 1000) - 24 * 30 * 3600 - 24 * 3600
+      }
+    })
+
+    expect(feed).toHaveProperty('address', feed.address)
+    expect(feed).toHaveProperty('name', feed.name)
+    expect(feed).toHaveProperty('requests', feed.requests)
+    expect(feed.requests).toHaveLength(2)
+    expect(feed.requests[0].timestamp).toBe(resultRequestExample1.timestamp)
+    expect(feed.requests[1].timestamp).toBe(resultRequestExample2.timestamp)
     expect(feed.id).toBeTruthy()
   })
 
