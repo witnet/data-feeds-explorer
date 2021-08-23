@@ -40,6 +40,7 @@ export default {
     },
   },
   data() {
+    console.log('CHART RANGE', CHART_RANGE)
     return {
       tooltip: true,
       dateTooltip: true,
@@ -55,7 +56,7 @@ export default {
       const saveItem = process.browser
         ? window.localStorage.getItem('range')
         : null
-      return saveItem || this.ranges.d.key
+      return saveItem || this.ranges.w.key
     },
     chart() {
       const { LightWeightCharts } = this.$lwcCore()

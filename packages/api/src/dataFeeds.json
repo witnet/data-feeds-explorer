@@ -37,7 +37,7 @@
     "network": "rinkeby",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 900000,
+    "pollingPeriod": 9000,
     "color": "#BEA241de",
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },

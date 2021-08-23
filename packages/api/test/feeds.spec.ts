@@ -1,7 +1,8 @@
 import { ApolloServer, gql } from 'apollo-server'
 import { createServer } from '../src/server'
 import { ApolloServerTestClient, createTestClient } from 'apollo-server-testing'
-
+import { getTimestampByRange } from '../utils/getTimestampByRange'
+import { CHART_RANGE } from '../constants'
 import { MongoManager } from './../src/database'
 import { FeedRepository } from '../src/repository/Feed'
 import { ResultRequestRepository } from '../src/repository/ResultRequest'
@@ -134,12 +135,7 @@ describe('feeds', function () {
       result: '1111.0',
       feedId: _id.toString(),
       requestId: '1',
-      timestamp: (
-        Math.round(new Date().getTime() / 1000) -
-        24 * 30 * 3600 -
-        24 * 3600 +
-        10000
-      ).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
@@ -149,12 +145,7 @@ describe('feeds', function () {
       result: '2222.0',
       feedId: _id.toString(),
       requestId: '1',
-      timestamp: (
-        Math.round(new Date().getTime() / 1000) -
-        24 * 30 * 3600 -
-        24 * 3600 +
-        10000
-      ).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
@@ -180,9 +171,6 @@ describe('feeds', function () {
         { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
         { returnDocument: 'after' }
       )
-    const prueba = await state.mongoManager.db
-      .collection('result_request')
-      .find({ feedId: _id.toString() })
     const GET_FEED = gql`
       query Feed($id: String!, $timestamp: Int!) {
         feed(id: $id) {
@@ -210,8 +198,7 @@ describe('feeds', function () {
       query: GET_FEED,
       variables: {
         id: _id.toString(),
-        timestamp:
-          Math.round(new Date().getTime() / 1000) - 24 * 30 * 3600 - 24 * 3600
+        timestamp: getTimestampByRange(CHART_RANGE.m.value)
       }
     })
 
@@ -233,12 +220,7 @@ describe('feeds', function () {
       result: '1111.0',
       feedId: _id.toString(),
       requestId: '1',
-      timestamp: (
-        Math.round(new Date().getTime() / 1000) -
-        24 * 7 * 3600 -
-        24 * 3600 +
-        10
-      ).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.w.value) + 10).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
@@ -248,12 +230,7 @@ describe('feeds', function () {
       result: '2222.0',
       feedId: _id.toString(),
       requestId: '1',
-      timestamp: (
-        Math.round(new Date().getTime() / 1000) -
-        24 * 30 * 3600 -
-        24 * 3600 +
-        10
-      ).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
@@ -279,9 +256,6 @@ describe('feeds', function () {
         { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
         { returnDocument: 'after' }
       )
-    const prueba = await state.mongoManager.db
-      .collection('result_request')
-      .find({ feedId: _id.toString() })
     const GET_FEED = gql`
       query Feed($id: String!, $timestamp: Int!) {
         feed(id: $id) {
@@ -309,8 +283,7 @@ describe('feeds', function () {
       query: GET_FEED,
       variables: {
         id: _id.toString(),
-        timestamp:
-          Math.round(new Date().getTime() / 1000) - 24 * 7 * 3600 - 24 * 3600
+        timestamp: getTimestampByRange(CHART_RANGE.w.value)
       }
     })
 
@@ -332,12 +305,7 @@ describe('feeds', function () {
       result: '1111.0',
       feedId: _id.toString(),
       requestId: '1',
-      timestamp: (
-        Math.round(new Date().getTime() / 1000) -
-        24 * 3600 -
-        24 * 3600 +
-        10
-      ).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.w.value) + 10).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
@@ -347,12 +315,7 @@ describe('feeds', function () {
       result: '2222.0',
       feedId: _id.toString(),
       requestId: '1',
-      timestamp: (
-        Math.round(new Date().getTime() / 1000) -
-        24 * 30 * 3600 -
-        24 * 3600 +
-        10
-      ).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
@@ -405,8 +368,7 @@ describe('feeds', function () {
       query: GET_FEED,
       variables: {
         id: _id.toString(),
-        timestamp:
-          Math.round(new Date().getTime() / 1000) - 24 * 30 * 3600 - 24 * 3600
+        timestamp: getTimestampByRange(CHART_RANGE.m.value)
       }
     })
 

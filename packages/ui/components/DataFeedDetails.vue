@@ -46,6 +46,7 @@ import feed from '@/apollo/queries/feed.gql'
 import requests from '@/apollo/queries/requests.gql'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 import { CHART_RANGE } from '@/constants'
+import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 
 export default {
   apollo: {
@@ -80,8 +81,7 @@ export default {
       itemsPerPage: 25,
       id: this.$route.params.id,
       range: 24,
-      timestamp:
-        Math.round(new Date().getTime() / 1000) - 24 * 3600 - 24 * 3600,
+      timestamp: getTimestampByRange(CHART_RANGE.w.value),
     }
   },
   computed: {
@@ -142,9 +142,7 @@ export default {
       this.currentPage = val
     },
     updateQuery(val) {
-      const currentTimestamp =
-        Math.round(new Date().getTime() / 1000) - 24 * 3600
-      this.timestamp = currentTimestamp - this.ranges[val].value * 3600
+      this.timestamp = getTimestampByRange(this.ranges[val].value)
     },
   },
 }
