@@ -1,13 +1,13 @@
-query feed($id: String!, $timestamp: Int!) {
-  feed(id: $id) {
-    id
+query feed($feedFullName: String!, $timestamp: Int!) {
+  feed(feedFullName: $feedFullName) {
+    feedFullName 
     name
     address
     lastResult
     network
     label
-    requests(id: $id, timestamp: $timestamp) {
-      feedId
+    requests(timestamp: $timestamp) {
+      feedFullName 
       result
       drTxHash
       requestId

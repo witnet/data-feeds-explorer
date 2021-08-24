@@ -32,25 +32,25 @@ export class Web3Middleware {
     Array<FeedDbObjectNormalized>
   > {
     const promises = this.dataFeeds.map(async feedInfo => {
-      let feed = await this.repositories.feedRepository.getByAddress(
-        feedInfo.address
+      let feed = await this.repositories.feedRepository.get(
+        feedInfo.feedFullName
       )
       if (feed) {
         this.lastStoredResult[
-          feedInfo.address
+          feedInfo.feedFullName
         ] = await this.repositories.resultRequestRepository.getLastResult(
-          feed._id
+          feed.feedFullName
         )
       } else {
         feed = await this.repositories.feedRepository.insert({
+          feedFullName: feedInfo.feedFullName,
           address: feedInfo.address,
           name: feedInfo.name,
-          requests: [],
           network: feedInfo.network,
-          label: feedInfo.label
+          label: feedInfo.label,
+          blockExplorer: feedInfo.blockExplorer
         })
       }
-
       return feed
     })
 
@@ -59,17 +59,24 @@ export class Web3Middleware {
 
   async listen () {
     const feeds = await this.initializeLastStoredResults()
+
     const feedDictionary = this.dataFeeds.reduce(
       (
         acc: Record<string, { feedInfo: FeedInfo; feedId: ObjectId }>,
         feedInfo: FeedInfo
-      ) => ({
-        ...acc,
-        [feedInfo.address]: {
-          feedInfo,
-          feedId: feeds.find(feed => feed.address === feedInfo.address)._id
+      ) => {
+        const feedId = feeds.find(feed => {
+          return feed.feedFullName === feedInfo.feedFullName
+        })
+
+        return {
+          ...acc,
+          [feedInfo.feedFullName]: {
+            feedInfo,
+            feedId: feedId._id
+          }
         }
-      }),
+      },
       {}
     )
 
@@ -99,7 +106,7 @@ export class Web3Middleware {
       await this.fetchAndSaveContractSnapshot(
         { feedContract },
         {
-          address: feedInfo.address,
+          feedFullName: feedInfo.feedFullName,
           id: feedId,
           label: feedInfo.label
         }
@@ -127,7 +134,7 @@ export class Web3Middleware {
     feed: {
       label: string
       id: ObjectId
-      address: string
+      feedFullName: string
     }
   ) {
     try {
@@ -136,10 +143,10 @@ export class Web3Middleware {
         lastResponse,
         requestId
       }: ContractsState = await this.readContractsState(contracts)
-      const address = feed.address
+      const feedFullName = feed.feedFullName
       const { timestamp, drTxHash } = lastResponse
       const decodedDrTxHash = toHex(drTxHash).slice(2)
-      const lastStoredResult = this.lastStoredResult[address]
+      const lastStoredResult = this.lastStoredResult[feedFullName]
       const isAlreadyStored = lastStoredResult?.timestamp === timestamp
       const isDrSolved =
         decodedDrTxHash &&
@@ -147,15 +154,13 @@ export class Web3Middleware {
           '0000000000000000000000000000000000000000000000000000000000000000'
       if (!isAlreadyStored && isDrSolved) {
         const result = await this.repositories.resultRequestRepository.insert({
-          feedId: feed.id.toString(),
           result: lastPrice,
           timestamp: lastResponse.timestamp,
           requestId: requestId,
-          address: feed.address,
           drTxHash: decodedDrTxHash,
-          label: feed.label
+          feedFullName: feedFullName
         })
-        this.lastStoredResult[feed.address] = result
+        this.lastStoredResult[feed.feedFullName] = result
       }
     } catch (error) {
       console.error(`Error reading contracts state: ${feed}`)

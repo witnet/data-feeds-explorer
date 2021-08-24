@@ -3,25 +3,24 @@ import {
   FeedDbObject,
   Collection,
   Db,
-  ObjectId,
   FeedInfo
 } from '../types'
 import { containFalsyValues } from './containFalsyValues'
 
 export class FeedRepository {
   collection: Collection<FeedDbObject>
-  // list of addresses to include in the search queries using address as an id for each data feed
-  dataFeedsAddresses: Array<string>
+  // list of fullNames to include in the search queries using feedFullName as an id for each data feed
+  dataFeedsFullNames: Array<string>
 
   constructor (db: Db, dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('feed')
-    this.dataFeedsAddresses = dataFeeds.map(dataFeed => dataFeed.address)
+    this.dataFeedsFullNames = dataFeeds.map(dataFeed => dataFeed.feedFullName)
   }
 
   async getAll (): Promise<Array<FeedDbObjectNormalized>> {
     return (
       await this.collection
-        .find({ address: { $in: this.dataFeedsAddresses } })
+        .find({ feedFullName: { $in: this.dataFeedsFullNames } })
         .toArray()
     ).map(this.normalizeId)
   }
@@ -31,7 +30,6 @@ export class FeedRepository {
   ): Promise<FeedDbObjectNormalized | null> {
     if (this.isValidFeed(feed)) {
       const response = await this.collection.insertOne(feed)
-
       return this.normalizeId(response.ops[0])
     } else {
       console.error('Error inserting feed: Validation Error', feed)
@@ -40,25 +38,13 @@ export class FeedRepository {
     }
   }
 
-  async addResultRequest (
-    feedId: ObjectId,
-    resultRequestId: ObjectId
-  ): Promise<FeedDbObjectNormalized> {
-    const response = await this.collection.findOneAndUpdate(
-      { _id: feedId },
-      { $push: { requests: resultRequestId } },
-      { returnDocument: 'after' }
+  async get (feedFullName: string): Promise<FeedDbObjectNormalized> {
+    const a = this.normalizeId(
+      await this.collection.findOne({ feedFullName: feedFullName })
     )
+    console.log('a', a)
 
-    return this.normalizeId(response.value)
-  }
-
-  async get (id: string): Promise<FeedDbObjectNormalized> {
-    return this.normalizeId(
-      await this.collection.findOne({
-        _id: new ObjectId(id)
-      })
-    )
+    return a
   }
 
   async getFeeds (
@@ -67,15 +53,11 @@ export class FeedRepository {
   ): Promise<Array<FeedDbObjectNormalized>> {
     return (
       await this.collection
-        .find({ address: { $in: this.dataFeedsAddresses } })
+        .find({ feedFullName: { $in: this.dataFeedsFullNames } })
         .skip(size * (page - 1))
         .limit(size)
         .toArray()
     ).map(this.normalizeId)
-  }
-
-  async getByAddress (address: string): Promise<FeedDbObjectNormalized> {
-    return this.normalizeId(await this.collection.findOne({ address }))
   }
 
   public getTotalCount (): Promise<number> {

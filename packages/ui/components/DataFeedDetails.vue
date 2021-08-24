@@ -58,8 +58,8 @@ export default {
       query: feed,
       variables() {
         return {
-          id: this.id,
           timestamp: this.timestamp,
+          feedFullName: this.feedFullName,
         }
       },
       pollInterval: 60000,
@@ -69,7 +69,7 @@ export default {
       query: requests,
       variables() {
         return {
-          feedId: this.id,
+          feedFullName: this.feedFullName,
           page: this.currentPage,
           size: this.itemsPerPage,
         }
@@ -82,9 +82,9 @@ export default {
       ranges: CHART_RANGE,
       currentPage: 1,
       itemsPerPage: 25,
-      id: this.$route.params.id,
       range: 24,
       timestamp: getTimestampByRange(CHART_RANGE.w.value),
+      feedFullName: this.$route.params.id,
     }
   },
   computed: {

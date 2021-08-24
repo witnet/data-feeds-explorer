@@ -1,7 +1,7 @@
 query feeds ($page: Int!, $pageSize: Int!) {
   feeds (page: $page, pageSize: $pageSize) {
     feeds {
-      id
+      feedFullName
       name
       address
       lastResult

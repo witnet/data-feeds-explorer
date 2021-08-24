@@ -3,30 +3,30 @@ import {
   ResultRequestDbObject,
   Db,
   Collection,
-  ObjectId,
-  FeedInfo
+  FeedInfo,
+  WithoutId
 } from '../types'
 import { containFalsyValues } from './containFalsyValues'
 
 export class ResultRequestRepository {
   collection: Collection<ResultRequestDbObject>
-  // list of addresses to include in the search queries using address as an id for each data feed
-  dataFeedsAddresses: Array<string>
+  // list of fullNames to include in the search queries using feedFullName as an id for each data feed
+  // dataFeedsFullNames: Array<string>
 
-  constructor (db: Db, dataFeeds: Array<FeedInfo>) {
+  constructor (db: Db, _dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
-    this.dataFeedsAddresses = dataFeeds.map(dataFeed => dataFeed.address)
+    // this.dataFeedsFullNames = dataFeeds.map(dataFeed => dataFeed.feedFullName)
   }
 
   async getFeedRequests (
-    feedId: ObjectId,
+    feedFullName: string,
     timestamp: number
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find(
           {
-            feedId: feedId.toString(),
+            feedFullName,
             timestamp: { $gt: timestamp.toString() }
           },
           {
@@ -38,14 +38,14 @@ export class ResultRequestRepository {
   }
 
   async getFeedRequestsPage (
-    feedId: ObjectId,
+    feedFullName: string,
     page: number,
     size: number
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find({
-          feedId: feedId.toString()
+          feedFullName
         })
         .sort({ timestamp: -1 })
         .skip(size * (page - 1))
@@ -55,11 +55,11 @@ export class ResultRequestRepository {
   }
 
   async getLastResult (
-    feedId: ObjectId
+    feedFullName: string
   ): Promise<ResultRequestDbObjectNormalized> {
     const lastResultRequest = await this.collection.findOne(
       {
-        feedId: feedId.toString()
+        feedFullName: feedFullName
       },
       {
         sort: {
@@ -76,7 +76,7 @@ export class ResultRequestRepository {
   }
 
   async insert (
-    resultRequest: Omit<ResultRequestDbObject, '_id'>
+    resultRequest: WithoutId<ResultRequestDbObject>
   ): Promise<ResultRequestDbObjectNormalized | null> {
     if (this.isValidResultRequest(resultRequest)) {
       const response = await this.collection.insertOne(resultRequest)

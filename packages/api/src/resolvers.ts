@@ -11,31 +11,34 @@ const resolvers = {
 
     requests: async (_parent, args, { resultRequestRepository }: Context) => {
       return await resultRequestRepository.getFeedRequestsPage(
-        args.feedId,
+        args.feedFullName,
         args.page,
         args.size
       )
     },
 
     feed: async (_parent, args, { feedRepository }: Context) => {
-      return await feedRepository.get(args.id)
+      return await feedRepository.get(args.feedFullName)
     }
   },
   Feed: {
-    requests: async (_parent, args, { resultRequestRepository }: Context) => {
+    requests: async (parent, args, { resultRequestRepository }: Context) => {
       return await resultRequestRepository.getFeedRequests(
-        args.id,
+        parent.feedFullName,
         args.timestamp
       )
     },
     lastResult: async (parent, _args, { resultRequestRepository }: Context) => {
-      return (await resultRequestRepository.getLastResult(parent.id))?.result
+      return (await resultRequestRepository.getLastResult(parent.feedFullName))
+        ?.result
     },
     color: async (parent, _args, { config }: Context) => {
-      return config[`${parent.network}_${parent.address}`]?.color || ''
+      return config[`${parent.network}_${parent.feedFullName}`]?.color || ''
     },
     blockExplorer: async (parent, _args, { config }: Context) => {
-      return config[`${parent.network}_${parent.address}`]?.blockExplorer || ''
+      return (
+        config[`${parent.network}_${parent.feedFullName}`]?.blockExplorer || ''
+      )
     }
   }
 }

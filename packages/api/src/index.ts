@@ -58,6 +58,8 @@ function readDataFeeds (): Array<FeedInfo> {
 // Throw an error if a field is missing in the data feed config file
 function validateDataFeeds (dataFeeds: Array<FeedInfoConfig>) {
   const fields = [
+    'feedFullName',
+    'abi',
     'address',
     'network',
     'name',

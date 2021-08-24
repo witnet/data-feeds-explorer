@@ -1,9 +1,9 @@
-query requests($feedId: String!, $page: Int!, $size: Int!) {
-  requests(feedId: $feedId, page: $page, size: $size) {
-    feedId,
-    result,
+query requests($feedFullName: String!, $page: Int!, $size: Int!) {
+  requests(feedFullName: $feedFullName, page: $page, size: $size) {
+    feedFullName
+    result
     drTxHash,
-    requestId,
-    timestamp,
+    requestId
+    timestamp
   }
 }

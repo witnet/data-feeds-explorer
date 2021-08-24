@@ -2,9 +2,8 @@ overwrite: true
 schema: './src/typeDefs.ts'
 generates:
   src/generated/types.ts:
-    # config:
-      # useIndexSignature: true
-      # contextTpe: ./context 
+    config:
+      skipTypename: true
     plugins:
       - 'typescript'
       - 'typescript-resolvers'

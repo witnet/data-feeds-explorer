@@ -61,7 +61,7 @@ export default {
         return {
           detailsPath: {
             name: 'feeds-id',
-            params: { id: feed.id },
+            params: { id: feed.feedFullName },
           },
           name: feed.name,
           value: feed.lastResult,

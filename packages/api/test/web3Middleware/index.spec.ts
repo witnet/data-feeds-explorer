@@ -38,30 +38,39 @@ describe('web3Middleware', () => {
       ('' as unknown) as Db,
       feedInfos
     )
-    resultRequestRepository.insert = jest.fn(async () => {
-      return {
-        _id: new ObjectId('507f1f77bcf86cd799439012'),
-        id: 'id',
-        feedId: 'feedId',
-        result: '1000',
-        label: feedInfos[0].label,
-        requestId: 'request_ID',
-        address: feedInfos[0].address,
-        timestamp: '1624363045259',
-        drTxHash: 'hash'
+    resultRequestRepository.insert = jest.fn(
+      async ({ result, requestId, timestamp, drTxHash, feedFullName }) => {
+        return {
+          _id: new ObjectId('507f1f77bcf86cd799439012'),
+          id: '507f1f77bcf86cd799439012',
+          result,
+          requestId,
+          timestamp,
+          drTxHash,
+          feedFullName
+        }
       }
-    })
+    )
     const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
-    feedRepository.insert = jest.fn(async () => ({
-      _id: new ObjectId('507f1f77bcf86cd799439011'),
-      address: feedInfos[0].address,
-      id: 'id',
-      label: feedInfos[0].label,
-      name: feedInfos[0].name,
-      network: feedInfos[0].network,
-      requests: [],
-      lastResult: null
-    }))
+    feedRepository.insert = jest.fn(
+      async ({
+        feedFullName,
+        name,
+        address,
+        label,
+        network,
+        blockExplorer
+      }) => ({
+        _id: new ObjectId('507f1f77bcf86cd799439011'),
+        id: '507f1f77bcf86cd799439011',
+        address,
+        label,
+        name,
+        network,
+        blockExplorer,
+        feedFullName
+      })
+    )
     const middleware = new Web3Middleware(
       {
         repositories: { feedRepository, resultRequestRepository },
@@ -84,28 +93,37 @@ describe('web3Middleware', () => {
       ('' as unknown) as Db,
       feedInfos
     )
-    resultRequestRepository.insert = jest.fn(async () => ({
-      _id: new ObjectId('507f1f77bcf86cd799439012'),
-      id: 'id',
-      feedId: 'feedId',
-      result: '1000',
-      label: feedInfos[0].label,
-      requestId: 'request_ID',
-      address: feedInfos[0].address,
-      timestamp: '1624363045259',
-      drTxHash: 'hash'
-    }))
+    resultRequestRepository.insert = jest.fn(
+      async ({ result, requestId, timestamp, drTxHash, feedFullName }) => ({
+        _id: new ObjectId('507f1f77bcf86cd799439012'),
+        id: '507f1f77bcf86cd799439012',
+        result,
+        requestId,
+        timestamp,
+        drTxHash,
+        feedFullName
+      })
+    )
     const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
-    feedRepository.insert = jest.fn(async () => ({
-      _id: new ObjectId('507f1f77bcf86cd799439012'),
-      address: feedInfos[0].address,
-      id: 'id',
-      label: feedInfos[0].label,
-      name: feedInfos[0].name,
-      network: feedInfos[0].network,
-      requests: [],
-      lastResult: null
-    }))
+    feedRepository.insert = jest.fn(
+      async ({
+        address,
+        label,
+        name,
+        blockExplorer,
+        feedFullName,
+        network
+      }) => ({
+        _id: new ObjectId('507f1f77bcf86cd799439012'),
+        id: '507f1f77bcf86cd799439012',
+        address,
+        label,
+        name,
+        network,
+        feedFullName,
+        blockExplorer
+      })
+    )
     const middleware = new Web3Middleware(
       {
         repositories: { feedRepository, resultRequestRepository },
@@ -132,48 +150,39 @@ describe('web3Middleware', () => {
       ('' as unknown) as Db,
       feedInfos
     )
-    resultRequestRepository.insert = jest.fn(async () => ({
+    resultRequestRepository.insert = jest.fn(
+      async ({ result, drTxHash, feedFullName, requestId, timestamp }) => ({
+        _id: new ObjectId('507f1f77bcf86cd799439012'),
+        id: '507f1f77bcf86cd799439012',
+        result,
+        requestId,
+        timestamp,
+        drTxHash,
+        feedFullName
+      })
+    )
+    resultRequestRepository.getLastResult = jest.fn(async feedFullName => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
-      id: 'id',
-      feedId: 'feedId',
+      id: '507f1f77bcf86cd799439012',
       result: '1000',
       label: feedInfos[0].label,
       requestId: 'request_ID',
-      address: feedInfos[0].address,
       timestamp: '1624363045259',
-      drTxHash: 'hash'
-    }))
-    resultRequestRepository.getLastResult = jest.fn(async () => ({
-      _id: new ObjectId('507f1f77bcf86cd799439012'),
-      id: 'id',
-      feedId: 'feedId',
-      result: '1000',
-      label: feedInfos[0].label,
-      requestId: 'request_ID',
-      address: feedInfos[0].address,
-      timestamp: '1624363045259',
-      drTxHash: 'hash'
+      drTxHash: 'hash',
+      feedFullName
     }))
     const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
-    feedRepository.insert = jest.fn(async () => ({
+    feedRepository.get = jest.fn(async feedFullName => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
+      id: '507f1f77bcf86cd799439012',
       address: feedInfos[0].address,
-      id: 'id',
       label: feedInfos[0].label,
       name: feedInfos[0].name,
       network: feedInfos[0].network,
       requests: [],
-      lastResult: null
-    }))
-    feedRepository.getByAddress = jest.fn(async () => ({
-      _id: new ObjectId('507f1f77bcf86cd799439012'),
-      address: feedInfos[0].address,
-      id: 'id',
-      label: feedInfos[0].label,
-      name: feedInfos[0].name,
-      network: feedInfos[0].network,
-      requests: [],
-      lastResult: null
+      lastResult: null,
+      feedFullName,
+      blockExplorer: feedInfos[0].blockExplorer
     }))
 
     const middleware = new Web3Middleware(
@@ -196,29 +205,39 @@ describe('web3Middleware', () => {
       ('' as unknown) as Db,
       feedInfos
     )
-    resultRequestRepository.insert = jest.fn(async ({ address }) => ({
-      _id: new ObjectId('507f1f77bcf86cd799439012'),
-      id: 'id',
-      feedId: 'feedId',
-      result: '1000',
-      label: feedInfos[0].label,
-      requestId: 'request_ID',
-      address: address,
-      timestamp: '1624363045259',
-      drTxHash: 'hash'
-    }))
+    resultRequestRepository.insert = jest.fn(
+      async ({ drTxHash, feedFullName, requestId, result, timestamp }) => ({
+        _id: new ObjectId('507f1f77bcf86cd799439012'),
+        id: '507f1f77bcf86cd799439012',
+        result,
+        requestId,
+        timestamp,
+        drTxHash,
+        feedFullName
+      })
+    )
     const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
-    feedRepository.insert = jest.fn(async ({ address }) => ({
-      _id: new ObjectId('507f1f77bcf86cd799439011'),
-      address: address,
-      id: 'id',
-      label: feedInfos[0].label,
-      name: feedInfos[0].name,
-      network: feedInfos[0].network,
-      requests: [],
-      lastResult: null
-    }))
-    feedRepository.getByAddress = jest.fn(async () => null)
+    feedRepository.insert = jest.fn(
+      async ({
+        address,
+        blockExplorer,
+        feedFullName,
+        label,
+        name,
+        network
+      }) => ({
+        _id: new ObjectId('507f1f77bcf86cd799439011'),
+        id: '507f1f77bcf86cd799439011',
+        address,
+        label,
+        name,
+        network,
+        requests: [],
+        feedFullName,
+        blockExplorer
+      })
+    )
+    feedRepository.get = jest.fn(async () => null)
 
     const middleware = new Web3Middleware(
       {
@@ -241,50 +260,52 @@ describe('web3Middleware', () => {
       ('' as unknown) as Db,
       feedInfos
     )
-    resultRequestRepository.getLastResult = jest.fn(async () => ({
+    resultRequestRepository.getLastResult = jest.fn(async feedFullName => ({
       _id: new ObjectId('507f1f77bcf86cd799439012'),
-      id: 'id',
-      feedId: 'feedId',
+      id: '507f1f77bcf86cd799439012',
       result: '1000',
-      label: feedInfos[0].label,
       requestId: 'request_ID',
-      address: feedInfos[1].address,
       timestamp: '1624363045259',
-      drTxHash: 'hash'
+      drTxHash: 'hash',
+      feedFullName
     }))
-    resultRequestRepository.insert = jest.fn(async ({ address }) => {
-      return {
-        _id: new ObjectId('507f1f77bcf86cd799439012'),
-        id: 'id',
-        feedId: 'feedId',
-        result: '1000',
-        label: feedInfos[0].label,
-        requestId: 'request_ID',
-        address: address,
-        timestamp: '1624363045259',
-        drTxHash: 'hash'
+    resultRequestRepository.insert = jest.fn(
+      async ({ drTxHash, feedFullName, requestId, result, timestamp }) => {
+        return {
+          _id: new ObjectId('507f1f77bcf86cd799439012'),
+          id: '507f1f77bcf86cd799439012',
+          result,
+          requestId,
+          timestamp,
+          drTxHash,
+          feedFullName
+        }
       }
-    })
+    )
     const feedRepository = new FeedRepository(('' as unknown) as Db, feedInfos)
-    feedRepository.insert = jest.fn(async ({ address }) => ({
+    feedRepository.get = jest.fn(async feedFullName => ({
       _id: new ObjectId('507f1f77bcf86cd799439011'),
-      address: address,
-      id: 'id',
+      id: '507f1f77bcf86cd799439011',
       label: feedInfos[0].label,
       name: feedInfos[0].name,
       network: feedInfos[0].network,
       requests: [],
-      lastResult: null
+      lastResult: null,
+      feedFullName,
+      address: feedInfos[0].address,
+      blockExplorer: feedInfos[0].blockExplorer
     }))
-    feedRepository.getByAddress = jest.fn(async address => ({
+    feedRepository.get = jest.fn(async feedFullName => ({
       _id: new ObjectId('507f1f77bcf86cd799439011'),
-      address: address,
-      id: 'id',
+      id: '507f1f77bcf86cd799439011',
+      address: feedInfos[0].address,
       label: feedInfos[0].label,
       name: feedInfos[0].name,
       network: feedInfos[0].network,
       requests: [],
-      lastResult: null
+      lastResult: null,
+      feedFullName,
+      blockExplorer: feedInfos[0].blockExplorer
     }))
 
     const middleware = new Web3Middleware(

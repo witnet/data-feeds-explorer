@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server'
 import typeDefs from './typeDefs'
 import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb'
 import resolvers from './resolvers'
-import { ConfigByAddress, FeedInfo, Repositories } from './types'
+import { ConfigByFullName, FeedInfo, Repositories } from './types'
 
 export async function createServer (
   repositories: Repositories,
@@ -12,16 +12,16 @@ export async function createServer (
     typeDefs: [DIRECTIVES, typeDefs],
     resolvers,
     context: () => {
-      const configByAddress: ConfigByAddress = config.reduce(
+      const configByFullName: ConfigByFullName = config.reduce(
         (acc, feedInfo) => ({
           ...acc,
           // Use network + address to avoid collision if address is the same on multiple networks
-          [`${feedInfo.network}_${feedInfo.address}`]: feedInfo
+          [`${feedInfo.network}_${feedInfo.feedFullName}`]: feedInfo
         }),
         {}
       )
 
-      return { ...repositories, config: configByAddress }
+      return { ...repositories, config: configByFullName }
     }
   })
 }

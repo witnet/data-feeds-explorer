@@ -55,19 +55,16 @@ describe('feeds', function () {
   })
 
   it('get feed list without data feeds', async () => {
-    const dataFeed = dataFeeds[0]
-    await state.mongoManager.db.collection('feed').insertOne(dataFeed)
-
     const GET_FEEDS = gql`
       query feeds($page: Int!, $pageSize: Int!) {
         feeds(page: $page, pageSize: $pageSize) {
           feeds {
-            id
             name
             address
             lastResult
             network
             label
+            feedFullName
           }
           total
         }
@@ -85,10 +82,7 @@ describe('feeds', function () {
       }
     })
 
-    expect(feeds.length).toBe(1)
-    expect(feeds[0]).toHaveProperty('address', dataFeed.address)
-    expect(feeds[0]).toHaveProperty('name', dataFeed.name)
-    expect(feeds[0].id).toBeTruthy()
+    expect(feeds.length).toBe(0)
   })
 
   it('get feed list with data feeds', async () => {
@@ -133,144 +127,141 @@ describe('feeds', function () {
       .collection('feed')
       .insert(dataFeeds[0])
 
-    const { _id } = feedResponse.ops[0]
-
+    const { feedFullName } = feedResponse.ops[0]
+    console.log('feedfullanem', feedFullName)
     const resultRequestExample1 = {
       result: '1111.0',
-      feedId: _id.toString(),
+      feedFullName,
       requestId: '1',
       timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
-      address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
       drTxHash:
-        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
-      label: '$'
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a'
     }
     const resultRequestExample2 = {
       result: '2222.0',
-      feedId: _id.toString(),
+      feedFullName,
       requestId: '1',
       timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
-      address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
       drTxHash:
-        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
-      label: '$'
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a'
     }
-    const resultRequestResponse1 = await state.mongoManager.db
+    await state.mongoManager.db
       .collection('result_request')
       .insert(resultRequestExample1)
-    const resultRequestResponse2 = await state.mongoManager.db
+    await state.mongoManager.db
       .collection('result_request')
       .insert(resultRequestExample2)
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
     const GET_FEED = gql`
-      query Feed($id: String!, $timestamp: Int!) {
-        feed(id: $id) {
-          id
+      query Feed($feedFullName: String!, $timestamp: Int!) {
+        feed(feedFullName: $feedFullName) {
+          feedFullName
           name
           address
-          lastResult
           network
           label
-          requests(id: $id, timestamp: $timestamp) {
-            feedId
+          lastResult
+          requests(timestamp: $timestamp) {
+            feedFullName
             result
             drTxHash
             requestId
             timestamp
+            error
           }
           blockExplorer
           color
         }
       }
     `
-    const {
-      data: { feed }
-    } = await state.testClient.query({
+
+    const data = await state.testClient.query({
       query: GET_FEED,
       variables: {
-        id: _id.toString(),
+        feedFullName,
         timestamp: getTimestampByRange(CHART_RANGE.m.value)
       }
     })
-
-    expect(feed).toHaveProperty('address', feed.address)
-    expect(feed).toHaveProperty('name', feed.name)
-    expect(feed).toHaveProperty('requests', feed.requests)
-    expect(feed.requests).toHaveLength(2)
-    expect(feed.id).toBeTruthy()
+    console.log('feed', data)
+    const feed = data.data.feed
+    expect(feed).toHaveProperty('address', dataFeeds[0].address)
+    expect(feed).toHaveProperty('name', dataFeeds[0].name)
+    expect(feed).toHaveProperty('lastResult', resultRequestExample1.result)
+    expect(feed.requests.length).toBe(2)
+    expect(feed.requests[0]).toHaveProperty(
+      'feedFullName',
+      resultRequestExample1.feedFullName
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'result',
+      resultRequestExample1.result
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'requestId',
+      resultRequestExample1.requestId
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'timestamp',
+      resultRequestExample1.timestamp
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'feedFullName',
+      resultRequestExample2.feedFullName
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'result',
+      resultRequestExample2.result
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'requestId',
+      resultRequestExample2.requestId
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'timestamp',
+      resultRequestExample2.timestamp
+    )
   })
 
-  it('get feeds with range 7d', async () => {
+  it('get requests with range 7d', async () => {
     const feedResponse = await state.mongoManager.db
       .collection('feed')
       .insert(dataFeeds[0])
 
-    const { _id } = feedResponse.ops[0]
+    const { feedFullName } = feedResponse.ops[0]
 
     const resultRequestExample1 = {
       result: '1111.0',
-      feedId: _id.toString(),
+      feedFullName,
       requestId: '1',
       timestamp: (getTimestampByRange(CHART_RANGE.w.value) + 10).toString(),
-      address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
       drTxHash:
-        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
-      label: '$'
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a'
     }
     const resultRequestExample2 = {
       result: '2222.0',
-      feedId: _id.toString(),
+      feedFullName,
       requestId: '1',
       timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
-      address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
       drTxHash:
-        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
-      label: '$'
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a'
     }
-    const resultRequestResponse1 = await state.mongoManager.db
+    await state.mongoManager.db
       .collection('result_request')
       .insert(resultRequestExample1)
-    const resultRequestResponse2 = await state.mongoManager.db
+    await state.mongoManager.db
       .collection('result_request')
       .insert(resultRequestExample2)
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
+
     const GET_FEED = gql`
-      query Feed($id: String!, $timestamp: Int!) {
-        feed(id: $id) {
+      query Feed($feedFullName: String!, $timestamp: Int!) {
+        feed(feedFullName: $feedFullName) {
           id
           name
           address
           lastResult
           network
           label
-          requests(id: $id, timestamp: $timestamp) {
-            feedId
+          requests(timestamp: $timestamp) {
+            feedFullName
             result
             drTxHash
             requestId
@@ -286,38 +277,51 @@ describe('feeds', function () {
     } = await state.testClient.query({
       query: GET_FEED,
       variables: {
-        id: _id.toString(),
+        feedFullName: feedResponse.ops[0].feedFullName,
         timestamp: getTimestampByRange(CHART_RANGE.w.value)
       }
     })
 
-    expect(feed).toHaveProperty('address', feed.address)
-    expect(feed).toHaveProperty('name', feed.name)
-    expect(feed).toHaveProperty('requests', feed.requests)
-    expect(feed.requests[0].timestamp).toBe(resultRequestExample1.timestamp)
-    expect(feed.id).toBeTruthy()
+    expect(feed).toHaveProperty('address', dataFeeds[0].address)
+    expect(feed).toHaveProperty('name', dataFeeds[0].name)
+    expect(feed).toHaveProperty('lastResult', resultRequestExample1.result)
+    expect(feed.requests.length).toBe(1)
+    expect(feed.requests[0]).toHaveProperty(
+      'feedFullName',
+      resultRequestExample1.feedFullName
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'result',
+      resultRequestExample1.result
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'requestId',
+      resultRequestExample1.requestId
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'timestamp',
+      resultRequestExample1.timestamp
+    )
   })
 
-  it('get feeds with range 30d', async () => {
+  it('get requests with range 30d', async () => {
     const feedResponse = await state.mongoManager.db
       .collection('feed')
       .insert(dataFeeds[0])
 
-    const { _id } = feedResponse.ops[0]
+    const { feedFullName } = feedResponse.ops[0]
 
     const resultRequestExample1 = {
       result: '1111.0',
-      feedId: _id.toString(),
+      feedFullName,
       requestId: '1',
       timestamp: (getTimestampByRange(CHART_RANGE.w.value) + 10).toString(),
-      address: '0x58995FaD03158fB9cd64397347bA97714EF8fC12',
       drTxHash:
-        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a',
-      label: '$'
+        '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532372bae88a'
     }
     const resultRequestExample2 = {
       result: '2222.0',
-      feedId: _id.toString(),
+      feedFullName,
       requestId: '1',
       timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
@@ -325,37 +329,23 @@ describe('feeds', function () {
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
       label: '$'
     }
-    const resultRequestResponse1 = await state.mongoManager.db
+    await state.mongoManager.db
       .collection('result_request')
       .insert(resultRequestExample1)
-    const resultRequestResponse2 = await state.mongoManager.db
+    await state.mongoManager.db
       .collection('result_request')
       .insert(resultRequestExample2)
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse1.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
-    await state.mongoManager.db
-      .collection('feed')
-      .findOneAndUpdate(
-        { _id: feedResponse.ops[0]._id },
-        { $push: { requests: resultRequestResponse2.ops[0]._id.toString() } },
-        { returnDocument: 'after' }
-      )
     const GET_FEED = gql`
-      query Feed($id: String!, $timestamp: Int!) {
-        feed(id: $id) {
+      query Feed($feedFullName: String!, $timestamp: Int!) {
+        feed(feedFullName: $feedFullName) {
           id
           name
           address
           lastResult
           network
           label
-          requests(id: $id, timestamp: $timestamp) {
-            feedId
+          requests(timestamp: $timestamp) {
+            feedFullName
             result
             drTxHash
             requestId
@@ -371,37 +361,63 @@ describe('feeds', function () {
     } = await state.testClient.query({
       query: GET_FEED,
       variables: {
-        id: _id.toString(),
+        feedFullName,
         timestamp: getTimestampByRange(CHART_RANGE.m.value)
       }
     })
 
-    expect(feed).toHaveProperty('address', feed.address)
-    expect(feed).toHaveProperty('name', feed.name)
-    expect(feed).toHaveProperty('requests', feed.requests)
-    expect(feed.requests).toHaveLength(2)
-    expect(feed.requests[0].timestamp).toBe(resultRequestExample1.timestamp)
-    expect(feed.requests[1].timestamp).toBe(resultRequestExample2.timestamp)
-    expect(feed.id).toBeTruthy()
+    expect(feed).toHaveProperty('address', dataFeeds[0].address)
+    expect(feed).toHaveProperty('name', dataFeeds[0].name)
+    expect(feed).toHaveProperty('lastResult', resultRequestExample1.result)
+    expect(feed.requests.length).toBe(2)
+    expect(feed.requests[0]).toHaveProperty(
+      'feedFullName',
+      resultRequestExample1.feedFullName
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'result',
+      resultRequestExample1.result
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'requestId',
+      resultRequestExample1.requestId
+    )
+    expect(feed.requests[0]).toHaveProperty(
+      'timestamp',
+      resultRequestExample1.timestamp
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'feedFullName',
+      resultRequestExample2.feedFullName
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'result',
+      resultRequestExample2.result
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'requestId',
+      resultRequestExample2.requestId
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'timestamp',
+      resultRequestExample2.timestamp
+    )
   })
 
-  it('get only feeds specified in the data feed list', async () => {
+  it('get all feeds inserted', async () => {
     await state.mongoManager.db.collection('feed').insertOne(dataFeeds[0])
-    await state.mongoManager.db.collection('feed').insertOne({
-      ...dataFeeds[1],
-      address: 'fabadaacabada'
-    })
+    await state.mongoManager.db.collection('feed').insertOne(dataFeeds[1])
 
     const GET_FEEDS = gql`
       query feeds($page: Int!, $pageSize: Int!) {
         feeds(page: $page, pageSize: $pageSize) {
           feeds {
-            id
             name
             address
             lastResult
             network
             label
+            feedFullName
           }
           total
         }
@@ -419,6 +435,6 @@ describe('feeds', function () {
       }
     })
 
-    expect(feeds.length).toBe(1)
+    expect(feeds.length).toBe(2)
   })
 })

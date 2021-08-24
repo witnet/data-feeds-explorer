@@ -1,5 +1,6 @@
 [
   {
+    "feedFullName": "rinkeby-btc-usd_3",
     "address": "0xa7C971149AdfdFB237A0F78D7d317B916FFCE093",
     "network": "rinkeby",
     "name": "btc/usd",
@@ -9,6 +10,7 @@
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "rinkeby-eth-usd_3",
     "address": "0x1320C130Fc5361ced969Ca737d692a30e1142a13",
     "network": "rinkeby",
     "name": "eth/usd",
@@ -18,6 +20,7 @@
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "rinkeby-cfx-usdt_3",
     "address": "0x16b9ac7Fc829c1B083F0FB16adCF9AECe34CdC80",
     "network": "rinkeby",
     "name": "cfx/usdt",
@@ -27,6 +30,7 @@
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "rinkeby-xau-usdt_3",
     "address": "0x407f149da8eC06215E5c483F5461B2Cb6E8fF7Fe",
     "network": "rinkeby",
     "name": "xau/eur",
@@ -36,6 +40,7 @@
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "goerli-btc-usd_3",
     "address": "0x43Fe8778389f4EB98e82B750DCCAfF0D7d57778c",
     "network": "goerli",
     "name": "btc/usd",
@@ -45,6 +50,7 @@
     "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "goerli-eth-usd_3",
     "address": "0x031699240f710B47e92Df7766C06ee6C22A75df1",
     "network": "goerli",
     "name": "eth/usd",
@@ -54,6 +60,7 @@
     "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "goerli-eth-usd_3",
     "address": "0xa6fE39378E62e946b89019edD2043F17d2e7Dd47",
     "network": "goerli",
     "name": "cfx/usdt",
@@ -63,6 +70,7 @@
     "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "goerli-xau_eur_3",
     "address": "0x2fE6398803B30d3A3a29e733487Eb6Ef4Ccc4a3E",
     "network": "goerli",
     "name": "xau/eur",
@@ -72,6 +80,7 @@
     "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
+    "feedFullName": "conflux-xau_eur_3",
     "address": "0x8D8f26d4632A8d985618Ae60569C93f3a57009Da",
     "network": "conflux",
     "name": "btc/usd",
@@ -81,6 +90,7 @@
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
   {
+    "feedFullName": "conflux-eth_usd_3",
     "address": "0x8fe2d6e0984fc65Ad68726A74d822881282A30A0",
     "network": "conflux",
     "name": "eth/usd",
@@ -90,6 +100,7 @@
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
   {
+    "feedFullName": "conflux-cfx_usdt_3",
     "address": "0x89e0b86eEC97Bc24F44e3eB206b22b235Db58C1E",
     "network": "conflux",
     "name": "cfx/usdt",
@@ -99,6 +110,7 @@
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
   {
+    "feedFullName": "conflux-xau_eur_3",
     "address": "0x8487201D265e2ab9d866AB24d9698DACC4c0af1A",
     "network": "conflux",
     "name": "xau/eur",

@@ -7,15 +7,17 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 
 export * from './generated/types'
 export { AbiItem } from 'web3-utils'
-export { Db, Collection, ObjectId } from 'mongodb'
+export { Db, Collection, ObjectId, WithId } from 'mongodb'
+
+export type WithoutId<T> = Omit<T, '_id' | 'id'>
 
 export type Context = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
-  config: ConfigByAddress
+  config: ConfigByFullName
 }
 
-export type ConfigByAddress = {
+export type ConfigByFullName = {
   [key: string]: FeedInfo
 }
 
@@ -28,6 +30,7 @@ export enum Network {
 }
 
 export type FeedInfoGeneric<ABI> = {
+  feedFullName: string
   abi: ABI
   address: string
   network: Network
