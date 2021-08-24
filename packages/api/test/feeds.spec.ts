@@ -6,8 +6,15 @@ import { CHART_RANGE } from './constants'
 import { MongoManager } from './../src/database'
 import { FeedRepository } from '../src/repository/Feed'
 import { ResultRequestRepository } from '../src/repository/ResultRequest'
-import { dataFeeds } from './web3Middleware/dataFeeds'
+import fs from 'fs'
+import path from 'path'
 
+const dataFeeds = JSON.parse(
+  fs.readFileSync(
+    path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'),
+    'utf-8'
+  )
+)
 const state: {
   mongoManager: MongoManager
   testClient: ApolloServerTestClient

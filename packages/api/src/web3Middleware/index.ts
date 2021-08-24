@@ -94,7 +94,6 @@ export class Web3Middleware {
     const provider = getProvider(feedInfo.network)
     const web3 = new this.Web3(provider)
     const feedContract = new web3.eth.Contract(feedInfo.abi, feedInfo.address)
-
     const interval = setInterval(async () => {
       console.log(`Reading contract state at address: ${feedInfo.address}`)
       await this.fetchAndSaveContractSnapshot(
@@ -119,6 +118,7 @@ export class Web3Middleware {
         requestId: await feedContract.methods.requestId().call()
       }
     } catch (err) {
+      console.log('readContractsState ERROR', err)
       throw new Error(`Error reading contract state`)
     }
   }
@@ -146,7 +146,6 @@ export class Web3Middleware {
         decodedDrTxHash &&
         decodedDrTxHash !==
           '0000000000000000000000000000000000000000000000000000000000000000'
-
       if (!isAlreadyStored && isDrSolved) {
         const result = await this.repositories.resultRequestRepository.insert({
           feedId: feed.id.toString(),

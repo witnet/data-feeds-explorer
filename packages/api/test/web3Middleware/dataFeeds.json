@@ -1,0 +1,74 @@
+[
+  {
+    "address": "0xF2712e7114A237625EFC8bBA6a6ed1Bb8b6029c9",
+    "network": "mainnet",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#41BEA5de",
+    "blockExplorer": "https://etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x1ebD93231a7fE551E1d6405404Df34909eff4c2C",
+    "network": "mainnet",
+    "name": "eth/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#41BEA5de",
+    "blockExplorer": "https://etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x298D34AE651c12cD3f154864091a0bb239cda5d6",
+    "network": "rinkeby",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#BEA241de",
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x4b188Fe357240ff9EfD7C9Cf2707a9E3E2Ae4b3f",
+    "network": "rinkeby",
+    "name": "eth/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#BEA241de",
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x4958806608D2E3Aa22BD8818B555A0a24fe6c38E",
+    "network": "goerli",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#4182bede",
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0xAa0AA725aEb1d382F909a8dE3041e9eaD6507501",
+    "network": "goerli",
+    "name": "eth/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#4182bede",
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x8934bfeFb0d5d7d4f1fbEf558562f6487787b6cC",
+    "network": "conflux",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#be4141de",
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+  },
+  {
+    "address": "0x8E5C614bA4DA97E823D4C3f0DCB02c872C84E6C3",
+    "network": "conflux",
+    "name": "eth/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#be4141de",
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+  }
+]
