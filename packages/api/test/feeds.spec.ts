@@ -11,7 +11,7 @@ import path from 'path'
 
 const dataFeeds = JSON.parse(
   fs.readFileSync(
-    path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'),
+    path.resolve('./test/web3Middleware/dataFeeds.json'),
     'utf-8'
   )
 )
