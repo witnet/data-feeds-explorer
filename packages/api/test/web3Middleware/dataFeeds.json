@@ -18,7 +18,7 @@
     "blockExplorer": "https://etherscan.io/address/{address}"
   },
   {
-    "address": "0x298D34AE651c12cD3f154864091a0bb239cda5d6",
+    "address": "0xa7C971149AdfdFB237A0F78D7d317B916FFCE093",
     "network": "rinkeby",
     "name": "btc/usd",
     "label": "$",
@@ -27,7 +27,7 @@
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
-    "address": "0x4b188Fe357240ff9EfD7C9Cf2707a9E3E2Ae4b3f",
+    "address": "0x1320C130Fc5361ced969Ca737d692a30e1142a13",
     "network": "rinkeby",
     "name": "eth/usd",
     "label": "$",
@@ -36,7 +36,25 @@
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
-    "address": "0x4958806608D2E3Aa22BD8818B555A0a24fe6c38E",
+    "address": "0x16b9ac7Fc829c1B083F0FB16adCF9AECe34CdC80",
+    "network": "rinkeby",
+    "name": "cfx/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#BEA241de",
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x407f149da8eC06215E5c483F5461B2Cb6E8fF7Fe",
+    "network": "rinkeby",
+    "name": "xau/eur",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#BEA241de",
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x43Fe8778389f4EB98e82B750DCCAfF0D7d57778c",
     "network": "goerli",
     "name": "btc/usd",
     "label": "$",
@@ -45,7 +63,7 @@
     "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
-    "address": "0xAa0AA725aEb1d382F909a8dE3041e9eaD6507501",
+    "address": "0x031699240f710B47e92Df7766C06ee6C22A75df1",
     "network": "goerli",
     "name": "eth/usd",
     "label": "$",
@@ -54,7 +72,25 @@
     "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
-    "address": "0x8934bfeFb0d5d7d4f1fbEf558562f6487787b6cC",
+    "address": "0xa6fE39378E62e946b89019edD2043F17d2e7Dd47",
+    "network": "goerli",
+    "name": "cfx/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#4182bede",
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x2fE6398803B30d3A3a29e733487Eb6Ef4Ccc4a3E",
+    "network": "goerli",
+    "name": "xau/eur",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#4182bede",
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
+  },
+  {
+    "address": "0x8D8f26d4632A8d985618Ae60569C93f3a57009Da",
     "network": "conflux",
     "name": "btc/usd",
     "label": "$",
@@ -63,9 +99,27 @@
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
   {
-    "address": "0x8E5C614bA4DA97E823D4C3f0DCB02c872C84E6C3",
+    "address": "0x8fe2d6e0984fc65Ad68726A74d822881282A30A0",
     "network": "conflux",
     "name": "eth/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#be4141de",
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+  },
+  {
+    "address": "0x89e0b86eEC97Bc24F44e3eB206b22b235Db58C1E",
+    "network": "conflux",
+    "name": "cfx/usd",
+    "label": "$",
+    "pollingPeriod": 500,
+    "color": "#be4141de",
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+  },
+  {
+    "address": "0x8487201D265e2ab9d866AB24d9698DACC4c0af1A",
+    "network": "conflux",
+    "name": "xau/eur",
     "label": "$",
     "pollingPeriod": 500,
     "color": "#be4141de",

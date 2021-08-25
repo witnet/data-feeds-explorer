@@ -13,7 +13,15 @@ export default {
 </script>
 
 <style lang="scss">
-.dollar {
+.fill {
   fill: var(--text);
+}
+
+.reverse-fill {
+  fill: var(--bg);
+}
+
+.border {
+  stroke: var(--text);
 }
 </style>
