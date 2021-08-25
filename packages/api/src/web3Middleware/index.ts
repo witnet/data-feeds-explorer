@@ -118,7 +118,6 @@ export class Web3Middleware {
         requestId: await feedContract.methods.requestId().call()
       }
     } catch (err) {
-      console.log('readContractsState ERROR', err)
       throw new Error(`Error reading contract state`)
     }
   }
