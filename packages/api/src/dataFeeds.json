@@ -37,7 +37,7 @@
     "network": "rinkeby",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 9000,
+    "pollingPeriod": 900000,
     "color": "#BEA241de",
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
@@ -51,7 +51,7 @@
     "network": "rinkeby",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 9000,
+    "pollingPeriod": 900000,
     "color": "#BEA241de",
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
@@ -61,7 +61,7 @@
     "network": "goerli",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 9000,
+    "pollingPeriod": 900000,
     "witnetRequestBoard": {
       "address": "0x0C4be6AA667df48de54BA174bE7948875fdf152B",
       "abi": "./src/abi/WitnetRequestBoardProxy.json"
@@ -75,7 +75,7 @@
     "network": "goerli",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 9000,
+    "pollingPeriod": 900000,
     "witnetRequestBoard": {
       "address": "0x0C4be6AA667df48de54BA174bE7948875fdf152B",
       "abi": "./src/abi/WitnetRequestBoardProxy.json"

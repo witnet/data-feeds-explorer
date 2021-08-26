@@ -22,18 +22,19 @@ export class ResultRequestRepository {
     feedId: ObjectId,
     timestamp: number
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
-    const request = await this.collection
-      .find(
-        {
-          feedId: feedId.toString(),
-          timestamp: { $gt: timestamp.toString() }
-        },
-        {
-          sort: { timestamp: -1 }
-        }
-      )
-      .toArray()
-    return request.map(this.normalizeId)
+    return (
+      await this.collection
+        .find(
+          {
+            feedId: feedId.toString(),
+            timestamp: { $gt: timestamp.toString() }
+          },
+          {
+            sort: { timestamp: -1 }
+          }
+        )
+        .toArray()
+    ).map(this.normalizeId)
   }
 
   async getFeedRequestsPage (

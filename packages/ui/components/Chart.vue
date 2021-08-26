@@ -40,7 +40,6 @@ export default {
     },
   },
   data() {
-    console.log('CHART RANGE', CHART_RANGE)
     return {
       tooltip: true,
       dateTooltip: true,
@@ -49,14 +48,17 @@ export default {
       toolTipWidth: 100,
       tooltipLeftPosition: 10,
       ranges: CHART_RANGE,
+      get range() {
+        return process.browser ? localStorage.getItem('range') : ''
+      },
+      set range(value) {
+        return process.browser ? localStorage.setItem('range', value) : value
+      },
     }
   },
   computed: {
     activeItem() {
-      const saveItem = process.browser
-        ? window.localStorage.getItem('range')
-        : null
-      return saveItem || this.ranges.w.key
+      return this.range || this.ranges.w.key
     },
     chart() {
       const { LightWeightCharts } = this.$lwcCore()
@@ -108,16 +110,9 @@ export default {
   watch: {
     data: {
       deep: true,
-      handler(oldvalue, newvalue) {
-        if (oldvalue !== newvalue) {
-          const oldTime = oldvalue.map((data) => data.time)
-          const newTime = newvalue.map((data) => this.dateToString(data.time))
-          const newDataTime = oldTime.filter((val) => !newTime.includes(val))
-          const dataToUpdate = oldvalue.filter((val) =>
-            newDataTime.includes(val.time)
-          )
-          dataToUpdate.forEach((el) => this.updateData(el))
-        }
+      handler() {
+        this.setData()
+        this.updateTooltip()
         this.chart.timeScale().fitContent()
       },
     },
@@ -125,19 +120,16 @@ export default {
   mounted() {
     this.setData()
     this.updateTooltip()
-    this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
-    this.date = this.dateToString(this.data[this.data.length - 1].time)
     this.$emit('change-range', this.activeItem)
-    this.setData()
   },
   methods: {
     formatNumber,
     setData() {
       this.lineChart.setData(this.data)
     },
-    async onItemClicked(currentRange) {
+    onItemClicked(currentRange) {
       if (process.browser) {
-        await window.localStorage.setItem('range', currentRange)
+        this.range = currentRange
       }
       this.$emit('change-range', currentRange)
     },
@@ -148,11 +140,12 @@ export default {
       return formatTimestamp(date)
     },
     updateTooltip() {
+      this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
+      this.date = this.dateToString(this.data[this.data.length - 1].time)
       this.chart.subscribeCrosshairMove((param) => {
         const price = param.seriesPrices.get(this.lineChart)
         if (param.time) {
           const dateStr = this.dateToString(param.time)
-
           this.value = `${this.dataLabel} ${Math.round(price * 1000) / 1000}`
           this.date = dateStr
         }
