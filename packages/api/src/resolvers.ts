@@ -33,12 +33,10 @@ const resolvers = {
         ?.result
     },
     color: async (parent, _args, { config }: Context) => {
-      return config[`${parent.network}_${parent.feedFullName}`]?.color || ''
+      return config[parent.feedFullName]?.color || ''
     },
     blockExplorer: async (parent, _args, { config }: Context) => {
-      return (
-        config[`${parent.network}_${parent.feedFullName}`]?.blockExplorer || ''
-      )
+      return config[parent.feedFullName]?.blockExplorer || ''
     }
   }
 }

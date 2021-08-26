@@ -48,7 +48,9 @@ function readDataFeeds (): Array<FeedInfo> {
     ...dataFeed,
     abi: JSON.parse(
       fs.readFileSync(
-        path.resolve(process.env.DATA_FEED_ABI_PATH || './abi/PriceFeed.json'),
+        path.resolve(
+          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json'
+        ),
         'utf-8'
       )
     )

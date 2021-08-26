@@ -10,12 +10,9 @@ import { containFalsyValues } from './containFalsyValues'
 
 export class ResultRequestRepository {
   collection: Collection<ResultRequestDbObject>
-  // list of fullNames to include in the search queries using feedFullName as an id for each data feed
-  // dataFeedsFullNames: Array<string>
 
   constructor (db: Db, _dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
-    // this.dataFeedsFullNames = dataFeeds.map(dataFeed => dataFeed.feedFullName)
   }
 
   async getFeedRequests (
@@ -59,7 +56,7 @@ export class ResultRequestRepository {
   ): Promise<ResultRequestDbObjectNormalized> {
     const lastResultRequest = await this.collection.findOne(
       {
-        feedFullName: feedFullName
+        feedFullName
       },
       {
         sort: {
@@ -103,7 +100,7 @@ export class ResultRequestRepository {
   }
 
   private isValidResultRequest (
-    resultRequest: Omit<ResultRequestDbObject, '_id'>
+    resultRequest: WithoutId<ResultRequestDbObject>
   ): boolean {
     return !containFalsyValues(resultRequest)
   }

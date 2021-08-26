@@ -2,7 +2,7 @@
   <div class="feeds-container">
     <FeedCard
       v-for="feed in feeds"
-      :key="feed.name + feed.network"
+      :key="feed.name + feed.network + feed.value + feed.color"
       :details-path="feed.detailsPath"
       :name="feed.name"
       :img="feed.img"

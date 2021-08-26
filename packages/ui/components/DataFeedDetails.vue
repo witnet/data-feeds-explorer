@@ -111,7 +111,9 @@ export default {
       return this.feed ? this.feed.address : ''
     },
     network() {
-      return this.feed ? this.feed.network.toUpperCase() : ''
+      return this.feed && this.feed.network
+        ? this.feed.network.toUpperCase()
+        : ''
     },
     chartData() {
       if (this.feed && this.feed.requests.length > 0) {

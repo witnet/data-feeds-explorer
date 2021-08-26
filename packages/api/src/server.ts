@@ -15,8 +15,7 @@ export async function createServer (
       const configByFullName: ConfigByFullName = config.reduce(
         (acc, feedInfo) => ({
           ...acc,
-          // Use network + address to avoid collision if address is the same on multiple networks
-          [`${feedInfo.network}_${feedInfo.feedFullName}`]: feedInfo
+          [`${feedInfo.feedFullName}`]: feedInfo
         }),
         {}
       )

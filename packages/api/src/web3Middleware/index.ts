@@ -158,7 +158,7 @@ export class Web3Middleware {
           timestamp: lastResponse.timestamp,
           requestId: requestId,
           drTxHash: decodedDrTxHash,
-          feedFullName: feedFullName
+          feedFullName
         })
         this.lastStoredResult[feed.feedFullName] = result
       }

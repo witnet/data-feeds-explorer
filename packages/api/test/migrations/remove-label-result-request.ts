@@ -58,7 +58,7 @@ describe('migration-update', function () {
       requestId: 'requestId',
       result: '100',
       timestamp: 1629901812540,
-      label: dataFeeds[0].address,
+      label: dataFeeds[0].label,
       feedId: 'feedId1'
     }
     const resultRequest2 = {
@@ -68,7 +68,7 @@ describe('migration-update', function () {
       requestId: 'requestId',
       result: '100',
       timestamp: 1629901812540,
-      label: 'label2',
+      label: dataFeeds[1].label,
       feedId: 'feedId2'
     }
 

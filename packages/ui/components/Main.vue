@@ -70,7 +70,8 @@ export default {
             name: this.formatSvgName(feed.name),
             alt: feed.name,
           },
-          network: feed.network,
+          // Temporary solution while new card is implemented
+          network: feed.network.split('-')[0],
           color: feed.color,
           blockExplorer: feed.blockExplorer,
         }

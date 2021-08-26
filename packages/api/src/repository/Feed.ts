@@ -3,7 +3,8 @@ import {
   FeedDbObject,
   Collection,
   Db,
-  FeedInfo
+  FeedInfo,
+  WithoutId
 } from '../types'
 import { containFalsyValues } from './containFalsyValues'
 
@@ -26,7 +27,7 @@ export class FeedRepository {
   }
 
   async insert (
-    feed: Omit<FeedDbObject, '_id'>
+    feed: WithoutId<FeedDbObject>
   ): Promise<FeedDbObjectNormalized | null> {
     if (this.isValidFeed(feed)) {
       const response = await this.collection.insertOne(feed)
@@ -39,12 +40,7 @@ export class FeedRepository {
   }
 
   async get (feedFullName: string): Promise<FeedDbObjectNormalized> {
-    const a = this.normalizeId(
-      await this.collection.findOne({ feedFullName: feedFullName })
-    )
-    console.log('a', a)
-
-    return a
+    return this.normalizeId(await this.collection.findOne({ feedFullName }))
   }
 
   async getFeeds (
