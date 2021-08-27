@@ -10,9 +10,10 @@
       </p>
     </div>
     <Chart
+      v-if="feed"
       class="chart"
       :data="chartData"
-      data-label="$"
+      :data-label="feed.label"
       :name="feedName"
       @change-range="updateQuery"
     />
