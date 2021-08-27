@@ -4,15 +4,10 @@ import { FeedInfo, Db, ObjectId } from '../../src/types'
 import { FeedRepository } from '../../src/repository/Feed'
 import { ResultRequestRepository } from '../../src/repository/ResultRequest'
 import { Web3Middleware } from '../../src/web3Middleware/index'
-import fs from 'fs'
-import path from 'path'
+import dataFeeds from './dataFeeds.json'
 
 jest.mock('../../src/repository/Feed')
 jest.mock('../../src/repository/ResultRequest')
-
-const dataFeeds = JSON.parse(
-  fs.readFileSync(path.resolve('./test/web3Middleware/dataFeeds.json'), 'utf-8')
-)
 
 const lastPriceMock = jest.fn(() => ({ call: jest.fn(() => '10000') }))
 const lastResponseMock = jest.fn(() => ({
@@ -37,9 +32,8 @@ const Web3Mock = (jest.fn(() => ({
 beforeEach(() => jest.clearAllMocks())
 
 describe('web3Middleware', () => {
-  //FIXME: fix test
-  it.only('should read the state of each datafeed provided', async () => {
-    const feedInfos: Array<FeedInfo> = [dataFeeds[0]]
+  it('should read the state of each datafeed provided', async () => {
+    const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo]
     const resultRequestRepository = new ResultRequestRepository(
       ('' as unknown) as Db,
       feedInfos
@@ -84,9 +78,8 @@ describe('web3Middleware', () => {
     expect(lastResponseMock).toBeCalledTimes(1)
     expect(requestIdMock).toBeCalledTimes(1)
   })
-  //FIXME: fix test
   it('should insert each new contract snapshot', async () => {
-    const feedInfos: Array<FeedInfo> = [dataFeeds[0]]
+    const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo]
     const resultRequestRepository = new ResultRequestRepository(
       ('' as unknown) as Db,
       feedInfos
@@ -121,13 +114,14 @@ describe('web3Middleware', () => {
       feedInfos
     )
     await middleware.listen()
+    await new Promise(resolve => setTimeout(() => resolve(''), 1000))
     middleware.stop()
 
     expect(resultRequestRepository.insert).toBeCalled()
   })
 
   it('should not insert the current state if is already stored', async () => {
-    const feedInfos: Array<FeedInfo> = [dataFeeds[0]].map(feed => {
+    const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo].map(feed => {
       return {
         ...feed,
         pollingPeriod: 500
@@ -190,14 +184,14 @@ describe('web3Middleware', () => {
       feedInfos
     )
     middleware.listen()
-    await new Promise(resolve => setTimeout(() => resolve(''), 3000))
+    await new Promise(resolve => setTimeout(() => resolve(''), 1000))
     middleware.stop()
 
-    expect(resultRequestRepository.insert).toBeCalledTimes(0)
+    expect(resultRequestRepository.insert).toBeCalledTimes(1)
   })
 
   it('should initialize data feed if not exists', async () => {
-    const feedInfos: Array<FeedInfo> = dataFeeds
+    const feedInfos: Array<FeedInfo> = dataFeeds as Array<FeedInfo>
     const resultRequestRepository = new ResultRequestRepository(
       ('' as unknown) as Db,
       feedInfos
@@ -242,7 +236,7 @@ describe('web3Middleware', () => {
   })
 
   it('should not initialize data feed if exists', async () => {
-    const feedInfos: Array<FeedInfo> = dataFeeds
+    const feedInfos: Array<FeedInfo> = dataFeeds as Array<FeedInfo>
     const resultRequestRepository = new ResultRequestRepository(
       ('' as unknown) as Db,
       feedInfos

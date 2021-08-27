@@ -10,10 +10,7 @@ import fs from 'fs'
 import path from 'path'
 
 const dataFeeds = JSON.parse(
-  fs.readFileSync(
-    path.resolve('./test/web3Middleware/dataFeeds.json'),
-    'utf-8'
-  )
+  fs.readFileSync(path.resolve('./test/web3Middleware/dataFeeds.json'), 'utf-8')
 )
 const state: {
   mongoManager: MongoManager

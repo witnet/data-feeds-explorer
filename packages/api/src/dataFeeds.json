@@ -1,23 +1,5 @@
 [
   {
-    "address": "0xF2712e7114A237625EFC8bBA6a6ed1Bb8b6029c9",
-    "network": "mainnet",
-    "name": "btc/usd",
-    "label": "$",
-    "pollingPeriod": 3600000,
-    "color": "#41BEA5de",
-    "blockExplorer": "https://etherscan.io/address/{address}"
-  },
-  {
-    "address": "0x1ebD93231a7fE551E1d6405404Df34909eff4c2C",
-    "network": "mainnet",
-    "name": "eth/usd",
-    "label": "$",
-    "pollingPeriod": 3600000,
-    "color": "#41BEA5de",
-    "blockExplorer": "https://etherscan.io/address/{address}"
-  },
-  {
     "address": "0xa7C971149AdfdFB237A0F78D7d317B916FFCE093",
     "network": "rinkeby",
     "name": "btc/usd",
