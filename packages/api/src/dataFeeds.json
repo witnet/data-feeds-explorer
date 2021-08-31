@@ -94,7 +94,7 @@
     "network": "conflux-testnet",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 150000,
+    "pollingPeriod": 15000,
     "color": "#be4141de",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
@@ -105,7 +105,7 @@
     "network": "conflux-testnet",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 150000,
+    "pollingPeriod": 15000,
     "color": "#be4141de",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
@@ -116,7 +116,7 @@
     "network": "conflux-testnet",
     "name": "cfx/usdt",
     "label": "₮",
-    "pollingPeriod": 150000,
+    "pollingPeriod": 15000,
     "color": "#be4141de",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
@@ -127,7 +127,7 @@
     "network": "conflux-testnet",
     "name": "xau/eur",
     "label": "$",
-    "pollingPeriod": 150000,
+    "pollingPeriod": 15000,
     "color": "#be4141de",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   }
