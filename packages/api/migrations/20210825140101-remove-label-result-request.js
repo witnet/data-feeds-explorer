@@ -89,8 +89,8 @@ module.exports = {
             }
           }
         )
-        // Remove feedId, label, address and add feedFullName to result-request
-        await db.collection('result-request').updateMany(
+        // Remove feedId, label, address and add feedFullName to result_request
+        await db.collection('result_request').updateMany(
           { address: feed.address },
           {
             $unset: { feedId: 1, label: 1, address: 1 },

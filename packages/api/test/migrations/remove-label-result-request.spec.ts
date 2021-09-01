@@ -75,19 +75,18 @@ describe('migration-update', function () {
     beforeEach(async () => {
       await state.db.collection('feed').insertMany([feed1, feed2])
       await state.db
-        .collection('result-request')
+        .collection('result_request')
         .insertMany([resultRequest1, resultRequest2])
 
       await state.db
-        .collection('result-request')
+        .collection('result_request')
         .find({})
         .toArray()
-
-      await up(state.db)
     })
 
     describe('feeds', () => {
       it('should not change unnecessary fields', async () => {
+        await up(state.db)
         const updated = await state.db
           .collection('feed')
           .find({})
@@ -108,6 +107,7 @@ describe('migration-update', function () {
       })
 
       it('should add feedFullName', async () => {
+        await up(state.db)
         const updated = await state.db
           .collection('feed')
           .find({})
@@ -125,7 +125,6 @@ describe('migration-update', function () {
 
       it('should remove requests field', async () => {
         await up(state.db)
-
         const updated = await state.db
           .collection('feed')
           .find({})
@@ -137,7 +136,6 @@ describe('migration-update', function () {
 
       it('should remove lastResult field', async () => {
         await up(state.db)
-
         const updated = await state.db
           .collection('feed')
           .find({})
@@ -151,9 +149,8 @@ describe('migration-update', function () {
     describe('Result requests', () => {
       it('should not change unnecessary fields', async () => {
         await up(state.db)
-
         const updated = await state.db
-          .collection('result-request')
+          .collection('result_request')
           .find({})
           .toArray()
 
@@ -171,9 +168,8 @@ describe('migration-update', function () {
 
       it('should remove label from result request', async () => {
         await up(state.db)
-
         const updated = await state.db
-          .collection('result-request')
+          .collection('result_request')
           .find({})
           .toArray()
 
@@ -183,9 +179,8 @@ describe('migration-update', function () {
 
       it('should remove feedId from result request', async () => {
         await up(state.db)
-
         const updated = await state.db
-          .collection('result-request')
+          .collection('result_request')
           .find({})
           .toArray()
 
@@ -195,9 +190,8 @@ describe('migration-update', function () {
 
       it('should add feedFullName to result request', async () => {
         await up(state.db)
-
         const updated = await state.db
-          .collection('result-request')
+          .collection('result_request')
           .find({})
           .toArray()
 

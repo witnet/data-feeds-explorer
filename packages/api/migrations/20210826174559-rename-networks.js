@@ -5,7 +5,7 @@ const dataFeeds = require('../src/dataFeeds.json')
  */
 module.exports = {
   async up (db, client) {
-    const feedInfosByFeedFullName = dataFeeds.reduce(
+    const networksByFeedFullName = dataFeeds.reduce(
       (acc, feedInfo) => ({
         ...acc,
         [feedInfo.feedFullName]: feedInfo.network
@@ -14,11 +14,13 @@ module.exports = {
     )
 
     const promises = dataFeeds.map(async dataFeed => {
-      await db.collection('feed').updateOne(
+      await db.collection('feed').updateMany(
         {
-          feedFullName: feedInfosByFeedFullName[dataFeed].feedFullName
+          feedFullName: dataFeed.feedFullName 
         },
-        { network: feedInfosByFeedFullName[dataFeed.feedFullName].network }
+        { $set: {
+           network: networksByFeedFullName[dataFeed.feedFullName] }
+        }
       )
     })
 
