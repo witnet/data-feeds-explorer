@@ -128,7 +128,6 @@ describe('feeds', function () {
       .insert(dataFeeds[0])
 
     const { feedFullName } = feedResponse.ops[0]
-    console.log('feedfullanem', feedFullName)
     const resultRequestExample1 = {
       result: '1111.0',
       feedFullName,
@@ -181,7 +180,6 @@ describe('feeds', function () {
         timestamp: getTimestampByRange(CHART_RANGE.m.value)
       }
     })
-    console.log('feed', data)
     const feed = data.data.feed
     expect(feed).toHaveProperty('address', dataFeeds[0].address)
     expect(feed).toHaveProperty('name', dataFeeds[0].name)

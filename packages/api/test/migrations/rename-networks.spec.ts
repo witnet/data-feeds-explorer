@@ -1,5 +1,5 @@
 import { Db } from 'mongodb'
-import { up } from '../../migrations/20210825140101-remove-label-result-request'
+import { up } from '../../migrations/20210826174559-rename-networks'
 import { MongoManager } from '../../src/database'
 
 import dataFeeds from '../../src/dataFeeds.json'
@@ -39,7 +39,8 @@ describe('rename-networks', function () {
       network: 'wrong-network-1',
       requests: [],
       color: dataFeeds[0].color,
-      blockExplorer: dataFeeds[0].blockExplorer
+      blockExplorer: dataFeeds[0].blockExplorer,
+      feedFullName: dataFeeds[0].feedFullName 
     }
     const feed2 = {
       name: dataFeeds[1].name,
@@ -49,12 +50,12 @@ describe('rename-networks', function () {
       network: 'wrong-network-2',
       requests: [],
       color: dataFeeds[1].color,
-      blockExplorer: dataFeeds[1].blockExplorer
+      blockExplorer: dataFeeds[1].blockExplorer,
+      feedFullName: dataFeeds[1].feedFullName,
     }
 
     beforeEach(async () => {
       await state.db.collection('feed').insertMany([feed1, feed2])
-
       await up(state.db)
     })
 
@@ -64,7 +65,7 @@ describe('rename-networks', function () {
           .collection('feed')
           .find({})
           .toArray()
-
+        // await up(state.db)
         expect(updated[0]).toHaveProperty('name', feed1.name)
         expect(updated[0]).toHaveProperty('address', feed1.address)
         expect(updated[0]).toHaveProperty('label', feed1.label)
@@ -82,9 +83,9 @@ describe('rename-networks', function () {
           .collection('feed')
           .find({})
           .toArray()
-
+      
         expect(updated[0]).toHaveProperty('network', dataFeeds[0].network)
-        expect(updated[1]).toHaveProperty('feedFullName', dataFeeds[1].network)
+        expect(updated[1]).toHaveProperty('feedFullName', dataFeeds[1].feedFullName)
       })
     })
   })
