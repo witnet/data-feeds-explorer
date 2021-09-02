@@ -33,7 +33,7 @@ export default {
   width: 100%;
   grid-template: repeat(auto-fill, minmax(150px, 1fr)) / repeat(
       auto-fill,
-      minmax(300px, 1fr)
+      250px
     );
   justify-items: center;
   align-items: center;
@@ -41,12 +41,13 @@ export default {
 
 @media screen and (max-width: 600px) {
   .feeds-container {
-    padding: 0 16px 16px 16px;
+    padding: 0;
   }
 }
 @media screen and (max-width: 1200px) {
   .feeds-container {
-    padding: 0 32px 32px 32px;
+    padding: 0;
+    justify-content: center;
   }
 }
 </style>

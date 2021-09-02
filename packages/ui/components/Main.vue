@@ -70,8 +70,7 @@ export default {
             name: this.formatSvgName(feed.name),
             alt: feed.name,
           },
-          // Temporary solution while new card is implemented
-          network: feed.network.split('-')[0],
+          network: feed.network,
           color: feed.color,
           blockExplorer: feed.blockExplorer,
         }
@@ -106,7 +105,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   .section-title {
-    font-size: 20px;
+    font-size: 18px;
     align-self: flex-end;
     font-weight: 600;
   }
