@@ -118,6 +118,9 @@ export default {
     feedAddress() {
       return this.feed ? this.feed.address : ''
     },
+    feedDecimals() {
+      return this.feed ? this.feed.name.split('_').pop() : 3
+    },
     chartData() {
       if (this.feed && this.feed.requests.length > 0) {
         return this.feed.requests
@@ -125,7 +128,7 @@ export default {
             return {
               time: Number(request.timestamp),
               value:
-                request.result.slice(0, -3) + '.' + request.result.slice(-3),
+                request.result.slice(0, -this.decimals) + '.' + request.result.slice(-this.decimals),
             }
           })
           .sort((t1, t2) => t1.time - t2.time)
