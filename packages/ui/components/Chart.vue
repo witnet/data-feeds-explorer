@@ -38,6 +38,10 @@ export default {
       type: String,
       required: true,
     },
+    decimals: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -146,7 +150,9 @@ export default {
         const price = param.seriesPrices.get(this.lineChart)
         if (param.time) {
           const dateStr = this.dateToString(param.time)
-          this.value = `${this.dataLabel} ${Math.round(price * 1000) / 1000}`
+          this.value = `${this.dataLabel} ${
+            Math.round(price * 10 ** this.decimals) / 10 ** this.decimals
+          }`
           this.date = dateStr
         }
       })

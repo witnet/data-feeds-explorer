@@ -23,6 +23,7 @@
       :data="chartData"
       :data-label="feed.label"
       :name="feedName"
+      :decimals="feedDecimals"
       @change-range="updateQuery"
     />
     <Fieldset
@@ -118,6 +119,9 @@ export default {
     feedAddress() {
       return this.feed ? this.feed.address : ''
     },
+    feedDecimals() {
+      return this.feed ? this.feed.feedFullName.split('_').pop() || 3 : 3
+    },
     chartData() {
       if (this.feed && this.feed.requests.length > 0) {
         return this.feed.requests
@@ -125,7 +129,9 @@ export default {
             return {
               time: Number(request.timestamp),
               value:
-                request.result.slice(0, -3) + '.' + request.result.slice(-3),
+                (request.result.slice(0, -this.feedDecimals) || 0) +
+                '.' +
+                request.result.slice(-this.feedDecimals),
             }
           })
           .sort((t1, t2) => t1.time - t2.time)
@@ -141,6 +147,7 @@ export default {
           data: {
             label: this.feed.label,
             value: request.result,
+            decimals: this.feedDecimals,
           },
           timestamp: request.timestamp,
         }))

@@ -63,6 +63,7 @@ export default {
             name: 'feeds-id',
             params: { id: feed.feedFullName },
           },
+          decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
           name: feed.name,
           value: feed.lastResult,
           label: feed.label,

@@ -5,6 +5,7 @@
       :key="feed.name + feed.network + feed.value + feed.color"
       :details-path="feed.detailsPath"
       :name="feed.name"
+      :decimals="feed.decimals"
       :img="feed.img"
       :value="feed.value"
       :label="feed.label"

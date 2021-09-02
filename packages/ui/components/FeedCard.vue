@@ -21,6 +21,10 @@ export default {
       type: Object,
       required: true,
     },
+    decimals: {
+      type: Number,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -48,7 +52,11 @@ export default {
   },
   computed: {
     formatedValue() {
-      return formatNumber(this.value.slice(0, -3) + '.' + this.value.slice(-3))
+      return formatNumber(
+        (this.value.slice(0, -this.decimals) || 0) +
+          '.' +
+          this.value.slice(-this.decimals)
+      )
     },
   },
 }
