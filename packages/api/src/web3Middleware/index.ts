@@ -163,7 +163,7 @@ export class Web3Middleware {
         this.lastStoredResult[feed.feedFullName] = result
       }
     } catch (error) {
-      console.error(`Error reading contracts state: ${feed}`)
+      console.error(`Error reading contracts state: ${error}`)
     }
   }
 }

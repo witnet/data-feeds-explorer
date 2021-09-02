@@ -4,10 +4,18 @@
       <nuxt-link class="back-to-list" :to="localePath('/')">
         <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />
       </nuxt-link>
-      <SvgIcon v-if="svgIcon" :name="svgIcon" />
-      <p v-if="feed && network" class="network" :style="{ color: feed.color }">
-        {{ network }}
-      </p>
+      <div class="title">
+        <SvgIcon v-if="svgIcon" :name="svgIcon" />
+        <p v-if="feed && feed.name" class="feed-name">
+          {{ feed.name.toUpperCase() }}
+        </p>
+      </div>
+      <Networks
+        v-if="feed && feed.network"
+        class="network-details"
+        :network="feed.network"
+        :color="feed.color"
+      />
     </div>
     <Chart
       v-if="feed"
@@ -110,11 +118,6 @@ export default {
     feedAddress() {
       return this.feed ? this.feed.address : ''
     },
-    network() {
-      return this.feed && this.feed.network
-        ? this.feed.network.toUpperCase()
-        : ''
-    },
     chartData() {
       if (this.feed && this.feed.requests.length > 0) {
         return this.feed.requests
@@ -190,13 +193,20 @@ export default {
     display: grid;
     grid-template: 1fr / 1fr 1fr 1fr;
     justify-items: center;
-    align-items: center;
+    align-items: flex-end;
     margin-top: 16px;
     width: 100%;
-    .network {
-      font-size: 16px;
+    .network-details {
       justify-self: flex-end;
-      font-weight: bold;
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .feed-name {
+        font-weight: 600;
+        margin-top: 8px;
+      }
     }
     .back-to-list {
       justify-self: flex-start;

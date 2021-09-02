@@ -76,13 +76,16 @@ export default {
     column-gap: 8px;
 
     .witnet-logo {
+      width: 90px;
       grid-row: 1 / span 2;
     }
     .logo-subtitle-color {
+      font-size: 18px;
       align-self: flex-start;
       color: var(--logo-dot);
     }
     .logo-subtitle {
+      font-size: 18px;
       align-self: flex-end;
       color: var(--logo-main);
     }
@@ -101,7 +104,7 @@ export default {
     }
     .tab {
       cursor: pointer;
-      font-size: 1.12rem;
+      font-size: 18px;
       display: flex;
       font-weight: 600;
       color: var(--text);

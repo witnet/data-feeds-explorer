@@ -1,10 +1,12 @@
 <template>
   <nuxt-link v-if="value" :to="localeRoute(detailsPath)">
     <div class="card-container">
-      <p class="network" :style="{ color }">{{ networkName }}</p>
-      <p class="name">{{ name.toUpperCase() }}</p>
-      <p class="value">{{ label }} {{ formatedValue }}</p>
-      <SvgIcon class="img" :name="img.name" />
+      <div class="title">
+        <SvgIcon class="img" :name="img.name" />
+        <p class="name">{{ name.toUpperCase() }}</p>
+      </div>
+      <p class="value">{{ formatedValue }}</p>
+      <Networks :network="network" :color="color" />
     </div>
   </nuxt-link>
 </template>
@@ -48,9 +50,6 @@ export default {
     formatedValue() {
       return formatNumber(this.value.slice(0, -3) + '.' + this.value.slice(-3))
     },
-    networkName() {
-      return this.network.toUpperCase()
-    },
   },
 }
 </script>
@@ -66,36 +65,37 @@ a {
   color: var(--value-color);
 }
 .card-container {
-  width: max-content;
+  width: 250px;
   height: max-content;
   border: var(--card-border);
   background: var(--card-background);
   box-shadow: var(--card-box-shadow);
   font-weight: bold;
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: max-content max-content max-content;
+  row-gap: 16px;
+  align-content: center;
   border-radius: 4px;
   column-gap: 24px;
-  padding: 16px;
+  padding: 18px 24px;
   cursor: pointer;
-  .network {
-    font-size: 24px;
+  .title {
+    display: flex;
+    align-items: center;
   }
   .img {
-    grid-row: 1 / span 3;
-    grid-column: 2;
     align-self: center;
+    margin-right: 8px;
   }
   .name {
     margin: 8px 0 4px 0;
     color: var(--name-color);
-    font-size: 34px;
+    font-size: 24px;
   }
   .value {
-    margin-bottom: 8px;
     color: var(--value-color);
-    font-size: 24px;
+    font-size: 18px;
   }
 }
 </style>
