@@ -33,17 +33,6 @@
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
   },
   {
-    "feedFullName": "ethereum-rinkeby_xau-usdt_3",
-    "abi": "./src/abi/PriceFeed.json",
-    "address": "0x407f149da8eC06215E5c483F5461B2Cb6E8fF7Fe",
-    "network": "ethereum-rinkeby",
-    "name": "xau/eur",
-    "label": "$",
-    "pollingPeriod": 1500000,
-    "color": "#BEA241de",
-    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
-  },
-  {
     "feedFullName": "ethereum-goerli_btc-usd_3",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0x43Fe8778389f4EB98e82B750DCCAfF0D7d57778c",
@@ -77,28 +66,6 @@
     "blockExplorer": "https://goerli.etherscan.io/address/{address}"
   },
   {
-    "feedFullName": "ethereum-goerli_xau-eur_3",
-    "abi": "./src/abi/PriceFeed.json",
-    "address": "0x2fE6398803B30d3A3a29e733487Eb6Ef4Ccc4a3E",
-    "network": "ethereum-goerli",
-    "name": "xau/eur",
-    "label": "$",
-    "pollingPeriod": 1500000,
-    "color": "#4182bede",
-    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
-  },
-  {
-    "feedFullName": "conflux-testnet_xau-eur_3",
-    "abi": "./src/abi/PriceFeed.json",
-    "address": "0x8D8f26d4632A8d985618Ae60569C93f3a57009Da",
-    "network": "conflux-testnet",
-    "name": "btc/usd",
-    "label": "$",
-    "pollingPeriod": 15000,
-    "color": "#be4141de",
-    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
-  },
-  {
     "feedFullName": "conflux-testnet_eth-usd_3",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0x8fe2d6e0984fc65Ad68726A74d822881282A30A0",
@@ -116,17 +83,6 @@
     "network": "conflux-testnet",
     "name": "cfx/usdt",
     "label": "₮",
-    "pollingPeriod": 15000,
-    "color": "#be4141de",
-    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
-  },
-  {
-    "feedFullName": "conflux-testnet_xau-eur_3",
-    "abi": "./src/abi/PriceFeed.json",
-    "address": "0x8487201D265e2ab9d866AB24d9698DACC4c0af1A",
-    "network": "conflux-testnet",
-    "name": "xau/eur",
-    "label": "$",
     "pollingPeriod": 15000,
     "color": "#be4141de",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
