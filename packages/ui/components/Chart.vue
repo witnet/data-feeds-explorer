@@ -144,13 +144,13 @@ export default {
       return formatTimestamp(date)
     },
     updateTooltip() {
-      this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
+      this.value = `${this.data[this.data.length - 1].value}`
       this.date = this.dateToString(this.data[this.data.length - 1].time)
       this.chart.subscribeCrosshairMove((param) => {
         const price = param.seriesPrices.get(this.lineChart)
         if (param.time) {
           const dateStr = this.dateToString(param.time)
-          this.value = `${this.dataLabel} ${
+          this.value = `${
             Math.round(price * 10 ** this.decimals) / 10 ** this.decimals
           }`
           this.date = dateStr

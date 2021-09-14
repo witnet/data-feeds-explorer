@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     value() {
-      return `${this.data.label} ${formatNumber(
+      return `${formatNumber(
         parseFloat(this.data.value) / 10 ** this.data.decimals
       )}`
     },
