@@ -52,11 +52,7 @@ export default {
   },
   computed: {
     formatedValue() {
-      return formatNumber(
-        (this.value.slice(0, -this.decimals) || 0) +
-          '.' +
-          this.value.slice(-this.decimals)
-      )
+      return formatNumber(parseFloat(this.value) / 10 ** this.decimals)
     },
   },
 }

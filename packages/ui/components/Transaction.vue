@@ -42,9 +42,7 @@ export default {
   computed: {
     value() {
       return `${this.data.label} ${formatNumber(
-        (this.data.value.slice(0, -this.data.decimals) || 0) +
-          '.' +
-          this.data.value.slice(-this.data.decimals)
+        parseFloat(this.data.value) / 10 ** this.data.decimals
       )}`
     },
   },
