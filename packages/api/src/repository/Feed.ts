@@ -22,6 +22,7 @@ export class FeedRepository {
     return (
       await this.collection
         .find({ feedFullName: { $in: this.dataFeedsFullNames } })
+        .sort("network")
         .toArray()
     ).map(this.normalizeId)
   }
