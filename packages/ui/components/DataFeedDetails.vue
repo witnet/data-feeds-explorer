@@ -59,7 +59,6 @@ import requests from '@/apollo/queries/requests.gql'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 import { CHART_RANGE } from '@/constants'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
-import { formatNumber } from '@/utils/formatNumber'
 
 export default {
   apollo: {
@@ -129,9 +128,7 @@ export default {
           .map((request) => {
             return {
               time: Number(request.timestamp),
-              value: formatNumber(
-                parseFloat(request.result) / 10 ** this.feedDecimals
-              ),
+              value: parseFloat(request.result) / 10 ** this.feedDecimals,
             }
           })
           .sort((t1, t2) => t1.time - t2.time)
