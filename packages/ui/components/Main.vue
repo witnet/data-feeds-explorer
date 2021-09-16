@@ -2,11 +2,11 @@
   <div v-if="!$apollo.loading">
     <div class="section-header">
       <p class="section-title">{{ $t('main.data_feeds') }}</p>
-      <!-- <Select
+      <Select
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
-      /> -->
+      />
     </div>
     <div class="list-container">
       <DataFeeds :feeds="allFeeds" />
@@ -35,6 +35,7 @@ export default {
         return {
           page: this.currentPage,
           pageSize: this.itemsPerPage,
+          network: this.selected.label,
         }
       },
       pollInterval: 60000,
@@ -44,13 +45,14 @@ export default {
     return {
       currentPage: 1,
       itemsPerPage: 25,
-      // options: [
-      //   { label: 'All' },
-      //   { label: 'Rinkeby' },
-      //   { label: 'Goerly' },
-      //   { label: 'Mainnet' },
-      // ],
-      // selected: { label: 'All' },
+      options: [
+        { label: 'all', key: 'All' },
+        { label: 'ethereum-rinkeby', key: 'Ethereum Rinkeby' },
+        { label: 'ethereum-goerli', key: 'Ethereum Goerli' },
+        { label: 'conflux-testnet', key: 'Conflux Testnet' },
+        { label: 'boba-rinkeby', key: 'Boba Rinkeby' },
+      ],
+      selected: { label: 'all', key: 'All' },
     }
   },
   computed: {
@@ -83,19 +85,9 @@ export default {
     handleCurrentChange(val) {
       this.currentPage = val
     },
-    formatSvgName(name) {
-      return name.split('/').join('')
+    updateSelected(selectedOption) {
+      this.selected = selectedOption
     },
-    //   updateSelected(selectedOption) {
-    //     this.selected = selectedOption
-    //     if (this.selected.label === 'All') {
-    //       this.dataFeeds = this.allFeeds
-    //     } else {
-    //       this.dataFeeds = this.allFeeds.filter((feed) => {
-    //         return feed.network === this.selected.label.toLowerCase()
-    //       })
-    //     }
-    //   },
   },
 }
 </script>
@@ -126,12 +118,12 @@ export default {
 
 @media (max-width: 1200px) {
   .section-header {
-    padding: 0 32px 24px 32px;
+    padding: 0 32px 32px 32px;
   }
 }
 @media (max-width: 600px) {
   .section-header {
-    padding: 0 16px 24px 16px;
+    padding: 0 32px 32px 32px;
   }
   .list-container {
     .pagination {

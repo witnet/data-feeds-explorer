@@ -99,7 +99,6 @@ export class Web3Middleware {
 
   listenToDataFeed (feedInfo: FeedInfo, feedId: ObjectId) {
     const provider = getProvider(feedInfo.network)
-    console.log('provider', provider)
     const web3 = new this.Web3(provider)
     const feedContract = new web3.eth.Contract(feedInfo.abi, feedInfo.address)
     const interval = setInterval(async () => {

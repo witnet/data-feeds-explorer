@@ -37,7 +37,7 @@ const typeDefs = gql`
 
   type Query {
     feed(feedFullName: String!): Feed
-    feeds(page: Int!, pageSize: Int!): FeedsPage!
+    feeds(page: Int!, pageSize: Int!, network: String): FeedsPage!
     requests(feedFullName: String!, page: Int!, size: Int!): [ResultRequest]!
   }
 `

@@ -4,7 +4,11 @@ const resolvers = {
   Query: {
     feeds: async (_parent, args, { feedRepository }: Context) => {
       return {
-        feeds: await feedRepository.getFeeds(args.page, args.pageSize),
+        feeds: await feedRepository.getFeeds(
+          args.page,
+          args.pageSize,
+          args.network
+        ),
         total: await feedRepository.getTotalCount()
       }
     },

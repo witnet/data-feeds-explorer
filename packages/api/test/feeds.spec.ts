@@ -56,8 +56,8 @@ describe('feeds', function () {
 
   it('get feed list without data feeds', async () => {
     const GET_FEEDS = gql`
-      query feeds($page: Int!, $pageSize: Int!) {
-        feeds(page: $page, pageSize: $pageSize) {
+      query feeds($page: Int!, $pageSize: Int!, $network: String!) {
+        feeds(page: $page, pageSize: $pageSize, network: $network) {
           feeds {
             name
             address
@@ -78,7 +78,8 @@ describe('feeds', function () {
       query: GET_FEEDS,
       variables: {
         page: 1,
-        pageSize: 6
+        pageSize: 6,
+        network: 'all'
       }
     })
 
@@ -90,8 +91,8 @@ describe('feeds', function () {
     await state.mongoManager.db.collection('feed').insertOne(dataFeed)
 
     const GET_FEEDS = gql`
-      query feeds($page: Int!, $pageSize: Int!) {
-        feeds(page: $page, pageSize: $pageSize) {
+      query feeds($page: Int!, $pageSize: Int!, $network: String!) {
+        feeds(page: $page, pageSize: $pageSize, network: $network) {
           feeds {
             id
             name
@@ -112,7 +113,8 @@ describe('feeds', function () {
       query: GET_FEEDS,
       variables: {
         page: 1,
-        pageSize: 6
+        pageSize: 6,
+        network: 'all'
       }
     })
     expect(feeds.length).toBe(1)
@@ -279,7 +281,6 @@ describe('feeds', function () {
         timestamp: getTimestampByRange(CHART_RANGE.w.value)
       }
     })
-
     expect(feed).toHaveProperty('address', dataFeeds[0].address)
     expect(feed).toHaveProperty('name', dataFeeds[0].name)
     expect(feed).toHaveProperty('lastResult', resultRequestExample1.result)
@@ -407,8 +408,8 @@ describe('feeds', function () {
     await state.mongoManager.db.collection('feed').insertOne(dataFeeds[1])
 
     const GET_FEEDS = gql`
-      query feeds($page: Int!, $pageSize: Int!) {
-        feeds(page: $page, pageSize: $pageSize) {
+      query feeds($page: Int!, $pageSize: Int!, $network: String!) {
+        feeds(page: $page, pageSize: $pageSize, network: $network) {
           feeds {
             name
             address
@@ -429,7 +430,8 @@ describe('feeds', function () {
       query: GET_FEEDS,
       variables: {
         page: 1,
-        pageSize: 6
+        pageSize: 6,
+        network: 'all'
       }
     })
 

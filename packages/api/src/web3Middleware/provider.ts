@@ -1,7 +1,6 @@
 import { Network } from './../types'
 
 export function getProvider (network: Network) {
-  console.log('network', network)
   const providers: Record<Network, string> = {
     [Network.EthereumMainnet]: process.env.ETHEREUM_MAINNET_PROVIDER,
     [Network.EthereumGoerli]: process.env.ETHEREUM_GOERLI_PROVIDER,
@@ -11,6 +10,5 @@ export function getProvider (network: Network) {
     [Network.ConfluxMainnet]: process.env.CONFLUX_MAINNET_PROVIDER,
     [Network.BobaRinkeby]: process.env.BOBA_RINKEBY_PROVIDER
   }
-  console.log('provider', network, providers[network])
   return providers[network]
 }

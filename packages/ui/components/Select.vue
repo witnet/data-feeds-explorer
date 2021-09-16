@@ -1,6 +1,7 @@
 <template>
   <vSelect
     v-model="selected"
+    dir="rtl"
     :clearable="false"
     :filterable="false"
     :options="options"
@@ -9,11 +10,11 @@
     placeholder="Choose an option"
   >
     <template #selected-option-container="{ option }">
-      <span class="vs__selected">{{ option.label }}</span>
+      <span class="vs__selected">{{ option.key }}</span>
     </template>
 
     <template #option="option">
-      <span>{{ option.label }}</span>
+      <span>{{ option.key }}</span>
     </template>
   </vSelect>
 </template>
@@ -67,6 +68,7 @@ export default {
   }
   .vs__dropdown-menu {
     background: var(--selected-options-background);
+    right: 0;
     top: 50px;
     border: var(--selected-options-border);
     box-shadow: var(--selected-options-shadow);
@@ -107,7 +109,7 @@ export default {
     font-family: Almarai, sans-serif;
     font-weight: 600;
     margin: 0;
-    padding: 0 0 0 8px;
+    padding: 0 8px 0 0;
   }
   &:hover {
     .vs__selected {

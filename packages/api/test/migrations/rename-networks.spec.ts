@@ -40,7 +40,7 @@ describe('rename-networks', function () {
       requests: [],
       color: dataFeeds[0].color,
       blockExplorer: dataFeeds[0].blockExplorer,
-      feedFullName: dataFeeds[0].feedFullName 
+      feedFullName: dataFeeds[0].feedFullName
     }
     const feed2 = {
       name: dataFeeds[1].name,
@@ -51,7 +51,7 @@ describe('rename-networks', function () {
       requests: [],
       color: dataFeeds[1].color,
       blockExplorer: dataFeeds[1].blockExplorer,
-      feedFullName: dataFeeds[1].feedFullName,
+      feedFullName: dataFeeds[1].feedFullName
     }
 
     beforeEach(async () => {
@@ -83,9 +83,12 @@ describe('rename-networks', function () {
           .collection('feed')
           .find({})
           .toArray()
-      
+
         expect(updated[0]).toHaveProperty('network', dataFeeds[0].network)
-        expect(updated[1]).toHaveProperty('feedFullName', dataFeeds[1].feedFullName)
+        expect(updated[1]).toHaveProperty(
+          'feedFullName',
+          dataFeeds[1].feedFullName
+        )
       })
     })
   })

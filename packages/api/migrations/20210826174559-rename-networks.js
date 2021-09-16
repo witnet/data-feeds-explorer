@@ -16,10 +16,12 @@ module.exports = {
     const promises = dataFeeds.map(async dataFeed => {
       await db.collection('feed').updateMany(
         {
-          feedFullName: dataFeed.feedFullName 
+          feedFullName: dataFeed.feedFullName
         },
-        { $set: {
-           network: networksByFeedFullName[dataFeed.feedFullName] }
+        {
+          $set: {
+            network: networksByFeedFullName[dataFeed.feedFullName]
+          }
         }
       )
     })
