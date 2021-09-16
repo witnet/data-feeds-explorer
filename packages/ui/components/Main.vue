@@ -24,6 +24,7 @@
 
 <script>
 import feeds from '@/apollo/queries/feeds.gql'
+import { formatSvgName } from '../utils/formatSvgName'
 
 export default {
   apollo: {
@@ -68,7 +69,7 @@ export default {
           value: feed.lastResult,
           label: feed.label,
           img: {
-            name: this.formatSvgName(feed.name),
+            name: formatSvgName(feed.name),
             alt: feed.name,
           },
           network: feed.network,

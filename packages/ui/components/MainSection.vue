@@ -27,6 +27,7 @@
 }
 @media (max-width: 1200px) {
   .main-section {
+    grid-template-rows: 100px 1fr;
     padding: 0;
   }
 }

@@ -59,6 +59,7 @@ import requests from '@/apollo/queries/requests.gql'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 import { CHART_RANGE } from '@/constants'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
+import { formatSvgName } from '@/utils/formatSvgName'
 
 export default {
   apollo: {
@@ -101,7 +102,7 @@ export default {
       return this.numberOfPages > 10
     },
     svgIcon() {
-      return this.feed ? this.feed.name.split('/').join('') : ''
+      return this.feed ? formatSvgName(this.feed.name) : ''
     },
     url() {
       return this.feed
@@ -195,7 +196,7 @@ export default {
   }
   .section-header {
     display: grid;
-    grid-template: 1fr / 1fr 1fr 1fr;
+    grid-template: 1fr / repeat(3, 1fr);
     justify-items: center;
     align-items: flex-end;
     margin-top: 16px;
@@ -229,10 +230,16 @@ export default {
 @media (max-width: 1200px) {
   .content {
     .section-header {
+      grid-template: 1fr 1fr / max-content 1fr;
+      justify-items: flex-end;
       .back-to-list {
         margin-left: 16px;
       }
-      .network {
+      .title {
+        margin-right: 16px;
+      }
+      .networks {
+        grid-column: 1 / span 2;
         margin-right: 16px;
       }
     }
