@@ -2,22 +2,22 @@
   <div v-if="!$apollo.loading">
     <div class="section-header">
       <p class="section-title">{{ $t('main.data_feeds') }}</p>
-      <Select
+      <!-- <Select
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
-      />
+      /> -->
     </div>
     <div class="list-container">
       <DataFeeds :feeds="allFeeds" />
-      <el-pagination
+      <!-- <el-pagination
         v-if="numberOfPages > 1"
         class="pagination"
         layout="prev, pager, next"
         :page-count="numberOfPages"
         :current-page="currentPage"
         @current-change="handleCurrentChange"
-      />
+      /> -->
     </div>
   </div>
 </template>
