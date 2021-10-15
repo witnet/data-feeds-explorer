@@ -2,22 +2,22 @@
   <div v-if="!$apollo.loading">
     <div class="section-header">
       <p class="section-title">{{ $t('main.data_feeds') }}</p>
-      <Select
+      <!-- <Select
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
-      />
+      /> -->
     </div>
     <div class="list-container">
       <DataFeeds :feeds="allFeeds" />
-      <el-pagination
+      <!-- <el-pagination
         v-if="numberOfPages > 1"
         class="pagination"
         layout="prev, pager, next"
         :page-count="numberOfPages"
         :current-page="currentPage"
         @current-change="handleCurrentChange"
-      />
+      /> -->
     </div>
   </div>
 </template>
@@ -60,25 +60,27 @@ export default {
       return Math.ceil(this.feeds.total / this.itemsPerPage)
     },
     allFeeds() {
-      return this.feeds.feeds.map((feed) => {
-        return {
-          detailsPath: {
-            name: 'feeds-id',
-            params: { id: feed.feedFullName },
-          },
-          decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-          name: feed.name,
-          value: feed.lastResult,
-          label: feed.label,
-          img: {
-            name: formatSvgName(feed.name),
-            alt: feed.name,
-          },
-          network: feed.network,
-          color: feed.color,
-          blockExplorer: feed.blockExplorer,
-        }
-      })
+      return this.feeds.feeds
+        .map((feed) => {
+          return {
+            detailsPath: {
+              name: 'feeds-id',
+              params: { id: feed.feedFullName },
+            },
+            decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+            name: feed.name,
+            value: feed.lastResult,
+            label: feed.label,
+            img: {
+              name: formatSvgName(feed.name),
+              alt: feed.name,
+            },
+            network: feed.network,
+            color: feed.color,
+            blockExplorer: feed.blockExplorer,
+          }
+        })
+        .sort((a, b) => a.network < b.network)
     },
   },
   methods: {
