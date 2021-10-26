@@ -1,6 +1,6 @@
 <template>
-  <div class="icon-container">
-    <font-awesome-icon class="mode-icon" :icon="icon" @click="toggleMode" />
+  <div class="icon-container" @click="toggleMode">
+    <font-awesome-icon class="mode-icon" :icon="icon" />
   </div>
 </template>
 

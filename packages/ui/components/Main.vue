@@ -1,14 +1,14 @@
 <template>
-  <div v-if="!$apollo.loading">
+  <div>
     <div class="section-header">
       <p class="section-title">{{ $t('main.data_feeds') }}</p>
-      <!-- <Select
+      <Select
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
-      /> -->
+      />
     </div>
-    <div class="list-container">
+    <div v-if="feeds && feeds.total > 0" class="list-container">
       <DataFeeds :feeds="allFeeds" />
       <!-- <el-pagination
         v-if="numberOfPages > 1"
@@ -31,6 +31,7 @@ export default {
     feeds: {
       prefetch: true,
       query: feeds,
+      fetchPolicy: 'network-only',
       variables() {
         return {
           page: this.currentPage,
@@ -60,27 +61,25 @@ export default {
       return Math.ceil(this.feeds.total / this.itemsPerPage)
     },
     allFeeds() {
-      return this.feeds.feeds
-        .map((feed) => {
-          return {
-            detailsPath: {
-              name: 'feeds-id',
-              params: { id: feed.feedFullName },
-            },
-            decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-            name: feed.name,
-            value: feed.lastResult,
-            label: feed.label,
-            img: {
-              name: formatSvgName(feed.name),
-              alt: feed.name,
-            },
-            network: feed.network,
-            color: feed.color,
-            blockExplorer: feed.blockExplorer,
-          }
-        })
-        .sort((a, b) => a.network < b.network)
+      return this.feeds.feeds.map((feed) => {
+        return {
+          detailsPath: {
+            name: 'feeds-id',
+            params: { id: feed.feedFullName },
+          },
+          decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+          name: feed.name,
+          value: feed.lastResult,
+          label: feed.label,
+          img: {
+            name: formatSvgName(feed.name),
+            alt: feed.name,
+          },
+          network: feed.network,
+          color: feed.color,
+          blockExplorer: feed.blockExplorer,
+        }
+      })
     },
   },
   methods: {

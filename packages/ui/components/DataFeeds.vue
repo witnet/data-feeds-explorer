@@ -36,7 +36,7 @@ export default {
       auto-fill,
       250px
     );
-  justify-items: center;
+  justify-content: center;
   align-items: center;
 }
 
