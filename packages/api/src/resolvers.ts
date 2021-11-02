@@ -3,14 +3,11 @@ import { Context } from './types'
 const resolvers = {
   Query: {
     feeds: async (_parent, args, { feedRepository }: Context) => {
-      return {
-        feeds: await feedRepository.getFeeds(
-          args.page,
-          args.pageSize,
-          args.network
-        ),
-        total: await feedRepository.getTotalCount()
-      }
+      return await feedRepository.getPaginatedFeeds(
+        args.page,
+        args.pageSize,
+        args.network
+      )
     },
 
     requests: async (_parent, args, { resultRequestRepository }: Context) => {

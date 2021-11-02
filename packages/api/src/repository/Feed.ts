@@ -4,7 +4,8 @@ import {
   Collection,
   Db,
   FeedInfo,
-  WithoutId
+  WithoutId,
+  PaginatedFeedsObject
 } from '../types'
 import { containFalsyValues } from './containFalsyValues'
 
@@ -44,11 +45,11 @@ export class FeedRepository {
     return this.normalizeId(await this.collection.findOne({ feedFullName }))
   }
 
-  async getFeeds (
+  async getPaginatedFeeds (
     page: number,
     size: number,
     network: string
-  ): Promise<Array<FeedDbObjectNormalized>> {
+  ): Promise<PaginatedFeedsObject> {
     const queryByNetwork = this.collection.find({
       feedFullName: { $in: this.dataFeedsFullNames },
       network
@@ -58,16 +59,15 @@ export class FeedRepository {
     })
     const query = network !== 'all' ? queryByNetwork : queryAll
 
-    return (
-      await query
-        .skip(size * (page - 1))
-        .limit(size)
-        .toArray()
-    ).map(this.normalizeId)
-  }
-
-  public getTotalCount (): Promise<number> {
-    return this.collection.countDocuments()
+    return {
+      feeds: (
+        await query
+          .skip(size * (page - 1))
+          .limit(size)
+          .toArray()
+      ).map(this.normalizeId),
+      total: await query.count()
+    }
   }
 
   private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized | null {

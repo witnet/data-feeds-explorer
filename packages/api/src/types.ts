@@ -46,6 +46,10 @@ export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
 export type FeedInfoConfig = FeedInfoGeneric<string>
 
 export type FeedDbObjectNormalized = FeedDbObject & { id: string }
+export type PaginatedFeedsObject = {
+  feeds: Array<FeedDbObjectNormalized>
+  total: number
+}
 export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {
   id: string
 }

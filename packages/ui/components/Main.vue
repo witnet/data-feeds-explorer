@@ -10,14 +10,14 @@
     </div>
     <div v-if="feeds && feeds.total > 0" class="list-container">
       <DataFeeds :feeds="allFeeds" />
-      <!-- <el-pagination
+      <el-pagination
         v-if="numberOfPages > 1"
         class="pagination"
         layout="prev, pager, next"
         :page-count="numberOfPages"
         :current-page="currentPage"
         @current-change="handleCurrentChange"
-      /> -->
+      />
     </div>
   </div>
 </template>
