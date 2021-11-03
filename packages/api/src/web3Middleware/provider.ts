@@ -8,7 +8,8 @@ export function getProvider (network: Network) {
     [Network.EthereumRinkeby]: process.env.ETHEREUM_RINKEBY_PROVIDER,
     [Network.ConfluxTestnet]: process.env.CONFLUX_TESTNET_PROVIDER,
     [Network.ConfluxMainnet]: process.env.CONFLUX_MAINNET_PROVIDER,
-    [Network.BobaRinkeby]: process.env.BOBA_RINKEBY_PROVIDER
+    [Network.BobaRinkeby]: process.env.BOBA_RINKEBY_PROVIDER,
+    [Network.CeloAlfajores]: process.env.CELO_ALFAJORES_PROVIDER
   }
   return providers[network]
 }

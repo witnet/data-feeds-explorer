@@ -28,6 +28,7 @@ export enum Network {
   EthereumRinkeby = 'ethereum-rinkeby',
   ConfluxTestnet = 'conflux-testnet',
   ConfluxMainnet = 'conflux-mainnet',
+  CeloAlfajores = 'celo-alfajores',
   BobaRinkeby = 'boba-rinkeby'
 }
 

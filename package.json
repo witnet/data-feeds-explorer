@@ -27,7 +27,6 @@
     "lerna": "^3.22.1",
     "prettier-standard": "^16.4.1",
     "sass-loader": "^10.1.1",
-    "node-sass": "^5.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",

@@ -25,11 +25,10 @@
     "graphql-tag": "^2.12.4",
     "lightweight-charts": "^3.3.0",
     "node-fetch": "^2.6.1",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
     "nuxt": "^2.14.12",
     "nuxt-element-ui": "^1.0.10",
     "nuxt-i18n": "^6.20.2",
-    "sass-loader": "^10",
     "vue-select": "^3.11.2"
   },
   "devDependencies": {
