@@ -3,6 +3,7 @@
     <div class="section-header">
       <p class="section-title">{{ $t('main.data_feeds') }}</p>
       <Select
+        v-if="options.length > 1"
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
@@ -25,6 +26,7 @@
 <script>
 import feeds from '@/apollo/queries/feeds.gql'
 import { formatSvgName } from '../utils/formatSvgName'
+import { generateSelectOptions } from '../utils/generateSelectOptions'
 
 export default {
   apollo: {
@@ -46,13 +48,6 @@ export default {
     return {
       currentPage: 1,
       itemsPerPage: 25,
-      options: [
-        { label: 'all', key: 'All' },
-        { label: 'ethereum-rinkeby', key: 'Ethereum Rinkeby' },
-        { label: 'ethereum-goerli', key: 'Ethereum Goerli' },
-        { label: 'conflux-testnet', key: 'Conflux Testnet' },
-        { label: 'boba-rinkeby', key: 'Boba Rinkeby' },
-      ],
       selected: { label: 'all', key: 'All' },
     }
   },
@@ -80,6 +75,12 @@ export default {
           blockExplorer: feed.blockExplorer,
         }
       })
+    },
+    options() {
+      return [
+        { label: 'all', key: 'All' },
+        ...generateSelectOptions(this.allFeeds.map((feed) => feed.network)),
+      ]
     },
   },
   methods: {

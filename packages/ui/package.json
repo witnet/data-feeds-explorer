@@ -10,7 +10,7 @@
     "i18n:report": "yarn run vue-i18n-extract use-config",
     "lint:style": "stylelint \"**/*.{vue,css}\" --fix",
     "lint": "yarn lint:js && yarn lint:style",
-    "test": "yarn jest --passWithNoTests",
+    "test": "yarn jest",
     "docker:build": "docker build . --no-cache -t witnet/data-feed-app-ui"
   },
   "dependencies": {
