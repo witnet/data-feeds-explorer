@@ -70,6 +70,7 @@ export class FeedRepository {
     }
   }
 
+  
   private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized | null {
     if (feed && feed._id) {
       return { ...feed, id: feed._id.toString() }

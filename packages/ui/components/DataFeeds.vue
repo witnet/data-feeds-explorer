@@ -45,6 +45,7 @@ export default {
     padding: 0;
   }
 }
+
 @media screen and (max-width: 1200px) {
   .feeds-container {
     padding: 0;
