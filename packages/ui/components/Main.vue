@@ -56,30 +56,34 @@ export default {
       return Math.ceil(this.feeds.total / this.itemsPerPage)
     },
     allFeeds() {
-      return this.feeds.feeds.map((feed) => {
-        return {
-          detailsPath: {
-            name: 'feeds-id',
-            params: { id: feed.feedFullName },
-          },
-          decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-          name: feed.name,
-          value: feed.lastResult,
-          label: feed.label,
-          img: {
-            name: formatSvgName(feed.name),
-            alt: feed.name,
-          },
-          network: feed.network,
-          color: feed.color,
-          blockExplorer: feed.blockExplorer,
-        }
-      })
+      return this.feeds.feeds
+        .map((feed) => {
+          return {
+            detailsPath: {
+              name: 'feeds-id',
+              params: { id: feed.feedFullName },
+            },
+            decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+            name: feed.name,
+            value: feed.lastResult,
+            label: feed.label,
+            img: {
+              name: formatSvgName(feed.name),
+              alt: feed.name,
+            },
+            network: feed.network,
+            color: feed.color,
+            blockExplorer: feed.blockExplorer,
+          }
+        })
+        .sort((feed1, feed2) => feed1.network < feed2.network)
     },
     options() {
       return [
         { label: 'all', key: 'All' },
-        ...generateSelectOptions(this.allFeeds.map((feed) => feed.network)),
+        ...generateSelectOptions(
+          this.allFeeds.map((feed) => feed.network)
+        ).sort((option1, option2) => option1.label < option2.label),
       ]
     },
   },
