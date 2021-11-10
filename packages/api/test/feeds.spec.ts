@@ -142,7 +142,7 @@ describe('feeds', function () {
       result: '2222.0',
       feedFullName,
       requestId: '1',
-      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 11).toString(),
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a'
     }
@@ -185,39 +185,39 @@ describe('feeds', function () {
     const feed = data.data.feed
     expect(feed).toHaveProperty('address', dataFeeds[0].address)
     expect(feed).toHaveProperty('name', dataFeeds[0].name)
-    expect(feed).toHaveProperty('lastResult', resultRequestExample1.result)
+    expect(feed).toHaveProperty('lastResult', resultRequestExample2.result)
     expect(feed.requests.length).toBe(2)
     expect(feed.requests[0]).toHaveProperty(
       'feedFullName',
-      resultRequestExample1.feedFullName
-    )
-    expect(feed.requests[0]).toHaveProperty(
-      'result',
-      resultRequestExample1.result
-    )
-    expect(feed.requests[0]).toHaveProperty(
-      'requestId',
-      resultRequestExample1.requestId
-    )
-    expect(feed.requests[0]).toHaveProperty(
-      'timestamp',
-      resultRequestExample1.timestamp
-    )
-    expect(feed.requests[1]).toHaveProperty(
-      'feedFullName',
       resultRequestExample2.feedFullName
     )
-    expect(feed.requests[1]).toHaveProperty(
+    expect(feed.requests[0]).toHaveProperty(
       'result',
       resultRequestExample2.result
     )
-    expect(feed.requests[1]).toHaveProperty(
+    expect(feed.requests[0]).toHaveProperty(
       'requestId',
       resultRequestExample2.requestId
     )
-    expect(feed.requests[1]).toHaveProperty(
+    expect(feed.requests[0]).toHaveProperty(
       'timestamp',
       resultRequestExample2.timestamp
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'feedFullName',
+      resultRequestExample1.feedFullName
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'result',
+      resultRequestExample1.result
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'requestId',
+      resultRequestExample1.requestId
+    )
+    expect(feed.requests[1]).toHaveProperty(
+      'timestamp',
+      resultRequestExample1.timestamp
     )
   })
 
@@ -240,7 +240,7 @@ describe('feeds', function () {
       result: '2222.0',
       feedFullName,
       requestId: '1',
-      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 11).toString(),
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a'
     }
@@ -322,7 +322,7 @@ describe('feeds', function () {
       result: '2222.0',
       feedFullName,
       requestId: '1',
-      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 10).toString(),
+      timestamp: (getTimestampByRange(CHART_RANGE.m.value) + 11).toString(),
       address: '0x58995FaD03158fB9cd64397347bA97714EF9fC12',
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',

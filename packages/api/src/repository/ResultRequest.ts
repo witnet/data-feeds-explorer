@@ -24,14 +24,19 @@ export class ResultRequestRepository {
         .find(
           {
             feedFullName,
-            timestamp: { $gt: timestamp.toString() }
+            timestamp: { $gt: timestamp.toString() },
+            result: { $exists: true }
           },
           {
             sort: { timestamp: -1 }
           }
         )
         .toArray()
-    ).map(this.normalizeId)
+    )
+      .filter((request, index, self) => {
+        return index === self.findIndex(x => x.timestamp === request.timestamp)
+      })
+      .map(this.normalizeId)
   }
 
   async getFeedRequestsPage (
@@ -42,7 +47,8 @@ export class ResultRequestRepository {
     return (
       await this.collection
         .find({
-          feedFullName
+          feedFullName,
+          result: { $exists: true }
         })
         .sort({ timestamp: -1 })
         .skip(size * (page - 1))
