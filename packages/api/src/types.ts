@@ -29,6 +29,7 @@ export enum Network {
   ConfluxTestnet = 'conflux-testnet',
   ConfluxMainnet = 'conflux-mainnet',
   CeloAlfajores = 'celo-alfajores',
+  CeloMainnet = 'celo-mainnet',
   BobaRinkeby = 'boba-rinkeby'
 }
 
