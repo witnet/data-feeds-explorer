@@ -9,7 +9,7 @@
         @update-selected="updateSelected"
       />
     </div>
-    <div v-if="feeds && feeds.total > 0" class="list-container">
+    <div v-if="allFeeds.length > 0" class="list-container">
       <DataFeeds :feeds="allFeeds" />
       <el-pagination
         v-if="numberOfPages > 1"
@@ -56,35 +56,43 @@ export default {
       return Math.ceil(this.feeds.total / this.itemsPerPage)
     },
     allFeeds() {
-      return this.feeds.feeds
-        .map((feed) => {
-          return {
-            detailsPath: {
-              name: 'feeds-id',
-              params: { id: feed.feedFullName },
-            },
-            decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-            name: feed.name,
-            value: feed.lastResult,
-            label: feed.label,
-            img: {
-              name: formatSvgName(feed.name),
-              alt: feed.name,
-            },
-            network: feed.network,
-            color: feed.color,
-            blockExplorer: feed.blockExplorer,
-          }
-        })
-        .sort((feed1, feed2) => feed1.network < feed2.network)
+      if (this.feeds) {
+        return this.feeds.feeds
+          .map((feed) => {
+            return {
+              detailsPath: {
+                name: 'feeds-id',
+                params: { id: feed.feedFullName },
+              },
+              decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+              name: feed.name,
+              value: feed.lastResult,
+              label: feed.label,
+              img: {
+                name: formatSvgName(feed.name),
+                alt: feed.name,
+              },
+              network: feed.network,
+              color: feed.color,
+              blockExplorer: feed.blockExplorer,
+            }
+          })
+          .sort((feed1, feed2) => feed1.network < feed2.network)
+      } else {
+        return []
+      }
     },
     options() {
-      return [
-        { label: 'all', key: 'All' },
-        ...generateSelectOptions(
-          this.allFeeds.map((feed) => feed.network)
-        ).sort((option1, option2) => option1.label < option2.label),
-      ]
+      if (this.feeds) {
+        return [
+          { label: 'all', key: 'All' },
+          ...generateSelectOptions(
+            this.allFeeds.map((feed) => feed.network)
+          ).sort((option1, option2) => option1.label < option2.label),
+        ]
+      } else {
+        return [{ label: 'all', key: 'All' }]
+      }
     },
   },
   methods: {
