@@ -88,6 +88,17 @@
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
   },
   {
+    "feedFullName": "conflux-testnet_btc-usd_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x8594B74645644b6a5fdE15597D3ADc15C77284A1",
+    "network": "conflux-testnet",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#6600ff",
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+  },
+  {
     "feedFullName": "conflux-testnet_eth-usd_6",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0x80DfFcbD9Fa48553fbC98aa7c21D50Ae47753C89",
@@ -97,6 +108,39 @@
     "pollingPeriod": 300000,
     "color": "#6600ff",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+  },
+  {
+    "feedFullName": "conflux-mainnet_cfx-usdt_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x86e9A67C92455afa725CC01b2036e47cd4dd9929",
+    "network": "conflux-mainnet",
+    "name": "cfx/usdt",
+    "label": "₮",
+    "pollingPeriod": 300000,
+    "color": "#6600ff",
+    "blockExplorer": "https://confluxscan.io/address/{address}"
+  },
+  {
+    "feedFullName": "conflux-mainnet_btc-usd_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x84E250b43337512B04aa5449e3A15FB715b78E88",
+    "network": "conflux-mainnet",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#6600ff",
+    "blockExplorer": "https://confluxscan.io/address/{address}"
+  },
+  {
+    "feedFullName": "conflux-mainnet_eth-usd_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x8Fd10Ad4913DC1F0049B46BfeD9F061e100B7ED9",
+    "network": "conflux-mainnet",
+    "name": "eth/usd",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#6600ff",
+    "blockExplorer": "https://confluxscan.io/address/{address}"
   },
   {
     "feedFullName": "celo-alfajores_btc-usd_6",
@@ -121,6 +165,28 @@
     "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}"
   },
   {
+    "feedFullName": "celo-mainnet_btc-usd_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0xa1A950054d1F778B0758EBe89914410d01A37248",
+    "network": "celo-mainnet",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#1cd8d2",
+    "blockExplorer": "https://explorer.celo.org/address/{address}"
+  },
+  {
+    "feedFullName": "celo-mainnet_eth-usd_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x3ebE9D7BF6cc4A4132c7fC75225f0D1c476d6ACb",
+    "network": "celo-mainnet",
+    "name": "eth/usd",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#1cd8d2",
+    "blockExplorer": "https://explorer.celo.org/address/{address}"
+  },
+  {
     "feedFullName": "boba-rinkeby_btc-usd_6",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
@@ -143,7 +209,7 @@
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}"
   },
   {
-    "feedFullName": "boba-rinkeby_omg-btc_6",
+    "feedFullName": "boba-rinkeby_omg-btc_9",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0x56834Ff8D4b27db647Da97CA3bd8540f7fA0e89D",
     "network": "boba-rinkeby",
@@ -154,7 +220,7 @@
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}"
   },
   {
-    "feedFullName": "boba-rinkeby_omg-eth_6",
+    "feedFullName": "boba-rinkeby_omg-eth_9",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0x225BAd150B9D5202DC805B34A0DF64B1a77459dF",
     "network": "boba-rinkeby",
