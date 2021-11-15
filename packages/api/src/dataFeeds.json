@@ -172,7 +172,7 @@
     "name": "btc/usd",
     "label": "$",
     "pollingPeriod": 300000,
-    "color": "#1cd8d2",
+    "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}"
   },
   {
@@ -183,7 +183,7 @@
     "name": "eth/usd",
     "label": "$",
     "pollingPeriod": 300000,
-    "color": "#1cd8d2",
+    "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}"
   },
   {
