@@ -1,5 +1,4 @@
-import { Context } from './types'
-
+import { Context, Network } from './types'
 const resolvers = {
   Query: {
     feeds: async (_parent, args, { feedRepository }: Context) => {
@@ -8,6 +7,10 @@ const resolvers = {
         args.pageSize,
         args.network
       )
+    },
+
+    networks: async (_parent, _args) => {
+      return Object.keys(Network).map(key => ({ label: Network[key] }))
     },
 
     requests: async (_parent, args, { resultRequestRepository }: Context) => {

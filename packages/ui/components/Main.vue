@@ -25,11 +25,17 @@
 
 <script>
 import feeds from '@/apollo/queries/feeds.gql'
+import networks from '@/apollo/queries/networks.gql'
 import { formatSvgName } from '../utils/formatSvgName'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 
 export default {
   apollo: {
+    networks: {
+      prefetch: true,
+      query: networks,
+      fetchPolicy: 'network-only',
+    },
     feeds: {
       prefetch: true,
       query: feeds,
@@ -83,13 +89,12 @@ export default {
       }
     },
     options() {
-      if (this.feeds) {
-        return [
+      if (this.networks) {
+        const result = [
           { label: 'all', key: 'All' },
-          ...generateSelectOptions(
-            this.allFeeds.map((feed) => feed.network)
-          ).sort((option1, option2) => option1.label < option2.label),
+          ...generateSelectOptions(this.networks),
         ]
+        return result
       } else {
         return [{ label: 'all', key: 'All' }]
       }

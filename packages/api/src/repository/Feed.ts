@@ -42,7 +42,8 @@ export class FeedRepository {
   }
 
   async get (feedFullName: string): Promise<FeedDbObjectNormalized> {
-    return this.normalizeId(await this.collection.findOne({ feedFullName }))
+    const response = await this.collection.findOne({ feedFullName })
+    return this.normalizeId(response)
   }
 
   async getPaginatedFeeds (

@@ -3,10 +3,10 @@ import { generateSelectOptions } from '../../utils/generateSelectOptions'
 describe('generateSelectOptions.js', () => {
   it('should generate a list of options from a list of feeds', () => {
     const networks = [
-      'ethereum-rinkeby',
-      'ethereum-goerli',
-      'conflux-testnet',
-      'boba-rinkeby',
+      { label: 'ethereum-rinkeby' },
+      { label: 'ethereum-goerli' },
+      { label: 'conflux-testnet' },
+      { label: 'boba-rinkeby' },
     ]
 
     const options = generateSelectOptions(networks)
@@ -16,22 +16,6 @@ describe('generateSelectOptions.js', () => {
       { label: 'ethereum-goerli', key: 'Ethereum Goerli' },
       { label: 'conflux-testnet', key: 'Conflux Testnet' },
       { label: 'boba-rinkeby', key: 'Boba Rinkeby' },
-    ])
-  })
-
-  it('should generate a list of options without repeated elements', () => {
-    const networks = [
-      'boba-rinkeby',
-      'conflux-testnet',
-      'boba-rinkeby',
-      'conflux-testnet',
-    ]
-
-    const options = generateSelectOptions(networks)
-
-    expect(options).toStrictEqual([
-      { label: 'boba-rinkeby', key: 'Boba Rinkeby' },
-      { label: 'conflux-testnet', key: 'Conflux Testnet' },
     ])
   })
 

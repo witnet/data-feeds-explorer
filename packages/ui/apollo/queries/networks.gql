@@ -1,0 +1,5 @@
+query networks {
+  networks {
+    label
+  }
+}

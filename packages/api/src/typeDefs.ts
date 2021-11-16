@@ -29,6 +29,11 @@ const typeDefs = gql`
     timestamp: String! @column
   }
 
+  type Network @entity {
+    id: String! @id
+    label: String
+  }
+
   # type DataRequest @entity(embedded: true) {
   #   retrieval: String! @column
   #   aggregation: String! @column
@@ -39,6 +44,7 @@ const typeDefs = gql`
     feed(feedFullName: String!): Feed
     feeds(page: Int!, pageSize: Int!, network: String): FeedsPage!
     requests(feedFullName: String!, page: Int!, size: Int!): [ResultRequest]!
+    networks: [Network]!
   }
 `
 

@@ -73,6 +73,7 @@ export default {
     border: var(--selected-options-border);
     box-shadow: var(--selected-options-shadow);
     border-radius: 4px 4px 4px 4px;
+    max-height: max-content;
   }
 
   .vs__dropdown-option {
