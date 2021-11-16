@@ -24,7 +24,6 @@ export type ConfigByFullName = {
 export enum Network {
   EthereumMainnet = 'ethereum-mainnet',
   EthereumGoerli = 'ethereum-goerli',
-  EthereumKovan = 'ethereum-kovan',
   EthereumRinkeby = 'ethereum-rinkeby',
   ConfluxTestnet = 'conflux-testnet',
   ConfluxMainnet = 'conflux-mainnet',
