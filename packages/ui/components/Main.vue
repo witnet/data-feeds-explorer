@@ -83,7 +83,17 @@ export default {
               blockExplorer: feed.blockExplorer,
             }
           })
-          .sort((feed1, feed2) => feed1.network < feed2.network)
+          .sort((a, b) => {
+            if (a.network.includes('ethereum-mainnet')) {
+              return -1
+            } else if (a.network.includes('ethereum')) {
+              return 0
+            } else if (a.network < b.network) {
+              return 1
+            } else {
+              return 2
+            }
+          })
       } else {
         return []
       }

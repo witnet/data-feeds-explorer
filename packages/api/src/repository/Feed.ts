@@ -22,7 +22,9 @@ export class FeedRepository {
   async getAll (): Promise<Array<FeedDbObjectNormalized>> {
     return (
       await this.collection
-        .find({ feedFullName: { $in: this.dataFeedsFullNames } })
+        .find({
+          feedFullName: { $in: this.dataFeedsFullNames }
+        })
         .sort('network')
         .toArray()
     ).map(this.normalizeId)
@@ -59,12 +61,12 @@ export class FeedRepository {
       feedFullName: { $in: this.dataFeedsFullNames }
     })
     const query = network !== 'all' ? queryByNetwork : queryAll
-
     return {
       feeds: (
         await query
           .skip(size * (page - 1))
           .limit(size)
+          .sort({ network: 1 })
           .toArray()
       ).map(this.normalizeId),
       total: await query.count()
