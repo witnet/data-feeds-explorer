@@ -3,6 +3,12 @@
     <div v-show="tooltip" class="tooltip">
       <span class="value">{{ formatNumber(value) }}</span>
       <span class="date"> {{ date }}</span>
+      <span class="date"> Deviation {{ deviation }}%</span>
+      <Heartbeat
+        class="countdown"
+        :milliseconds="86400000"
+        :last-result-timestamp="lastResultTimestamp"
+      />
     </div>
     <div class="switcher">
       <div
@@ -38,7 +44,19 @@ export default {
       type: String,
       required: true,
     },
+    deviation: {
+      type: String,
+      required: true,
+    },
+    heartbeat: {
+      type: String,
+      required: true,
+    },
     decimals: {
+      type: String,
+      required: true,
+    },
+    lastResultTimestamp: {
       type: String,
       required: true,
     },
@@ -201,6 +219,11 @@ export default {
   pointer-events: none;
   color: var(--text);
   .date {
+    font-size: 16px;
+    margin-top: 8px;
+    color: var(--text-medium-emphasis);
+  }
+  .countdown {
     font-size: 16px;
     margin-top: 8px;
     color: var(--text-medium-emphasis);

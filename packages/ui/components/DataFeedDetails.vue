@@ -21,8 +21,11 @@
       v-if="feed"
       class="chart"
       :data="chartData"
+      :last-result-timestamp="transactions[0].timestamp"
       :data-label="feed.label"
       :name="feedName"
+      :deviation="deviation"
+      :heartbeat="heartbeat"
       :decimals="feedDecimals"
       @change-range="updateQuery"
     />
@@ -32,6 +35,7 @@
     >
       <a :href="url" target="_blank" class="contract-address">
         {{ feedAddress }}
+        ..{{ deviation }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
     </Fieldset>
@@ -109,6 +113,12 @@ export default {
         ? this.feed.blockExplorer.replace(`{address}`, this.feedAddress)
         : ''
     },
+    deviation() {
+      return this.feed ? this.feed.deviation : ''
+    },
+    heartbeat() {
+      return this.feed ? this.feed.heartbeat : ''
+    },
     numberOfPages() {
       return this.feed
         ? Math.ceil(this.feed.requests.length / this.itemsPerPage)
@@ -139,7 +149,7 @@ export default {
     },
     transactions() {
       if (this.feed && this.requests && this.requests.length > 0) {
-        return this.requests.map((request) => ({
+        const transactions = this.requests.map((request) => ({
           witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
           drTxHash: request.drTxHash,
           data: {
@@ -149,6 +159,8 @@ export default {
           },
           timestamp: request.timestamp,
         }))
+        console.log('transactions', transactions[0].timestamp)
+        return transactions
       } else {
         return null
       }

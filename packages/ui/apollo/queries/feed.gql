@@ -6,6 +6,9 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     lastResult
     network
     label
+    deviation
+    heartbeat
+    minTimeToUpdate
     requests(timestamp: $timestamp) {
       feedFullName 
       result

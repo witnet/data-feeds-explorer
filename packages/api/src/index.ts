@@ -67,7 +67,10 @@ function validateDataFeeds (dataFeeds: Array<FeedInfoConfig>) {
     'name',
     'pollingPeriod',
     'color',
-    'blockExplorer'
+    'blockExplorer',
+    'deviation',
+    'heartbeat',
+    'minTimeToUpdate'
   ]
 
   dataFeeds.forEach((feedInfoConfig, index) => {

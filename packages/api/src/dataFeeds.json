@@ -6,9 +6,12 @@
     "network": "ethereum-mainnet",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 1500000,
+    "pollingPeriod": 15000,
     "color": "#8d5fd3",
-    "blockExplorer": "https://etherscan.io/address/{address}"
+    "blockExplorer": "https://etherscan.io/address/{address}",
+    "deviation": 2,
+    "heartbeat": 86400000,
+    "minTimeToUpdate": 3600000
   },
   {
     "feedFullName": "ethereum-mainnet_eth-usd_6",
@@ -17,9 +20,12 @@
     "network": "ethereum-mainnet",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 1500000,
+    "pollingPeriod": 15000,
     "color": "#8d5fd3",
-    "blockExplorer": "https://etherscan.io/address/{address}"
+    "blockExplorer": "https://etherscan.io/address/{address}",
+    "deviation": 2,
+    "heartbeat": 86400000,
+    "minTimeToUpdate": 3600000
   },
   {
     "feedFullName": "ethereum-rinkeby_btc-usd_6",
@@ -28,9 +34,12 @@
     "network": "ethereum-rinkeby",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 1500000,
+    "pollingPeriod": 15000,
     "color": "#00d4aa",
-    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "ethereum-rinkeby_eth-usd_6",
@@ -39,9 +48,12 @@
     "network": "ethereum-rinkeby",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 1500000,
+    "pollingPeriod": 15000,
     "color": "#00d4aa",
-    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}"
+    "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "ethereum-goerli_btc-usd_6",
@@ -50,9 +62,12 @@
     "network": "ethereum-goerli",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 1500000,
+    "pollingPeriod": 15000,
     "color": "#ff5599",
-    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "ethereum-goerli_eth-usd_6",
@@ -61,9 +76,12 @@
     "network": "ethereum-goerli",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 1500000,
+    "pollingPeriod": 15000,
     "color": "#ff5599",
-    "blockExplorer": "https://goerli.etherscan.io/address/{address}"
+    "blockExplorer": "https://goerli.etherscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "conflux-testnet_cfx-usdt_6",
@@ -72,9 +90,12 @@
     "network": "conflux-testnet",
     "name": "cfx/usdt",
     "label": "₮",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#6600ff",
-    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "conflux-testnet_btc-usd_6",
@@ -83,9 +104,12 @@
     "network": "conflux-testnet",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#6600ff",
-    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "conflux-testnet_btc-usd_6",
@@ -94,9 +118,12 @@
     "network": "conflux-testnet",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#6600ff",
-    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "conflux-testnet_eth-usd_6",
@@ -105,9 +132,12 @@
     "network": "conflux-testnet",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#6600ff",
-    "blockExplorer": "https://testnet.confluxscan.io/address/{address}"
+    "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "conflux-mainnet_cfx-usdt_6",
@@ -116,9 +146,12 @@
     "network": "conflux-mainnet",
     "name": "cfx/usdt",
     "label": "₮",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#6600ff",
-    "blockExplorer": "https://confluxscan.io/address/{address}"
+    "blockExplorer": "https://confluxscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 86400000,
+    "minTimeToUpdate": 900000
   },
   {
     "feedFullName": "conflux-mainnet_btc-usd_6",
@@ -127,9 +160,12 @@
     "network": "conflux-mainnet",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#6600ff",
-    "blockExplorer": "https://confluxscan.io/address/{address}"
+    "blockExplorer": "https://confluxscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 86400000,
+    "minTimeToUpdate": 900000
   },
   {
     "feedFullName": "conflux-mainnet_eth-usd_6",
@@ -138,9 +174,12 @@
     "network": "conflux-mainnet",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#6600ff",
-    "blockExplorer": "https://confluxscan.io/address/{address}"
+    "blockExplorer": "https://confluxscan.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 86400000,
+    "minTimeToUpdate": 900000
   },
   {
     "feedFullName": "celo-alfajores_btc-usd_6",
@@ -149,9 +188,12 @@
     "network": "celo-alfajores",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#1cd8d2",
-    "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}"
+    "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "celo-alfajores_eth-usd_6",
@@ -160,9 +202,12 @@
     "network": "celo-alfajores",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#1cd8d2",
-    "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}"
+    "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "celo-alfajores_celo-usd_6",
@@ -193,9 +238,12 @@
     "network": "celo-mainnet",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#ff8100",
-    "blockExplorer": "https://explorer.celo.org/address/{address}"
+    "blockExplorer": "https://explorer.celo.org/address/{address}",
+    "deviation": 1,
+    "heartbeat": 86400000,
+    "minTimeToUpdate": 900000
   },
   {
     "feedFullName": "celo-mainnet_eth-usd_6",
@@ -204,9 +252,12 @@
     "network": "celo-mainnet",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#ff8100",
-    "blockExplorer": "https://explorer.celo.org/address/{address}"
+    "blockExplorer": "https://explorer.celo.org/address/{address}",
+    "deviation": 1,
+    "heartbeat": 86400000,
+    "minTimeToUpdate": 900000
   },
   {
     "feedFullName": "boba-rinkeby_btc-usd_6",
@@ -215,9 +266,12 @@
     "network": "boba-rinkeby",
     "name": "btc/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#1cd83d",
-    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}"
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "boba-rinkeby_eth-usd_6",
@@ -226,9 +280,12 @@
     "network": "boba-rinkeby",
     "name": "eth/usd",
     "label": "$",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#1cd83d",
-    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}"
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "boba-rinkeby_omg-btc_9",
@@ -237,9 +294,12 @@
     "network": "boba-rinkeby",
     "name": "omg/btc",
     "label": "₿",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#1cd83d",
-    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}"
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "boba-rinkeby_omg-eth_9",
@@ -248,9 +308,12 @@
     "network": "boba-rinkeby",
     "name": "omg/eth",
     "label": "ETH",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#1cd83d",
-    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}"
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   },
   {
     "feedFullName": "boba-rinkeby_omg-usdt_6",
@@ -259,8 +322,11 @@
     "network": "boba-rinkeby",
     "name": "omg/usdt",
     "label": "₮",
-    "pollingPeriod": 300000,
+    "pollingPeriod": 3000,
     "color": "#1cd83d",
-    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}"
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "minTimeToUpdate": 300000
   }
 ]

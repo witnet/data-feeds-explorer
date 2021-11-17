@@ -11,6 +11,9 @@ const typeDefs = gql`
     name: String! @column
     network: String! @column
     lastResult: String
+    deviation: String! @column
+    heartbeat: String! @column
+    minTimeToUpdate: String! @column
     requests(timestamp: Int!): [ResultRequest]!
   }
 
