@@ -165,6 +165,28 @@
     "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}"
   },
   {
+    "feedFullName": "celo-alfajores_celo-usd_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0xA4dBe748BA8E3220eAC07cB4c951909fc089c3dD",
+    "network": "celo-alfajores",
+    "name": "celo/usd",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#1cd8d2",
+    "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}"
+  },
+  {
+    "feedFullName": "celo-alfajores_celo-eur_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x9627CB0314368BC70587912119a4F03Ba0b179B5",
+    "network": "celo-alfajores",
+    "name": "celo/eur",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#1cd8d2",
+    "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}"
+  },
+  {
     "feedFullName": "celo-mainnet_btc-usd_6",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0xa1A950054d1F778B0758EBe89914410d01A37248",
