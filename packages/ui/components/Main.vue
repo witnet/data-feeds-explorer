@@ -28,6 +28,7 @@ import feeds from '@/apollo/queries/feeds.gql'
 import networks from '@/apollo/queries/networks.gql'
 import { formatSvgName } from '../utils/formatSvgName'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
+import { sortByNetwork } from '../utils/sortByNetwork'
 
 export default {
   apollo: {
@@ -63,37 +64,26 @@ export default {
     },
     allFeeds() {
       if (this.feeds) {
-        return this.feeds.feeds
-          .map((feed) => {
-            return {
-              detailsPath: {
-                name: 'feeds-id',
-                params: { id: feed.feedFullName },
-              },
-              decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-              name: feed.name,
-              value: feed.lastResult,
-              label: feed.label,
-              img: {
-                name: formatSvgName(feed.name),
-                alt: feed.name,
-              },
-              network: feed.network,
-              color: feed.color,
-              blockExplorer: feed.blockExplorer,
-            }
-          })
-          .sort((a, b) => {
-            if (a.network.includes('ethereum-mainnet')) {
-              return -1
-            } else if (a.network.includes('ethereum')) {
-              return 0
-            } else if (a.network < b.network) {
-              return 1
-            } else {
-              return 2
-            }
-          })
+        const allfeeds = this.feeds.feeds.map((feed) => {
+          return {
+            detailsPath: {
+              name: 'feeds-id',
+              params: { id: feed.feedFullName },
+            },
+            decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+            name: feed.name,
+            value: feed.lastResult,
+            label: feed.label,
+            img: {
+              name: formatSvgName(feed.name),
+              alt: feed.name,
+            },
+            network: feed.network,
+            color: feed.color,
+            blockExplorer: feed.blockExplorer,
+          }
+        })
+        return sortByNetwork(allfeeds)
       } else {
         return []
       }
