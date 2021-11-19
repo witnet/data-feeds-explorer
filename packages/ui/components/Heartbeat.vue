@@ -1,17 +1,14 @@
 <template>
-  <div v-if="!timeOver" class="countdown">
-    <p class="title">Heartbeat</p>
-    <div class="item">{{ hours }}:</div>
-    <div class="item">{{ minutes }}:</div>
-    <div class="item">{{ seconds }}</div>
-  </div>
+  <span v-if="!timeOver" class="countdown">
+    {{ hours }}:{{ minutes }}:{{ seconds }}
+  </span>
 </template>
 
 <script>
 export default {
   props: {
     milliseconds: {
-      type: Number,
+      type: String,
       required: true,
     },
     lastResultTimestamp: {
@@ -47,13 +44,16 @@ export default {
       return this.hour * 24
     },
     hours() {
-      return Math.floor((this.distance % this.day) / this.hour)
+      const hours = Math.floor((this.distance % this.day) / this.hour)
+      return hours < 10 ? `0${hours}` : hours
     },
     minutes() {
-      return Math.floor((this.distance % this.hour) / this.minute)
+      const minutes = Math.floor((this.distance % this.hour) / this.minute)
+      return minutes < 10 ? `0${minutes}` : minutes
     },
     seconds() {
-      return Math.floor((this.distance % this.minute) / this.second)
+      const seconds = Math.floor((this.distance % this.minute) / this.second)
+      return seconds < 10 ? `0${seconds}` : seconds
     },
   },
   watch: {
@@ -79,13 +79,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-.countdown {
-  display: flex;
-  .title {
-    font-size: inherit;
-    margin-right: 8px;
-  }
-}
-</style>

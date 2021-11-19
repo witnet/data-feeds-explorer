@@ -48,10 +48,7 @@ export class Web3Middleware {
           name: feedInfo.name,
           network: feedInfo.network,
           label: feedInfo.label,
-          blockExplorer: feedInfo.blockExplorer,
-          deviation: feedInfo.deviation,
-          heartbeat: feedInfo.heartbeat,
-          minTimeToUpdate: feedInfo.minTimeToUpdate
+          blockExplorer: feedInfo.blockExplorer
         })
       }
       return feed

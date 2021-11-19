@@ -8,7 +8,6 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     label
     deviation
     heartbeat
-    minTimeToUpdate
     requests(timestamp: $timestamp) {
       feedFullName 
       result

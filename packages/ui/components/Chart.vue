@@ -1,15 +1,13 @@
 <template>
   <div ref="container">
-    <div v-show="tooltip" class="tooltip">
-      <span class="value">{{ formatNumber(value) }}</span>
-      <span class="date"> {{ date }}</span>
-      <span class="date"> Deviation {{ deviation }}%</span>
-      <Heartbeat
-        class="countdown"
-        :milliseconds="86400000"
-        :last-result-timestamp="lastResultTimestamp"
-      />
-    </div>
+    <Tooltip
+      v-show="tooltip"
+      :value="formatNumber(value)"
+      :date="date"
+      :deviation="deviation"
+      :heartbeat="heartbeat"
+      :last-result-timestamp="lastResultTimestamp"
+    />
     <div class="switcher">
       <div
         v-for="serie in ranges"
@@ -200,38 +198,6 @@ export default {
   }
   .active {
     background-color: var(--switcher-item-background);
-  }
-}
-.tooltip {
-  display: flex;
-  flex-direction: column;
-  width: max-content;
-  height: max-content;
-  position: relative;
-  padding: 6px;
-  box-sizing: border-box;
-  font-size: 32px;
-  border-radius: 2px;
-  background-color: var(--text-background);
-  text-align: left;
-  top: 0;
-  font-weight: bold;
-  pointer-events: none;
-  color: var(--text);
-  .date {
-    font-size: 16px;
-    margin-top: 8px;
-    color: var(--text-medium-emphasis);
-  }
-  .countdown {
-    font-size: 16px;
-    margin-top: 8px;
-    color: var(--text-medium-emphasis);
-  }
-  .value {
-    font-size: 32px;
-    display: flex;
-    align-items: center;
   }
 }
 @media (max-width: 1200px) {

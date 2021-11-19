@@ -159,7 +159,6 @@ export default {
           },
           timestamp: request.timestamp,
         }))
-        console.log('transactions', transactions[0].timestamp)
         return transactions
       } else {
         return null

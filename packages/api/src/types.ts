@@ -44,7 +44,6 @@ export type FeedInfoGeneric<ABI> = {
   blockExplorer: string
   deviation: string
   heartbeat: string
-  minTimeToUpdate: string
 }
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
 export type FeedInfoConfig = FeedInfoGeneric<string>

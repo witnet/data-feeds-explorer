@@ -41,6 +41,12 @@ const resolvers = {
     },
     blockExplorer: async (parent, _args, { config }: Context) => {
       return config[parent.feedFullName]?.blockExplorer || ''
+    },
+    deviation: async (parent, _args, { config }: Context) => {
+      return config[parent.feedFullName]?.deviation || ''
+    },
+    heartbeat: async (parent, _args, { config }: Context) => {
+      return config[parent.feedFullName]?.heartbeat || ''
     }
   }
 }
