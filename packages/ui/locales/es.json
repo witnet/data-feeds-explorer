@@ -19,9 +19,9 @@
     "w": "7d",
     "m": "30d",
     "heartbeat": "Heartbeat",
-    "heartbeat_text": "Tiempo restante para enviar una nueva data request",
+    "heartbeat_text": "El feed se actualiza antes de que el tiempo de heartbeat acabe",
     "deviation": "Desviación",
-    "deviation_text": "Porcentaje mínimo de desvío para actualizar el feed"
+    "deviation_text": "Cuando el precio varía más que el porcentaje de desviación, se envía una data request a la red de Witnet para actualizar el feed con un nuevo valor"
   },
   "copied": "Copiado",
   "copy": "Copiar"

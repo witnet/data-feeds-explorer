@@ -63,6 +63,7 @@ export default {
 .info-tooltip {
   position: absolute;
   display: inline-block;
+  max-width: 400px;
   padding: 8px;
   border-radius: 4px;
   font-size: 12px;
