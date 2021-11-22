@@ -17,7 +17,11 @@
   },
   "chart": {
     "w": "7d",
-    "m": "30d"
+    "m": "30d",
+    "heartbeat": "Heartbeat",
+    "heartbeat_text": "Time left to send new Witnet data request",
+    "deviation": "Deviation",
+    "deviation_text": "Minimun percentage of variance to update the feed"
   },
   "copied": "Copied",
   "copy": "Copy"

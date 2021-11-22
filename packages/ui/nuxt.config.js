@@ -148,6 +148,7 @@ export default {
         'faSun',
         'faArrowAltCircleLeft',
         'faCopy',
+        'faInfoCircle',
         'faExternalLinkAlt',
       ],
     },

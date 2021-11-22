@@ -7,7 +7,7 @@
       </a>
     </div>
     <div class="attribute-container values-time">
-      <DataTooltip :label="`${value}2`" class="attribute" :value="value" />
+      <CopyTooltip :label="`${value}2`" class="attribute" :value="value" />
       <div class="attribute">
         {{ calculateTimeAgo(timestamp, $i18n.locale) }}
       </div>

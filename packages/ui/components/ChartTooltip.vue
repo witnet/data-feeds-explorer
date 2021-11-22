@@ -1,16 +1,19 @@
 <template>
-  <div v-show="tooltip" class="tooltip">
-    <p>{{ value }}</p>
+  <div class="tooltip">
+    <p class="value">{{ value }}</p>
     <p class="item">{{ date }}</p>
-    <p class="item"><span class="title">Deviation</span> {{ deviation }}%</p>
-    <p class="item">
-      <span class="title">Heartbeat</span>
+    <div class="item">
+      <InfoTooltip :label="`Deviation`" class="title" value="Deviation text" />
+      <div>{{ deviation }}%</div>
+    </div>
+    <div class="item">
+      <InfoTooltip :label="`Heartbeat`" class="title" value="Heartbeat text" />
       <Heartbeat
         class="countdown"
         :milliseconds="heartbeat"
         :last-result-timestamp="lastResultTimestamp"
       />
-    </p>
+    </div>
   </div>
 </template>
 
@@ -43,6 +46,7 @@ export default {
 
 <style scoped lang="scss">
 .tooltip {
+  font-family: Almarai, sans-serif;
   font-weight: bold;
   font-size: 32px;
   background-color: var(--text-background);
@@ -52,9 +56,14 @@ export default {
     font-size: 16px;
     margin-top: 8px;
     color: var(--text-medium-emphasis);
+    display: flex;
     .title {
-      font-size: 16px;
+      font-size: 1.4rem;
+      margin-right: 10px;
       color: var(--text-hover);
+    }
+    .value {
+      font-family: Almarai, sans-serif;
     }
   }
 }

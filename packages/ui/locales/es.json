@@ -17,7 +17,11 @@
   },
   "chart": {
     "w": "7d",
-    "m": "30d"
+    "m": "30d",
+    "heartbeat": "Heartbeat",
+    "heartbeat_text": "Tiempo restante para enviar una nueva data request",
+    "deviation": "Desviación",
+    "deviation_text": "Porcentaje mínimo de desvío para actualizar el feed"
   },
   "copied": "Copiado",
   "copy": "Copiar"
