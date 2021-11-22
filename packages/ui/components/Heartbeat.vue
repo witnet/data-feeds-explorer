@@ -1,7 +1,8 @@
 <template>
-  <span v-if="!timeOver" class="countdown">
-    {{ hours }}:{{ minutes }}:{{ seconds }}
-  </span>
+  <div class="countdown">
+    <div v-if="!timeOver">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
+    <div v-else>00:00:00</div>
+  </div>
 </template>
 
 <script>
@@ -29,7 +30,9 @@ export default {
     },
     countdown() {
       // Last result timestamp to milliseconds plus heartbeat
-      return this.lastResultTimestamp * 1000 + this.milliseconds
+      return (
+        Number(`${this.lastResultTimestamp}000`) + Number(this.milliseconds)
+      )
     },
     second() {
       return 1000

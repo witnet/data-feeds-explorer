@@ -3,11 +3,19 @@
     <p class="value">{{ value }}</p>
     <p class="item">{{ date }}</p>
     <div class="item">
-      <InfoTooltip :label="`Deviation`" class="title" value="Deviation text" />
+      <InfoTooltip
+        :label="$t('chart.deviation')"
+        class="title"
+        :value="$t('chart.deviation_text')"
+      />
       <div>{{ deviation }}%</div>
     </div>
     <div class="item">
-      <InfoTooltip :label="`Heartbeat`" class="title" value="Heartbeat text" />
+      <InfoTooltip
+        :label="$t('chart.heartbeat')"
+        class="title"
+        :value="$t('chart.heartbeat_text')"
+      />
       <Heartbeat
         class="countdown"
         :milliseconds="heartbeat"
