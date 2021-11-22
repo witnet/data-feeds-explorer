@@ -22,7 +22,7 @@
     "pollingPeriod": 1500000,
     "color": "#8d5fd3",
     "blockExplorer": "https://etherscan.io/address/{address}",
-    "deviation": 2,
+    "deviation": 3.5,
     "heartbeat": 87300000
   },
   {
@@ -231,7 +231,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 87300000
+    "heartbeat": 8100000
   },
   {
     "feedFullName": "celo-mainnet_eth-usd_6",
@@ -244,7 +244,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 87300000
+    "heartbeat": 8100000
   },
   {
     "feedFullName": "celo-mainnet_celo-eur_6",
@@ -257,7 +257,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 87300000
+    "heartbeat": 8100000
   },
   {
     "feedFullName": "celo-mainnet_celo-usd_6",
@@ -270,7 +270,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 87300000
+    "heartbeat": 8100000
   },
   {
     "feedFullName": "boba-rinkeby_btc-usd_6",
