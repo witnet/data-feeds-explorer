@@ -10,7 +10,7 @@
     "color": "#8d5fd3",
     "blockExplorer": "https://etherscan.io/address/{address}",
     "deviation": 2,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "ethereum-mainnet_eth-usd_6",
@@ -23,7 +23,7 @@
     "color": "#8d5fd3",
     "blockExplorer": "https://etherscan.io/address/{address}",
     "deviation": 2,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "ethereum-rinkeby_btc-usd_6",
@@ -36,7 +36,7 @@
     "color": "#00d4aa",
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "ethereum-rinkeby_eth-usd_6",
@@ -49,7 +49,7 @@
     "color": "#00d4aa",
     "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "ethereum-goerli_btc-usd_6",
@@ -62,7 +62,7 @@
     "color": "#ff5599",
     "blockExplorer": "https://goerli.etherscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "ethereum-goerli_eth-usd_6",
@@ -75,7 +75,7 @@
     "color": "#ff5599",
     "blockExplorer": "https://goerli.etherscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "conflux-testnet_cfx-usdt_6",
@@ -88,7 +88,7 @@
     "color": "#6600ff",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "conflux-testnet_btc-usd_6",
@@ -101,7 +101,7 @@
     "color": "#6600ff",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "conflux-testnet_btc-usd_6",
@@ -114,7 +114,7 @@
     "color": "#6600ff",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "conflux-testnet_eth-usd_6",
@@ -127,7 +127,7 @@
     "color": "#6600ff",
     "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "conflux-mainnet_cfx-usdt_6",
@@ -140,7 +140,7 @@
     "color": "#6600ff",
     "blockExplorer": "https://confluxscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "conflux-mainnet_btc-usd_6",
@@ -153,7 +153,7 @@
     "color": "#6600ff",
     "blockExplorer": "https://confluxscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "conflux-mainnet_eth-usd_6",
@@ -166,7 +166,7 @@
     "color": "#6600ff",
     "blockExplorer": "https://confluxscan.io/address/{address}",
     "deviation": 1,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "celo-alfajores_btc-usd_6",
@@ -179,7 +179,7 @@
     "color": "#1cd8d2",
     "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "celo-alfajores_eth-usd_6",
@@ -192,7 +192,7 @@
     "color": "#1cd8d2",
     "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "celo-alfajores_celo-usd_6",
@@ -205,7 +205,7 @@
     "color": "#1cd8d2",
     "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "celo-alfajores_celo-eur_6",
@@ -218,7 +218,7 @@
     "color": "#1cd8d2",
     "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "celo-mainnet_btc-usd_6",
@@ -231,7 +231,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "celo-mainnet_eth-usd_6",
@@ -244,7 +244,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "celo-mainnet_celo-eur_6",
@@ -257,7 +257,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "celo-mainnet_celo-usd_6",
@@ -270,7 +270,7 @@
     "color": "#ff8100",
     "blockExplorer": "https://explorer.celo.org/address/{address}",
     "deviation": 1,
-    "heartbeat": 86400000
+    "heartbeat": 87300000
   },
   {
     "feedFullName": "boba-rinkeby_btc-usd_6",
@@ -283,7 +283,7 @@
     "color": "#1cd83d",
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "boba-rinkeby_eth-usd_6",
@@ -296,7 +296,7 @@
     "color": "#1cd83d",
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "boba-rinkeby_omg-btc_9",
@@ -309,7 +309,7 @@
     "color": "#1cd83d",
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "boba-rinkeby_omg-eth_9",
@@ -322,7 +322,7 @@
     "color": "#1cd83d",
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   },
   {
     "feedFullName": "boba-rinkeby_omg-usdt_6",
@@ -335,6 +335,6 @@
     "color": "#1cd83d",
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
     "deviation": 1,
-    "heartbeat": 3600000
+    "heartbeat": 4500000
   }
 ]
