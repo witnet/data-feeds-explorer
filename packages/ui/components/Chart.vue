@@ -1,7 +1,6 @@
 <template>
   <div ref="container">
     <ChartTooltip
-      v-show="tooltip"
       :value="formatNumber(value)"
       :date="date"
       :deviation="deviation"

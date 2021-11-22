@@ -35,7 +35,6 @@
     >
       <a :href="url" target="_blank" class="contract-address">
         {{ feedAddress }}
-        ..{{ deviation }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
     </Fieldset>
@@ -149,7 +148,7 @@ export default {
     },
     transactions() {
       if (this.feed && this.requests && this.requests.length > 0) {
-        const transactions = this.requests.map((request) => ({
+        return this.requests.map((request) => ({
           witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
           drTxHash: request.drTxHash,
           data: {
@@ -159,7 +158,6 @@ export default {
           },
           timestamp: request.timestamp,
         }))
-        return transactions
       } else {
         return null
       }
