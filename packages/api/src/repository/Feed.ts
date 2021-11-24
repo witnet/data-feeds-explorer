@@ -1,3 +1,4 @@
+import { AggregationCursor } from 'mongodb'
 import {
   FeedDbObjectNormalized,
   FeedDbObject,
@@ -53,24 +54,79 @@ export class FeedRepository {
     size: number,
     network: string
   ): Promise<PaginatedFeedsObject> {
-    const queryByNetwork = this.collection.find({
+    const queryByNetwork = {
       feedFullName: { $in: this.dataFeedsFullNames },
       network
-    })
-    const queryAll = this.collection.find({
-      feedFullName: { $in: this.dataFeedsFullNames }
-    })
-    const query = network !== 'all' ? queryByNetwork : queryAll
-    return {
-      feeds: (
-        await query
-          .skip(size * (page - 1))
-          .limit(size)
-          .sort({ network: 1 })
-          .toArray()
-      ).map(this.normalizeId),
-      total: await query.count()
     }
+    const queryAll = {
+      feedFullName: { $in: this.dataFeedsFullNames }
+    }
+    const match = network !== 'all' ? queryByNetwork : queryAll
+    const aggregation = (
+      await (await this.aggregateCollection(match, page, size)).toArray()
+    )[0]
+    return {
+      feeds: aggregation.feeds.map(this.normalizeId),
+      total: aggregation.total[0].count
+    }
+  }
+
+  private async aggregateCollection (
+    match,
+    page,
+    size
+  ): Promise<AggregationCursor> {
+    return await this.collection.aggregate([
+      {
+        $project: {
+          _id: 1,
+          address: 1,
+          blockExplorer: 1,
+          feedFullName: 1,
+          label: 1,
+          name: 1,
+          network: 1,
+          order: {
+            $cond: {
+              if: { $eq: ['$network', 'ethereum-mainnet'] },
+              then: 1,
+              else: {
+                $cond: {
+                  if: {
+                    $regexMatch: { input: '$network', regex: /ethereum/i }
+                  },
+                  then: 2,
+                  else: 3
+                }
+              }
+            }
+          }
+        }
+      },
+      { $match: match },
+      { $sort: { order: 1, network: 1 } },
+      {
+        $project: {
+          _id: 1,
+          address: 1,
+          blockExplorer: 1,
+          feedFullName: 1,
+          label: 1,
+          name: 1,
+          network: 1
+        }
+      },
+      {
+        $facet: {
+          feeds: [{ $skip: size * (page - 1) }, { $limit: size }],
+          total: [
+            {
+              $count: 'count'
+            }
+          ]
+        }
+      }
+    ])
   }
 
   private normalizeId (feed: FeedDbObject): FeedDbObjectNormalized | null {

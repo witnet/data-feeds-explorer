@@ -57,7 +57,7 @@ export default {
   font-family: Almarai, sans-serif;
   font-weight: bold;
   font-size: 32px;
-  background-color: var(--text-background);
+  background-color: var(--bg);
   color: var(--text);
 
   .item {

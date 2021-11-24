@@ -9,9 +9,7 @@ describe('sortByNetwork.js', () => {
       { network: 'ethereum-mainnet' },
       { network: 'ethereum-goerli' },
     ]
-
     const options = sortByNetwork(feeds)
-
     expect(options).toStrictEqual([
       { network: 'ethereum-mainnet' },
       { network: 'ethereum-rinkeby' },

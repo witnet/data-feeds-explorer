@@ -16,6 +16,10 @@ const typeDefs = gql`
     requests(timestamp: Int!): [ResultRequest]!
   }
 
+  type Total {
+    count: Int
+  }
+
   type FeedsPage {
     feeds: [Feed]
     total: Int!

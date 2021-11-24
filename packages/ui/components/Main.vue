@@ -28,7 +28,6 @@ import feeds from '@/apollo/queries/feeds.gql'
 import networks from '@/apollo/queries/networks.gql'
 import { formatSvgName } from '../utils/formatSvgName'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import { sortByNetwork } from '../utils/sortByNetwork'
 
 export default {
   apollo: {
@@ -54,7 +53,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      itemsPerPage: 25,
+      itemsPerPage: 28,
       selected: { label: 'all', key: 'All' },
     }
   },
@@ -64,7 +63,7 @@ export default {
     },
     allFeeds() {
       if (this.feeds) {
-        const allfeeds = this.feeds.feeds.map((feed) => {
+        return this.feeds.feeds.map((feed) => {
           return {
             detailsPath: {
               name: 'feeds-id',
@@ -83,7 +82,6 @@ export default {
             blockExplorer: feed.blockExplorer,
           }
         })
-        return sortByNetwork(allfeeds)
       } else {
         return []
       }
@@ -130,7 +128,9 @@ export default {
   grid-template: 1fr max-content/ 1fr;
   justify-items: flex-start;
   align-items: flex-start;
+  row-gap: 24px;
   .pagination {
+    margin-bottom: 16px;
     justify-self: center;
   }
 }

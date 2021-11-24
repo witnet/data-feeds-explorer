@@ -1,6 +1,6 @@
 <template>
   <div class="countdown">
-    <div v-if="!timeOver">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
+    <div v-if="distance > 0">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
     <div v-else>00:00:00</div>
   </div>
 </template>
@@ -26,7 +26,6 @@ export default {
     return {
       now: new Date().getTime(),
       pollingInterval: null,
-      timeOver: false,
     }
   },
   computed: {
@@ -62,10 +61,11 @@ export default {
     distance(value) {
       if (value < 0) {
         clearInterval(this.pollingInterval)
-        this.timeOver = true
-      } else {
-        this.timeOver = false
       }
+    },
+    lastResultTimestamp() {
+      clearInterval(this.pollingInterval)
+      this.startPolling()
     },
   },
   beforeMount() {
