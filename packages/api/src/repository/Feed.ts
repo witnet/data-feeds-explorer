@@ -67,7 +67,7 @@ export class FeedRepository {
     )[0]
     return {
       feeds: aggregation.feeds.map(this.normalizeId),
-      total: aggregation.total[0].count
+      total: aggregation.total[0]?.count || 0
     }
   }
 
@@ -92,9 +92,7 @@ export class FeedRepository {
               then: 1,
               else: {
                 $cond: {
-                  if: {
-                    $regexMatch: { input: '$network', regex: /ethereum/i }
-                  },
+                  if: { $eq: [{ $substr: ['$network', 0, 8] }, 'ethereum'] },
                   then: 2,
                   else: 3
                 }

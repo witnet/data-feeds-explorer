@@ -82,7 +82,6 @@ describe('feeds', function () {
         network: 'all'
       }
     })
-
     expect(feeds.length).toBe(0)
   })
 
