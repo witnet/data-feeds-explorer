@@ -29,7 +29,8 @@ export enum Network {
   ConfluxMainnet = 'conflux-mainnet',
   CeloAlfajores = 'celo-alfajores',
   CeloMainnet = 'celo-mainnet',
-  BobaRinkeby = 'boba-rinkeby'
+  BobaRinkeby = 'boba-rinkeby',
+  BobaMainnet = 'boba-mainnet'
 }
 
 export type FeedInfoGeneric<ABI> = {

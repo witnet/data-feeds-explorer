@@ -104,19 +104,6 @@
     "heartbeat": 4500000
   },
   {
-    "feedFullName": "conflux-testnet_btc-usd_6",
-    "abi": "./src/abi/PriceFeed.json",
-    "address": "0x8594B74645644b6a5fdE15597D3ADc15C77284A1",
-    "network": "conflux-testnet",
-    "name": "btc/usd",
-    "label": "$",
-    "pollingPeriod": 300000,
-    "color": "#6600ff",
-    "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
-    "deviation": 1,
-    "heartbeat": 4500000
-  },
-  {
     "feedFullName": "conflux-testnet_eth-usd_6",
     "abi": "./src/abi/PriceFeed.json",
     "address": "0x80DfFcbD9Fa48553fbC98aa7c21D50Ae47753C89",
@@ -137,7 +124,7 @@
     "name": "cfx/usdt",
     "label": "₮",
     "pollingPeriod": 300000,
-    "color": "#6600ff",
+    "color": "#ff0000",
     "blockExplorer": "https://confluxscan.io/address/{address}",
     "deviation": 1,
     "heartbeat": 87300000
@@ -150,7 +137,7 @@
     "name": "btc/usd",
     "label": "$",
     "pollingPeriod": 300000,
-    "color": "#6600ff",
+    "color": "#ff0000",
     "blockExplorer": "https://confluxscan.io/address/{address}",
     "deviation": 1,
     "heartbeat": 87300000
@@ -163,7 +150,7 @@
     "name": "eth/usd",
     "label": "$",
     "pollingPeriod": 300000,
-    "color": "#6600ff",
+    "color": "#ff0000",
     "blockExplorer": "https://confluxscan.io/address/{address}",
     "deviation": 1,
     "heartbeat": 87300000
@@ -336,5 +323,31 @@
     "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
     "deviation": 1,
     "heartbeat": 4500000
+  },
+  {
+    "feedFullName": "boba-rinkeby_boba-usdt_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0xA57b17dd8aBA9857D1FE9Dba13bE998833d6A28A",
+    "network": "boba-rinkeby",
+    "name": "boba/usdt",
+    "label": "₮",
+    "pollingPeriod": 300000,
+    "color": "#1cd83d",
+    "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+    "deviation": 1,
+    "heartbeat": 4500000
+  },
+  {
+    "feedFullName": "boba-mainnet_boba-usdt_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x52Bf8Bf503c69A055e3f86BD7D7F6dCb6c1f1E13",
+    "network": "boba-mainnet",
+    "name": "boba/usdt",
+    "label": "₮",
+    "pollingPeriod": 300000,
+    "color": "#007dff",
+    "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
+    "deviation": 1,
+    "heartbeat": 8100000
   }
 ]

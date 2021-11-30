@@ -8,6 +8,7 @@ export function getProvider (network: Network) {
     [Network.ConfluxTestnet]: process.env.CONFLUX_TESTNET_PROVIDER,
     [Network.ConfluxMainnet]: process.env.CONFLUX_MAINNET_PROVIDER,
     [Network.BobaRinkeby]: process.env.BOBA_RINKEBY_PROVIDER,
+    [Network.BobaMainnet]: process.env.BOBA_MAINNET_PROVIDER,
     [Network.CeloAlfajores]: process.env.CELO_ALFAJORES_PROVIDER,
     [Network.CeloMainnet]: process.env.CELO_MAINNET_PROVIDER
   }
