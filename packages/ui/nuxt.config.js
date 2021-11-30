@@ -126,7 +126,7 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {
-    dirs: ['~/components/*'],
+    dirs: ['~/components', { path: '~/components/chart', extensions: ['vue'] }],
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
