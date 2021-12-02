@@ -13,6 +13,7 @@ const typeDefs = gql`
     lastResult: String
     deviation: String!
     heartbeat: String!
+    finality: String!
     requests(timestamp: Int!): [ResultRequest]!
   }
 

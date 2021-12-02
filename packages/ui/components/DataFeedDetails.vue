@@ -25,7 +25,7 @@
       :data-label="feed.label"
       :name="feedName"
       :deviation="deviation"
-      :heartbeat="heartbeat"
+      :heartbeat="maxTimeToResolve"
       :decimals="feedDecimals"
       @change-range="updateQuery"
     />
@@ -115,8 +115,10 @@ export default {
     deviation() {
       return this.feed ? this.feed.deviation : ''
     },
-    heartbeat() {
-      return this.feed ? this.feed.heartbeat : ''
+    maxTimeToResolve() {
+      return this.feed
+        ? (Number(this.feed.heartbeat) + Number(this.feed.finality)).toString()
+        : ''
     },
     numberOfPages() {
       return this.feed

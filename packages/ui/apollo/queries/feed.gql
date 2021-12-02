@@ -8,6 +8,7 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     label
     deviation
     heartbeat
+    finality
     requests(timestamp: $timestamp) {
       feedFullName 
       result

@@ -46,7 +46,12 @@ const resolvers = {
       return config[parent.feedFullName]?.deviation || ''
     },
     heartbeat: async (parent, _args, { config }: Context) => {
+      // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
       return config[parent.feedFullName]?.heartbeat || ''
+    },
+    finality: async (parent, _args, { config }: Context) => {
+      // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
+      return config[parent.feedFullName]?.finality || ''
     }
   }
 }

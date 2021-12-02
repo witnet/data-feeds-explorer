@@ -69,7 +69,8 @@ function validateDataFeeds (dataFeeds: Array<FeedInfoConfig>) {
     'color',
     'blockExplorer',
     'deviation',
-    'heartbeat'
+    'heartbeat',
+    'finality'
   ]
 
   dataFeeds.forEach((feedInfoConfig, index) => {
