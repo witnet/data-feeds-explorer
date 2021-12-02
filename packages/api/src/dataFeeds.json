@@ -86,7 +86,7 @@
   {
     "feedFullName": "conflux-testnet_cfx-usdt_6",
     "abi": "./src/abi/PriceFeed.json",
-    "address": "0x81cc73426944cC15BE22a3d7c812282E66F2c689",
+    "address": "0x8D7933112524bE9c143252456ac85F2a89d73f9D",
     "network": "conflux-testnet",
     "name": "cfx/usdt",
     "label": "₮",
@@ -128,7 +128,7 @@
   {
     "feedFullName": "conflux-mainnet_cfx-usdt_6",
     "abi": "./src/abi/PriceFeed.json",
-    "address": "0x86e9A67C92455afa725CC01b2036e47cd4dd9929",
+    "address": "0x82E6b8E6e98132a39ec96398e68Ee7bfBa0245C2",
     "network": "conflux-mainnet",
     "name": "cfx/usdt",
     "label": "₮",
@@ -366,7 +366,7 @@
   {
     "feedFullName": "boba-mainnet_boba-usdt_6",
     "abi": "./src/abi/PriceFeed.json",
-    "address": "0x52Bf8Bf503c69A055e3f86BD7D7F6dCb6c1f1E13",
+    "address": "0x7BC25b36DfeB5102ACAE8f4E7600Dd963D2Eb95C",
     "network": "boba-mainnet",
     "name": "boba/usdt",
     "label": "₮",
