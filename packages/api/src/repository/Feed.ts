@@ -18,6 +18,7 @@ export class FeedRepository {
   constructor (db: Db, dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('feed')
     this.dataFeedsFullNames = dataFeeds.map(dataFeed => dataFeed.feedFullName)
+    this.collection.createIndex({ feedFullName: 1 })
   }
 
   async getAll (): Promise<Array<FeedDbObjectNormalized>> {
