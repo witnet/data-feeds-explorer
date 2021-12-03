@@ -13,7 +13,7 @@ export class ResultRequestRepository {
 
   constructor (db: Db, _dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
-    this.collection.createIndex({ feedFullName: 1 })
+    this.collection.createIndex({ feedFullName: 1, timestamp: -1 })
   }
 
   async getFeedRequests (
@@ -45,6 +45,7 @@ export class ResultRequestRepository {
     page: number,
     size: number
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
+    console.log('index information', await this.collection.indexInformation())
     return (
       await this.collection
         .find({
