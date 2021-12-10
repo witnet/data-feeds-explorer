@@ -34,12 +34,10 @@ export default {
     networks: {
       prefetch: true,
       query: networks,
-      fetchPolicy: 'network-only',
     },
     feeds: {
       prefetch: true,
       query: feeds,
-      fetchPolicy: 'network-only',
       variables() {
         return {
           page: this.currentPage,
