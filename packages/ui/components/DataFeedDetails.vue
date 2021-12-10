@@ -21,7 +21,7 @@
       v-if="feed"
       class="chart"
       :data="chartData"
-      :last-result-timestamp="transactions[0].timestamp"
+      :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
       :data-label="feed.label"
       :name="feedName"
       :deviation="deviation"

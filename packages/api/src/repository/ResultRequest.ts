@@ -45,7 +45,6 @@ export class ResultRequestRepository {
     page: number,
     size: number
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
-    console.log('index information', await this.collection.indexInformation())
     return (
       await this.collection
         .find({
