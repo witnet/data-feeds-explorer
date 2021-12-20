@@ -33,7 +33,7 @@ services:
   #     ME_CONFIG_MONGODB_ENABLE_ADMIN: "false"
 
   api:
-    image: witnet/data-feed-app-api
+    image: witnet/data-feeds-explorer-api
     ports:
       - "4000:4000"
     links:
@@ -59,7 +59,7 @@ services:
       CONFLUX_MAINNET_PROVIDER: $CONFLUX_MAINNET_PROVIDER
 
   ui:
-    image: witnet/data-feed-app-ui
+    image: witnet/data-feeds-explorer-ui
     links:
       - api
     ports:
