@@ -310,7 +310,7 @@
   {
     "feedFullName": "boba-rinkeby_omg-btc_9",
     "abi": "./src/abi/PriceFeed.json",
-    "address": "0x56834Ff8D4b27db647Da97CA3bd8540f7fA0e89D",
+    "address": "0xae50313b41750A46243ba0944C7D7f20618d8c29",
     "network": "boba-rinkeby",
     "name": "omg/btc",
     "label": "₿",
@@ -324,7 +324,7 @@
   {
     "feedFullName": "boba-rinkeby_omg-eth_9",
     "abi": "./src/abi/PriceFeed.json",
-    "address": "0x225BAd150B9D5202DC805B34A0DF64B1a77459dF",
+    "address": "0x6F968Be4DFce457AC5449EA2D522DA2Bedc36404",
     "network": "boba-rinkeby",
     "name": "omg/eth",
     "label": "Ξ",
@@ -338,7 +338,7 @@
   {
     "feedFullName": "boba-rinkeby_omg-usdt_6",
     "abi": "./src/abi/PriceFeed.json",
-    "address": "0xE2Efa3fe66352e63F118bB9165435C5BEDB777d0",
+    "address": "0x1455d0076dCCB31Fe66fc88DEC4041c553B29595",
     "network": "boba-rinkeby",
     "name": "omg/usdt",
     "label": "₮",
@@ -352,7 +352,7 @@
   {
     "feedFullName": "boba-rinkeby_boba-usdt_6",
     "abi": "./src/abi/PriceFeed.json",
-    "address": "0xA57b17dd8aBA9857D1FE9Dba13bE998833d6A28A",
+    "address": "0x5Cf93b8644376b336DFb76f2F2a83566f5f409C1",
     "network": "boba-rinkeby",
     "name": "boba/usdt",
     "label": "₮",
