@@ -10,7 +10,8 @@ export function getProvider (network: Network) {
     [Network.BobaRinkeby]: process.env.BOBA_RINKEBY_PROVIDER,
     [Network.BobaMainnet]: process.env.BOBA_MAINNET_PROVIDER,
     [Network.CeloAlfajores]: process.env.CELO_ALFAJORES_PROVIDER,
-    [Network.CeloMainnet]: process.env.CELO_MAINNET_PROVIDER
+    [Network.CeloMainnet]: process.env.CELO_MAINNET_PROVIDER,
+    [Network.MetisRinkeby]: process.env.METIS_RINKEBY_PROVIDER
   }
   return providers[network]
 }

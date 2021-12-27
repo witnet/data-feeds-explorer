@@ -117,12 +117,20 @@ export class Web3Middleware {
   }
 
   async readContractsState ({ feedContract }: Contracts) {
+    await feedContract.methods.lastValue().call()
     try {
+      const {
+        _lastPrice,
+        _lastTimestamp,
+        _lastDrTxHash,
+        _latestUpdateStatus
+      } = await feedContract.methods.lastValue().call()
+      console.log('Latest update status:', _latestUpdateStatus)
       return {
-        lastPrice: await feedContract.methods.lastPrice().call(),
-        // lastResponse contains { timestamp, drTxHash }
-        lastResponse: await feedContract.methods.lastResponse().call(),
-        requestId: await feedContract.methods.requestId().call()
+        lastPrice: _lastPrice,
+        lastTimestamp: _lastTimestamp,
+        lastDrTxHash: _lastDrTxHash,
+        requestId: await feedContract.methods.latestQueryId().call()
       }
     } catch (err) {
       console.error('Error reading contract state', err)
@@ -141,14 +149,14 @@ export class Web3Middleware {
     try {
       const {
         lastPrice,
-        lastResponse,
+        lastTimestamp,
+        lastDrTxHash,
         requestId
       }: ContractsState = await this.readContractsState(contracts)
       const feedFullName = feed.feedFullName
-      const { timestamp, drTxHash } = lastResponse
-      const decodedDrTxHash = toHex(drTxHash).slice(2)
+      const decodedDrTxHash = toHex(lastDrTxHash).slice(2)
       const lastStoredResult = this.lastStoredResult[feedFullName]
-      const isAlreadyStored = lastStoredResult?.timestamp === timestamp
+      const isAlreadyStored = lastStoredResult?.timestamp === lastTimestamp
       const isDrSolved =
         decodedDrTxHash &&
         decodedDrTxHash !==
@@ -156,7 +164,7 @@ export class Web3Middleware {
       if (!isAlreadyStored && isDrSolved) {
         const result = await this.repositories.resultRequestRepository.insert({
           result: lastPrice,
-          timestamp: lastResponse.timestamp,
+          timestamp: lastTimestamp,
           requestId: requestId,
           drTxHash: decodedDrTxHash,
           feedFullName
