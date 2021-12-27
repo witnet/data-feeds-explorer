@@ -30,7 +30,8 @@ export enum Network {
   CeloAlfajores = 'celo-alfajores',
   CeloMainnet = 'celo-mainnet',
   BobaRinkeby = 'boba-rinkeby',
-  BobaMainnet = 'boba-mainnet'
+  BobaMainnet = 'boba-mainnet',
+  MetisRinkeby = 'metis-rinkeby'
 }
 
 export type FeedInfoGeneric<ABI> = {
@@ -66,7 +67,8 @@ export type Repositories = {
 
 export type ContractsState = {
   lastPrice: string
-  lastResponse: LastResponse
+  lastTimestamp: string
+  lastDrTxHash: string
   requestId: string
 }
 
