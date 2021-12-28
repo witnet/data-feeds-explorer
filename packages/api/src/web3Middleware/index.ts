@@ -151,7 +151,6 @@ export class Web3Middleware {
 
   async readContractsState ({ feedContract }: Contracts) {
     try {
-      await feedContract.methods.lastValue().call()
       const {
         _lastPrice,
         _lastTimestamp,
@@ -166,10 +165,6 @@ export class Web3Middleware {
         requestId: await feedContract.methods.latestQueryId().call()
       }
     } catch (err) {
-      console.error(
-        'Error reading contract state',
-        feedContract.options.address
-      )
       throw new Error(`Error reading contract state ${err}`)
     }
   }

@@ -1,0 +1,168 @@
+{
+  "abi": "./src/abi/WitnetPriceRouter.json",
+  "chains": {
+    "boba": {
+      "networks": {
+        "boba.rinkeby": {
+          "address": "0x2f4D0cdB68aC9cB588536982aCDD78B29D1B3B88",
+          "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+          "color": "#1cd83d",
+          "name": "Boba Rinkeby",
+          "pollingPeriod": 500,
+          "feeds": {
+            "Price-BOBA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-OMG/BTC-9": {
+              "label": "BTC",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-OMG/ETH-9": {
+              "label": "ETH",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-OMG/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "celo": {
+      "networks": {
+        "celo.alfajores": {
+          "address": "0xAE72827b810b263040548Ef543C30DF1c7F5eC78",
+          "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
+          "color": "#1cd8d2",
+          "name": "Celo Alfajores",
+          "pollingPeriod": 500,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CELO/EUR-6": {
+              "label": "€",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CELO/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "conflux": {
+      "networks": {
+        "conflux.testnet": {
+          "address": "0x8999C72D17aA32271e6B6bf286b48c895673f5D3",
+          "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+          "color": "#6600ff",
+          "name": "Conflux Testnet",
+          "pollingPeriod": 500,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CFX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "ethereum": {
+      "networks": {
+        "ethereum.goerli": {
+          "address": "0x33ac5ABb4d4cBD757F32E00505b9efd18d475fD7",
+          "blockExplorer": "https://goerli.etherscan.io/address/{address}",
+          "color": "#ff5599",
+          "name": "Ethereum Goerli",
+          "pollingPeriod": 500,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        },
+        "ethereum.rinkeby": {
+          "address": "0x62d9c01a5c2eA0f344FBcFd5A2fB056360582Dba",
+          "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
+          "color": "#ff5599",
+          "name": "Ethereum Rinkeby",
+          "pollingPeriod": 500,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    }
+  }
+}

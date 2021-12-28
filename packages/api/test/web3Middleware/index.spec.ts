@@ -4,23 +4,41 @@ import { FeedInfo, Db, ObjectId } from '../../src/types'
 import { FeedRepository } from '../../src/repository/Feed'
 import { ResultRequestRepository } from '../../src/repository/ResultRequest'
 import { Web3Middleware } from '../../src/web3Middleware/index'
-import dataFeeds from './dataFeeds.json'
+import { normalizeConfig } from '../../src/utils'
+import dataFeedsRouter from './dataFeedsRouter.json'
+
+const dataFeeds = normalizeConfig(dataFeedsRouter)
 
 jest.mock('../../src/repository/Feed')
 jest.mock('../../src/repository/ResultRequest')
 
-const lastPriceMock = jest.fn(() => ({ call: jest.fn(() => '10000') }))
-const lastResponseMock = jest.fn(() => ({
+const lastValueMock = jest.fn(() => ({
   call: jest.fn(() => {
-    return { timestamp: '1624363045258', drTxHash: '99999' }
+    return {
+      _lastPrice: '10000',
+      _lastTimestamp: '1624363045258',
+      _lastDrTxHash: '99999',
+      _lastestUpdateStatus: 200
+    }
+  })
+}))
+const currencyPairIdMock = jest.fn(() => ({
+  call: jest.fn(() => {
+    return '9999999000001624363045258'
+  })
+}))
+const getPriceFeedMock = jest.fn(() => ({
+  call: jest.fn(() => {
+    return '0x000001624363045258'
   })
 }))
 const requestIdMock = jest.fn(() => ({ call: jest.fn(() => '1') }))
 const contractMock = jest.fn(() => ({
   methods: {
-    lastPrice: lastPriceMock,
-    lastResponse: lastResponseMock,
-    requestId: requestIdMock
+    lastValue: lastValueMock,
+    latestQueryId: requestIdMock,
+    currencyPairId: currencyPairIdMock,
+    getPriceFeed: getPriceFeedMock
   }
 }))
 const Web3Mock = (jest.fn(() => ({
@@ -29,7 +47,23 @@ const Web3Mock = (jest.fn(() => ({
   }
 })) as unknown) as typeof Web3
 
-beforeEach(() => jest.clearAllMocks())
+const originalenv = process.env
+
+beforeEach(() => {
+  jest.resetModules()
+  process.env = {
+    ...originalenv,
+    ETHEREUM_GOERLI_PROVIDER:`https://goerli.infura.io`,
+    ETHEREUM_KOVAN_PROVIDER:`https://kovan.infura.io`,
+    ETHEREUM_RINKEBY_PROVIDER:`https://rinkeby.infura.io`,
+    BOBA_RINKEBY_PROVIDER:`https://rinkeby.boba.network`,
+    BOBA_MAINNET_PROVIDER:`https://mainnet.boba.network`,
+    CELO_ALFAJORES_PROVIDER:`https://alfajores-forno.celo-testnet.org`,
+    CELO_MAINNET_PROVIDER:`https://forno.celo.org`,
+    ETHEREUM_MAINNET_PROVIDER:`https://mainnet.infura.io`
+  }
+  jest.clearAllMocks()
+})
 
 describe('web3Middleware', () => {
   it('should read the state of each datafeed provided', async () => {
@@ -82,10 +116,11 @@ describe('web3Middleware', () => {
     await new Promise(resolve => setTimeout(() => resolve(''), 1000))
     middleware.stop()
 
-    expect(Web3Mock).toBeCalledTimes(1)
-    expect(lastPriceMock).toBeCalledTimes(1)
-    expect(lastResponseMock).toBeCalledTimes(1)
+    expect(Web3Mock).toBeCalledTimes(3)
+    expect(lastValueMock).toBeCalledTimes(1)
     expect(requestIdMock).toBeCalledTimes(1)
+    expect(currencyPairIdMock).toBeCalledTimes(2)
+    expect(getPriceFeedMock).toBeCalledTimes(2)
   })
   it('should insert each new contract snapshot', async () => {
     const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo]
