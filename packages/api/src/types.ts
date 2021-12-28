@@ -36,7 +36,9 @@ export enum Network {
 
 export type FeedInfoGeneric<ABI> = {
   feedFullName: string
+  id: string
   abi: ABI
+  routerAbi: ABI
   address: string
   network: Network
   name: string
@@ -79,4 +81,32 @@ export type LastResponse = {
 
 export type Contracts = {
   feedContract: Contract
+}
+
+export type FeedInfoRouterConfig = {
+  [key: string]: FeedParamsConfig
+}
+export type FeedParamsConfig = {
+  label: string
+  deviationPercentage: number
+  maxSecsBetweenUpdates: number
+  minSecsBetweenUpdates: number
+}
+export type FeedParsedParams = {
+  label: string
+  deviationPercentage: number
+  maxSecsBetweenUpdates: number
+  minSecsBetweenUpdates: number
+  key: string
+}
+export type FeedConfig = {
+  address: string
+  blockExplorer: string
+  color: string
+  name: string
+  pollingPeriod: number
+  feeds: Array<FeedInfoRouterConfig>
+}
+export type NetworkConfig = {
+  [key: string]: FeedConfig
 }

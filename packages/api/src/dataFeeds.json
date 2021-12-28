@@ -376,5 +376,19 @@
     "deviation": 1,
     "heartbeat": 86400000,
     "finality": 900000
+  },
+  {
+    "feedFullName": "metis-rinkeby_btc-usd_6",
+    "abi": "./src/abi/PriceFeed.json",
+    "address": "0x8bc20C776ba467dd78a6a1A3993B3Bb6603c5862",
+    "network": "metis-rinkeby",
+    "name": "btc/usd",
+    "label": "$",
+    "pollingPeriod": 300000,
+    "color": "#62D7CB",
+    "blockExplorer": "https://stardust-explorer.metis.io/address/{address}",
+    "deviation": 1,
+    "heartbeat": 3600000,
+    "finality": 900000
   }
 ]

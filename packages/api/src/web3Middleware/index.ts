@@ -42,14 +42,17 @@ export class Web3Middleware {
           feed.feedFullName
         )
       } else {
-        feed = await this.repositories.feedRepository.insert({
-          feedFullName: feedInfo.feedFullName,
-          address: feedInfo.address,
-          name: feedInfo.name,
-          network: feedInfo.network,
-          label: feedInfo.label,
-          blockExplorer: feedInfo.blockExplorer
-        })
+        const contractAddress = await this.getContractAddress(feedInfo)
+        if (contractAddress) {
+          feed = await this.repositories.feedRepository.insert({
+            feedFullName: feedInfo.feedFullName,
+            address: contractAddress,
+            name: feedInfo.name,
+            network: feedInfo.network,
+            label: feedInfo.label,
+            blockExplorer: feedInfo.blockExplorer
+          })
+        }
       }
       return feed
     })
@@ -66,14 +69,17 @@ export class Web3Middleware {
         feedInfo: FeedInfo
       ) => {
         const feedId = feeds.find(feed => {
-          return feed.feedFullName === feedInfo.feedFullName
+          if (feed) {
+            return feed.feedFullName === feedInfo.feedFullName
+          } else {
+            return false
+          }
         })
-
         return {
           ...acc,
           [feedInfo.feedFullName]: {
             feedInfo,
-            feedId: feedId._id
+            feedId: feedId?._id
           }
         }
       },
@@ -97,28 +103,55 @@ export class Web3Middleware {
     this.intervals = []
   }
 
-  listenToDataFeed (feedInfo: FeedInfo, feedId: ObjectId) {
-    const provider = getProvider(feedInfo.network)
-    const web3 = new this.Web3(provider)
-    const feedContract = new web3.eth.Contract(feedInfo.abi, feedInfo.address)
-    const interval = setInterval(async () => {
-      console.log(`Reading contract state at address: ${feedInfo.address}`)
-      await this.fetchAndSaveContractSnapshot(
-        { feedContract },
-        {
-          feedFullName: feedInfo.feedFullName,
-          id: feedId,
-          label: feedInfo.label
-        }
+  async getContractAddress (feedInfo: FeedInfo) {
+    try {
+      const provider = getProvider(feedInfo.network)
+      const web3 = new this.Web3(provider)
+      const feedContract = new web3.eth.Contract(
+        feedInfo.routerAbi,
+        feedInfo.address
       )
-    }, feedInfo.pollingPeriod)
+      const contractIdentifier = await feedContract.methods
+        .currencyPairId(feedInfo.id)
+        .call()
+      const address = await feedContract.methods
+        .getPriceFeed(contractIdentifier)
+        .call()
+      return address
+    } catch (err) {
+      console.log('Error reading contract address:', err)
+    }
+  }
 
-    this.intervals.push(interval)
+  async listenToDataFeed (feedInfo: FeedInfo, feedId: ObjectId) {
+    const contractAddress = await this.getContractAddress(feedInfo)
+    const provider = getProvider(feedInfo.network)
+    if (provider) {
+      const web3 = new this.Web3(provider)
+      const feedContract = new web3.eth.Contract(feedInfo.abi, contractAddress)
+      const interval = setInterval(async () => {
+        console.log(
+          `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
+        )
+        await this.fetchAndSaveContractSnapshot(
+          { feedContract },
+          {
+            feedFullName: feedInfo.feedFullName,
+            id: feedId,
+            label: feedInfo.label
+          }
+        )
+      }, feedInfo.pollingPeriod)
+
+      this.intervals.push(interval)
+    } else {
+      console.error(`Provider not set for network ${feedInfo.network}`)
+    }
   }
 
   async readContractsState ({ feedContract }: Contracts) {
-    await feedContract.methods.lastValue().call()
     try {
+      await feedContract.methods.lastValue().call()
       const {
         _lastPrice,
         _lastTimestamp,
@@ -133,7 +166,10 @@ export class Web3Middleware {
         requestId: await feedContract.methods.latestQueryId().call()
       }
     } catch (err) {
-      console.error('Error reading contract state', err)
+      console.error(
+        'Error reading contract state',
+        feedContract.options.address
+      )
       throw new Error(`Error reading contract state ${err}`)
     }
   }

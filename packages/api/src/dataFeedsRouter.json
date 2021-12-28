@@ -1,0 +1,268 @@
+{
+  "abi": "./src/abi/WitnetPriceRouter.json",
+  "chains": {
+    "boba": {
+      "networks": {
+        "boba.rinkeby": {
+          "address": "0x2f4D0cdB68aC9cB588536982aCDD78B29D1B3B88",
+          "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
+          "color": "#1cd83d",
+          "name": "Boba Rinkeby",
+          "pollingPeriod": 300000,
+          "feeds": {
+            "Price-BOBA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-OMG/BTC-9": {
+              "label": "BTC",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-OMG/ETH-9": {
+              "label": "ETH",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-OMG/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "celo": {
+      "networks": {
+        "celo.alfajores": {
+          "address": "0xAE72827b810b263040548Ef543C30DF1c7F5eC78",
+          "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
+          "color": "#1cd8d2",
+          "name": "Celo Alfajores",
+          "pollingPeriod": 300000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CELO/EUR-6": {
+              "label": "€",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CELO/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "conflux": {
+      "networks": {
+        "conflux.testnet": {
+          "address": "0x8999C72D17aA32271e6B6bf286b48c895673f5D3",
+          "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+          "color": "#6600ff",
+          "name": "Conflux Testnet",
+          "pollingPeriod": 300000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CFX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "ethereum": {
+      "networks": {
+        "ethereum.goerli": {
+          "address": "0x33ac5ABb4d4cBD757F32E00505b9efd18d475fD7",
+          "blockExplorer": "https://goerli.etherscan.io/address/{address}",
+          "color": "#ff5599",
+          "name": "Ethereum Goerli",
+          "pollingPeriod": 1500000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        },
+        "ethereum.rinkeby": {
+          "address": "0x62d9c01a5c2eA0f344FBcFd5A2fB056360582Dba",
+          "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
+          "color": "#ff5599",
+          "name": "Ethereum Rinkeby",
+          "pollingPeriod": 1500000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "harmony": {
+      "networks": {
+        "harmony.testnet": {
+          "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
+          "blockExplorer": "https://explorer.pops.one/address/{address}",
+          "color": "#f6006f",
+          "name": "Harmony Testnet",
+          "pollingPeriod": 10000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "kcc": {
+      "networks": {
+        "kcc.testnet": {
+          "address": "0x24Fbe80ec4C3663095A1275C58DeBA31Ad0a8655",
+          "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
+          "color": "#ff0066",
+          "name": "KCC Testnet",
+          "pollingPeriod": 10000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "metis": {
+      "networks": {
+        "metis.rinkeby": {
+          "address": "0x29Db4d5F1647511778d89888337c9460fbB8Dd39",
+          "blockExplorer": "https://stardust-explorer.metis.io/address/{address}",
+          "color": "#ff6600",
+          "name": "METIS Stardust",
+          "pollingPeriod": 10000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
+    "polygon": {
+      "networks": {
+        "polygon.mumbai": {
+          "address": "0x72bCA3Ee82AA4F982479FF26389f6E3f0040a2C8",
+          "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
+          "color": "#66ff00",
+          "name": "Polygon Mumbai",
+          "pollingPeriod": 10000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 300,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    }
+  }
+}

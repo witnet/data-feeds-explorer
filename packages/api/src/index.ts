@@ -9,6 +9,7 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 import { createServer } from './server'
 import { FeedInfo, FeedInfoConfig, Repositories } from './types'
 import { Web3Middleware } from './web3Middleware/index'
+import { normalizeConfig } from '../src/utils/index'
 
 async function main () {
   const mongoManager = new MongoManager()
@@ -36,16 +37,27 @@ async function main () {
 }
 
 function readDataFeeds (): Array<FeedInfo> {
-  const dataFeeds: Array<FeedInfoConfig> = JSON.parse(
-    fs.readFileSync(
-      path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'),
-      'utf-8'
+  const dataFeeds: Array<FeedInfoConfig> = normalizeConfig(
+    JSON.parse(
+      fs.readFileSync(
+        path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'),
+        'utf-8'
+      )
     )
   )
   // Throw and error if config file is not valid
   validateDataFeeds(dataFeeds)
   return dataFeeds.map(dataFeed => ({
     ...dataFeed,
+    routerAbi: JSON.parse(
+      fs.readFileSync(
+        path.resolve(
+          process.env.DATA_FEED_ROUTER_ABI_PATH ||
+            './src/abi/PriceFeedRouter.json'
+        ),
+        'utf-8'
+      )
+    ),
     abi: JSON.parse(
       fs.readFileSync(
         path.resolve(
@@ -61,7 +73,6 @@ function readDataFeeds (): Array<FeedInfo> {
 function validateDataFeeds (dataFeeds: Array<FeedInfoConfig>) {
   const fields = [
     'feedFullName',
-    'abi',
     'address',
     'network',
     'name',
