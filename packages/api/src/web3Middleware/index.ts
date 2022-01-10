@@ -60,6 +60,11 @@ export class Web3Middleware {
     return await Promise.all(promises)
   }
 
+  // async updateAddress(feedInfo) {
+  //   const contractAddress = await this.getContractAddress(feedInfo)
+
+  // }
+
   async listen () {
     const feeds = await this.initializeLastStoredResults()
 
@@ -85,6 +90,10 @@ export class Web3Middleware {
       },
       {}
     )
+
+    // feeds.forEach((feed) => {
+    //   this.updateAddress(feedDictionary[feed.feedFullName])
+    // })
 
     const promises = Object.values(feedDictionary).map(
       async entry => await this.listenToDataFeed(entry.feedInfo, entry.feedId)

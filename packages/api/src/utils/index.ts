@@ -30,7 +30,9 @@ export function normalizeConfig (config) {
   }, [])
   // Network Config list deleting key label
   const configs = networks.reduce((acc, config) => {
-    acc.push(Object.values(config)[0])
+    Object.values(config).forEach((config) => {
+      acc.push(config)
+    })
     return acc
   }, [])
   // Parse Feed adding common config

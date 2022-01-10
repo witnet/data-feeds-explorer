@@ -19,8 +19,7 @@ describe('validateDataFeedsConfig', () => {
         label: '₮',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer:
-          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -34,8 +33,7 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer:
-          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -49,8 +47,7 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer:
-          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -64,8 +61,7 @@ describe('validateDataFeedsConfig', () => {
         label: 'BTC',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer:
-          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -79,8 +75,7 @@ describe('validateDataFeedsConfig', () => {
         label: 'ETH',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer:
-          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -94,10 +89,23 @@ describe('validateDataFeedsConfig', () => {
         label: '₮',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer:
-          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'boba-mainnet_boba-usdt_6',
+        id: 'Price-BOBA/USDT-6',
+        address: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5',
+        network: 'boba-mainnet',
+        name: 'boba/usdt',
+        label: '₮',
+        pollingPeriod: 15000,
+        color: '#007dff',
+        blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
+        deviation: 1,
+        heartbeat: '86400000',
         finality: 900000
       },
       {
@@ -109,8 +117,7 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer:
-          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -124,8 +131,7 @@ describe('validateDataFeedsConfig', () => {
         label: '€',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer:
-          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -139,8 +145,7 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer:
-          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -154,10 +159,65 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer:
-          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'celo-mainnet_celo-eur_6',
+        id: 'Price-CELO/EUR-6',
+        address: '0x931673904eB6E69D775e35F522c0EA35575297Cb',
+        network: 'celo-mainnet',
+        name: 'celo/eur',
+        label: '€',
+        pollingPeriod: 15000,
+        color: '#ff8100',
+        blockExplorer: 'https://explorer.celo.org/address/{address}',
+        deviation: 1,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'celo-mainnet_celo-usd_6',
+        id: 'Price-CELO/USD-6',
+        address: '0x931673904eB6E69D775e35F522c0EA35575297Cb',
+        network: 'celo-mainnet',
+        name: 'celo/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff8100',
+        blockExplorer: 'https://explorer.celo.org/address/{address}',
+        deviation: 1,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'celo-mainnet_btc-usd_6',
+        id: 'Price-BTC/USD-6',
+        address: '0x931673904eB6E69D775e35F522c0EA35575297Cb',
+        network: 'celo-mainnet',
+        name: 'btc/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff8100',
+        blockExplorer: 'https://explorer.celo.org/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'celo-mainnet_eth-usd_6',
+        id: 'Price-ETH/USD-6',
+        address: '0x931673904eB6E69D775e35F522c0EA35575297Cb',
+        network: 'celo-mainnet',
+        name: 'eth/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff8100',
+        blockExplorer: 'https://explorer.celo.org/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
         finality: 900000
       },
       {
@@ -203,6 +263,48 @@ describe('validateDataFeedsConfig', () => {
         finality: 900000
       },
       {
+        feedFullName: 'conflux-tethys_cfx-usdt_6',
+        id: 'Price-CFX/USDT-6',
+        address: '0x806c8dFd322EE2d52b188CC472e0814F64304C32',
+        network: 'conflux-tethys',
+        name: 'cfx/usdt',
+        label: '₮',
+        pollingPeriod: 15000,
+        color: '#ff0000',
+        blockExplorer: 'https://confluxscan.io/address/{address}',
+        deviation: 1,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'conflux-tethys_btc-usd_6',
+        id: 'Price-BTC/USD-6',
+        address: '0x806c8dFd322EE2d52b188CC472e0814F64304C32',
+        network: 'conflux-tethys',
+        name: 'btc/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff0000',
+        blockExplorer: 'https://confluxscan.io/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'conflux-tethys_eth-usd_6',
+        id: 'Price-ETH/USD-6',
+        address: '0x806c8dFd322EE2d52b188CC472e0814F64304C32',
+        network: 'conflux-tethys',
+        name: 'eth/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff0000',
+        blockExplorer: 'https://confluxscan.io/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
         feedFullName: 'ethereum-goerli_btc-usd_6',
         id: 'Price-BTC/USD-6',
         address: '0x1cF3Aa9DBF4880d797945726B94B9d29164211BE',
@@ -228,6 +330,62 @@ describe('validateDataFeedsConfig', () => {
         blockExplorer: 'https://goerli.etherscan.io/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'ethereum-rinkeby_btc-usd_6',
+        id: 'Price-BTC/USD-6',
+        address: '0xa50b17C2fc373c247C3b603f83df6A7800cB0DC9',
+        network: 'ethereum-rinkeby',
+        name: 'btc/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff5599',
+        blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
+        deviation: 1,
+        heartbeat: '3600000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'ethereum-rinkeby_eth-usd_6',
+        id: 'Price-ETH/USD-6',
+        address: '0xa50b17C2fc373c247C3b603f83df6A7800cB0DC9',
+        network: 'ethereum-rinkeby',
+        name: 'eth/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff5599',
+        blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
+        deviation: 1,
+        heartbeat: '3600000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'ethereum-mainnet_btc-usd_6',
+        id: 'Price-BTC/USD-6',
+        address: '0x83A757eAe821Ad7B520D9A74952337138A80b2AF',
+        network: 'ethereum-mainnet',
+        name: 'btc/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff5599',
+        blockExplorer: 'https://etherscan.io/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'ethereum-mainnet_eth-usd_6',
+        id: 'Price-ETH/USD-6',
+        address: '0x83A757eAe821Ad7B520D9A74952337138A80b2AF',
+        network: 'ethereum-mainnet',
+        name: 'eth/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff5599',
+        blockExplorer: 'https://etherscan.io/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
         finality: 900000
       },
       {
@@ -298,6 +456,48 @@ describe('validateDataFeedsConfig', () => {
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'kcc-mainnet_kcs-usdt_6',
+        id: 'Price-KCS/USDT-6',
+        address: '0xD39D4d972C7E166856c4eb29E54D3548B4597F53',
+        network: 'kcc-mainnet',
+        name: 'kcs/usdt',
+        label: '₮',
+        pollingPeriod: 15000,
+        color: '#ff0066',
+        blockExplorer: 'https://scan.kcc.io/address/{address}',
+        deviation: 1,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'kcc-mainnet_btc-usd_6',
+        id: 'Price-BTC/USD-6',
+        address: '0xD39D4d972C7E166856c4eb29E54D3548B4597F53',
+        network: 'kcc-mainnet',
+        name: 'btc/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff0066',
+        blockExplorer: 'https://scan.kcc.io/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
+        finality: 900000
+      },
+      {
+        feedFullName: 'kcc-mainnet_eth-usd_6',
+        id: 'Price-ETH/USD-6',
+        address: '0xD39D4d972C7E166856c4eb29E54D3548B4597F53',
+        network: 'kcc-mainnet',
+        name: 'eth/usd',
+        label: '$',
+        pollingPeriod: 15000,
+        color: '#ff0066',
+        blockExplorer: 'https://scan.kcc.io/address/{address}',
+        deviation: 3.5,
+        heartbeat: '86400000',
         finality: 900000
       },
       {
