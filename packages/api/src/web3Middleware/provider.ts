@@ -6,12 +6,16 @@ export function getProvider (network: Network) {
     [Network.EthereumGoerli]: process.env.ETHEREUM_GOERLI_PROVIDER,
     [Network.EthereumRinkeby]: process.env.ETHEREUM_RINKEBY_PROVIDER,
     [Network.ConfluxTestnet]: process.env.CONFLUX_TESTNET_PROVIDER,
-    [Network.ConfluxMainnet]: process.env.CONFLUX_MAINNET_PROVIDER,
+    [Network.ConfluxTethys]: process.env.CONFLUX_TETHYS_PROVIDER,
     [Network.BobaRinkeby]: process.env.BOBA_RINKEBY_PROVIDER,
     [Network.BobaMainnet]: process.env.BOBA_MAINNET_PROVIDER,
     [Network.CeloAlfajores]: process.env.CELO_ALFAJORES_PROVIDER,
     [Network.CeloMainnet]: process.env.CELO_MAINNET_PROVIDER,
-    [Network.MetisRinkeby]: process.env.METIS_RINKEBY_PROVIDER
+    [Network.MetisRinkeby]: process.env.METIS_RINKEBY_PROVIDER,
+    [Network.HarmonyTestnet]: process.env.HARMONY_TESTNET_PROVIDER,
+    [Network.KCCTestnet]: process.env.KCC_TESTNET_PROVIDER,
+    [Network.KCCMainnet]: process.env.KCC_MAINNET_PROVIDER,
+    [Network.PolygonGoerli]: process.env.POLYGON_GOERLI_PROVIDER,
   }
   return providers[network]
 }

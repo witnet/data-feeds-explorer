@@ -26,12 +26,16 @@ export enum Network {
   EthereumGoerli = 'ethereum-goerli',
   EthereumRinkeby = 'ethereum-rinkeby',
   ConfluxTestnet = 'conflux-testnet',
-  ConfluxMainnet = 'conflux-mainnet',
+  ConfluxTethys = 'conflux-tethys',
   CeloAlfajores = 'celo-alfajores',
   CeloMainnet = 'celo-mainnet',
   BobaRinkeby = 'boba-rinkeby',
   BobaMainnet = 'boba-mainnet',
-  MetisRinkeby = 'metis-rinkeby'
+  MetisRinkeby = 'metis-rinkeby',
+  HarmonyTestnet = 'harmony-testnet',
+  KCCTestnet = 'kcc-testnet',
+  KCCMainnet = 'kcc-mainnet',
+  PolygonGoerli = 'polygon-goerli',
 }
 
 export type FeedInfoGeneric<ABI> = {

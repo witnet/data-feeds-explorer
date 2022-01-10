@@ -62,7 +62,7 @@ export function normalizeConfig (config) {
         pollingPeriod: config.pollingPeriod,
         color: config.color,
         blockExplorer: config.blockExplorer,
-        deviation: `${feed.deviationPercentage}000`,
+        deviation: feed.deviationPercentage,
         heartbeat: `${feed.maxSecsBetweenUpdates}000`,
         finality: 900000
       })
