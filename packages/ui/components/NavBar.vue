@@ -1,24 +1,26 @@
 <template>
   <div class="nav-container" :class="{ drop: isMenuVisible }">
-    <nav class="navbar">
+    <nav class="navbar" :class="{ open: isMenuVisible }">
       <nuxt-link :to="localePath('/')">
         <h1 class="logo-container">
           <WitnetLogo class="witnet-logo" />
-          <p class="logo-subtitle">DATA</p>
-          <p class="logo-subtitle-color">FEED</p>
+          <p class="logo-subtitle">Witnet</p>
+          <p class="logo-subtitle">Data Feeds</p>
         </h1>
       </nuxt-link>
-      <label class="responsive-menu" @click="toggleMenu">&#9776;</label>
+      <label class="responsive-menu" @click="toggleMenu">
+        <a class="target-burger" :class="{ visible: isMenuVisible }">
+          <ul class="buns">
+            <li class="bun"></li>
+            <li class="bun"></li>
+          </ul>
+        </a>
+      </label>
       <transition name="dropdown" class="dropdown">
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
-          <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
-            <a class="tab" href="https://witnet.io" target="_blank">{{
-              $t('navbar.about')
-            }}</a>
-          </li>
-          <li class="tab" @mouseover="hover = true" @mouseleave="hover = false">
-            <a href="https://github.com/witnet" target="_blank">
-              <GithubLogo />
+          <li class="tab" @click="closeMenu">
+            <a :href="requestDataFeedUrl" target="_blank">
+              <Button class="btn">{{ $t('navbar.request_data_feed') }}</Button>
             </a>
           </li>
         </ul>
@@ -28,12 +30,15 @@
 </template>
 
 <script>
+import { requestDataFeedUrl } from '../constants'
+
 export default {
   data() {
     return {
       hover: false,
       displayBox: false,
       isMenuVisible: false,
+      requestDataFeedUrl,
     }
   },
   methods: {
@@ -56,22 +61,15 @@ export default {
 <style scoped lang="scss">
 .navbar {
   display: flex;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  background: var(--nav-bar-background);
   justify-content: space-between;
   align-items: center;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 16px 200px 16px 200px;
-
+  background-color: var(--bg);
   .logo-container {
     display: grid;
     grid-template-columns: max-content max-content;
     grid-template-rows: 1fr 1fr;
     align-items: center;
+    padding: 16px;
     text-decoration: none;
     column-gap: 8px;
 
@@ -91,7 +89,6 @@ export default {
     }
   }
   .responsive-menu {
-    color: var(--text);
     display: none;
     font-size: 34px;
   }
@@ -99,28 +96,54 @@ export default {
     list-style: none;
     display: flex;
     align-items: center;
-    & .visible {
+    &.visible {
+      background: white;
       display: block;
+      padding: 0;
     }
     .tab {
-      cursor: pointer;
-      font-size: 18px;
-      display: flex;
+      font-size: 1rem;
       font-weight: 600;
-      color: var(--text);
+      display: flex;
       align-items: center;
       text-decoration: none;
-      margin: 16px 24px;
-      &:hover {
-        color: var(--text-hover);
+      transition: color 0.1s ease;
+      .btn {
+        max-width: max-content;
+        margin: 0;
       }
+      .slash {
+        color: $green-1;
+      }
+
+      &:hover {
+        color: $green-1;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .navbar {
+    padding: 0 24px;
+    margin: 0;
+
+    &.open {
+      height: 100vh;
+    }
+    .logo {
+      margin: 0;
     }
   }
   .drop {
     position: absolute;
   }
 }
-@media screen and (max-width: 1200px) {
+
+@media screen and (max-width: 950px) {
   .drop {
     position: fixed;
     top: 0;
@@ -129,42 +152,37 @@ export default {
     z-index: 15;
     overflow-y: hidden;
   }
+
   .navbar {
-    left: 0;
-    right: 0;
-    top: 0;
     display: block;
     position: relative;
     padding: 0;
-    .logo-container {
-      padding: 32px;
-    }
     .responsive-menu {
       display: block;
       cursor: pointer;
       position: absolute;
-      top: 16px;
-      right: 32px;
+      top: 8px;
+      width: 32px;
+      right: 24px;
     }
     .tab-container {
       list-style: none;
       display: none;
       text-align: center;
-      height: 100vh;
       width: 100vw;
-      padding: 0;
       margin: 0;
       cursor: pointer;
       &.visible {
+        box-sizing: border-box;
         display: block;
+        padding: 0;
+        padding-top: 32px;
       }
       .tab {
         cursor: pointer;
         display: block;
-        color: var(--text);
         align-items: center;
         text-decoration: none;
-        padding: 24px 32px;
         .social {
           display: none;
         }
@@ -172,14 +190,59 @@ export default {
     }
   }
 }
-@media screen and (max-width: 600px) {
-  .navbar {
-    .logo-container {
-      padding: 16px;
+
+.target-burger {
+  display: block;
+  transition: 0.5s;
+  margin-top: 16px;
+  &:hover {
+    cursor: pointer;
+    opacity: opacity(0.45);
+  }
+  &.visible {
+    ul.buns {
+      width: 32px;
+      height: 32px;
+      li.bun {
+        -webkit-transform: rotate(45deg) translateZ(0);
+        transform: rotate(45deg) translateZ(0);
+        &:last-child {
+          -webkit-transform: rotate(-45deg) translateZ(0);
+          transform: rotate(-45deg) translateZ(0);
+        }
+      }
     }
-    .responsive-menu {
-      top: 16px;
-      right: 16px;
+  }
+  .buns {
+    width: 32px;
+    height: 32px;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+      color 1s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+      color 1s cubic-bezier(0.23, 1, 0.32, 1);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    color: var(--text);
+    .bun {
+      width: 100%;
+      height: 3px;
+      background-color: var(--text);
+      position: absolute;
+      top: 50%;
+      margin-top: -0.75px;
+      -webkit-transform: translateY(-3.75px) translateZ(0);
+      transform: translateY(-3.75px) translateZ(0);
+      -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+        background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+        background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
+      &:last-child {
+        -webkit-transform: translateY(3.75px) translateZ(0);
+        transform: translateY(3.75px) translateZ(0);
+      }
     }
   }
 }

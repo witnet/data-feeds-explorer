@@ -9,12 +9,11 @@
 <style lang="scss" scoped>
 .main-section {
   color: var(--text);
-  padding: 0 180px;
   min-height: 100vh;
   display: grid;
   grid-template-rows: 150px 1fr;
   grid-template-columns: 1fr;
-  max-width: 1500px;
+  max-width: 1124px;
   row-gap: 24px;
   margin: 0 auto;
   padding-bottom: 48px;

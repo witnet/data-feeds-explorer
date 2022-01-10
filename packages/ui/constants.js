@@ -1,4 +1,5 @@
 export const witnetBlockExplorerUrl = 'https://witnet.network/search'
+export const requestDataFeedUrl = 'https://witnet.io'
 
 export const languages = [
   {

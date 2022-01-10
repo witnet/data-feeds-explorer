@@ -6,7 +6,7 @@
     "data_feeds": "Data feeds"
   },
   "navbar": {
-    "about": "About"
+    "request_data_feed": "Request data feed"
   },
   "transactions_list": {
     "transactions": "Transactions",

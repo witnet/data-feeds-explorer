@@ -6,7 +6,7 @@
     "data_feeds": "Data feeds"
   },
   "navbar": {
-    "about": "Sobre Witnet"
+    "request_data_feed": "Request data feed"
   },
   "transactions_list": {
     "transactions": "Transacciones",

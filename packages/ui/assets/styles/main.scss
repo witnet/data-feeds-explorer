@@ -72,6 +72,7 @@
 
   --switcher-item-background: #41BEA5;
   --switcher-item-color: white;
+
 }
 
 .dark-mode {
@@ -148,10 +149,19 @@
 
   --contract-address: #41BEA5;
 
-    //switcher
+  //Switcher
 
-    --switcher-item-background: #41BEA5;
-    --switcher-item-color: white;
+  --switcher-item-background: #41BEA5;
+  --switcher-item-color: white;
+
+  //Button
+
+  --btn-primary-color: #EDEDED;
+  --btn-primary-background-color: #00D4AA16;
+  --btn-primary-border-color: #00D4AA16;
+  --btn-secondary-color: #4AB6A1;
+  --btn-secondary-background-color: #4AB6A1;
+  --btn-secondary-border-color: #4AB6A1;
 }
 
 .light-mode {
@@ -232,6 +242,15 @@
 
   --switcher-item-background: #41BEA5;
   --switcher-item-color: #2D2C39;
+
+  //Button
+
+  --btn-primary-color: #FDFDFD;
+  --btn-primary-background-color: #4AB6A1;
+  --btn-primary-border-color: #4AB6A1;
+  --btn-secondary-color: #4AB6A1;
+  --btn-secondary-background-color: #4AB6A1;
+  --btn-secondary-border-color: #4AB6A1;
 }
 
 h1 {
