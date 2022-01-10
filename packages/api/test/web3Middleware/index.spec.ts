@@ -53,14 +53,14 @@ beforeEach(() => {
   jest.resetModules()
   process.env = {
     ...originalenv,
-    ETHEREUM_GOERLI_PROVIDER:`https://goerli.infura.io`,
-    ETHEREUM_KOVAN_PROVIDER:`https://kovan.infura.io`,
-    ETHEREUM_RINKEBY_PROVIDER:`https://rinkeby.infura.io`,
-    BOBA_RINKEBY_PROVIDER:`https://rinkeby.boba.network`,
-    BOBA_MAINNET_PROVIDER:`https://mainnet.boba.network`,
-    CELO_ALFAJORES_PROVIDER:`https://alfajores-forno.celo-testnet.org`,
-    CELO_MAINNET_PROVIDER:`https://forno.celo.org`,
-    ETHEREUM_MAINNET_PROVIDER:`https://mainnet.infura.io`
+    ETHEREUM_GOERLI_PROVIDER: `https://goerli.infura.io`,
+    ETHEREUM_KOVAN_PROVIDER: `https://kovan.infura.io`,
+    ETHEREUM_RINKEBY_PROVIDER: `https://rinkeby.infura.io`,
+    BOBA_RINKEBY_PROVIDER: `https://rinkeby.boba.network`,
+    BOBA_MAINNET_PROVIDER: `https://mainnet.boba.network`,
+    CELO_ALFAJORES_PROVIDER: `https://alfajores-forno.celo-testnet.org`,
+    CELO_MAINNET_PROVIDER: `https://forno.celo.org`,
+    ETHEREUM_MAINNET_PROVIDER: `https://mainnet.infura.io`
   }
   jest.clearAllMocks()
 })

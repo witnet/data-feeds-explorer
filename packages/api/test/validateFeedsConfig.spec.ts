@@ -19,7 +19,8 @@ describe('validateDataFeedsConfig', () => {
         label: '₮',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -33,7 +34,8 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -47,7 +49,8 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -61,7 +64,8 @@ describe('validateDataFeedsConfig', () => {
         label: 'BTC',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -75,7 +79,8 @@ describe('validateDataFeedsConfig', () => {
         label: 'ETH',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -89,7 +94,8 @@ describe('validateDataFeedsConfig', () => {
         label: '₮',
         pollingPeriod: 15000,
         color: '#1cd83d',
-        blockExplorer: 'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -103,7 +109,8 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer:
+          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -117,7 +124,8 @@ describe('validateDataFeedsConfig', () => {
         label: '€',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer:
+          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -131,7 +139,8 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer:
+          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000
@@ -145,7 +154,8 @@ describe('validateDataFeedsConfig', () => {
         label: '$',
         pollingPeriod: 15000,
         color: '#1cd8d2',
-        blockExplorer: 'https://alfajores-blockscout.celo-testnet.org/address/{address}',
+        blockExplorer:
+          'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: 1,
         heartbeat: '3600000',
         finality: 900000

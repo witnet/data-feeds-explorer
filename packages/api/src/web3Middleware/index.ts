@@ -119,7 +119,10 @@ export class Web3Middleware {
         .call()
       return address
     } catch (err) {
-      console.log(`Error reading contract for ${feedInfo.feedFullName} with address:`, err)
+      console.log(
+        `Error reading contract for ${feedInfo.feedFullName} with address:`,
+        err
+      )
     }
   }
 
