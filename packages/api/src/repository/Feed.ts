@@ -50,6 +50,22 @@ export class FeedRepository {
     return this.normalizeId(response)
   }
 
+  async updateFeed (
+    feed: WithoutId<FeedDbObject>
+  ): Promise<FeedDbObjectNormalized> {
+    const feedFound = await this.collection.findOne({
+      feedFullName: feed.feedFullName
+    })
+    if (feedFound) {
+      await this.collection.updateOne(
+        { feedFullName: feed.feedFullName },
+        { $set: feed }
+      )
+    }
+    console.log('updatedFeed', feedFound)
+    return this.normalizeId(feedFound)
+  }
+
   async getPaginatedFeeds (
     page: number,
     size: number,

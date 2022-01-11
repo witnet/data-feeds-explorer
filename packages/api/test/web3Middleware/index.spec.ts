@@ -116,11 +116,11 @@ describe('web3Middleware', () => {
     await new Promise(resolve => setTimeout(() => resolve(''), 1000))
     middleware.stop()
 
-    expect(Web3Mock).toBeCalledTimes(3)
+    expect(Web3Mock).toBeCalledTimes(4)
     expect(lastValueMock).toBeCalledTimes(1)
     expect(requestIdMock).toBeCalledTimes(1)
-    expect(currencyPairIdMock).toBeCalledTimes(2)
-    expect(getPriceFeedMock).toBeCalledTimes(2)
+    expect(currencyPairIdMock).toBeCalledTimes(3)
+    expect(getPriceFeedMock).toBeCalledTimes(3)
   })
   it('should insert each new contract snapshot', async () => {
     const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo]

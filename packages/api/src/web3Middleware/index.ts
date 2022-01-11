@@ -57,13 +57,28 @@ export class Web3Middleware {
       return feed
     })
 
-    return await Promise.all(promises)
+    const result = await Promise.all(promises)
+    return result
   }
 
-  // async updateAddress(feedInfo) {
-  //   const contractAddress = await this.getContractAddress(feedInfo)
-
-  // }
+  async updateAddress (feedInfo) {
+    const contractAddress = await this.getContractAddress(feedInfo)
+    const feed = await this.repositories.feedRepository.get(
+      feedInfo.feedFullName
+    )
+    let feedUpdated
+    if (feed && contractAddress !== feed.address) {
+      await this.repositories.feedRepository.updateFeed({
+        feedFullName: feedInfo.feedFullName,
+        address: contractAddress,
+        name: feedInfo.name,
+        network: feedInfo.network,
+        label: feedInfo.label,
+        blockExplorer: feedInfo.blockExplorer
+      })
+    }
+    return feedUpdated
+  }
 
   async listen () {
     const feeds = await this.initializeLastStoredResults()
@@ -90,10 +105,12 @@ export class Web3Middleware {
       },
       {}
     )
-
-    // feeds.forEach((feed) => {
-    //   this.updateAddress(feedDictionary[feed.feedFullName])
-    // })
+    feeds.forEach(feed => {
+      const feedInfo = feedDictionary[feed?.feedFullName]?.feedInfo
+      if (feedInfo) {
+        this.updateAddress(feedInfo)
+      }
+    })
 
     const promises = Object.values(feedDictionary).map(
       async entry => await this.listenToDataFeed(entry.feedInfo, entry.feedId)
@@ -112,33 +129,39 @@ export class Web3Middleware {
     this.intervals = []
   }
 
-  async getContractAddress (feedInfo: FeedInfo) {
+  async getContractAddress (feedInfo: FeedInfo): Promise<string | null> {
     try {
-      const provider = getProvider(feedInfo.network)
-      const web3 = new this.Web3(provider)
-      const feedContract = new web3.eth.Contract(
-        feedInfo.routerAbi,
-        feedInfo.address
-      )
-      const contractIdentifier = await feedContract.methods
-        .currencyPairId(feedInfo.id)
-        .call()
-      const address = await feedContract.methods
-        .getPriceFeed(contractIdentifier)
-        .call()
-      return address
+      return await new Promise(async (resolve, reject) => {
+        const provider = getProvider(feedInfo.network)
+        //FIXME: make timeout work
+        const web3 = new this.Web3(provider)
+        const feedContract = new web3.eth.Contract(
+          feedInfo.routerAbi,
+          feedInfo.address
+        )
+        //FIXME: use web3 timeout instead of custom
+        setTimeout(() => {
+          reject('Timeout')
+        }, 3000)
+        const contractIdentifier = await feedContract.methods
+          .currencyPairId(feedInfo.id)
+          .call()
+        const address = await feedContract.methods
+          .getPriceFeed(contractIdentifier)
+          .call()
+        resolve(address)
+      })
     } catch (err) {
-      console.log(
-        `Error reading contract for ${feedInfo.feedFullName} with address:`,
-        err
-      )
+      console.log(`Error reading contract for ${feedInfo.feedFullName}`, err)
+      return null
     }
   }
 
   async listenToDataFeed (feedInfo: FeedInfo, feedId: ObjectId) {
     const contractAddress = await this.getContractAddress(feedInfo)
     const provider = getProvider(feedInfo.network)
-    if (provider) {
+    if (provider && contractAddress) {
+      console.log('providers', provider)
       const web3 = new this.Web3(provider)
       const feedContract = new web3.eth.Contract(feedInfo.abi, contractAddress)
       const interval = setInterval(async () => {

@@ -44,7 +44,7 @@ function readDataFeeds (): Array<FeedInfo> {
         'utf-8'
       )
     )
-    )
+  )
   // Throw and error if config file is not valid
   validateDataFeeds(dataFeeds)
   return dataFeeds.map(dataFeed => ({

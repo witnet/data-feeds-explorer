@@ -30,7 +30,7 @@ export function normalizeConfig (config) {
   }, [])
   // Network Config list deleting key label
   const configs = networks.reduce((acc, config) => {
-    Object.values(config).forEach((config) => {
+    Object.values(config).forEach(config => {
       acc.push(config)
     })
     return acc
@@ -73,4 +73,8 @@ export function normalizeConfig (config) {
   }, [])
 
   return feeds
+}
+
+export function sleep (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
