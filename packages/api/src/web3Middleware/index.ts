@@ -57,8 +57,7 @@ export class Web3Middleware {
       return feed
     })
 
-    const result = await Promise.all(promises)
-    return result
+    return await Promise.all(promises)
   }
 
   async updateAddress (feedInfo) {
@@ -134,7 +133,9 @@ export class Web3Middleware {
       return await new Promise(async (resolve, reject) => {
         const provider = getProvider(feedInfo.network)
         //FIXME: make timeout work
-        const web3 = new this.Web3(new Web3.providers.HttpProvider(provider, { timeout: 10000 }))
+        const web3 = new this.Web3(
+          new Web3.providers.HttpProvider(provider, { timeout: 10000 })
+        )
         //FIXME: use web3 timeout instead of custom
         setTimeout(() => {
           reject('Timeout')

@@ -40,7 +40,9 @@ function readDataFeeds (): Array<FeedInfo> {
   const dataFeeds: Array<FeedInfoConfig> = normalizeConfig(
     JSON.parse(
       fs.readFileSync(
-        path.resolve(process.env.DATA_FEED_CONFIG_PATH || './dataFeeds.json'),
+        path.resolve(
+          process.env.DATA_FEED_CONFIG_PATH || './dataFeedsRouter.json'
+        ),
         'utf-8'
       )
     )

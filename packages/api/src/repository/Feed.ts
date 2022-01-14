@@ -62,7 +62,6 @@ export class FeedRepository {
         { $set: feed }
       )
     }
-    console.log('updatedFeed', feedFound)
     return this.normalizeId(feedFound)
   }
 
