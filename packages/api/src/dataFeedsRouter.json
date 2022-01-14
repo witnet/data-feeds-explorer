@@ -28,6 +28,12 @@
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
+            "Price-FXS/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
             "Price-OMG/BTC-9": {
               "label": "BTC",
               "deviationPercentage": 1.0,
@@ -57,6 +63,18 @@
           "feeds": {
             "Price-BOBA/USDT-6": {
               "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
