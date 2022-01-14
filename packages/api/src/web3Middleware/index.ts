@@ -131,29 +131,35 @@ export class Web3Middleware {
   async getContractAddress (feedInfo: FeedInfo): Promise<string | null> {
     try {
       return await new Promise(async (resolve, reject) => {
-        const provider = getProvider(feedInfo.network)
-        //FIXME: make timeout work
-        const web3 = new this.Web3(
-          new Web3.providers.HttpProvider(provider, { timeout: 10000 })
-        )
-        //FIXME: use web3 timeout instead of custom
-        setTimeout(() => {
-          reject('Timeout')
-        }, 10000)
-        const feedContract = new web3.eth.Contract(
-          feedInfo.routerAbi,
-          feedInfo.address
-        )
-        const contractIdentifier = await feedContract.methods
-          .currencyPairId(feedInfo.id)
-          .call()
-        const address = await feedContract.methods
-          .getPriceFeed(contractIdentifier)
-          .call()
-        resolve(address)
+        try {
+          const provider = getProvider(feedInfo.network)
+          //FIXME: make timeout work
+          const web3 = new this.Web3(
+            new Web3.providers.HttpProvider(provider, { timeout: 10000 })
+          )
+          //FIXME: use web3 timeout instead of custom
+          setTimeout(() => {
+            reject('Timeout')
+          }, 10000)
+          const feedContract = new web3.eth.Contract(
+            feedInfo.routerAbi,
+            feedInfo.address
+          )
+          const contractIdentifier = await feedContract.methods
+            .currencyPairId(feedInfo.id)
+            .call()
+          const address = await feedContract.methods
+            .getPriceFeed(contractIdentifier)
+            .call()
+          resolve(address)
+        } catch (err) {
+          reject(err)
+        }
       })
     } catch (err) {
-      console.log(`Error reading contract for ${feedInfo.feedFullName}`, err)
+      console.log(
+        `Error reading pricefeed contract address for ${feedInfo.feedFullName}: ${err}`
+      )
       return null
     }
   }
@@ -161,24 +167,38 @@ export class Web3Middleware {
   async listenToDataFeed (feedInfo: FeedInfo, feedId: ObjectId) {
     const contractAddress = await this.getContractAddress(feedInfo)
     const provider = getProvider(feedInfo.network)
-    if (provider && contractAddress) {
-      const web3 = new this.Web3(provider)
-      const feedContract = new web3.eth.Contract(feedInfo.abi, contractAddress)
-      const interval = setInterval(async () => {
-        console.log(
-          `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
-        )
-        await this.fetchAndSaveContractSnapshot(
-          { feedContract },
-          {
-            feedFullName: feedInfo.feedFullName,
-            id: feedId,
-            label: feedInfo.label
-          }
-        )
-      }, feedInfo.pollingPeriod)
+    if (provider) {
+      if (
+        contractAddress &&
+        contractAddress !== '0x0000000000000000000000000000000000000000'
+      ) {
+        try {
+          const web3 = new this.Web3(provider)
+          const feedContract = new web3.eth.Contract(
+            feedInfo.abi,
+            contractAddress
+          )
+          const interval = setInterval(async () => {
+            console.log(
+              `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
+            )
+            await this.fetchAndSaveContractSnapshot(
+              { feedContract },
+              {
+                feedFullName: feedInfo.feedFullName,
+                id: feedId,
+                label: feedInfo.label
+              }
+            )
+          }, feedInfo.pollingPeriod)
 
-      this.intervals.push(interval)
+          this.intervals.push(interval)
+        } catch (err) {
+          console.error(`Provider not valid for ${feedInfo.network}`, err)
+        }
+      } else {
+        console.error(`Pricefeed address not set for ${feedInfo.feedFullName}`)
+      }
     } else {
       console.error(`Provider not set for network ${feedInfo.network}`)
     }
