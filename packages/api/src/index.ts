@@ -9,7 +9,8 @@ import { ResultRequestRepository } from './repository/ResultRequest'
 import { createServer } from './server'
 import { FeedInfo, FeedInfoConfig, Repositories } from './types'
 import { Web3Middleware } from './web3Middleware/index'
-import { normalizeConfig } from '../src/utils/index'
+import { normalizeConfig } from './utils/index'
+import dataFeedsRouterConfig from './dataFeedsRouter.json'
 
 async function main () {
   const mongoManager = new MongoManager()
@@ -37,16 +38,8 @@ async function main () {
 }
 
 function readDataFeeds (): Array<FeedInfo> {
-  const dataFeeds: Array<FeedInfoConfig> = normalizeConfig(
-    JSON.parse(
-      fs.readFileSync(
-        path.resolve(
-          process.env.DATA_FEED_CONFIG_PATH || './dataFeedsRouter.json'
-        ),
-        'utf-8'
-      )
-    )
-  )
+  const dataFeeds: Array<FeedInfoConfig> = normalizeConfig(dataFeedsRouterConfig)
+  
   // Throw and error if config file is not valid
   validateDataFeeds(dataFeeds)
   return dataFeeds.map(dataFeed => ({
