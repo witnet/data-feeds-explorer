@@ -134,15 +134,15 @@ export class Web3Middleware {
       return await new Promise(async (resolve, reject) => {
         const provider = getProvider(feedInfo.network)
         //FIXME: make timeout work
-        const web3 = new this.Web3(provider)
+        const web3 = new this.Web3(new Web3.providers.HttpProvider(provider, { timeout: 10000 }))
+        //FIXME: use web3 timeout instead of custom
+        setTimeout(() => {
+          reject('Timeout')
+        }, 10000)
         const feedContract = new web3.eth.Contract(
           feedInfo.routerAbi,
           feedInfo.address
         )
-        //FIXME: use web3 timeout instead of custom
-        setTimeout(() => {
-          reject('Timeout')
-        }, 3000)
         const contractIdentifier = await feedContract.methods
           .currencyPairId(feedInfo.id)
           .call()
@@ -161,7 +161,6 @@ export class Web3Middleware {
     const contractAddress = await this.getContractAddress(feedInfo)
     const provider = getProvider(feedInfo.network)
     if (provider && contractAddress) {
-      console.log('providers', provider)
       const web3 = new this.Web3(provider)
       const feedContract = new web3.eth.Contract(feedInfo.abi, contractAddress)
       const interval = setInterval(async () => {
