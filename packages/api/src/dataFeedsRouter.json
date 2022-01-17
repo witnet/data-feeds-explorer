@@ -341,21 +341,21 @@
           "feeds": {
             "Price-KCS/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 600,
+              "minSecsBetweenUpdates": 240
             },
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 600,
+              "minSecsBetweenUpdates": 240
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 600,
+              "minSecsBetweenUpdates": 240
             }
           }
         }
