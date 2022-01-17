@@ -36,6 +36,14 @@ const resolvers = {
       return (await resultRequestRepository.getLastResult(parent.feedFullName))
         ?.result
     },
+    lastResultTimestamp: async (
+      parent,
+      _args,
+      { resultRequestRepository }: Context
+    ) => {
+      return (await resultRequestRepository.getLastResult(parent.feedFullName))
+        ?.timestamp
+    },
     color: async (parent, _args, { config }: Context) => {
       return config[parent.feedFullName]?.color || ''
     },

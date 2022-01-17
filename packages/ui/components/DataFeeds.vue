@@ -8,6 +8,7 @@
       :decimals="feed.decimals"
       :img="feed.img"
       :value="feed.value"
+      :last-result-timestamp="feed.lastResultTimestamp"
       :label="feed.label"
       :network="feed.network"
       :color="feed.color"
@@ -32,10 +33,7 @@ export default {
   display: grid;
   grid-gap: 24px;
   width: 100%;
-  grid-template: repeat(auto-fill, minmax(150px, 1fr)) / repeat(
-      auto-fill,
-      250px
-    );
+  grid-template: repeat(auto-fit, 80px) / repeat(auto-fit, 300px);
   justify-content: center;
   align-items: center;
 }

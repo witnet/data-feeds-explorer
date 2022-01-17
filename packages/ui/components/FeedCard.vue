@@ -5,14 +5,17 @@
         <SvgIcon class="img" :name="img.name" />
         <p class="name">{{ name.toUpperCase() }}</p>
       </div>
-      <p class="value">{{ formatedValue }}</p>
-      <Networks :network="network" :color="color" />
+      <p class="value">{{ label }} {{ formatedValue }}</p>
+      <p class="timestamp">
+        {{ calculateTime() }}
+      </p>
     </div>
   </nuxt-link>
 </template>
 
 <script>
 import { formatNumber } from '@/utils/formatNumber'
+import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 
 export default {
   name: 'FeedCard',
@@ -41,6 +44,10 @@ export default {
       type: String,
       required: true,
     },
+    lastResultTimestamp: {
+      type: String,
+      required: true,
+    },
     network: {
       type: String,
       required: true,
@@ -53,6 +60,11 @@ export default {
   computed: {
     formatedValue() {
       return formatNumber(parseFloat(this.value) / 10 ** this.decimals)
+    },
+  },
+  methods: {
+    calculateTime() {
+      return calculateTimeAgo(this.lastResultTimestamp, this.$i18n.locale)
     },
   },
 }
@@ -69,37 +81,47 @@ a {
   color: var(--value-color);
 }
 .card-container {
-  width: 250px;
+  width: 300px;
   height: max-content;
   border: var(--card-border);
   background: var(--card-background);
   box-shadow: var(--card-box-shadow);
   font-weight: bold;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content max-content;
-  row-gap: 16px;
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: max-content max-content;
+  row-gap: 8px;
   align-content: center;
+  justify-items: flex-start;
   border-radius: 4px;
-  column-gap: 24px;
-  padding: 18px 24px;
+  column-gap: 16px;
+  padding: 16px;
   cursor: pointer;
   .title {
-    display: flex;
+    grid-row: 1 / span 2;
+    justify-content: center;
     align-items: center;
+    display: flex;
+    .img {
+      align-self: center;
+      margin-right: 8px;
+    }
   }
-  .img {
-    align-self: center;
-    margin-right: 8px;
+  .timestamp {
+    color: var(--value-color);
+    font-size: 12px;
+    font-style: italic;
+    justify-self: flex-end;
+    font-weight: normal;
   }
   .name {
-    margin: 8px 0 4px 0;
     color: var(--name-color);
-    font-size: 24px;
+    font-size: 18px;
   }
   .value {
     color: var(--value-color);
     font-size: 18px;
+    justify-self: flex-end;
   }
 }
 </style>

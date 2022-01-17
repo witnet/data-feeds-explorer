@@ -70,6 +70,7 @@ export default {
             decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
             name: feed.name,
             value: feed.lastResult,
+            lastResultTimestamp: feed.lastResultTimestamp || 0,
             label: feed.label,
             img: {
               name: formatSvgName(feed.name),

@@ -5,6 +5,7 @@ query feeds ($page: Int!, $pageSize: Int!, $network: String!) {
       name
       address
       lastResult
+      lastResultTimestamp
       network
       label
       blockExplorer

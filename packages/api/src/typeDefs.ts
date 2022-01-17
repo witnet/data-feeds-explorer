@@ -11,6 +11,7 @@ const typeDefs = gql`
     name: String!
     network: String!
     lastResult: String
+    lastResultTimestamp: String
     deviation: String!
     heartbeat: String!
     finality: String!

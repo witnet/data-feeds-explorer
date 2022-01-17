@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style lang="scss">
+.size {
+  width: 24px;
+  height: 30px;
+}
 .fill {
   fill: var(--text);
 }
