@@ -24,5 +24,11 @@
     "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value"
   },
   "copied": "Copied",
-  "copy": "Copy"
+  "copy": "Copy",
+  "footer": {
+    "documentation": "Documentation",
+    "request_data_feed": "Request data feed",
+    "about_witnet": "About Witnet",
+    "copyright": "© 2018–2021 by Witnet Foundation and individual contributors. Content available under a Creative Commons License."
+  }
 }

@@ -97,7 +97,7 @@ export default {
     display: flex;
     align-items: center;
     &.visible {
-      background: white;
+      background: var(--bg);
       display: block;
       padding: 0;
     }

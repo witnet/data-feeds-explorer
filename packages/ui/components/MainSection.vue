@@ -1,8 +1,11 @@
 <template>
-  <div class="main-section">
-    <slot name="navbar"></slot>
-    <slot name="content"></slot>
-    <ThemeSwitch class="theme-switch" />
+  <div>
+    <div class="main-section">
+      <slot name="navbar"></slot>
+      <slot name="content"></slot>
+      <ThemeSwitch class="theme-switch" />
+    </div>
+    <slot name="footer"></slot>
   </div>
 </template>
 
@@ -11,7 +14,7 @@
   color: var(--text);
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 150px 1fr;
+  grid-template-rows: 150px 1fr max-content;
   grid-template-columns: 1fr;
   max-width: 1124px;
   row-gap: 24px;
@@ -26,7 +29,7 @@
 }
 @media (max-width: 1200px) {
   .main-section {
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 100px 1fr max-content;
     padding: 0;
   }
 }

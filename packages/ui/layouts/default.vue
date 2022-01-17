@@ -3,6 +3,7 @@
     <MainSection>
       <NavBar slot="navbar" />
       <Nuxt slot="content" />
+      <Footer slot="footer" />
     </MainSection>
   </div>
 </template>

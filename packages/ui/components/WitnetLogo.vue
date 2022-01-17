@@ -29,4 +29,9 @@
 .main {
   fill: var(--logo-dot);
 }
+.white {
+  .main {
+    fill: $white;
+  }
+}
 </style>
