@@ -192,7 +192,7 @@
             "Price-CFX/USDT-6": {
               "label": "₮",
               "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
+              "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 900
             },
             "Price-BTC/USD-6": {
