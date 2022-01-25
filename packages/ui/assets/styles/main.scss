@@ -168,6 +168,10 @@
 
   //footer
   --footer-bg: #26474B;
+
+  //sidebar
+  --tab-gradient: linear-gradient(90deg, #2d2c39d3 90%, #4ab6a02c);
+  --tab-gradient-selected: linear-gradient(90deg, #2d2c39d3 30%, #4ab6a02c);
 }
 
 .light-mode {
@@ -260,6 +264,10 @@
 
   //footer
   --footer-bg: #4AB6A1;
+
+  //sidebar
+  --tab-gradient: linear-gradient(90deg, #fdfdfd 90%, #4ab6a050);
+  --tab-gradient-selected: linear-gradient(90deg, #fdfdfd 30%, #4ab6a050);
 }
 
 h1 {

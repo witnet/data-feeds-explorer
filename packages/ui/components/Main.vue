@@ -1,33 +1,37 @@
 <template>
-  <div>
-    <div class="section-header">
-      <p class="section-title">{{ $t('main.data_feeds') }}</p>
-      <Select
-        v-if="options.length > 1"
-        :options="options"
-        :default-option="selected"
-        @update-selected="updateSelected"
-      />
-    </div>
-    <div v-if="allFeeds.length > 0" class="list-container">
-      <DataFeeds :feeds="allFeeds" />
-      <el-pagination
-        v-if="numberOfPages > 1"
-        class="pagination"
-        layout="prev, pager, next"
-        :page-count="numberOfPages"
-        :current-page="currentPage"
-        @current-change="handleCurrentChange"
-      />
+  <div class="main">
+    <SideBar
+      v-if="networks.length > 1"
+      :default-option="selected"
+      :options="options"
+      @update-selected="updateSelected"
+    />
+    <div class="feeds-container">
+      <div class="title-container">
+        <p class="title">{{ selected[0].network }}</p>
+        <p class="subtitle">
+          Witnet price feeds currently available on
+          {{ selected[0].network }} {{ selectedNetworks }}.
+        </p>
+      </div>
+      <div
+        v-for="option in selected"
+        :key="option.label"
+        class="list-container"
+      >
+        <div>{{ option.key }}</div>
+        <DataFeeds :network="option" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import feeds from '@/apollo/queries/feeds.gql'
 import networks from '@/apollo/queries/networks.gql'
-import { formatSvgName } from '../utils/formatSvgName'
-import { generateSelectOptions } from '../utils/generateSelectOptions'
+import {
+  generateSelectOptions,
+  capitalizeFirstLetter,
+} from '../utils/generateSelectOptions'
 
 export default {
   apollo: {
@@ -35,66 +39,33 @@ export default {
       prefetch: true,
       query: networks,
     },
-    feeds: {
-      prefetch: true,
-      query: feeds,
-      variables() {
-        return {
-          page: this.currentPage,
-          pageSize: this.itemsPerPage,
-          network: this.selected.label,
-        }
-      },
-      pollInterval: 60000,
-    },
   },
   data() {
     return {
       currentPage: 1,
       itemsPerPage: 28,
-      selected: { label: 'all', key: 'All' },
+      selected: [
+        {
+          label: 'ethereum-mainnet',
+          key: 'Ethereum Mainnet',
+          network: 'Ethereum',
+        },
+      ],
     }
   },
   computed: {
-    numberOfPages() {
-      return Math.ceil(this.feeds.total / this.itemsPerPage)
-    },
-    allFeeds() {
-      if (this.feeds) {
-        return this.feeds.feeds.map((feed) => {
-          return {
-            detailsPath: {
-              name: 'feeds-id',
-              params: { id: feed.feedFullName },
-            },
-            decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-            name: feed.name,
-            value: feed.lastResult,
-            lastResultTimestamp: feed.lastResultTimestamp || 0,
-            label: feed.label,
-            img: {
-              name: formatSvgName(feed.name),
-              alt: feed.name,
-            },
-            network: feed.network,
-            color: feed.color,
-            blockExplorer: feed.blockExplorer,
-          }
-        })
-      } else {
-        return []
-      }
-    },
     options() {
       if (this.networks) {
-        const result = [
-          { label: 'all', key: 'All' },
-          ...generateSelectOptions(this.networks),
-        ]
-        return result
+        return generateSelectOptions(this.networks)
       } else {
-        return [{ label: 'all', key: 'All' }]
+        return null
       }
+    },
+    selectedNetworks() {
+      const result = this.selected.map((option) => {
+        return capitalizeFirstLetter(option.label.split('-')[1])
+      })
+      return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
     },
   },
   methods: {
@@ -102,6 +73,7 @@ export default {
       this.currentPage = val
     },
     updateSelected(selectedOption) {
+      console.log('selected option----', selectedOption)
       this.selected = selectedOption
     },
   },
@@ -109,6 +81,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: 1fr;
+}
 .section-header {
   padding: 0 16px 24px 16px;
   display: flex;
@@ -120,14 +97,29 @@ export default {
     font-weight: 600;
   }
 }
+.feeds-container {
+  height: max-content;
+  margin-bottom: 24px;
+}
+.title-container {
+  margin: 16px;
+  .title {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+}
 
 .list-container {
+  margin-left: 16px;
   display: grid;
   min-height: 90%;
   grid-template: 1fr max-content/ 1fr;
   justify-items: flex-start;
   align-items: flex-start;
-  row-gap: 24px;
+  row-gap: 16px;
   .pagination {
     margin-bottom: 16px;
     justify-self: center;
