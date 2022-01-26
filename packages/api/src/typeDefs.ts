@@ -1,15 +1,15 @@
 import { gql } from 'apollo-server'
 
 const typeDefs = gql`
-  type Feed @entity {
-    id: String! @id
-    address: String! @column
-    blockExplorer: String! @column
+  type Feed {
+    id: String!
+    address: String!
+    blockExplorer: String!
     color: String!
-    feedFullName: String! @column
-    label: String! @column
-    name: String! @column
-    network: String! @column
+    feedFullName: String!
+    label: String!
+    name: String!
+    network: String!
     lastResult: String
     deviation: String!
     heartbeat: String!

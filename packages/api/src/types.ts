@@ -1,5 +1,5 @@
 import { AbiItem } from 'web3-utils'
-import { FeedDbObject, ResultRequestDbObject } from './generated/types'
+import { ResultRequestDbObject } from './generated/types'
 import { Contract } from 'web3-eth-contract'
 
 import { FeedRepository } from './repository/Feed'
@@ -44,6 +44,7 @@ export type FeedInfoGeneric<ABI> = {
   abi: ABI
   routerAbi: ABI
   address: string
+  routerAddress: string
   network: Network
   name: string
   pollingPeriod: number
@@ -55,13 +56,14 @@ export type FeedInfoGeneric<ABI> = {
   finality: string
 }
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
+
 export type FeedInfoConfig = FeedInfoGeneric<string>
 
-export type FeedDbObjectNormalized = FeedDbObject & { id: string }
 export type PaginatedFeedsObject = {
-  feeds: Array<FeedDbObjectNormalized>
+  feeds: Array<FeedInfo>
   total: number
 }
+
 export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {
   id: string
 }
@@ -87,15 +89,17 @@ export type Contracts = {
   feedContract: Contract
 }
 
-export type FeedInfoRouterConfig = {
+export type FeedInfoRouterConfigMap = {
   [key: string]: FeedParamsConfig
 }
+
 export type FeedParamsConfig = {
   label: string
   deviationPercentage: number
   maxSecsBetweenUpdates: number
   minSecsBetweenUpdates: number
 }
+
 export type FeedParsedParams = {
   label: string
   deviationPercentage: number
@@ -103,14 +107,23 @@ export type FeedParsedParams = {
   minSecsBetweenUpdates: number
   key: string
 }
+
 export type FeedConfig = {
   address: string
   blockExplorer: string
   color: string
   name: string
   pollingPeriod: number
-  feeds: Array<FeedInfoRouterConfig>
+  feeds: FeedInfoRouterConfigMap
 }
-export type NetworkConfig = {
-  [key: string]: FeedConfig
+
+export type NetworkConfigMap = Record<string, FeedConfig>
+
+export type RouterDataFeedsConfig = {
+  abi: string
+  chains: Record<string, { networks: Record<string, FeedConfig> }>
 }
+
+export type FeedInfosWithoutAbis = Array<
+  Omit<FeedInfoConfig, 'abi' | 'routerAbi'>
+>
