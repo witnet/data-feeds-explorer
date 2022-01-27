@@ -28,6 +28,12 @@
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
+            "Price-FRAX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-FXS/USDT-6": {
               "label": "₮",
               "deviationPercentage": 1.0,
@@ -51,6 +57,18 @@
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             }
           }
         },
