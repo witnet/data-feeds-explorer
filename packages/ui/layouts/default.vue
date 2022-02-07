@@ -2,6 +2,7 @@
   <div class="background">
     <MainSection>
       <NavBar slot="navbar" />
+      <BreadCrumbs slot="breadcrumbs" :options="breadCumbsOptions" />
       <Nuxt slot="content" />
       <Footer slot="footer" />
     </MainSection>
@@ -9,9 +10,30 @@
 </template>
 
 <script>
+import { formatBreadcrumbsPath } from '@/utils/formatBreadcrumbsPath'
 export default {
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
+  },
+  computed: {
+    breadCumbsOptions() {
+      return [
+        {
+          label: 'Home',
+          path: {
+            name: 'index',
+          },
+          selected: false,
+        },
+        {
+          label: formatBreadcrumbsPath(this.$route.params.id),
+          path: {
+            name: this.$route.params.id,
+          },
+          selected: false,
+        },
+      ]
+    },
   },
 }
 </script>

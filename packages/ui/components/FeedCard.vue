@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link v-if="value" :to="localeRoute(detailsPath)">
+  <nuxt-link :to="localeRoute(detailsPath)">
     <div class="card-container">
       <div class="title">
         <SvgIcon class="img" :name="img.name" />

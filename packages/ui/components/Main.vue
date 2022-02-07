@@ -6,21 +6,29 @@
       :options="options"
       @update-selected="updateSelected"
     />
-    <div class="feeds-container">
+    <div v-if="selected.length" class="feeds-container">
       <div class="title-container">
-        <p class="title">{{ selected[0].network }}</p>
+        <p class="title">
+          <SvgIcon class="logo" :name="selected[0].network.toLowerCase()" />{{
+            selected[0].network
+          }}
+        </p>
         <p class="subtitle">
           Witnet price feeds currently available on
           {{ selected[0].network }} {{ selectedNetworks }}.
         </p>
       </div>
       <div
-        v-for="option in selected"
+        v-for="(option, index) in selected"
         :key="option.label"
         class="list-container"
       >
         <div>{{ option.key }}</div>
-        <DataFeeds :network="option" />
+        <DataFeeds
+          :network="option"
+          :network-index="index"
+          @empty="updateOptions"
+        />
       </div>
     </div>
   </div>
@@ -42,6 +50,7 @@ export default {
   },
   data() {
     return {
+      feedExist: true,
       currentPage: 1,
       itemsPerPage: 28,
       selected: [
@@ -68,12 +77,15 @@ export default {
       return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
     },
   },
+  mounted() {},
   methods: {
+    updateOptions(index) {
+      this.selected.splice(index, 1)
+    },
     handleCurrentChange(val) {
       this.currentPage = val
     },
     updateSelected(selectedOption) {
-      console.log('selected option----', selectedOption)
       this.selected = selectedOption
     },
   },
@@ -106,6 +118,11 @@ export default {
   .title {
     font-size: 24px;
     margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    .logo {
+      margin-right: 8px;
+    }
   }
   .subtitle {
     font-size: 16px;

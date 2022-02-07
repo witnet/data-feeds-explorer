@@ -4,14 +4,16 @@
       v-for="option in sidebarOptions"
       :key="option"
       class="option"
+      :class="{ selected: option === selectedOption }"
       @click="selectOption(option)"
     >
-      {{ option }}
+      {{ capitalizeFirstLetter(option) }}
     </div>
   </div>
 </template>
 
 <script>
+import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 export default {
   props: {
     options: {
@@ -25,13 +27,15 @@ export default {
   },
   data() {
     return {
-      selected: this.defaultOption,
+      selected: this.options,
     }
   },
   computed: {
     sidebarOptions() {
-      console.log('---options---', Object.keys(this.options))
       return Object.keys(this.options)
+    },
+    selectedOption() {
+      return (this.selected[0] ? this.selected[0].network : '').toLowerCase()
     },
   },
   watch: {
@@ -42,10 +46,13 @@ export default {
       deep: true,
     },
   },
+  mounted() {
+    this.selectOption('ethereum')
+  },
   methods: {
+    capitalizeFirstLetter,
     selectOption(option) {
       this.selected = this.options[option]
-      console.log(this.selected)
     },
   },
 }
@@ -59,9 +66,9 @@ export default {
     background: var(--tab-gradient);
     padding: 16px 16px 16px 0;
     cursor: pointer;
-  }
-  .selected {
-    background: var(--tab-gradient-selected);
+    &.selected {
+      background: var(--tab-gradient-selected);
+    }
   }
 }
 </style>

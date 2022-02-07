@@ -38,10 +38,11 @@ export default {
   name: 'DataFeeds',
   props: {
     network: {
-      type: {
-        label: String,
-        key: String,
-      },
+      type: Object,
+      required: true,
+    },
+    networkIndex: {
+      type: Number,
       required: true,
     },
   },
@@ -53,30 +54,41 @@ export default {
   },
   computed: {
     allFeeds() {
-      console.log('-----', this.feeds)
       if (this.feeds) {
-        return this.feeds.feeds.map((feed) => {
-          return {
-            detailsPath: {
-              name: 'feeds-id',
-              params: { id: feed.feedFullName },
-            },
-            decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-            name: feed.name,
-            value: feed.lastResult,
-            lastResultTimestamp: feed.lastResultTimestamp || '0',
-            label: feed.label,
-            img: {
-              name: formatSvgName(feed.name),
-              alt: feed.name,
-            },
-            network: feed.network,
-            color: feed.color,
-            blockExplorer: feed.blockExplorer,
-          }
-        })
+        const feeds = this.feeds.feeds
+          .filter((feed) => {
+            return !!feed.lastResult
+          })
+          .map((feed) => {
+            return {
+              detailsPath: {
+                name: 'feeds-id',
+                params: { id: feed.feedFullName },
+              },
+              decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+              name: feed.name,
+              value: feed.lastResult,
+              lastResultTimestamp: feed.lastResultTimestamp || '0',
+              label: feed.label,
+              img: {
+                name: formatSvgName(feed.name),
+                alt: feed.name,
+              },
+              network: feed.network,
+              color: feed.color,
+              blockExplorer: feed.blockExplorer,
+            }
+          })
+        return feeds
       } else {
         return []
+      }
+    },
+  },
+  watch: {
+    allFeeds() {
+      if (this.allFeeds.length < 1) {
+        this.$emit('empty', this.networkIndex)
       }
     },
   },

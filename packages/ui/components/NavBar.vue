@@ -109,7 +109,7 @@ export default {
       text-decoration: none;
       transition: color 0.1s ease;
       .btn {
-        max-width: max-content;
+        max-width: 100%;
         margin: 0;
       }
       .slash {

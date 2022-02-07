@@ -44,7 +44,7 @@ export class Web3Middleware {
       )
     }
 
-    return feedInfo 
+    return feedInfo
   }
 
   async listen () {

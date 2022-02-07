@@ -34,8 +34,6 @@ export class FeedRepository {
 
   async getPaginatedFeeds (
     // starts in 1
-    page: number,
-    size: number,
     network: string
   ): Promise<PaginatedFeedsObject> {
     const filteredFeeds =
@@ -43,10 +41,8 @@ export class FeedRepository {
         ? this.sortedDataFeeds
         : this.dataFeedsByNetwork[network]
 
-    const paginatedFeeds = filteredFeeds.slice((page - 1) * size, page * size)
-
     return {
-      feeds: paginatedFeeds,
+      feeds: filteredFeeds,
       total: filteredFeeds.length
     }
   }

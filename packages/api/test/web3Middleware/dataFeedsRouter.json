@@ -224,7 +224,7 @@
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 28800,
-              "minSecsBetweenUpdates": 900 
+              "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",

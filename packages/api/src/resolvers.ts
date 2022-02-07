@@ -2,20 +2,7 @@ import { Context, Network } from './types'
 const resolvers = {
   Query: {
     feeds: async (_parent, args, { feedRepository }: Context) => {
-      console.log('args', args)
-      console.log(
-        'result',
-        await feedRepository.getPaginatedFeeds(
-          args.page,
-          args.pageSize,
-          args.network
-        )
-      )
-      return await feedRepository.getPaginatedFeeds(
-        args.page,
-        args.pageSize,
-        args.network
-      )
+      return await feedRepository.getPaginatedFeeds(args.network)
     },
 
     networks: async (_parent, _args) => {

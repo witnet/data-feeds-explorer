@@ -1,5 +1,5 @@
-query feeds ($page: Int!, $pageSize: Int!, $network: String!) {
-  feeds (page: $page, pageSize: $pageSize, network: $network) {
+query feeds ($network: String!) {
+  feeds (network: $network) {
     feeds {
       feedFullName
       name
