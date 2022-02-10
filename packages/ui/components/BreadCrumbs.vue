@@ -37,4 +37,9 @@ export default {
     margin-left: 4px;
   }
 }
+@media (max-width: 1200px) {
+  .breadcrumbs {
+    padding-left: 8px;
+  }
+}
 </style>

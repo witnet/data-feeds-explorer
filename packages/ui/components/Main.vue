@@ -145,11 +145,18 @@ export default {
 }
 
 @media (max-width: 1200px) {
+  .main {
+    grid-template-columns: 1fr;
+    padding: 0 32px;
+  }
   .section-header {
     padding: 0 32px 32px 32px;
   }
 }
 @media (max-width: 600px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
   .section-header {
     padding: 0 32px 32px 32px;
   }

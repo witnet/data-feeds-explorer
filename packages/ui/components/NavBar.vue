@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container" :class="{ drop: isMenuVisible }">
+  <div :class="{ drop: isMenuVisible }">
     <nav class="navbar" :class="{ open: isMenuVisible }">
       <nuxt-link :to="localePath('/')">
         <h1 class="logo-container">
@@ -131,6 +131,7 @@ export default {
   .navbar {
     padding: 0 24px;
     margin: 0;
+    height: max-content;
 
     &.open {
       height: 100vh;
@@ -156,7 +157,6 @@ export default {
 
   .navbar {
     display: block;
-    position: relative;
     padding: 0;
     .responsive-menu {
       display: block;

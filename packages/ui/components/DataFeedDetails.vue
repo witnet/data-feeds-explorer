@@ -237,6 +237,9 @@ export default {
         margin-right: 16px;
       }
     }
+    .chart {
+      margin-top: 0;
+    }
   }
 }
 </style>

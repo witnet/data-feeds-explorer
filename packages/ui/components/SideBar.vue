@@ -73,4 +73,9 @@ export default {
     }
   }
 }
+@media (max-width: 1200px) {
+  .sidebar {
+    display: none;
+  }
+}
 </style>

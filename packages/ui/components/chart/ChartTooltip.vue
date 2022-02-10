@@ -117,4 +117,9 @@ export default {
     }
   }
 }
+@media (max-width: 1200px) {
+  .tooltip-container {
+    margin: 16px;
+  }
+}
 </style>

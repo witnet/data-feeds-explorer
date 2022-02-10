@@ -29,7 +29,7 @@
 }
 @media (max-width: 1200px) {
   .main-section {
-    grid-template-rows: 100px 1fr max-content;
+    grid-template-rows: max-content 1fr max-content;
     padding: 0;
   }
 }
