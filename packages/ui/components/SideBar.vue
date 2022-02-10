@@ -64,9 +64,11 @@ export default {
   text-align: right;
   .option {
     background: var(--tab-gradient);
-    padding: 16px 16px 16px 0;
+    padding: 24px 40px;
+    text-align: center;
     cursor: pointer;
     &.selected {
+      font-weight: bold;
       background: var(--tab-gradient-selected);
     }
   }

@@ -1,21 +1,23 @@
 <template>
   <div class="main">
     <SideBar
-      v-if="networks.length > 1"
+      v-if="networks && networks.length > 1"
       :default-option="selected"
       :options="options"
       @update-selected="updateSelected"
     />
-    <div v-if="selected.length" class="feeds-container">
+    <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
-        <p class="title">
+        <p class="title bold">
           <SvgIcon class="logo" :name="selected[0].network.toLowerCase()" />{{
             selected[0].network
           }}
         </p>
-        <p class="subtitle">
+        <p class="subtitle light-text bold">
           Witnet price feeds currently available on
-          {{ selected[0].network }} {{ selectedNetworks }}.
+          <span class="bold text">{{ selected[0].network }}</span>
+          <span class="bold text">{{ selectedNetworks }}</span
+          >.
         </p>
       </div>
       <div
@@ -23,7 +25,7 @@
         :key="option.label"
         class="list-container"
       >
-        <div>{{ option.key }}</div>
+        <div class="light-text bold">{{ option.key }}</div>
         <DataFeeds
           :network="option"
           :network-index="index"
@@ -95,11 +97,11 @@ export default {
 <style lang="scss" scoped>
 .main {
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 150px 1fr;
+  grid-gap: 32px;
   grid-template-rows: 1fr;
 }
 .section-header {
-  padding: 0 16px 24px 16px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -114,7 +116,7 @@ export default {
   margin-bottom: 24px;
 }
 .title-container {
-  margin: 16px;
+  margin-bottom: 32px;
   .title {
     font-size: 24px;
     margin-bottom: 4px;
@@ -130,7 +132,6 @@ export default {
 }
 
 .list-container {
-  margin-left: 16px;
   display: grid;
   min-height: 90%;
   grid-template: 1fr max-content/ 1fr;

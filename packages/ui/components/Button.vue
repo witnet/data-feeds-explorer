@@ -34,7 +34,7 @@ export default {
   }
   &.secondary {
     color: var(--btn-secondary-color);
-    background: var(--btn-secondary-background-color);
+    background: transparent;
     border: 1px solid var(--btn-secondary-border-color);
   }
   &.disable {

@@ -84,6 +84,7 @@
   --bg: #2D2C39;
   --responsive-menu: #fdfdfd;
   --text: #fdfdfd;
+  --light-text: #bebebe;
   --link: #E54343;
   --text-background: #2d2c39d3;
   --default-border: 1px solid #fdfdfd;
@@ -183,6 +184,7 @@
   --bg: #fdfdfd;
   --responsive-menu: #2D2C39;
   --text: #2D2C39;
+  --light-text: #767575;
   --link: #E54343;
   --text-background: #ffffffd3;
   --default-border: 1px solid #2D2C39;
@@ -299,6 +301,15 @@ p {
   &.copyright {
     font-size: 0.625rem;
   }
+}
+.bold {
+  font-weight: bold;
+}
+.light-text {
+  color: var(--light-text);
+}
+.text {
+  color: var(--text);
 }
 
 a {

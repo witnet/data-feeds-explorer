@@ -64,6 +64,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: var(--bg);
+  height: 130px;
   .logo-container {
     display: grid;
     grid-template-columns: max-content max-content;

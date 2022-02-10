@@ -5,6 +5,7 @@
       :date="date"
       :deviation="deviation"
       :heartbeat="heartbeat"
+      :name="name"
       :last-result-timestamp="lastResultTimestamp"
     />
     <div class="switcher">

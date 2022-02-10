@@ -1,22 +1,5 @@
 <template>
   <div class="content">
-    <div class="section-header">
-      <nuxt-link class="back-to-list" :to="localePath('/')">
-        <font-awesome-icon class="icon" icon="arrow-alt-circle-left" />
-      </nuxt-link>
-      <div class="title">
-        <SvgIcon v-if="svgIcon" :name="svgIcon" />
-        <p v-if="feed && feed.name" class="feed-name">
-          {{ feed.name.toUpperCase() }}
-        </p>
-      </div>
-      <Networks
-        v-if="feed && feed.network"
-        class="network-details"
-        :network="feed.network"
-        :color="feed.color"
-      />
-    </div>
     <Chart
       v-if="feed"
       class="chart"

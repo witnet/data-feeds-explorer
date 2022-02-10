@@ -20,7 +20,6 @@
   max-width: 1124px;
   row-gap: 24px;
   margin: 0 auto;
-  padding-bottom: 48px;
   .theme-switch {
     position: fixed;
     bottom: 0;

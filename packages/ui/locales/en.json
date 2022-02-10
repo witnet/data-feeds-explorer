@@ -21,7 +21,8 @@
     "heartbeat": "Heartbeat",
     "heartbeat_text": "The feed is updated before the heartbeat is reached",
     "deviation": "Deviation",
-    "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value"
+    "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
+    "use_data_feed": "Use this data feed"
   },
   "copied": "Copied",
   "copy": "Copy",
