@@ -55,16 +55,12 @@ export default {
       feedExist: true,
       currentPage: 1,
       itemsPerPage: 28,
-      selected: [
-        {
-          label: 'ethereum-mainnet',
-          key: 'Ethereum Mainnet',
-          network: 'Ethereum',
-        },
-      ],
     }
   },
   computed: {
+    selected() {
+      return this.$store.state.selectedNetwork
+    },
     options() {
       if (this.networks) {
         return generateSelectOptions(this.networks)
@@ -82,13 +78,13 @@ export default {
   mounted() {},
   methods: {
     updateOptions(index) {
-      this.selected.splice(index, 1)
+      this.$store.commit('deleteEmptyNetwork', { index })
     },
     handleCurrentChange(val) {
       this.currentPage = val
     },
     updateSelected(selectedOption) {
-      this.selected = selectedOption
+      this.$store.commit('updateSelectedNetwork', { network: selectedOption })
     },
   },
 }

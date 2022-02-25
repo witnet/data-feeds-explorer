@@ -108,11 +108,13 @@ export default {
 @media screen and (max-width: 600px) {
   .feeds-container {
     padding: 0;
+    justify-content: center;
   }
 }
 @media screen and (max-width: 1200px) {
   .feeds-container {
     padding: 0;
+    justify-content: center;
   }
 }
 </style>

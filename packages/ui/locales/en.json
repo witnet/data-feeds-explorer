@@ -1,6 +1,7 @@
 {
   "data_feed_details": {
-    "contract_address": "Contract address"
+    "contract_address": "Integration details",
+    "trigger_parameters": "Trigger parameters"
   },
   "main": {
     "data_feeds": "Data feeds"
@@ -18,9 +19,9 @@
   "chart": {
     "w": "7d",
     "m": "30d",
-    "heartbeat": "Heartbeat",
+    "heartbeat": "ETA to next update",
     "heartbeat_text": "The feed is updated before the heartbeat is reached",
-    "deviation": "Deviation",
+    "deviation": "Deviation threshold",
     "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
     "use_data_feed": "Use this data feed"
   },

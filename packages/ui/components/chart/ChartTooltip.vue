@@ -9,26 +9,6 @@
       </div>
       <p class="value">{{ value }}</p>
       <p class="item">{{ date }}</p>
-      <div class="item">
-        <InfoTooltip
-          :label="$t('chart.deviation')"
-          class="title"
-          :value="$t('chart.deviation_text')"
-        />
-        <div>{{ deviation }}%</div>
-      </div>
-      <div class="item">
-        <InfoTooltip
-          :label="$t('chart.heartbeat')"
-          class="title"
-          :value="$t('chart.heartbeat_text')"
-        />
-        <Heartbeat
-          class="countdown"
-          :milliseconds="heartbeat"
-          :last-result-timestamp="lastResultTimestamp"
-        />
-      </div>
     </div>
     <a :href="useDataFeedUrl" target="_blank">
       <Button class="btn" type="secondary">{{
@@ -56,24 +36,20 @@ export default {
       type: String,
       default: '',
     },
-    deviation: {
-      type: String,
-      default: '',
-    },
-    heartbeat: {
-      type: String,
-      default: '',
-    },
     lastResultTimestamp: {
       type: String,
       default: '',
     },
   },
+  data() {
+    return {
+      useDataFeedUrl,
+    }
+  },
   computed: {
     svgIcon() {
       return this.name ? formatSvgName(this.name.toLowerCase()) : ''
     },
-    useDataFeedUrl,
   },
 }
 </script>

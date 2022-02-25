@@ -7,19 +7,70 @@
       :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
       :data-label="feed.label"
       :name="feedName"
-      :deviation="deviation"
-      :heartbeat="maxTimeToResolve"
       :decimals="feedDecimals"
       @change-range="updateQuery"
     />
-    <Fieldset
-      :title="$t('data_feed_details.contract_address')"
-      class="contract-container"
-    >
-      <a :href="url" target="_blank" class="contract-address">
-        {{ feedAddress }}
-        <font-awesome-icon class="icon" icon="external-link-alt" />
-      </a>
+    <p class="feed-description">
+      This is a Witnet powered <span class="bold">{{ feedName }}</span> data
+      feed available on <span class="bold">{{ network }}</span
+      >. Last reported value is <span class="bold">{{ lastResultvalue }}</span
+      >(updated on <span class="bold">{{ lastResultDate }}</span
+      >). This price feed is updated every
+      <span class="bold">{{ feedTimeToUpdate }}</span
+      >, or every time the price changes by more than
+      <span class="bold">{{ deviation }}%</span>.
+    </p>
+    <Fieldset :title="$t('data_feed_details.trigger_parameters')">
+      <div class="info-container">
+        <div class="item">
+          <InfoTooltip
+            :label="$t('chart.deviation')"
+            :value="$t('chart.deviation_text')"
+          />
+          <div>{{ deviation }}%</div>
+        </div>
+        <div class="item">
+          <InfoTooltip
+            :label="$t('chart.heartbeat')"
+            :value="$t('chart.heartbeat_text')"
+          />
+          <Heartbeat
+            class="countdown"
+            :milliseconds="maxTimeToResolve"
+            :last-result-timestamp="
+              transactions ? transactions[0].timestamp : ''
+            "
+          />
+        </div>
+      </div>
+    </Fieldset>
+    <Fieldset :title="$t('data_feed_details.contract_address')">
+      <div class="integration-details">
+        <div class="left">
+          <p class="title-details">
+            Witnet price feeds can be integrated into your own
+            {{ network }} contracts in two different ways:
+          </p>
+          <div class="bottom">
+            <Button class="btn">Integrate through proxy</Button>
+            <Button class="btn">Integrate directly</Button>
+            <p class="subtitle">Recommended for testing and upgradability</p>
+            <p class="subtitle">Optimized for gas cost and decentralization</p>
+          </div>
+        </div>
+        <div class="right">
+          <p>contract address</p>
+          <a :href="url" target="_blank" class="contract-address">
+            {{ feedAddress }}
+            <font-awesome-icon class="icon" icon="external-link-alt" />
+          </a>
+          <p>proxy address</p>
+          <a :href="url" target="_blank" class="contract-address">
+            {{ proxyAddress }}
+            <font-awesome-icon class="icon" icon="external-link-alt" />
+          </a>
+        </div>
+      </div>
     </Fieldset>
     <TransactionsList
       v-if="transactions"
@@ -44,8 +95,12 @@ import feed from '@/apollo/queries/feed.gql'
 import requests from '@/apollo/queries/requests.gql'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 import { CHART_RANGE } from '@/constants'
+import { formatTimestamp } from '@/utils/formatTimestamp'
+import { formatNumber } from '@/utils/formatNumber'
+import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 import { formatSvgName } from '@/utils/formatSvgName'
+import { capitalizeFirstLetter } from '../utils/generateSelectOptions'
 
 export default {
   apollo: {
@@ -98,6 +153,44 @@ export default {
     deviation() {
       return this.feed ? this.feed.deviation : ''
     },
+    network() {
+      return this.feed
+        ? this.feed.network.split('-').map(capitalizeFirstLetter).join(' ')
+        : ''
+    },
+    lastResultDate() {
+      if (this.transactions) {
+        return formatTimestamp(this.transactions[0].timestamp)
+      } else {
+        return ''
+      }
+    },
+    lastResultTime() {
+      if (this.transactions) {
+        return formatTimestamp(this.transactions[0].timestamp)
+      } else {
+        return ''
+      }
+    },
+    feedTimeToUpdate() {
+      if (this.feed) {
+        return formatMilliseconds(
+          Number(this.feed.heartbeat) + Number(this.feed.finality)
+        )
+      } else {
+        return ''
+      }
+    },
+    lastResultvalue() {
+      if (this.transactions) {
+        return `${this.transactions[0].data.label} ${formatNumber(
+          parseFloat(this.transactions[0].data.value) /
+            10 ** this.transactions[0].data.decimals
+        )} `
+      } else {
+        return null
+      }
+    },
     maxTimeToResolve() {
       return this.feed
         ? (Number(this.feed.heartbeat) + Number(this.feed.finality)).toString()
@@ -112,7 +205,12 @@ export default {
       return this.feed ? this.feed.name.toUpperCase() : ''
     },
     feedAddress() {
+      console.log(this.feed)
       return this.feed ? this.feed.address : ''
+    },
+    proxyAddress() {
+      console.log(this.feed)
+      return this.feed ? this.feed.proxyAddress : ''
     },
     feedDecimals() {
       return this.feed ? this.feed.feedFullName.split('_').pop() || 3 : 3
@@ -162,21 +260,57 @@ export default {
 <style lang="scss" scoped>
 .content {
   display: grid;
-  grid-template: max-content max-content max-content 1fr / 1fr;
-  row-gap: 16px;
-  .contract-container {
-    margin-top: 150px;
+  grid-template: max-content max-content max-content max-content 1fr / 1fr;
+  .feed-description {
+    font-size: 14px;
+    padding: 16px;
+  }
+  .info-container {
+    padding: 16px;
+    display: grid;
+    grid-template-rows: max-content;
+    row-gap: 16px;
+    .item {
+      display: grid;
+      grid-template-columns: max-content max-content;
+      font-weight: bold;
+      column-gap: 8px;
+    }
     .contract-address {
       display: flex;
       align-items: center;
       line-break: loose;
       word-break: break-all;
       font-size: 24px;
-      padding: 24px;
       cursor: pointer;
       color: var(--contract-address);
       .icon {
         margin-left: 16px;
+      }
+    }
+  }
+  .integration-details {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+    .left {
+      text-align: center;
+      border-right: 1px solid var(--bg);
+      padding-right: 16px;
+      .title-details {
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 16px;
+      }
+      .bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 8px;
+        grid-template-rows: max-content max-content;
+        .btn {
+          height: max-content;
+        }
       }
     }
   }
@@ -186,7 +320,6 @@ export default {
   }
   .chart {
     margin-top: 24px;
-    height: 400px;
   }
   .section-header {
     display: grid;

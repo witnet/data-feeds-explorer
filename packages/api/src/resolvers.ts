@@ -46,6 +46,9 @@ const resolvers = {
     blockExplorer: async (parent, _args, { config }: Context) => {
       return config[parent.feedFullName]?.blockExplorer || ''
     },
+    proxyAddress: async (parent, _args, { config }: Context) => {
+      return config[parent.feedFullName]?.routerAddress|| ''
+    },
     deviation: async (parent, _args, { config }: Context) => {
       return config[parent.feedFullName]?.deviation || ''
     },

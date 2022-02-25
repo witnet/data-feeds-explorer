@@ -57,7 +57,6 @@ export default {
   margin-right: 0;
   margin-right: 8px;
   font-size: 16px;
-  color: var(--text-hover);
 }
 .tooltip,
 .info-tooltip {
@@ -74,9 +73,8 @@ export default {
   display: flex;
 }
 .info {
-  padding: 10px;
-  color: var(--text-hover);
-  margin: -10px;
+  display: flex;
+  align-items: center;
   font-size: 10px;
   cursor: pointer;
 }

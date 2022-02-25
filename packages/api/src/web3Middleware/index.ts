@@ -40,7 +40,7 @@ export class Web3Middleware {
     if (feed && contractAddress && contractAddress !== feed.address) {
       return this.repositories.feedRepository.updateFeedAddress(
         feedInfo.feedFullName,
-        contractAddress
+        contractAddress,
       )
     }
 
@@ -109,6 +109,7 @@ export class Web3Middleware {
           const contractIdentifier = await feedContract.methods
             .currencyPairId(feedInfo.id)
             .call()
+          console.log('contract Identifier!!!',feedInfo.id, contractIdentifier)
           const address = await feedContract.methods
             .getPriceFeed(contractIdentifier)
             .call()

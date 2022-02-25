@@ -65,6 +65,7 @@ export default {
   .option {
     background: var(--tab-gradient);
     padding: 24px 40px;
+    font-size: 14px;
     text-align: center;
     cursor: pointer;
     &.selected {

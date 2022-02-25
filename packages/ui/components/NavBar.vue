@@ -18,6 +18,24 @@
       </label>
       <transition name="dropdown" class="dropdown">
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
+          <div
+            v-if="networks"
+            class="networks"
+            :class="{ visible: isMenuVisible }"
+            @click="closeMenu"
+          >
+            <div
+              v-for="option in sidebarOptions"
+              :key="optionFromSelected(option)"
+              class="option"
+              :class="{
+                selected: optionFromSelected(option) === selectedOption,
+              }"
+              @click="updateSelected(option)"
+            >
+              {{ capitalizeFirstLetter(optionFromSelected(option)) }}
+            </div>
+          </div>
           <li class="tab" @click="closeMenu">
             <a :href="requestDataFeedUrl" target="_blank">
               <Button class="btn">{{ $t('navbar.request_data_feed') }}</Button>
@@ -30,9 +48,20 @@
 </template>
 
 <script>
+import networks from '@/apollo/queries/networks.gql'
 import { requestDataFeedUrl } from '../constants'
+import {
+  generateSelectOptions,
+  capitalizeFirstLetter,
+} from '../utils/generateSelectOptions'
 
 export default {
+  apollo: {
+    networks: {
+      prefetch: true,
+      query: networks,
+    },
+  },
   data() {
     return {
       hover: false,
@@ -41,7 +70,40 @@ export default {
       requestDataFeedUrl,
     }
   },
+  computed: {
+    selected() {
+      return this.$store.state.selectedNetwork
+    },
+    sidebarOptions() {
+      return Object.values(this.options)
+    },
+    options() {
+      if (this.networks) {
+        return generateSelectOptions(this.networks)
+      } else {
+        return null
+      }
+    },
+    selectedOption() {
+      return (this.selected[0] ? this.selected[0].network : '').toLowerCase()
+    },
+  },
+  watch: {
+    selected: {
+      handler(selected) {
+        this.$emit('update-selected', selected)
+      },
+      deep: true,
+    },
+  },
   methods: {
+    optionFromSelected(options) {
+      return (options[0] ? options[0].network : '').toLowerCase()
+    },
+    capitalizeFirstLetter,
+    updateSelected(selectedOption) {
+      this.$store.commit('updateSelectedNetwork', { network: selectedOption })
+    },
     closeMenu() {
       this.isMenuVisible = false
     },
@@ -58,7 +120,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -97,6 +159,14 @@ export default {
     list-style: none;
     display: flex;
     align-items: center;
+    .networks {
+      display: none;
+      &.visible {
+        background: var(--bg);
+        display: block;
+        padding: 0;
+      }
+    }
     &.visible {
       background: var(--bg);
       display: block;
@@ -110,7 +180,8 @@ export default {
       text-decoration: none;
       transition: color 0.1s ease;
       .btn {
-        max-width: 100%;
+        max-width: max-content;
+        margin: 16px 0;
         margin: 0;
       }
       .slash {
@@ -122,6 +193,15 @@ export default {
       }
       &:last-child {
         padding-right: 0;
+      }
+    }
+    .option {
+      padding: 24px 40px;
+      text-align: center;
+      cursor: pointer;
+      &.selected {
+        font-weight: bold;
+        background: var(--tab-gradient-selected);
       }
     }
   }
@@ -150,9 +230,9 @@ export default {
     position: fixed;
     top: 0;
     overflow: hidden;
+    overflow-y: hidden;
     height: 100%;
     z-index: 15;
-    overflow-y: hidden;
   }
 
   .navbar {
@@ -177,10 +257,10 @@ export default {
         box-sizing: border-box;
         display: block;
         padding: 0;
-        padding-top: 32px;
       }
       .tab {
         cursor: pointer;
+        padding: 16px 0;
         display: block;
         align-items: center;
         text-decoration: none;

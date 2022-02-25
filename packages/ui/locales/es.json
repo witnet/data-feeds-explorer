@@ -1,6 +1,7 @@
 {
   "data_feed_details": {
-    "contract_address": "Dirección del contrato"
+    "contract_address": "Detalles de integración",
+    "trigger_parameters": "Parámetros"
   },
   "main": {
     "data_feeds": "Data feeds"
@@ -21,8 +22,15 @@
     "heartbeat": "Heartbeat",
     "heartbeat_text": "El feed se actualiza antes de que el tiempo de heartbeat acabe",
     "deviation": "Desviación",
-    "deviation_text": "Cuando el precio varía más que el porcentaje de desviación, se envía una data request a la red de Witnet para actualizar el feed con un nuevo valor"
+    "deviation_text": "Cuando el precio varía más que el porcentaje de desviación, se envía una data request a la red de Witnet para actualizar el feed con un nuevo valor",
+    "use_data_feed": "Usa este data feed"
   },
   "copied": "Copiado",
-  "copy": "Copiar"
+  "copy": "Copiar",
+  "footer": {
+    "documentation": "Documentación",
+    "request_data_feed": "Request data feed",
+    "about_witnet": "Sobre Witnet",
+    "copyright": "© 2018–2021 por la Fundación Witnet y colaboradores particulaes. Contenido disponible bajo licencia de Creative Commons."
+  }
 }

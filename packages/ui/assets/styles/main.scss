@@ -173,7 +173,7 @@
   --footer-bg: #26474B;
 
   //sidebar
-  --tab-gradient: linear-gradient(90deg, #2d2c39d3 90%, #4ab6a02c);
+  --tab-gradient: linear-gradient(90deg, #2d2c39d3 95%, #4ab6a02c);
   --tab-gradient-selected: linear-gradient(90deg, #2d2c39d3 30%, #4ab6a02c);
 
   //breadcrumbs
@@ -288,7 +288,7 @@ h1 {
 p {
   font-size: 1.4rem;
   font-family: 'Almarai', sans-serif;
-
+  line-height: 1.5;
   &.subtitle {
     font-size: 0.87rem;
   }

@@ -3,8 +3,6 @@
     <ChartTooltip
       :value="formatNumber(value)"
       :date="date"
-      :deviation="deviation"
-      :heartbeat="heartbeat"
       :name="name"
       :last-result-timestamp="lastResultTimestamp"
     />
@@ -42,14 +40,6 @@ export default {
       type: String,
       required: true,
     },
-    deviation: {
-      type: String,
-      required: true,
-    },
-    heartbeat: {
-      type: String,
-      required: true,
-    },
     decimals: {
       type: String,
       required: true,
@@ -83,6 +73,7 @@ export default {
     chart() {
       const { LightWeightCharts } = this.$lwcCore()
       return LightWeightCharts.createChart(this.$refs.container, {
+        height: 400,
         rightPriceScale: {
           scaleMargins: {
             top: 0.1,
@@ -180,6 +171,9 @@ export default {
   width: 100%;
   max-width: 1500px;
   position: relative;
+}
+.tv-lightweight-charts {
+  height: 400px;
 }
 
 .switcher {

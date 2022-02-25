@@ -28,11 +28,11 @@ export default {
 .breadcrumbs {
   display: flex;
   color: var(--text);
-  font-size: 16px;
+  font-size: 14px;
   .breadcrumbs-label {
     color: var(--selected-option);
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 4px;
     margin-left: 4px;
   }

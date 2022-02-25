@@ -13,6 +13,7 @@ const typeDefs = gql`
     lastResult: String
     lastResultTimestamp: String
     deviation: String!
+    proxyAddress: String
     heartbeat: String!
     finality: String!
     requests(timestamp: Int!): [ResultRequest]!

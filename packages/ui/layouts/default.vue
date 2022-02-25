@@ -12,6 +12,17 @@
 <script>
 import { formatBreadcrumbsPath } from '@/utils/formatBreadcrumbsPath'
 export default {
+  data() {
+    return {
+      selected: [
+        {
+          label: 'ethereum-mainnet',
+          key: 'Ethereum Mainnet',
+          network: 'Ethereum',
+        },
+      ],
+    }
+  },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
