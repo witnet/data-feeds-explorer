@@ -14,6 +14,11 @@
   --app-background-color: #2D2C39;
   --pagination-button: grey;
 
+  //Tooltip
+
+  --tooltip-background: #FFFFFF10;
+  --tooltip-bg: #2D2C39;
+
 
   // Select
 
@@ -23,7 +28,7 @@
   --selected-icon: #62B1B058;
   --selected-options-background: #37414c;
   --selected-options-text: #e7e7e7;
-  --selected-options-border: 2px solid #62B1B015;;
+  --selected-options-border: 2px solid #62B1B015;
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
 
@@ -53,7 +58,7 @@
 
   // links
 
-  --transaction-blur-background: #FFFFFF10;
+  --transaction-blur-background: #ffffff09;
 
   //ThemeSwitch
 
@@ -101,6 +106,7 @@
   //Tooltip
 
   --tooltip-background: #FFFFFF10;
+  --tooltip-bg: #2D2C39;
 
   // Select
 
@@ -174,7 +180,7 @@
 
   //sidebar
   --tab-gradient: linear-gradient(90deg, #2d2c39d3 95%, #4ab6a02c);
-  --tab-gradient-selected: linear-gradient(90deg, #2d2c39d3 30%, #4ab6a02c);
+  --tab-gradient-selected: linear-gradient(90deg, #2d2c39d3 0%, rgba(74, 182, 160, 0.05) 20%, rgba(74, 182, 160, 0.10) 24%, rgba(74, 182, 160, 0.15) 30%, rgba(74, 182, 160, 0.173) 35%);
 
   //breadcrumbs
   --selected-option: #4AB6A1;
@@ -200,6 +206,7 @@
   //Tooltip
 
   --tooltip-background: #2d2c3910;
+  --tooltip-bg: #f6f6f7;
 
   // Select
 
@@ -215,7 +222,7 @@
 
   // FeedCard
 
-  --card-border: 2px solid #CBF4EC;
+  --card-border: 1px solid #4ab6a0;
   --card-background: transparent;
   --name-color: #2D2C39;
   --value-color: #2D2C39;
@@ -223,7 +230,7 @@
   //Fieledset
 
   --fieldset-title: #2D2C39;
-  --fieldset-background: #2d2c3910;
+  --fieldset-background: #2d2c3908;
 
   //Logo
   --logo-dot: #41BEA5;
@@ -240,7 +247,7 @@
 
   // links
 
-  --transaction-blur-background: #2d2c3907;
+  --transaction-blur-background: #2d2c3905;
 
   //ThemeSwitch
 
@@ -267,14 +274,15 @@
   --btn-primary-border-color: #4AB6A1;
   --btn-secondary-color: #4AB6A1;
   --btn-secondary-background-color: #4AB6A1;
-  --btn-secondary-border-color: #4AB6A1;
+  --btn-secondary-border-color: hsl(168, 43%, 50%);
 
   //footer
   --footer-bg: #4AB6A1;
 
   //sidebar
-  --tab-gradient: linear-gradient(90deg, #fdfdfd 90%, #4ab6a050);
-  --tab-gradient-selected: linear-gradient(90deg, #fdfdfd 30%, #4ab6a050);
+  --tab-gradient: linear-gradient(90deg, #fdfdfd 95%, #cbf5ed);
+  --tab-background: #fdfdfd;
+  --tab-gradient-selected: linear-gradient(90deg, #fdfdfd 0%, rgba(74, 182, 160, 0.80) 20%, rgba(74, 182, 160, 0.90) 24%, rgba(74, 182, 160, 0.97) 30%, rgba(74,182,161,1) 35%);
 
   //breadcrumbs
   --selected-option: #41BEA5;

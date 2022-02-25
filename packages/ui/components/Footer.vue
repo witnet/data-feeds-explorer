@@ -49,8 +49,8 @@ export default {
   color: $white;
   .links-container {
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, max-content);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     grid-gap: 16px;
     grid-template-rows: auto;
@@ -66,6 +66,11 @@ export default {
   }
   .witnet-logo {
     width: 60px;
+  }
+}
+@media (max-width: 600px) {
+  .links-container {
+    margin: 16px 0;
   }
 }
 </style>

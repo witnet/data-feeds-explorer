@@ -48,7 +48,7 @@ export default {
   font-weight: bold;
   margin-top: -60px;
   font-size: 24px;
-  background-color: var(--bg);
+  background-color: var(--tooltip-bg);
   padding: 8px 16px;
   border-radius: 4px;
   color: var(--text);

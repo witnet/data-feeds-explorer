@@ -2,7 +2,7 @@
   <li class="item-container">
     <div class="attribute-container values-time">
       <div class="attribute">
-        {{ calculateTimeAgo(timestamp, $i18n.locale) }}
+        {{ formatTimestamp(timestamp) }}
       </div>
     </div>
     <div class="attribute-container links">
@@ -23,7 +23,7 @@
 
 <script>
 import { formatNumber } from '@/utils/formatNumber'
-import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
+import { formatTimestamp } from '@/utils/formatTimestamp'
 
 export default {
   name: 'Transaction',
@@ -53,7 +53,7 @@ export default {
     },
   },
   methods: {
-    calculateTimeAgo,
+    formatTimestamp,
   },
 }
 </script>

@@ -60,55 +60,14 @@
       </div>
     </Fieldset>
     <Fieldset :title="$t('data_feed_details.contract_address')">
-      <div class="integration-details">
-        <div class="left">
-          <p class="title-details">
-            {{
-              $t('data_feed_details.integration_details_description', [network])
-            }}
-          </p>
-          <div class="bottom">
-            <Button class="btn">{{
-              $t('data_feed_details.integrate_proxy')
-            }}</Button>
-            <Button class="btn">{{
-              $t('data_feed_details.integrate_directly')
-            }}</Button>
-            <p class="subtitle">
-              {{ $t('data_feed_details.recommended_for_testing') }}
-            </p>
-            <p class="subtitle">
-              {{ $t('data_feed_details.optimized_for_gas_cost') }}
-            </p>
-          </div>
-        </div>
-        <div class="right">
-          <p class="title-address">
-            {{ $t('data_feed_details.proxy_address') }}
-          </p>
-          <a :href="urlProxyContract" target="_blank" class="contract-info">
-            {{ proxyAddress }}
-            <font-awesome-icon class="icon" icon="external-link-alt" />
-          </a>
-          <p class="title-address">
-            {{ $t('data_feed_details.underlying_feed_contract') }}
-          </p>
-          <a
-            :href="urlUnderlyingContract"
-            target="_blank"
-            class="contract-info"
-          >
-            {{ feedAddress }}
-            <font-awesome-icon class="icon" icon="external-link-alt" />
-          </a>
-          <p class="title-address">
-            {{ $t('data_feed_details.erc2362_asset_id') }}
-          </p>
-          <p target="_blank" class="contract-id">
-            {{ contractId }}
-          </p>
-        </div>
-      </div>
+      <IntegrationDetails
+        :network="network"
+        :proxy-address="proxyAddress"
+        :feed-address="feedAddress"
+        :contract-id="contractId"
+        :url-underlying-contract="urlUnderlyingContract"
+        :url-proxy-contract="urlProxyContract"
+      />
     </Fieldset>
     <TransactionsList
       v-if="transactions"
@@ -248,15 +207,12 @@ export default {
       return this.feed ? this.feed.name.toUpperCase() : ''
     },
     feedAddress() {
-      console.log(this.feed)
       return this.feed ? this.feed.address : ''
     },
     proxyAddress() {
-      console.log(this.feed)
       return this.feed ? this.feed.proxyAddress : ''
     },
     contractId() {
-      console.log('contractId??', this.feed)
       return this.feed ? this.feed.contractId : ''
     },
     feedDecimals() {
@@ -311,6 +267,7 @@ export default {
   .feed-description {
     font-size: 16px;
     padding: 16px;
+    margin-top: 16px;
   }
   .info-container {
     padding: 16px;
@@ -318,8 +275,9 @@ export default {
     grid-template-rows: max-content;
     row-gap: 16px;
     .item {
-      display: grid;
-      grid-template-columns: max-content max-content;
+      display: flex;
+      flex-wrap: wrap;
+      grid-gap: 8px;
       font-weight: bold;
       column-gap: 8px;
     }
@@ -336,61 +294,9 @@ export default {
       }
     }
   }
-  .integration-details {
-    padding: 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 16px;
-    .left {
-      text-align: center;
-      border-right: 1px solid var(--bg);
-      padding-right: 16px;
-      .title-details {
-        font-size: 16px;
-        font-weight: normal;
-        margin-bottom: 16px;
-      }
-      .bottom {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 8px;
-        grid-template-rows: max-content max-content;
-        .btn {
-          height: max-content;
-        }
-      }
-    }
-    .right {
-      display: grid;
-      grid-gap: 8px;
-      .title-address {
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 8px;
-      }
-      .contract-id {
-        font-size: 16px;
-        margin-bottom: 8px;
-        font-family: Roboto Mono, monospace;
-      }
-      .contract-info {
-        font-family: Roboto Mono, monospace;
-        color: var(--text-hover);
-        font-size: 16px;
-        margin-bottom: 8px;
-        cursor: pointer;
-      }
-      .icon {
-        font-size: 10px;
-      }
-    }
-  }
   .pagination {
-    padding-bottom: 72px;
+    padding-bottom: 16px;
     justify-self: center;
-  }
-  .chart {
-    margin-top: 24px;
   }
   .section-header {
     display: grid;

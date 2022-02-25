@@ -63,13 +63,17 @@ export default {
   position: relative;
   text-align: right;
   .option {
-    background: var(--tab-gradient);
-    padding: 24px 40px;
+    padding: 16px 24px;
     font-size: 14px;
     text-align: center;
     cursor: pointer;
+    color: var(--light-text);
+    font-weight: bold;
     &.selected {
+      border-radius: 4px;
       font-weight: bold;
+      color: var(--btn-primary-color);
+      background: var(--tab-background);
       background: var(--tab-gradient-selected);
     }
   }

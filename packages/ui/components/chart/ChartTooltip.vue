@@ -7,17 +7,17 @@
           {{ name.toUpperCase() }}
         </p>
       </div>
-      <p class="value">{{ $t('chart.last_update') }}</p>
+      <p class="value-title">{{ $t('chart.last_update') }}</p>
       <p class="value">
         {{ lastResultValue }}
         <span class="time">{{ calculateTime() }}</span>
       </p>
     </div>
-    <a :href="useDataFeedUrl" target="_blank">
+    <InnerLink class="link" hash="integrate">
       <Button class="btn" type="secondary">{{
         $t('chart.use_data_feed')
       }}</Button>
-    </a>
+    </InnerLink>
   </div>
 </template>
 
@@ -69,9 +69,14 @@ export default {
 
 <style scoped lang="scss">
 .tooltip-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 16px;
   justify-content: space-between;
+  margin-bottom: 24px;
+}
+.link {
+  align-self: start;
 }
 .tooltip {
   font-family: Almarai, sans-serif;
@@ -83,7 +88,7 @@ export default {
     display: flex;
     align-items: center;
     justify-items: center;
-    margin: 8px 0;
+    margin-bottom: 8px;
     .icon {
       display: flex;
     }
@@ -102,6 +107,9 @@ export default {
       color: var(--text-hover);
     }
   }
+  .value-title {
+    font-size: 12px;
+  }
   .value {
     font-family: Almarai, sans-serif;
     font-size: 16px;
@@ -111,9 +119,15 @@ export default {
     }
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 600px) {
   .tooltip-container {
-    margin: 16px;
+    grid-template-columns: 1fr;
+    margin: 0 16px;
+    margin-bottom: 32px;
+  }
+  .link {
+    justify-self: flex-end;
+    align-self: flex-end;
   }
 }
 </style>

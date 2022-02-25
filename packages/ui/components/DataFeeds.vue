@@ -111,10 +111,17 @@ export default {
     justify-content: center;
   }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 300px) {
   .feeds-container {
     padding: 0;
     justify-content: center;
+    grid-template: none;
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .feeds-container {
+    padding: 0;
   }
 }
 </style>

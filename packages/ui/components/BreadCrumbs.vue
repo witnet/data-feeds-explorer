@@ -5,6 +5,7 @@
       :key="option.label"
       :class="{ selected: option.selected }"
       :to="localeRoute(option.path)"
+      class="breadcrumbs-link"
     >
       <p v-if="option.label" class="breadcrumbs">
         <span class="breadcrumbs-label">{{ option.label }}</span> /
@@ -34,7 +35,12 @@ export default {
     font-weight: bold;
     font-size: 14px;
     margin-right: 4px;
+  }
+  .breadcrumbs-link {
     margin-left: 4px;
+    &:first-of-type {
+      margin-left: 0;
+    }
   }
 }
 @media (max-width: 1200px) {

@@ -143,7 +143,7 @@ export default {
 @media (max-width: 1200px) {
   .main {
     grid-template-columns: 1fr;
-    padding: 0 32px;
+    padding: 0 16px;
   }
   .section-header {
     padding: 0 32px 32px 32px;
@@ -154,7 +154,7 @@ export default {
     grid-template-columns: 1fr;
   }
   .section-header {
-    padding: 0 32px 32px 32px;
+    padding: 0 16px 16px 16px;
   }
   .list-container {
     .pagination {

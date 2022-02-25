@@ -95,7 +95,7 @@ a {
   justify-items: flex-start;
   border-radius: 4px;
   column-gap: 16px;
-  padding: 16px;
+  padding: 8px 16px;
   cursor: pointer;
   .title {
     grid-row: 1 / span 2;
@@ -122,6 +122,12 @@ a {
     color: var(--value-color);
     font-size: 18px;
     justify-self: flex-end;
+  }
+}
+@media (max-width: 300px) {
+  .card-container {
+    width: 250px;
+    grid-template-columns: 1fr;
   }
 }
 </style>

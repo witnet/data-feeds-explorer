@@ -103,6 +103,7 @@ export default {
     capitalizeFirstLetter,
     updateSelected(selectedOption) {
       this.$store.commit('updateSelectedNetwork', { network: selectedOption })
+      this.$router.push('/')
     },
     closeMenu() {
       this.isMenuVisible = false
@@ -132,7 +133,7 @@ export default {
     grid-template-columns: max-content max-content;
     grid-template-rows: 1fr 1fr;
     align-items: center;
-    padding: 16px;
+    padding: 16px 16px 16px 0;
     text-decoration: none;
     column-gap: 8px;
 
@@ -165,6 +166,7 @@ export default {
         background: var(--bg);
         display: block;
         padding: 0;
+        margin-top: 24px;
       }
     }
     &.visible {
@@ -193,10 +195,11 @@ export default {
       }
       &:last-child {
         padding-right: 0;
+        padding-top: 24px;
       }
     }
     .option {
-      padding: 24px 40px;
+      padding: 16px 24px;
       text-align: center;
       cursor: pointer;
       &.selected {
@@ -212,6 +215,9 @@ export default {
     padding: 0 24px;
     margin: 0;
     height: max-content;
+    .logo-container {
+      padding: 16px;
+    }
 
     &.open {
       height: 100vh;
@@ -238,6 +244,9 @@ export default {
   .navbar {
     display: block;
     padding: 0;
+    .logo-container {
+      padding: 16px;
+    }
     .responsive-menu {
       display: block;
       cursor: pointer;
@@ -260,7 +269,6 @@ export default {
       }
       .tab {
         cursor: pointer;
-        padding: 16px 0;
         display: block;
         align-items: center;
         text-decoration: none;
