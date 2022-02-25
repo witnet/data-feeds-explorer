@@ -1,9 +1,8 @@
 <template>
-  <div ref="container">
+  <div>
     <ChartTooltip
-      :value="formatNumber(value)"
-      :date="date"
       :name="name"
+      :last-result-value="lastResultValue"
       :last-result-timestamp="lastResultTimestamp"
     />
     <div class="switcher">
@@ -16,6 +15,19 @@
       >
         {{ $t(`chart.${serie.key}`) }}
       </div>
+    </div>
+    <div ref="container">
+      <ChartMovingTooltip
+        v-if="top && left"
+        :value="value"
+        :date="date"
+        :style="{
+          top: `${top}px`,
+          left: `${left}px`,
+          width: `${toolTipWidth}px`,
+          height: `${toolTipHeight}px`,
+        }"
+      />
     </div>
   </div>
 </template>
@@ -44,6 +56,10 @@ export default {
       type: String,
       required: true,
     },
+    lastResultValue: {
+      type: String,
+      required: true,
+    },
     lastResultTimestamp: {
       type: String,
       required: true,
@@ -55,7 +71,10 @@ export default {
       dateTooltip: true,
       value: '',
       date: '',
-      toolTipWidth: 100,
+      left: '',
+      top: '',
+      toolTipWidth: 150,
+      toolTipHeight: 60,
       tooltipLeftPosition: 10,
       ranges: CHART_RANGE,
       get range() {
@@ -87,7 +106,7 @@ export default {
         },
         crosshair: {
           horzLine: {
-            visible: false,
+            visible: true,
           },
           vertLine: {
             visible: true,
@@ -160,6 +179,21 @@ export default {
           this.value = `${this.dataLabel} ${price}`
           this.date = dateStr
         }
+        const toolTipMargin = 24
+        const width = this.$refs.container.getBoundingClientRect().width
+        const height = 400
+        const y = param.point ? param.point.y : null
+        const x = param.point ? param.point.x : null
+
+        this.left = x
+        if (this.left > width - this.toolTipWidth) {
+          this.left = x - toolTipMargin - this.toolTipWidth
+        }
+
+        this.top = y
+        if (top > height - this.toolTipHeight) {
+          this.top = y - this.toolTipHeight - toolTipMargin
+        }
       })
     },
   },
@@ -173,7 +207,7 @@ export default {
   position: relative;
 }
 .tv-lightweight-charts {
-  height: 400px;
+  height: 500px;
 }
 
 .switcher {

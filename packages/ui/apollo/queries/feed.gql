@@ -3,6 +3,7 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     feedFullName 
     name
     address
+    contractId
     lastResult
     network
     label

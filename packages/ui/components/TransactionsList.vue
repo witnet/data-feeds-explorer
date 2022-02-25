@@ -5,16 +5,16 @@
   >
     <div class="collection collection-container">
       <li class="item-container blur">
+        <div class="attribute-container values-time">
+          <div class="attribute">{{ $t('transactions_list.time') }}</div>
+        </div>
         <div class="attribute-container links">
-          <div class="attribute">
+          <div class="attribute link">
             {{ $t('transactions_list.witnet_explorer') }}
           </div>
-        </div>
-        <div class="attribute-container values-time">
-          <div class="attribute">
+          <div class="attribute value">
             {{ $t('transactions_list.value') }}
           </div>
-          <div class="attribute">{{ $t('transactions_list.time') }}</div>
         </div>
       </li>
       <Transaction
@@ -46,7 +46,7 @@ export default {
 .item-container {
   padding: 16px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 4fr;
   align-items: center;
   column-gap: 16px;
   row-gap: 24px;
@@ -56,16 +56,17 @@ export default {
 
   .attribute-container {
     display: grid;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(var(--column-width-min), 1fr)
-    );
+    grid-template-columns: 1fr max-content;
     align-items: center;
+    justify-content: space-between;
     column-gap: 16px;
     row-gap: 24px;
   }
+  .value {
+    --column-width-min: max-content;
+  }
   .links {
-    --column-width-min: 150px;
+    --column-width-min: 100px;
   }
   .values-time {
     --column-width-min: 100px;
@@ -76,6 +77,16 @@ export default {
   .collection-container {
     display: grid;
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .item-container {
+    .attribute-container {
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(var(--column-width-min), 1fr)
+      );
+    }
   }
 }
 </style>

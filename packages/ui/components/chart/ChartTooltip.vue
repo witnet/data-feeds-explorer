@@ -7,8 +7,11 @@
           {{ name.toUpperCase() }}
         </p>
       </div>
-      <p class="value">{{ value }}</p>
-      <p class="item">{{ date }}</p>
+      <p class="value">{{ $t('chart.last_update') }}</p>
+      <p class="value">
+        {{ lastResultValue }}
+        <span class="time">{{ calculateTime() }}</span>
+      </p>
     </div>
     <a :href="useDataFeedUrl" target="_blank">
       <Button class="btn" type="secondary">{{
@@ -21,6 +24,7 @@
 <script>
 import { formatSvgName } from '@/utils/formatSvgName'
 import { useDataFeedUrl } from '@/constants'
+import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 
 export default {
   props: {
@@ -33,6 +37,10 @@ export default {
       default: '',
     },
     date: {
+      type: String,
+      default: '',
+    },
+    lastResultValue: {
       type: String,
       default: '',
     },
@@ -51,6 +59,11 @@ export default {
       return this.name ? formatSvgName(this.name.toLowerCase()) : ''
     },
   },
+  methods: {
+    calculateTime() {
+      return calculateTimeAgo(this.lastResultTimestamp, this.$i18n.locale)
+    },
+  },
 }
 </script>
 
@@ -63,7 +76,7 @@ export default {
 .tooltip {
   font-family: Almarai, sans-serif;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 24px;
   background-color: var(--bg);
   color: var(--text);
   .feed-title {
@@ -88,8 +101,13 @@ export default {
       margin-right: 10px;
       color: var(--text-hover);
     }
-    .value {
-      font-family: Almarai, sans-serif;
+  }
+  .value {
+    font-family: Almarai, sans-serif;
+    font-size: 16px;
+    .time {
+      font-size: 12px;
+      color: var(--text-medium-emphasis);
     }
   }
 }

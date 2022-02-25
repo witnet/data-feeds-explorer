@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Feed {
     id: String!
     address: String!
+    contractId: String!
     blockExplorer: String!
     color: String!
     feedFullName: String!

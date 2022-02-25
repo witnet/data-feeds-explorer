@@ -85,6 +85,10 @@ export default {
       },
       {
         rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap',
+      },
+      {
+        rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap',
       },
     ],

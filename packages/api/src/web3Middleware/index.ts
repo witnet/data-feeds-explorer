@@ -6,7 +6,8 @@ import {
   FeedInfo,
   Repositories,
   ResultRequestDbObject,
-  ObjectId
+  ObjectId,
+  ContractInfo
 } from '../types'
 import { getProvider } from './provider'
 
@@ -34,13 +35,20 @@ export class Web3Middleware {
   }
 
   async updateAddress (feedInfo: FeedInfo) {
-    const contractAddress = await this.getContractAddress(feedInfo)
+    const contractInfo = await this.getContractAddress(feedInfo)
+    console.log('contractInfo in updateAddress', contractInfo)
     const feed = this.repositories.feedRepository.get(feedInfo.feedFullName)
 
-    if (feed && contractAddress && contractAddress !== feed.address) {
+    if (
+      feed &&
+      contractInfo &&
+      contractInfo.contractAddress &&
+      contractInfo.contractAddress !== feed.address
+    ) {
       return this.repositories.feedRepository.updateFeedAddress(
         feedInfo.feedFullName,
-        contractAddress,
+        contractInfo.contractAddress,
+        contractInfo.contractId
       )
     }
 
@@ -89,7 +97,7 @@ export class Web3Middleware {
     this.intervals = []
   }
 
-  async getContractAddress (feedInfo: FeedInfo): Promise<string | null> {
+  async getContractAddress (feedInfo: FeedInfo): Promise<ContractInfo | null> {
     try {
       return await new Promise(async (resolve, reject) => {
         try {
@@ -109,12 +117,15 @@ export class Web3Middleware {
           const contractIdentifier = await feedContract.methods
             .currencyPairId(feedInfo.id)
             .call()
-          console.log('contract Identifier!!!',feedInfo.id, contractIdentifier)
+          console.log('contract Identifier!!!', feedInfo.id, contractIdentifier)
           const address = await feedContract.methods
             .getPriceFeed(contractIdentifier)
             .call()
 
-          resolve(address)
+          resolve({
+            contractAddress: address,
+            contractId: contractIdentifier
+          })
         } catch (err) {
           reject(err)
         }
@@ -128,22 +139,25 @@ export class Web3Middleware {
   }
 
   async listenToDataFeed (feedInfo: FeedInfo) {
-    const contractAddress = await this.getContractAddress(feedInfo)
+    const contractInfo = await this.getContractAddress(feedInfo)
     const provider = getProvider(feedInfo.network)
     if (provider) {
+      console.log('contractInfo in listenToDataFeed', contractInfo)
       if (
-        contractAddress &&
-        contractAddress !== '0x0000000000000000000000000000000000000000'
+        contractInfo &&
+        contractInfo.contractAddress &&
+        contractInfo.contractAddress !==
+          '0x0000000000000000000000000000000000000000'
       ) {
         try {
           const web3 = new this.Web3(provider)
           const feedContract = new web3.eth.Contract(
             feedInfo.abi,
-            contractAddress
+            contractInfo.contractAddress
           )
           const interval = setInterval(async () => {
             console.log(
-              `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
+              `Reading ${feedInfo.feedFullName} contract state at address: ${contractInfo.contractAddress}`
             )
             await this.fetchAndSaveContractSnapshot(
               { feedContract },

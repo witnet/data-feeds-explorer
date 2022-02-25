@@ -78,6 +78,7 @@ export function normalizeConfig (
           feedFullName: createFeedFullName(network, name, decimals),
           id: feed.key,
           address: '0x0000000000000000000000000000000000000000',
+          contractId: '0x0000000000000000000000000000000000000000',
           routerAddress: config.address,
           network,
           name,

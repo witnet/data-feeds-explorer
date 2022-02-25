@@ -5,21 +5,36 @@
       class="chart"
       :data="chartData"
       :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
+      :last-result-value="lastResultvalue"
       :data-label="feed.label"
       :name="feedName"
       :decimals="feedDecimals"
       @change-range="updateQuery"
     />
-    <p class="feed-description">
-      This is a Witnet powered <span class="bold">{{ feedName }}</span> data
-      feed available on <span class="bold">{{ network }}</span
-      >. Last reported value is <span class="bold">{{ lastResultvalue }}</span
-      >(updated on <span class="bold">{{ lastResultDate }}</span
-      >). This price feed is updated every
-      <span class="bold">{{ feedTimeToUpdate }}</span
-      >, or every time the price changes by more than
-      <span class="bold">{{ deviation }}%</span>.
-    </p>
+    <i18n
+      path="data_feed_details.feed_description"
+      tag="p"
+      class="feed-description"
+    >
+      <template #name>
+        <span class="bold">{{ feedName }}</span>
+      </template>
+      <template #network>
+        <span class="bold">{{ network }}</span>
+      </template>
+      <template #value>
+        <span class="bold">{{ lastResultvalue }}</span>
+      </template>
+      <template #date>
+        <span class="bold">{{ lastResultDate }}</span>
+      </template>
+      <template #heartbeat>
+        <span class="bold">{{ feedTimeToUpdate }}</span>
+      </template>
+      <template #deviation>
+        <span class="bold">{{ deviation }}%</span>
+      </template>
+    </i18n>
     <Fieldset :title="$t('data_feed_details.trigger_parameters')">
       <div class="info-container">
         <div class="item">
@@ -48,27 +63,50 @@
       <div class="integration-details">
         <div class="left">
           <p class="title-details">
-            Witnet price feeds can be integrated into your own
-            {{ network }} contracts in two different ways:
+            {{
+              $t('data_feed_details.integration_details_description', [network])
+            }}
           </p>
           <div class="bottom">
-            <Button class="btn">Integrate through proxy</Button>
-            <Button class="btn">Integrate directly</Button>
-            <p class="subtitle">Recommended for testing and upgradability</p>
-            <p class="subtitle">Optimized for gas cost and decentralization</p>
+            <Button class="btn">{{
+              $t('data_feed_details.integrate_proxy')
+            }}</Button>
+            <Button class="btn">{{
+              $t('data_feed_details.integrate_directly')
+            }}</Button>
+            <p class="subtitle">
+              {{ $t('data_feed_details.recommended_for_testing') }}
+            </p>
+            <p class="subtitle">
+              {{ $t('data_feed_details.optimized_for_gas_cost') }}
+            </p>
           </div>
         </div>
         <div class="right">
-          <p>contract address</p>
-          <a :href="url" target="_blank" class="contract-address">
-            {{ feedAddress }}
-            <font-awesome-icon class="icon" icon="external-link-alt" />
-          </a>
-          <p>proxy address</p>
-          <a :href="url" target="_blank" class="contract-address">
+          <p class="title-address">
+            {{ $t('data_feed_details.proxy_address') }}
+          </p>
+          <a :href="urlProxyContract" target="_blank" class="contract-info">
             {{ proxyAddress }}
             <font-awesome-icon class="icon" icon="external-link-alt" />
           </a>
+          <p class="title-address">
+            {{ $t('data_feed_details.underlying_feed_contract') }}
+          </p>
+          <a
+            :href="urlUnderlyingContract"
+            target="_blank"
+            class="contract-info"
+          >
+            {{ feedAddress }}
+            <font-awesome-icon class="icon" icon="external-link-alt" />
+          </a>
+          <p class="title-address">
+            {{ $t('data_feed_details.erc2362_asset_id') }}
+          </p>
+          <p target="_blank" class="contract-id">
+            {{ contractId }}
+          </p>
         </div>
       </div>
     </Fieldset>
@@ -145,7 +183,12 @@ export default {
     svgIcon() {
       return this.feed ? formatSvgName(this.feed.name) : ''
     },
-    url() {
+    urlUnderlyingContract() {
+      return this.feed
+        ? this.feed.blockExplorer.replace(`{address}`, this.feedAddress)
+        : ''
+    },
+    urlProxyContract() {
       return this.feed
         ? this.feed.blockExplorer.replace(`{address}`, this.feedAddress)
         : ''
@@ -212,6 +255,10 @@ export default {
       console.log(this.feed)
       return this.feed ? this.feed.proxyAddress : ''
     },
+    contractId() {
+      console.log('contractId??', this.feed)
+      return this.feed ? this.feed.contractId : ''
+    },
     feedDecimals() {
       return this.feed ? this.feed.feedFullName.split('_').pop() || 3 : 3
     },
@@ -262,7 +309,7 @@ export default {
   display: grid;
   grid-template: max-content max-content max-content max-content 1fr / 1fr;
   .feed-description {
-    font-size: 14px;
+    font-size: 16px;
     padding: 16px;
   }
   .info-container {
@@ -311,6 +358,30 @@ export default {
         .btn {
           height: max-content;
         }
+      }
+    }
+    .right {
+      display: grid;
+      grid-gap: 8px;
+      .title-address {
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+      .contract-id {
+        font-size: 16px;
+        margin-bottom: 8px;
+        font-family: Roboto Mono, monospace;
+      }
+      .contract-info {
+        font-family: Roboto Mono, monospace;
+        color: var(--text-hover);
+        font-size: 16px;
+        margin-bottom: 8px;
+        cursor: pointer;
+      }
+      .icon {
+        font-size: 10px;
       }
     }
   }

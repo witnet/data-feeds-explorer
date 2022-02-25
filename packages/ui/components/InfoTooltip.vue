@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div :ref="label" class="value truncate">
+    <div v-if="showIcon" :ref="label" class="value truncate">
+      {{ label }}
+    </div>
+    <div
+      v-else
+      :ref="label"
+      class="value truncate"
+      @mousemove="showTooltip = true"
+      @mouseleave="showTooltip = false"
+    >
       {{ label }}
     </div>
     <div
@@ -16,7 +25,7 @@
       >
         {{ value }}
       </div>
-      <font-awesome-icon class="icon" icon="info-circle" />
+      <font-awesome-icon v-if="showIcon" class="icon" icon="info-circle" />
     </div>
   </div>
 </template>
@@ -32,6 +41,10 @@ export default {
       type: String,
       required: true,
     },
+    showIcon: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -40,10 +53,10 @@ export default {
   },
   computed: {
     textTopPosition() {
-      return `${this.$refs.info.offsetTop - 30}px`
+      return `${this.$refs.info.offsetTop - 40}px`
     },
     textLeftPosition() {
-      return `${this.$refs.info.offsetLeft + 10}px`
+      return `${this.$refs.info.offsetLeft - 70}px`
     },
   },
 }

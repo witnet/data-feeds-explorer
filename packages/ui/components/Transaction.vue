@@ -1,16 +1,22 @@
 <template>
   <li class="item-container">
+    <div class="attribute-container values-time">
+      <div class="attribute">
+        {{ calculateTimeAgo(timestamp, $i18n.locale) }}
+      </div>
+    </div>
     <div class="attribute-container links">
       <a :href="witnetLink" target="_blank" class="link truncate">
         0x{{ drTxHash }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
-    </div>
-    <div class="attribute-container values-time">
-      <CopyTooltip :label="`${value}2`" class="attribute" :value="value" />
-      <div class="attribute">
-        {{ calculateTimeAgo(timestamp, $i18n.locale) }}
-      </div>
+      <InfoTooltip
+        class="value attribute"
+        :label="value"
+        :value="value"
+        :show-icon="false"
+      />
+      <!-- <p class="value attribute truncate">{{ value }}</p> -->
     </div>
   </li>
 </template>
@@ -59,10 +65,17 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.value {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 4px;
+  color: var(--text);
+}
 .link {
   color: var(--witnet-transaction);
+  font-family: Roboto Mono, monospace;
   .icon {
-    margin-left: 16px;
+    font-size: 12px;
   }
 }
 .truncate {

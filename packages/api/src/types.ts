@@ -49,6 +49,7 @@ export type FeedInfoGeneric<ABI> = {
   name: string
   pollingPeriod: number
   label: string
+  contractId: string
   color: string
   blockExplorer: string
   deviation: string
@@ -62,6 +63,11 @@ export type FeedInfoConfig = FeedInfoGeneric<string>
 export type PaginatedFeedsObject = {
   feeds: Array<FeedInfo>
   total: number
+}
+
+export type ContractInfo = {
+  contractAddress: string
+  contractId: string
 }
 
 export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {
