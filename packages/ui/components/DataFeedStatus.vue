@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
 export default {
   props: {
     heartbeat: {
@@ -17,41 +18,12 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      currentStatus: 'operational',
-      status: {
-        operational: {
-          label: 'Fully operational',
-          color: '#4AB6A1',
-        },
-        error: {
-          label: 'Error detected',
-          color: '#DF4B4B',
-        },
-        delay: {
-          label: 'Delay detected',
-          color: '#DFC44B',
-        },
-      },
-    }
-  },
   computed: {
     statusColor() {
-      return this.getCurrentStatus().color
+      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).color
     },
     statusLabel() {
-      return this.getCurrentStatus().label
-    },
-  },
-  methods: {
-    getCurrentStatus() {
-      const updateLimitTimestamp = new Date().getTime() - Number(this.heartbeat)
-      if (updateLimitTimestamp > Number(`${this.lastResultTimestamp}000`)) {
-        return this.status.delay
-      } else {
-        return this.status.operational
-      }
+      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).label
     },
   },
 }

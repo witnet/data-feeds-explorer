@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="showIcon" :ref="label" class="value truncate">
-      {{ label }}
+      <slot></slot>
     </div>
     <div
       v-else
@@ -10,7 +10,7 @@
       @mousemove="showTooltip = true"
       @mouseleave="showTooltip = false"
     >
-      {{ label }}
+      <slot></slot>
     </div>
     <div
       ref="info"
@@ -21,7 +21,7 @@
       <div
         v-if="showTooltip"
         class="info-tooltip"
-        :class="{ hidden: !showIcon }"
+        :class="{ hidden: showInResponsive }"
         :style="{ top: textTopPosition, left: textLeftPosition }"
       >
         {{ value }}
@@ -45,6 +45,10 @@ export default {
     showIcon: {
       type: Boolean,
       default: true,
+    },
+    showInResponsive: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

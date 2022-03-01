@@ -1,9 +1,15 @@
 <template>
   <nuxt-link :to="localeRoute(detailsPath)">
-    <div class="card-container">
+    <div class="card-container" :class="dataFeedStatusKey">
       <div class="title">
         <SvgIcon class="img" :name="img.name" />
         <p class="name">{{ name.toUpperCase() }}</p>
+        <InfoTooltip :show-icon="false" :value="dataFeedStatusLabel">
+          <WarningStatus
+            v-if="dataFeedStatusKey !== 'operational'"
+            :color="statusColor"
+          />
+        </InfoTooltip>
       </div>
       <p class="value">{{ label }} {{ formatedValue }}</p>
       <p class="timestamp">
@@ -16,6 +22,7 @@
 <script>
 import { formatNumber } from '@/utils/formatNumber'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
+import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
 
 export default {
   name: 'FeedCard',
@@ -48,6 +55,10 @@ export default {
       type: String,
       required: true,
     },
+    heartbeat: {
+      type: String,
+      required: true,
+    },
     network: {
       type: String,
       required: true,
@@ -60,6 +71,15 @@ export default {
   computed: {
     formatedValue() {
       return formatNumber(parseFloat(this.value) / 10 ** this.decimals)
+    },
+    statusColor() {
+      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).color
+    },
+    dataFeedStatusKey() {
+      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).key
+    },
+    dataFeedStatusLabel() {
+      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).label
     },
   },
   methods: {
@@ -83,7 +103,6 @@ a {
 .card-container {
   width: 300px;
   height: max-content;
-  border: var(--card-border);
   background: var(--card-background);
   box-shadow: var(--card-box-shadow);
   font-weight: bold;
@@ -94,9 +113,19 @@ a {
   align-content: center;
   justify-items: flex-start;
   border-radius: 4px;
-  column-gap: 16px;
+  column-gap: 8px;
   padding: 8px 16px;
   cursor: pointer;
+
+  &.operational {
+    border: var(--card-border);
+  }
+  &.delay {
+    border: var(--delay-status-border);
+  }
+  &.error {
+    border: var(--error-status-border);
+  }
   .title {
     grid-row: 1 / span 2;
     justify-content: center;
@@ -117,6 +146,7 @@ a {
   .name {
     color: var(--name-color);
     font-size: 18px;
+    margin-right: 8px;
   }
   .value {
     color: var(--value-color);

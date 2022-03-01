@@ -10,6 +10,7 @@ query feeds ($network: String!) {
       label
       blockExplorer
       color
+      heartbeat
     }
     total
   }

@@ -12,10 +12,12 @@
       </a>
       <InfoTooltip
         class="value attribute"
-        :label="value"
         :value="value"
         :show-icon="false"
-      />
+        :show-in-responsive="true"
+      >
+        {{ value }}
+      </InfoTooltip>
       <!-- <p class="value attribute truncate">{{ value }}</p> -->
     </div>
   </li>

@@ -6,6 +6,7 @@
       :details-path="feed.detailsPath"
       :name="feed.name"
       :decimals="feed.decimals"
+      :heartbeat="feed.heartbeat"
       :img="feed.img"
       :value="feed.value"
       :last-result-timestamp="feed.lastResultTimestamp"
@@ -60,6 +61,7 @@ export default {
             return !!feed.lastResult
           })
           .map((feed) => {
+            console.log(feed)
             return {
               detailsPath: {
                 name: 'feeds-id',
@@ -70,6 +72,7 @@ export default {
               value: feed.lastResult,
               lastResultTimestamp: feed.lastResultTimestamp || '0',
               label: feed.label,
+              heartbeat: feed.heartbeat,
               img: {
                 name: formatSvgName(feed.name),
                 alt: feed.name,

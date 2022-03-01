@@ -8,7 +8,7 @@
       :last-result-value="lastResultvalue"
       :data-label="feed.label"
       :name="feedName"
-      :heartbeat="feedTimeToUpdate"
+      :heartbeat="heartbeat"
       :decimals="feedDecimals"
       @change-range="updateQuery"
     />
@@ -39,19 +39,17 @@
     <Fieldset :title="$t('data_feed_details.trigger_parameters')">
       <div class="info-container">
         <div class="item">
-          <InfoTooltip
-            :label="$t('chart.deviation')"
-            :value="$t('chart.deviation_text')"
-          />
-          <div>{{ deviation }}%</div>
+          <InfoTooltip :value="$t('chart.deviation_text')">
+            <p>{{ $t('chart.deviation') }}</p>
+          </InfoTooltip>
+          <div class="value">{{ deviation }}%</div>
         </div>
         <div class="item">
-          <InfoTooltip
-            :label="$t('chart.heartbeat')"
-            :value="$t('chart.heartbeat_text')"
-          />
+          <InfoTooltip :value="$t('chart.heartbeat_text')">
+            <p>{{ $t('chart.heartbeat') }}</p>
+          </InfoTooltip>
           <Heartbeat
-            class="countdown"
+            class="value"
             :milliseconds="maxTimeToResolve"
             :last-result-timestamp="
               transactions ? transactions[0].timestamp : ''
@@ -175,6 +173,13 @@ export default {
         return ''
       }
     },
+    heartbeat() {
+      if (this.feed) {
+        return Number(this.feed.heartbeat) + Number(this.feed.finality)
+      } else {
+        return ''
+      }
+    },
     feedTimeToUpdate() {
       if (this.feed) {
         return formatMilliseconds(
@@ -281,6 +286,10 @@ export default {
       grid-gap: 8px;
       font-weight: bold;
       column-gap: 8px;
+      .value {
+        display: flex;
+        align-items: center;
+      }
     }
     .contract-address {
       display: flex;
