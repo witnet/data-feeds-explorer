@@ -6,7 +6,7 @@
     <div
       v-else
       :ref="label"
-      class="value truncate"
+      class="value truncate show-info"
       @mousemove="showTooltip = true"
       @mouseleave="showTooltip = false"
     >
@@ -21,6 +21,7 @@
       <div
         v-if="showTooltip"
         class="info-tooltip"
+        :class="{ hidden: !showIcon }"
         :style="{ top: textTopPosition, left: textLeftPosition }"
       >
         {{ value }}
@@ -67,20 +68,25 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 0;
-  margin-right: 8px;
   font-size: 16px;
+  margin-right: 8px;
+  &.show-info {
+    margin-right: 0;
+  }
 }
 .tooltip,
 .info-tooltip {
   position: absolute;
   display: inline-block;
   max-width: 400px;
-  padding: 8px;
   border-radius: 4px;
   font-size: 12px;
+  padding: 8px;
   background-color: var(--bg);
   color: var(--text-medium-emphasis);
+  &.hidden {
+    display: none;
+  }
 }
 .container {
   display: flex;
@@ -90,5 +96,12 @@ export default {
   align-items: center;
   font-size: 10px;
   cursor: pointer;
+}
+@media (max-width: 300px) {
+  .info-tooltip {
+    &.hidden {
+      display: block;
+    }
+  }
 }
 </style>

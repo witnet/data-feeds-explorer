@@ -67,7 +67,7 @@ export default {
 }
 .value {
   font-size: 16px;
-  padding: 8px;
+  padding: 8px 0;
   border-radius: 4px;
   color: var(--text);
 }
