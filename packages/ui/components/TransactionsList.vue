@@ -73,7 +73,7 @@ export default {
   }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 850px) {
   .collection-container {
     display: grid;
     grid-template-columns: 1fr;

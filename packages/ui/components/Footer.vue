@@ -43,6 +43,7 @@ export default {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   justify-items: center;
+  min-height: 20vh;
   align-items: center;
   padding: 16px;
   background: var(--footer-bg);

@@ -218,6 +218,7 @@ export default {
   .navbar {
     margin: 0;
     height: max-content;
+    margin-right: 16px;
     .logo-container {
       margin: 0 16px;
     }
@@ -233,7 +234,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 850px) {
   .drop {
     position: fixed;
     top: 0;

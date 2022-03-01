@@ -141,7 +141,7 @@ export default {
   }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 850px) {
   .main {
     grid-template-columns: 1fr;
     padding: 0 16px;

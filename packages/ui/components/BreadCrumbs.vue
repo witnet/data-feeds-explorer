@@ -50,7 +50,7 @@ export default {
     }
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 850px) {
   .breadcrumbs {
     &.container {
       padding: 0 16px;

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div v-if="showIcon" :ref="label" class="value truncate">
+    <div v-if="showIcon" :ref="value" class="value truncate">
       <slot></slot>
     </div>
     <div
       v-else
-      :ref="label"
+      :ref="value"
       class="value truncate show-info"
       @mousemove="showTooltip = true"
       @mouseleave="showTooltip = false"

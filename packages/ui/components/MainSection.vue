@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-section-container">
     <div class="main-section">
       <slot name="navbar"></slot>
       <slot name="breadcrumbs"></slot>
@@ -13,8 +13,8 @@
 <style lang="scss" scoped>
 .main-section {
   color: var(--text);
-  min-height: 100vh;
   display: grid;
+  min-height: 80vh;
   grid-template-rows: max-content max-content 1fr max-content;
   grid-template-columns: 1fr;
   max-width: 1124px;
@@ -27,7 +27,7 @@
     right: 0;
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 850px) {
   .main-section {
     grid-template-rows: max-content max-content max-content;
     padding: 0;
