@@ -68,7 +68,7 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 16px;
+  font-size: var(--text-size);
   margin-right: 8px;
   &.show-info {
     margin-right: 0;
@@ -80,7 +80,7 @@ export default {
   display: inline-block;
   max-width: 400px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: var(--text-size-small);
   padding: 8px;
   background-color: var(--bg);
   color: var(--text-medium-emphasis);

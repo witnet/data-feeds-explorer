@@ -103,7 +103,7 @@ export default {
 .copy-tooltip {
   position: absolute;
   display: inline-block;
-  font-size: 16px;
+  font-size: var(--text-size);
   padding: 8px;
   border-radius: 4px;
   background-color: var(--bg);
@@ -115,7 +115,7 @@ export default {
 .copy {
   padding: 16px;
   margin: -16px;
-  font-size: 12px;
+  font-size: var(--text-size-small);
   cursor: pointer;
 }
 </style>

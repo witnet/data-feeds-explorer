@@ -59,7 +59,6 @@ export default {
     box-shadow: none;
     color: var(--selected-text);
     min-width: max-content;
-    font-size: 1rem;
     font-weight: 600;
   }
   .vs__open-indicator {
@@ -78,7 +77,6 @@ export default {
 
   .vs__dropdown-option {
     font-family: Almarai, sans-serif;
-    font-size: 1rem;
     padding: 12px;
     font-weight: 600;
     color: var(--selected-options-text);

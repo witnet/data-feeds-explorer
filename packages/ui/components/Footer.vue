@@ -58,11 +58,11 @@ export default {
       color: $white;
       cursor: pointer;
       padding: 0;
-      font-size: 14px;
+      font-size: var(--text-size-medium);
     }
   }
   .copyright {
-    font-size: 12px;
+    font-size: var(--text-size-small);
   }
   .witnet-logo {
     width: 60px;

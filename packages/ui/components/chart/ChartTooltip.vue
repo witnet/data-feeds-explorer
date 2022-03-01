@@ -3,7 +3,7 @@
     <div class="tooltip">
       <div class="feed-title">
         <SvgIcon v-if="svgIcon" class="icon" :name="svgIcon" />
-        <p v-if="name" class="feed-name">
+        <p v-if="name" class="title feed-name">
           {{ name.toUpperCase() }}
         </p>
       </div>
@@ -46,8 +46,8 @@ export default {
       default: '',
     },
     heartbeat: {
-      type: String,
-      default: '',
+      type: Number,
+      required: true,
     },
     lastResultValue: {
       type: String,
@@ -90,7 +90,7 @@ export default {
 .tooltip {
   font-family: Almarai, sans-serif;
   font-weight: bold;
-  font-size: 24px;
+  font-size: var(--text-size-title);
   background-color: var(--bg);
   color: var(--text);
   .feed-title {
@@ -106,25 +106,24 @@ export default {
     }
   }
   .item {
-    font-size: 16px;
+    font-size: var(--text-size);
     margin-top: 8px;
     color: var(--text-medium-emphasis);
     display: flex;
     .title {
-      font-size: 1.4rem;
       margin-right: 10px;
       color: var(--text-hover);
     }
   }
   .value-title {
-    font-size: 12px;
+    font-size: var(--text-size-small);
   }
   .value {
     font-family: Almarai, sans-serif;
-    font-size: 16px;
+    font-size: var(--text-size);
     margin-bottom: 8px;
     .time {
-      font-size: 12px;
+      font-size: var(--text-size-small);
       color: var(--text-medium-emphasis);
     }
   }
@@ -137,7 +136,6 @@ export default {
 @media (max-width: 600px) {
   .tooltip-container {
     grid-template-columns: 1fr;
-    margin: 0 16px;
     margin-bottom: 32px;
   }
   .link {

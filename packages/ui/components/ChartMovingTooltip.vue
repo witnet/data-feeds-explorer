@@ -47,7 +47,7 @@ export default {
   position: relative;
   font-weight: bold;
   margin-top: -60px;
-  font-size: 24px;
+  font-size: var(--text-size-title);
   background-color: var(--tooltip-bg);
   padding: 8px 16px;
   border-radius: 4px;
@@ -55,10 +55,10 @@ export default {
   z-index: 1000;
   .value {
     font-family: Almarai, sans-serif;
-    font-size: 16px;
+    font-size: var(--text-size);
   }
   .time {
-    font-size: 12px;
+    font-size: var(--text-size-small);
     color: var(--text-medium-emphasis);
   }
 }

@@ -1,4 +1,8 @@
 :root {
+  --text-size-title: 24px;
+  --text-size: 16px;
+  --text-size-small: 12px;
+  --text-size-medium: 14px;
   --bg: #2D2C39;
   --responsive-menu: #fdfdfd;
   --text: #fdfdfd;
@@ -296,25 +300,24 @@
 }
 
 h1 {
-  font-size: 4rem;
   font-weight: bold;
-  font-family: 'Almarai', sans-serif;
+  font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
 }
 p {
   font-family: 'Almarai', sans-serif;
   line-height: 1.5;
-  &.subtitle {
-    font-size: 0.87rem;
-  }
   &.title {
-    font-size: 1.12rem;
+    font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
   }
-  &.small-description {
-    font-size: 0.75rem;
-  }
-  &.copyright {
-    font-size: 0.625rem;
-  }
+}
+.btn {
+  font-family: 'Almarai', sans-serif;
+}
+.logo-subtitle {
+  font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
+}
+.title {
+  font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
 }
 .bold {
   font-weight: bold;

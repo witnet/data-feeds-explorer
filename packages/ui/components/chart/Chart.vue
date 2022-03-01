@@ -181,7 +181,7 @@ export default {
         const price = param.seriesPrices.get(this.lineChart)
         if (param.time) {
           const dateStr = this.dateToString(param.time)
-          this.value = `${this.dataLabel} ${price}`
+          this.value = `${this.dataLabel} ${formatNumber(price)}`
           this.date = dateStr
         }
         const toolTipMargin = 24
@@ -236,14 +236,14 @@ export default {
 @media (max-width: 950px) {
   .tooltip {
     padding-left: 24px;
-    font-size: 24px;
+    font-size: var(--text-size-title);
     .name {
-      font-size: 16px;
+      font-size: var(--text-size);
     }
     .value {
-      font-size: 24px;
+      font-size: var(--text-size-title);
       .date {
-        font-size: 16px;
+        font-size: var(--text-size);
       }
     }
   }

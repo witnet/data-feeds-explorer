@@ -10,7 +10,7 @@ import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
 export default {
   props: {
     heartbeat: {
-      type: String,
+      type: Number,
       required: true,
     },
     lastResultTimestamp: {
@@ -35,7 +35,7 @@ export default {
   align-items: center;
   .status {
     margin-left: 8px;
-    font-size: 14px;
+    font-size: var(--text-size-medium);
   }
 }
 </style>

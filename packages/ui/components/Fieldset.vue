@@ -28,7 +28,7 @@ export default {
   .title {
     color: var(--fieldset-title);
     font-weight: bold;
-    font-size: 16px;
+    font-size: var(--text-size);
     padding: 16px 0 16px 0;
   }
   .content {

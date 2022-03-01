@@ -36,7 +36,7 @@ export default {
     margin-right: 8px;
     padding: 4px 8px;
     font-weight: 400;
-    font-size: 16px;
+    font-size: var(--text-size);
     border-radius: 4px;
     width: max-content;
     text-transform: capitalize;

@@ -29,11 +29,11 @@ export default {
 .breadcrumbs {
   display: flex;
   color: var(--text);
-  font-size: 14px;
+  font-size: var(--text-size-medium);
   .breadcrumbs-label {
     color: var(--selected-option);
     font-weight: bold;
-    font-size: 14px;
+    font-size: var(--text-size-medium);
     margin-right: 4px;
   }
   .breadcrumbs-link {
@@ -52,7 +52,9 @@ export default {
 }
 @media (max-width: 950px) {
   .breadcrumbs {
-    padding-left: 8px;
+    &.container {
+      padding: 0 16px;
+    }
   }
 }
 </style>

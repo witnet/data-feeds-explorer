@@ -25,7 +25,7 @@
         :key="option.label"
         class="list-container"
       >
-        <div class="light-text bold">{{ option.key }}</div>
+        <div class="title light-text bold">{{ option.key }}</div>
         <DataFeeds
           :network="option"
           :network-index="index"
@@ -114,7 +114,7 @@ export default {
 .title-container {
   margin-bottom: 32px;
   .title {
-    font-size: 24px;
+    font-size: var(--text-size-title);
     margin-bottom: 4px;
     display: flex;
     align-items: center;
@@ -124,7 +124,7 @@ export default {
     }
   }
   .subtitle {
-    font-size: 16px;
+    font-size: var(--text-size);
   }
 }
 

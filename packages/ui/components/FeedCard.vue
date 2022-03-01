@@ -3,7 +3,7 @@
     <div class="card-container" :class="dataFeedStatusKey">
       <div class="title">
         <SvgIcon class="img" :name="img.name" />
-        <p class="name">{{ name.toUpperCase() }}</p>
+        <p class="name title">{{ name.toUpperCase() }}</p>
         <InfoTooltip :show-icon="false" :value="dataFeedStatusLabel">
           <WarningStatus
             v-if="dataFeedStatusKey !== 'operational'"
@@ -138,7 +138,7 @@ a {
   }
   .timestamp {
     color: var(--value-color);
-    font-size: 12px;
+    font-size: var(--text-size-small);
     font-style: italic;
     justify-self: flex-end;
     font-weight: normal;
@@ -147,6 +147,8 @@ a {
     color: var(--name-color);
     font-size: 18px;
     margin-right: 8px;
+    display: flex;
+    align-items: center;
   }
   .value {
     color: var(--value-color);

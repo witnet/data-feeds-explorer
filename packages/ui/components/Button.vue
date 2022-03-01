@@ -23,10 +23,9 @@ export default {
   width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
-  font-weight: medium;
-  font-size: 16px;
+  font-weight: bold;
+  font-size: var(--text-size-medium);
   cursor: pointer;
-
   &.primary {
     color: var(--btn-primary-color);
     background: var(--btn-primary-background-color);

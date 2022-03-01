@@ -68,7 +68,7 @@ export default {
   text-overflow: ellipsis;
 }
 .value {
-  font-size: 16px;
+  font-size: var(--text-size);
   padding: 8px 0;
   border-radius: 4px;
   color: var(--text);
@@ -77,7 +77,7 @@ export default {
   color: var(--witnet-transaction);
   font-family: Roboto Mono, monospace;
   .icon {
-    font-size: 12px;
+    font-size: var(--text-size-small);
   }
 }
 .truncate {

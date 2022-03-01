@@ -101,7 +101,7 @@ export default {
     border-right: 1px solid var(--bg);
     padding-right: 16px;
     .title-details {
-      font-size: 16px;
+      font-size: var(--text-size);
       font-weight: normal;
       margin-bottom: 16px;
     }
@@ -120,12 +120,12 @@ export default {
     grid-template-columns: 1fr;
     grid-gap: 8px;
     .title-address {
-      font-size: 14px;
+      font-size: var(--text-size-medium);
       font-weight: bold;
       margin-top: 8px;
     }
     .contract-id {
-      font-size: 16px;
+      font-size: var(--text-size);
       margin-bottom: 8px;
       font-family: Roboto Mono, monospace;
       word-break: break-all;
@@ -134,7 +134,7 @@ export default {
     .contract-info {
       font-family: Roboto Mono, monospace;
       color: var(--text-hover);
-      font-size: 16px;
+      font-size: var(--text-size);
       word-break: break-all;
       margin-bottom: 8px;
       cursor: pointer;

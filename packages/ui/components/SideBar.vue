@@ -64,7 +64,7 @@ export default {
   text-align: right;
   .option {
     padding: 16px 24px;
-    font-size: 14px;
+    font-size: var(--text-size-medium);
     text-align: center;
     cursor: pointer;
     color: var(--light-text);

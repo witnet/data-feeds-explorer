@@ -271,7 +271,7 @@ export default {
   display: grid;
   grid-template: max-content max-content max-content max-content 1fr / 1fr;
   .feed-description {
-    font-size: 16px;
+    font-size: var(--text-size);
     padding: 16px;
     margin-top: 16px;
   }
@@ -296,7 +296,7 @@ export default {
       align-items: center;
       line-break: loose;
       word-break: break-all;
-      font-size: 24px;
+      font-size: var(--text-size-title);
       cursor: pointer;
       color: var(--contract-address);
       .icon {
@@ -330,7 +330,7 @@ export default {
     .back-to-list {
       justify-self: flex-start;
       .icon {
-        font-size: 24px;
+        font-size: var(--text-size-title);
         color: var(--text);
       }
       &:hover {
