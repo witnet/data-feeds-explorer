@@ -4,6 +4,7 @@
       :name="name"
       :last-result-value="lastResultValue"
       :last-result-timestamp="lastResultTimestamp"
+      :heartbeat="heartbeat"
     />
     <div class="switcher">
       <div
@@ -49,6 +50,10 @@ export default {
       required: true,
     },
     name: {
+      type: String,
+      required: true,
+    },
+    heartbeat: {
       type: String,
       required: true,
     },

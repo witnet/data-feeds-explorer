@@ -8,6 +8,7 @@
       :last-result-value="lastResultvalue"
       :data-label="feed.label"
       :name="feedName"
+      :heartbeat="feedTimeToUpdate"
       :decimals="feedDecimals"
       @change-range="updateQuery"
     />

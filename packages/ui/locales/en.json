@@ -33,7 +33,8 @@
     "deviation": "Deviation threshold",
     "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
     "use_data_feed": "Use this data feed",
-    "last_update": "Last update"
+    "last_update": "Last update",
+    "status": "Status"
   },
   "copied": "Copied",
   "copy": "Copy",

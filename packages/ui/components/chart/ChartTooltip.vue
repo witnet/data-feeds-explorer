@@ -12,6 +12,11 @@
         {{ lastResultValue }}
         <span class="time">{{ calculateTime() }}</span>
       </p>
+      <p class="value-title">{{ $t('chart.status') }}</p>
+      <DataFeedStatus
+        :last-result-timestamp="lastResultTimestamp"
+        :heartbeat="heartbeat"
+      />
     </div>
     <InnerLink class="link" hash="integrate">
       <Button class="btn" type="secondary">{{
@@ -37,6 +42,10 @@ export default {
       default: '',
     },
     date: {
+      type: String,
+      default: '',
+    },
+    heartbeat: {
       type: String,
       default: '',
     },
@@ -113,6 +122,7 @@ export default {
   .value {
     font-family: Almarai, sans-serif;
     font-size: 16px;
+    margin-bottom: 8px;
     .time {
       font-size: 12px;
       color: var(--text-medium-emphasis);

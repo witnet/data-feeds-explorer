@@ -33,7 +33,8 @@
     "deviation": "Desviación",
     "deviation_text": "Cuando el precio varía más que el porcentaje de desviación, se envía una data request a la red de Witnet para actualizar el feed con un nuevo valor",
     "use_data_feed": "Usa este data feed",
-    "last_update": "Last update"
+    "last_update": "Last update",
+    "status": "Status"
   },
   "copied": "Copiado",
   "copy": "Copiar",
