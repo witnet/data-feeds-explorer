@@ -202,8 +202,12 @@ export default {
       padding: 16px 24px;
       text-align: center;
       cursor: pointer;
+      color: var(--light-text);
+      font-weight: bold;
       &.selected {
         font-weight: bold;
+        color: var(--btn-primary-color);
+        background: var(--tab-background);
         background: var(--tab-gradient-selected);
       }
     }
@@ -212,12 +216,9 @@ export default {
 
 @media screen and (max-width: 1100px) {
   .navbar {
-    padding: 0 24px;
+    padding: 0 16px;
     margin: 0;
     height: max-content;
-    .logo-container {
-      padding: 16px;
-    }
 
     &.open {
       height: 100vh;
@@ -244,9 +245,7 @@ export default {
   .navbar {
     display: block;
     padding: 0;
-    .logo-container {
-      padding: 16px;
-    }
+    padding: 0 16px;
     .responsive-menu {
       display: block;
       cursor: pointer;

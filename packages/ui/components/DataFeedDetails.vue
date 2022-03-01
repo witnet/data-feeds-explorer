@@ -331,7 +331,7 @@ export default {
     }
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 950px) {
   .content {
     .section-header {
       grid-template: 1fr 1fr / max-content 1fr;

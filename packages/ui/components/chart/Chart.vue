@@ -228,7 +228,7 @@ export default {
     background-color: var(--switcher-item-background);
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 950px) {
   .tooltip {
     padding-left: 24px;
     font-size: 24px;

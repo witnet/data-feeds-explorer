@@ -1,5 +1,5 @@
 <template>
-  <div class="breadcrumbs">
+  <div class="breadcrumbs container">
     <nuxt-link
       v-for="option in options"
       :key="option.label"
@@ -43,7 +43,14 @@ export default {
     }
   }
 }
-@media (max-width: 1200px) {
+@media screen and (max-width: 1100px) {
+  .breadcrumbs {
+    &.container {
+      padding: 0 16px;
+    }
+  }
+}
+@media (max-width: 950px) {
   .breadcrumbs {
     padding-left: 8px;
   }

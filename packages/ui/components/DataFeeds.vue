@@ -119,7 +119,7 @@ export default {
     grid-template-columns: 1fr;
   }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 900px) {
   .feeds-container {
     padding: 0;
   }

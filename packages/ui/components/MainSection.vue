@@ -27,7 +27,7 @@
     right: 0;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 950px) {
   .main-section {
     grid-template-rows: max-content max-content max-content;
     padding: 0;

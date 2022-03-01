@@ -35,7 +35,8 @@ export enum Network {
   HarmonyTestnet = 'harmony-testnet',
   KCCTestnet = 'kcc-testnet',
   KCCMainnet = 'kcc-mainnet',
-  PolygonGoerli = 'polygon-goerli'
+  PolygonGoerli = 'polygon-goerli',
+  AvalancheFuji = 'avalanche-fuji'
 }
 
 export type FeedInfoGeneric<ABI> = {

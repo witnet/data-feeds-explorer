@@ -119,6 +119,11 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1100px) {
+  .tooltip-container {
+    padding: 0 16px;
+  }
+}
 @media (max-width: 600px) {
   .tooltip-container {
     grid-template-columns: 1fr;
