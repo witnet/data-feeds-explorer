@@ -38,10 +38,6 @@ export default {
       type: String,
       required: true,
     },
-    label: {
-      type: String,
-      required: true,
-    },
     showIcon: {
       type: Boolean,
       default: true,
