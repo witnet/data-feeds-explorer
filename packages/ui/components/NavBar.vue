@@ -216,10 +216,11 @@ export default {
 
 @media screen and (max-width: 1100px) {
   .navbar {
-    padding: 0 16px;
     margin: 0;
     height: max-content;
-
+    .logo-container {
+      margin: 0 16px;
+    }
     &.open {
       height: 100vh;
     }
@@ -237,7 +238,7 @@ export default {
     position: fixed;
     top: 0;
     overflow: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
     height: 100%;
     z-index: 15;
   }
@@ -245,7 +246,9 @@ export default {
   .navbar {
     display: block;
     padding: 0;
-    padding: 0 16px;
+    .logo-container {
+      margin: 0 16px;
+    }
     .responsive-menu {
       display: block;
       cursor: pointer;
