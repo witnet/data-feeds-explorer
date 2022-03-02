@@ -4,7 +4,7 @@
       :name="name"
       :last-result-value="lastResultValue"
       :last-result-timestamp="lastResultTimestamp"
-      :heartbeat="heartbeat"
+      :time-to-update="timeToUpdate"
     />
     <div class="switcher">
       <div
@@ -53,8 +53,8 @@ export default {
       type: String,
       required: true,
     },
-    heartbeat: {
-      type: String,
+    timeToUpdate: {
+      type: Number,
       required: true,
     },
     decimals: {

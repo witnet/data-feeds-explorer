@@ -34,4 +34,9 @@
     fill: $white;
   }
 }
+.dark {
+  .main {
+    fill: var(--bg);
+  }
+}
 </style>

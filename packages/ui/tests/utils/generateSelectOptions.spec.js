@@ -11,12 +11,28 @@ describe('generateSelectOptions.js', () => {
 
     const options = generateSelectOptions(networks)
 
-    expect(options).toStrictEqual([
-      { label: 'ethereum-rinkeby', key: 'Ethereum Rinkeby' },
-      { label: 'ethereum-goerli', key: 'Ethereum Goerli' },
-      { label: 'conflux-testnet', key: 'Conflux Testnet' },
-      { label: 'boba-rinkeby', key: 'Boba Rinkeby' },
-    ])
+    expect(options).toStrictEqual({
+      boba: [{ key: 'Boba Rinkeby', label: 'boba-rinkeby', network: 'Boba' }],
+      conflux: [
+        {
+          key: 'Conflux Testnet',
+          label: 'conflux-testnet',
+          network: 'Conflux',
+        },
+      ],
+      ethereum: [
+        {
+          key: 'Ethereum Rinkeby',
+          label: 'ethereum-rinkeby',
+          network: 'Ethereum',
+        },
+        {
+          key: 'Ethereum Goerli',
+          label: 'ethereum-goerli',
+          network: 'Ethereum',
+        },
+      ],
+    })
   })
 
   it('should generate an empty list if the arguments are empty', () => {
@@ -24,7 +40,7 @@ describe('generateSelectOptions.js', () => {
 
     const options = generateSelectOptions(networks)
 
-    expect(options).toStrictEqual([])
+    expect(options).toStrictEqual({})
   })
 
   it('should generate empty list if no argument is provided', () => {
@@ -32,6 +48,6 @@ describe('generateSelectOptions.js', () => {
 
     const options = generateSelectOptions(networks)
 
-    expect(options).toStrictEqual([])
+    expect(options).toStrictEqual({})
   })
 })

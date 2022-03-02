@@ -8,7 +8,7 @@
       :last-result-value="lastResultvalue"
       :data-label="feed.label"
       :name="feedName"
-      :heartbeat="heartbeat"
+      :time-to-update="maxTimeToResolve"
       :decimals="feedDecimals"
       @change-range="updateQuery"
     />
@@ -175,16 +175,21 @@ export default {
     },
     heartbeat() {
       if (this.feed) {
-        return Number(this.feed.heartbeat) + Number(this.feed.finality)
+        return Number(this.feed.heartbeat)
       } else {
-        return ''
+        return 0
+      }
+    },
+    finality() {
+      if (this.feed) {
+        return Number(this.feed.finality)
+      } else {
+        return 0
       }
     },
     feedTimeToUpdate() {
       if (this.feed) {
-        return formatMilliseconds(
-          Number(this.feed.heartbeat) + Number(this.feed.finality)
-        )
+        return formatMilliseconds(this.heartbeat + this.finality)
       } else {
         return ''
       }
@@ -200,9 +205,7 @@ export default {
       }
     },
     maxTimeToResolve() {
-      return this.feed
-        ? (Number(this.feed.heartbeat) + Number(this.feed.finality)).toString()
-        : ''
+      return this.heartbeat + this.finality
     },
     numberOfPages() {
       return this.feed

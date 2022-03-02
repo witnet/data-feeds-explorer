@@ -29,6 +29,7 @@ const resolvers = {
       )
     },
     lastResult: async (parent, _args, { resultRequestRepository }: Context) => {
+      // FIXME: add dataloader library to avoid overfetching
       return (await resultRequestRepository.getLastResult(parent.feedFullName))
         ?.result
     },
@@ -37,6 +38,7 @@ const resolvers = {
       _args,
       { resultRequestRepository }: Context
     ) => {
+      // FIXME: add dataloader library to avoid overfetching
       return (await resultRequestRepository.getLastResult(parent.feedFullName))
         ?.timestamp
     },

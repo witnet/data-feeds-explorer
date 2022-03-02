@@ -12,13 +12,62 @@ describe('validateDataFeedsConfig', () => {
     const expected = [
       {
         address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://testnet.snowtrace.io/address/{address}',
+        color: '#E84142',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '1',
+        feedFullName: 'avalanche-fuji_avax-usd_6',
+        finality: '900000',
+        heartbeat: '3600000',
+        id: 'Price-AVAX/USD-6',
+        label: '$',
+        name: 'avax/usd',
+        network: 'avalanche-fuji',
+        pollingPeriod: 15000,
+        routerAddress: '0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://testnet.snowtrace.io/address/{address}',
+        color: '#E84142',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '1',
+        feedFullName: 'avalanche-fuji_btc-usd_6',
+        finality: '900000',
+        heartbeat: '3600000',
+        id: 'Price-BTC/USD-6',
+        label: '$',
+        name: 'btc/usd',
+        network: 'avalanche-fuji',
+        pollingPeriod: 15000,
+        routerAddress: '0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://testnet.snowtrace.io/address/{address}',
+        color: '#E84142',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '1',
+        feedFullName: 'avalanche-fuji_eth-usd_6',
+        finality: '900000',
+        heartbeat: '3600000',
+        id: 'Price-ETH/USD-6',
+        label: '$',
+        name: 'eth/usd',
+        network: 'avalanche-fuji',
+        pollingPeriod: 15000,
+        routerAddress: '0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
         color: '#1cd83d',
         deviation: '1',
         feedFullName: 'boba-rinkeby_boba-usdt_6',
         finality: '900000',
-        heartbeat: '3600000',
+        heartbeat: '86400000',
         id: 'Price-BOBA/USDT-6',
         label: '₮',
         name: 'boba/usdt',
@@ -28,13 +77,14 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
         color: '#1cd83d',
         deviation: '1',
         feedFullName: 'boba-rinkeby_btc-usd_6',
         finality: '900000',
-        heartbeat: '3600000',
+        heartbeat: '86400000',
         id: 'Price-BTC/USD-6',
         label: '$',
         name: 'btc/usd',
@@ -44,13 +94,14 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
         color: '#1cd83d',
         deviation: '1',
         feedFullName: 'boba-rinkeby_eth-usd_6',
         finality: '900000',
-        heartbeat: '3600000',
+        heartbeat: '86400000',
         id: 'Price-ETH/USD-6',
         label: '$',
         name: 'eth/usd',
@@ -63,10 +114,28 @@ describe('validateDataFeedsConfig', () => {
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
         color: '#1cd83d',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '0.1',
+        feedFullName: 'boba-rinkeby_frax-usdt_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-FRAX/USDT-6',
+        label: '₮',
+        name: 'frax/usdt',
+        network: 'boba-rinkeby',
+        pollingPeriod: 15000,
+        routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        color: '#1cd83d',
         deviation: '1',
         feedFullName: 'boba-rinkeby_fxs-usdt_6',
         finality: '900000',
-        heartbeat: '3600000',
+        heartbeat: '86400000',
         id: 'Price-FXS/USDT-6',
         label: '₮',
         name: 'fxs/usdt',
@@ -76,15 +145,16 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
         color: '#1cd83d',
         deviation: '1',
         feedFullName: 'boba-rinkeby_omg-btc_9',
         finality: '900000',
-        heartbeat: '3600000',
+        heartbeat: '86400000',
         id: 'Price-OMG/BTC-9',
-        label: 'BTC',
+        label: '₿',
         name: 'omg/btc',
         network: 'boba-rinkeby',
         pollingPeriod: 15000,
@@ -92,15 +162,16 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
         color: '#1cd83d',
         deviation: '1',
         feedFullName: 'boba-rinkeby_omg-eth_9',
         finality: '900000',
-        heartbeat: '3600000',
+        heartbeat: '86400000',
         id: 'Price-OMG/ETH-9',
-        label: 'ETH',
+        label: 'Ξ',
         name: 'omg/eth',
         network: 'boba-rinkeby',
         pollingPeriod: 15000,
@@ -108,13 +179,14 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
         color: '#1cd83d',
         deviation: '1',
         feedFullName: 'boba-rinkeby_omg-usdt_6',
         finality: '900000',
-        heartbeat: '3600000',
+        heartbeat: '86400000',
         id: 'Price-OMG/USDT-6',
         label: '₮',
         name: 'omg/usdt',
@@ -124,8 +196,43 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        color: '#1cd83d',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '0.1',
+        feedFullName: 'boba-rinkeby_usdc-usd_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-USDC/USD-6',
+        label: '$',
+        name: 'usdc/usd',
+        network: 'boba-rinkeby',
+        pollingPeriod: 15000,
+        routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer:
+          'https://blockexplorer.rinkeby.boba.network/address/{address}',
+        color: '#1cd83d',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '0.1',
+        feedFullName: 'boba-rinkeby_usdt-usd_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-USDT/USD-6',
+        label: '$',
+        name: 'usdt/usd',
+        network: 'boba-rinkeby',
+        pollingPeriod: 15000,
+        routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
+        contractId: '0x0000000000000000000000000000000000000000',
         deviation: '1',
         feedFullName: 'boba-mainnet_boba-usdt_6',
         finality: '900000',
@@ -141,6 +248,7 @@ describe('validateDataFeedsConfig', () => {
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
+        contractId: '0x0000000000000000000000000000000000000000',
         deviation: '1',
         feedFullName: 'boba-mainnet_btc-usd_6',
         finality: '900000',
@@ -156,6 +264,7 @@ describe('validateDataFeedsConfig', () => {
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
+        contractId: '0x0000000000000000000000000000000000000000',
         deviation: '1',
         feedFullName: 'boba-mainnet_eth-usd_6',
         finality: '900000',
@@ -169,6 +278,55 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
+        color: '#007dff',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '0.25',
+        feedFullName: 'boba-mainnet_frax-usdt_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-FRAX/USDT-6',
+        label: '₮',
+        name: 'frax/usdt',
+        network: 'boba-mainnet',
+        pollingPeriod: 15000,
+        routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
+        color: '#007dff',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '0.25',
+        feedFullName: 'boba-mainnet_usdc-usd_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-USDC/USD-6',
+        label: '$',
+        name: 'usdc/usd',
+        network: 'boba-mainnet',
+        pollingPeriod: 15000,
+        routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
+        color: '#007dff',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '0.25',
+        feedFullName: 'boba-mainnet_usdt-usd_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-USDT/USD-6',
+        label: '$',
+        name: 'usdt/usd',
+        network: 'boba-mainnet',
+        pollingPeriod: 15000,
+        routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         color: '#1cd8d2',
@@ -185,6 +343,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         color: '#1cd8d2',
@@ -201,6 +360,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         color: '#1cd8d2',
@@ -217,6 +377,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         color: '#1cd8d2',
@@ -233,6 +394,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         color: '#ff8100',
         deviation: '1',
@@ -248,6 +410,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         color: '#ff8100',
         deviation: '1',
@@ -263,6 +426,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         color: '#ff8100',
         deviation: '3.5',
@@ -278,6 +442,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         color: '#ff8100',
         deviation: '3.5',
@@ -293,6 +458,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
         color: '#6600ff',
         deviation: '1',
@@ -308,6 +474,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
         color: '#6600ff',
         deviation: '1',
@@ -323,6 +490,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
         color: '#6600ff',
         deviation: '1',
@@ -338,6 +506,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://confluxscan.io/address/{address}',
         color: '#ff0000',
         deviation: '1',
@@ -353,6 +522,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://confluxscan.io/address/{address}',
         color: '#ff0000',
         deviation: '3.5',
@@ -368,6 +538,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://confluxscan.io/address/{address}',
         color: '#ff0000',
         deviation: '3.5',
@@ -383,6 +554,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://goerli.etherscan.io/address/{address}',
         color: '#ff5599',
         deviation: '1',
@@ -398,6 +570,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://goerli.etherscan.io/address/{address}',
         color: '#ff5599',
         deviation: '1',
@@ -413,6 +586,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
         color: '#ff5599',
         deviation: '1',
@@ -428,6 +602,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
         color: '#ff5599',
         deviation: '1',
@@ -443,6 +618,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://etherscan.io/address/{address}',
         color: '#ff5599',
         deviation: '3.5',
@@ -458,6 +634,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://etherscan.io/address/{address}',
         color: '#ff5599',
         deviation: '3.5',
@@ -473,6 +650,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.pops.one/address/{address}',
         color: '#f6006f',
         deviation: '1',
@@ -488,6 +666,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.pops.one/address/{address}',
         color: '#f6006f',
         deviation: '1',
@@ -503,6 +682,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
         color: '#ff0066',
         deviation: '0.5',
@@ -518,6 +698,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
         color: '#ff0066',
         deviation: '0.5',
@@ -533,6 +714,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
         color: '#ff0066',
         deviation: '0.5',
@@ -548,6 +730,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan.kcc.io/address/{address}',
         color: '#ff0066',
         deviation: '0.5',
@@ -563,6 +746,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan.kcc.io/address/{address}',
         color: '#ff0066',
         deviation: '0.5',
@@ -578,6 +762,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan.kcc.io/address/{address}',
         color: '#ff0066',
         deviation: '0.5',
@@ -593,6 +778,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
         color: '#ff6600',
         deviation: '1',
@@ -608,6 +794,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
         color: '#ff6600',
         deviation: '1',
@@ -623,6 +810,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
         color: '#ff6600',
         deviation: '1',
@@ -638,6 +826,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://andromeda-explorer.metis.io/address/{address}',
         color: '#ff6600',
         deviation: '2',
@@ -653,6 +842,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://mumbai.polygonscan.com/address/{address}',
         color: '#66ff00',
         deviation: '3.5',
@@ -668,6 +858,7 @@ describe('validateDataFeedsConfig', () => {
       },
       {
         address: '0x0000000000000000000000000000000000000000',
+        contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://mumbai.polygonscan.com/address/{address}',
         color: '#66ff00',
         deviation: '3.5',
@@ -680,6 +871,38 @@ describe('validateDataFeedsConfig', () => {
         network: 'polygon-goerli',
         pollingPeriod: 15000,
         routerAddress: '0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://polygonscan.com/address/{address}',
+        color: '#66ff00',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '1',
+        feedFullName: 'polygon-mainnet_btc-usd_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-BTC/USD-6',
+        label: '$',
+        name: 'btc/usd',
+        network: 'polygon-mainnet',
+        pollingPeriod: 15000,
+        routerAddress: '0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4'
+      },
+      {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://polygonscan.com/address/{address}',
+        color: '#66ff00',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '1',
+        feedFullName: 'polygon-mainnet_eth-usd_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-ETH/USD-6',
+        label: '$',
+        name: 'eth/usd',
+        network: 'polygon-mainnet',
+        pollingPeriod: 15000,
+        routerAddress: '0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4'
       }
     ]
 

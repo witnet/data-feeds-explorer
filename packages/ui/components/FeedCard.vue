@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="localeRoute(detailsPath)">
+  <nuxt-link v-if="detailsPath.params.id" :to="localeRoute(detailsPath)">
     <div class="card-container" :class="dataFeedStatusKey">
       <div class="title">
         <SvgIcon class="img" :name="img.name" />
@@ -55,8 +55,8 @@ export default {
       type: String,
       required: true,
     },
-    heartbeat: {
-      type: String,
+    timeToUpdate: {
+      type: Number,
       required: true,
     },
     network: {
@@ -73,13 +73,15 @@ export default {
       return formatNumber(parseFloat(this.value) / 10 ** this.decimals)
     },
     statusColor() {
-      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).color
+      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
+        .color
     },
     dataFeedStatusKey() {
-      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).key
+      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp).key
     },
     dataFeedStatusLabel() {
-      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).label
+      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
+        .label
     },
   },
   methods: {
@@ -101,7 +103,7 @@ a {
   color: var(--value-color);
 }
 .card-container {
-  width: 300px;
+  width: 100%;
   height: max-content;
   background: var(--card-background);
   box-shadow: var(--card-box-shadow);

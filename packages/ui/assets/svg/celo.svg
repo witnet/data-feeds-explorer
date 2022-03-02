@@ -1,4 +1,4 @@
-<svg class="size" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="icon-size" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M32 14C32 20.0933 27.0569 25 21 25C14.9431 25 10 20.0933 10 14C10 7.90678 14.9431 3 21 3C27.0569 3 32 7.90678 32 14Z" stroke="#35D07F" stroke-width="3.5"/>
 <path d="M25 21C25 27.0933 20.0569 32 14 32C7.9431 32 3 27.0933 3 21C3 14.9068 7.9431 10 14 10C20.0569 10 25 14.9068 25 21Z" stroke="#FBCC5C" stroke-width="3.5"/>
 <path d="M32 14C32 20.0933 27.0569 25 21 25C14.9431 25 10 20.0933 10 14C10 7.90678 14.9431 3 21 3C27.0569 3 32 7.90678 32 14Z" stroke="#35D07F" stroke-opacity="0.51" stroke-width="3.5"/>

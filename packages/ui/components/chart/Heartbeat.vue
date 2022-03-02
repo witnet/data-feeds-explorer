@@ -14,7 +14,7 @@ const DAY_IN_MILLISECONDS = 86400000
 export default {
   props: {
     milliseconds: {
-      type: String,
+      type: Number,
       required: true,
     },
     lastResultTimestamp: {
@@ -34,9 +34,7 @@ export default {
     },
     countdown() {
       // Last result timestamp to milliseconds plus heartbeat
-      return (
-        Number(`${this.lastResultTimestamp}000`) + Number(this.milliseconds)
-      )
+      return Number(`${this.lastResultTimestamp}000`) + this.milliseconds
     },
     hours() {
       const hours = Math.floor(

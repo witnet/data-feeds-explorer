@@ -1,21 +1,23 @@
 <template>
   <div :class="{ drop: isMenuVisible }">
     <nav class="navbar" :class="{ open: isMenuVisible }">
-      <nuxt-link :to="localePath('/')">
-        <h1 class="logo-container">
-          <WitnetLogo class="witnet-logo" />
-          <p class="logo-subtitle">Witnet</p>
-          <p class="logo-subtitle">Data Feeds</p>
-        </h1>
-      </nuxt-link>
-      <label class="responsive-menu" @click="toggleMenu">
-        <a class="target-burger" :class="{ visible: isMenuVisible }">
-          <ul class="buns">
-            <li class="bun"></li>
-            <li class="bun"></li>
-          </ul>
-        </a>
-      </label>
+      <div class="menu-container">
+        <nuxt-link :to="localePath('/')">
+          <h1 class="logo-container">
+            <WitnetLogo class="witnet-logo" />
+            <p class="logo-subtitle">Witnet</p>
+            <p class="logo-subtitle">Data Feeds</p>
+          </h1>
+        </nuxt-link>
+        <label class="responsive-menu" @click="toggleMenu">
+          <a class="target-burger" :class="{ visible: isMenuVisible }">
+            <ul class="buns">
+              <li class="bun"></li>
+              <li class="bun"></li>
+            </ul>
+          </a>
+        </label>
+      </div>
       <transition name="dropdown" class="dropdown">
         <ul class="tab-container" :class="{ visible: isMenuVisible }">
           <div
@@ -36,8 +38,8 @@
               {{ capitalizeFirstLetter(optionFromSelected(option)) }}
             </div>
           </div>
-          <li class="tab" @click="closeMenu">
-            <a :href="requestDataFeedUrl" target="_blank">
+          <li class="tab last-item" @click="closeMenu">
+            <a class="btn-container" :href="requestDataFeedUrl" target="_blank">
               <Button class="btn">{{ $t('navbar.request_data_feed') }}</Button>
             </a>
           </li>
@@ -133,12 +135,11 @@ export default {
     grid-template-columns: max-content max-content;
     grid-template-rows: 1fr 1fr;
     align-items: center;
-    padding: 16px 16px 16px 0;
+    padding-top: 16px;
     text-decoration: none;
     column-gap: 8px;
 
     .witnet-logo {
-      width: 90px;
       grid-row: 1 / span 2;
     }
     .logo-subtitle-color {
@@ -160,13 +161,14 @@ export default {
     list-style: none;
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 24px 0;
     .networks {
       display: none;
       &.visible {
         background: var(--bg);
         display: block;
-        padding: 0;
-        margin-top: 24px;
+        padding: 32px 0;
       }
     }
     &.visible {
@@ -181,8 +183,15 @@ export default {
       align-items: center;
       text-decoration: none;
       transition: color 0.1s ease;
+      &.last-item {
+        display: flex;
+        justify-content: center;
+      }
+      .btn-container {
+        width: max-content;
+      }
       .btn {
-        max-width: max-content;
+        max-width: 100%;
         margin: 16px 0;
         margin: 0;
       }
@@ -195,7 +204,6 @@ export default {
       }
       &:last-child {
         padding-right: 0;
-        padding-top: 24px;
       }
     }
     .option {
@@ -216,12 +224,8 @@ export default {
 
 @media screen and (max-width: 1100px) {
   .navbar {
-    margin: 0;
     height: max-content;
-    margin-right: 16px;
-    .logo-container {
-      margin: 0 16px;
-    }
+    margin: 0 16px;
     &.open {
       height: 100vh;
     }
@@ -246,17 +250,16 @@ export default {
 
   .navbar {
     display: block;
-    padding: 0;
-    .logo-container {
-      margin: 0 16px;
+    margin: 0;
+    .menu-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
     }
     .responsive-menu {
       display: block;
       cursor: pointer;
-      position: absolute;
-      top: 8px;
       width: 32px;
-      right: 24px;
     }
     .tab-container {
       list-style: none;

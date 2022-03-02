@@ -11,6 +11,7 @@ query feeds ($network: String!) {
       blockExplorer
       color
       heartbeat
+      finality
     }
     total
   }

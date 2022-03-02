@@ -100,6 +100,10 @@ export function normalizeConfig (
   return feeds
 }
 
+export function isZeroAddress (address: string) {
+  return address === '0x0000000000000000000000000000000000000000'
+}
+
 export function sleep (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }

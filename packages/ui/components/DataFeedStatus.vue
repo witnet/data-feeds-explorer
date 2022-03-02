@@ -9,7 +9,7 @@
 import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
 export default {
   props: {
-    heartbeat: {
+    timeToUpdate: {
       type: Number,
       required: true,
     },
@@ -20,10 +20,12 @@ export default {
   },
   computed: {
     statusColor() {
-      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).color
+      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
+        .color
     },
     statusLabel() {
-      return getDataFeedStatus(this.heartbeat, this.lastResultTimestamp).label
+      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
+        .label
     },
   },
 }

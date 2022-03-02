@@ -9,6 +9,7 @@ import {
   ObjectId,
   ContractInfo
 } from '../types'
+import { isZeroAddress } from '../utils/index'
 import { getProvider } from './provider'
 
 export class Web3Middleware {
@@ -29,26 +30,25 @@ export class Web3Middleware {
   }
 
   public async initializeAddresses (): Promise<Array<FeedInfo>> {
-    const promises = this.dataFeeds.map(feed => this.updateAddress(feed))
+    const promises = this.dataFeeds.map(feed => this.updateFeed(feed))
 
     return await Promise.all(promises)
   }
 
-  async updateAddress (feedInfo: FeedInfo) {
-    const contractInfo = await this.getContractAddress(feedInfo)
-    console.log('contractInfo in updateAddress', contractInfo)
+  async updateFeed (feedInfo: FeedInfo) {
+    const contractInfo = await this.getContractInfo(feedInfo)
     const feed = this.repositories.feedRepository.get(feedInfo.feedFullName)
 
     if (
-      feed &&
-      contractInfo &&
-      contractInfo.contractAddress &&
-      contractInfo.contractAddress !== feed.address
+      contractInfo?.contractAddress &&
+      contractInfo?.contractAddress !== feed?.address
     ) {
       return this.repositories.feedRepository.updateFeedAddress(
         feedInfo.feedFullName,
-        contractInfo.contractAddress,
-        contractInfo.contractId
+        {
+          address: contractInfo.contractAddress,
+          contractId: contractInfo.contractId
+        }
       )
     }
 
@@ -76,7 +76,7 @@ export class Web3Middleware {
     feeds.forEach(feed => {
       const feedInfo = feedDictionary[feed?.feedFullName]?.feedInfo
       if (feedInfo) {
-        this.updateAddress(feedInfo)
+        this.updateFeed(feedInfo)
       }
     })
 
@@ -97,7 +97,7 @@ export class Web3Middleware {
     this.intervals = []
   }
 
-  async getContractAddress (feedInfo: FeedInfo): Promise<ContractInfo | null> {
+  async getContractInfo (feedInfo: FeedInfo): Promise<ContractInfo | null> {
     try {
       return await new Promise(async (resolve, reject) => {
         try {
@@ -117,7 +117,6 @@ export class Web3Middleware {
           const contractIdentifier = await feedContract.methods
             .currencyPairId(feedInfo.id)
             .call()
-          console.log('contract Identifier!!!', feedInfo.id, contractIdentifier)
           const address = await feedContract.methods
             .getPriceFeed(contractIdentifier)
             .call()
@@ -139,15 +138,13 @@ export class Web3Middleware {
   }
 
   async listenToDataFeed (feedInfo: FeedInfo) {
-    const contractInfo = await this.getContractAddress(feedInfo)
+    const contractInfo = await this.getContractInfo(feedInfo)
     const provider = getProvider(feedInfo.network)
     if (provider) {
-      console.log('contractInfo in listenToDataFeed', contractInfo)
       if (
         contractInfo &&
         contractInfo.contractAddress &&
-        contractInfo.contractAddress !==
-          '0x0000000000000000000000000000000000000000'
+        !isZeroAddress(contractInfo.contractAddress)
       ) {
         try {
           const web3 = new this.Web3(provider)

@@ -49,8 +49,7 @@ export class FeedRepository {
 
   updateFeedAddress (
     feedFullName: string,
-    address: string,
-    contractId: string
+    { address, contractId }: { address: string; contractId: string }
   ): FeedInfo {
     const hasSameFeedFullName = (feed: FeedInfo) =>
       feed.feedFullName === feedFullName
@@ -62,13 +61,14 @@ export class FeedRepository {
     const feed = this.sortedDataFeeds[sortedDataFeedIndex]
     feed.address = address
     feed.contractId = contractId
-    // Update address in dataFeedsByNetwork
+    // Update address in dataFeedsByNetwork cache
     const dataFeedsByNetworkIndex = this.dataFeedsByNetwork[
       feed.network
     ].findIndex(hasSameFeedFullName)
     this.dataFeedsByNetwork[feed.network][
       dataFeedsByNetworkIndex
     ].address = address
+    // Update contractId in dataFeedsByNetwork cache
     this.dataFeedsByNetwork[feed.network][
       dataFeedsByNetworkIndex
     ].contractId = contractId

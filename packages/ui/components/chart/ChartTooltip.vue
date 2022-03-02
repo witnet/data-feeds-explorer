@@ -15,7 +15,7 @@
       <p class="value-title">{{ $t('chart.status') }}</p>
       <DataFeedStatus
         :last-result-timestamp="lastResultTimestamp"
-        :heartbeat="heartbeat"
+        :time-to-update="timeToUpdate"
       />
     </div>
     <InnerLink class="link" hash="integrate">
@@ -45,7 +45,7 @@ export default {
       type: String,
       default: '',
     },
-    heartbeat: {
+    timeToUpdate: {
       type: Number,
       required: true,
     },
@@ -88,7 +88,6 @@ export default {
   align-self: start;
 }
 .tooltip {
-  font-family: Almarai, sans-serif;
   font-weight: bold;
   font-size: var(--text-size-title);
   background-color: var(--bg);
@@ -119,7 +118,6 @@ export default {
     font-size: var(--text-size-small);
   }
   .value {
-    font-family: Almarai, sans-serif;
     font-size: var(--text-size);
     margin-bottom: 8px;
     .time {
@@ -129,6 +127,11 @@ export default {
   }
 }
 @media screen and (max-width: 1100px) {
+  .tooltip-container {
+    padding: 0 24px;
+  }
+}
+@media screen and (max-width: 300px) {
   .tooltip-container {
     padding: 0 16px;
   }

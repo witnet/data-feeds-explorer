@@ -46,11 +46,18 @@ export default {
 @media screen and (max-width: 1100px) {
   .breadcrumbs {
     &.container {
-      padding: 0 16px;
+      padding: 0 24px;
     }
   }
 }
 @media (max-width: 850px) {
+  .breadcrumbs {
+    &.container {
+      padding: 0 24px;
+    }
+  }
+}
+@media screen and (max-width: 300px) {
   .breadcrumbs {
     &.container {
       padding: 0 16px;

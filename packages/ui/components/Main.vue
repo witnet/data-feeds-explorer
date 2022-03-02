@@ -75,7 +75,6 @@ export default {
       return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
     },
   },
-  mounted() {},
   methods: {
     updateOptions(index) {
       this.$store.commit('deleteEmptyNetwork', { index })
@@ -140,11 +139,19 @@ export default {
     justify-self: center;
   }
 }
+@media screen and (max-width: 1100px) {
+  .list-container {
+    margin-right: 16px;
+  }
+}
 
 @media (max-width: 850px) {
+  .list-container {
+    margin-right: 0;
+  }
   .main {
     grid-template-columns: 1fr;
-    padding: 0 16px;
+    padding: 0 24px;
   }
   .section-header {
     padding: 0 32px 32px 32px;
@@ -158,9 +165,15 @@ export default {
     padding: 0 16px 16px 16px;
   }
   .list-container {
+    margin-right: 0;
     .pagination {
       margin-bottom: 48px;
     }
+  }
+}
+@media screen and (max-width: 300px) {
+  .main {
+    padding: 0 16px;
   }
 }
 </style>

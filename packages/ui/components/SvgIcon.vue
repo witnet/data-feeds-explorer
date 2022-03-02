@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style lang="scss">
-.size {
+.icon-size {
   width: 24px;
   height: 30px;
 }

@@ -43,7 +43,6 @@ export default {
 
 <style scoped lang="scss">
 .tooltip {
-  font-family: Almarai, sans-serif;
   position: relative;
   font-weight: bold;
   margin-top: -60px;
@@ -54,7 +53,6 @@ export default {
   color: var(--text);
   z-index: 1000;
   .value {
-    font-family: Almarai, sans-serif;
     font-size: var(--text-size);
   }
   .time {
