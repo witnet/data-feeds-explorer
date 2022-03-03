@@ -10,7 +10,7 @@
       <p class="value-title">{{ $t('chart.last_update') }}</p>
       <p class="value">
         {{ lastResultValue }}
-        <span class="time">{{ calculateTime() }}</span>
+        <span class="time">{{ formattedTimestamp }}</span>
       </p>
       <p class="value-title">{{ $t('chart.status') }}</p>
       <DataFeedStatus
@@ -28,7 +28,6 @@
 
 <script>
 import { formatSvgName } from '@/utils/formatSvgName'
-import { useDataFeedUrl } from '@/constants'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 
 export default {
@@ -58,18 +57,11 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-      useDataFeedUrl,
-    }
-  },
   computed: {
     svgIcon() {
       return this.name ? formatSvgName(this.name.toLowerCase()) : ''
     },
-  },
-  methods: {
-    calculateTime() {
+    formattedTimestamp() {
       return calculateTimeAgo(this.lastResultTimestamp, this.$i18n.locale)
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="status-container">
-    <StatusDotSvg :color="statusColor" />
-    <p class="status">{{ statusLabel }}</p>
+    <StatusDotSvg :color="dataFeedStatus.color" />
+    <p class="status">{{ dataFeedStatus.label }}</p>
   </div>
 </template>
 
@@ -19,13 +19,8 @@ export default {
     },
   },
   computed: {
-    statusColor() {
+    dataFeedStatus() {
       return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
-        .color
-    },
-    statusLabel() {
-      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
-        .label
     },
   },
 }

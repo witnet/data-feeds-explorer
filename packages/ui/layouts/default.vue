@@ -2,7 +2,7 @@
   <div class="background">
     <MainSection>
       <NavBar slot="navbar" />
-      <BreadCrumbs slot="breadcrumbs" :options="breadCumbsOptions" />
+      <BreadCrumbs slot="breadcrumbs" />
       <Nuxt slot="content" />
       <Footer slot="footer" />
     </MainSection>
@@ -10,42 +10,9 @@
 </template>
 
 <script>
-import { formatBreadcrumbsPath } from '@/utils/formatBreadcrumbsPath'
 export default {
-  data() {
-    return {
-      selected: [
-        {
-          label: 'ethereum-mainnet',
-          key: 'Ethereum Mainnet',
-          network: 'Ethereum',
-        },
-      ],
-    }
-  },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
-  },
-  computed: {
-    breadCumbsOptions() {
-      return [
-        {
-          label: 'Home',
-          path: {
-            name: 'index',
-          },
-          selected: false,
-        },
-        {
-          label: formatBreadcrumbsPath(this.$route.params.id),
-          path: {
-            name: 'feeds-id',
-            params: { id: this.$route.params.id },
-          },
-          selected: false,
-        },
-      ]
-    },
   },
 }
 </script>

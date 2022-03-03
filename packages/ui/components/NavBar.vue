@@ -52,10 +52,8 @@
 <script>
 import networks from '@/apollo/queries/networks.gql'
 import { requestDataFeedUrl } from '../constants'
-import {
-  generateSelectOptions,
-  capitalizeFirstLetter,
-} from '../utils/generateSelectOptions'
+import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
+import { generateSelectOptions } from '../utils/generateSelectOptions'
 
 export default {
   apollo: {
@@ -196,11 +194,11 @@ export default {
         margin: 0;
       }
       .slash {
-        color: $green-1;
+        color: var(--nav-bar-slash-color);
       }
 
       &:hover {
-        color: $green-1;
+        color: var(--nav-bar-slash-color);
       }
       &:last-child {
         padding-right: 0;
@@ -257,6 +255,7 @@ export default {
       padding: 0 16px;
     }
     .responsive-menu {
+      justify-content: center;
       display: block;
       cursor: pointer;
       width: 32px;

@@ -1,19 +1,19 @@
 <template>
   <nuxt-link v-if="detailsPath.params.id" :to="localeRoute(detailsPath)">
-    <div class="card-container" :class="dataFeedStatusKey">
+    <div class="card-container" :class="dataFeedStatus.key">
       <div class="title">
         <SvgIcon class="img" :name="img.name" />
         <p class="name title">{{ name.toUpperCase() }}</p>
-        <InfoTooltip :show-icon="false" :value="dataFeedStatusLabel">
+        <InfoTooltip :show-icon="false" :value="dataFeedStatus.label">
           <WarningStatus
-            v-if="dataFeedStatusKey !== 'operational'"
-            :color="statusColor"
+            v-if="dataFeedStatus.key !== 'operational'"
+            :color="dataFeedStatus.color"
           />
         </InfoTooltip>
       </div>
       <p class="value">{{ label }} {{ formatedValue }}</p>
       <p class="timestamp">
-        {{ calculateTime() }}
+        {{ formattedTimestamp }}
       </p>
     </div>
   </nuxt-link>
@@ -72,20 +72,10 @@ export default {
     formatedValue() {
       return formatNumber(parseFloat(this.value) / 10 ** this.decimals)
     },
-    statusColor() {
+    dataFeedStatus() {
       return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
-        .color
     },
-    dataFeedStatusKey() {
-      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp).key
-    },
-    dataFeedStatusLabel() {
-      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
-        .label
-    },
-  },
-  methods: {
-    calculateTime() {
+    formattedTimestamp() {
       return calculateTimeAgo(this.lastResultTimestamp, this.$i18n.locale)
     },
   },

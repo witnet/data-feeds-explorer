@@ -47,7 +47,7 @@ export default {
   align-items: center;
   padding: 16px;
   background: var(--footer-bg);
-  color: $white;
+  color: var(--white-text);
   .links-container {
     padding: 0;
     display: flex;
@@ -56,7 +56,7 @@ export default {
     grid-gap: 16px;
     grid-template-rows: auto;
     .link {
-      color: $white;
+      color: var(--white-text);
       cursor: pointer;
       padding: 0;
       font-size: var(--text-size-medium);

@@ -1,7 +1,7 @@
 <template>
   <div class="breadcrumbs container">
     <nuxt-link
-      v-for="option in options"
+      v-for="option in breadCumbsOptions"
       :key="option.label"
       :class="{ selected: option.selected }"
       :to="localeRoute(option.path)"
@@ -15,11 +15,28 @@
 </template>
 
 <script>
+import { formatBreadcrumbsPath } from './formatBreadcrumbsPath'
+
 export default {
-  props: {
-    options: {
-      type: Array,
-      required: true,
+  computed: {
+    breadCumbsOptions() {
+      return [
+        {
+          label: 'Home',
+          path: {
+            name: 'index',
+          },
+          selected: false,
+        },
+        {
+          label: formatBreadcrumbsPath(this.$route.params.id),
+          path: {
+            name: 'feeds-id',
+            params: { id: this.$route.params.id },
+          },
+          selected: false,
+        },
+      ]
     },
   },
 }

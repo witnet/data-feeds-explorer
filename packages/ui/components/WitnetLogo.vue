@@ -31,7 +31,7 @@
 }
 .white {
   .main {
-    fill: $white;
+    fill: var(--white-text);
   }
 }
 .dark {

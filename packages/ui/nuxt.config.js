@@ -94,18 +94,10 @@ export default {
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '~/assets/styles/colors.scss',
-    '~/assets/styles/main.scss',
-    '~/assets/styles/element-ui.scss',
-  ],
+  css: ['~/assets/styles/main.scss', '~/assets/styles/element-ui.scss'],
   // You will have to add this new object if it doesn't exist already
   styleResources: {
-    scss: [
-      '~/assets/styles/colors.scss',
-      '~/assets/styles/main.scss',
-      '~/assets/styles/element-ui.scss',
-    ],
+    scss: ['~/assets/styles/main.scss', '~/assets/styles/element-ui.scss'],
   },
   // ...
   modules: [
@@ -130,7 +122,11 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {
-    dirs: ['~/components', { path: '~/components/chart', extensions: ['vue'] }],
+    dirs: [
+      '~/components',
+      { path: '~/components/chart', extensions: ['vue'] },
+      { path: '~/components/breadcrumbs', extensions: ['vue'] },
+    ],
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

@@ -144,7 +144,7 @@ export default {
     }
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .integration-details {
     grid-template-columns: 1fr;
     grid-gap: 16px;

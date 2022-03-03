@@ -18,7 +18,6 @@
       >
         {{ value }}
       </InfoTooltip>
-      <!-- <p class="value attribute truncate">{{ value }}</p> -->
     </div>
   </li>
 </template>

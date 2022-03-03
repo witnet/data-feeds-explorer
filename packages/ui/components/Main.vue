@@ -38,10 +38,8 @@
 
 <script>
 import networks from '@/apollo/queries/networks.gql'
-import {
-  generateSelectOptions,
-  capitalizeFirstLetter,
-} from '../utils/generateSelectOptions'
+import { generateSelectOptions } from '../utils/generateSelectOptions'
+import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 
 export default {
   apollo: {

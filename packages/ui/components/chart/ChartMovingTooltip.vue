@@ -9,8 +9,6 @@
 
 <script>
 import { formatSvgName } from '@/utils/formatSvgName'
-import { useDataFeedUrl } from '@/constants'
-import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 
 export default {
   props: {
@@ -23,19 +21,9 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-      useDataFeedUrl,
-    }
-  },
   computed: {
     svgIcon() {
       return this.name ? formatSvgName(this.name.toLowerCase()) : ''
-    },
-  },
-  methods: {
-    calculateTime() {
-      return calculateTimeAgo(this.date, this.$i18n.locale)
     },
   },
 }
