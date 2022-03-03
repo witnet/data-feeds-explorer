@@ -33,7 +33,9 @@ export enum Network {
   CeloMainnet = 'celo-mainnet',
   CeloAlfajores = 'celo-alfajores',
   HarmonyTestnet = 'harmony-testnet',
+  MetisMainnet = 'metis-mainnet',
   MetisRinkeby = 'metis-rinkeby',
+  PolygonMainnet = 'polygon-mainnet',
   PolygonGoerli = 'polygon-goerli',
   KCCMainnet = 'kcc-mainnet',
   KCCTestnet = 'kcc-testnet'
