@@ -8,11 +8,11 @@
     />
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
-        <p class="title bold">
+        <div class="title bold">
           <SvgIcon class="logo" :name="selected[0].network.toLowerCase()" />{{
             selected[0].network
           }}
-        </p>
+        </div>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
           <span class="bold text">{{ selected[0].network }}</span>

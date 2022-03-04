@@ -5,7 +5,10 @@ import { normalizeConfig } from '../src/utils/index'
 describe('validateDataFeedsConfig', () => {
   it('check if the structure is correct', async () => {
     const dataFeedsRouterConfig = JSON.parse(
-      fs.readFileSync(path.resolve('./test/web3Middleware/dataFeedsRouter.json'), 'utf-8')
+      fs.readFileSync(
+        path.resolve('./test/web3Middleware/dataFeedsRouter.json'),
+        'utf-8'
+      )
     )
 
     const feeds = normalizeConfig(dataFeedsRouterConfig)
