@@ -76,6 +76,8 @@ export default {
   color: var(--witnet-transaction);
   font-family: Roboto Mono, monospace;
   .icon {
+    width: 10px;
+    height: 10px;
     font-size: var(--text-size-small);
   }
 }

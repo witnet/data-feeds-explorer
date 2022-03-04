@@ -141,6 +141,8 @@ export default {
     }
     .icon {
       font-size: 10px;
+      width: 10px;
+      height: 10px;
     }
   }
 }

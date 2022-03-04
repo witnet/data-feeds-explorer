@@ -95,6 +95,8 @@ export default {
   display: flex;
   align-items: center;
   font-size: 10px;
+  width: 10px;
+  height: 10px;
   cursor: pointer;
 }
 @media (max-width: 300px) {

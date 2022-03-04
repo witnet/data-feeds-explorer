@@ -51,6 +51,8 @@ export default {
 .mode-icon {
   color: var(--icon-color);
   font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 .icon-container {
   cursor: pointer;
