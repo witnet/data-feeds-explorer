@@ -107,9 +107,11 @@ export default {
     },
     closeMenu() {
       this.isMenuVisible = false
+      this.$emit('scroll', this.isMenuVisible)
     },
     toggleMenu() {
       this.isMenuVisible = !this.isMenuVisible
+      this.$emit('scroll', this.isMenuVisible)
     },
     displayDropDown() {
       this.displayBox = !this.displayBox
@@ -184,6 +186,7 @@ export default {
       &.last-item {
         display: flex;
         justify-content: center;
+        padding-bottom: 24px;
       }
       .btn-container {
         width: max-content;

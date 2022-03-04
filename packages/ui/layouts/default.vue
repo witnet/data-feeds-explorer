@@ -1,7 +1,7 @@
 <template>
-  <div class="background">
+  <div class="background" :class="{ 'hide-scroll': hideScroll }">
     <MainSection>
-      <NavBar slot="navbar" />
+      <NavBar slot="navbar" @scroll="handleScroll" />
       <BreadCrumbs slot="breadcrumbs" />
       <Nuxt slot="content" />
       <Footer slot="footer" />
@@ -11,8 +11,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      hideScroll: false,
+    }
+  },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
+  },
+  methods: {
+    handleScroll(scroll) {
+      this.hideScroll = scroll
+    },
   },
 }
 </script>
@@ -29,6 +39,11 @@ html {
   box-sizing: border-box;
   background: var(--bg);
   scroll-behavior: smooth;
+}
+.hide-scroll {
+  height: 100vh;
+  position: absolute;
+  overflow-y: hidden;
 }
 
 html,
