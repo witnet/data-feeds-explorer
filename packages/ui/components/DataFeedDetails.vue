@@ -143,7 +143,9 @@ export default {
     },
     feedTimeToUpdate() {
       return formatMilliseconds(
-        this.normalizedFeed.heartbeat + this.normalizedFeed.finality
+        this.normalizedFeed.heartbeat + this.normalizedFeed.finality,
+        ` ${this.$t('and')} `,
+        this.$i18n.locale
       )
     },
     lastResultValue() {

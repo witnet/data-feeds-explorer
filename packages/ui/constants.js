@@ -1,3 +1,5 @@
+import { es, enGB } from 'date-fns/locale'
+
 export const witnetBlockExplorerUrl = 'https://witnet.network/search'
 export const requestDataFeedUrl = 'https://witnet.io'
 export const documentationUrl = 'https://docs.witnet.io/'
@@ -19,20 +21,22 @@ export const languages = [
   },
 ]
 
+export const LOCALE_LANGUAGES = {
+  es: { name: 'Español', locale: 'es', fnsLocale: es },
+  en: { name: 'English', locale: 'en', fnsLocale: enGB },
+}
+
 export const dataFeedStatus = {
   operational: {
     key: 'operational',
-    label: 'Fully operational',
     color: '#4AB6A1',
   },
   error: {
     key: 'error',
-    label: 'Error detected',
     color: '#DF4B4B',
   },
   delay: {
     key: 'delay',
-    label: 'Delay detected',
     color: '#DFC44B',
   },
 }

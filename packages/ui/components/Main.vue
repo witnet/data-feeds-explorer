@@ -14,7 +14,7 @@
           }}
         </p>
         <p class="subtitle light-text bold">
-          Witnet price feeds currently available on
+          {{ $t('main.network_subtitle') }}
           <span class="bold text">{{ selected[0].network }}</span>
           <span class="bold text">{{ selectedNetworks }}</span
           >.

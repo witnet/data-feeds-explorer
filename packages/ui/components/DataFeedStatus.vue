@@ -1,7 +1,7 @@
 <template>
   <div class="status-container">
     <StatusDotSvg :color="dataFeedStatus.color" />
-    <p class="status">{{ dataFeedStatus.label }}</p>
+    <p class="status">{{ $t(`chart.${dataFeedStatus.key}`) }}</p>
   </div>
 </template>
 

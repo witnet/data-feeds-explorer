@@ -10,10 +10,11 @@
     "underlying_feed_contract": "Underlaying feed contract address",
     "erc2362_asset_id": "ERC2362 asset ID",
     "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
-    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This price feed is updated every {heartbeat}, or every time the price changes by more than {deviation}."
+    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}."
   },
   "main": {
-    "data_feeds": "Data feeds"
+    "data_feeds": "Data feeds",
+    "network_subtitle": "Witnet data feeds currently available on"
   },
   "navbar": {
     "request_data_feed": "Request data feed"
@@ -34,10 +35,14 @@
     "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
     "use_data_feed": "Use this data feed",
     "last_update": "Last update",
-    "status": "Status"
+    "status": "Status",
+    "operational": "Fully operational",
+    "delay": "Delay detected",
+    "error": "Error detected"
   },
   "copied": "Copied",
   "copy": "Copy",
+  "and": "and",
   "footer": {
     "documentation": "Documentation",
     "request_data_feed": "Request data feed",

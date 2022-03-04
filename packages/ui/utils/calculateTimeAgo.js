@@ -1,11 +1,6 @@
 /// calculate the time passed from a given date
-import { es, enGB } from 'date-fns/locale'
 import { formatDistanceToNowStrict } from 'date-fns'
-
-export const LANGUAGES = {
-  es: { name: 'Español', locale: 'es', fnsLocale: es },
-  en: { name: 'English', locale: 'en', fnsLocale: enGB },
-}
+import { LOCALE_LANGUAGES } from '../constants'
 
 export function calculateTimeAgo(date, currentLocale) {
   const timestampLength = date.toString().length
@@ -13,7 +8,7 @@ export function calculateTimeAgo(date, currentLocale) {
   const currentDate = new Date(Number(d))
   const formatedTime = formatDistanceToNowStrict(currentDate, {
     addSuffix: true,
-    locale: LANGUAGES[currentLocale].fnsLocale,
+    locale: LOCALE_LANGUAGES[currentLocale].fnsLocale,
   })
   return `${formatedTime}`
 }

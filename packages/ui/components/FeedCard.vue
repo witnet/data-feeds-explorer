@@ -4,7 +4,10 @@
       <div class="title">
         <SvgIcon class="img" :name="img.name" />
         <p class="name title">{{ name.toUpperCase() }}</p>
-        <InfoTooltip :show-icon="false" :value="dataFeedStatus.label">
+        <InfoTooltip
+          :show-icon="false"
+          :value="$t(`chart.${dataFeedStatus.key}`)"
+        >
           <WarningStatus
             v-if="dataFeedStatus.key !== 'operational'"
             :color="dataFeedStatus.color"
@@ -124,6 +127,8 @@ a {
     align-items: center;
     display: flex;
     .img {
+      display: flex;
+      justify-content: center;
       align-self: center;
       margin-right: 8px;
     }
