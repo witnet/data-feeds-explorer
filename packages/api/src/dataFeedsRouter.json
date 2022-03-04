@@ -48,7 +48,7 @@
               "minSecsBetweenUpdates": 900
             },
             "Price-OLO/USDC-6": {
-              "label": "($)",
+              "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900

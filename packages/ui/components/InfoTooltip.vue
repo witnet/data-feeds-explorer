@@ -90,6 +90,7 @@ export default {
 }
 .container {
   display: flex;
+  align-items: center;
 }
 .info {
   display: flex;
