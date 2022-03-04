@@ -47,6 +47,12 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
+            "Price-OLO/USDC-6": {
+              "label": "($)",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 1.0,
