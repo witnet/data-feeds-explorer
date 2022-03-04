@@ -190,7 +190,8 @@
 
   //sidebar
   --tab-gradient: linear-gradient(90deg, #2d2c39d3 95%, #4ab6a02c);
-  --tab-gradient-selected: linear-gradient(90deg, #2d2c39d3 0%, rgba(74, 182, 160, 0.05) 20%, rgba(74, 182, 160, 0.10) 24%, rgba(74, 182, 160, 0.15) 30%, rgba(74, 182, 160, 0.173) 35%);
+  --tab-background: #2D2C39;
+  --tab-gradient-selected: linear-gradient(90deg, #2D2C39 0%, rgba(74, 182, 160, 0.05) 20%, rgba(74, 182, 160, 0.10) 24%, rgba(74, 182, 160, 0.15) 30%, rgba(74, 182, 160, 0.173) 35%);
 
   //breadcrumbs
   --selected-option: #4AB6A1;
