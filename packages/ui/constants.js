@@ -5,7 +5,7 @@ export const requestDataFeedUrl = 'https://witnet.io'
 export const documentationUrl = 'https://docs.witnet.io/'
 export const witnetUrl = 'https://witnet.io'
 export const integrateDirectlyBaseUrl =
-  'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-last-price-and-timestamp-from-a-price-feed-contract-serving-a-given-currency-pair'
+  'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-last-price-and-timestamp-from-a-price-feed-contract-serving-a-specific-pair'
 export const integrateThroughProxyBaseUrl =
   'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-multiple-currency-pairs-from-the-router'
 
