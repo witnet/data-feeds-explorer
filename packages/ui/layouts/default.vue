@@ -50,6 +50,10 @@ html,
 body {
   margin: 0;
   padding: 0;
+  padding-top: env(safe-area-inset-top, 1em);
+  padding-right: env(safe-area-inset-right, 1em);
+  padding-bottom: env(safe-area-inset-bottom, 1em);
+  padding-left: env(safe-area-inset-left, 1em);
 }
 .nuxt-link-exact-active {
   color: var(--text);

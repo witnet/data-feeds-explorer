@@ -15,7 +15,10 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'viewport',
+        content: 'viewport-fit=cover, width=device-width, initial-scale=1',
+      },
       {
         hid: 'title',
         name: 'title',
@@ -25,7 +28,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witet oracle network',
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witnet oracle network',
       },
       {
         hid: 'twitter:title',
@@ -36,12 +39,12 @@ export default {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witet oracle network',
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witnet oracle network',
       },
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: 'images/witnet_green.png',
+        content: '~/assets/images/meta-image.png',
       },
       {
         hid: 'twitter:image:alt',
@@ -57,17 +60,17 @@ export default {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witet oracle network',
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witnet oracle network',
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'images/witnet_green.png',
+        content: '~/assets/images/meta-image.png',
       },
       {
         hid: 'og:image:secure_url',
         property: 'og:image:secure_url',
-        content: 'images/witnet_green.png',
+        content: '~/assets/images/meta-image.png',
       },
       {
         hid: 'og:image:alt',
@@ -76,7 +79,29 @@ export default {
       },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
+        type: 'image/png',
+      },
+      {
+        rel: 'icon',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
+        type: 'image/png',
+      },
+      {
+        rel: 'icon',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
+        type: 'image/png',
+      },
+      { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '2D2C39' },
+      { rel: 'msapplication-TileColor', content: '2D2C39' },
       { rel: 'shortcut icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
@@ -124,7 +149,7 @@ export default {
     dirs: [
       '~/components',
       { path: '~/components/chart', extensions: ['vue'] },
-      { path: '~/components/breadcrumbs', extensions: ['vue'] },
+      { path: '~/components/breadcrumbs', extensions: ['vue', 'js'] },
     ],
   },
 
