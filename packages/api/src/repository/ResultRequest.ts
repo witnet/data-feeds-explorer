@@ -69,10 +69,6 @@ export class ResultRequestRepository {
         sort: {
           timestamp: -1
         },
-        collation: {
-          locale: 'en_US',
-          numericOrdering: true
-        }
       }
     )
     return this.normalizeId(lastResultRequest)
