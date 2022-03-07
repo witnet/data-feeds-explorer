@@ -2,9 +2,9 @@
   <div class="background" :class="{ 'hide-scroll': hideScroll }">
     <MainSection>
       <NavBar slot="navbar" @scroll="handleScroll" />
-      <BreadCrumbs slot="breadcrumbs" />
-      <Nuxt slot="content" />
-      <Footer slot="footer" />
+      <BreadCrumbs v-if="!hideScroll" slot="breadcrumbs" />
+      <Nuxt v-if="!hideScroll" slot="content" />
+      <Footer v-if="!hideScroll" slot="footer" />
     </MainSection>
   </div>
 </template>

@@ -243,10 +243,9 @@ export default {
   .drop {
     position: fixed;
     top: 0;
-    overflow: hidden;
-    overflow-y: auto;
     height: 100%;
     z-index: 15;
+    overflow-y: auto;
   }
 
   .navbar {
