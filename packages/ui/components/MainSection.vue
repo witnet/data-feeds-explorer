@@ -3,6 +3,7 @@
     <div class="main-section">
       <slot name="navbar"></slot>
       <slot name="breadcrumbs"></slot>
+      <slot name="cover"></slot>
       <slot name="content"></slot>
       <ThemeSwitch class="theme-switch" />
     </div>

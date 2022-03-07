@@ -39,7 +39,7 @@ export default {
   padding: 8px 16px;
   border-radius: 4px;
   color: var(--text);
-  z-index: 1000;
+  z-index: 13;
   .value {
     font-size: var(--text-size);
   }

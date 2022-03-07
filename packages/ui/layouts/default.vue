@@ -2,9 +2,10 @@
   <div class="background" :class="{ 'hide-scroll': hideScroll }">
     <MainSection>
       <NavBar slot="navbar" @scroll="handleScroll" />
-      <BreadCrumbs v-if="!hideScroll" slot="breadcrumbs" />
-      <Nuxt v-if="!hideScroll" slot="content" />
-      <Footer v-if="!hideScroll" slot="footer" />
+      <div slot="cover" class="cover" :class="{ show: hideScroll }"></div>
+      <BreadCrumbs slot="breadcrumbs" />
+      <Nuxt slot="content" />
+      <Footer slot="footer" />
     </MainSection>
   </div>
 </template>
@@ -44,6 +45,19 @@ html {
   height: 100vh;
   position: absolute;
   overflow-y: hidden;
+  background: var(--bg);
+}
+
+.cover {
+  display: none;
+  &.show {
+    display: block;
+    min-height: 100%;
+    min-width: 100vw;
+    position: absolute;
+    background: var(--bg);
+    z-index: 14;
+  }
 }
 
 html,
