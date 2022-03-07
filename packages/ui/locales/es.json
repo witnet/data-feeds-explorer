@@ -1,13 +1,13 @@
 {
   "data_feed_details": {
     "contract_address": "Detalles de integración",
-    "trigger_parameters": "Parámetros",
+    "trigger_parameters": "Triggering conditions",
     "integrate_proxy": "Integrar a través de proxy",
     "integrate_directly": "Integrar directamente",
     "recommended_for_testing": "Recomendado para pruebas y actualizaciones",
     "optimized_for_gas_cost": "Optimizado para el coste del gas y mayor descentralización",
     "proxy_address": "Dirección proxy",
-    "underlying_feed_contract": "Dirección del contrato",
+    "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "Identificador ERC2362",
     "integration_details_description": "Los data feed de Witnet pueden ser integrados en tu propio contrato de {0} de dos formas diferentes:",
     "feed_description": "Esto es un data feed de Witnet para {name}, disponible en {network}. El último resultado disponible es {value} (actualizado el {date}). Este data feed se actualiza cada {heartbeat}, o cada vez que su valor varía más de un {deviation}."
@@ -17,7 +17,7 @@
     "network_subtitle": "Data feeds de Witnet disponibles en"
   },
   "navbar": {
-    "request_data_feed": "Solicita un data feed"
+    "request_data_feed": "Request new price feed"
   },
   "transactions_list": {
     "transactions": "Historial de actualizaciones",
@@ -45,7 +45,7 @@
   "and": "y",
   "footer": {
     "documentation": "Documentación",
-    "request_data_feed": "Solicita un data feed",
+    "request_data_feed": "Request new price feed",
     "about_witnet": "Sobre Witnet",
     "copyright": "© 2018–2022 por la Fundación Witnet y colaboradores particulaes. Contenido disponible bajo licencia de Creative Commons."
   }
