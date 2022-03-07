@@ -1,13 +1,13 @@
 {
   "data_feed_details": {
     "contract_address": "Integration details",
-    "trigger_parameters": "Trigger parameters",
+    "trigger_parameters": "Triggering conditions",
     "integrate_proxy": "Integrate through proxy",
     "integrate_directly": "Integrate directly",
     "recommended_for_testing": "Recommended for testing and upgradability",
     "optimized_for_gas_cost": "Optimized for gas cost and decentralization",
     "proxy_address": "Proxy address",
-    "underlying_feed_contract": "Underlaying feed contract address",
+    "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "ERC2362 asset ID",
     "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
     "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}."
@@ -17,7 +17,7 @@
     "network_subtitle": "Witnet data feeds currently available on"
   },
   "navbar": {
-    "request_data_feed": "Request data feed"
+    "request_data_feed": "Request new price feed"
   },
   "transactions_list": {
     "transactions": "Update history",
@@ -45,7 +45,7 @@
   "and": "and",
   "footer": {
     "documentation": "Documentation",
-    "request_data_feed": "Request data feed",
+    "request_data_feed": "Request new price feed",
     "about_witnet": "About Witnet",
     "copyright": "© 2018–2022 by Witnet Foundation and individual contributors. Content available under a Creative Commons License."
   }
