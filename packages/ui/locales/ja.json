@@ -1,0 +1,52 @@
+{
+  "data_feed_details": {
+    "contract_address": "Integration details",
+    "trigger_parameters": "Trigger parameters",
+    "integrate_proxy": "Integrate through proxy",
+    "integrate_directly": "Integrate directly",
+    "recommended_for_testing": "Recommended for testing and upgradability",
+    "optimized_for_gas_cost": "Optimized for gas cost and decentralization",
+    "proxy_address": "Proxy address",
+    "underlying_feed_contract": "Underlaying feed contract address",
+    "erc2362_asset_id": "ERC2362 asset ID",
+    "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
+    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}."
+  },
+  "main": {
+    "data_feeds": "Data feeds",
+    "network_subtitle": "Witnet data feeds currently available on"
+  },
+  "navbar": {
+    "request_data_feed": "Request data feed"
+  },
+  "transactions_list": {
+    "transactions": "Update history",
+    "witnet_explorer": "Transaction in Witnet Block Explorer",
+    "etherscan": "Etherscan",
+    "value": "Reported price",
+    "time": "Time"
+  },
+  "chart": {
+    "w": "7d",
+    "m": "30d",
+    "heartbeat": "ETA to next update",
+    "heartbeat_text": "The feed is updated before the heartbeat is reached",
+    "deviation": "Deviation threshold",
+    "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
+    "use_data_feed": "Use this data feed",
+    "last_update": "Last update",
+    "status": "Status",
+    "operational": "Fully operational",
+    "delay": "Delay detected",
+    "error": "Error detected"
+  },
+  "copied": "コピーした",
+  "copy": "コピーする",
+  "and": "and",
+  "footer": {
+    "documentation": "Documentation",
+    "request_data_feed": "Request data feed",
+    "about_witnet": "About Witnet",
+    "copyright": "© 2018–2022 by Witnet Foundation and individual contributors. Content available under a Creative Commons License."
+  }
+}
