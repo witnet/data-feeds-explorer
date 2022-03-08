@@ -13,6 +13,7 @@ export const mutations = {
   updateSelectedNetwork(state, { network }) {
     state.selectedNetwork = network
   },
+  // TODO: refactor with cleaner approach
   updateFromNavBar(state) {
     state.updateFromMain = false
   },
