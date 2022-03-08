@@ -103,7 +103,8 @@ export default {
     capitalizeFirstLetter,
     updateSelected(selectedOption) {
       this.$store.commit('updateSelectedNetwork', { network: selectedOption })
-      this.$router.push('/')
+      this.$store.commit('updateFromNavBar')
+      this.$router.push({ path: '/' })
     },
     closeMenu() {
       this.isMenuVisible = false

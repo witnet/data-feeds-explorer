@@ -66,6 +66,9 @@ export default {
         return null
       }
     },
+    updateFromMain() {
+      return this.$store.state.updateFromMain
+    },
     selectedNetworks() {
       const result = this.selected.map((option) => {
         return capitalizeFirstLetter(option.label.split('-')[1])
@@ -81,7 +84,9 @@ export default {
       this.currentPage = val
     },
     updateSelected(selectedOption) {
-      this.$store.commit('updateSelectedNetwork', { network: selectedOption })
+      if (this.updateFromMain) {
+        this.$store.commit('updateSelectedNetwork', { network: selectedOption })
+      }
     },
   },
 }
