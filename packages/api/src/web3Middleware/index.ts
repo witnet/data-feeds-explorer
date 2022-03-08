@@ -205,19 +205,19 @@ export class Web3Middleware {
         lastDrTxHash,
         requestId
       }: ContractsState = await this.readContractsState(contracts)
-      const decodedDrTxHash = toHex(lastDrTxHash).slice(2)
-      const lastStoredResult = this.lastStoredResult[feedFullName]
-      const isAlreadyStored = lastStoredResult?.timestamp === lastTimestamp
-      const isDrSolved =
-        decodedDrTxHash &&
-        decodedDrTxHash !==
-          '0000000000000000000000000000000000000000000000000000000000000000'
-      if (!isAlreadyStored && isDrSolved) {
+      const decodedDrTxHash = toHex(lastDrTxHash)
+      const lastStoredResult =
+        this.lastStoredResult[feedFullName] ||
+        (await this.repositories.resultRequestRepository.getLastResult(
+          feedFullName
+        ))
+      const timestampChanged = lastStoredResult?.timestamp !== lastTimestamp
+      if (timestampChanged) {
         const result = await this.repositories.resultRequestRepository.insert({
           result: lastPrice,
           timestamp: lastTimestamp,
           requestId: requestId,
-          drTxHash: decodedDrTxHash,
+          drTxHash: decodedDrTxHash.slice(2),
           feedFullName
         })
         this.lastStoredResult[feedFullName] = result

@@ -101,7 +101,15 @@ export function normalizeConfig (
 }
 
 export function isZeroAddress (address: string) {
-  return address === '0x0000000000000000000000000000000000000000'
+  return address === '0x0000000000000000000000000000000000000000' || !address
+}
+
+export function isZeroHash (hash: string) {
+  return (
+    hash ===
+      '0x0000000000000000000000000000000000000000000000000000000000000000' ||
+    !hash
+  )
 }
 
 export function sleep (ms) {
