@@ -30,7 +30,7 @@ export default {
         return {
           page: this.currentPage,
           pageSize: this.itemsPerPage,
-          network: this.network.label,
+          network: this.network.label.toLowerCase(),
         }
       },
       pollInterval: 60000,

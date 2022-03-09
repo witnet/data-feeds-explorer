@@ -37,8 +37,8 @@ export enum Network {
   MetisRinkeby = 'metis-rinkeby',
   PolygonMainnet = 'polygon-mainnet',
   PolygonGoerli = 'polygon-goerli',
-  KCCMainnet = 'kcc-mainnet',
-  KCCTestnet = 'kcc-testnet'
+  KCCMainnet = 'KCC-mainnet',
+  KCCTestnet = 'KCC-testnet'
 }
 
 export type FeedInfoGeneric<ABI> = {

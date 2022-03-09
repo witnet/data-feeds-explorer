@@ -6,7 +6,10 @@ const resolvers = {
     },
 
     networks: async (_parent, _args) => {
-      return Object.keys(Network).map(key => ({ label: Network[key] }))
+      const networks = Object.keys(Network).map(key => ({
+        label: Network[key]
+      }))
+      return networks
     },
 
     requests: async (_parent, args, { resultRequestRepository }: Context) => {
