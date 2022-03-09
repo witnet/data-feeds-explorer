@@ -22,9 +22,13 @@ export default {
     breadCumbsOptions() {
       return [
         {
-          label: 'Home',
+          label:
+            formatBreadcrumbsPath(this.$route.params.network) || 'Ethereum',
           path: {
-            name: 'index',
+            name: 'network',
+            params: {
+              network: this.$route.params.network || 'ethereum',
+            },
           },
           selected: false,
         },
@@ -32,7 +36,10 @@ export default {
           label: formatBreadcrumbsPath(this.$route.params.id),
           path: {
             name: 'network-id',
-            params: { id: this.$route.params.id },
+            params: {
+              network: this.$route.params.network,
+              id: this.$route.params.id,
+            },
           },
           selected: false,
         },

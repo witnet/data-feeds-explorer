@@ -62,7 +62,10 @@ export default {
             return {
               detailsPath: {
                 name: 'network-id',
-                params: { id: feed.feedFullName },
+                params: {
+                  network: this.$route.params.network || 'ethereum',
+                  id: feed.feedFullName,
+                },
               },
               decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
               name: feed.name,

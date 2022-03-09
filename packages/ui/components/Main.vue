@@ -1,6 +1,9 @@
 <template>
   <div class="main">
-    <SideBar v-if="networks && networks.length > 1" :options="options" />
+    <NetworkOptions
+      v-if="networks && networks.length > 1"
+      :options="Object.keys(options)"
+    />
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <div class="title bold">
@@ -68,12 +71,12 @@ export default {
       return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
     },
     network() {
-      return this.$route.params.network
+      return this.$route.params.network || 'ethereum'
     },
   },
   mounted() {
     this.$store.commit('updateSelectedNetwork', {
-      network: this.options[this.network] || this.selected,
+      network: this.options[this.network],
     })
   },
   methods: {
