@@ -110,12 +110,12 @@ export default {
 
 @media screen and (max-width: 1100px) {
   .feeds-container {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (max-width: 900px) {
   .feeds-container {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     padding: 0;
   }
 }
