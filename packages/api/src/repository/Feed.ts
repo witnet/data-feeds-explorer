@@ -32,18 +32,13 @@ export class FeedRepository {
     return this.sortedDataFeeds.find(feed => feed.feedFullName === feedFullName)
   }
 
-  async getPaginatedFeeds (
+  async getFeedsByNetwork (
     // starts in 1
     network: string
   ): Promise<PaginatedFeedsObject> {
-    const filteredFeeds =
-      network === 'all'
-        ? this.sortedDataFeeds
-        : this.dataFeedsByNetwork[network]
-
     return {
-      feeds: filteredFeeds,
-      total: filteredFeeds.length
+      feeds: this.dataFeedsByNetwork[network],
+      total: this.dataFeedsByNetwork[network].length
     }
   }
 

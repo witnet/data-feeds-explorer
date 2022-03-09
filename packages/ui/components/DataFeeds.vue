@@ -81,6 +81,7 @@ export default {
               blockExplorer: feed.blockExplorer,
             }
           })
+          .sort((feed1, feed2) => (feed1.name > feed2.name ? 1 : -1))
         return feeds
       } else {
         return []
