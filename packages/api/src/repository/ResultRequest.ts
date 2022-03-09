@@ -68,7 +68,7 @@ export class ResultRequestRepository {
 
   async getLastResult (
     feedFullName: string
-  ): Promise<ResultRequestDbObjectNormalized> {
+  ): Promise<ResultRequestDbObjectNormalized | null> {
     const lastResultRequest = await this.collection.findOne(
       {
         feedFullName
@@ -83,6 +83,7 @@ export class ResultRequestRepository {
         }
       }
     )
+
     return this.normalizeId(lastResultRequest)
   }
 
@@ -104,7 +105,7 @@ export class ResultRequestRepository {
 
   private normalizeId (
     resultRequest: ResultRequestDbObject
-  ): ResultRequestDbObjectNormalized {
+  ): ResultRequestDbObjectNormalized | null {
     if (resultRequest?._id) {
       return { ...resultRequest, id: resultRequest._id.toString() }
     } else {

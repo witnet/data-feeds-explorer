@@ -3,6 +3,7 @@ import typeDefs from './typeDefs'
 import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb'
 import resolvers from './resolvers'
 import { ConfigByFullName, FeedInfo, Repositories } from './types'
+import { Loaders } from './loaders'
 
 export async function createServer (
   repositories: Repositories,
@@ -20,7 +21,13 @@ export async function createServer (
         {}
       )
 
-      return { ...repositories, config: configByFullName }
+      const loaders = new Loaders(repositories)
+
+      return {
+        ...repositories,
+        config: configByFullName,
+        loaders: loaders.getLoaders()
+      }
     }
   })
 }

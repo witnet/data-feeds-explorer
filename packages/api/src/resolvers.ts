@@ -22,25 +22,17 @@ const resolvers = {
     }
   },
   Feed: {
-    requests: async (parent, args, { resultRequestRepository }: Context) => {
-      return await resultRequestRepository.getFeedRequests(
-        parent.feedFullName,
-        args.timestamp
-      )
+    requests: async (parent, args, { loaders }: Context) => {
+      return await loaders.requests.load({
+        feedFullName: parent.feedFullName,
+        timestamp: args.timestamp
+      })
     },
-    lastResult: async (parent, _args, { resultRequestRepository }: Context) => {
-      // FIXME: add dataloader library to avoid overfetching
-      return (await resultRequestRepository.getLastResult(parent.feedFullName))
-        ?.result
+    lastResult: async (parent, _args, { loaders }: Context) => {
+      return (await loaders.lastResult.load(parent.feedFullName))?.result
     },
-    lastResultTimestamp: async (
-      parent,
-      _args,
-      { resultRequestRepository }: Context
-    ) => {
-      // FIXME: add dataloader library to avoid overfetching
-      return (await resultRequestRepository.getLastResult(parent.feedFullName))
-        ?.timestamp
+    lastResultTimestamp: async (parent, _args, { loaders }: Context) => {
+      return (await loaders.lastResult.load(parent.feedFullName))?.timestamp
     },
     color: async (parent, _args, { config }: Context) => {
       return config[parent.feedFullName]?.color || ''

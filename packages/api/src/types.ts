@@ -4,6 +4,7 @@ import { Contract } from 'web3-eth-contract'
 
 import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
+import DataLoader from 'dataloader'
 
 export * from './generated/types'
 export { AbiItem } from 'web3-utils'
@@ -15,6 +16,20 @@ export type Context = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
   config: ConfigByFullName
+  loaders: {
+    lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
+    requests: DataLoader<
+      {
+        feedFullName: string
+        timestamp: number
+      },
+      ResultRequestDbObjectNormalized,
+      {
+        feedFullName: string
+        timestamp: number
+      }
+    >
+  }
 }
 
 export type ConfigByFullName = {
