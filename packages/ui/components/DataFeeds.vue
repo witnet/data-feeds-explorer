@@ -28,8 +28,6 @@ export default {
       query: feeds,
       variables() {
         return {
-          page: this.currentPage,
-          pageSize: this.itemsPerPage,
           network: this.network.label.toLowerCase(),
         }
       },
