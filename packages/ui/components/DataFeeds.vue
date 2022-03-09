@@ -61,7 +61,7 @@ export default {
           .map((feed) => {
             return {
               detailsPath: {
-                name: 'feeds-id',
+                name: 'network-id',
                 params: { id: feed.feedFullName },
               },
               decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,

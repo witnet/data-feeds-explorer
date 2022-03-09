@@ -33,7 +33,7 @@
               :class="{
                 selected: optionFromSelected(option) === selectedOption,
               }"
-              @click="updateSelected(option)"
+              @click="$router.push(`/en/${optionFromSelected(option)}`)"
             >
               {{ capitalizeFirstLetter(optionFromSelected(option)) }}
             </div>

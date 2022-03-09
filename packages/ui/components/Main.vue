@@ -1,11 +1,6 @@
 <template>
   <div class="main">
-    <SideBar
-      v-if="networks && networks.length > 1"
-      :default-option="selected"
-      :options="options"
-      @update-selected="updateSelected"
-    />
+    <SideBar v-if="networks && networks.length > 1" :options="options" />
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <div class="title bold">
@@ -66,15 +61,20 @@ export default {
         return null
       }
     },
-    updateFromMain() {
-      return this.$store.state.updateFromMain
-    },
     selectedNetworks() {
       const result = this.selected.map((option) => {
         return capitalizeFirstLetter(option.label.split('-')[1])
       })
       return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
     },
+    network() {
+      return this.$route.params.network
+    },
+  },
+  mounted() {
+    this.$store.commit('updateSelectedNetwork', {
+      network: this.options[this.network] || this.selected,
+    })
   },
   methods: {
     updateOptions(index) {
@@ -82,11 +82,6 @@ export default {
     },
     handleCurrentChange(val) {
       this.currentPage = val
-    },
-    updateSelected(selectedOption) {
-      if (this.updateFromMain) {
-        this.$store.commit('updateSelectedNetwork', { network: selectedOption })
-      }
     },
   },
 }

@@ -31,7 +31,7 @@ export default {
         {
           label: formatBreadcrumbsPath(this.$route.params.id),
           path: {
-            name: 'feeds-id',
+            name: 'network-id',
             params: { id: this.$route.params.id },
           },
           selected: false,

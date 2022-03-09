@@ -5,7 +5,7 @@
       :key="option"
       class="option"
       :class="{ selected: option === selectedOption }"
-      @click="selectOption(option)"
+      @click="$router.push(`/en/${option}`)"
     >
       {{ capitalizeFirstLetter(option) }}
     </div>
@@ -20,40 +20,20 @@ export default {
       type: Object,
       required: true,
     },
-    defaultOption: {
-      type: Array,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      selected: this.options,
-    }
   },
   computed: {
     sidebarOptions() {
       return Object.keys(this.options)
     },
+    selected() {
+      return this.$store.state.selectedNetwork
+    },
     selectedOption() {
       return (this.selected[0] ? this.selected[0].network : '').toLowerCase()
     },
   },
-  watch: {
-    selected: {
-      handler(selected) {
-        this.$emit('update-selected', selected)
-      },
-      deep: true,
-    },
-  },
-  mounted() {
-    this.selectOption('ethereum')
-  },
   methods: {
     capitalizeFirstLetter,
-    selectOption(option) {
-      this.selected = this.options[option]
-    },
   },
 }
 </script>
