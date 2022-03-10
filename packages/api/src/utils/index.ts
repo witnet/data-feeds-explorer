@@ -1,4 +1,5 @@
 import {
+  ExtendedFeedConfig,
   FeedConfig,
   FeedInfosWithoutAbis,
   FeedParamsConfig,
@@ -12,6 +13,9 @@ export function parseNetworkName (value) {
     .toLowerCase()
     .split(' ')
     .join('-')
+}
+export function parseChainName (value) {
+  return value.toLowerCase().split('.')[0]
 }
 // parse data feed name to fit schema
 export function parseDataName (value) {
@@ -44,18 +48,22 @@ export function normalizeConfig (
   )
   // Network Config list deleting key label
   const configs: Array<FeedConfig> = networksConfigMap
-    .reduce(
-      (acc: Array<Array<FeedConfig>>, networkConfigMap) => [
-        ...acc,
-        Object.values(networkConfigMap)
-      ],
-      []
-    )
+    .reduce((acc: Array<Array<ExtendedFeedConfig>>, networkConfigMap) => {
+      const config = Object.values(networkConfigMap).map((feed, index) => {
+        const result = {
+          ...feed,
+          chain: Object.keys(networkConfigMap)[index]
+        }
+        return result
+      })
+      const result = [...acc, config]
+      return result
+    }, [])
     .flat()
-
   // Parse Feed adding common config
+  console.log('------', configs)
   const feeds: FeedInfosWithoutAbis = configs.reduce(
-    (acc: FeedInfosWithoutAbis, config: FeedConfig) => {
+    (acc: FeedInfosWithoutAbis, config: ExtendedFeedConfig) => {
       const feedsArrayConfig: Array<FeedParamsConfig> = Object.values(
         config.feeds
       )
@@ -66,10 +74,13 @@ export function normalizeConfig (
           ({
             ...feed,
             key: Object.keys(config.feeds)[index]
+            // chain: Object.keys(config.chainsNames)[index]
           } as FeedParsedParams)
       )
 
       feedsArray.forEach(feed => {
+        console.log('feed-----', feed)
+        const chain = parseChainName(config.chain)
         const network = parseNetworkName(config.name)
         const name = parseDataName(feed.key)
         const decimals = parseDataDecimals(feed.key)
@@ -81,6 +92,7 @@ export function normalizeConfig (
           contractId: '0x0000000000000000000000000000000000000000',
           routerAddress: config.address,
           network,
+          chain,
           name,
           label: feed.label,
           pollingPeriod: config.pollingPeriod,

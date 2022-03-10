@@ -35,6 +35,18 @@ export type Context = {
 export type ConfigByFullName = {
   [key: string]: FeedInfo
 }
+export enum Chain {
+  Ethereum = 'ethereum',
+  Avalanche = 'avalanche',
+  Boba = 'boba',
+  Conflux = 'conflux',
+  Celo = 'celo',
+  Harmony = 'harmony',
+  Metis = 'metis',
+  Moonbeam = 'moonbeam',
+  Polygon = 'polygon',
+  KCC = 'KCC'
+}
 
 export enum Network {
   EthereumMainnet = 'ethereum-mainnet',
@@ -50,7 +62,7 @@ export enum Network {
   HarmonyTestnet = 'harmony-testnet',
   MetisMainnet = 'metis-mainnet',
   MetisRinkeby = 'metis-rinkeby',
-  MoonbeamMoonbase = 'moonbeam-moonbase',
+  MoonbaseAlpha = 'moonbase-alpha',
   PolygonMainnet = 'polygon-mainnet',
   PolygonGoerli = 'polygon-goerli',
   KCCMainnet = 'KCC-mainnet',
@@ -65,6 +77,7 @@ export type FeedInfoGeneric<ABI> = {
   address: string
   routerAddress: string
   network: Network
+  chain: string
   name: string
   pollingPeriod: number
   label: string
@@ -131,6 +144,7 @@ export type FeedParsedParams = {
   maxSecsBetweenUpdates: number
   minSecsBetweenUpdates: number
   key: string
+  chain: string
 }
 
 export type FeedConfig = {
@@ -138,6 +152,16 @@ export type FeedConfig = {
   blockExplorer: string
   color: string
   name: string
+  pollingPeriod: number
+  feeds: FeedInfoRouterConfigMap
+}
+
+export type ExtendedFeedConfig = {
+  address: string
+  blockExplorer: string
+  color: string
+  name: string
+  chain: string
   pollingPeriod: number
   feeds: FeedInfoRouterConfigMap
 }

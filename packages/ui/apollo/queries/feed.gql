@@ -8,6 +8,7 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     network
     label
     deviation
+    chain
     proxyAddress
     heartbeat
     finality

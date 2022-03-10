@@ -59,6 +59,7 @@ export default {
     },
     options() {
       if (this.networks) {
+        console.log('all networks', this.networks)
         return generateSelectOptions(this.networks)
       } else {
         return null
