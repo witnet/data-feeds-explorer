@@ -28,9 +28,7 @@ export default {
       query: feeds,
       variables() {
         return {
-          page: this.currentPage,
-          pageSize: this.itemsPerPage,
-          network: this.network.label,
+          network: this.network.label.toLowerCase(),
         }
       },
       pollInterval: 60000,
@@ -63,8 +61,11 @@ export default {
           .map((feed) => {
             return {
               detailsPath: {
-                name: 'feeds-id',
-                params: { id: feed.feedFullName },
+                name: 'network-id',
+                params: {
+                  network: this.$route.params.network || 'ethereum',
+                  id: feed.feedFullName,
+                },
               },
               decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
               name: feed.name,
@@ -81,6 +82,7 @@ export default {
               blockExplorer: feed.blockExplorer,
             }
           })
+          .sort((feed1, feed2) => feed1.name.localeCompare(feed2.name))
         return feeds
       } else {
         return []
@@ -110,12 +112,12 @@ export default {
 
 @media screen and (max-width: 1100px) {
   .feeds-container {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (max-width: 900px) {
   .feeds-container {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     padding: 0;
   }
 }

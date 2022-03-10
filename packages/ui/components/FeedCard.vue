@@ -5,6 +5,7 @@
         <SvgIcon class="img" :name="img.name" />
         <p class="name title">{{ name.toUpperCase() }}</p>
         <InfoTooltip
+          v-if="dataFeedStatus.key !== 'operational'"
           :show-icon="false"
           :value="$t(`chart.${dataFeedStatus.key}`)"
         >

@@ -26,17 +26,7 @@
             :class="{ visible: isMenuVisible }"
             @click="closeMenu"
           >
-            <div
-              v-for="option in sidebarOptions"
-              :key="optionFromSelected(option)"
-              class="option"
-              :class="{
-                selected: optionFromSelected(option) === selectedOption,
-              }"
-              @click="updateSelected(option)"
-            >
-              {{ capitalizeFirstLetter(optionFromSelected(option)) }}
-            </div>
+            <NetworkOptions type="navbar" :options="Object.keys(options)" />
           </div>
           <li class="tab last-item" @click="closeMenu">
             <a class="btn-container" :href="requestDataFeedUrl" target="_blank">
@@ -75,7 +65,9 @@ export default {
       return this.$store.state.selectedNetwork
     },
     sidebarOptions() {
-      return Object.values(this.options)
+      return Object.values(this.options).map((option) =>
+        this.optionFromSelected(option)
+      )
     },
     options() {
       if (this.networks) {
@@ -97,15 +89,7 @@ export default {
     },
   },
   methods: {
-    optionFromSelected(options) {
-      return (options[0] ? options[0].network : '').toLowerCase()
-    },
     capitalizeFirstLetter,
-    updateSelected(selectedOption) {
-      this.$store.commit('updateSelectedNetwork', { network: selectedOption })
-      this.$store.commit('updateFromNavBar')
-      this.$router.push({ path: '/' })
-    },
     closeMenu() {
       this.isMenuVisible = false
       this.$emit('scroll', this.isMenuVisible)
@@ -206,19 +190,6 @@ export default {
       }
       &:last-child {
         padding-right: 0;
-      }
-    }
-    .option {
-      padding: 16px 24px;
-      text-align: center;
-      cursor: pointer;
-      color: var(--light-text);
-      font-weight: bold;
-      &.selected {
-        font-weight: bold;
-        color: var(--btn-primary-color);
-        background: var(--tab-background);
-        background: var(--tab-gradient-selected);
       }
     }
   }
