@@ -50,6 +50,7 @@ export enum Network {
   HarmonyTestnet = 'harmony-testnet',
   MetisMainnet = 'metis-mainnet',
   MetisRinkeby = 'metis-rinkeby',
+  MoonbeamMoonbase = 'moonbeam-moonbase',
   PolygonMainnet = 'polygon-mainnet',
   PolygonGoerli = 'polygon-goerli',
   KCCMainnet = 'KCC-mainnet',

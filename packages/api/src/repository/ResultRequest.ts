@@ -13,15 +13,15 @@ export class ResultRequestRepository {
 
   constructor (db: Db, _dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
-    this.collection.createIndex(
-      { feedFullName: 1, timestamp: -1 },
-      {
-        collation: {
-          locale: 'en_US',
-          numericOrdering: true
-        }
-      }
-    )
+    // this.collection.createIndex(
+    //   { feedFullName: 1, timestamp: -1 },
+    //   {
+    //     collation: {
+    //       locale: 'en_US',
+    //       numericOrdering: true
+    //     }
+    //   }
+    // )
   }
 
   async getFeedRequests (

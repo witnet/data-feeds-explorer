@@ -498,6 +498,43 @@
         }
       }
     },
+    "moonbeam": {
+      "networks": {
+        "moonbeam.moonbase": {
+          "address": "0x56834Ff8D4b27db647Da97CA3bd8540f7fA0e89D",
+          "blockExplorer": "https://moonbase.moonscan.io/address/{address}#readContract",
+          "color": "#ff6600",
+          "name": "Moonbase Alpha",
+          "pollingPeriod": 10000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-GLMR/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
+    },
     "polygon": {
       "networks": {
         "polygon.goerli": {
