@@ -7,13 +7,13 @@
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <div class="title bold">
-          <SvgIcon class="logo" :name="selected[0].network.toLowerCase()" />{{
-            selected[0].network
+          <SvgIcon class="logo" :name="selected[0].chain.toLowerCase()" />{{
+            selected[0].chain
           }}
         </div>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
-          <span class="bold text">{{ selected[0].network }}</span>
+          <span class="bold text">{{ selected[0].chain }}</span>
           <span class="bold text">{{ selectedNetworks }}</span
           >.
         </p>
@@ -59,7 +59,6 @@ export default {
     },
     options() {
       if (this.networks) {
-        console.log('all networks', this.networks)
         return generateSelectOptions(this.networks)
       } else {
         return null

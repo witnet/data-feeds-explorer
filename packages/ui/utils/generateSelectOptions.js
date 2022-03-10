@@ -7,7 +7,7 @@ export function generateSelectOptions(list) {
     const networkDetails = {
       label: chain.label,
       key: chain.label.split('-').map(capitalizeFirstLetter).join(' '),
-      network: capitalizeFirstLetter(network),
+      chain: capitalizeFirstLetter(network),
     }
     // Initialize network entry if not exists
     if (!chainByNetwork[network]) {

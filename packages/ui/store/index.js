@@ -3,7 +3,7 @@ export const state = () => ({
     {
       label: 'ethereum-mainnet',
       key: 'Ethereum Mainnet',
-      network: 'Ethereum',
+      chain: 'Ethereum',
     },
   ],
 })

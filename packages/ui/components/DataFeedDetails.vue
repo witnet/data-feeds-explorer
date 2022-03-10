@@ -15,6 +15,7 @@
     <DataFeedDescription
       :feed-name="normalizedFeed.name"
       :network="normalizedFeed.network"
+      :chain="normalizedFeed.chain"
       :last-result-value="lastResultValue"
       :last-result-date="lastResultDate"
       :feed-time-to-update="feedTimeToUpdate"
@@ -30,6 +31,7 @@
     <Fieldset :title="$t('data_feed_details.contract_address')">
       <IntegrationDetails
         :network="normalizedFeed.network"
+        :chain="normalizedFeed.chain"
         :proxy-address="normalizedFeed.proxyAddress"
         :feed-address="normalizedFeed.address"
         :contract-id="normalizedFeed.contractId"
@@ -117,6 +119,7 @@ export default {
           deviation: this.feed.deviation,
           heartbeat: Number(this.feed.heartbeat),
           decimals: this.feed.feedFullName.split('_').pop() || 3,
+          chain: this.feed.chain.split('.').map(capitalizeFirstLetter)[0],
           network: this.feed.network
             .split('-')
             .map(capitalizeFirstLetter)

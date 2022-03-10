@@ -12,6 +12,7 @@
       :last-result-timestamp="feed.lastResultTimestamp"
       :label="feed.label"
       :network="feed.network"
+      :chain="feed.chain"
       :color="feed.color"
     />
   </div>
@@ -78,6 +79,7 @@ export default {
                 alt: feed.name,
               },
               network: feed.network,
+              chain: feed.chain,
               color: feed.color,
               blockExplorer: feed.blockExplorer,
             }
