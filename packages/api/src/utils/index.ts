@@ -29,6 +29,39 @@ export function createFeedFullName (network, name, decimals) {
   return `${network}_${name.split('/').join('-')}_${decimals}`
 }
 
+// normalize config to fit network schema
+export function normalizeNetworkConfig (config: RouterDataFeedsConfig): any {
+  const chains: any = Object.keys(config.chains)
+  // const networks: any = Object.values(
+  //   config.chains
+  // ).map(chain => Object.keys(chain.networks))
+
+  const networks: any = Object.values(config.chains).map(chain =>
+    Object.values(chain.networks).map(value => value.name)
+  )
+
+  console.log(
+    Object.values(config.chains).map(chain =>
+      Object.values(chain.networks).map(value => value.name)
+    )
+  )
+
+  const networkConfig = networks.reduce((networks, network, index) => {
+    network.map(network => {
+      networks.push({
+        label: network
+          .split(' ')
+          .join('-')
+          .toLowerCase(),
+        key: network,
+        chain: chains[index]
+      })
+    })
+    return networks
+  }, [])
+  return networkConfig
+}
+
 // normalize config to fit schema
 
 export function normalizeConfig (
@@ -61,7 +94,6 @@ export function normalizeConfig (
     }, [])
     .flat()
   // Parse Feed adding common config
-  console.log('------', configs)
   const feeds: FeedInfosWithoutAbis = configs.reduce(
     (acc: FeedInfosWithoutAbis, config: ExtendedFeedConfig) => {
       const feedsArrayConfig: Array<FeedParamsConfig> = Object.values(
@@ -79,7 +111,6 @@ export function normalizeConfig (
       )
 
       feedsArray.forEach(feed => {
-        console.log('feed-----', feed)
         const chain = parseChainName(config.chain)
         const network = parseNetworkName(config.name)
         const name = parseDataName(feed.key)

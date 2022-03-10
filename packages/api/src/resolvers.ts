@@ -1,14 +1,13 @@
-import { Context, Network } from './types'
+import { Context } from './types'
 const resolvers = {
   Query: {
     feeds: async (_parent, args, { feedRepository }: Context) => {
       return await feedRepository.getFeedsByNetwork(args.network)
     },
 
-    networks: async (_parent, _args) => {
-      return Object.keys(Network).map(key => ({
-        label: Network[key]
-      }))
+    networks: async (_parent, _args, { config }) => {
+      console.log('--new networks config in RESOLVERS--', config.networksConfig)
+      return config.networksConfig
     },
 
     requests: async (_parent, args, { resultRequestRepository }: Context) => {
@@ -37,24 +36,24 @@ const resolvers = {
       return (await loaders.lastResult.load(parent.feedFullName))?.timestamp
     },
     color: async (parent, _args, { config }: Context) => {
-      return config[parent.feedFullName]?.color || ''
+      return config.feedsConfig[parent.feedFullName]?.color || ''
     },
     blockExplorer: async (parent, _args, { config }: Context) => {
-      return config[parent.feedFullName]?.blockExplorer || ''
+      return config.feedsConfig[parent.feedFullName]?.blockExplorer || ''
     },
     proxyAddress: async (parent, _args, { config }: Context) => {
-      return config[parent.feedFullName]?.routerAddress || ''
+      return config.feedsConfig[parent.feedFullName]?.routerAddress || ''
     },
     deviation: async (parent, _args, { config }: Context) => {
-      return config[parent.feedFullName]?.deviation || ''
+      return config.feedsConfig[parent.feedFullName]?.deviation || ''
     },
     heartbeat: async (parent, _args, { config }: Context) => {
       // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
-      return config[parent.feedFullName]?.heartbeat || ''
+      return config.feedsConfig[parent.feedFullName]?.heartbeat || ''
     },
     finality: async (parent, _args, { config }: Context) => {
       // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
-      return config[parent.feedFullName]?.finality || ''
+      return config.feedsConfig[parent.feedFullName]?.finality || ''
     }
   }
 }

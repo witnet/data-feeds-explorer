@@ -29,6 +29,12 @@ const typeDefs = gql`
     total: Int!
   }
 
+  type NetworksConfig @entity {
+    chain: String
+    label: String
+    key: String
+  }
+
   type ResultRequest @entity {
     id: String! @id
     drTxHash: String! @column
@@ -37,11 +43,6 @@ const typeDefs = gql`
     requestId: String! @column
     result: String! @column
     timestamp: String! @column
-  }
-
-  type Network @entity {
-    id: String! @id
-    label: String
   }
 
   # type DataRequest @entity(embedded: true) {
@@ -54,7 +55,7 @@ const typeDefs = gql`
     feed(feedFullName: String!): Feed
     feeds(network: String): FeedsPage!
     requests(feedFullName: String!, page: Int!, size: Int!): [ResultRequest]!
-    networks: [Network]!
+    networks: [NetworksConfig]!
   }
 `
 

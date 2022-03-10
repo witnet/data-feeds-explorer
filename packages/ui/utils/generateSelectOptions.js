@@ -1,19 +1,12 @@
-import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
-
 export function generateSelectOptions(list) {
   if (!list) return {}
-  return list.reduce((chainByNetwork, chain) => {
-    const network = chain.label.split('-')[0]
-    const networkDetails = {
-      label: chain.label,
-      key: chain.label.split('-').map(capitalizeFirstLetter).join(' '),
-      chain: capitalizeFirstLetter(network),
-    }
+  return list.reduce((chainByNetwork, network) => {
+    const chain = network.chain
     // Initialize network entry if not exists
-    if (!chainByNetwork[network]) {
-      chainByNetwork[network] = []
+    if (!chainByNetwork[chain]) {
+      chainByNetwork[chain] = []
     }
-    chainByNetwork[network].push(networkDetails)
+    chainByNetwork[chain].push(network)
     return chainByNetwork
   }, {})
 }

@@ -15,7 +15,10 @@ export type WithoutId<T> = Omit<T, '_id' | 'id'>
 export type Context = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
-  config: ConfigByFullName
+  config: {
+    feedsConfig: ConfigByFullName
+    networksConfig: any
+  }
   loaders: {
     lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
     requests: DataLoader<

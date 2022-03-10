@@ -7,13 +7,14 @@ import { Loaders } from './loaders'
 
 export async function createServer (
   repositories: Repositories,
-  config: Array<FeedInfo>
+  dataFeedsConfig: Array<FeedInfo>,
+  networksConfig: any
 ): Promise<ApolloServer> {
   return new ApolloServer({
     typeDefs: [DIRECTIVES, typeDefs],
     resolvers,
     context: () => {
-      const configByFullName: ConfigByFullName = config.reduce(
+      const configByFullName: ConfigByFullName = dataFeedsConfig.reduce(
         (acc, feedInfo) => ({
           ...acc,
           [`${feedInfo.feedFullName}`]: feedInfo
@@ -22,10 +23,12 @@ export async function createServer (
       )
 
       const loaders = new Loaders(repositories)
-
       return {
         ...repositories,
-        config: configByFullName,
+        config: {
+          feedsConfig: configByFullName,
+          networksConfig: networksConfig
+        },
         loaders: loaders.getLoaders()
       }
     }

@@ -8,12 +8,11 @@
       <div class="title-container">
         <div class="title bold">
           <SvgIcon class="logo" :name="selected[0].chain.toLowerCase()" />{{
-            selected[0].chain
+            capitalizeFirstLetter(selected[0].chain)
           }}
         </div>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
-          <span class="bold text">{{ selected[0].chain }}</span>
           <span class="bold text">{{ selectedNetworks }}</span
           >.
         </p>
@@ -66,7 +65,7 @@ export default {
     },
     selectedNetworks() {
       const result = this.selected.map((option) => {
-        return capitalizeFirstLetter(option.label.split('-')[1])
+        return option.key
       })
       return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
     },
@@ -80,6 +79,7 @@ export default {
     })
   },
   methods: {
+    capitalizeFirstLetter,
     updateOptions(index) {
       this.$store.commit('deleteEmptyNetwork', { index })
     },

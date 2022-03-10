@@ -14,13 +14,14 @@ import {
   RouterDataFeedsConfig
 } from './types'
 import { Web3Middleware } from './web3Middleware/index'
-import { normalizeConfig } from './utils/index'
+import { normalizeConfig, normalizeNetworkConfig } from './utils/index'
 import dataFeedsRouterConfig from './dataFeedsRouter.json'
 
 async function main () {
   const mongoManager = new MongoManager()
   const db = await mongoManager.start()
   const dataFeeds = readDataFeeds()
+  const networksConfig = readNetworks()
 
   const repositories: Repositories = {
     feedRepository: new FeedRepository(dataFeeds),
@@ -33,13 +34,21 @@ async function main () {
   )
   web3Middleware.listen()
 
-  const server = await createServer(repositories, dataFeeds)
+  const server = await createServer(repositories, dataFeeds, networksConfig)
 
   server
     .listen({ host: '0.0.0.0', port: process.env.SERVER_PORT })
     .then(({ url }) => {
       console.log(`🚀  Server ready at ${url}`)
     })
+}
+
+export function readNetworks (): any {
+  const dataFeeds: Array<Omit<
+    FeedInfoConfig,
+    'abi' | 'routerAbi'
+  >> = normalizeNetworkConfig(dataFeedsRouterConfig as RouterDataFeedsConfig)
+  return dataFeeds
 }
 
 export function readDataFeeds (): Array<FeedInfo> {
