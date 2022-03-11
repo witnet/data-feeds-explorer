@@ -5,7 +5,8 @@ import {
   FeedParamsConfig,
   FeedParsedParams,
   NetworkConfigMap,
-  RouterDataFeedsConfig
+  RouterDataFeedsConfig,
+  NetworksConfig
 } from '../types'
 // parse network name to fit schema
 export function parseNetworkName (value) {
@@ -30,18 +31,21 @@ export function createFeedFullName (network, name, decimals) {
 }
 
 // normalize config to fit network schema
-export function normalizeNetworkConfig (config: RouterDataFeedsConfig): any {
-  const chains: any = Object.keys(config.chains)
+
+export function normalizeNetworkConfig (
+  config: RouterDataFeedsConfig
+): Array<NetworksConfig> {
+  // get list of chains
+
+  const chains: Array<string> = Object.keys(config.chains)
+
+  // get list of networks
 
   const networks: any = Object.values(config.chains).map(chain =>
     Object.values(chain.networks).map(value => value.name)
   )
 
-  console.log(
-    Object.values(config.chains).map(chain =>
-      Object.values(chain.networks).map(value => value.name)
-    )
-  )
+  // add chain to each of the networks
 
   const networkConfig = networks.reduce((networks, network, index) => {
     network.map(network => {

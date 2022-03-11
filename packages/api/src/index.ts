@@ -11,7 +11,8 @@ import {
   FeedInfo,
   FeedInfoConfig,
   Repositories,
-  RouterDataFeedsConfig
+  RouterDataFeedsConfig,
+  NetworksConfig
 } from './types'
 import { Web3Middleware } from './web3Middleware/index'
 import { normalizeConfig, normalizeNetworkConfig } from './utils/index'
@@ -47,12 +48,8 @@ async function main () {
     })
 }
 
-export function readNetworks (): any {
-  const dataFeeds: Array<Omit<
-    FeedInfoConfig,
-    'abi' | 'routerAbi'
-  >> = normalizeNetworkConfig(dataFeedsRouterConfig as RouterDataFeedsConfig)
-  return dataFeeds
+export function readNetworks (): Array<NetworksConfig> {
+  return normalizeNetworkConfig(dataFeedsRouterConfig as RouterDataFeedsConfig)
 }
 
 export function readDataFeeds (): Array<FeedInfo> {

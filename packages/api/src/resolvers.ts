@@ -5,8 +5,7 @@ const resolvers = {
       return await feedRepository.getFeedsByNetwork(args.network)
     },
 
-    networks: async (_parent, _args, { config }) => {
-      console.log('--new networks config in RESOLVERS--', config.networksConfig)
+    networks: (_parent, _args, { config }): Context => {
       return config.networksConfig
     },
 

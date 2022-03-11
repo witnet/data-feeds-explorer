@@ -17,7 +17,7 @@ export type Context = {
   resultRequestRepository: ResultRequestRepository
   config: {
     feedsConfig: ConfigByFullName
-    networksConfig: any
+    networksConfig: NetworksConfig
   }
   loaders: {
     lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
@@ -91,6 +91,13 @@ export type FeedInfoGeneric<ABI> = {
   heartbeat: string
   finality: string
 }
+
+export type NetworksConfig = {
+  chain: String
+  label: String
+  key: String
+}
+
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
 
 export type FeedInfoConfig = FeedInfoGeneric<string>

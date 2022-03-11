@@ -2,14 +2,19 @@ import { ApolloServer } from 'apollo-server'
 import typeDefs from './typeDefs'
 import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb'
 import resolvers from './resolvers'
-import { ConfigByFullName, FeedInfo, Repositories } from './types'
 import { Loaders } from './loaders'
+import {
+  ConfigByFullName,
+  FeedInfo,
+  Repositories,
+  NetworksConfig
+} from './types'
 
 export async function createServer (
   repositories: Repositories,
   config: {
     dataFeedsConfig: Array<FeedInfo>
-    networksConfig: any
+    networksConfig: Array<NetworksConfig>
   }
 ): Promise<ApolloServer> {
   return new ApolloServer({
