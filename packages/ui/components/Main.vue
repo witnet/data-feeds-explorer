@@ -19,10 +19,10 @@
       </div>
       <div
         v-for="(option, index) in selected"
-        :key="option.label"
+        :key="option.key"
         class="list-container"
       >
-        <div class="title light-text bold">{{ option.key }}</div>
+        <div class="title light-text bold">{{ option.label }}</div>
         <DataFeeds
           :network="option"
           :network-index="index"
@@ -58,7 +58,6 @@ export default {
     },
     options() {
       if (this.networks) {
-        console.log(this.networks)
         return generateSelectOptions(this.networks)
       } else {
         return null
@@ -66,7 +65,7 @@ export default {
     },
     selectedNetworks() {
       const result = this.selected.map((option) => {
-        return option.key
+        return option.label
       })
       return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
     },

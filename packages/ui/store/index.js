@@ -1,8 +1,8 @@
 export const state = () => ({
   selectedNetwork: [
     {
-      label: 'ethereum-mainnet',
-      key: 'Ethereum Mainnet',
+      label: 'Ethereum Mainnet',
+      key: 'ethereum-mainnet',
       chain: 'Ethereum',
     },
   ],

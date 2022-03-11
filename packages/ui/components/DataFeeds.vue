@@ -29,7 +29,7 @@ export default {
       query: feeds,
       variables() {
         return {
-          network: this.network.label.toLowerCase(),
+          network: this.network.key.toLowerCase(),
         }
       },
       pollInterval: 60000,

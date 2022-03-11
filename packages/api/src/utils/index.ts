@@ -12,7 +12,7 @@ import {
 export function parseNetworkName (value) {
   return value
     .toLowerCase()
-    .split(' ')
+    .split('.')
     .join('-')
 }
 export function parseChainName (value) {
@@ -40,9 +40,16 @@ export function normalizeNetworkConfig (
   const chains: Array<string> = Object.keys(config.chains)
 
   // get list of networks
-
   const networks: any = Object.values(config.chains).map(chain =>
-    Object.values(chain.networks).map(value => value.name)
+    Object.values(chain.networks).map((value, index) => {
+      return {
+        key: Object.keys(chain.networks)
+          [index].split('.')
+          .join('-')
+          .toLowerCase(),
+        label: value.name
+      }
+    })
   )
 
   // add chain to each of the networks
@@ -50,11 +57,7 @@ export function normalizeNetworkConfig (
   const networkConfig = networks.reduce((networks, network, index) => {
     network.map(network => {
       networks.push({
-        label: network
-          .split(' ')
-          .join('-')
-          .toLowerCase(),
-        key: network,
+        ...network,
         chain: chains[index]
       })
     })
@@ -113,7 +116,7 @@ export function normalizeConfig (
 
       feedsArray.forEach(feed => {
         const chain = parseChainName(config.chain)
-        const network = parseNetworkName(config.name)
+        const network = parseNetworkName(config.chain)
         const name = parseDataName(feed.key)
         const decimals = parseDataDecimals(feed.key)
 

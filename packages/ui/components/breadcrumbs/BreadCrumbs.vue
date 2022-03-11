@@ -2,7 +2,7 @@
   <div class="breadcrumbs container">
     <nuxt-link
       v-for="option in breadCumbsOptions"
-      :key="option.label"
+      :key="option.key"
       :class="{ selected: option.selected }"
       :to="localeRoute(option.path)"
       class="breadcrumbs-link"

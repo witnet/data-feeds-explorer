@@ -16,7 +16,7 @@ export function getProvider (network: Network) {
     [Network.HarmonyTestnet]: process.env.HARMONY_TESTNET_PROVIDER,
     [Network.KCCTestnet]: process.env.KCC_TESTNET_PROVIDER,
     [Network.KCCMainnet]: process.env.KCC_MAINNET_PROVIDER,
-    [Network.MoonbaseAlpha]: process.env.MOONBASE_ALPHA_PROVIDER,
+    [Network.MoonbeamMoonbase]: process.env.MOONBASE_ALPHA_PROVIDER,
     [Network.PolygonMainnet]: process.env.POLYGON_MAINNET_PROVIDER,
     [Network.PolygonGoerli]: process.env.POLYGON_GOERLI_PROVIDER,
     [Network.AvalancheFuji]: process.env.AVALANCHE_FUJI_PROVIDER

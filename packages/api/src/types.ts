@@ -38,18 +38,6 @@ export type Context = {
 export type ConfigByFullName = {
   [key: string]: FeedInfo
 }
-export enum Chain {
-  Ethereum = 'ethereum',
-  Avalanche = 'avalanche',
-  Boba = 'boba',
-  Conflux = 'conflux',
-  Celo = 'celo',
-  Harmony = 'harmony',
-  Metis = 'metis',
-  Moonbeam = 'moonbeam',
-  Polygon = 'polygon',
-  KCC = 'KCC'
-}
 
 export enum Network {
   EthereumMainnet = 'ethereum-mainnet',
@@ -65,7 +53,7 @@ export enum Network {
   HarmonyTestnet = 'harmony-testnet',
   MetisMainnet = 'metis-mainnet',
   MetisRinkeby = 'metis-rinkeby',
-  MoonbaseAlpha = 'moonbase-alpha',
+  MoonbeamMoonbase = 'moonbeam-moonbase',
   PolygonMainnet = 'polygon-mainnet',
   PolygonGoerli = 'polygon-goerli',
   KCCMainnet = 'KCC-mainnet',
