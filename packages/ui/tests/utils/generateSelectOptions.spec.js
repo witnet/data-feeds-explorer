@@ -3,33 +3,33 @@ import { generateSelectOptions } from '../../utils/generateSelectOptions'
 describe('generateSelectOptions.js', () => {
   it('should generate a list of options from a list of feeds', () => {
     const networks = [
-      { label: 'ethereum-rinkeby' },
-      { label: 'ethereum-goerli' },
-      { label: 'conflux-testnet' },
-      { label: 'boba-rinkeby' },
+      { label: 'ethereum-rinkeby', key: 'Ethereum Rinkeby', chain: 'Ethereum' },
+      { label: 'ethereum-goerli', key: 'Ethereum Goerly', chain: 'Ethereum' },
+      { label: 'conflux-testnet', key: 'Conflux Testnet', chain: 'Conflux' },
+      { label: 'boba-rinkeby', key: 'Boba Rinkeby', chain: 'Boba' },
     ]
 
     const options = generateSelectOptions(networks)
 
     expect(options).toStrictEqual({
-      boba: [{ key: 'Boba Rinkeby', label: 'boba-rinkeby', network: 'Boba' }],
-      conflux: [
+      Boba: [{ key: 'Boba Rinkeby', label: 'boba-rinkeby', chain: 'Boba' }],
+      Conflux: [
         {
           key: 'Conflux Testnet',
           label: 'conflux-testnet',
-          network: 'Conflux',
+          chain: 'Conflux',
         },
       ],
-      ethereum: [
+      Ethereum: [
         {
-          key: 'Ethereum Rinkeby',
           label: 'ethereum-rinkeby',
-          network: 'Ethereum',
+          key: 'Ethereum Rinkeby',
+          chain: 'Ethereum',
         },
         {
-          key: 'Ethereum Goerli',
           label: 'ethereum-goerli',
-          network: 'Ethereum',
+          key: 'Ethereum Goerly',
+          chain: 'Ethereum',
         },
       ],
     })

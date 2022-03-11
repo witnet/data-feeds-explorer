@@ -32,9 +32,6 @@ export function createFeedFullName (network, name, decimals) {
 // normalize config to fit network schema
 export function normalizeNetworkConfig (config: RouterDataFeedsConfig): any {
   const chains: any = Object.keys(config.chains)
-  // const networks: any = Object.values(
-  //   config.chains
-  // ).map(chain => Object.keys(chain.networks))
 
   const networks: any = Object.values(config.chains).map(chain =>
     Object.values(chain.networks).map(value => value.name)

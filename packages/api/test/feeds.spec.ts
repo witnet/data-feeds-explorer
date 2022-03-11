@@ -6,9 +6,10 @@ import { CHART_RANGE } from './constants'
 import { MongoManager } from './../src/database'
 import { FeedRepository } from '../src/repository/Feed'
 import { ResultRequestRepository } from '../src/repository/ResultRequest'
-import { readDataFeeds } from '../src/index'
+import { readDataFeeds, readNetworks } from '../src/index'
 
 const dataFeeds = readDataFeeds()
+const networksconfig = readNetworks()
 
 const state: {
   mongoManager: MongoManager
@@ -29,9 +30,12 @@ describe.skip('feeds', function () {
     const server = await createServer(
       {
         feedRepository: new FeedRepository(dataFeeds),
-        resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
+        resultRequestRepository: new ResultRequestRepository(db, dataFeeds),
       },
-      dataFeeds
+      {
+        dataFeedsConfig: dataFeeds,
+        networksConfig: networksconfig
+      }
     )
     await new Promise(resolve => {
       server.listen(info => {

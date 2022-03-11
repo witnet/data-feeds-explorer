@@ -27,6 +27,10 @@ async function main () {
     feedRepository: new FeedRepository(dataFeeds),
     resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
   }
+  const config = {
+    dataFeedsConfig: dataFeeds,
+    networksConfig: networksConfig
+  }
 
   const web3Middleware = new Web3Middleware(
     { repositories, Web3: Web3 },
@@ -34,7 +38,7 @@ async function main () {
   )
   web3Middleware.listen()
 
-  const server = await createServer(repositories, dataFeeds, networksConfig)
+  const server = await createServer(repositories, config)
 
   server
     .listen({ host: '0.0.0.0', port: process.env.SERVER_PORT })
