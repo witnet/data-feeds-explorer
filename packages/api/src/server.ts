@@ -8,7 +8,7 @@ import { Loaders } from './loaders'
 export async function createServer (
   repositories: Repositories,
   config: {
-    dataFeedsConfig: Array<FeedInfo>,
+    dataFeedsConfig: Array<FeedInfo>
     networksConfig: any
   }
 ): Promise<ApolloServer> {

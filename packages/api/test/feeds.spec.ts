@@ -30,7 +30,7 @@ describe.skip('feeds', function () {
     const server = await createServer(
       {
         feedRepository: new FeedRepository(dataFeeds),
-        resultRequestRepository: new ResultRequestRepository(db, dataFeeds),
+        resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
       },
       {
         dataFeedsConfig: dataFeeds,
