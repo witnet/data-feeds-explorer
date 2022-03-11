@@ -44,10 +44,6 @@ export default {
       type: String,
       required: true,
     },
-    chain: {
-      type: String,
-      required: true,
-    },
     network: {
       type: String,
       required: true,

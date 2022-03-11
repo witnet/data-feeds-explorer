@@ -19,15 +19,17 @@ import { formatBreadcrumbsPath } from './formatBreadcrumbsPath'
 
 export default {
   computed: {
+    selected() {
+      return this.$store.state.selectedNetwork
+    },
     breadCumbsOptions() {
       return [
         {
-          label:
-            formatBreadcrumbsPath(this.$route.params.network) || 'Ethereum',
+          label: this.$store.state.selectedNetwork[0]?.chain || 'Ethereum',
           path: {
             name: 'network',
             params: {
-              network: this.$route.params.network || 'ethereum',
+              network: this.$route.params.network || 'Ethereum',
             },
           },
           selected: false,

@@ -35,30 +35,34 @@ export function createFeedFullName (network, name, decimals) {
 export function normalizeNetworkConfig (
   config: RouterDataFeedsConfig
 ): Array<NetworksConfig> {
-  // get list of chains
-
-  const chains: Array<string> = Object.keys(config.chains)
-
   // get list of networks
-  const networks: any = Object.values(config.chains).map(chain =>
-    Object.values(chain.networks).map((value, index) => {
+  const networks: any = Object.values(config.chains).map(chain => {
+    const networks = Object.values(chain.networks).map((value, index) => {
       return {
         key: Object.keys(chain.networks)
           [index].split('.')
           .join('-')
           .toLowerCase(),
-        label: value.name
+        label: value.name,
+        chain: chain.name
       }
     })
-  )
+    const testnetNetworks = networks.filter(
+      network => !network.label.includes('Mainnet')
+    )
+    const mainnetNetworks = networks.filter(network =>
+      network.label.includes('Mainnet')
+    )
+
+    return [...mainnetNetworks, ...testnetNetworks]
+  })
 
   // add chain to each of the networks
 
-  const networkConfig = networks.reduce((networks, network, index) => {
+  const networkConfig = networks.reduce((networks, network) => {
     network.map(network => {
       networks.push({
-        ...network,
-        chain: chains[index]
+        ...network
       })
     })
     return networks

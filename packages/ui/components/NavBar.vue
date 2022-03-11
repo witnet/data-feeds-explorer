@@ -77,7 +77,7 @@ export default {
       }
     },
     selectedOption() {
-      return (this.selected[0] ? this.selected[0].chain : '').toLowerCase()
+      return this.selected[0] ? this.selected[0].chain : ''
     },
   },
   watch: {
@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     optionFromSelected(options) {
-      return (options[0] ? options[0].chain : '').toLowerCase()
+      return options[0] ? options[0].chain : ''
     },
     capitalizeFirstLetter,
     closeMenu() {

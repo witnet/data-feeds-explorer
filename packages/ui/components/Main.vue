@@ -2,13 +2,13 @@
   <div class="main">
     <NetworkOptions
       v-if="networks && networks.length > 1"
-      :options="Object.keys(options)"
+      :options="navBarOptions"
     />
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <div class="title bold">
           <SvgIcon class="logo" :name="selected[0].chain.toLowerCase()" />{{
-            capitalizeFirstLetter(selected[0].chain)
+            selected[0].chain
           }}
         </div>
         <p class="subtitle light-text bold">
@@ -36,6 +36,7 @@
 <script>
 import networks from '@/apollo/queries/networks.gql'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
+import { generateNavOptions } from '../utils/generateNavOptions'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 
 export default {
@@ -62,6 +63,9 @@ export default {
       } else {
         return null
       }
+    },
+    navBarOptions() {
+      return generateNavOptions(Object.values(this.options))
     },
     selectedNetworks() {
       const result = this.selected.map((option) => {

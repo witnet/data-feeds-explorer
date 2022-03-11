@@ -18,6 +18,7 @@ const resolvers = {
     },
 
     feed: async (_parent, args, { feedRepository }: Context) => {
+      console.log('query?????', args.feedFullName)
       return await feedRepository.get(args.feedFullName)
     }
   },

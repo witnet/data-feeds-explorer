@@ -168,7 +168,7 @@ export type NetworkConfigMap = Record<string, FeedConfig>
 
 export type RouterDataFeedsConfig = {
   abi: string
-  chains: Record<string, { networks: Record<string, FeedConfig> }>
+  chains: Record<string, { name: string; networks: Record<string, FeedConfig> }>
 }
 
 export type FeedInfosWithoutAbis = Array<

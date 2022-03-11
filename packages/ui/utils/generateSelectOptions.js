@@ -1,7 +1,7 @@
 export function generateSelectOptions(list) {
   if (!list) return {}
   return list.reduce((chainByNetwork, network) => {
-    const chain = network.chain
+    const chain = network.chain.toLowerCase()
     // Initialize network entry if not exists
     if (!chainByNetwork[chain]) {
       chainByNetwork[chain] = []

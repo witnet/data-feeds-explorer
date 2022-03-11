@@ -12,12 +12,12 @@
           localeRoute({
             name: 'network',
             params: {
-              network: option,
+              network: option.toLowerCase(),
             },
           })
         "
       >
-        {{ capitalizeFirstLetter(option) }}
+        {{ option }}
       </nuxt-link>
     </div>
   </div>
@@ -44,10 +44,7 @@ export default {
       return this.$store.state.selectedNetwork
     },
     selectedOption() {
-      return (
-        this.$route.params.network ||
-        this.$store.state.selectedNetwork[0]?.network.toLowerCase()
-      )
+      return this.$route.params.network || 'ethereum'
     },
   },
   methods: {

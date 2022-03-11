@@ -35,7 +35,7 @@ export default {
       return Object.keys(this.options)
     },
     selectedOption() {
-      return (this.selected[0] ? this.selected[0].chain : '').toLowerCase()
+      return this.selected[0] ? this.selected[0].chain : ''
     },
   },
   watch: {
