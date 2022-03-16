@@ -64,11 +64,6 @@ export default {
     selected() {
       return this.$store.state.selectedNetwork
     },
-    sidebarOptions() {
-      return Object.values(this.options).map((option) =>
-        this.optionFromSelected(option)
-      )
-    },
     options() {
       if (this.networks) {
         return generateSelectOptions(this.networks)
@@ -77,7 +72,7 @@ export default {
       }
     },
     selectedOption() {
-      return this.selected[0] ? this.selected[0].chain : ''
+      return this.selected[0]?.chain || ''
     },
   },
   watch: {
@@ -89,9 +84,6 @@ export default {
     },
   },
   methods: {
-    optionFromSelected(options) {
-      return options[0] ? options[0].chain : ''
-    },
     capitalizeFirstLetter,
     closeMenu() {
       this.isMenuVisible = false

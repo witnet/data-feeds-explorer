@@ -257,7 +257,7 @@
           "address": "0x806c8dFd322EE2d52b188CC472e0814F64304C32",
           "blockExplorer": "https://confluxscan.io/address/{address}",
           "color": "#ff0000",
-          "name": "Conflux Tethys",
+          "name": "Conflux Core (Hydra)",
           "pollingPeriod": 15000,
           "feeds": {
             "Price-CFX/USDT-6": {
@@ -489,7 +489,7 @@
           "address": "0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb",
           "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
           "color": "#66ff00",
-          "name": "Polygon Goerli",
+          "name": "Polygon Mumbai",
           "pollingPeriod": 15000,
           "feeds": {
             "Price-BTC/USD-6": {

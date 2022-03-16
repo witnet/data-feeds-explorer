@@ -563,7 +563,7 @@
           "address": "0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb",
           "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
           "color": "#66ff00",
-          "name": "Polygon Goerli",
+          "name": "Polygon Mumbai",
           "pollingPeriod": 15000,
           "feeds": {
             "Price-BTC/USD-6": {

@@ -28,7 +28,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witnet oracle network',
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
       },
       {
         hid: 'twitter:title',
@@ -39,7 +39,7 @@ export default {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witnet oracle network',
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
       },
       {
         hid: 'twitter:image',
@@ -60,7 +60,7 @@ export default {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, usingthe Witnet oracle network',
+          'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
       },
       {
         hid: 'og:image',

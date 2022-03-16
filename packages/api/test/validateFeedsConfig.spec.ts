@@ -1,16 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import { normalizeConfig } from '../src/utils/index'
+import dataFeedsRouterConfig from '../test/web3Middleware/dataFeedsRouter.json'
 
 describe('validateDataFeedsConfig', () => {
   it('check if the structure is correct', async () => {
-    const dataFeedsRouterConfig = JSON.parse(
-      fs.readFileSync(
-        path.resolve('./test/web3Middleware/dataFeedsRouter.json'),
-        'utf-8'
-      )
-    )
-
     const feeds = normalizeConfig(dataFeedsRouterConfig)
     const expected = [
       {
