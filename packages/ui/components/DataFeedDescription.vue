@@ -8,7 +8,7 @@
       <span class="bold">{{ feedName }}</span>
     </template>
     <template #network>
-      <span class="bold">{{ network }}</span>
+      <span class="bold">{{ networkName }}</span>
     </template>
     <template #value>
       <span class="bold">{{ lastResultValue }}</span>
@@ -44,7 +44,7 @@ export default {
       type: String,
       required: true,
     },
-    network: {
+    networkName: {
       type: String,
       required: true,
     },

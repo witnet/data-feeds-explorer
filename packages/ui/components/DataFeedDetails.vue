@@ -14,7 +14,7 @@
     />
     <DataFeedDescription
       :feed-name="normalizedFeed.name"
-      :network="normalizedFeed.network"
+      :network-name="normalizedFeed.networkName"
       :last-result-value="lastResultValue"
       :last-result-date="lastResultDate"
       :feed-time-to-update="feedTimeToUpdate"
@@ -117,6 +117,7 @@ export default {
           deviation: this.feed.deviation,
           heartbeat: Number(this.feed.heartbeat),
           decimals: this.feed.feedFullName.split('_').pop() || 3,
+          networkName: this.feed.networkName,
           network: this.feed.network
             .split('-')
             .map(capitalizeFirstLetter)

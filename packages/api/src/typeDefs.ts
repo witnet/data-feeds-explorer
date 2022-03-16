@@ -11,6 +11,7 @@ const typeDefs = gql`
     label: String!
     name: String!
     network: String!
+    networkName: String
     lastResult: String
     lastResultTimestamp: String
     deviation: String!

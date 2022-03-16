@@ -131,6 +131,7 @@ export function normalizeConfig (
           contractId: '0x0000000000000000000000000000000000000000',
           routerAddress: config.address,
           network,
+          networkName: config.name,
           chain,
           name,
           label: feed.label,

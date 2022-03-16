@@ -68,6 +68,7 @@ export type FeedInfoGeneric<ABI> = {
   address: string
   routerAddress: string
   network: Network
+  networkName: string
   chain: string
   name: string
   pollingPeriod: number
