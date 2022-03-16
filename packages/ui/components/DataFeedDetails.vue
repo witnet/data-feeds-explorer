@@ -72,7 +72,6 @@ export default {
       prefetch: true,
       query: feed,
       variables() {
-        console.log(this.feedFullName)
         return {
           timestamp: this.timestamp,
           feedFullName: this.feedFullName,

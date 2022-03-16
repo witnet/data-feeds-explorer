@@ -30,20 +30,17 @@ export function createFeedFullName (network, name, decimals) {
   return `${network}_${name.split('/').join('-')}_${decimals}`
 }
 
-// normalize config to fit network schema
-
-export function normalizeNetworkConfig (
-  config: RouterDataFeedsConfig
-): Array<NetworksConfig> {
-  // get list of networks
-  const networks: any = Object.values(config.chains).map(chain => {
-    const networks = Object.values(chain.networks).map((value, index) => {
+// Get networks list by chain
+function getNetworksListByChain (config: RouterDataFeedsConfig) {
+  return Object.values(config.chains).map(chain => {
+    const networkNames = Object.keys(chain.networks)
+    const networks = Object.values(chain.networks).map((network, index) => {
       return {
-        key: Object.keys(chain.networks)
-          [index].split('.')
+        key: networkNames[index]
+          .split('.')
           .join('-')
           .toLowerCase(),
-        label: value.name,
+        label: network.name,
         chain: chain.name
       }
     })
@@ -54,11 +51,20 @@ export function normalizeNetworkConfig (
       network.label.includes('Mainnet')
     )
 
+    // Return all the networks of a chain
     return [...mainnetNetworks, ...testnetNetworks]
   })
+}
 
-  // add chain to each of the networks
+// normalize config to fit network schema
 
+export function normalizeNetworkConfig (
+  config: RouterDataFeedsConfig
+): Array<NetworksConfig> {
+  // Get a list of networks where every element of the array contains another array with networks that belong to a chain.
+  const networks = getNetworksListByChain(config)
+
+  // Put all networks at the same level removing the nested arrays
   const networkConfig = networks.reduce((networks, network) => {
     network.map(network => {
       networks.push({
@@ -88,19 +94,13 @@ export function normalizeConfig (
     []
   )
   // Network Config list deleting key label
-  const configs: Array<FeedConfig> = networksConfigMap
-    .reduce((acc: Array<Array<ExtendedFeedConfig>>, networkConfigMap) => {
-      const config = Object.values(networkConfigMap).map((feed, index) => {
-        const result = {
-          ...feed,
-          chain: Object.keys(networkConfigMap)[index]
-        }
-        return result
-      })
-      const result = [...acc, config]
-      return result
-    }, [])
-    .flat()
+  const configs: Array<FeedConfig> = networksConfigMap.flatMap(
+    networkConfigMap =>
+      Object.values(networkConfigMap).map((feed, index) => ({
+        ...feed,
+        chain: Object.keys(networkConfigMap)[index]
+      }))
+  )
   // Parse Feed adding common config
   const feeds: FeedInfosWithoutAbis = configs.reduce(
     (acc: FeedInfosWithoutAbis, config: ExtendedFeedConfig) => {

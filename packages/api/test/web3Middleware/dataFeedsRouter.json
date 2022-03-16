@@ -2,6 +2,7 @@
   "abi": "./src/abi/WitnetPriceRouter.json",
   "chains": {
     "avalanche": {
+      "name": "Avalanche",
       "networks": {
         "avalanche.fuji": {
           "address": "0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4",
@@ -33,6 +34,7 @@
       }
     },
     "boba": {
+      "name": "Boba",
       "networks": {
         "boba.rinkeby": {
           "address": "0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a",
@@ -151,6 +153,7 @@
       }
     },
     "celo": {
+      "name": "Celo",
       "networks": {
         "celo.alfajores": {
           "address": "0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE",
@@ -221,6 +224,7 @@
       }
     },
     "conflux": {
+      "name": "Conflux",
       "networks": {
         "conflux.testnet": {
           "address": "0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25",
@@ -279,6 +283,7 @@
       }
     },
     "ethereum": {
+      "name": "Ethereum",
       "networks": {
         "ethereum.goerli": {
           "address": "0x1cF3Aa9DBF4880d797945726B94B9d29164211BE",
@@ -346,6 +351,7 @@
       }
     },
     "harmony": {
+      "name": "Harmony",
       "networks": {
         "harmony.testnet": {
           "address": "0x08d479a544b05B297454e5CAc133abA3a584AB8E",
@@ -371,6 +377,7 @@
       }
     },
     "kcc": {
+      "name": "KCC",
       "networks": {
         "kcc.testnet": {
           "address": "0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a",
@@ -429,6 +436,7 @@
       }
     },
     "metis": {
+      "name": "Metis",
       "networks": {
         "metis.rinkeby": {
           "address": "0x5134EAF08bcf8cE1922991150AAad1774e93751f",
@@ -475,6 +483,7 @@
       }
     },
     "polygon": {
+      "name": "Polygon",
       "networks": {
         "polygon.goerli": {
           "address": "0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb",

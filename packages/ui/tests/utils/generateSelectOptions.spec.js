@@ -12,15 +12,15 @@ describe('generateSelectOptions.js', () => {
     const options = generateSelectOptions(networks)
 
     expect(options).toStrictEqual({
-      Boba: [{ key: 'Boba Rinkeby', label: 'boba-rinkeby', chain: 'Boba' }],
-      Conflux: [
+      boba: [{ key: 'Boba Rinkeby', label: 'boba-rinkeby', chain: 'Boba' }],
+      conflux: [
         {
           key: 'Conflux Testnet',
           label: 'conflux-testnet',
           chain: 'Conflux',
         },
       ],
-      Ethereum: [
+      ethereum: [
         {
           label: 'ethereum-rinkeby',
           key: 'Ethereum Rinkeby',

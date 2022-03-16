@@ -1,0 +1,64 @@
+import fs from 'fs'
+import path from 'path'
+import { normalizeNetworkConfig } from '../src/utils/index'
+
+describe('validateDataFeedsConfig', () => {
+  it('check if the structure is correct', async () => {
+    const dataFeedsRouterConfig = JSON.parse(
+      fs.readFileSync(
+        path.resolve('./test/web3Middleware/dataFeedsRouter.json'),
+        'utf-8'
+      )
+    )
+
+    const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig)
+    const expected = [
+      {
+        key: 'avalanche-fuji',
+        label: 'Avalanche Fuji',
+        chain: 'Avalanche'
+      },
+      { key: 'boba-mainnet', label: 'Boba Mainnet', chain: 'Boba' },
+      { key: 'boba-rinkeby', label: 'Boba Rinkeby', chain: 'Boba' },
+      { key: 'celo-mainnet', label: 'Celo Mainnet', chain: 'Celo' },
+      { key: 'celo-alfajores', label: 'Celo Alfajores', chain: 'Celo' },
+      {
+        key: 'conflux-testnet',
+        label: 'Conflux Testnet',
+        chain: 'Conflux'
+      },
+      { key: 'conflux-tethys', label: 'Conflux Tethys', chain: 'Conflux' },
+      {
+        key: 'ethereum-mainnet',
+        label: 'Ethereum Mainnet',
+        chain: 'Ethereum'
+      },
+      {
+        key: 'ethereum-goerli',
+        label: 'Ethereum Goerli',
+        chain: 'Ethereum'
+      },
+      {
+        key: 'ethereum-rinkeby',
+        label: 'Ethereum Rinkeby',
+        chain: 'Ethereum'
+      },
+      {
+        key: 'harmony-testnet',
+        label: 'Harmony Testnet',
+        chain: 'Harmony'
+      },
+      { key: 'kcc-mainnet', label: 'KCC Mainnet', chain: 'KCC' },
+      { key: 'kcc-testnet', label: 'KCC Testnet', chain: 'KCC' },
+      { key: 'metis-mainnet', label: 'Metis Mainnet', chain: 'Metis' },
+      { key: 'metis-rinkeby', label: 'Metis Rinkeby', chain: 'Metis' },
+      {
+        key: 'polygon-mainnet',
+        label: 'Polygon Mainnet',
+        chain: 'Polygon'
+      },
+      { key: 'polygon-goerli', label: 'Polygon Goerli', chain: 'Polygon' }
+    ]
+    expect(networksConfig).toStrictEqual(expected)
+  })
+})
