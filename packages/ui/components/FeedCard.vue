@@ -74,7 +74,23 @@ export default {
   },
   computed: {
     formatedValue() {
-      return formatNumber(parseFloat(this.value) / 10 ** this.decimals)
+      return formatNumber(this.formatedLastResult)
+    },
+    formatedLastResult() {
+      return this.lastResult.toFixed(this.adjustedDecimals)
+    },
+    lastResult() {
+      return parseFloat(this.value) / 10 ** this.decimals
+    },
+    hasMeaningfullZeros() {
+      return `${this.lastResult.toFixed(3)}`.split('.')[1] === '000'
+    },
+    adjustedDecimals() {
+      return this.lastResult < 1 ||
+        this.decimals < 3 ||
+        this.hasMeaningfullZeros
+        ? this.decimals
+        : 3
     },
     dataFeedStatus() {
       return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
@@ -109,7 +125,6 @@ a {
   align-content: center;
   justify-items: flex-start;
   border-radius: 4px;
-  column-gap: 8px;
   padding: 8px 16px;
   cursor: pointer;
 
@@ -127,11 +142,11 @@ a {
     justify-content: center;
     align-items: center;
     display: flex;
+    grid-column-gap: 8px;
     .img {
       display: flex;
       justify-content: center;
       align-self: center;
-      margin-right: 8px;
     }
   }
   .timestamp {
@@ -144,7 +159,6 @@ a {
   .name {
     color: var(--name-color);
     font-size: 18px;
-    margin-right: 8px;
     display: flex;
     align-items: center;
   }
