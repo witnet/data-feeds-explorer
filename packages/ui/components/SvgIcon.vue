@@ -21,6 +21,10 @@ export default {
   fill: var(--text);
 }
 
+.witnet-green {
+  fill: var(--witnet-green);
+}
+
 .reverse-fill {
   fill: var(--bg);
 }

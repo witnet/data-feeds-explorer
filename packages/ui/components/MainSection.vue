@@ -12,12 +12,20 @@
 </template>
 
 <style lang="scss" scoped>
+.main-section-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: grid;
+  grid-template-rows: 1fr max-content;
+  grid-template-columns: 1fr;
+}
 .main-section {
   color: var(--text);
   display: grid;
-  min-height: 80vh;
+  min-height: max-content;
   grid-template-rows: max-content max-content 1fr max-content;
   grid-template-columns: 1fr;
+  width: 100%;
   max-width: 1124px;
   row-gap: 24px;
   margin: 0 auto;

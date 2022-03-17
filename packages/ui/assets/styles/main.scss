@@ -85,7 +85,7 @@
   --switcher-item-color: white;
 
   //footer
-  --footer-bg: #4AB6A1;
+  --footer-bg: #112338;
 
   //breadcrumbs
   --selected-option: #41BEA5;
@@ -187,6 +187,7 @@
 
   //footer
   --footer-bg: #4ab6a02c;
+  --footer-border: 8px solid #00D4AA16;
 
   //sidebar
   --tab-gradient: linear-gradient(90deg, #2d2c39d3 95%, #4ab6a02c);
@@ -234,7 +235,7 @@
 
   // FeedCard
 
-  --card-border: 1px solid #4ab6a0;
+  --card-border: 1px solid #41bea5;
   --delay-status-border: 1px solid #DFC44B;
   --error-status-border: 1px solid #df4b4b;
   --card-background: transparent;
@@ -248,7 +249,7 @@
   --fieldset-background: #2d2c3908;
 
   //Logo
-  --logo-dot: #41BEA5;
+  --logo-dot: #41bea5;
   --logo-main: #1F1F24;
 
   //NavBar
@@ -258,7 +259,7 @@
 
   // links
 
-  --text-hover: #41BEA5;
+  --text-hover: #41bea5;
   --text-medium-emphasis: #2d2c398a;
 
   // links
@@ -272,28 +273,29 @@
 
   //Transaction
 
-  --witnet-transaction: #41BEA5;
+  --witnet-transaction: #41bea5;
 
   //ContractAddress
 
-  --contract-address: #41BEA5;
+  --contract-address: #41bea5;
 
   //switcher
 
-  --switcher-item-background: #41BEA5;
+  --switcher-item-background: #41bea5;
   --switcher-item-color: #2D2C39;
 
   //Button
 
   --btn-primary-color: #FDFDFD;
-  --btn-primary-background-color: #4AB6A1;
-  --btn-primary-border-color: #4AB6A1;
-  --btn-secondary-color: #4AB6A1;
-  --btn-secondary-background-color: #4AB6A1;
+  --btn-primary-background-color: #41bea5;
+  --btn-primary-border-color: #41bea5;
+  --btn-secondary-color: #41bea5;
+  --btn-secondary-background-color: #41bea5;
   --btn-secondary-border-color: hsl(168, 43%, 50%);
 
   //footer
-  --footer-bg: #4AB6A1;
+  --footer-bg: #112338;
+  --footer-border: 8px solid #41bea5;
 
   //sidebar
   --tab-gradient: linear-gradient(90deg, #fdfdfd 95%, #cbf5ed);
@@ -301,7 +303,7 @@
   --tab-gradient-selected: linear-gradient(90deg, #fdfdfd 0%, rgba(74, 182, 160, 0.80) 20%, rgba(74, 182, 160, 0.90) 24%, rgba(74, 182, 160, 0.97) 30%, rgba(74,182,161,1) 35%);
 
   //breadcrumbs
-  --selected-option: #41BEA5;
+  --selected-option: #41bea5;
 }
 
 h1 {
