@@ -26,7 +26,7 @@
             :class="{ visible: isMenuVisible }"
             @click="closeMenu"
           >
-            <NetworkOptions type="navbar" :options="Object.keys(options)" />
+            <NetworkOptions type="navbar" :options="navBarOptions" />
           </div>
           <li class="tab last-item" @click="closeMenu">
             <a class="btn-container" :href="requestDataFeedUrl" target="_blank">
@@ -43,6 +43,7 @@
 import networks from '@/apollo/queries/networks.gql'
 import { requestDataFeedUrl } from '../constants'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
+import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 
 export default {
@@ -61,6 +62,9 @@ export default {
     }
   },
   computed: {
+    navBarOptions() {
+      return generateNavOptions(Object.values(this.options))
+    },
     selected() {
       return this.$store.state.selectedNetwork
     },
@@ -72,7 +76,7 @@ export default {
       }
     },
     selectedOption() {
-      return this.selected[0]?.chain || ''
+      return this.selected[0]?.chain || 'Ethereum'
     },
   },
   watch: {

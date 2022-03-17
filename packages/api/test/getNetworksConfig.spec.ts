@@ -19,7 +19,11 @@ describe('validateDataFeedsConfig', () => {
         label: 'Conflux Testnet',
         chain: 'Conflux'
       },
-      { key: 'conflux-tethys', label: 'Conflux Tethys', chain: 'Conflux' },
+      {
+        key: 'conflux-tethys',
+        label: 'Conflux Core (Hydra)',
+        chain: 'Conflux'
+      },
       {
         key: 'ethereum-mainnet',
         label: 'Ethereum Mainnet',
@@ -49,7 +53,7 @@ describe('validateDataFeedsConfig', () => {
         label: 'Polygon Mainnet',
         chain: 'Polygon'
       },
-      { key: 'polygon-goerli', label: 'Polygon Goerli', chain: 'Polygon' }
+      { key: 'polygon-goerli', label: 'Polygon Mumbai', chain: 'Polygon' }
     ]
     expect(networksConfig).toStrictEqual(expected)
   })

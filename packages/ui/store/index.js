@@ -1,11 +1,5 @@
 export const state = () => ({
-  selectedNetwork: [
-    {
-      label: 'Ethereum Mainnet',
-      key: 'ethereum-mainnet',
-      chain: 'Ethereum',
-    },
-  ],
+  selectedNetwork: [],
 })
 
 export const mutations = {
