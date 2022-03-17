@@ -1,6 +1,5 @@
 export function formatNumber(num) {
-  let parsedNum = parseFloat(num)
-  parsedNum += ''
+  const parsedNum = parseFloat(num).toString()
   const splitedNumber = parsedNum.split('.')
   parseFloat(`0.${splitedNumber[1]}`)
   const decimals = splitedNumber.length > 1 ? '.' + splitedNumber[1] : ''

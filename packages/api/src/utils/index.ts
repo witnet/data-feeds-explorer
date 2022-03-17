@@ -114,7 +114,6 @@ export function normalizeConfig (
           ({
             ...feed,
             key: Object.keys(config.feeds)[index]
-            // chain: Object.keys(config.chainsNames)[index]
           } as FeedParsedParams)
       )
 

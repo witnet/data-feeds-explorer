@@ -4,7 +4,11 @@
       <NavBar slot="navbar" @scroll="handleScroll" />
       <div slot="cover" class="cover" :class="{ show: hideScroll }"></div>
       <BreadCrumbs slot="breadcrumbs" />
-      <Nuxt slot="content" />
+      <div slot="content">
+        <transition name="fade">
+          <nuxt />
+        </transition>
+      </div>
       <Footer slot="footer" />
     </MainSection>
   </div>
@@ -28,6 +32,17 @@ export default {
 }
 </script>
 <style lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+  opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-leave-to {
+  opacity: 0;
+}
 html {
   font-family: Almarai, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;

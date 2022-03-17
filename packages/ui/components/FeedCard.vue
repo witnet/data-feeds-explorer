@@ -74,23 +74,15 @@ export default {
   },
   computed: {
     formatedValue() {
-      return formatNumber(this.formatedLastResult)
-    },
-    formatedLastResult() {
-      return this.lastResult.toFixed(this.adjustedDecimals)
-    },
-    lastResult() {
-      return parseFloat(this.value) / 10 ** this.decimals
-    },
-    hasMeaningfullZeros() {
-      return `${this.lastResult.toFixed(3)}`.split('.')[1] === '000'
-    },
-    adjustedDecimals() {
-      return this.lastResult < 1 ||
-        this.decimals < 3 ||
-        this.hasMeaningfullZeros
-        ? this.decimals
-        : 3
+      const lastResult = parseFloat(this.value) / 10 ** this.decimals
+      const hasMeaningfullZeros =
+        `${lastResult.toFixed(3)}`.split('.')[1] === '000'
+      const adjustedDecimals =
+        lastResult < 1 || this.decimals < 3 || hasMeaningfullZeros
+          ? this.decimals
+          : 3
+      const formatedLastResult = lastResult.toFixed(adjustedDecimals)
+      return formatNumber(formatedLastResult)
     },
     dataFeedStatus() {
       return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
