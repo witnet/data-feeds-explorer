@@ -1,23 +1,87 @@
 <template>
-  <div class="footer">
-    <WitnetLogo class="witnet-logo white" />
-    <ul class="links-container">
-      <a class="link" :href="documentationUrl" target="_blank">
-        {{ $t('footer.documentation') }}
-      </a>
-      <a class="link" :href="requestDataFeedUrl" target="_blank">
-        {{ $t('footer.request_data_feed') }}
-      </a>
-      <a class="link" :href="witnetUrl" target="_blank">
-        {{ $t('footer.about_witnet') }}
-      </a>
-    </ul>
-    <p class="copyright">{{ $t('footer.copyright') }}</p>
+  <div class="footer-background">
+    <div class="footer">
+      <div class="top">
+        <div class="links">
+          <p class="title">{{ $t('footer.links.witnet.title') }}</p>
+          <a class="link" :href="urls.oracle">
+            {{ $t('footer.links.witnet.oracle') }}
+          </a>
+          <a class="link" :href="urls.token" target="_blank">
+            {{ $t('footer.links.witnet.token') }}
+          </a>
+          <a class="link" :href="urls.ecosystem" target="_blank">
+            {{ $t('footer.links.witnet.ecosystem') }}
+          </a>
+          <a class="link" :href="urls.community" target="_blank">
+            {{ $t('footer.links.witnet.community') }}
+          </a>
+          <a class="link" :href="urls.whitepaper" target="_blank">{{
+            $t('footer.links.witnet.whitepaper')
+          }}</a>
+        </div>
+        <div class="links">
+          <p class="title">{{ $t('footer.links.ecosystem.title') }}</p>
+          <a class="link" :href="urls.mining" target="_blank">
+            {{ $t('footer.links.ecosystem.full_node') }}</a
+          >
+          <a class="link" :href="urls.sheikah" target="_blank">{{
+            $t('footer.links.ecosystem.wallet')
+          }}</a>
+          <a class="link" :href="urls.blockExplorer" target="_blank">{{
+            $t('footer.links.ecosystem.block_explorer')
+          }}</a>
+        </div>
+        <div class="links">
+          <p class="title">{{ $t('footer.links.community.title') }}</p>
+          <a class="link" :href="urls.telegram" target="_blank">{{
+            $t('footer.links.community.telegram')
+          }}</a>
+          <a class="link" :href="urls.discord" target="_blank">{{
+            $t('footer.links.community.discord')
+          }}</a>
+          <a class="link" :href="urls.twitter" target="_blank">{{
+            $t('footer.links.community.twitter')
+          }}</a>
+          <a class="link" :href="urls.reddit" target="_blank">{{
+            $t('footer.links.community.reddit')
+          }}</a>
+        </div>
+        <div class="alliance-text">
+          <SvgIcon class="logo white" name="ado_member" />
+          <i18n path="footer.ado_text" tag="p" class="small-description">
+            <a class="link underline" :href="urls.ado" target="_blank">
+              theado.org
+            </a>
+          </i18n>
+        </div>
+      </div>
+      <div class="bottom">
+        <SvgIcon class="logo white" name="witnet_dark" />
+        <i18n path="footer.copyright.base" class="copyright" tag="p">
+          <a class="link" href="https://witnet.foundation" target="_blank">{{
+            $t('footer.copyright.witnet_foundation')
+          }}</a>
+          <a
+            class="link"
+            href="https://creativecommons.org/publicdomain/zero/1.0/"
+            target="_blank"
+            >{{ $t('footer.copyright.license') }}</a
+          >
+        </i18n>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { documentationUrl, requestDataFeedUrl, witnetUrl } from '../constants'
+import {
+  documentationUrl,
+  requestDataFeedUrl,
+  witnetUrl,
+  urls,
+} from '../constants'
+
 export default {
   props: {
     type: {
@@ -33,45 +97,83 @@ export default {
       documentationUrl,
       requestDataFeedUrl,
       witnetUrl,
+      urls,
     }
   },
 }
 </script>
 
 <style scoped lang="scss">
-.footer {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  justify-items: center;
-  min-height: 20vh;
-  align-items: center;
-  padding: 16px;
+.footer-background {
   background: var(--footer-bg);
+  border-top: var(--footer-border);
   color: var(--white-text);
-  .links-container {
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    grid-gap: 16px;
-    grid-template-rows: auto;
-    .link {
-      color: var(--white-text);
-      cursor: pointer;
-      padding: 0;
-      font-size: var(--text-size-medium);
-    }
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+}
+.bottom {
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  row-gap: 16px;
+  align-items: center;
+  column-gap: 16px;
+  .logo {
+    width: 40px;
+  }
+  .white-paper {
+    width: min-content;
   }
   .copyright {
     font-size: var(--text-size-small);
-  }
-  .witnet-logo {
-    width: 60px;
+    line-height: 1.5;
+    max-width: 350px;
+    a {
+      font-size: inherit;
+      text-decoration: underline;
+    }
   }
 }
-@media (max-width: 600px) {
-  .links-container {
-    margin: 16px 0;
+.link {
+  font-size: var(--text-size-medium);
+  color: var(--white-text);
+  padding: 4px 0 4px 0;
+  &.underline {
+    text-decoration: underline;
+  }
+}
+.footer {
+  width: 100%;
+  max-width: 1124px;
+  padding: 48px 32px;
+  .top {
+    border-bottom: 1px solid var(--white-text);
+    display: grid;
+    padding-bottom: 40px;
+    column-gap: 40px;
+    row-gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    justify-content: space-between;
+    .links {
+      display: flex;
+      flex-direction: column;
+      .title {
+        font-family: Almarai, sans-serif;
+        font-size: var(--text-size);
+        font-weight: bold;
+        padding: 8px 0 8px 0;
+      }
+    }
+    .alliance-text {
+      grid-column: span 2;
+      font-size: var(--text-size-medium);
+      line-height: 1.5;
+      .logo {
+        width: 50px;
+        margin-bottom: 8px;
+      }
+    }
   }
 }
 </style>
