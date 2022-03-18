@@ -26,7 +26,7 @@
   grid-template-rows: max-content max-content 1fr max-content;
   grid-template-columns: 1fr;
   width: 100%;
-  max-width: 1124px;
+  max-width: var(--desktop-margin);
   row-gap: 24px;
   margin: 0 auto;
   .theme-switch {

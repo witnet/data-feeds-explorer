@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style lang="scss">
+.socials-size {
+  width: 18px;
+  height: 18px;
+}
 .icon-size {
   width: 24px;
   height: 30px;

@@ -113,7 +113,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: var(--bg);
-  height: 130px;
+  height: 100px;
   .logo-container {
     display: grid;
     grid-template-columns: max-content max-content;
@@ -170,7 +170,6 @@ export default {
       &.last-item {
         display: flex;
         justify-content: center;
-        padding-bottom: 24px;
       }
       .btn-container {
         width: max-content;
@@ -250,6 +249,9 @@ export default {
         display: block;
         align-items: center;
         text-decoration: none;
+        &.last-item {
+          padding-bottom: 24px;
+        }
         .social {
           display: none;
         }
