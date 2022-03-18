@@ -87,11 +87,17 @@ export function readDataFeeds (): Array<FeedInfo> {
 function validateDataFeeds (
   dataFeeds: Array<Omit<FeedInfoConfig, 'abi' | 'routerAbi'>>
 ) {
-  const fields = [
+  const expectedFields = [
     'feedFullName',
+    'id',
     'address',
+    'contractId',
+    'routerAddress',
     'network',
+    'networkName',
+    'chain',
     'name',
+    'label',
     'pollingPeriod',
     'color',
     'blockExplorer',
@@ -101,7 +107,7 @@ function validateDataFeeds (
   ]
 
   dataFeeds.forEach((feedInfoConfig, index) => {
-    fields.forEach(field => {
+    expectedFields.forEach((field) => {
       // Validate nested keys in a field
       field.split('.').reduce((acc, val) => {
         // Throw error if the key is not found or has a falsy value
@@ -110,6 +116,12 @@ function validateDataFeeds (
             `Missing field ${field} in index ${index} in data feed config file`
           )
         } else {
+          // Throw error if not validated new fields are added in the config file
+          if (Object.keys(feedInfoConfig).length !== expectedFields.length) {
+            throw new Error(
+              `There are more fields in the feed config than expected`
+            )
+          }
           return acc[val]
         }
       }, feedInfoConfig)
