@@ -67,7 +67,9 @@ export type FeedInfoGeneric<ABI> = {
   routerAbi: ABI
   address: string
   routerAddress: string
+  // Network is the network key to identify a feed from a specific network in the database
   network: Network
+  // NetworkName is the label of the network to show in the ui
   networkName: string
   chain: string
   name: string

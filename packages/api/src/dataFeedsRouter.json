@@ -4,6 +4,33 @@
     "avalanche": {
       "name": "Avalanche",
       "networks": {
+        "avalanche.mainnet": {
+          "address": "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
+          "blockExplorer": "https://snowtrace.io/address/{address}#readContract",
+          "color": "#070fdf",
+          "name": "Avalanche Mainnet",
+          "pollingPeriod": 300000,
+          "feeds": {
+            "Price-AVAX/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            }
+          }
+        },
         "avalanche.fuji": {
           "address": "0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4",
           "blockExplorer": "https://testnet.snowtrace.io/address/{address}",
