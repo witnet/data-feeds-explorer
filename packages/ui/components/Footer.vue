@@ -29,7 +29,25 @@
             $t('footer.links.ecosystem.wallet')
           }}</a>
           <a class="link" :href="urls.blockExplorer" target="_blank">{{
+            $t('footer.links.ecosystem.data_feeds_explorer')
+          }}</a>
+          <a class="link" :href="urls.blockExplorer" target="_blank">{{
             $t('footer.links.ecosystem.block_explorer')
+          }}</a>
+        </div>
+        <div class="links">
+          <p class="title">{{ $t('footer.links.developers.title') }}</p>
+          <a class="link" :href="urls.mining" target="_blank">
+            {{ $t('footer.links.developers.documentation') }}</a
+          >
+          <a class="link" :href="urls.sheikah" target="_blank">{{
+            $t('footer.links.developers.price_feeds')
+          }}</a>
+          <a class="link" :href="urls.blockExplorer" target="_blank">{{
+            $t('footer.links.developers.randomness')
+          }}</a>
+          <a class="link" :href="urls.blockExplorer" target="_blank">{{
+            $t('footer.links.developers.get_post_request')
           }}</a>
         </div>
         <div class="links">
@@ -59,6 +77,7 @@
       <div class="bottom">
         <SvgIcon class="logo white" name="witnet_dark" />
         <i18n path="footer.copyright.base" class="copyright" tag="p">
+          <span>2018-{{ new Date().getFullYear() }}</span>
           <a class="link" href="https://witnet.foundation" target="_blank">{{
             $t('footer.copyright.witnet_foundation')
           }}</a>
@@ -106,7 +125,6 @@ export default {
 <style scoped lang="scss">
 .footer-background {
   background: var(--footer-bg);
-  border-top: var(--footer-border);
   color: var(--white-text);
   min-height: 20vh;
   display: flex;
@@ -145,7 +163,7 @@ export default {
 }
 .footer {
   width: 100%;
-  max-width: 1124px;
+  max-width: var(--desktop-margin);
   padding: 48px 32px;
   .top {
     border-bottom: 1px solid var(--white-text);

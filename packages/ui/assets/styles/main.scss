@@ -6,89 +6,9 @@
   --bg: #2D2C39;
   --responsive-menu: #fdfdfd;
   --text: #fdfdfd;
-  --text-background: #2d2c39d3;
+  --text-background: #112338d3;
   --default-border: 1px solid #fdfdfd;
-
-  //Pagination
-
-  --pagination-number: white; 
-  --pagination-button-active: green;
-  --pagination-number-active: green;
-  --pagination-number-active-text: white;
-  --app-background-color: #2D2C39;
-  --pagination-button: grey;
-
-  //Tooltip
-
-  --tooltip-background: #FFFFFF10;
-  --tooltip-bg: #2D2C39;
-
-
-  // Select
-
-  --selected-background: #37414c;
-  --selected-text: #e9e7e7;
-  --selected-border: 2px solid #62B1B015;
-  --selected-icon: #62B1B058;
-  --selected-options-background: #37414c;
-  --selected-options-text: #e7e7e7;
-  --selected-options-border: 2px solid #62B1B015;
-  --selected-options-shadow: 1px 1px 10 2px #62B1B029;
-  --selected-options-highlight: #62B1B015;
-
-  // FeedCard
-
-  --card-border: 2px solid #00D4AA16;
-  --card-background: #62B1B015;
-  --delay-status-border: 2px solid #DFC44B23;
-  --error-status-border: 2px solid #DF4B4B23;
-
-  //Fieledset
-
-  --fieldset-title: #fdfdfd;
-  --fieldset-background: #FFFFFF08;
-
-  //Logo
-
-  --logo-main: #fdfdfd;
-  --logo-dot: #41BEA5;
-
-  //NavBar
-
-  --nav-bar-background: #2d2c39;
-
-  // links
-
-  --text-hover: #41BEA5;
-  --text-medium-emphasis: #fdfdfdc0;
-
-  // links
-
-  --transaction-blur-background: #ffffff09;
-
-  //ThemeSwitch
-
-  --icon-color: #fdfdfd;
-  --icon-background: #37414c94;
-
-  //Transaction
-
-  --witnet-transaction: #41BEA5;
-
-  //ContractAddress
-
-  --contract-address: #41BEA5;
-
-  //switcher
-
-  --switcher-item-background: #41BEA5;
-  --switcher-item-color: white;
-
-  //footer
-  --footer-bg: #112338;
-
-  //breadcrumbs
-  --selected-option: #41BEA5;
+  --desktop-margin: 1124px;
 }
 
 .dark-mode {
@@ -201,8 +121,8 @@
 .light-mode {
   --bg: #fdfdfd;
   --responsive-menu: #2D2C39;
-  --text: #2D2C39;
-  --light-text: #767575;
+  --text: #112338;
+  --light-text: #666;
   --link: #E54343;
   --text-background: #ffffffd3;
   --default-border: 1px solid #2D2C39;
@@ -246,11 +166,11 @@
   //Fieledset
 
   --fieldset-title: #2D2C39;
-  --fieldset-background: #2d2c3908;
+  --fieldset-background: #11233808;
 
   //Logo
   --logo-dot: #41bea5;
-  --logo-main: #1F1F24;
+  --logo-main: #112338;
 
   //NavBar
 
@@ -260,11 +180,11 @@
   // links
 
   --text-hover: #41bea5;
-  --text-medium-emphasis: #2d2c398a;
+  --text-medium-emphasis: #112338a9;
 
   // links
 
-  --transaction-blur-background: #2d2c3905;
+  --transaction-blur-background: #11233805;
 
   //ThemeSwitch
 

@@ -1,16 +1,19 @@
 <template>
-  <div class="breadcrumbs container">
-    <nuxt-link
-      v-for="option in breadCumbsOptions"
-      :key="option.key"
-      :class="{ selected: option.selected }"
-      :to="localeRoute(option.path)"
-      class="breadcrumbs-link"
-    >
-      <p v-if="option.label" class="breadcrumbs">
-        <span class="breadcrumbs-label">{{ option.label }}</span> /
-      </p>
-    </nuxt-link>
+  <div class="breacrumbs-wrapper">
+    <div class="breadcrumbs container">
+      <nuxt-link
+        v-for="option in breadCumbsOptions"
+        :key="option.key"
+        :class="{ selected: option.selected }"
+        :to="localeRoute(option.path)"
+        class="breadcrumbs-link"
+      >
+        <p v-if="option.label" class="breadcrumbs">
+          <span class="breadcrumbs-label">{{ option.label }}</span> /
+        </p>
+      </nuxt-link>
+    </div>
+    <Socials />
   </div>
 </template>
 
@@ -50,6 +53,13 @@ export default {
 </script>
 
 <style lang="scss">
+.breacrumbs-wrapper {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-template-rows: max-content;
+  justify-content: space-between;
+  grid-gap: 16px;
+}
 .breadcrumbs {
   display: flex;
   color: var(--text);
@@ -74,8 +84,15 @@ export default {
     }
   }
 }
-@media (max-width: 850px) {
+@media (max-width: 600px) {
+  .breacrumbs-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content;
+    justify-content: space-between;
+  }
   .breadcrumbs {
+    grid-row: 2;
     &.container {
       padding: 0 24px;
     }
