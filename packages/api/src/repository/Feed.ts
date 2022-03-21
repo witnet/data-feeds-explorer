@@ -36,9 +36,16 @@ export class FeedRepository {
     // starts in 1
     network: string
   ): Promise<PaginatedFeedsObject> {
+    let feeds: Array<FeedInfo>
+    if (network === 'all') {
+      feeds = Object.values(this.dataFeedsByNetwork[network]).flat()
+    } else {
+      feeds = this.dataFeedsByNetwork[network]
+    }
+
     return {
-      feeds: this.dataFeedsByNetwork[network],
-      total: this.dataFeedsByNetwork[network].length
+      feeds,
+      total: feeds.length
     }
   }
 
