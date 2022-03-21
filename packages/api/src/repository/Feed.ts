@@ -38,7 +38,7 @@ export class FeedRepository {
   ): Promise<PaginatedFeedsObject> {
     let feeds: Array<FeedInfo>
     if (network === 'all') {
-      feeds = Object.values(this.dataFeedsByNetwork[network]).flat()
+      feeds = Object.values(this.dataFeedsByNetwork).flat()
     } else {
       feeds = this.dataFeedsByNetwork[network]
     }
