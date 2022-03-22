@@ -345,6 +345,44 @@
         }
       }
     },
+    "cronos": {
+      "name": "Cronos",
+      "networks": {
+        "cronos.testnet": {
+          "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
+          "blockExplorer": "https://cronos.org/explorer/testnet3/address/{address}/read-contract",
+          "color": "#6600ff",
+          "name": "Cronos Testnet",
+          "pollingPeriod": 300000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-CRO/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
+    },
     "ethereum": {
       "name": "Ethereum",
       "networks": {
