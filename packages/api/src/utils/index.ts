@@ -6,7 +6,7 @@ import {
   NetworkConfigMap,
   RouterDataFeedsConfig,
   NetworksConfig,
-  Chains,
+  Chain,
   FeedConfig
 } from '../types'
 // parse network name to fit schema
@@ -87,18 +87,17 @@ export function normalizeConfig (
     config.chains
   )
   // Network Config list deleting key label
-  const networksConfigMap: any = chains.reduce((acc, network: Chains) => {
-    Object.values(network.networks).map((feedConfig: FeedConfig, index) => {
-      const config: ExtendedFeedConfig = {
+  const networksConfigMap = chains.flatMap((network: Chain) => {
+    const networks = Object.values(network.networks).map(
+      (feedConfig: FeedConfig, index) => ({
         ...feedConfig,
         chain: network.name,
         network: Object.keys(network.networks)[index]
-      }
-      acc.push(config)
-      return config
-    })
-    return acc
-  }, [])
+      })
+    )
+    return [...networks]
+  })
+
   // Parse Feed adding common config
   const feeds: FeedInfosWithoutAbis = networksConfigMap.reduce(
     (acc: FeedInfosWithoutAbis, config: ExtendedFeedConfig) => {

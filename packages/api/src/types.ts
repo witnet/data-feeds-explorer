@@ -168,13 +168,13 @@ export type ExtendedFeedConfig = {
   feeds: FeedInfoRouterConfigMap
 }
 
-export type Chains = { name: string; networks: Record<string, FeedConfig> }
+export type Chain = { name: string; networks: Record<string, FeedConfig> }
 
 export type NetworkConfigMap = Record<string, FeedConfig>
 
 export type RouterDataFeedsConfig = {
   abi: string
-  chains: Record<string, Chains>
+  chains: Record<string, Chain>
 }
 
 export type FeedInfosWithoutAbis = Array<
