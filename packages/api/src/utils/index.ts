@@ -1,12 +1,13 @@
 import {
   ExtendedFeedConfig,
-  FeedConfig,
   FeedInfosWithoutAbis,
   FeedParamsConfig,
   FeedParsedParams,
   NetworkConfigMap,
   RouterDataFeedsConfig,
-  NetworksConfig
+  NetworksConfig,
+  Chains,
+  FeedConfig
 } from '../types'
 // parse network name to fit schema
 export function parseNetworkName (value) {
@@ -85,24 +86,21 @@ export function normalizeConfig (
   const chains: Array<{ networks: NetworkConfigMap }> = Object.values(
     config.chains
   )
-
-  // Extracts networks with its key label from chains object
-  const networksConfigMap: Array<NetworkConfigMap> = chains.reduce(
-    (acc: Array<NetworkConfigMap>, network) => {
-      return [...acc, network.networks]
-    },
-    []
-  )
   // Network Config list deleting key label
-  const configs: Array<FeedConfig> = networksConfigMap.flatMap(
-    networkConfigMap =>
-      Object.values(networkConfigMap).map((feed, index) => ({
-        ...feed,
-        chain: Object.keys(networkConfigMap)[index]
-      }))
-  )
+  const networksConfigMap: any = chains.reduce((acc, network: Chains) => {
+    Object.values(network.networks).map((feedConfig: FeedConfig, index) => {
+      const config: ExtendedFeedConfig = {
+        ...feedConfig,
+        chain: network.name,
+        network: Object.keys(network.networks)[index]
+      }
+      acc.push(config)
+      return config
+    })
+    return acc
+  }, [])
   // Parse Feed adding common config
-  const feeds: FeedInfosWithoutAbis = configs.reduce(
+  const feeds: FeedInfosWithoutAbis = networksConfigMap.reduce(
     (acc: FeedInfosWithoutAbis, config: ExtendedFeedConfig) => {
       const feedsArrayConfig: Array<FeedParamsConfig> = Object.values(
         config.feeds
@@ -118,8 +116,8 @@ export function normalizeConfig (
       )
 
       feedsArray.forEach(feed => {
-        const chain = parseChainName(config.chain)
-        const network = parseNetworkName(config.chain)
+        const chain = config.chain
+        const network = parseNetworkName(config.network)
         const name = parseDataName(feed.key)
         const decimals = parseDataDecimals(feed.key)
 

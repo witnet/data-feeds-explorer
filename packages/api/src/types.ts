@@ -163,15 +163,18 @@ export type ExtendedFeedConfig = {
   color: string
   name: string
   chain: string
+  network: string
   pollingPeriod: number
   feeds: FeedInfoRouterConfigMap
 }
+
+export type Chains = { name: string; networks: Record<string, FeedConfig> }
 
 export type NetworkConfigMap = Record<string, FeedConfig>
 
 export type RouterDataFeedsConfig = {
   abi: string
-  chains: Record<string, { name: string; networks: Record<string, FeedConfig> }>
+  chains: Record<string, Chains>
 }
 
 export type FeedInfosWithoutAbis = Array<

@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import { formatBreadcrumbsPath } from './formatBreadcrumbsPath'
-
 export default {
   computed: {
     selected() {
@@ -25,17 +23,17 @@ export default {
     breadCumbsOptions() {
       return [
         {
-          label: this.$store.state.selectedNetwork[0]?.chain || 'Ethereum',
+          label: this.selected[0]?.chain,
           path: {
             name: 'network',
             params: {
-              network: this.$route.params.network || 'Ethereum',
+              network: this.$route.params.network,
             },
           },
           selected: false,
         },
         {
-          label: formatBreadcrumbsPath(this.$route.params.id),
+          label: this.$route.params.id ? this.selected[0]?.label : null,
           path: {
             name: 'network-id',
             params: {

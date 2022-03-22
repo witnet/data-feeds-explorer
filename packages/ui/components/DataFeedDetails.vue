@@ -29,7 +29,7 @@
     </Fieldset>
     <Fieldset :title="$t('data_feed_details.contract_address')">
       <IntegrationDetails
-        :network="normalizedFeed.network"
+        :network="normalizedFeed.networkName"
         :proxy-address="normalizedFeed.proxyAddress"
         :feed-address="normalizedFeed.address"
         :contract-id="normalizedFeed.contractId"
@@ -64,7 +64,6 @@ import { formatTimestamp } from '@/utils/formatTimestamp'
 import { formatNumber } from '@/utils/formatNumber'
 import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
-import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 
 export default {
   apollo: {
@@ -117,11 +116,9 @@ export default {
           deviation: this.feed.deviation,
           heartbeat: Number(this.feed.heartbeat),
           decimals: this.feed.feedFullName.split('_').pop() || 3,
+          chain: this.feed.chain,
           networkName: this.feed.networkName,
-          network: this.feed.network
-            .split('-')
-            .map(capitalizeFirstLetter)
-            .join(' '),
+          network: this.feed.network,
           urlUnderlyingContract: this.feed.blockExplorer.replace(
             `{address}`,
             this.feed.address
@@ -197,6 +194,24 @@ export default {
       } else {
         return null
       }
+    },
+  },
+  watch: {
+    normalizedFeed: {
+      deep: true,
+      handler(value) {
+        if (value) {
+          this.$store.commit('updateSelectedNetwork', {
+            network: [
+              {
+                chain: value.chain,
+                key: value.network,
+                label: value.networkName,
+              },
+            ],
+          })
+        }
+      },
     },
   },
   methods: {
