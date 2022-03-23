@@ -5,11 +5,12 @@
       :key="option.key"
       :class="{ selected: option.selected }"
       :to="localeRoute(option.path)"
+      :aria-label="option.label || 'empty-link'"
       class="breadcrumbs-link"
     >
-      <p v-if="option.label" class="breadcrumbs">
+      <h3 v-if="option.label" class="breadcrumbs">
         <span class="breadcrumbs-label">{{ option.label }}</span> /
-      </p>
+      </h3>
     </nuxt-link>
   </div>
 </template>

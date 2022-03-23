@@ -10,12 +10,12 @@
           </h1>
         </nuxt-link>
         <label class="responsive-menu" @click="toggleMenu">
-          <a class="target-burger" :class="{ visible: isMenuVisible }">
+          <div class="target-burger" :class="{ visible: isMenuVisible }">
             <ul class="buns">
               <li class="bun"></li>
               <li class="bun"></li>
             </ul>
-          </a>
+          </div>
         </label>
       </div>
       <transition name="dropdown" class="dropdown">
@@ -28,11 +28,11 @@
           >
             <NetworkOptions type="navbar" :options="navBarOptions" />
           </div>
-          <li class="tab last-item" @click="closeMenu">
+          <div class="tab last-item" @click="closeMenu">
             <a class="btn-container" :href="requestDataFeedUrl" target="_blank">
               <Button class="btn">{{ $t('navbar.request_data_feed') }}</Button>
             </a>
-          </li>
+          </div>
         </ul>
       </transition>
     </nav>
@@ -264,7 +264,7 @@ export default {
   margin-top: 16px;
   &:hover {
     cursor: pointer;
-    opacity: opacity(0.45);
+    opacity: 0.45;
   }
   &.visible {
     ul.buns {

@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <WitnetLogo class="witnet-logo white" />
-    <ul class="links-container">
+    <div class="links-container">
       <a class="link" :href="documentationUrl" target="_blank">
         {{ $t('footer.documentation') }}
       </a>
@@ -11,7 +11,7 @@
       <a class="link" :href="witnetUrl" target="_blank">
         {{ $t('footer.about_witnet') }}
       </a>
-    </ul>
+    </div>
     <p class="copyright">{{ $t('footer.copyright') }}</p>
   </div>
 </template>
