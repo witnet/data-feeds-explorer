@@ -1,6 +1,6 @@
 <template>
   <div class="fieldset">
-    <header class="title">{{ title.toUpperCase() }}</header>
+    <h3 class="title">{{ title.toUpperCase() }}</h3>
     <div class="content">
       <slot></slot>
     </div>

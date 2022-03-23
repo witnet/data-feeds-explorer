@@ -6,10 +6,10 @@
     />
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
-        <div class="title bold">
+        <h2 class="title bold">
           <SvgIcon class="logo" :svg="selected[0].logo" />
           {{ selected[0].chain }}
-        </div>
+        </h2>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
           <span class="bold text">{{ selectedNetworks }}</span
@@ -21,7 +21,7 @@
         :key="option.key"
         class="list-container"
       >
-        <div class="title light-text bold">{{ option.label }}</div>
+        <h3 class="title light-text bold">{{ option.label }}</h3>
         <DataFeeds
           :network="option"
           :network-index="index"
@@ -140,6 +140,9 @@ export default {
   justify-items: flex-start;
   align-items: flex-start;
   row-gap: 16px;
+  .title {
+    font-size: var(--text-size);
+  }
   .pagination {
     margin-bottom: 16px;
     justify-self: center;

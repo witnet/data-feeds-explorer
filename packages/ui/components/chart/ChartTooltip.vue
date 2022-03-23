@@ -3,9 +3,9 @@
     <div class="tooltip">
       <div class="feed-title">
         <SvgIcon v-if="logo" class="icon" :svg="logo" />
-        <p v-if="name" class="title feed-name">
+        <h2 v-if="name" class="title feed-name">
           {{ name.toUpperCase() }}
-        </p>
+        </h2>
       </div>
       <p class="value-title">{{ $t('chart.last_update') }}</p>
       <p class="value">
@@ -94,6 +94,7 @@ export default {
       display: flex;
     }
     .feed-name {
+      font-size: var(--text-size-title);
       margin-left: 8px;
     }
   }
@@ -103,6 +104,7 @@ export default {
     color: var(--text-medium-emphasis);
     display: flex;
     .title {
+      font-size: var(--text-size);
       margin-right: 10px;
       color: var(--text-hover);
     }

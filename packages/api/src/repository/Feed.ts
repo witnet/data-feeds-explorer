@@ -42,7 +42,6 @@ export class FeedRepository {
     } else {
       feeds = this.dataFeedsByNetwork[network]
     }
-
     return {
       feeds: feeds || [],
       total: feeds ? feeds.length : 0

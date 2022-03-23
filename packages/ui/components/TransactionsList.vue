@@ -4,7 +4,7 @@
     class="transactions-container"
   >
     <div class="collection collection-container">
-      <li class="item-container blur">
+      <div class="item-container blur">
         <div class="attribute-container values-time">
           <div class="attribute">{{ $t('transactions_list.time') }}</div>
         </div>
@@ -16,7 +16,7 @@
             {{ $t('transactions_list.value') }}
           </div>
         </div>
-      </li>
+      </div>
       <Transaction
         v-for="(transaction, index) in transactions"
         :key="transaction.timestamp + index"

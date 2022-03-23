@@ -32,6 +32,10 @@ export default {
           'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
       },
       {
+        name: 'google-site-verification',
+        content: '7QVGIfezKjtao3o0VgFyJ01iOMMkAXWvqZSvugWHNns',
+      },
+      {
         hid: 'twitter:title',
         name: 'twitter:title',
         content: 'Data Feeds Explorer | Witnet',
@@ -104,22 +108,8 @@ export default {
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '2D2C39' },
       { rel: 'msapplication-TileColor', content: '2D2C39' },
       { rel: 'shortcut icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap',
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap',
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap',
-      },
     ],
   },
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/styles/main.scss', '~/assets/styles/element-ui.scss'],
   // You will have to add this new object if it doesn't exist already
   styleResources: {
     scss: ['~/assets/styles/main.scss', '~/assets/styles/element-ui.scss'],
@@ -179,6 +169,22 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     '@nuxtjs/svg',
+    [
+      '@nuxtjs/google-fonts',
+      {
+        families: {
+          'Roboto+Mono': [400],
+          Almarai: [300, 400, 600],
+        },
+        subsets: ['latin'],
+        display: 'swap',
+        prefetch: false,
+        preconnect: false,
+        preload: false,
+        download: true,
+        base64: false,
+      },
+    ],
   ],
 
   fontawesome: {
@@ -198,7 +204,8 @@ export default {
   content: {},
   i18n: {
     // add SEO attributes in layout head for better performance
-    seo: false,
+    baseUrl: 'https://feeds.witnet.io',
+    seo: true,
     locales: languages,
     vueI18n: {
       fallbackLocale,

@@ -1,5 +1,5 @@
 <template>
-  <li class="item-container">
+  <div class="item-container">
     <div class="attribute-container values-time">
       <div class="attribute">
         {{ formatTimestamp(timestamp) }}
@@ -19,7 +19,7 @@
         {{ value }}
       </InfoTooltip>
     </div>
-  </li>
+  </div>
 </template>
 
 <script>
