@@ -667,6 +667,12 @@
           "name": "Polygon Mumbai",
           "pollingPeriod": 15000,
           "feeds": {
+            "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
@@ -688,6 +694,12 @@
           "name": "Polygon Mainnet",
           "pollingPeriod": 15000,
           "feeds": {
+            "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 1.0,
