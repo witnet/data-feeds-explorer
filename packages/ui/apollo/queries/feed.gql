@@ -5,6 +5,7 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     address
     contractId
     lastResult
+    lastResultTimestamp
     network
     networkName
     chain

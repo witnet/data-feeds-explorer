@@ -4,7 +4,7 @@
       v-if="feed"
       class="chart"
       :data="chartData"
-      :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
+      :last-result-timestamp="normalizedFeed.lastResultTimestamp"
       :last-result-value="lastResultValue"
       :data-label="feed.label"
       :name="normalizedFeed.name"
@@ -117,6 +117,8 @@ export default {
           heartbeat: Number(this.feed.heartbeat),
           decimals: this.feed.feedFullName.split('_').pop() || 3,
           chain: this.feed.chain,
+          lastResultValue: this.feed.lastResult,
+          lastResultTimestamp: this.feed.lastResultTimestamp || '',
           networkName: this.feed.networkName,
           network: this.feed.network,
           urlUnderlyingContract: this.feed.blockExplorer.replace(
@@ -134,7 +136,7 @@ export default {
     },
     lastResultDate() {
       if (this.transactions) {
-        return formatTimestamp(this.transactions[0].timestamp)
+        return formatTimestamp(this.normalizedFeed.lastResultTimestamp)
       } else {
         return ''
       }
@@ -149,7 +151,7 @@ export default {
     lastResultValue() {
       if (this.transactions) {
         return `${this.transactions[0].data.label} ${formatNumber(
-          parseFloat(this.transactions[0].data.value) /
+          parseFloat(this.normalizedFeed.lastResultValue) /
             10 ** this.transactions[0].data.decimals
         )} `
       } else {
