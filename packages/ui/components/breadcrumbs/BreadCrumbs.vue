@@ -27,7 +27,7 @@ export default {
           path: {
             name: 'network',
             params: {
-              network: this.$route.params.network,
+              network: this.$route.params.network || 'ethereum',
             },
           },
           selected: false,
