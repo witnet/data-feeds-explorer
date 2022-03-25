@@ -43,6 +43,10 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+img {
+  width: 100%;
+  height: 100%;
+}
 html {
   font-family: Almarai, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;

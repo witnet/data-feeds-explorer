@@ -57,9 +57,7 @@ export default {
       if (this.feeds) {
         const feeds = this.feeds.feeds
           .filter((feed) => {
-            return (
-              feed.lastResultTimestamp && parseInt(feed.lastResultTimestamp) > 0
-            )
+            return feed.lastResult && Number(feed.lastResultTimestamp) > 0
           })
           .map((feed) => {
             return {
