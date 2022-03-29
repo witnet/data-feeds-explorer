@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style lang="scss">
+.witnet-logo {
+  max-width: 250px;
+  height: 100%;
+}
 .socials-size {
   width: 18px;
   height: 18px;
@@ -23,6 +27,10 @@ export default {
 }
 .fill {
   fill: var(--text);
+}
+.partner-size {
+  width: 140px;
+  height: 40px;
 }
 
 .witnet-green {
@@ -35,5 +43,11 @@ export default {
 
 .border {
   stroke: var(--text);
+}
+
+@media (max-width: 300px) {
+  .witnet-logo {
+    max-width: 200px;
+  }
 }
 </style>

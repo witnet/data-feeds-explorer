@@ -26,7 +26,14 @@ export default {
     breadCumbsOptions() {
       return [
         {
-          label: this.selected[0]?.chain,
+          label: 'Home',
+          path: {
+            name: 'index',
+          },
+          selected: false,
+        },
+        {
+          label: this.selected ? this.selected[0]?.chain : null,
           path: {
             name: 'network',
             params: {
@@ -36,7 +43,10 @@ export default {
           selected: false,
         },
         {
-          label: this.$route.params.id ? this.selected[0]?.label : null,
+          label:
+            this.$route.params.id && this.selected
+              ? this.selected[0]?.label
+              : null,
           path: {
             name: 'network-id',
             params: {
@@ -48,6 +58,11 @@ export default {
         },
       ]
     },
+  },
+  mounted() {
+    if (!this.selected) {
+      this.$router.push('/')
+    }
   },
 }
 </script>
