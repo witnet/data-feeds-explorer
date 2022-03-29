@@ -21,7 +21,7 @@
         },
         "avalanche.fuji": {
           "address": "0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4",
-          "blockExplorer": "https://testnet.snowtrace.io/address/{address}",
+          "blockExplorer": "https://testnet.snowtrace.io/address/{address}#readContract",
           "color": "#E84142",
           "name": "Avalanche Fuji",
           "pollingPeriod": 15000,
@@ -134,7 +134,7 @@
         },
         "boba.mainnet": {
           "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
-          "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
+          "blockExplorer": "https://blockexplorer.boba.network/address/{address}/read-contract",
           "color": "#007dff",
           "name": "Boba Mainnet",
           "pollingPeriod": 15000,
@@ -196,7 +196,7 @@
       "networks": {
         "celo.alfajores": {
           "address": "0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE",
-          "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
+          "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}/read-contract",
           "color": "#1cd8d2",
           "name": "Celo Alfajores",
           "pollingPeriod": 15000,
@@ -235,7 +235,7 @@
         },
         "celo.mainnet": {
           "address": "0x931673904eB6E69D775e35F522c0EA35575297Cb",
-          "blockExplorer": "https://explorer.celo.org/address/{address}",
+          "blockExplorer": "https://explorer.celo.org/address/{address}/read-contract",
           "color": "#ff8100",
           "name": "Celo Mainnet",
           "pollingPeriod": 15000,
@@ -376,7 +376,7 @@
       "networks": {
         "ethereum.goerli": {
           "address": "0x1cF3Aa9DBF4880d797945726B94B9d29164211BE",
-          "blockExplorer": "https://goerli.etherscan.io/address/{address}",
+          "blockExplorer": "https://goerli.etherscan.io/address/{address}#readContract",
           "color": "#ff5599",
           "name": "Ethereum Goerli",
           "pollingPeriod": 15000,
@@ -397,7 +397,7 @@
         },
         "ethereum.rinkeby": {
           "address": "0xa50b17C2fc373c247C3b603f83df6A7800cB0DC9",
-          "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
+          "blockExplorer": "https://rinkeby.etherscan.io/address/{address}#readContract",
           "color": "#ff5599",
           "name": "Ethereum Rinkeby",
           "pollingPeriod": 15000,
@@ -418,7 +418,7 @@
         },
         "ethereum.mainnet": {
           "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
-          "blockExplorer": "https://etherscan.io/address/{address}",
+          "blockExplorer": "https://etherscan.io/address/{address}#readContract",
           "color": "#ff5599",
           "name": "Ethereum Mainnet",
           "pollingPeriod": 15000,
@@ -444,7 +444,7 @@
       "networks": {
         "harmony.testnet": {
           "address": "0x08d479a544b05B297454e5CAc133abA3a584AB8E",
-          "blockExplorer": "https://explorer.pops.one/address/{address}",
+          "blockExplorer": "https://explorer.pops.one/address/{address}?activeTab=7",
           "color": "#f6006f",
           "name": "Harmony Testnet",
           "pollingPeriod": 15000,
@@ -470,7 +470,7 @@
       "networks": {
         "kcc.testnet": {
           "address": "0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a",
-          "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
+          "blockExplorer": "https://scan-testnet.kcc.network/address/{address}/read-contract",
           "color": "#ff0066",
           "name": "KCC Testnet",
           "pollingPeriod": 15000,
@@ -515,7 +515,7 @@
         },
         "kcc.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://scan.kcc.io/address/{address}",
+          "blockExplorer": "https://scan.kcc.io/address/{address}/read-contract",
           "color": "#ff0066",
           "name": "KCC Mainnet",
           "pollingPeriod": 15000,
@@ -565,7 +565,7 @@
       "networks": {
         "metis.rinkeby": {
           "address": "0x5134EAF08bcf8cE1922991150AAad1774e93751f",
-          "blockExplorer": "https://stardust-explorer.metis.io/address/{address}",
+          "blockExplorer": "https://stardust-explorer.metis.io/address/{address}/read-contract",
           "color": "#ff6600",
           "name": "Metis Rinkeby",
           "pollingPeriod": 15000,
@@ -592,7 +592,7 @@
         },
         "metis.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}",
+          "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}/read-contract",
           "color": "#ff6600",
           "name": "Metis Mainnet",
           "pollingPeriod": 15000,
@@ -650,7 +650,7 @@
       "networks": {
         "polygon.goerli": {
           "address": "0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb",
-          "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
+          "blockExplorer": "https://mumbai.polygonscan.com/address/{address}#readContract",
           "color": "#66ff00",
           "name": "Polygon Mumbai",
           "pollingPeriod": 15000,
@@ -677,7 +677,7 @@
         },
         "polygon.mainnet": {
           "address": "0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4",
-          "blockExplorer": "https://polygonscan.com/address/{address}",
+          "blockExplorer": "https://polygonscan.com/address/{address}/read-contract",
           "color": "#66ff00",
           "name": "Polygon Mainnet",
           "pollingPeriod": 15000,
