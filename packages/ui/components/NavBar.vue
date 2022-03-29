@@ -3,11 +3,7 @@
     <nav class="navbar" :class="{ open: isMenuVisible }">
       <div class="menu-container">
         <nuxt-link :to="localePath('/')">
-          <h1 class="logo-container">
-            <WitnetLogo class="witnet-logo" />
-            <p class="logo-subtitle">Witnet</p>
-            <p class="logo-subtitle">Data Feeds</p>
-          </h1>
+          <SvgIcon name="witnet-logo" class="logo" />
         </nuxt-link>
         <label class="responsive-menu" @click="toggleMenu">
           <a class="target-burger" :class="{ visible: isMenuVisible }">
@@ -114,29 +110,6 @@ export default {
   align-items: center;
   background-color: var(--bg);
   height: 100px;
-  .logo-container {
-    display: grid;
-    grid-template-columns: max-content max-content;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    padding-top: 16px;
-    text-decoration: none;
-    column-gap: 8px;
-
-    .witnet-logo {
-      grid-row: 1 / span 2;
-    }
-    .logo-subtitle-color {
-      font-size: 18px;
-      align-self: flex-start;
-      color: var(--logo-dot);
-    }
-    .logo-subtitle {
-      font-size: 18px;
-      align-self: flex-end;
-      color: var(--logo-main);
-    }
-  }
   .responsive-menu {
     display: none;
     font-size: 34px;
@@ -200,9 +173,6 @@ export default {
     &.open {
       height: 100vh;
     }
-    .logo {
-      margin: 0;
-    }
   }
   .drop {
     position: absolute;
@@ -225,6 +195,9 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 0 16px;
+      .logo {
+        margin-top: 16px;
+      }
     }
     .responsive-menu {
       justify-content: center;

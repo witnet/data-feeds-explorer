@@ -1,3 +1,3 @@
 <template>
-  <Main />
+  <LandingPage />
 </template>

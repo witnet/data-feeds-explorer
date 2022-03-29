@@ -38,7 +38,13 @@
     "status": "Estado",
     "operational": "Operativo",
     "delay": "Retraso detectado",
-    "error": "Error detectado"
+    "error": "Error detectado",
+    "${serie": {
+      "key}": ""
+    },
+    "${dataFeedStatus": {
+      "key}": ""
+    }
   },
   "copied": "Copiado",
   "copy": "Copiar",
@@ -85,5 +91,21 @@
       "witnet_foundation": "Witnet Foundation",
       "license": "Creative Commons License"
     }
-  }
+  },
+  "landing": {
+    "supported_chains": {
+      "title": "Supported chains",
+      "subtitle": "Blockchains in which the Witnet oracle is currently available"
+    },
+    "upcoming_chains": {
+      "title": "Chains with upcoming support"
+    },
+    "partners": {
+      "title": "Users and Partners"
+    }
+  },
+  "feeds": "feeds",
+  "data_feeds": "Data feeds",
+  "networks": "Networks",
+  "chains": "Chains"
 }

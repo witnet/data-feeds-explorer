@@ -38,7 +38,13 @@
     "status": "Status",
     "operational": "Fully operational",
     "delay": "Delay detected",
-    "error": "Error detected"
+    "error": "Error detected",
+    "${serie": {
+      "key}": ""
+    },
+    "${dataFeedStatus": {
+      "key}": ""
+    }
   },
   "copied": "Copied",
   "copy": "Copy",
@@ -85,5 +91,21 @@
       "witnet_foundation": "Witnet Foundation",
       "license": "Creative Commons License"
     }
-  }
+  },
+  "landing": {
+    "supported_chains": {
+      "title": "",
+      "subtitle": ""
+    },
+    "upcoming_chains": {
+      "title": ""
+    },
+    "partners": {
+      "title": ""
+    }
+  },
+  "feeds": "",
+  "data_feeds": "",
+  "networks": "",
+  "chains": ""
 }

@@ -129,6 +129,7 @@ export default {
   min-height: 20vh;
   display: flex;
   justify-content: center;
+  margin-top: 24px;
 }
 .bottom {
   padding-top: 40px;
@@ -162,7 +163,7 @@ export default {
   }
 }
 .footer {
-  width: 100%;
+  width: 100vw;
   max-width: var(--desktop-margin);
   padding: 48px 32px;
   .top {

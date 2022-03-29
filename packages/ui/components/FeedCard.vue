@@ -162,7 +162,7 @@ a {
 }
 @media (max-width: 300px) {
   .card-container {
-    width: 250px;
+    width: 100%;
     grid-template-columns: 1fr;
   }
 }
