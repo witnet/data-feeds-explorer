@@ -75,7 +75,8 @@
         "telegram": "Telegram",
         "discord": "Discord",
         "twitter": "Twitter",
-        "reddit": "Reddit"
+        "reddit": "Reddit",
+        "youtube": "Youtube"
       },
       "developers": {
         "title": "Developers",

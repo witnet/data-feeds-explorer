@@ -24,6 +24,7 @@
     "core-js": "^3.8.3",
     "graphql-tag": "^2.12.4",
     "lightweight-charts": "^3.3.0",
+    "lodash.snakecase": "^4.1.1",
     "node-fetch": "^2.6.1",
     "node-sass": "^6.0.1",
     "nuxt": "^2.14.12",

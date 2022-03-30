@@ -2,13 +2,13 @@ import { es, enGB } from 'date-fns/locale'
 
 export const urls = {
   youtube: 'https://www.youtube.com/channel/UCCS143kLVAH7oHZKvNNNxKQ',
-  docs: 'https://docs.witnet.io/',
+  documentation: 'https://docs.witnet.io/',
   ado: 'https://github.com/adoracles/',
-  mining: 'https://docs.witnet.io/try/run-a-node/',
+  fullNode: 'https://docs.witnet.io/try/run-a-node/',
   tokenomics:
     'https://medium.com/witnet/wit-witnet-blockchains-native-tokenomics-4559084073c5',
-  sheikah: 'https://sheikah.app/',
-  truffleBox: 'https://docs.witnet.io/try/use-from-ethereum/',
+  wallet: 'https://sheikah.app/',
+  // truffleBox: 'https://docs.witnet.io/try/use-from-ethereum/',
   blockExplorer: 'https://witnet.network/',
   twitter: 'https://twitter.com/witnet_io',
   telegram: 'https://t.me/witnetio',
@@ -17,7 +17,7 @@ export const urls = {
   github: 'https://github.com/witnet',
   medium: 'https://medium.com/witnet',
   whitepaper: 'https://witnet.io/witnet-whitepaper.pdf',
-  dataFeedExplorer: 'https://feeds.witnet.io',
+  dataFeedsExplorer: 'https://feeds.witnet.io',
   gate: 'https://www.gate.io/trade/WIT_USDT',
   grantProgram:
     'https://ripple-snarl-211.notion.site/About-the-Witnet-Grant-Program-WGP-c037b8fbeae143b0a15ea5ab60d3f24c',
@@ -25,11 +25,14 @@ export const urls = {
   oracle: 'https://witnet.io/#oracle',
   ecosystem: 'https://witnet.io/#ecosystem',
   community: 'https://witnet.io/#community',
+  priceFeeds: 'https://docs.witnet.io/smart-contracts/witnet-data-feeds',
+  randomness: 'https://docs.witnet.io/smart-contracts/witnet-randomness-oracle',
+  getPostRequest:
+    'https://docs.witnet.io/smart-contracts/apis-and-http-get-post-oracle',
 }
 
 export const witnetBlockExplorerUrl = 'https://witnet.network/search'
 export const requestDataFeedUrl = 'https://tally.so/r/wMZDAn'
-export const documentationUrl = 'https://docs.witnet.io/'
 export const witnetUrl = 'https://witnet.io'
 export const integrateDirectlyBaseUrl =
   'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-last-price-and-timestamp-from-a-price-feed-contract-serving-a-specific-pair'
@@ -77,4 +80,11 @@ export const CHART_RANGE = {
     key: 'm',
     value: 24 * 30,
   },
+}
+
+export const footerSections = {
+  witnet: ['oracle', 'ecosystem', 'community', 'whitepaper'],
+  ecosystem: ['fullNode', 'wallet', 'dataFeedsExplorer'],
+  developers: ['documentation', 'priceFeeds', 'randomness', 'getPostRequest'],
+  community: ['telegram', 'discord', 'twitter', 'reddit', 'youtube'],
 }
