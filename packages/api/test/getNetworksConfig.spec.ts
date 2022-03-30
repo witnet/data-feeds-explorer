@@ -16,7 +16,7 @@ describe('validateDataFeedsConfig', () => {
       { key: 'celo-alfajores', label: 'Celo Alfajores', chain: 'Celo' },
       {
         key: 'conflux-testnet',
-        label: 'Conflux Testnet',
+        label: 'Conflux Core (Testnet)',
         chain: 'Conflux'
       },
       {

@@ -281,7 +281,7 @@
           "address": "0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25",
           "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
           "color": "#6600ff",
-          "name": "Conflux Testnet",
+          "name": "Conflux Core (Testnet)",
           "pollingPeriod": 15000,
           "feeds": {
             "Price-CFX/USDT-6": {
@@ -308,7 +308,7 @@
           "address": "0x806c8dFd322EE2d52b188CC472e0814F64304C32",
           "blockExplorer": "https://confluxscan.io/address/{address}",
           "color": "#ff0000",
-          "name": "Conflux Tethys",
+          "name": "Conflux Core (Hydra)",
           "pollingPeriod": 15000,
           "feeds": {
             "Price-CFX/USDT-6": {
