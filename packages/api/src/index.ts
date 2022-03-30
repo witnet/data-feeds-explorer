@@ -107,7 +107,7 @@ function validateDataFeeds (
   ]
 
   dataFeeds.forEach((feedInfoConfig, index) => {
-    expectedFields.forEach((field) => {
+    expectedFields.forEach(field => {
       // Validate nested keys in a field
       field.split('.').reduce((acc, val) => {
         // Throw error if the key is not found or has a falsy value
