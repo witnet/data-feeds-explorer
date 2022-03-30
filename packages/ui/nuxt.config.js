@@ -150,6 +150,7 @@ export default {
       '~/components',
       { path: '~/components/chart', extensions: ['vue'] },
       { path: '~/components/breadcrumbs', extensions: ['vue', 'js'] },
+      { path: '~/components/cards', extensions: ['vue', 'js'] },
     ],
   },
 
