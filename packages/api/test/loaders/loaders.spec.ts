@@ -47,6 +47,7 @@ describe('loaders', () => {
   describe('getRequests', () => {
     it('should call getFeedRequests', async () => {
       const getFeedRequestsMock = jest.fn(() => ({ feedFullName: 'name' }))
+      const timestamp = Math.floor(Date.now() / 1000) - 10000
       const loaders = new Loaders({
         resultRequestRepository: {
           getFeedRequests: getFeedRequestsMock
@@ -55,39 +56,54 @@ describe('loaders', () => {
 
       await loaders
         .getLoaders()
-        .requests.load({ feedFullName: 'feedName', timestamp: 1 } as any)
+        .requests.load({ feedFullName: 'feedName', timestamp } as any)
 
-      expect(getFeedRequestsMock).toHaveBeenCalledWith('feedName', 1)
+      expect(getFeedRequestsMock).toHaveBeenCalledWith('feedName', timestamp)
     })
 
     it('should call getFeedRequests the same amount of times than filters provided', async () => {
       const getFeedRequestsMock = jest.fn(() => ({ feedFullName: 'name' }))
+      const timestamp1 = Math.floor(Date.now() / 1000) - 10000
+      const timestamp2 = Math.floor(Date.now() / 1000) - 20000
       const loaders = new Loaders({
         resultRequestRepository: {
           getFeedRequests: getFeedRequestsMock
         }
       } as any)
 
-      await loaders
-        .getLoaders()
-        .requests.load({ feedFullName: 'feedName1', timestamp: 1 } as any)
-      await loaders
-        .getLoaders()
-        .requests.load({ feedFullName: 'feedName2', timestamp: 2 } as any)
+      await loaders.getLoaders().requests.load({
+        feedFullName: 'feedName1',
+        timestamp: timestamp1
+      } as any)
+      await loaders.getLoaders().requests.load({
+        feedFullName: 'feedName2',
+        timestamp: timestamp2
+      } as any)
 
-      expect(getFeedRequestsMock).toHaveBeenNthCalledWith(1, 'feedName1', 1)
-      expect(getFeedRequestsMock).toHaveBeenNthCalledWith(2, 'feedName2', 2)
+      expect(getFeedRequestsMock).toHaveBeenNthCalledWith(
+        1,
+        'feedName1',
+        timestamp1
+      )
+      expect(getFeedRequestsMock).toHaveBeenNthCalledWith(
+        2,
+        'feedName2',
+        timestamp2
+      )
     })
 
     it('should return the result of calling getFeedRequests', async () => {
       const getFeedRequestsMock = jest.fn(() => ({ feedFullName: 'name' }))
+      const timestamp = Math.floor(Date.now() / 1000) - 10000
       const loaders = new Loaders({
         resultRequestRepository: {
           getFeedRequests: getFeedRequestsMock
         }
       } as any)
 
-      const result = await loaders.getLoaders().requests.load('feedName')
+      const result = await loaders
+        .getLoaders()
+        .requests.load({ feedFullName: 'feedName', timestamp } as any)
 
       expect(result).toStrictEqual({ feedFullName: 'name' })
     })
