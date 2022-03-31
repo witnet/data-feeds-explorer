@@ -7,7 +7,8 @@ import {
   Repositories,
   ResultRequestDbObject,
   ObjectId,
-  ContractInfo
+  ContractInfo,
+  Contract
 } from '../types'
 import { isZeroAddress } from '../utils/index'
 import { getProvider } from './provider'
@@ -17,6 +18,7 @@ export class Web3Middleware {
   private Web3: typeof Web3
   public dataFeeds: Array<FeedInfo>
   public lastStoredResult: Record<string, ResultRequestDbObject> = {}
+  public contractIdByFeedId: Record<string, string> = {}
 
   private intervals = []
 
@@ -30,12 +32,23 @@ export class Web3Middleware {
   }
 
   public async initializeAddresses (): Promise<Array<FeedInfo>> {
-    const promises = this.dataFeeds.map(feed => this.updateFeed(feed))
+    const promises = this.dataFeeds.map(feed => this.recheckFeedAddress(feed))
 
-    return await Promise.all(promises)
+    const feeds = await Promise.all(promises)
+
+    // Store latest price feed addresses in memory
+    this.currentFeedAddresses = feeds.reduce(
+      (addresses, feed) => ({
+        ...addresses,
+        [feed.feedFullName]: feed.address
+      }),
+      {}
+    )
+
+    return feeds
   }
 
-  async updateFeed (feedInfo: FeedInfo) {
+  async recheckFeedAddress (feedInfo: FeedInfo) {
     const contractInfo = await this.getContractInfo(feedInfo)
     const feed = this.repositories.feedRepository.get(feedInfo.feedFullName)
 
@@ -43,6 +56,9 @@ export class Web3Middleware {
       contractInfo?.contractAddress &&
       contractInfo?.contractAddress !== feed?.address
     ) {
+      this.currentFeedAddresses[feed.feedFullName] =
+        contractInfo.contractAddress
+
       return this.repositories.feedRepository.updateFeedAddress(
         feedInfo.feedFullName,
         {
@@ -76,7 +92,11 @@ export class Web3Middleware {
     feeds.forEach(feed => {
       const feedInfo = feedDictionary[feed?.feedFullName]?.feedInfo
       if (feedInfo) {
-        this.updateFeed(feedInfo)
+        const interval = setInterval(
+          () => this.recheckFeedAddress(feedInfo),
+          feed.pollingPeriod
+        )
+        this.intervals.push(interval)
       }
     })
 
@@ -109,18 +129,28 @@ export class Web3Middleware {
           //FIXME: use web3 timeout instead of custom
           setTimeout(() => {
             reject('Timeout')
-          }, 10000)
-          const feedContract = new web3.eth.Contract(
-            feedInfo.routerAbi,
+
+          if (!this.routerContractByAddress[feedInfo.routerAddress]) {
+            this.routerContractByAddress[
+              feedInfo.routerAddress
+            ] = new web3.eth.Contract(
+              feedInfo.routerAbi,
+              feedInfo.routerAddress
+            )
+          }
+          const routerContract = this.routerContractByAddress[
             feedInfo.routerAddress
-          )
-          const contractIdentifier = await feedContract.methods
-            .currencyPairId(feedInfo.id)
-            .call()
-          const address = await feedContract.methods
+          ]
+
+          if (!this.contractIdByFeedId[feedInfo.id]) {
+            this.contractIdByFeedId[
+              feedInfo.id
+            ] = await routerContract.methods.currencyPairId(feedInfo.id).call()
+          }
+          const contractIdentifier = this.contractIdByFeedId[feedInfo.id]
+          const address = await routerContract.methods
             .getPriceFeed(contractIdentifier)
             .call()
-
           resolve({
             contractAddress: address,
             contractId: contractIdentifier
@@ -138,40 +168,48 @@ export class Web3Middleware {
   }
 
   async listenToDataFeed (feedInfo: FeedInfo) {
-    const contractInfo = await this.getContractInfo(feedInfo)
     const provider = getProvider(feedInfo.network)
     if (provider) {
-      if (
-        contractInfo &&
-        contractInfo.contractAddress &&
-        !isZeroAddress(contractInfo.contractAddress)
-      ) {
-        try {
-          const web3 = new this.Web3(provider)
-          const feedContract = new web3.eth.Contract(
-            feedInfo.abi,
-            contractInfo.contractAddress
-          )
-          const interval = setInterval(async () => {
-            console.log(
-              `Reading ${feedInfo.feedFullName} contract state at address: ${contractInfo.contractAddress}`
+      try {
+        const web3 = new this.Web3(provider)
+        const interval = setInterval(async () => {
+          const contractAddress = this.currentFeedAddresses[
+            feedInfo.feedFullName
+          ]
+          if (contractAddress && !isZeroAddress(contractAddress)) {
+            const feedContract = new web3.eth.Contract(
+              feedInfo.abi,
+              contractAddress
             )
+            console.log(
+              `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
+            )
+            const now = Date.now()
             await this.fetchAndSaveContractSnapshot(
               { feedContract },
+              {
+                feedFullName: feedInfo.feedFullName,
+                pollingPeriod: feedInfo.pollingPeriod
+              }
+            )
               feedInfo.feedFullName
             )
-          }, feedInfo.pollingPeriod)
+          } else {
+            console.error(
+              `Pricefeed address not set for ${feedInfo.feedFullName}`
+            )
+          }
+        }, feedInfo.pollingPeriod)
 
-          this.intervals.push(interval)
-        } catch (err) {
-          console.error(`Provider not valid for ${feedInfo.network}`, err)
-        }
-      } else {
-        console.error(`Pricefeed address not set for ${feedInfo.feedFullName}`)
+        this.intervals.push(interval)
+      } catch (err) {
+        console.error(`Provider not valid for ${feedInfo.network}`, err)
       }
     } else {
       console.error(`Provider not set for network ${feedInfo.network}`)
     }
+
+    return
   }
 
   async readContractsState ({ feedContract }: Contracts) {
@@ -227,3 +265,5 @@ export class Web3Middleware {
     }
   }
 }
+
+function fillCurrentFeedAddresses () {}

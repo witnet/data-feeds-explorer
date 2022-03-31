@@ -8,6 +8,7 @@ import DataLoader from 'dataloader'
 
 export * from './generated/types'
 export { AbiItem } from 'web3-utils'
+export { Contract } from 'web3-eth-contract'
 export { Db, Collection, ObjectId, WithId } from 'mongodb'
 
 export type WithoutId<T> = Omit<T, '_id' | 'id'>
