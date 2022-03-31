@@ -82,7 +82,7 @@
         "documentation": "Documentation",
         "price_feeds": "Price Feeds",
         "randomness": "Randomness",
-        "get_post_request": "GET & POST Requests"
+        "get_post_request": "Data Requests"
       }
     },
     "ado_text": "Witnet is part of the Alliance of Decentralized Oracles (ADO), a joint effort by leading decentralized oracle solutions to make the life of smart contract developers easier by creating oracle standards. Learn more about the ADO at {0}",
