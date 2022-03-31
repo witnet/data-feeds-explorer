@@ -18,7 +18,10 @@ export class Web3Middleware {
   private Web3: typeof Web3
   public dataFeeds: Array<FeedInfo>
   public lastStoredResult: Record<string, ResultRequestDbObject> = {}
+  public routerContractByAddress: Record<string, Contract> = {}
   public contractIdByFeedId: Record<string, string> = {}
+  // feedFullname -> address
+  public currentFeedAddresses: Record<string, string> = {}
 
   private intervals = []
 
@@ -56,6 +59,10 @@ export class Web3Middleware {
       contractInfo?.contractAddress &&
       contractInfo?.contractAddress !== feed?.address
     ) {
+      console.log(
+        `Address of ${feedInfo.feedFullName}: ${feed.address} -> ${contractInfo.contractAddress}`
+      )
+
       this.currentFeedAddresses[feed.feedFullName] =
         contractInfo.contractAddress
 
@@ -129,6 +136,7 @@ export class Web3Middleware {
           //FIXME: use web3 timeout instead of custom
           setTimeout(() => {
             reject('Timeout')
+          }, 30000)
 
           if (!this.routerContractByAddress[feedInfo.routerAddress]) {
             this.routerContractByAddress[
@@ -184,15 +192,12 @@ export class Web3Middleware {
             console.log(
               `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
             )
-            const now = Date.now()
             await this.fetchAndSaveContractSnapshot(
               { feedContract },
               {
                 feedFullName: feedInfo.feedFullName,
                 pollingPeriod: feedInfo.pollingPeriod
               }
-            )
-              feedInfo.feedFullName
             )
           } else {
             console.error(
@@ -212,7 +217,7 @@ export class Web3Middleware {
     return
   }
 
-  async readContractsState ({ feedContract }: Contracts) {
+  async readContractsState ({ feedContract }: Contracts, feedFullName: string) {
     try {
       const {
         _lastPrice,
@@ -220,7 +225,10 @@ export class Web3Middleware {
         _lastDrTxHash,
         _latestUpdateStatus
       } = await feedContract.methods.lastValue().call()
-      console.log('Latest update status:', _latestUpdateStatus)
+      console.log(
+        `Latest contract update status for ${feedFullName}`,
+        _latestUpdateStatus
+      )
       return {
         lastPrice: _lastPrice,
         lastTimestamp: _lastTimestamp,
@@ -234,35 +242,50 @@ export class Web3Middleware {
 
   async fetchAndSaveContractSnapshot (
     contracts: Contracts,
-    feedFullName: string
+    {
+      feedFullName,
+      pollingPeriod
+    }: { feedFullName: string; pollingPeriod: number }
   ) {
-    try {
-      const {
-        lastPrice,
-        lastTimestamp,
-        lastDrTxHash,
-        requestId
-      }: ContractsState = await this.readContractsState(contracts)
-      const decodedDrTxHash = toHex(lastDrTxHash)
-      const lastStoredResult =
-        this.lastStoredResult[feedFullName] ||
-        (await this.repositories.resultRequestRepository.getLastResult(
+    return new Promise(async resolve => {
+      try {
+        setTimeout(() => {
+          console.log(`Timeout while reading from ${feedFullName}`)
+          resolve(true)
+        }, pollingPeriod)
+        const {
+          lastPrice,
+          lastTimestamp,
+          lastDrTxHash,
+          requestId
+        }: ContractsState = await this.readContractsState(
+          contracts,
           feedFullName
-        ))
-      const timestampChanged = lastStoredResult?.timestamp !== lastTimestamp
-      if (timestampChanged) {
-        const result = await this.repositories.resultRequestRepository.insert({
-          result: lastPrice,
-          timestamp: lastTimestamp,
-          requestId: requestId,
-          drTxHash: decodedDrTxHash.slice(2),
-          feedFullName
-        })
-        this.lastStoredResult[feedFullName] = result
+        )
+        const decodedDrTxHash = toHex(lastDrTxHash)
+        const lastStoredResult =
+          this.lastStoredResult[feedFullName] ||
+          (await this.repositories.resultRequestRepository.getLastResult(
+            feedFullName
+          ))
+        const timestampChanged = lastStoredResult?.timestamp !== lastTimestamp
+        if (timestampChanged) {
+          const result = await this.repositories.resultRequestRepository.insert(
+            {
+              result: lastPrice,
+              timestamp: lastTimestamp,
+              requestId: requestId,
+              drTxHash: decodedDrTxHash.slice(2),
+              feedFullName
+            }
+          )
+          this.lastStoredResult[feedFullName] = result
+          resolve(true)
+        }
+      } catch (error) {
+        console.error(`Error reading contracts state:`, error)
       }
-    } catch (error) {
-      console.error(`Error reading contracts state:`, error)
-    }
+    })
   }
 }
 
