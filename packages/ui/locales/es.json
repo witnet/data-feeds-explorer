@@ -38,7 +38,13 @@
     "status": "Estado",
     "operational": "Operativo",
     "delay": "Retraso detectado",
-    "error": "Error detectado"
+    "error": "Error detectado",
+    "${serie": {
+      "key}": ""
+    },
+    "${dataFeedStatus": {
+      "key}": ""
+    }
   },
   "copied": "Copiado",
   "copy": "Copiar",
@@ -47,6 +53,60 @@
     "documentation": "Documentación",
     "request_data_feed": "Request new price feed",
     "about_witnet": "Sobre Witnet",
-    "copyright": "© 2018–2022 por la Fundación Witnet y colaboradores particulaes. Contenido disponible bajo licencia de Creative Commons."
-  }
+    "links": {
+      "witnet": {
+        "title": "Witnet",
+        "oracle": "Oráculo",
+        "token": "Token",
+        "ecosystem": "Ecosistema",
+        "community": "Comunidad",
+        "whitepaper": "Whitepaper"
+      },
+      "ecosystem": {
+        "title": "Ecosistema",
+        "full_node": "Nodo completo",
+        "wallet": "Wallet",
+        "block_explorer": "Explorador de bloques",
+        "monitor": "Monitor de red",
+        "data_feeds_explorer": "Data Feeds Explorer"
+      },
+      "community": {
+        "title": "Comunidad",
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "youtube": "Youtube"
+      },
+      "developers": {
+        "title": "Developers",
+        "documentation": "Documentación",
+        "price_feeds": "Price Feeds",
+        "randomness": "Randomness",
+        "get_post_request": "Data Requests"
+      }
+    },
+    "ado_text": "Witnet es parte de la Alianza de Oráculos Descentralizados (ADO), un esfuerzo conjunto que lidera soluciones de oráculos descentralizados para facilitar la vida de los desarrolladores de smart contracts mediante la creación de estándares de oráculo. Más información sobre ADO en {0}",
+    "copyright": {
+      "base": "© {0} by {1} and individual contributors. Content available under a {2}.",
+      "witnet_foundation": "Witnet Foundation",
+      "license": "Licencia Creative Commons"
+    }
+  },
+  "landing": {
+    "supported_chains": {
+      "title": "Supported chains",
+      "subtitle": "Blockchains in which the Witnet oracle is currently available"
+    },
+    "upcoming_chains": {
+      "title": "Chains with upcoming support"
+    },
+    "partners": {
+      "title": "Users and Partners"
+    }
+  },
+  "feeds": "feeds",
+  "data_feeds": "Data feeds",
+  "networks": "Networks",
+  "chains": "Chains"
 }
