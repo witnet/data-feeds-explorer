@@ -38,7 +38,13 @@
     "status": "Status",
     "operational": "Fully operational",
     "delay": "Delay detected",
-    "error": "Error detected"
+    "error": "Error detected",
+    "${serie": {
+      "key}": ""
+    },
+    "${dataFeedStatus": {
+      "key}": ""
+    }
   },
   "copied": "Copied",
   "copy": "Copy",
@@ -47,6 +53,60 @@
     "documentation": "Documentation",
     "request_data_feed": "Request new price feed",
     "about_witnet": "About Witnet",
-    "copyright": "© 2018–2022 by Witnet Foundation and individual contributors. Content available under a Creative Commons License."
-  }
+    "links": {
+      "witnet": {
+        "title": "Witnet",
+        "oracle": "Oracle",
+        "token": "Token",
+        "ecosystem": "Ecosystem",
+        "community": "Community",
+        "whitepaper": "Whitepaper"
+      },
+      "ecosystem": {
+        "title": "Ecosystem",
+        "full_node": "Full node",
+        "wallet": "钱包",
+        "block_explorer": "Block explorer",
+        "monitor": "Network monitor",
+        "data_feeds_explorer": "Data Feeds Explorer"
+      },
+      "community": {
+        "title": "Community",
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "youtube": "Youtube"
+      },
+      "developers": {
+        "title": "Developers",
+        "documentation": "Documentation",
+        "price_feeds": "Price Feeds",
+        "randomness": "Randomness",
+        "get_post_request": "Data Requests"
+      }
+    },
+    "ado_text": "Witnet is part of the Alliance of Decentralized Oracles (ADO), a joint effort by leading decentralized oracle solutions to make the life of smart contract developers easier by creating oracle standards. Learn more about the ADO at {0}",
+    "copyright": {
+      "base": "© {0} by {1} and individual contributors. Content available under a {2}.",
+      "witnet_foundation": "Witnet Foundation",
+      "license": "Creative Commons License"
+    }
+  },
+  "landing": {
+    "supported_chains": {
+      "title": "Supported chains",
+      "subtitle": "Blockchains in which the Witnet oracle is currently available"
+    },
+    "upcoming_chains": {
+      "title": "Chains with upcoming support"
+    },
+    "partners": {
+      "title": "Users and Partners"
+    }
+  },
+  "feeds": "feeds",
+  "data_feeds": "Data feeds",
+  "networks": "Networks",
+  "chains": "Chains"
 }
