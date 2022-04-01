@@ -288,5 +288,3 @@ export class Web3Middleware {
     })
   }
 }
-
-function fillCurrentFeedAddresses () {}

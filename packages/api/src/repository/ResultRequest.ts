@@ -24,8 +24,7 @@ export class ResultRequestRepository {
         .find(
           {
             feedFullName,
-            timestamp: { $gt: timestamp.toString() },
-            result: { $exists: true }
+            timestamp: { $gt: timestamp.toString() }
           },
           {
             sort: { timestamp: -1 }
@@ -47,8 +46,7 @@ export class ResultRequestRepository {
     return (
       await this.collection
         .find({
-          feedFullName,
-          result: { $exists: true }
+          feedFullName
         })
         .sort({ timestamp: -1 })
         .skip(size * (page - 1))
@@ -108,6 +106,6 @@ export class ResultRequestRepository {
   private isValidResultRequest (
     resultRequest: WithoutId<ResultRequestDbObject>
   ): boolean {
-    return !containFalsyValues(resultRequest)
+    return !containFalsyValues(resultRequest) && resultRequest.timestamp !== '0'
   }
 }
