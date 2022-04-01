@@ -5,12 +5,12 @@
         {{ $t('data_feed_details.integration_details_description', [network]) }}
       </p>
       <div class="bottom">
-        <a :href="integrateThroughProxyBaseUrl" target="_blank">
+        <a :href="urls.integrateThroughProxy" target="_blank">
           <Button class="btn">
             {{ $t('data_feed_details.integrate_proxy') }}</Button
           >
         </a>
-        <a :href="integrateDirectlyBaseUrl" target="_blank">
+        <a :href="urls.integrateDirectly" target="_blank">
           <Button class="btn">
             {{ $t('data_feed_details.integrate_directly') }}</Button
           >
@@ -49,10 +49,7 @@
 </template>
 
 <script>
-import {
-  integrateDirectlyBaseUrl,
-  integrateThroughProxyBaseUrl,
-} from '../constants'
+import { urls } from '../constants'
 export default {
   props: {
     network: {
@@ -82,8 +79,7 @@ export default {
   },
   data() {
     return {
-      integrateDirectlyBaseUrl,
-      integrateThroughProxyBaseUrl,
+      urls,
     }
   },
 }

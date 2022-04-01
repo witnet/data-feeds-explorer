@@ -1,5 +1,5 @@
-import { witnetBlockExplorerUrl } from '../constants'
+import { urls } from '../constants'
 
 export function getWitnetBlockExplorerLink(drTxHash) {
-  return `${witnetBlockExplorerUrl}/${drTxHash}`
+  return `${urls.blockExplorer}/${drTxHash}`
 }

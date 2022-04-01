@@ -1,22 +1,13 @@
 <template>
   <div class="links">
-    <a class="link" :href="urls.github" target="_blank">
-      <SvgIcon name="github" />
-    </a>
-    <a class="link" :href="urls.telegram" target="_blank">
-      <SvgIcon name="telegram" />
-    </a>
-    <a class="link" :href="urls.discord" target="_blank">
-      <SvgIcon name="discord" />
-    </a>
-    <a class="link" :href="urls.twitter" target="_blank">
-      <SvgIcon name="twitter" />
-    </a>
-    <a class="link" :href="urls.reddit" target="_blank">
-      <SvgIcon name="reddit" />
-    </a>
-    <a class="link" :href="urls.youtube" target="_blank">
-      <SvgIcon name="youtube" />
+    <a
+      v-for="social in socials"
+      :key="social.svgName"
+      class="link"
+      :href="social.url"
+      target="_blank"
+    >
+      <SvgIcon :name="social.svgName" />
     </a>
   </div>
 </template>
@@ -27,7 +18,9 @@ import { urls } from '../constants'
 export default {
   data() {
     return {
-      urls,
+      socials: ['github', 'telegram', 'discord', 'twitter', 'reddit'].map(
+        (socialName) => ({ svgName: socialName, url: urls[socialName] })
+      ),
     }
   },
 }

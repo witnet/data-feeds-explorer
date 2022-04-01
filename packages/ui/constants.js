@@ -9,7 +9,7 @@ export const urls = {
     'https://medium.com/witnet/wit-witnet-blockchains-native-tokenomics-4559084073c5',
   wallet: 'https://sheikah.app/',
   // truffleBox: 'https://docs.witnet.io/try/use-from-ethereum/',
-  blockExplorer: 'https://witnet.network/',
+  blockExplorer: 'https://witnet.network/search',
   twitter: 'https://twitter.com/witnet_io',
   telegram: 'https://t.me/witnetio',
   discord: 'https://discord.gg/X4uurfP',
@@ -29,15 +29,12 @@ export const urls = {
   randomness: 'https://docs.witnet.io/smart-contracts/witnet-randomness-oracle',
   getPostRequest:
     'https://docs.witnet.io/smart-contracts/apis-and-http-get-post-oracle',
+  requestDataFeed: 'https://tally.so/r/wMZDAn',
+  integrateDirectly:
+    'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-last-price-and-timestamp-from-a-price-feed-contract-serving-a-specific-pair',
+  integrateThroughProxy:
+    'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-multiple-currency-pairs-from-the-router',
 }
-
-export const witnetBlockExplorerUrl = 'https://witnet.network/search'
-export const requestDataFeedUrl = 'https://tally.so/r/wMZDAn'
-export const witnetUrl = 'https://witnet.io'
-export const integrateDirectlyBaseUrl =
-  'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-last-price-and-timestamp-from-a-price-feed-contract-serving-a-specific-pair'
-export const integrateThroughProxyBaseUrl =
-  'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-multiple-currency-pairs-from-the-router'
 
 export const languages = [
   {

@@ -25,7 +25,11 @@
             <NetworkOptions type="navbar" :options="navBarOptions" />
           </div>
           <li class="tab last-item" @click="closeMenu">
-            <a class="btn-container" :href="requestDataFeedUrl" target="_blank">
+            <a
+              class="btn-container"
+              :href="urls.requestDataFeed"
+              target="_blank"
+            >
               <Button class="btn">{{ $t('navbar.request_data_feed') }}</Button>
             </a>
           </li>
@@ -37,7 +41,7 @@
 
 <script>
 import networks from '@/apollo/queries/networks.gql'
-import { requestDataFeedUrl } from '../constants'
+import { urls } from '../constants'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
@@ -54,7 +58,7 @@ export default {
       hover: false,
       displayBox: false,
       isMenuVisible: false,
-      requestDataFeedUrl,
+      urls,
     }
   },
   computed: {
