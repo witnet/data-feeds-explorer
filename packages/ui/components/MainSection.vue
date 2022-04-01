@@ -25,7 +25,7 @@
   min-height: max-content;
   grid-template-rows: max-content max-content 1fr max-content;
   grid-template-columns: 1fr;
-  width: 100%;
+  width: 100vw;
   max-width: var(--desktop-margin);
   row-gap: 24px;
   margin: 0 auto;

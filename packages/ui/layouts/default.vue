@@ -83,6 +83,8 @@ body {
   padding-right: env(safe-area-inset-right, 1em);
   padding-bottom: env(safe-area-inset-bottom, 1em);
   padding-left: env(safe-area-inset-left, 1em);
+  width: 100vw;
+  overflow-x: hidden;
 }
 .nuxt-link-exact-active {
   color: var(--text);
