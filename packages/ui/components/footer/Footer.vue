@@ -3,7 +3,7 @@
     <div class="footer">
       <div class="top">
         <div v-for="section in footerLinks" :key="section.title" class="links">
-          <p class="title">{{ $t(section.title) }}</p>
+          <p class="title">{{ $t(`footer.links.${section.title}.title`) }}</p>
           <a
             v-for="link in section.links"
             :key="link.text"
