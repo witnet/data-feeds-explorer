@@ -335,7 +335,7 @@
           "address": "0x49C0BCce51a8B28f92d008394F06d5B259657F33",
           "blockExplorer": "https://evmtestnet.confluxscan.net/address//{address}?tab=contract-viewer",
           "color": "#6600ff",
-          "name": "Conflux eSpace Testnet",
+          "name": "Conflux eSpace (Testnet)",
           "pollingPeriod": 30000,
           "feeds": {
             "Price-BTC/USD-6": {
