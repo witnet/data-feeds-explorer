@@ -18,7 +18,7 @@ export class Web3Middleware {
   private Web3: typeof Web3
   public dataFeeds: Array<FeedInfo>
   public lastStoredResult: Record<string, ResultRequestDbObject> = {}
-  public routerContractByAddress: Record<string, Contract> = {}
+  public routerContractByNetwork: Record<string, Contract> = {}
   public contractIdByFeedId: Record<string, string> = {}
   // feedFullname -> address
   public currentFeedAddresses: Record<string, string> = {}
@@ -138,16 +138,16 @@ export class Web3Middleware {
             reject('Timeout')
           }, 30000)
 
-          if (!this.routerContractByAddress[feedInfo.routerAddress]) {
-            this.routerContractByAddress[
-              feedInfo.routerAddress
+          if (!this.routerContractByNetwork[feedInfo.network]) {
+            this.routerContractByNetwork[
+              feedInfo.network
             ] = new web3.eth.Contract(
               feedInfo.routerAbi,
               feedInfo.routerAddress
             )
           }
-          const routerContract = this.routerContractByAddress[
-            feedInfo.routerAddress
+          const routerContract = this.routerContractByNetwork[
+            feedInfo.network
           ]
 
           if (!this.contractIdByFeedId[feedInfo.id]) {
