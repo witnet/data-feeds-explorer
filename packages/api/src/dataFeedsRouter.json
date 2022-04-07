@@ -333,9 +333,42 @@
         },
         "conflux.espace.testnet": {
           "address": "0x49C0BCce51a8B28f92d008394F06d5B259657F33",
-          "blockExplorer": "https://evmtestnet.confluxscan.net/address//{address}?tab=contract-viewer",
+          "blockExplorer": "https://evmtestnet.confluxscan.net/address/{address}?tab=contract-viewer",
           "color": "#6600ff",
           "name": "Conflux eSpace (Testnet)",
+          "pollingPeriod": 30000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CFX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
+        "conflux.espace.mainnet": {
+          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+          "blockExplorer": "https://evm.confluxscan.net/address/{address}?tab=contract-viewer",
+          "color": "#6600ff",
+          "name": "Conflux eSpace (Mainnet)",
           "pollingPeriod": 30000,
           "feeds": {
             "Price-BTC/USD-6": {
