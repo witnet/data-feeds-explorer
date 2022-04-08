@@ -407,7 +407,7 @@
           "blockExplorer": "https://cronos.org/explorer/testnet3/address/{address}/read-contract",
           "color": "#6600ff",
           "name": "Cronos Testnet",
-          "pollingPeriod": 300000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -440,7 +440,7 @@
           "blockExplorer": "https://cronos.org/explorer/testnet/address/{address}/read-contract",
           "color": "#6600ff",
           "name": "Cronos Mainnet",
-          "pollingPeriod": 300000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
