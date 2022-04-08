@@ -147,9 +147,7 @@ export class Web3Middleware {
               feedInfo.routerAddress
             )
           }
-          const routerContract = this.routerContractByNetwork[
-            feedInfo.network
-          ]
+          const routerContract = this.routerContractByNetwork[feedInfo.network]
 
           if (!this.contractIdByFeedId[feedInfo.id]) {
             this.contractIdByFeedId[
