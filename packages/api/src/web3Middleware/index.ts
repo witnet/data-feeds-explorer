@@ -195,10 +195,7 @@ export class Web3Middleware {
             )
             await this.fetchAndSaveContractSnapshot(
               { feedContract },
-              {
-                feedFullName: feedInfo.feedFullName,
-                pollingPeriod: feedInfo.pollingPeriod
-              }
+              feedInfo.feedFullName
             )
           } else {
             console.error(
@@ -243,17 +240,14 @@ export class Web3Middleware {
 
   async fetchAndSaveContractSnapshot (
     contracts: Contracts,
-    {
-      feedFullName,
-      pollingPeriod
-    }: { feedFullName: string; pollingPeriod: number }
+    feedFullName: string
   ) {
     return new Promise(async resolve => {
       try {
         setTimeout(() => {
           console.log(`Timeout while reading from ${feedFullName}`)
           resolve(true)
-        }, pollingPeriod)
+        }, 30000)
         const {
           lastPrice,
           lastTimestamp,
