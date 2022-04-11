@@ -744,6 +744,53 @@
         }
       }
     },
+    "okxchain": {
+      "name": "OKX Chain",
+      "networks": {
+        "okxchain.testnet": {
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
+          "blockExplorer": "https://www.oklink.com/en/okc-test/address/{address}",
+          "color": "#ff0066",
+          "name": "OKX Chain Testnet",
+          "pollingPeriod": 15000,
+          "feeds": {
+            "Price-OKT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        },
+        "okxchain.mainnet": {
+          "address": "",
+          "blockExplorer": "https://www.oklink.com/en/okc/address/{address}",
+          "color": "#ff0066",
+          "name": "OKX Chain Mainnet",
+          "pollingPeriod": 15000,
+          "feeds": {
+            "Price-OKT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
     "polygon": {
       "name": "Polygon",
       "networks": {
