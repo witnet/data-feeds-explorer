@@ -9,7 +9,7 @@
           "blockExplorer": "https://snowtrace.io/address/{address}#readContract",
           "color": "#070fdf",
           "name": "Avalanche Mainnet",
-          "pollingPeriod": 300000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-AVAX/USD-6": {
               "label": "$",
@@ -24,7 +24,7 @@
           "blockExplorer": "https://testnet.snowtrace.io/address/{address}#readContract",
           "color": "#E84142",
           "name": "Avalanche Fuji",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-AVAX/USD-6": {
               "label": "$",
@@ -56,7 +56,7 @@
           "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
           "color": "#1cd83d",
           "name": "Boba Rinkeby",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BOBA/USDT-6": {
               "label": "₮",
@@ -137,7 +137,7 @@
           "blockExplorer": "https://blockexplorer.boba.network/address/{address}/read-contract",
           "color": "#007dff",
           "name": "Boba Mainnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BOBA/USDT-6": {
               "label": "₮",
@@ -199,7 +199,7 @@
           "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}/read-contract",
           "color": "#1cd8d2",
           "name": "Celo Alfajores",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -238,7 +238,7 @@
           "blockExplorer": "https://explorer.celo.org/address/{address}/read-contract",
           "color": "#ff8100",
           "name": "Celo Mainnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-CELO/EUR-6": {
               "label": "€",
@@ -282,7 +282,7 @@
           "blockExplorer": "https://confluxscan.io/address/{address}",
           "color": "#ff0000",
           "name": "Conflux Core (Hydra)",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-CFX/USDT-6": {
               "label": "₮",
@@ -309,7 +309,7 @@
           "blockExplorer": "https://evm.confluxscan.net/address/{address}?tab=contract-viewer",
           "color": "#6600ff",
           "name": "Conflux eSpace (Mainnet)",
-          "pollingPeriod": 30000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -342,7 +342,7 @@
           "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
           "color": "#6600ff",
           "name": "Conflux Core (Testnet)",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-CFX/USDT-6": {
               "label": "₮",
@@ -369,7 +369,7 @@
           "blockExplorer": "https://evmtestnet.confluxscan.net/address/{address}?tab=contract-viewer",
           "color": "#6600ff",
           "name": "Conflux eSpace (Testnet)",
-          "pollingPeriod": 30000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -478,7 +478,7 @@
           "blockExplorer": "https://goerli.etherscan.io/address/{address}#readContract",
           "color": "#ff5599",
           "name": "Ethereum Goerli",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -499,7 +499,7 @@
           "blockExplorer": "https://rinkeby.etherscan.io/address/{address}#readContract",
           "color": "#ff5599",
           "name": "Ethereum Rinkeby",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -520,7 +520,7 @@
           "blockExplorer": "https://etherscan.io/address/{address}#readContract",
           "color": "#ff5599",
           "name": "Ethereum Mainnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -546,7 +546,7 @@
           "blockExplorer": "https://explorer.pops.one/address/{address}?activeTab=7",
           "color": "#f6006f",
           "name": "Harmony Testnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -572,7 +572,7 @@
           "blockExplorer": "https://scan-testnet.kcc.network/address/{address}/read-contract",
           "color": "#ff0066",
           "name": "KCC Testnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-DAI/USD-6": {
               "label": "$",
@@ -617,7 +617,7 @@
           "blockExplorer": "https://scan.kcc.io/address/{address}/read-contract",
           "color": "#ff0066",
           "name": "KCC Mainnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-DAI/USD-6": {
               "label": "$",
@@ -667,7 +667,7 @@
           "blockExplorer": "https://stardust-explorer.metis.io/address/{address}/read-contract",
           "color": "#ff6600",
           "name": "Metis Rinkeby",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-METIS/USDT-6": {
               "label": "₮",
@@ -694,7 +694,7 @@
           "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}/read-contract",
           "color": "#ff6600",
           "name": "Metis Mainnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-METIS/USDT-6": {
               "label": "₮",
@@ -714,7 +714,7 @@
           "blockExplorer": "https://moonbase.moonscan.io/address/{address}#readContract",
           "color": "#ff6600",
           "name": "Moonbase Alpha",
-          "pollingPeriod": 10000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -752,7 +752,7 @@
           "blockExplorer": "https://www.oklink.com/en/okc-test/address/{address}",
           "color": "#ff0066",
           "name": "OKX Chain Testnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-OKT/USDT-6": {
               "label": "₮",
@@ -773,7 +773,7 @@
           "blockExplorer": "https://www.oklink.com/en/okc/address/{address}",
           "color": "#ff0066",
           "name": "OKX Chain Mainnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-OKT/USDT-6": {
               "label": "₮",
@@ -799,7 +799,7 @@
           "blockExplorer": "https://mumbai.polygonscan.com/address/{address}#readContract",
           "color": "#66ff00",
           "name": "Polygon Mumbai",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -832,7 +832,7 @@
           "blockExplorer": "https://polygonscan.com/address/{address}/read-contract",
           "color": "#66ff00",
           "name": "Polygon Mainnet",
-          "pollingPeriod": 15000,
+          "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
