@@ -27,7 +27,11 @@ export class ResultRequestRepository {
             timestamp: { $gt: timestamp.toString() }
           },
           {
-            sort: { timestamp: -1 }
+            sort: { timestamp: -1 },
+            collation: {
+              locale: 'en_US',
+              numericOrdering: true
+            }
           }
         )
         .toArray()
