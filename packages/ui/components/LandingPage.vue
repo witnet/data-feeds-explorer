@@ -20,6 +20,7 @@
 <script>
 import networks from '@/apollo/queries/networks.gql'
 import feeds from '@/apollo/queries/feeds.gql'
+import { formatSvgChainName } from '@/utils/formatSvgChainName'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 
@@ -63,10 +64,10 @@ export default {
           detailsPath: {
             name: 'network',
             params: {
-              network: chain.toLowerCase(),
+              network: chain,
             },
           },
-          img: chain.toLowerCase(),
+          img: formatSvgChainName(chain),
         }
       })
     },

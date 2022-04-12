@@ -7,9 +7,10 @@
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <div class="title bold">
-          <SvgIcon class="logo" :name="selected[0].chain.toLowerCase()" />{{
-            selected[0].chain
-          }}
+          <SvgIcon
+            class="logo"
+            :name="formatSvgChainName(selected[0].chain)"
+          />{{ selected[0].chain }}
         </div>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
@@ -38,6 +39,7 @@ import networks from '@/apollo/queries/networks.gql'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
+import { formatSvgChainName } from '../utils/formatSvgChainName'
 
 export default {
   apollo: {
@@ -84,6 +86,7 @@ export default {
   },
   methods: {
     capitalizeFirstLetter,
+    formatSvgChainName,
     updateOptions(index) {
       this.$store.commit('deleteEmptyNetwork', { index })
     },
