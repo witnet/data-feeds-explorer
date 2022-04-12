@@ -7,9 +7,12 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" . --fix",
+    "lint:js:check": "eslint --ext \".js,.vue\" .",
     "i18n:report": "yarn run vue-i18n-extract use-config",
     "lint:style": "stylelint \"**/*.{vue,css}\" --fix",
+    "lint:style:check": "stylelint \"**/*.{vue,css}\"",
     "lint": "yarn lint:js && yarn lint:style",
+    "lint:check": "yarn lint:js:check && yarn lint:style",
     "test": "yarn jest",
     "docker:build": "docker build . --no-cache -t witnet/data-feeds-explorer-ui"
   },
