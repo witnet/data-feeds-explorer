@@ -129,6 +129,8 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/apollo',
     'nuxt-element-ui',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
 
   elementUI: {
@@ -210,6 +212,17 @@ export default {
       default: '~/apollo.config.js',
     },
     errorHandler: '~/plugins/apollo-error-handler.js',
+  },
+  axios: {
+    proxy: true,
+  },
+  proxy: {
+    '/api/': {
+      target:
+        'https://raw.github.com/witnet/data-feeds-explorer/main/packages/ui/assets/svg/',
+      pathRewrite: { '^/api/': '' },
+      changeOrigin: true,
+    },
   },
   publicRuntimeConfig: {
     baseUrl: process.env.API_ENDPOINT,
