@@ -16,13 +16,29 @@ import {
 } from './types'
 import { Web3Middleware } from './web3Middleware/index'
 import { normalizeConfig, normalizeNetworkConfig } from './utils/index'
-import dataFeedsRouterConfig from './dataFeedsRouter.json'
+import axios from 'axios'
+
+async function getDataFeedsRouterConfig (): Promise<
+  RouterDataFeedsConfig | null
+> {
+  return await axios
+    .get(
+      'https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json'
+    )
+    .then(res => {
+      return res.data
+    })
+    .catch(err => {
+      console.log('There was an error fetching the config file', err)
+      return null
+    })
+}
 
 async function main () {
   const mongoManager = new MongoManager()
   const db = await mongoManager.start()
-  const dataFeeds = readDataFeeds()
-  const networksConfig = readNetworks()
+  const dataFeeds = await readDataFeeds()
+  const networksConfig = await readNetworks()
 
   const repositories: Repositories = {
     feedRepository: new FeedRepository(dataFeeds),
@@ -48,15 +64,19 @@ async function main () {
     })
 }
 
-export function readNetworks (): Array<NetworksConfig> {
-  return normalizeNetworkConfig(dataFeedsRouterConfig as RouterDataFeedsConfig)
+export async function readNetworks (): Promise<Array<NetworksConfig>> {
+  return normalizeNetworkConfig(
+    (await getDataFeedsRouterConfig()) as RouterDataFeedsConfig
+  )
 }
 
-export function readDataFeeds (): Array<FeedInfo> {
+export async function readDataFeeds (): Promise<Array<FeedInfo>> {
   const dataFeeds: Array<Omit<
     FeedInfoConfig,
     'abi' | 'routerAbi'
-  >> = normalizeConfig(dataFeedsRouterConfig as RouterDataFeedsConfig)
+  >> = normalizeConfig(
+    (await getDataFeedsRouterConfig()) as RouterDataFeedsConfig
+  )
 
   // Throw and error if config file is not valid
   validateDataFeeds(dataFeeds)
