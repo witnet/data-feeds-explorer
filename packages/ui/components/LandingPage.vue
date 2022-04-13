@@ -64,7 +64,7 @@ export default {
           detailsPath: {
             name: 'network',
             params: {
-              network: chain,
+              network: chain.toLowerCase(),
             },
           },
           img: formatSvgChainName(chain),
