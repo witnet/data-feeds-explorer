@@ -1,28 +1,40 @@
 require('dotenv/config')
 
-import fs from 'fs'
-import path from 'path'
 import Web3 from 'web3'
 import { MongoManager } from './database'
 import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
 import { createServer } from './server'
-import {
-  FeedInfo,
-  FeedInfoConfig,
-  Repositories,
-  RouterDataFeedsConfig,
-  NetworksConfig
-} from './types'
+import { Repositories, RouterDataFeedsConfig, NetworksConfig } from './types'
 import { Web3Middleware } from './web3Middleware/index'
-import { normalizeConfig, normalizeNetworkConfig } from './utils/index'
-import dataFeedsRouterConfig from './dataFeedsRouter.json'
+import { normalizeNetworkConfig } from './utils/index'
+import axios from 'axios'
+import { readDataFeeds } from './readDataFeeds'
+
+async function getDataFeedsRouterConfig (): Promise<
+  RouterDataFeedsConfig | null
+> {
+  return await axios
+    .get(
+      'https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json'
+    )
+    .then(res => {
+      return res.data
+    })
+    .catch(err => {
+      console.log('There was an error fetching the config file', err)
+      return null
+    })
+}
 
 async function main () {
   const mongoManager = new MongoManager()
   const db = await mongoManager.start()
-  const dataFeeds = readDataFeeds()
-  const networksConfig = readNetworks()
+  const dataFeedsRouterConfig: RouterDataFeedsConfig = await getDataFeedsRouterConfig()
+  const dataFeeds = await readDataFeeds(dataFeedsRouterConfig)
+  const networksConfig: Array<NetworksConfig> = normalizeNetworkConfig(
+    dataFeedsRouterConfig
+  )
 
   const repositories: Repositories = {
     feedRepository: new FeedRepository(dataFeeds),
@@ -46,87 +58,6 @@ async function main () {
     .then(({ url }) => {
       console.log(`🚀  Server ready at ${url}`)
     })
-}
-
-export function readNetworks (): Array<NetworksConfig> {
-  return normalizeNetworkConfig(dataFeedsRouterConfig as RouterDataFeedsConfig)
-}
-
-export function readDataFeeds (): Array<FeedInfo> {
-  const dataFeeds: Array<Omit<
-    FeedInfoConfig,
-    'abi' | 'routerAbi'
-  >> = normalizeConfig(dataFeedsRouterConfig as RouterDataFeedsConfig)
-
-  // Throw and error if config file is not valid
-  validateDataFeeds(dataFeeds)
-
-  return dataFeeds.map(dataFeed => ({
-    ...dataFeed,
-    routerAbi: JSON.parse(
-      fs.readFileSync(
-        path.resolve(
-          process.env.DATA_FEED_ROUTER_ABI_PATH ||
-            './src/abi/PriceFeedRouter.json'
-        ),
-        'utf-8'
-      )
-    ),
-    abi: JSON.parse(
-      fs.readFileSync(
-        path.resolve(
-          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json'
-        ),
-        'utf-8'
-      )
-    )
-  }))
-}
-
-// Throw an error if a field is missing in the data feed config file
-function validateDataFeeds (
-  dataFeeds: Array<Omit<FeedInfoConfig, 'abi' | 'routerAbi'>>
-) {
-  const expectedFields = [
-    'feedFullName',
-    'id',
-    'address',
-    'contractId',
-    'routerAddress',
-    'network',
-    'networkName',
-    'chain',
-    'name',
-    'label',
-    'pollingPeriod',
-    'color',
-    'blockExplorer',
-    'deviation',
-    'heartbeat',
-    'finality'
-  ]
-
-  dataFeeds.forEach((feedInfoConfig, index) => {
-    expectedFields.forEach(field => {
-      // Validate nested keys in a field
-      field.split('.').reduce((acc, val) => {
-        // Throw error if the key is not found or has a falsy value
-        if (!(val in acc) || !acc[val]) {
-          throw new Error(
-            `Missing field ${field} in index ${index} in data feed config file`
-          )
-        } else {
-          // Throw error if not validated new fields are added in the config file
-          if (Object.keys(feedInfoConfig).length !== expectedFields.length) {
-            throw new Error(
-              `There are more fields in the feed config than expected`
-            )
-          }
-          return acc[val]
-        }
-      }, feedInfoConfig)
-    })
-  })
 }
 
 main()

@@ -6,10 +6,13 @@ import { CHART_RANGE } from './constants'
 import { MongoManager } from './../src/database'
 import { FeedRepository } from '../src/repository/Feed'
 import { ResultRequestRepository } from '../src/repository/ResultRequest'
-import { readDataFeeds, readNetworks } from '../src/index'
 
-const dataFeeds = readDataFeeds()
-const networksconfig = readNetworks()
+import { normalizeNetworkConfig } from '../src/utils'
+import { readDataFeeds } from '../src/readDataFeeds'
+import dataFeedsRouterConfig from '../../api/src/dataFeedsRouter.json'
+
+const dataFeeds = readDataFeeds(dataFeedsRouterConfig)
+const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig)
 
 const state: {
   mongoManager: MongoManager
@@ -20,7 +23,6 @@ const state: {
   testClient: null,
   server: null
 }
-
 describe.skip('feeds', function () {
   beforeAll(async function () {
     const ciUri = 'mongodb://localhost'
@@ -34,7 +36,7 @@ describe.skip('feeds', function () {
       },
       {
         dataFeedsConfig: dataFeeds,
-        networksConfig: networksconfig
+        networksConfig: networksConfig
       }
     )
     await new Promise(resolve => {
