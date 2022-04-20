@@ -125,6 +125,7 @@ export default {
   },
   // ...
   modules: [
+    '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     'nuxt-i18n',
     '@nuxtjs/apollo',
@@ -155,9 +156,19 @@ export default {
       { path: '~/components/cards', extensions: ['vue', 'js'] },
     ],
   },
-
+  routes: [
+    {
+      src: '/sw.js',
+      continue: true,
+      headers: {
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+        'Service-Worker-Allowed': '/',
+      },
+    },
+  ],
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/pwa',
     '@nuxtjs/date-fns',
     '@nuxtjs/color-mode',
     '@nuxtjs/fontawesome',
@@ -201,6 +212,11 @@ export default {
       alwaysRedirect: true,
     },
     defaultLocale,
+  },
+  pwa: {
+    workbox: {
+      autoRegister: true,
+    },
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

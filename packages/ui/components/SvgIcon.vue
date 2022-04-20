@@ -14,13 +14,10 @@ export default {
       svg: null,
     }
   },
-  async beforeMount() {
-    await this.$axios
-      .$get(`api/${this.name}.svg?sanitize=true`)
-      .then((res) => {
-        this.svg = res
-      })
-      .catch((err) => console.log(err))
+  created() {
+    this.$axios.get(`api/${this.name}.svg?sanitize=true`).then((response) => {
+      this.svg = response.data
+    })
   },
 }
 </script>
