@@ -1,12 +1,14 @@
 <template>
-  <a :href="path" target="_blank">
-    <div class="card-container">
-      <div class="title">
-        <SvgIcon class="img" :name="img" />
-        <p class="name title">{{ name }}</p>
+  <BaseCard>
+    <a :href="path" target="_blank">
+      <div class="card-container">
+        <div class="title">
+          <SvgIcon class="img" :name="img" />
+          <p class="name title">{{ name }}</p>
+        </div>
       </div>
-    </div>
-  </a>
+    </a>
+  </BaseCard>
 </template>
 
 <script>
@@ -46,10 +48,6 @@ a {
   align-items: center;
   width: 100%;
   height: max-content;
-  background: var(--card-background);
-  border: var(--card-border);
-  border-radius: 4px;
-  box-shadow: var(--card-box-shadow);
   font-weight: bold;
   padding: 8px 16px;
   cursor: pointer;

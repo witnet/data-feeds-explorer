@@ -9,6 +9,7 @@
   --text-background: #112338d3;
   --default-border: 1px solid #fdfdfd;
   --desktop-margin: 1124px;
+  --witnet-green: #41BEA5;
 }
 
 .dark-mode {
@@ -51,10 +52,10 @@
   // FeedCard
 
   --card-border: 1px solid #00d4aa22;
-  --card-background: #00D4AA09;
   --delay-status-border: 1px solid #DFC44B23;
   --error-status-border: 1px solid #DF4B4B23;
-  
+  --card-background: #00D4AA08;
+  --card-box-selected-shadow: 0 0 11px #cacaca18;
   //Fieledset
 
   --fieldset-title: #fdfdfd;
@@ -101,6 +102,7 @@
 
   --btn-primary-color: #EDEDED;
   --btn-primary-background-color: #00D4AA16;
+  --btn-primary-background-color-active: #00d4aa36;
   --btn-primary-border-color: #00D4AA16;
   --btn-secondary-color: #4AB6A1;
   --btn-secondary-background-color: #4AB6A1;
@@ -167,6 +169,7 @@
   --name-color: #2D2C39;
   --value-color: #2D2C39;
   --card-box-shadow: #98979716 0 4px 4px;
+  --card-box-selected-shadow: 0 0 11px rgba(152, 151, 151, 0.271);
 
   //Fieledset
 
@@ -213,6 +216,7 @@
 
   --btn-primary-color: #FDFDFD;
   --btn-primary-background-color: #41bea5;
+  --btn-primary-background-color-active: #41bea5dd;
   --btn-primary-border-color: #41bea5;
   --btn-secondary-color: #41bea5;
   --btn-secondary-background-color: #41bea5;

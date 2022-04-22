@@ -32,10 +32,14 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 24px;
+  transition: all 0.3 ease-in-out;
   .link {
     margin-right: 24px;
     &:last-of-type {
       margin-right: 0;
+    }
+    &:hover {
+      transform: scale(1.1);
     }
   }
 }

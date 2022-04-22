@@ -1,13 +1,15 @@
 <template>
-  <nuxt-link :to="localeRoute(detailsPath)">
-    <div class="card-container">
-      <div class="title">
-        <SvgIcon class="img" :svg="svg" />
-        <p class="name title">{{ name }}</p>
+  <BaseCard>
+    <nuxt-link :to="localeRoute(detailsPath)">
+      <div class="card-container">
+        <div class="title">
+          <SvgIcon class="img" :svg="svg" />
+          <p class="name title">{{ name }}</p>
+        </div>
+        <p class="count">{{ count }} {{ $t('feeds') }}</p>
       </div>
-      <p class="count">{{ count }} {{ $t('feeds') }}</p>
-    </div>
-  </nuxt-link>
+    </nuxt-link>
+  </BaseCard>
 </template>
 
 <script>
@@ -50,11 +52,7 @@ a {
   align-items: center;
   justify-items: flex-start;
   width: 100%;
-  min-height: 50px;
-  background: var(--card-background);
-  border: var(--card-border);
-  box-shadow: var(--card-box-shadow);
-  border-radius: 4px;
+  height: max-content;
   font-weight: bold;
   padding: 8px 16px;
   cursor: pointer;

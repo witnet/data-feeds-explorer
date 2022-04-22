@@ -233,6 +233,10 @@ export default {
     border-radius: 4px;
     background-color: transparent;
     color: var(--switcher-item-color);
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 0.8;
+    }
   }
   .active {
     background-color: var(--switcher-item-background);

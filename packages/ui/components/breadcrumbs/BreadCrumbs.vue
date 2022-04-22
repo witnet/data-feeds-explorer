@@ -9,9 +9,11 @@
         :to="localeRoute(option.path)"
         class="breadcrumbs-link"
       >
-        <h3 class="breadcrumbs">
-          <span class="breadcrumbs-label">{{ option.label }}</span> /
-        </h3>
+        <transition name="slide-in">
+          <h3 v-if="option.label" class="breadcrumbs">
+            <span class="breadcrumbs-label">{{ option.label }}</span> /
+          </h3>
+        </transition>
       </nuxt-link>
     </div>
     <Socials />
@@ -69,6 +71,20 @@ export default {
 </script>
 
 <style lang="scss">
+.slide-in-enter-active,
+.slide-in-leave-active {
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-4px);
+}
+.slide-in-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide-in-leave-to {
+  opacity: 0;
+  transform: translateX(-4px);
+}
 .breacrumbs-wrapper {
   display: grid;
   grid-template-columns: max-content max-content;
@@ -77,6 +93,7 @@ export default {
   grid-gap: 16px;
 }
 .breadcrumbs {
+  height: min-content;
   display: flex;
   color: var(--text);
   font-size: var(--text-size-medium);
@@ -85,6 +102,10 @@ export default {
     font-weight: bold;
     font-size: var(--text-size-medium);
     margin-right: 4px;
+    transition: all 0.3 ease-in-out;
+    &:hover {
+      opacity: 0.8;
+    }
   }
   .breadcrumbs-link {
     margin-left: 4px;

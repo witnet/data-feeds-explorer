@@ -125,21 +125,10 @@ export default {
   align-items: center;
   background-color: var(--bg);
   height: 100px;
-  button,
-  input[type='submit'],
-  input[type='reset'] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    opacity: 1;
-    font: inherit;
-    cursor: pointer;
-  }
+  transition: background-color 0.3s ease;
   .responsive-menu {
     display: none;
     font-size: 34px;
-    margin-top: 14px;
   }
   .tab-container {
     list-style: none;
@@ -218,19 +207,20 @@ export default {
   .navbar {
     display: block;
     margin: 0;
+    margin-top: 16px;
     .menu-container {
       display: flex;
       justify-content: space-between;
       padding: 0 16px;
-      .logo {
-        margin-top: 16px;
-      }
     }
     .responsive-menu {
+      background: none;
+      border: none;
       justify-content: center;
       display: block;
       cursor: pointer;
       width: 32px;
+      padding: 0;
     }
     .tab-container {
       list-style: none;

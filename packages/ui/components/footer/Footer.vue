@@ -93,6 +93,10 @@ export default {
   font-size: var(--text-size-medium);
   color: var(--white-text);
   padding: 4px 0 4px 0;
+  transition: all 0.3 ease-in-out;
+  &:hover {
+    opacity: 0.8;
+  }
   &.underline {
     text-decoration: underline;
   }

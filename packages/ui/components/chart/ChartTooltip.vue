@@ -84,6 +84,7 @@ export default {
   font-weight: bold;
   font-size: var(--text-size-title);
   background-color: var(--bg);
+  transition: background-color 0.3s ease;
   color: var(--text);
   .feed-title {
     display: flex;

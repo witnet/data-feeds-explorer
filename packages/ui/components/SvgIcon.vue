@@ -27,6 +27,7 @@ export default {
 .icon-size {
   width: 24px;
   height: 30px;
+  transition: all 0.3s ease;
 }
 .fill {
   fill: var(--text);
@@ -35,9 +36,10 @@ export default {
   width: 140px;
   height: 40px;
 }
-
-.witnet-green {
-  fill: var(--witnet-green);
+.active {
+  .fill {
+    fill: var(--witnet-green);
+  }
 }
 
 .reverse-fill {
@@ -47,7 +49,6 @@ export default {
 .border {
   stroke: var(--text);
 }
-
 @media (max-width: 300px) {
   .witnet-logo {
     max-width: 200px;

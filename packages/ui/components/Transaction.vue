@@ -74,7 +74,11 @@ export default {
 }
 .link {
   color: var(--witnet-transaction);
-  font-family: 'Roboto Mono', monospace;
+  font-family: Roboto Mono, monospace;
+  transition: all 0.3 ease-in-out;
+  &:hover {
+    opacity: 0.8;
+  }
   .icon {
     width: 10px;
     height: 10px;
