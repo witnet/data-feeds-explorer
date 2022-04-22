@@ -45,6 +45,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
   .btn-prev {
     background-color: var(--bg);
+    transition: background-color 0.3s ease;
     color: var(--pagination-button);
     margin: 4px;
     padding-right: 4px;

@@ -1,26 +1,28 @@
 <template>
-  <nuxt-link v-if="detailsPath.params.id" :to="localeRoute(detailsPath)">
-    <div class="card-container" :class="dataFeedStatus.key">
-      <div class="title">
-        <SvgIcon class="img" :svg="svg" />
-        <p class="name title">{{ name.toUpperCase() }}</p>
-        <InfoTooltip
-          v-if="dataFeedStatus.key !== 'operational'"
-          :show-icon="false"
-          :value="$t(`chart.${dataFeedStatus.key}`)"
-        >
-          <WarningStatus
+  <BaseCard :class="dataFeedStatus.key">
+    <nuxt-link v-if="detailsPath.params.id" :to="localeRoute(detailsPath)">
+      <div class="card-container">
+        <div class="title">
+          <SvgIcon class="img" :svg="svg" />
+          <p class="name title">{{ name.toUpperCase() }}</p>
+          <InfoTooltip
             v-if="dataFeedStatus.key !== 'operational'"
-            :color="dataFeedStatus.color"
-          />
-        </InfoTooltip>
+            :show-icon="false"
+            :value="$t(`chart.${dataFeedStatus.key}`)"
+          >
+            <WarningStatus
+              v-if="dataFeedStatus.key !== 'operational'"
+              :color="dataFeedStatus.color"
+            />
+          </InfoTooltip>
+        </div>
+        <p class="value">{{ label }} {{ formatedValue }}</p>
+        <p class="timestamp">
+          {{ formattedTimestamp }}
+        </p>
       </div>
-      <p class="value">{{ label }} {{ formatedValue }}</p>
-      <p class="timestamp">
-        {{ formattedTimestamp }}
-      </p>
-    </div>
-  </nuxt-link>
+    </nuxt-link>
+  </BaseCard>
 </template>
 
 <script>
@@ -104,22 +106,7 @@ export default {
 a {
   color: var(--value-color);
 }
-.card-container {
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  grid-template-rows: max-content max-content;
-  align-content: center;
-  justify-items: flex-start;
-  width: 100%;
-  height: max-content;
-  background: var(--card-background);
-  box-shadow: var(--card-box-shadow);
-  border-radius: 4px;
-  font-weight: bold;
-  row-gap: 8px;
-  padding: 8px 16px;
-  cursor: pointer;
-
+.card-border {
   &.operational {
     border: var(--card-border);
   }
@@ -129,6 +116,19 @@ a {
   &.error {
     border: var(--error-status-border);
   }
+}
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: max-content max-content;
+  align-content: center;
+  justify-items: flex-start;
+  width: 100%;
+  height: max-content;
+  font-weight: bold;
+  row-gap: 8px;
+  padding: 8px 16px;
+  transition: box-shadow 0.3s;
   .title {
     grid-row: 1 / span 2;
     justify-content: center;
