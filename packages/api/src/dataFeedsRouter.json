@@ -991,6 +991,21 @@
     "klaytn": {
       "name": "Klaytn",
       "networks": {
+        "klaytn.mainnet": {
+          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+          "blockExplorer": "https://scope.klaytn.com/account/{address}",
+          "color": "#ff0066",
+          "name": "Klaytn Cypress (Mainnet)",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-KLAY/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
         "klaytn.testnet": {
           "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
           "blockExplorer": "https://baobab.scope.klaytn.com/account/{address}",
