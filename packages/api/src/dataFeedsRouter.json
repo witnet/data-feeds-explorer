@@ -484,7 +484,7 @@
         },
         "cronos.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://cronos.org/explorer/testnet/address/{address}/read-contract",
+          "blockExplorer": "https://cronos.org/explorer/address/{address}/read-contract",
           "color": "#6600ff",
           "name": "Cronos Mainnet",
           "pollingPeriod": 45000,
