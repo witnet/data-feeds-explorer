@@ -6,7 +6,7 @@ const resolvers = {
       return await feedRepository.getFeedsByNetwork(args.network)
     },
 
-    networks: (_parent, _args, { config }): Context => {
+    networks: (_parent, _args, { config }: Context) => {
       return config.networksConfig
     },
 
