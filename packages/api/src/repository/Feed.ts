@@ -44,8 +44,8 @@ export class FeedRepository {
     }
 
     return {
-      feeds,
-      total: feeds.length
+      feeds: feeds || [],
+      total: feeds ? feeds.length : 0
     }
   }
 
