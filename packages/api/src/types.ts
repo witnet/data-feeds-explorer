@@ -18,7 +18,7 @@ export type Context = {
   resultRequestRepository: ResultRequestRepository
   config: {
     feedsConfig: ConfigByFullName
-    networksConfig: NetworksConfig
+    networksConfig: Array<NetworksConfig>
   }
   loaders: {
     lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
@@ -33,6 +33,7 @@ export type Context = {
         timestamp: number
       }
     >
+    logos: DataLoader<string, string, string>
   }
 }
 
@@ -85,9 +86,10 @@ export type FeedInfoGeneric<ABI> = {
 }
 
 export type NetworksConfig = {
-  chain: String
-  label: String
-  key: String
+  chain: string
+  label: string
+  key: string
+  logo: string
 }
 
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>

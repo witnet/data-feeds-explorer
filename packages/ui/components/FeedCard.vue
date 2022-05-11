@@ -2,7 +2,7 @@
   <nuxt-link v-if="detailsPath.params.id" :to="localeRoute(detailsPath)">
     <div class="card-container" :class="dataFeedStatus.key">
       <div class="title">
-        <SvgIcon class="img" :name="img.name" />
+        <SvgIcon class="img" :svg="svg" />
         <p class="name title">{{ name.toUpperCase() }}</p>
         <InfoTooltip
           v-if="dataFeedStatus.key !== 'operational'"
@@ -43,8 +43,8 @@ export default {
       type: String,
       required: true,
     },
-    img: {
-      type: Object,
+    svg: {
+      type: String,
       required: true,
     },
     value: {

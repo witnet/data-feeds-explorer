@@ -7,7 +7,7 @@
       :name="feed.name"
       :decimals="feed.decimals"
       :time-to-update="feed.timeToUpdate"
-      :img="feed.img"
+      :svg="feed.svg"
       :value="feed.value"
       :last-result-timestamp="feed.lastResultTimestamp"
       :label="feed.label"
@@ -23,6 +23,7 @@ import feeds from '@/apollo/queries/feeds.gql'
 import { formatSvgName } from '../utils/formatSvgName'
 
 export default {
+  name: 'DataFeeds',
   apollo: {
     feeds: {
       prefetch: true,
@@ -35,7 +36,6 @@ export default {
       pollInterval: 60000,
     },
   },
-  name: 'DataFeeds',
   props: {
     network: {
       type: Object,
@@ -84,6 +84,7 @@ export default {
               chain: feed.chain,
               color: feed.color,
               blockExplorer: feed.blockExplorer,
+              svg: feed.logo,
             }
           })
           .sort((feed1, feed2) => feed1.name.localeCompare(feed2.name))

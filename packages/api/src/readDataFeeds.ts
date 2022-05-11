@@ -1,9 +1,34 @@
+import axios from 'axios'
 import path from 'path'
 import fs from 'fs'
 import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from './types'
 import { normalizeConfig } from './utils'
 
-export function readDataFeeds (config: RouterDataFeedsConfig): Array<FeedInfo> {
+export async function fetchDataFeedsRouterConfig (): Promise<
+  RouterDataFeedsConfig | null
+> {
+  return await axios
+    .get(
+      'https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json'
+    )
+    .then(res => {
+      return res.data
+    })
+    .catch(err => {
+      console.log('There was an error fetching the config file', err)
+      return null
+    })
+}
+/**
+ * FIXME(#197): normalizeAndValidateDataFeedConfig could be refactored to include the ABI to avoid
+ * have multiple functions to build the object. So we should review how we are fetching,
+ * validating and normalizing the configuration file We can even review the normalized object
+ * structure to check if it has sense right now or only because it was the previous configuration
+ * format
+ */
+export function normalizeAndValidateDataFeedConfig (
+  config: RouterDataFeedsConfig
+): Array<FeedInfo> {
   const dataFeeds: Array<Omit<
     FeedInfoConfig,
     'abi' | 'routerAbi'

@@ -8,41 +8,41 @@ import { createServer } from './server'
 import { Repositories, RouterDataFeedsConfig, NetworksConfig } from './types'
 import { Web3Middleware } from './web3Middleware/index'
 import { normalizeNetworkConfig } from './utils/index'
-import axios from 'axios'
-import { readDataFeeds } from './readDataFeeds'
-
-async function getDataFeedsRouterConfig (): Promise<
-  RouterDataFeedsConfig | null
-> {
-  return await axios
-    .get(
-      'https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json'
-    )
-    .then(res => {
-      return res.data
-    })
-    .catch(err => {
-      console.log('There was an error fetching the config file', err)
-      return null
-    })
-}
+import {
+  normalizeAndValidateDataFeedConfig,
+  fetchDataFeedsRouterConfig
+} from './readDataFeeds'
+import { SvgCache } from './svgCache'
 
 async function main () {
+  const svgCache = new SvgCache()
   const mongoManager = new MongoManager()
   const db = await mongoManager.start()
-  const dataFeedsRouterConfig: RouterDataFeedsConfig = await getDataFeedsRouterConfig()
-  const dataFeeds = await readDataFeeds(dataFeedsRouterConfig)
-  const networksConfig: Array<NetworksConfig> = normalizeNetworkConfig(
-    dataFeedsRouterConfig
+  const dataFeedsRouterConfig: RouterDataFeedsConfig = await fetchDataFeedsRouterConfig()
+  const dataFeeds = normalizeAndValidateDataFeedConfig(dataFeedsRouterConfig)
+  const networksConfigPartial: Array<Omit<
+    NetworksConfig,
+    'logo'
+  >> = normalizeNetworkConfig(dataFeedsRouterConfig)
+
+  const logosToFetch = networksConfigPartial.map(
+    (networksConfig: NetworksConfig) => {
+      return networksConfig.chain.toLowerCase()
+    }
   )
+
+  const networksLogos: { [key: string]: string } = await svgCache.getMany(
+    logosToFetch
+  )
+
+  const networksConfig = networksConfigPartial.map((networksConfig, index) => ({
+    ...networksConfig,
+    logo: networksLogos[logosToFetch[index]]
+  }))
 
   const repositories: Repositories = {
     feedRepository: new FeedRepository(dataFeeds),
     resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
-  }
-  const config = {
-    dataFeedsConfig: dataFeeds,
-    networksConfig: networksConfig
   }
 
   const web3Middleware = new Web3Middleware(
@@ -51,7 +51,10 @@ async function main () {
   )
   web3Middleware.listen()
 
-  const server = await createServer(repositories, config)
+  const server = await createServer(repositories, svgCache, {
+    dataFeedsConfig: dataFeeds,
+    networksConfig
+  })
 
   server
     .listen({ host: '0.0.0.0', port: process.env.SERVER_PORT })

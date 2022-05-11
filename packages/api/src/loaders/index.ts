@@ -1,11 +1,14 @@
 import DataLoader from 'dataloader'
+import { SvgCache } from '../svgCache'
 import { Repositories, ResultRequestDbObjectNormalized } from '../types'
 
 export class Loaders {
   repositories: Repositories
+  svgCache: SvgCache
 
-  constructor (repositories: Repositories) {
+  constructor (repositories: Repositories, svgCache: SvgCache) {
     this.repositories = repositories
+    this.svgCache = svgCache
   }
   // returns a loader that fetches data using the given function
   private genericLoader<T> (load: (filter) => T) {
@@ -30,6 +33,7 @@ export class Loaders {
   getLoaders (): {
     lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
     requests: DataLoader<string, ResultRequestDbObjectNormalized, string>
+    logos: DataLoader<string, string, string>
   } {
     return {
       lastResult: this.genericLoader<Promise<ResultRequestDbObjectNormalized>>(
@@ -72,6 +76,9 @@ export class Loaders {
           filter.feedFullName,
           timestamp
         )
+      }),
+      logos: new DataLoader(async (logos: Array<string>) => {
+        return Object.values(await this.svgCache.getMany(logos))
       })
     }
   }

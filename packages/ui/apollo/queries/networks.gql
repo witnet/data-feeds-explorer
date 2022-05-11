@@ -3,5 +3,6 @@ query networks {
     label,
     key,
     chain,
+    logo
   }
 }

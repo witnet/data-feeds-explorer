@@ -58,10 +58,9 @@ function getNetworksListByChain (config: RouterDataFeedsConfig) {
 }
 
 // normalize config to fit network schema
-
 export function normalizeNetworkConfig (
   config: RouterDataFeedsConfig
-): Array<NetworksConfig> {
+): Array<Omit<NetworksConfig, 'logo'>> {
   // Get a list of networks where every element of the array contains another array with networks that belong to a chain.
   const networks = getNetworksListByChain(config)
 

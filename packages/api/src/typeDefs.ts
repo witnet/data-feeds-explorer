@@ -20,6 +20,7 @@ const typeDefs = gql`
     heartbeat: String!
     finality: String!
     requests(timestamp: Int!): [ResultRequest]!
+    logo: String!
   }
 
   type Total {
@@ -31,10 +32,11 @@ const typeDefs = gql`
     total: Int!
   }
 
-  type NetworksConfig @entity {
-    chain: String
-    label: String
-    key: String
+  type NetworksConfig {
+    chain: String!
+    label: String!
+    key: String!
+    logo: String!
   }
 
   type ResultRequest @entity {

@@ -1,4 +1,5 @@
 import { Context } from './types'
+
 const resolvers = {
   Query: {
     feeds: async (_parent, args, { feedRepository }: Context) => {
@@ -21,7 +22,15 @@ const resolvers = {
       return await feedRepository.get(args.feedFullName)
     }
   },
+  NetworksConfig: {
+    logo: async (parent, _args, { loaders }: Context) => {
+      return await loaders.logos.load(parent.chain.toLowerCase())
+    }
+  },
   Feed: {
+    logo: async (parent, _args, { loaders }: Context) => {
+      return await loaders.logos.load(parent.name.split('/')[0])
+    },
     requests: async (parent, args, { loaders }: Context) => {
       return await loaders.requests.load({
         feedFullName: parent.feedFullName,

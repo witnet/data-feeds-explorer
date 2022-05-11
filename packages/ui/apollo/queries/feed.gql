@@ -23,5 +23,6 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     }
     blockExplorer
     color
+    logo
   }
 }

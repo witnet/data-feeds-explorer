@@ -5,7 +5,7 @@
       :key="chain.label"
       :name="chain.name"
       :details-path="chain.detailsPath"
-      :img="chain.img"
+      :svg="chain.svg"
       :count="chain.count"
     />
   </div>

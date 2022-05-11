@@ -13,6 +13,7 @@ query feeds ($network: String!) {
       color
       heartbeat
       finality
+      logo
     }
     total
   }

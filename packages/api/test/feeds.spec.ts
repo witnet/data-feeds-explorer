@@ -8,11 +8,14 @@ import { FeedRepository } from '../src/repository/Feed'
 import { ResultRequestRepository } from '../src/repository/ResultRequest'
 
 import { normalizeNetworkConfig } from '../src/utils'
-import { readDataFeeds } from '../src/readDataFeeds'
+import { normalizeAndValidateDataFeedConfig } from '../src/readDataFeeds'
 import dataFeedsRouterConfig from '../../api/src/dataFeedsRouter.json'
 
-const dataFeeds = readDataFeeds(dataFeedsRouterConfig)
-const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig)
+const dataFeeds = normalizeAndValidateDataFeedConfig(dataFeedsRouterConfig)
+const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig).map(c => ({
+  ...c,
+  logo: '<svg></svg>'
+}))
 
 const state: {
   mongoManager: MongoManager
@@ -29,11 +32,16 @@ describe.skip('feeds', function () {
     const mongoManager = new MongoManager()
     const db = await mongoManager.start(process.env.CI ? ciUri : null)
 
+    const get = jest.fn(() => '<svg></svg>')
+    const getMany = jest.fn(arr => arr.map(_ => '<svg></svg>'))
+    const svgCache = jest.fn(() => ({ get, getMany }))
+
     const server = await createServer(
       {
         feedRepository: new FeedRepository(dataFeeds),
         resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
       },
+      svgCache as any,
       {
         dataFeedsConfig: dataFeeds,
         networksConfig: networksConfig

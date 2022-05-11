@@ -7,10 +7,8 @@
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <div class="title bold">
-          <SvgIcon
-            class="logo"
-            :name="formatSvgChainName(selected[0].chain)"
-          />{{ selected[0].chain }}
+          <SvgIcon class="logo" :svg="selected[0].logo" />
+          {{ selected[0].chain }}
         </div>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}

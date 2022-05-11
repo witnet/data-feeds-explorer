@@ -129,6 +129,7 @@ export default {
             `{address}`,
             this.feed.proxyAddress
           ),
+          logo: this.feed.logo,
         }
       } else {
         return null

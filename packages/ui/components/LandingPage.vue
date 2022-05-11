@@ -20,8 +20,6 @@
 <script>
 import networks from '@/apollo/queries/networks.gql'
 import feeds from '@/apollo/queries/feeds.gql'
-import { formatSvgChainName } from '@/utils/formatSvgChainName'
-import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 
 export default {
@@ -41,9 +39,6 @@ export default {
     },
   },
   computed: {
-    navBarOptions() {
-      return generateNavOptions(Object.values(this.options))
-    },
     chainsFeeds() {
       return this.feeds ? this.feeds : []
     },
@@ -55,7 +50,8 @@ export default {
       }
     },
     supportedChains() {
-      return this.navBarOptions.map((chain) => {
+      return Object.values(this.options).map((network) => {
+        const chain = network[0].chain
         return {
           name: chain,
           count:
@@ -67,7 +63,7 @@ export default {
               network: chain.toLowerCase(),
             },
           },
-          img: formatSvgChainName(chain),
+          svg: network[0].logo,
         }
       })
     },

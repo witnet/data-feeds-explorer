@@ -9,9 +9,11 @@ import {
   Repositories,
   NetworksConfig
 } from './types'
+import { SvgCache } from './svgCache'
 
 export async function createServer (
   repositories: Repositories,
+  svgCache: SvgCache,
   config: {
     dataFeedsConfig: Array<FeedInfo>
     networksConfig: Array<NetworksConfig>
@@ -29,7 +31,7 @@ export async function createServer (
         {}
       )
 
-      const loaders = new Loaders(repositories)
+      const loaders = new Loaders(repositories, svgCache)
       return {
         ...repositories,
         config: {

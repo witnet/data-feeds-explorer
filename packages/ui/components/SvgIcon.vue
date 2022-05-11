@@ -1,13 +1,16 @@
 <template>
   <!-- We are using v-html assuming we never use user-provided content -->
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-html="require(`~/assets/svg/${name}.svg?raw`)" />
+  <div v-if="name" v-html="require(`~/assets/svg/${name}.svg?raw`)" />
+  <!-- eslint-disable-next-line vue/no-v-html -->
+  <div v-else-if="svg" v-html="svg" />
 </template>
 
 <script>
 export default {
   props: {
-    name: { type: String, required: true },
+    name: { type: String, default: '' },
+    svg: { type: String, default: '' },
   },
 }
 </script>

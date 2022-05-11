@@ -2,7 +2,7 @@
   <nuxt-link :to="localeRoute(detailsPath)">
     <div class="card-container">
       <div class="title">
-        <SvgIcon class="img" :name="img" />
+        <SvgIcon class="img" :svg="svg" />
         <p class="name title">{{ name }}</p>
       </div>
       <p class="count">{{ count }} {{ $t('feeds') }}</p>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'FeedCard',
+  name: 'ChainCard',
   props: {
     detailsPath: {
       type: Object,
@@ -22,7 +22,7 @@ export default {
       type: String,
       required: true,
     },
-    img: {
+    svg: {
       type: String,
       required: true,
     },
