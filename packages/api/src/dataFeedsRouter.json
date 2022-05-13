@@ -621,6 +621,12 @@
           "name": "KCC Testnet",
           "pollingPeriod": 45000,
           "feeds": {
+            "Price-BORING/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.5,
@@ -645,17 +651,11 @@
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
-            "Price-BTC/USD-6": {
+            "Price-KSW/USD-6": {
               "label": "$",
               "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 600,
-              "minSecsBetweenUpdates": 240
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 600,
-              "minSecsBetweenUpdates": 240
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             },
             "Price-MJT/KCS-9": {
               "label": " ",
@@ -690,6 +690,12 @@
           "name": "KCC Mainnet",
           "pollingPeriod": 45000,
           "feeds": {
+            "Price-BORING/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.5,
@@ -714,17 +720,11 @@
               "maxSecsBetweenUpdates": 600,
               "minSecsBetweenUpdates": 240
             },
-            "Price-BTC/USD-6": {
+            "Price-KSW/USD-6": {
               "label": "$",
               "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 600,
-              "minSecsBetweenUpdates": 240
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 600,
-              "minSecsBetweenUpdates": 240
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             },
             "Price-MJT/KCS-9": {
               "label": " ",
