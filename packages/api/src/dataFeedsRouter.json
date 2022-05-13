@@ -621,29 +621,29 @@
           "name": "KCC Testnet",
           "pollingPeriod": 45000,
           "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-DAI/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
-            "Price-USDC/USD-6": {
+            "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-KCS/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 600,
-              "minSecsBetweenUpdates": 240
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
             },
             "Price-BTC/USD-6": {
               "label": "$",
@@ -666,6 +666,18 @@
             "Price-SAX/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -678,21 +690,21 @@
           "name": "KCC Mainnet",
           "pollingPeriod": 45000,
           "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-DAI/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
-            "Price-USDC/USD-6": {
+            "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
@@ -725,7 +737,19 @@
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
-            }
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
           }
         }
       }
