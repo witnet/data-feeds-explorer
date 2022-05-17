@@ -161,3 +161,7 @@ export function isZeroHash (hash: string) {
 export function sleep (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
+
+export function removeRepeatedElements<T> (items: Array<T>): Array<T> {
+  return [...new Set(items)]
+}
