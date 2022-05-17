@@ -749,7 +749,7 @@
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
-            },
+            }
           }
         }
       }

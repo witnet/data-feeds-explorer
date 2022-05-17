@@ -69,6 +69,7 @@ export type FeedInfoGeneric<ABI> = {
   routerAbi: ABI
   address: string
   routerAddress: string
+  isRouted: boolean
   // Network is the network key to identify a feed from a specific network in the database
   network: Network
   // NetworkName is the label of the network to show in the ui
@@ -80,8 +81,8 @@ export type FeedInfoGeneric<ABI> = {
   contractId: string
   color: string
   blockExplorer: string
-  deviation: string
-  heartbeat: string
+  deviation: string | null
+  heartbeat: string | null
   finality: string
 }
 
@@ -137,16 +138,18 @@ export type FeedInfoRouterConfigMap = {
 
 export type FeedParamsConfig = {
   label: string
-  deviationPercentage: number
-  maxSecsBetweenUpdates: number
-  minSecsBetweenUpdates: number
+  isRouted?: boolean
+  deviationPercentage?: number
+  maxSecsBetweenUpdates?: number
+  minSecsBetweenUpdates?: number
 }
 
 export type FeedParsedParams = {
   label: string
-  deviationPercentage: number
-  maxSecsBetweenUpdates: number
-  minSecsBetweenUpdates: number
+  isRouted?: boolean
+  deviationPercentage?: number
+  maxSecsBetweenUpdates?: number
+  minSecsBetweenUpdates?: number
   key: string
   chain: string
 }

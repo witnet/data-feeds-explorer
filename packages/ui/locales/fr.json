@@ -10,7 +10,8 @@
     "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "ERC2362 asset ID",
     "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
-    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}."
+    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}.",
+    "feed_description_routed": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}."
   },
   "main": {
     "data_feeds": "Data feeds",
@@ -75,7 +76,8 @@
         "telegram": "Telegram",
         "discord": "Discord",
         "twitter": "Twitter",
-        "reddit": "Reddit"
+        "reddit": "Reddit",
+        "youtube": "Youtube"
       },
       "developers": {
         "title": "Developers",
@@ -94,18 +96,18 @@
   },
   "landing": {
     "supported_chains": {
-      "title": "",
-      "subtitle": ""
+      "title": "Supported chains",
+      "subtitle": "Blockchains in which the Witnet oracle is currently available"
     },
     "upcoming_chains": {
-      "title": ""
+      "title": "Chains with upcoming support"
     },
     "partners": {
-      "title": ""
+      "title": "Users and Partners"
     }
   },
-  "feeds": "",
-  "data_feeds": "",
-  "networks": "",
-  "chains": ""
+  "feeds": "feeds",
+  "data_feeds": "Data feeds",
+  "networks": "Networks",
+  "chains": "Chains"
 }

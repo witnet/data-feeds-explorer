@@ -43,6 +43,9 @@ const resolvers = {
     lastResultTimestamp: async (parent, _args, { loaders }: Context) => {
       return (await loaders.lastResult.load(parent.feedFullName))?.timestamp
     },
+    isRouted: async (parent, _args, { config }: Context) => {
+      return !!config.feedsConfig[parent.feedFullName]?.isRouted
+    },
     color: async (parent, _args, { config }: Context) => {
       return config.feedsConfig[parent.feedFullName]?.color || ''
     },

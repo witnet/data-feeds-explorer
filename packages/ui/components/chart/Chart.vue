@@ -55,7 +55,7 @@ export default {
     },
     timeToUpdate: {
       type: Number,
-      required: true,
+      default: null,
     },
     decimals: {
       type: String,

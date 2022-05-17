@@ -75,7 +75,9 @@ export default {
               value: feed.lastResult,
               lastResultTimestamp: feed.lastResultTimestamp || '0',
               label: feed.label,
-              timeToUpdate: Number(feed.heartbeat) + Number(feed.finality),
+              timeToUpdate: feed.heartbeat
+                ? Number(feed.heartbeat) + Number(feed.finality)
+                : null,
               img: {
                 name: formatSvgName(feed.name),
                 alt: feed.name,

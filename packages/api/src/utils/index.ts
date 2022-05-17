@@ -120,6 +120,7 @@ export function normalizeConfig (
 
         acc.push({
           feedFullName: createFeedFullName(network, name, decimals),
+          isRouted: !!feed.isRouted,
           id: feed.key,
           address: '0x0000000000000000000000000000000000000000',
           contractId: '0x0000000000000000000000000000000000000000',
@@ -132,8 +133,10 @@ export function normalizeConfig (
           pollingPeriod: config.pollingPeriod,
           color: config.color,
           blockExplorer: config.blockExplorer,
-          deviation: feed.deviationPercentage.toString(),
-          heartbeat: `${feed.maxSecsBetweenUpdates}000`,
+          deviation: feed.deviationPercentage?.toString() || null,
+          heartbeat: feed.maxSecsBetweenUpdates
+            ? `${feed.maxSecsBetweenUpdates}000`
+            : null,
           finality: '900000'
         })
       })

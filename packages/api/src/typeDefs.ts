@@ -7,6 +7,7 @@ const typeDefs = gql`
     contractId: String!
     blockExplorer: String!
     color: String!
+    isRouted: Boolean!
     feedFullName: String!
     label: String!
     name: String!

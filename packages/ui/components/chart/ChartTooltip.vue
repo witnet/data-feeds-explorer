@@ -12,8 +12,9 @@
         {{ lastResultValue }}
         <span class="time">{{ formattedTimestamp }}</span>
       </p>
-      <p class="value-title">{{ $t('chart.status') }}</p>
+      <p v-if="timeToUpdate" class="value-title">{{ $t('chart.status') }}</p>
       <DataFeedStatus
+        v-if="timeToUpdate"
         :last-result-timestamp="lastResultTimestamp"
         :time-to-update="timeToUpdate"
       />
@@ -46,7 +47,7 @@ export default {
     },
     timeToUpdate: {
       type: Number,
-      required: true,
+      default: null,
     },
     lastResultValue: {
       type: String,

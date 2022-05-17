@@ -13,6 +13,7 @@
       @change-range="updateQuery"
     />
     <DataFeedDescription
+      :is-routed="normalizedFeed.isRouted"
       :feed-name="normalizedFeed.name"
       :network-name="normalizedFeed.networkName"
       :last-result-value="lastResultValue"
@@ -20,7 +21,10 @@
       :feed-time-to-update="feedTimeToUpdate"
       :deviation="normalizedFeed.deviation"
     />
-    <Fieldset :title="$t('data_feed_details.trigger_parameters')">
+    <Fieldset
+      v-if="maxTimeToResolve || normalizedFeed.deviation"
+      :title="$t('data_feed_details.trigger_parameters')"
+    >
       <DataFeedTriggerParams
         :deviation="normalizedFeed.deviation"
         :max-time-to-resolve="maxTimeToResolve"
@@ -109,6 +113,7 @@ export default {
       if (this.feed) {
         return {
           name: this.feed.name.toUpperCase(),
+          isRouted: this.feed.isRouted,
           address: this.feed.address,
           proxyAddress: this.feed.proxyAddress,
           contractId: this.feed.contractId,
@@ -143,11 +148,13 @@ export default {
       }
     },
     feedTimeToUpdate() {
-      return formatMilliseconds(
-        this.normalizedFeed.heartbeat + this.normalizedFeed.finality,
-        ` ${this.$t('and')} `,
-        this.$i18n.locale
-      )
+      return this.normalizedFeed.heartbeat
+        ? formatMilliseconds(
+            this.normalizedFeed.heartbeat + this.normalizedFeed.finality,
+            ` ${this.$t('and')} `,
+            this.$i18n.locale
+          )
+        : null
     },
     lastResultValue() {
       if (this.transactions) {
@@ -160,7 +167,11 @@ export default {
       }
     },
     maxTimeToResolve() {
-      return this.normalizedFeed.heartbeat + this.normalizedFeed.finality
+      if (this.normalizedFeed.heartbeat) {
+        return this.normalizedFeed.heartbeat + this.normalizedFeed.finality
+      } else {
+        return null
+      }
     },
     numberOfPages() {
       return this.feed

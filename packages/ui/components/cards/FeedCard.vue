@@ -61,7 +61,7 @@ export default {
     },
     timeToUpdate: {
       type: Number,
-      required: true,
+      default: null,
     },
     network: {
       type: String,

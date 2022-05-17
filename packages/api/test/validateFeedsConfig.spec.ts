@@ -6,6 +6,7 @@ describe('validateDataFeedsConfig', () => {
     const feeds = normalizeConfig(dataFeedsRouterConfig)
     const expected = [
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.snowtrace.io/address/{address}',
         color: '#E84142',
@@ -24,6 +25,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.snowtrace.io/address/{address}',
         color: '#E84142',
@@ -42,6 +44,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.snowtrace.io/address/{address}',
         color: '#E84142',
@@ -60,6 +63,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -79,6 +83,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -98,6 +103,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -117,6 +123,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
@@ -136,6 +143,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -155,6 +163,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -174,6 +183,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -193,6 +203,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -212,6 +223,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
@@ -231,6 +243,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer:
           'https://blockexplorer.rinkeby.boba.network/address/{address}',
@@ -250,6 +263,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
@@ -268,6 +282,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
@@ -286,6 +301,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
@@ -304,6 +320,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
@@ -322,6 +339,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
@@ -340,6 +358,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         color: '#007dff',
@@ -358,6 +377,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -377,6 +397,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -396,6 +417,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -415,6 +437,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer:
@@ -434,6 +457,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
@@ -452,6 +476,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x931673904eB6E69D775e35F522c0EA35575297Cb'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
@@ -470,6 +495,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x931673904eB6E69D775e35F522c0EA35575297Cb'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
@@ -488,6 +514,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x931673904eB6E69D775e35F522c0EA35575297Cb'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.celo.org/address/{address}',
@@ -506,6 +533,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x931673904eB6E69D775e35F522c0EA35575297Cb'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
@@ -524,6 +552,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
@@ -542,6 +571,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
@@ -560,6 +590,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://confluxscan.io/address/{address}',
@@ -578,6 +609,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x806c8dFd322EE2d52b188CC472e0814F64304C32'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://confluxscan.io/address/{address}',
@@ -596,6 +628,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x806c8dFd322EE2d52b188CC472e0814F64304C32'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://confluxscan.io/address/{address}',
@@ -614,6 +647,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x806c8dFd322EE2d52b188CC472e0814F64304C32'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://goerli.etherscan.io/address/{address}',
@@ -632,6 +666,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x1cF3Aa9DBF4880d797945726B94B9d29164211BE'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://goerli.etherscan.io/address/{address}',
@@ -650,6 +685,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x1cF3Aa9DBF4880d797945726B94B9d29164211BE'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
@@ -668,6 +704,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xa50b17C2fc373c247C3b603f83df6A7800cB0DC9'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
@@ -686,6 +723,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xa50b17C2fc373c247C3b603f83df6A7800cB0DC9'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://etherscan.io/address/{address}',
@@ -704,6 +742,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x83A757eAe821Ad7B520D9A74952337138A80b2AF'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://etherscan.io/address/{address}',
@@ -722,6 +761,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x83A757eAe821Ad7B520D9A74952337138A80b2AF'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.pops.one/address/{address}',
@@ -740,6 +780,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x08d479a544b05B297454e5CAc133abA3a584AB8E'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://explorer.pops.one/address/{address}',
@@ -758,6 +799,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x08d479a544b05B297454e5CAc133abA3a584AB8E'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
@@ -776,6 +818,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
@@ -794,6 +837,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
@@ -812,6 +856,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan.kcc.io/address/{address}',
@@ -830,6 +875,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xD39D4d972C7E166856c4eb29E54D3548B4597F53'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan.kcc.io/address/{address}',
@@ -848,6 +894,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xD39D4d972C7E166856c4eb29E54D3548B4597F53'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://scan.kcc.io/address/{address}',
@@ -866,6 +913,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xD39D4d972C7E166856c4eb29E54D3548B4597F53'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
@@ -884,6 +932,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x5134EAF08bcf8cE1922991150AAad1774e93751f'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
@@ -902,6 +951,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x5134EAF08bcf8cE1922991150AAad1774e93751f'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
@@ -920,6 +970,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x5134EAF08bcf8cE1922991150AAad1774e93751f'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://andromeda-explorer.metis.io/address/{address}',
@@ -938,6 +989,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0xD39D4d972C7E166856c4eb29E54D3548B4597F53'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://mumbai.polygonscan.com/address/{address}',
@@ -956,6 +1008,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         contractId: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://mumbai.polygonscan.com/address/{address}',
@@ -974,6 +1027,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://polygonscan.com/address/{address}',
         color: '#66ff00',
@@ -992,6 +1046,7 @@ describe('validateDataFeedsConfig', () => {
         routerAddress: '0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4'
       },
       {
+        isRouted: false,
         address: '0x0000000000000000000000000000000000000000',
         blockExplorer: 'https://polygonscan.com/address/{address}',
         color: '#66ff00',

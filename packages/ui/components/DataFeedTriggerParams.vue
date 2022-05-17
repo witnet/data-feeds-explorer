@@ -1,6 +1,6 @@
 <template>
   <div class="info-container">
-    <div class="item">
+    <div v-if="deviation" class="item">
       <InfoTooltip :value="$t('chart.deviation_text')">
         <p>{{ $t('chart.deviation') }}</p>
       </InfoTooltip>

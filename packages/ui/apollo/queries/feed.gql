@@ -1,6 +1,7 @@
 query feed($feedFullName: String!, $timestamp: Int!) {
   feed(feedFullName: $feedFullName) {
     feedFullName 
+    isRouted
     name
     address
     contractId
