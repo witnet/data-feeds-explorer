@@ -1,5 +1,5 @@
 import NodeCache from 'node-cache'
-import { fetchSvgs } from './fetchSvgs'
+import { DEFAULT_SVG, fetchSvgs } from './fetchSvgs'
 
 export class SvgCache {
   cache: NodeCache
@@ -12,9 +12,11 @@ export class SvgCache {
     const missingSvgs = svgNames.filter(name => !this.cache.get(name))
     const fetchedSvgs = await fetchSvgs(missingSvgs)
     // set missing svgs
-    Object.entries(fetchedSvgs).forEach(([key, value]) =>
-      this.cache.set(key, value)
-    )
+    Object.entries(fetchedSvgs).forEach(([key, value]) => {
+      if (value !== DEFAULT_SVG) {
+        this.cache.set(key, value)
+      }
+    })
 
     return svgNames.reduce(
       (acc, name) => ({
