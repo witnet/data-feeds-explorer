@@ -79,8 +79,11 @@ function validateDataFeeds (
     'blockExplorer',
     'deviation',
     'heartbeat',
-    'finality'
+    'finality',
+    'isRouted'
   ]
+
+  const optionalFields = ['deviation', 'heartbeat', 'isRouted']
 
   dataFeeds.forEach((feedInfoConfig, index) => {
     expectedFields.forEach(field => {
@@ -88,9 +91,13 @@ function validateDataFeeds (
       field.split('.').reduce((acc, val) => {
         // Throw error if the key is not found or has a falsy value
         if (!(val in acc) || !acc[val]) {
-          throw new Error(
-            `Missing field ${field} in index ${index} in data feed config file`
-          )
+          if (optionalFields.includes(val)) {
+            return acc[val]
+          } else {
+            throw new Error(
+              `Missing field ${field} in index ${index} in data feed config file`
+            )
+          }
         } else {
           // Throw error if not validated new fields are added in the config file
           if (Object.keys(feedInfoConfig).length !== expectedFields.length) {
