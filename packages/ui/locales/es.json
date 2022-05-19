@@ -10,7 +10,7 @@
     "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "Identificador ERC2362",
     "integration_details_description": "Los data feed de Witnet pueden ser integrados en tu propio contrato de {0} de dos formas diferentes:",
-    "feed_description": "Esto es un data feed de Witnet para {name}, disponible en {network}. El último resultado disponible es {value} (actualizado el {date}). Este data feed se actualiza cada {heartbeat}, o cada vez que su valor varía más de un {deviation}.",
+    "feed_description": "Esto es un data feed de Witnet para {name}, disponible en {network}. El último resultado disponible es {value} (actualizado el {date}). Este data feed se actualiza cada {heartbeat}, o cada vez que su valor varía más de un {deviation}%.",
     "feed_description_routed": "Esto es un price feed de Witnet para {name}, disponible en {network}. El último resultado disponible es {value} (actualizado el {date}). Este price feed se actualizará en el momento en el que se actualize alguno de los price feeds relacionados.",
     "feed_description_routed_cached": "Esto es un price feed de Witnet para {name}, disponible en {network}. El último resultado disponible es {value} (actualizado el {date}). Este price feed se actualizará cada {heartbeat} o cada vez que se actualize alguno de los price feeds relacionados."
   },

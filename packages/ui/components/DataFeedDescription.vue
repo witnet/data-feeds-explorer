@@ -1,76 +1,21 @@
 <template>
-  <i18n
-    v-if="isRouted && feedTimeToUpdate"
-    path="data_feed_details.feed_description_routed_cached"
-    tag="p"
-    class="feed-description"
-  >
-    <template #name>
-      <span class="bold">{{ feedName }}</span>
-    </template>
-    <template #network>
-      <span class="bold">{{ networkName }}</span>
-    </template>
-    <template #value>
-      <span class="bold">{{ lastResultValue }}</span>
-    </template>
-    <template #date>
-      <span class="bold">{{ lastResultDate }}</span>
-    </template>
-    <template #heartbeat>
-      <span class="bold">{{ feedTimeToUpdate }}</span>
-    </template>
-  </i18n>
-  <i18n
-    v-else-if="isRouted"
-    path="data_feed_details.feed_description_routed"
-    tag="p"
-    class="feed-description"
-  >
-    <template #name>
-      <span class="bold">{{ feedName }}</span>
-    </template>
-    <template #network>
-      <span class="bold">{{ networkName }}</span>
-    </template>
-    <template #value>
-      <span class="bold">{{ lastResultValue }}</span>
-    </template>
-    <template #date>
-      <span class="bold">{{ lastResultDate }}</span>
-    </template>
-    <template #heartbeat>
-      <span class="bold">{{ feedTimeToUpdate }}</span>
-    </template>
-  </i18n>
-  <i18n
-    v-else
-    path="data_feed_details.feed_description"
-    tag="p"
-    class="feed-description"
-  >
-    <template #name>
-      <span class="bold">{{ feedName }}</span>
-    </template>
-    <template #network>
-      <span class="bold">{{ networkName }}</span>
-    </template>
-    <template #value>
-      <span class="bold">{{ lastResultValue }}</span>
-    </template>
-    <template #date>
-      <span class="bold">{{ lastResultDate }}</span>
-    </template>
-    <template #heartbeat>
-      <span class="bold">{{ feedTimeToUpdate }}</span>
-    </template>
-    <template #deviation>
-      <span class="bold">{{ deviation }}%</span>
+  <i18n :path="description.i18nPath" tag="p" class="feed-description">
+    <template v-for="field in description.fields" #[field]>
+      <span :key="field.i18nPath" class="bold">{{ fieldToProp[field] }}</span>
     </template>
   </i18n>
 </template>
 
 <script>
+const fields = {
+  name: 'name',
+  network: 'network',
+  value: 'value',
+  date: 'date',
+  heartbeat: 'heartbeat',
+  deviation: 'deviation',
+}
+
 export default {
   props: {
     deviation: {
@@ -100,6 +45,45 @@ export default {
     feedName: {
       type: String,
       required: true,
+    },
+  },
+  data() {
+    return {
+      fieldToProp: {
+        [fields.name]: this.feedName,
+        [fields.network]: this.networkName,
+        [fields.value]: this.lastResultValue,
+        [fields.date]: this.lastResultDate,
+        [fields.heartbeat]: this.feedTimeToUpdate,
+        [fields.deviation]: this.deviation,
+      },
+    }
+  },
+  computed: {
+    description() {
+      const routedFeedFields = [
+        fields.name,
+        fields.network,
+        fields.value,
+        fields.date,
+        fields.heartbeat,
+      ]
+      if (this.isRouted && this.feedTimeToUpdate) {
+        return {
+          i18nPath: 'data_feed_details.feed_description_routed_cached',
+          fields: routedFeedFields,
+        }
+      } else if (this.isRouted) {
+        return {
+          i18nPath: 'data_feed_details.feed_description_routed',
+          fields: routedFeedFields,
+        }
+      } else {
+        return {
+          i18nPath: 'data_feed_details.feed_description',
+          fields: [...routedFeedFields, fields.deviation],
+        }
+      }
     },
   },
 }
