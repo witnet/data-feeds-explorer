@@ -611,6 +611,26 @@
         }
       }
     },
+    "kava": {
+      "name": "Kava",
+      "networks": {
+        "kava.testnet": {
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
+          "blockExplorer": "https://explorer.evm-alpha.kava.io//address/{address}/read-contract",
+          "color": "#ff0066",
+          "name": "Kava Testnet",
+          "pollingPeriod": 10000,
+          "feeds": {
+            "Price-KAVA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        }
+      }
+    },
     "kcc": {
       "name": "KCC",
       "networks": {
