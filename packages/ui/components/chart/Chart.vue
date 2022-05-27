@@ -2,6 +2,7 @@
   <div>
     <ChartTooltip
       :name="name"
+      :logo="logo"
       :last-result-value="lastResultValue"
       :last-result-timestamp="lastResultTimestamp"
       :time-to-update="timeToUpdate"
@@ -43,6 +44,10 @@ export default {
   props: {
     data: {
       type: Array,
+      required: true,
+    },
+    logo: {
+      type: String,
       required: true,
     },
     dataLabel: {

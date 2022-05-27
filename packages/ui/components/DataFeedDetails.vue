@@ -4,6 +4,7 @@
       v-if="feed"
       class="chart"
       :data="chartData"
+      :logo="feed.logo"
       :last-result-timestamp="normalizedFeed.lastResultTimestamp"
       :last-result-value="lastResultValue"
       :data-label="feed.label"

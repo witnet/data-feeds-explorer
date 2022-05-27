@@ -2,7 +2,7 @@
   <div class="tooltip-container">
     <div class="tooltip">
       <div class="feed-title">
-        <SvgIcon v-if="svgIcon" class="icon" :name="svgIcon" />
+        <SvgIcon v-if="logo" class="icon" :svg="logo" />
         <p v-if="name" class="title feed-name">
           {{ name.toUpperCase() }}
         </p>
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { formatSvgName } from '@/utils/formatSvgName'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 
 export default {
@@ -36,6 +35,10 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    logo: {
+      type: String,
+      required: true,
     },
     name: {
       type: String,
@@ -59,9 +62,6 @@ export default {
     },
   },
   computed: {
-    svgIcon() {
-      return this.name ? formatSvgName(this.name.toLowerCase()) : ''
-    },
     formattedTimestamp() {
       return calculateTimeAgo(this.lastResultTimestamp, this.$i18n.locale)
     },
