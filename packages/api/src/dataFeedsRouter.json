@@ -661,13 +661,7 @@
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
+              "deviationPercentage": 5.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
@@ -704,9 +698,24 @@
     "kava": {
       "name": "Kava",
       "networks": {
+        "kava.mainnet": {
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
+          "blockExplorer": "https://explorer.kava.io/address/{address}/read-contract",
+          "color": "#ff0066",
+          "name": "Kava Mainnet",
+          "pollingPeriod": 10000,
+          "feeds": {
+            "Price-KAVA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            }
+          }
+        },
         "kava.testnet": {
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
-          "blockExplorer": "https://explorer.evm-alpha.kava.io//address/{address}/read-contract",
+          "blockExplorer": "https://explorer.evm-alpha.kava.io/address/{address}/read-contract",
           "color": "#ff0066",
           "name": "Kava Testnet",
           "pollingPeriod": 10000,
@@ -857,6 +866,41 @@
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
+    },
+    "klaytn": {
+      "name": "Klaytn",
+      "networks": {
+        "klaytn.mainnet": {
+          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+          "blockExplorer": "https://scope.klaytn.com/account/{address}",
+          "color": "#ff0066",
+          "name": "Klaytn Cypress (Mainnet)",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-KLAY/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
+        "klaytn.testnet": {
+          "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
+          "blockExplorer": "https://baobab.scope.klaytn.com/account/{address}",
+          "color": "#ff0066",
+          "name": "Klaytn Baobab (Testnet)",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-KLAY/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -1136,34 +1180,19 @@
         }
       }
     },
-    "klaytn": {
-      "name": "Klaytn",
+    "smartbch": {
+      "name": "SmartBCH",
       "networks": {
-        "klaytn.mainnet": {
-          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://scope.klaytn.com/account/{address}",
-          "color": "#ff0066",
-          "name": "Klaytn Cypress (Mainnet)",
-          "pollingPeriod": 45000,
+        "smartbch.amber": {
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
+          "blockExplorer": "https://www.smartscan.cash/address/{address}",
+          "color": "#66ff00",
+          "name": "SmartBCH Amber (testnet)",
+          "pollingPeriod": 10000,
           "feeds": {
-            "Price-KLAY/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
-        "klaytn.testnet": {
-          "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
-          "blockExplorer": "https://baobab.scope.klaytn.com/account/{address}",
-          "color": "#ff0066",
-          "name": "Klaytn Baobab (Testnet)",
-          "pollingPeriod": 45000,
-          "feeds": {
-            "Price-KLAY/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
+            "Price-BCH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
