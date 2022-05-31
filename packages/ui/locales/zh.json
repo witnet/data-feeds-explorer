@@ -85,30 +85,30 @@
         "documentation": "文档",
         "price_feeds": "价格推送",
         "randomness": "随机度：",
-        "get_post_request": "Data Requests"
+        "get_post_request": "数据请求"
       }
     },
-    "ado_text": "Witnet is part of the Alliance of Decentralized Oracles (ADO), a joint effort by leading decentralized oracle solutions to make the life of smart contract developers easier by creating oracle standards. Learn more about the ADO at {0}",
+    "ado_text": "Witnet 是去中心化预言机联盟 (ADO) 的一部分，该联盟由领先的去中心化预言机解决方案共同努力，通过创建预言机标准，让智能合约开发人员的生活变得更轻松。在 {0} 了解有关 ADO 的更多信息",
     "copyright": {
-      "base": "© {0} by {1} and individual contributors. Content available under a {2}.",
-      "witnet_foundation": "Witnet Foundation",
-      "license": "Creative Commons License"
+      "base": "{0}（由 {1} 创作）和个人贡献者完成。内容详见： {2}.",
+      "witnet_foundation": "Witnet基金会",
+      "license": "知识共享许可"
     }
   },
   "landing": {
     "supported_chains": {
-      "title": "Supported chains",
-      "subtitle": "Blockchains in which the Witnet oracle is currently available"
+      "title": "支持的链",
+      "subtitle": "Witnet目前可用的区块链"
     },
     "upcoming_chains": {
-      "title": "Chains with upcoming support"
+      "title": "即将支持的链"
     },
     "partners": {
-      "title": "Users and Partners"
+      "title": "用户和合作伙伴"
     }
   },
-  "feeds": "feeds",
-  "data_feeds": "Data feeds",
-  "networks": "Networks",
-  "chains": "Chains"
+  "feeds": "数据源",
+  "data_feeds": "数据推送",
+  "networks": "网络",
+  "chains": "链"
 }
