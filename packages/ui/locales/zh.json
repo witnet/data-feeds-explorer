@@ -10,37 +10,37 @@
     "underlying_feed_contract": "底层推送合约地址",
     "erc2362_asset_id": "ERC2362 资产id",
     "integration_details_description": "Witnet 价格推送可以通过两种不同方式整合到您自己的 {0} 合约中：",
-    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}%.",
-    "feed_description_routed": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated as soon as any of the related data feeds update.",
-    "feed_description_routed_cached": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time any of the related data feeds update."
+    "feed_description": "这是一个Witnet 驱动的 {name} 数据源，可用于 {network}。 上次报告的值是 {value} (更新于 {date})。 此数据源每 {heartbeat} 或每次价格变动超过 {deviation}%更新。",
+    "feed_description_routed": "这是一个Witnet 驱动的 {name} 数据源，可用于 {network}。 上次报告的值是 {value} (更新于 {date})。 这种数据源一旦任何有关数据源更新，就立即更新。",
+    "feed_description_routed_cached": "这是一个Witnet 驱动的 {name} 数据源，可用于 {network}。 上次报告的值是 {value} (更新于 {date})。 此数据源每 {heartbeat} 或每次相关数据源更新时更新一次。"
   },
   "main": {
-    "data_feeds": "Data feeds",
-    "network_subtitle": "Witnet data feeds currently available on"
+    "data_feeds": "数据流",
+    "network_subtitle": "目前可用的Witnet 数据源"
   },
   "navbar": {
-    "request_data_feed": "Request new price feed"
+    "request_data_feed": "请求新的价格推送"
   },
   "transactions_list": {
-    "transactions": "Update history",
-    "witnet_explorer": "Transaction in Witnet Block Explorer",
+    "transactions": "更新历史记录",
+    "witnet_explorer": "Witnet 区块浏览器中的交易",
     "etherscan": "Etherscan",
-    "value": "Reported price",
-    "time": "Time"
+    "value": "报告的价格",
+    "time": "时间"
   },
   "chart": {
-    "w": "7d",
-    "m": "30d",
-    "heartbeat": "ETA to next update",
-    "heartbeat_text": "The feed is updated before the heartbeat is reached",
-    "deviation": "Deviation threshold",
-    "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
-    "use_data_feed": "Use this data feed",
-    "last_update": "Last update",
-    "status": "Status",
-    "operational": "Fully operational",
-    "delay": "Delay detected",
-    "error": "Error detected",
+    "w": "7 天",
+    "m": "30天",
+    "heartbeat": "ETA 到下一次更新",
+    "heartbeat_text": "在心跳动到达之前更新源",
+    "deviation": "偏差阈值",
+    "deviation_text": "当价格移动超过偏差阈值时，数据请求将发送到Witnet 网络以获得更新值",
+    "use_data_feed": "使用此数据源",
+    "last_update": "最后更新",
+    "status": "状态：",
+    "operational": "完全运行",
+    "delay": "检测到延时",
+    "error": "检测到错误",
     "${serie": {
       "key}": ""
     },
@@ -48,32 +48,32 @@
       "key}": ""
     }
   },
-  "copied": "Copied",
-  "copy": "Copy",
-  "and": "and",
+  "copied": "已复制",
+  "copy": "复制",
+  "and": "和",
   "footer": {
-    "documentation": "Documentation",
-    "request_data_feed": "Request new price feed",
-    "about_witnet": "About Witnet",
+    "documentation": "文件",
+    "request_data_feed": "请求新的价格推送",
+    "about_witnet": "关于Witnet",
     "links": {
       "witnet": {
         "title": "Witnet",
-        "oracle": "Oracle",
-        "token": "Token",
-        "ecosystem": "Ecosystem",
-        "community": "Community",
-        "whitepaper": "Whitepaper"
+        "oracle": "预言机",
+        "token": "代币",
+        "ecosystem": "生态环境",
+        "community": "社区",
+        "whitepaper": "白皮书"
       },
       "ecosystem": {
-        "title": "Ecosystem",
-        "full_node": "Full node",
+        "title": "生态环境",
+        "full_node": "全节点",
         "wallet": "钱包",
-        "block_explorer": "Block explorer",
-        "monitor": "Network monitor",
-        "data_feeds_explorer": "Data Feeds Explorer"
+        "block_explorer": "区块浏览器",
+        "monitor": "网络监控器",
+        "data_feeds_explorer": "数据推送浏览器"
       },
       "community": {
-        "title": "Community",
+        "title": "社区",
         "telegram": "Telegram",
         "discord": "Discord",
         "twitter": "Twitter",
@@ -81,10 +81,10 @@
         "youtube": "Youtube"
       },
       "developers": {
-        "title": "Developers",
-        "documentation": "Documentation",
-        "price_feeds": "Price Feeds",
-        "randomness": "Randomness",
+        "title": "开发者",
+        "documentation": "文档",
+        "price_feeds": "价格推送",
+        "randomness": "随机度：",
         "get_post_request": "Data Requests"
       }
     },
