@@ -836,8 +836,8 @@
             "Price-KCS/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 600,
-              "minSecsBetweenUpdates": 240
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 900
             },
             "Price-KSW/USD-6": {
               "label": "$",
