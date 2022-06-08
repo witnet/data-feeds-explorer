@@ -13,9 +13,9 @@
           "feeds": {
             "Price-AVAX/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "minSecsBetweenUpdates": 900
             }
           }
         },
@@ -28,20 +28,20 @@
           "feeds": {
             "Price-AVAX/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
           }
@@ -60,73 +60,55 @@
           "feeds": {
             "Price-BOBA/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-DAI/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-OLO/USDC-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-FRAX/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-FXS/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-OMG/BTC-9": {
-              "label": "₿",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-OMG/ETH-9": {
-              "label": "Ξ",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-OMG/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-USDC/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-USDT/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -141,13 +123,13 @@
           "feeds": {
             "Price-BOBA/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
@@ -159,31 +141,31 @@
             },
             "Price-OLO/USDC-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "minSecsBetweenUpdates": 900
             },
             "Price-FRAX/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 0.25,
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-USDC/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.25,
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-USDT/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.25,
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -458,115 +440,115 @@
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-CRO/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-USDT/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ADA/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ATOM/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-AVAX/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-CRO/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-DAI/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-DOGE/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-DOT/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-EOS/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-LINK/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-SHIB/USD-9": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-SOL/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-TUSD/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-USDC/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-WBTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-XLM/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -581,19 +563,19 @@
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-CRO/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
@@ -619,14 +601,14 @@
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 28800,
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 28800,
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
           }
@@ -640,13 +622,13 @@
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -920,19 +902,19 @@
           "feeds": {
             "Price-METIS/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -947,7 +929,7 @@
           "feeds": {
             "Price-METIS/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 2.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
