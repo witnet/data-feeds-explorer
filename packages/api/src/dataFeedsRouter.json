@@ -885,9 +885,19 @@
           "name": "Klaytn Cypress (Mainnet)",
           "pollingPeriod": 45000,
           "feeds": {
+            "Price-KLAY/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },              
             "Price-KLAY/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -900,9 +910,19 @@
           "name": "Klaytn Baobab (Testnet)",
           "pollingPeriod": 45000,
           "feeds": {
+            "Price-KLAY/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },              
             "Price-KLAY/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
