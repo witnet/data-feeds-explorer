@@ -687,9 +687,19 @@
           "name": "Kava Mainnet",
           "pollingPeriod": 10000,
           "feeds": {
+            "Price-KAVA/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-KAVA/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {              
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -702,9 +712,19 @@
           "name": "Kava Testnet",
           "pollingPeriod": 10000,
           "feeds": {
+            "Price-KAVA/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-KAVA/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {              
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
