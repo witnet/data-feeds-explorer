@@ -715,7 +715,7 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
-            "Price-USDT/USD-6": {              
+            "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
@@ -740,7 +740,7 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
-            "Price-USDT/USD-6": {              
+            "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
@@ -906,7 +906,7 @@
             "Price-KLAY/USD-6": {
               "isRouted": true,
               "label": "$"
-            },              
+            },
             "Price-KLAY/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
@@ -947,7 +947,7 @@
             "Price-KLAY/USD-6": {
               "isRouted": true,
               "label": "$"
-            },              
+            },
             "Price-KLAY/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
