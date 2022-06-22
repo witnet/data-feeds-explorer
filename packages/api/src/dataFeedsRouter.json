@@ -909,9 +909,25 @@
             },              
             "Price-KLAY/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 0.5,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
+            },
+            "Price-KRW/USD-9": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-KSP/KRW-6": {
+              "label": "₩",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-KSP/USD-6": {
+              "isRouted": true,
+              "label": "$"
             },
             "Price-USDT/USD-6": {
               "label": "$",
@@ -934,9 +950,25 @@
             },              
             "Price-KLAY/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 0.5,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
+            },
+            "Price-KRW/USD-9": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-KSP/KRW-6": {
+              "label": "₩",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-KSP/USD-6": {
+              "isRouted": true,
+              "label": "$"
             },
             "Price-USDT/USD-6": {
               "label": "$",
