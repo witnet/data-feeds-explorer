@@ -4,13 +4,15 @@ import fs from 'fs'
 import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from './types'
 import { normalizeConfig } from './utils'
 
+const CONFIG_URL = process.env.TEST_BRANCH
+  ? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`
+  : 'https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json'
+
 export async function fetchDataFeedsRouterConfig (): Promise<
   RouterDataFeedsConfig | null
 > {
   return await axios
-    .get(
-      'https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json'
-    )
+    .get(CONFIG_URL)
     .then(res => {
       return res.data
     })

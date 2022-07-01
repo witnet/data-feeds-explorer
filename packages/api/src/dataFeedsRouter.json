@@ -1075,6 +1075,53 @@
         }
       }
     },
+    "meter": {
+      "name": "Meter",
+      "networks": {
+        "meter.testnet": {
+          "address": "0xBbDB82a16d7b66bb076879f766042b914F1C7572",
+          "blockExplorer": "https://scan-warringstakes.meter.io/address/{address}?tab=2&p=1",
+          "color": "#ff6600",
+          "name": "Meter Testnet",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-MTR/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MTRG/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
+        "meter.mainnet": {
+          "address": "<TBD>",
+          "blockExplorer": "https://scan.meter.io/address/{address}?tab=2&p=1",
+          "color": "#ff6600",
+          "name": "Meter Mainnet",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-MTR/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MTRG/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
+    },
     "moonbeam": {
       "name": "Moonbeam",
       "networks": {
@@ -1132,6 +1179,18 @@
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-GLINT/USD-6": {
+              "isRouted": true,
+              "label": "$",
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-GLINT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -1265,6 +1324,12 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
+            "Price-MATIC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-VSQ/DAI-6": {
               "label": "◈",
               "deviationPercentage": 1.0,
@@ -1282,7 +1347,7 @@
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
@@ -1294,7 +1359,13 @@
             },
             "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MATIC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
