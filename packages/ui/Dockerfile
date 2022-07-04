@@ -12,4 +12,7 @@ ENV PORT=8080
 
 RUN yarn build
 
+# remove development dependencies
+RUN npm prune --production
+
 CMD [ "yarn", "start" ]

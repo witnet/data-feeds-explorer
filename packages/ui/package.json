@@ -14,7 +14,7 @@
     "lint": "yarn lint:js && yarn lint:style",
     "lint:check": "yarn lint:js:check && yarn lint:style",
     "test": "yarn jest",
-    "docker:build": "docker build . --no-cache -t witnet/data-feeds-explorer-ui"
+    "docker:build": "docker build . -t witnet/data-feeds-explorer-ui"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
