@@ -865,7 +865,7 @@
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://explorer.kava.io/address/{address}/read-contract",
           "color": "#ff0066",
-          "name": "Kava Mainnet",
+          "name": "Kava EVM Mainnet",
           "pollingPeriod": 10000,
           "feeds": {
             "Price-KAVA/USD-6": {
@@ -890,7 +890,7 @@
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://explorer.evm-alpha.kava.io/address/{address}/read-contract",
           "color": "#ff0066",
-          "name": "Kava Testnet",
+          "name": "Kava EVM Testnet",
           "pollingPeriod": 10000,
           "feeds": {
             "Price-KAVA/USD-6": {
