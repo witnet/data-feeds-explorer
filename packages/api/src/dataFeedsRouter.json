@@ -462,6 +462,16 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
+            "Price-ELON/USD-9": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-ELON/USDT-9": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
@@ -598,6 +608,16 @@
               "minSecsBetweenUpdates": 900
             },
             "Price-CRO/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ELON/USD-9": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-ELON/USDT-9": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
