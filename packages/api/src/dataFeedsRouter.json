@@ -640,7 +640,7 @@
       }
     },
     "cube": {
-      "name": "Cube Network",
+      "name": "Cube",
       "networks": {
         "cube.testnet": {
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
