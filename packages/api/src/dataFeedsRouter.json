@@ -620,13 +620,13 @@
       }
     },
     "cube": {
-      "name": "Cube Chain",
+      "name": "Cube Network",
       "networks": {
         "cube.testnet": {
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://testnet.cubescan.network/en-us/address/{address}",
           "color": "#ff6600",
-          "name": "Cube Chain Testnet",
+          "name": "Cube EVM Testnet",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
@@ -675,7 +675,7 @@
           "address": "<TBD>",
           "blockExplorer": "https://testnet.cubescan.network/en-us/address/{address}",
           "color": "#ff6600",
-          "name": "Cube Chain Mainnet",
+          "name": "Cube EVM Mainnet",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
