@@ -656,7 +656,7 @@
               "minSecsBetweenUpdates": 900
             },
             "Price-CUBE/USD-6": {
-              "isRouted": "true",
+              "isRouted": true,
               "label": "$"
             },
             "Price-CUBE/USDT-6": {
@@ -705,7 +705,7 @@
               "minSecsBetweenUpdates": 900
             },
             "Price-CUBE/USD-6": {
-              "isRouted": "true",
+              "isRouted": true,
               "label": "$"
             },
             "Price-CUBE/USDT-6": {
