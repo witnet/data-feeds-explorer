@@ -155,7 +155,7 @@ export default {
           brightness: 0.5,
         },
         {
-          title: 'Smart BCH',
+          title: 'SmartBCH',
           name: 'partner_smart-bch',
           link: 'https://smartbch.org/',
           scale: 0.9,
