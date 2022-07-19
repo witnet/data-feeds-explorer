@@ -1271,7 +1271,7 @@
           }
         },
         "meter.mainnet": {
-          "address": "<TBD>",
+          "address": "0xA0Ea8C99159843afdAE9eD092E8eaec0368e8A20",
           "blockExplorer": "https://scan.meter.io/address/{address}?tab=2&p=1",
           "color": "#ff6600",
           "name": "Meter Mainnet",
