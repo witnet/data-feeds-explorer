@@ -26,15 +26,23 @@ export default {
   font-weight: bold;
   font-size: var(--text-size-medium);
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
   &.primary {
     color: var(--btn-primary-color);
     background: var(--btn-primary-background-color);
     border: 1px solid var(--btn-primary-border-color);
+    &:hover {
+      background: var(--btn-primary-background-color-active);
+    }
   }
   &.secondary {
     color: var(--btn-secondary-color);
     background: transparent;
     border: 1px solid var(--btn-secondary-border-color);
+    transition: all 0.3 ease;
+    &:hover {
+      opacity: 0.7;
+    }
   }
   &.disable {
     opacity: 0.6;

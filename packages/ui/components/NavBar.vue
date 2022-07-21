@@ -114,6 +114,7 @@ export default {
   align-items: center;
   background-color: var(--bg);
   height: 100px;
+  transition: background-color 0.3s ease;
   .responsive-menu {
     display: none;
     font-size: 34px;

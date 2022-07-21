@@ -1,5 +1,5 @@
 <template>
-  <div class="background" :class="{ 'hide-scroll': hideScroll }">
+  <div :class="{ 'hide-scroll': hideScroll, preload, background: true }">
     <MainSection>
       <NavBar slot="navbar" @scroll="handleScroll" />
       <div slot="cover" class="cover" :class="{ show: hideScroll }"></div>
@@ -19,10 +19,14 @@ export default {
   data() {
     return {
       hideScroll: false,
+      preload: true,
     }
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
+  },
+  created() {
+    this.preload = false
   },
   methods: {
     handleScroll(scroll) {
@@ -34,14 +38,17 @@ export default {
 <style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.5s;
+  transition: all 0.3s ease;
   opacity: 0;
+  transform: translateX(-4px);
 }
 .fade-enter-to {
   opacity: 1;
+  transform: translateY(0);
 }
 .fade-leave-to {
   opacity: 0;
+  transform: translateX(-4px);
 }
 html {
   font-family: Almarai, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -53,14 +60,25 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  background: var(--bg);
   scroll-behavior: smooth;
+  background-color: var(--bg);
+}
+.background {
+  background-color: var(--bg);
+  transition: all 0.3s ease;
+  &.preload {
+    transition: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+  }
 }
 .hide-scroll {
   height: 100vh;
   position: absolute;
   overflow-y: hidden;
-  background: var(--bg);
+  background-color: var(--bg);
 }
 
 .cover {
