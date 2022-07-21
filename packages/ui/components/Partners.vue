@@ -155,6 +155,13 @@ export default {
           brightness: 0.5,
         },
         {
+          title: 'OKC',
+          name: 'partner_okc',
+          link: 'https://www.okx.com/okc',
+          scale: 0.8,
+          brightness: 0.5,
+        },
+        {
           title: 'SmartBCH',
           name: 'partner_smart-bch',
           link: 'https://smartbch.org/',
