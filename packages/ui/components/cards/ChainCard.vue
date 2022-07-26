@@ -50,7 +50,7 @@ a {
   align-items: center;
   justify-items: flex-start;
   width: 100%;
-  height: max-content;
+  min-height: 50px;
   background: var(--card-background);
   border: var(--card-border);
   box-shadow: var(--card-box-shadow);
@@ -81,6 +81,7 @@ a {
   .card-container {
     width: 100%;
     grid-template-columns: 1fr;
+    min-height: 70px;
   }
 }
 </style>
