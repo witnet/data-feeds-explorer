@@ -12,26 +12,26 @@ describe('validateDataFeedsConfig', () => {
       },
       { key: 'boba-mainnet', label: 'Boba Mainnet', chain: 'Boba' },
       { key: 'boba-rinkeby', label: 'Boba Rinkeby', chain: 'Boba' },
-      { key: 'celo-mainnet', label: 'Celo Mainnet', chain: 'Celo' },
       { key: 'celo-alfajores', label: 'Celo Alfajores', chain: 'Celo' },
-      {
-        key: 'conflux-testnet',
-        label: 'Conflux Core (Testnet)',
-        chain: 'Conflux'
-      },
+      { key: 'celo-mainnet', label: 'Celo Mainnet', chain: 'Celo' },
       {
         key: 'conflux-tethys',
         label: 'Conflux Core (Hydra)',
         chain: 'Conflux'
       },
       {
-        key: 'ethereum-mainnet',
-        label: 'Ethereum Mainnet',
-        chain: 'Ethereum'
+        key: 'conflux-testnet',
+        label: 'Conflux Core (Testnet)',
+        chain: 'Conflux'
       },
       {
         key: 'ethereum-goerli',
         label: 'Ethereum Goerli',
+        chain: 'Ethereum'
+      },
+      {
+        key: 'ethereum-mainnet',
+        label: 'Ethereum Mainnet',
         chain: 'Ethereum'
       },
       {

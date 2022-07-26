@@ -73,7 +73,9 @@ export function normalizeNetworkConfig (
     })
     return networks
   }, [])
-  return networkConfig
+  return networkConfig.sort((chainA, chainB) =>
+    chainA.label.localeCompare(chainB.label)
+  )
 }
 
 // normalize config to fit schema
