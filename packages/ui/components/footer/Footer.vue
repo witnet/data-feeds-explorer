@@ -37,6 +37,7 @@
             >{{ $t('footer.copyright.license') }}</a
           >
         </i18n>
+        <LanguageSelector class="language-selector" />
       </div>
     </div>
   </div>

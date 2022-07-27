@@ -198,6 +198,7 @@ export default {
       onlyOnRoot: true,
       alwaysRedirect: true,
     },
+    strategy: 'prefix_and_default',
     defaultLocale,
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
