@@ -87,8 +87,19 @@ export default {
       deep: true,
     },
   },
+  mounted() {
+    window.addEventListener('resize', this.resizeHandler)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.resizeHandler)
+  },
   methods: {
     capitalizeFirstLetter,
+    resizeHandler(event) {
+      if (event.target.outerWidth > 850) {
+        this.closeMenu()
+      }
+    },
     closeMenu() {
       this.isMenuVisible = false
       this.$emit('scroll', this.isMenuVisible)
