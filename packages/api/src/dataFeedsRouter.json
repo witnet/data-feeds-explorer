@@ -794,11 +794,11 @@
           "name": "Ethereum Mainnet",
           "pollingPeriod": 45000,
           "feeds": {
-            "Price-BTC/USD-6": {
+            "Price-ETH/USD-6": {
               "label": "$",
-              "deviationPercentage": 5.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 604800,
+              "minSecsBetweenUpdates": 604800
             }
           }
         }
