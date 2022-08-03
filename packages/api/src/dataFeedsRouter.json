@@ -1358,12 +1358,6 @@
               "label": "$",
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
-            },
-            "Price-GLINT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
             }
           }
         },
@@ -1394,12 +1388,6 @@
             },
             "Price-GLINT/USDC-6": {
               "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-GLINT/USDT-6": {
-              "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
