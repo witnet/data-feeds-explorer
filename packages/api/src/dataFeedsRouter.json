@@ -6,7 +6,7 @@
       "networks": {
         "avalanche.mainnet": {
           "address": "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
-          "blockExplorer": "https://snowtrace.io/address/{address}#readContract",
+          "blockExplorer": "https://snowtrace.io/address/{address}",
           "color": "#070fdf",
           "name": "Avalanche Mainnet",
           "pollingPeriod": 45000,
@@ -21,7 +21,7 @@
         },
         "avalanche.fuji": {
           "address": "0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4",
-          "blockExplorer": "https://testnet.snowtrace.io/address/{address}#readContract",
+          "blockExplorer": "https://testnet.snowtrace.io/address/{address}",
           "color": "#E84142",
           "name": "Avalanche Fuji",
           "pollingPeriod": 45000,
@@ -116,7 +116,7 @@
         },
         "boba.mainnet": {
           "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
-          "blockExplorer": "https://blockexplorer.boba.network/address/{address}/read-contract",
+          "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
           "color": "#007dff",
           "name": "Boba Mainnet",
           "pollingPeriod": 45000,
@@ -178,7 +178,7 @@
       "networks": {
         "celo.alfajores": {
           "address": "0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE",
-          "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}/read-contract",
+          "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
           "color": "#1cd8d2",
           "name": "Celo Alfajores",
           "pollingPeriod": 45000,
@@ -217,7 +217,7 @@
         },
         "celo.mainnet": {
           "address": "0x931673904eB6E69D775e35F522c0EA35575297Cb",
-          "blockExplorer": "https://explorer.celo.org/address/{address}/read-contract",
+          "blockExplorer": "https://explorer.celo.org/address/{address}",
           "color": "#ff8100",
           "name": "Celo Mainnet",
           "pollingPeriod": 45000,
@@ -288,7 +288,7 @@
         },
         "conflux.espace.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://evm.confluxscan.net/address/{address}?tab=contract-viewer",
+          "blockExplorer": "https://evm.confluxscan.net/address/{address}",
           "color": "#6600ff",
           "name": "Conflux eSpace (Mainnet)",
           "pollingPeriod": 45000,
@@ -354,7 +354,7 @@
         },
         "conflux.espace.testnet": {
           "address": "0x49C0BCce51a8B28f92d008394F06d5B259657F33",
-          "blockExplorer": "https://evmtestnet.confluxscan.net/address/{address}?tab=contract-viewer",
+          "blockExplorer": "https://evmtestnet.confluxscan.net/address/{address}",
           "color": "#6600ff",
           "name": "Conflux eSpace (Testnet)",
           "pollingPeriod": 45000,
@@ -706,7 +706,7 @@
       "networks": {
         "ethereum.goerli": {
           "address": "0x1cF3Aa9DBF4880d797945726B94B9d29164211BE",
-          "blockExplorer": "https://goerli.etherscan.io/address/{address}#readContract",
+          "blockExplorer": "https://goerli.etherscan.io/address/{address}",
           "color": "#ff5599",
           "name": "Ethereum Goerli",
           "pollingPeriod": 45000,
@@ -727,7 +727,7 @@
         },
         "ethereum.rinkeby": {
           "address": "0xa50b17C2fc373c247C3b603f83df6A7800cB0DC9",
-          "blockExplorer": "https://rinkeby.etherscan.io/address/{address}#readContract",
+          "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
           "color": "#ff5599",
           "name": "Ethereum Rinkeby",
           "pollingPeriod": 45000,
@@ -748,7 +748,7 @@
         },
         "ethereum.mainnet": {
           "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
-          "blockExplorer": "https://etherscan.io/address/{address}#readContract",
+          "blockExplorer": "https://etherscan.io/address/{address}",
           "color": "#ff5599",
           "name": "Ethereum Mainnet",
           "pollingPeriod": 45000,
@@ -768,7 +768,7 @@
       "networks": {
         "harmony.testnet": {
           "address": "0x08d479a544b05B297454e5CAc133abA3a584AB8E",
-          "blockExplorer": "https://explorer.pops.one/address/{address}?activeTab=7",
+          "blockExplorer": "https://explorer.pops.one/address/{address}",
           "color": "#f6006f",
           "name": "Harmony Testnet",
           "pollingPeriod": 45000,
@@ -842,7 +842,7 @@
       "networks": {
         "kava.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://explorer.kava.io/address/{address}/read-contract",
+          "blockExplorer": "https://explorer.kava.io/address/{address}",
           "color": "#ff0066",
           "name": "Kava EVM Mainnet",
           "pollingPeriod": 10000,
@@ -885,7 +885,7 @@
         },
         "kava.testnet": {
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
-          "blockExplorer": "https://explorer.evm-alpha.kava.io/address/{address}/read-contract",
+          "blockExplorer": "https://explorer.evm-alpha.kava.io/address/{address}",
           "color": "#ff0066",
           "name": "Kava EVM Testnet",
           "pollingPeriod": 10000,
@@ -933,7 +933,7 @@
       "networks": {
         "kcc.testnet": {
           "address": "0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a",
-          "blockExplorer": "https://scan-testnet.kcc.network/address/{address}/read-contract",
+          "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
           "color": "#ff0066",
           "name": "KCC Testnet",
           "pollingPeriod": 45000,
@@ -1002,7 +1002,7 @@
         },
         "kcc.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://scan.kcc.io/address/{address}/read-contract",
+          "blockExplorer": "https://scan.kcc.io/address/{address}",
           "color": "#ff0066",
           "name": "KCC Mainnet",
           "pollingPeriod": 45000,
@@ -1163,7 +1163,7 @@
       "networks": {
         "metis.rinkeby": {
           "address": "0x5134EAF08bcf8cE1922991150AAad1774e93751f",
-          "blockExplorer": "https://stardust-explorer.metis.io/address/{address}/read-contract",
+          "blockExplorer": "https://stardust-explorer.metis.io/address/{address}",
           "color": "#ff6600",
           "name": "Metis Rinkeby",
           "pollingPeriod": 45000,
@@ -1190,7 +1190,7 @@
         },
         "metis.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}/read-contract",
+          "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}",
           "color": "#ff6600",
           "name": "Metis Mainnet",
           "pollingPeriod": 45000,
@@ -1210,7 +1210,7 @@
       "networks": {
         "meter.testnet": {
           "address": "0xBbDB82a16d7b66bb076879f766042b914F1C7572",
-          "blockExplorer": "https://scan-warringstakes.meter.io/address/{address}?tab=2&p=1",
+          "blockExplorer": "https://scan-warringstakes.meter.io/address/{address}",
           "color": "#ff6600",
           "name": "Meter Testnet",
           "pollingPeriod": 45000,
@@ -1231,7 +1231,7 @@
         },
         "meter.mainnet": {
           "address": "0xA0Ea8C99159843afdAE9eD092E8eaec0368e8A20",
-          "blockExplorer": "https://scan.meter.io/address/{address}?tab=2&p=1",
+          "blockExplorer": "https://scan.meter.io/address/{address}",
           "color": "#ff6600",
           "name": "Meter Mainnet",
           "pollingPeriod": 45000,
@@ -1257,7 +1257,7 @@
       "networks": {
         "moonbeam.mainnet": {
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://moonbeam.moonscan.io/address/{address}#readContract",
+          "blockExplorer": "https://moonbeam.moonscan.io/address/{address}",
           "color": "#ff6600",
           "name": "Moonbeam Mainnet",
           "pollingPeriod": 45000,
@@ -1322,7 +1322,7 @@
         },
         "moonbeam.moonbase": {
           "address": "0x56834Ff8D4b27db647Da97CA3bd8540f7fA0e89D",
-          "blockExplorer": "https://moonbase.moonscan.io/address/{address}#readContract",
+          "blockExplorer": "https://moonbase.moonscan.io/address/{address}",
           "color": "#ff6600",
           "name": "Moonbase Alpha",
           "pollingPeriod": 45000,
@@ -1387,7 +1387,7 @@
         },
         "moonbeam.moonriver": {
           "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
-          "blockExplorer": "https://moonriver.moonscan.io/address/{address}#readContract",
+          "blockExplorer": "https://moonriver.moonscan.io/address/{address}",
           "color": "#ff6600",
           "name": "Moonriver",
           "pollingPeriod": 45000,
@@ -1466,7 +1466,7 @@
       "networks": {
         "polygon.goerli": {
           "address": "0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb",
-          "blockExplorer": "https://mumbai.polygonscan.com/address/{address}#readContract",
+          "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
           "color": "#66ff00",
           "name": "Polygon Mumbai",
           "pollingPeriod": 45000,
@@ -1505,7 +1505,7 @@
         },
         "polygon.mainnet": {
           "address": "0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4",
-          "blockExplorer": "https://polygonscan.com/address/{address}/read-contract",
+          "blockExplorer": "https://polygonscan.com/address/{address}",
           "color": "#66ff00",
           "name": "Polygon Mainnet",
           "pollingPeriod": 45000,
