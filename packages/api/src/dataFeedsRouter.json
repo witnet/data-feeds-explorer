@@ -560,6 +560,12 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
+            "Price-CRO/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-CRO/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
