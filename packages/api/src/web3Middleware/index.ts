@@ -174,32 +174,30 @@ export class Web3Middleware {
     }
   }
 
+  async readDataFeedContract (feedInfo: FeedInfo, provider) {
+    const web3 = new this.Web3(provider)
+    const contractAddress = this.currentFeedAddresses[feedInfo.feedFullName]
+    if (contractAddress && !isZeroAddress(contractAddress)) {
+      const feedContract = new web3.eth.Contract(feedInfo.abi, contractAddress)
+      console.log(
+        `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
+      )
+      await this.fetchAndSaveContractSnapshot(
+        { feedContract },
+        feedInfo.feedFullName
+      )
+    } else {
+      console.error(`Pricefeed address not set for ${feedInfo.feedFullName}`)
+    }
+  }
+
   async listenToDataFeed (feedInfo: FeedInfo) {
     const provider = getProvider(feedInfo.network)
     if (provider) {
       try {
-        const web3 = new this.Web3(provider)
+        this.readDataFeedContract(feedInfo, provider)
         const interval = setInterval(async () => {
-          const contractAddress = this.currentFeedAddresses[
-            feedInfo.feedFullName
-          ]
-          if (contractAddress && !isZeroAddress(contractAddress)) {
-            const feedContract = new web3.eth.Contract(
-              feedInfo.abi,
-              contractAddress
-            )
-            console.log(
-              `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`
-            )
-            await this.fetchAndSaveContractSnapshot(
-              { feedContract },
-              feedInfo.feedFullName
-            )
-          } else {
-            console.error(
-              `Pricefeed address not set for ${feedInfo.feedFullName}`
-            )
-          }
+          this.readDataFeedContract(feedInfo, provider)
         }, feedInfo.pollingPeriod)
 
         this.intervals.push(interval)
