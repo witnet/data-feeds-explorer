@@ -1,3 +1,8 @@
-export function findLanguage(languages, locale) {
-  return languages.find((language) => language.code === locale)
+import { languages } from '../constants'
+import { getExpandedLanguages } from './getExpandedLanguages'
+
+export function findLanguage(locale) {
+  return getExpandedLanguages(languages).find(
+    (language) => language.code === locale
+  )
 }
