@@ -1,7 +1,6 @@
-import axios from 'axios'
 import { languages } from './constants'
 import { fallbackLocale, defaultLocale } from './default'
-import { getFeedDescription } from './utils/getFeedDescription'
+import { createFeed } from './rss/createFeed'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -136,59 +135,12 @@ export default {
 
   feed: [
     {
-      path: '/feed.xml', // The route to your feed.
+      path: '/feed.xml',
       async create(feed) {
-        let dataFeeds
-        feed.options = {
-          title: 'Witnet Data Feed Explorer',
-          link: 'https://feeds.witnet.io/feed.xml',
-          description: 'This is the Witnet data feed explorer feed!',
-        }
-        const feedsQuery = `query feeds {
-          feeds (network: "all") {
-            feeds {
-              feedFullName
-              name
-              chain
-              logo
-              networkName
-              heartbeat
-              finality
-              deviation
-              isRouted
-            }
-            total
-          }
-        }`
-        await axios({
-          url: process.env.API_ENDPOINT,
-          method: 'post',
-          data: {
-            query: feedsQuery,
-          },
-        }).then((result) => {
-          dataFeeds = result.data.data.feeds.feeds
-        })
-        if (dataFeeds) {
-          dataFeeds.forEach((dataFeed) => {
-            const url = `https://feeds.witnet.io/${dataFeed.chain.toLowerCase()}/${
-              dataFeed.feedFullName
-            }`
-            feed.addItem({
-              author: dataFeed.authors,
-              description: getFeedDescription(dataFeed),
-              id: dataFeed.feedFullName,
-              link: url,
-              title: `${dataFeed.name.toUpperCase()} data feed available on ${
-                dataFeed.networkName
-              }`,
-            })
-          })
-        }
+        await createFeed(feed)
       }, // The create function (see below)
-      cacheTime: 1000 * 60 * 15, // How long should the feed be cached
+      cacheTime: 24 * 60 * 60 * 1000, // 24h
       type: 'rss2', // Can be: rss2, atom1, json1
-      data: ['Some additional data'], // Will be passed as 2nd argument to `create` function
     },
   ],
 
