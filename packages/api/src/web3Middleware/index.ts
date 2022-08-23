@@ -230,7 +230,7 @@ export class Web3Middleware {
         requestId: await feedContract.methods.latestQueryId().call()
       }
     } catch (err) {
-      throw new Error(`Error reading contract state ${err}`)
+      throw new Error(`Error reading contract state for ${feedFullName} ${err}`)
     }
   }
 
@@ -274,7 +274,10 @@ export class Web3Middleware {
           resolve(true)
         }
       } catch (error) {
-        console.error(`Error reading contracts state:`, error)
+        console.error(
+          `Error reading contracts state for ${feedFullName}:`,
+          error
+        )
       }
     })
   }
