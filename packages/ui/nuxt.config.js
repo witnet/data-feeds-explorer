@@ -141,6 +141,8 @@ export default {
       }, // The create function (see below)
       cacheTime: 24 * 60 * 60 * 1000, // 24h
       type: 'rss2', // Can be: rss2, atom1, json1
+      // This field is mandatory to make the rss work
+      data: [],
     },
   ],
 
