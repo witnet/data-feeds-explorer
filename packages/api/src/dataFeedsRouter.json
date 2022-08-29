@@ -651,8 +651,8 @@
           }
         },
         "cube.mainnet": {
-          "address": "<TBD>",
-          "blockExplorer": "https://testnet.cubescan.network/en-us/address/{address}",
+          "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
+          "blockExplorer": "https://cubescan.network/en-us/address/{address}",
           "color": "#ff6600",
           "name": "Cube EVM Mainnet",
           "pollingPeriod": 45000,
