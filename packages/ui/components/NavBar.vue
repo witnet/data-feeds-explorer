@@ -2,20 +2,20 @@
   <div :class="{ drop: isMenuVisible }">
     <nav class="navbar" :class="{ open: isMenuVisible }">
       <div class="menu-container">
-        <nuxt-link :to="localePath('/')">
+        <nuxt-link :to="localePath('/')" aria-label="home">
           <SvgIcon name="witnet-logo" class="logo" />
         </nuxt-link>
-        <label class="responsive-menu" @click="toggleMenu">
+        <button aria-label="menu" class="responsive-menu" @click="toggleMenu">
           <div class="target-burger" :class="{ visible: isMenuVisible }">
             <ul class="buns">
               <li class="bun"></li>
               <li class="bun"></li>
             </ul>
           </div>
-        </label>
+        </button>
       </div>
       <transition name="dropdown" class="dropdown">
-        <ul class="tab-container" :class="{ visible: isMenuVisible }">
+        <div class="tab-container" :class="{ visible: isMenuVisible }">
           <div
             v-if="networks"
             class="networks"
@@ -33,7 +33,7 @@
               <Button class="btn">{{ $t('navbar.request_data_feed') }}</Button>
             </a>
           </div>
-        </ul>
+        </div>
       </transition>
     </nav>
   </div>
@@ -125,9 +125,21 @@ export default {
   align-items: center;
   background-color: var(--bg);
   height: 100px;
+  button,
+  input[type='submit'],
+  input[type='reset'] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    opacity: 1;
+    font: inherit;
+    cursor: pointer;
+  }
   .responsive-menu {
     display: none;
     font-size: 34px;
+    margin-top: 14px;
   }
   .tab-container {
     list-style: none;
@@ -251,7 +263,7 @@ export default {
 .target-burger {
   display: block;
   transition: 0.5s;
-  margin-top: 16px;
+  height: 32px;
   &:hover {
     cursor: pointer;
     opacity: 0.45;

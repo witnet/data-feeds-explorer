@@ -1,6 +1,6 @@
 <template>
   <div class="feeds-container">
-    <FeedCard
+    <LazyFeedCard
       v-for="feed in allFeeds"
       :key="feed.name + feed.network + feed.value + feed.color"
       :details-path="feed.detailsPath"

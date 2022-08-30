@@ -21,6 +21,9 @@ export default {
       hideScroll: false,
     }
   },
+  i18n: {
+    seo: true,
+  },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
   },

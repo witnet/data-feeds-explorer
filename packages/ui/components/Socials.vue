@@ -5,6 +5,7 @@
       :key="social.svgName"
       class="link"
       :href="social.url"
+      :aria-label="social.svgName"
       target="_blank"
     >
       <SvgIcon :name="social.svgName" />

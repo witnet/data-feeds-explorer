@@ -32,10 +32,6 @@ export default {
           'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
       },
       {
-        name: 'google-site-verification',
-        content: '7QVGIfezKjtao3o0VgFyJ01iOMMkAXWvqZSvugWHNns',
-      },
-      {
         hid: 'twitter:title',
         name: 'twitter:title',
         content: 'Data Feeds Explorer | Witnet',
@@ -49,7 +45,7 @@ export default {
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: '~/assets/images/meta-image.png',
+        content: 'https://feeds.witnet.io/meta-image.png',
       },
       {
         hid: 'twitter:image:alt',
@@ -70,12 +66,12 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: '~/assets/images/meta-image.png',
+        content: 'https://feeds.witnet.io/meta-image.png',
       },
       {
         hid: 'og:image:secure_url',
         property: 'og:image:secure_url',
-        content: '~/assets/images/meta-image.png',
+        content: 'https://feeds.witnet.io/meta-image.png',
       },
       {
         hid: 'og:image:alt',
@@ -169,24 +165,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     '@nuxtjs/svg',
-    [
-      '@nuxtjs/google-fonts',
-      {
-        families: {
-          'Roboto+Mono': [400],
-          Almarai: [300, 400, 600],
-        },
-        subsets: ['latin'],
-        display: 'swap',
-        prefetch: false,
-        preconnect: false,
-        preload: false,
-        download: true,
-        base64: false,
-      },
-    ],
   ],
-
   fontawesome: {
     icons: {
       solid: [
@@ -205,7 +184,7 @@ export default {
   i18n: {
     // add SEO attributes in layout head for better performance
     baseUrl: 'https://feeds.witnet.io',
-    seo: true,
+    seo: false,
     locales: languages,
     vueI18n: {
       fallbackLocale,
@@ -226,6 +205,19 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/],
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /.(css|vue)$/,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      },
+    },
   },
   apollo: {
     clientConfigs: {

@@ -1,6 +1,6 @@
 <template>
   <div class="chains-container">
-    <UpcomingChainCard
+    <LazyUpcomingChainCard
       v-for="chain in chains"
       :key="chain.label"
       :name="chain.name"

@@ -1,6 +1,6 @@
 <template>
   <div v-if="normalizedFeed" class="content">
-    <Chart
+    <LazyChart
       v-if="feed"
       class="chart"
       :data="chartData"
@@ -112,6 +112,7 @@ export default {
     },
     normalizedFeed() {
       if (this.feed) {
+        this.$emit('feed-name', this.feed.name.toUpperCase())
         return {
           name: this.feed.name.toUpperCase(),
           isRouted: this.feed.isRouted,
@@ -143,6 +144,10 @@ export default {
     },
     lastResultDate() {
       if (this.transactions) {
+        this.$emit(
+          'feed-date',
+          formatTimestamp(this.normalizedFeed.lastResultTimestamp)
+        )
         return formatTimestamp(this.normalizedFeed.lastResultTimestamp)
       } else {
         return ''
@@ -159,10 +164,14 @@ export default {
     },
     lastResultValue() {
       if (this.transactions) {
-        return `${this.transactions[0].data.label} ${formatNumber(
+        const dataFeedLastValue = `${
+          this.transactions[0].data.label
+        } ${formatNumber(
           parseFloat(this.normalizedFeed.lastResultValue) /
             10 ** this.transactions[0].data.decimals
         )} `
+        this.$emit('feed-value', dataFeedLastValue)
+        return dataFeedLastValue
       } else {
         return null
       }
