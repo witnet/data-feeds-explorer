@@ -789,54 +789,6 @@
         }
       }
     },
-    "hsc": {
-      "name": "HSC",
-      "networks": {
-        "hsc.testnet": {
-          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
-          "blockExplorer": "https://testnet.hooscan.com/address/{address}",
-          "color": "#f6006f",
-          "name": "HSC Testnet",
-          "pollingPeriod": 15000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-FTM/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-FTM/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        }
-      }
-    },
     "kava": {
       "name": "Kava",
       "networks": {
