@@ -145,6 +145,7 @@ a {
     color: var(--value-color);
     font-size: var(--text-size-small);
     font-style: italic;
+    font-family: Avenir Next Variable W05 Itali, sans-serif;
     justify-self: flex-end;
     font-weight: normal;
   }

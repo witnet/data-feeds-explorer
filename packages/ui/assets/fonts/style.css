@@ -1,19 +1,19 @@
 @font-face{
   font-family:"Avenir Next Variable W05 Itali";
-  src: url("5616356/cf7047b5-ced0-4cb1-b66e-688e29567e96.woff2") format("woff2"), url("5616356/8a2ab6e1-4ba1-439f-a73b-29918942af3b.woff") format("woff");
+  src: url("./5616356/cf7047b5-ced0-4cb1-b66e-688e29567e96.woff2") format("woff2"), url("./5616356/8a2ab6e1-4ba1-439f-a73b-29918942af3b.woff") format("woff");
 }
 
 @font-face{
   font-family:"Avenir Next Variable W05835004";
-  src: url("5835004/42801c92-f679-41d6-ab36-6c7ca7c7fa6c.woff2") format("woff2"), url("5835004/20522a37-c9e1-4059-b349-66eee8da006b.woff") format("woff");
+  src: url("./5835004/42801c92-f679-41d6-ab36-6c7ca7c7fa6c.woff2") format("woff2"), url("./5835004/20522a37-c9e1-4059-b349-66eee8da006b.woff") format("woff");
 }
 
 /* roboto-regular - latin */
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 400;
-  src: url('roboto/roboto-v30-latin-regular.woff2') format('woff2'), url('roboto/roboto-v30-latin-regular.woff') format('woff'),
+  src: url('./roboto-mono/roboto-mono-v22-latin-regular.woff2') format('woff2'), url('./roboto-mono/roboto-mono-v22-latin-regular.woff') format('woff');
 }
 
 /* almarai-300 - arabic */
@@ -21,7 +21,7 @@
   font-family: 'Almarai';
   font-style: normal;
   font-weight: 300;
-  src: url('almarai/almarai-v12-arabic-300.woff2') format('woff2'), url('almarai/almarai-v12-arabic-300.woff') format('woff'),
+  src: url('./almarai/almarai-v12-arabic-300.woff2') format('woff2'), url('./almarai/almarai-v12-arabic-300.woff') format('woff');
 }
 
 /* almarai-regular - arabic */
@@ -29,7 +29,7 @@
   font-family: 'Almarai';
   font-style: normal;
   font-weight: 400;
-  src: url('almarai/almarai-v12-arabic-regular.woff2') format('woff2'), url('almarai/almarai-v12-arabic-regular.woff') format('woff'),
+  src: url('./almarai/almarai-v12-arabic-regular.woff2') format('woff2'), url('./almarai/almarai-v12-arabic-regular.woff') format('woff');
 }
 
 /* almarai-700 - arabic */
@@ -37,5 +37,5 @@
   font-family: 'Almarai';
   font-style: normal;
   font-weight: 700;
-  src: url('almarai/almarai-v12-arabic-700.woff2') format('woff2'), url('almarai/almarai-v12-arabic-700.woff') format('woff'),
+  src: url('~/assets/fonts/almarai/almarai-v12-arabic-700.woff2') format('woff2'), url('~/assets/fonts/almarai/almarai-v12-arabic-700.woff') format('woff');
 }

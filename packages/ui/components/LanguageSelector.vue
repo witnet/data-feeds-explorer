@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import { findLanguage } from '@/utils/findLanguage'
+import { getCurrentLanguage } from '@/utils/getCurrentLanguage'
 import { getExpandedLanguages } from '@/utils/getExpandedLanguages'
 import { languages } from '@/constants'
 
 export default {
   data() {
     return {
-      selected: findLanguage(this.$route.path),
+      selected: getCurrentLanguage(this.$route.path),
       options: getExpandedLanguages(languages),
     }
   },

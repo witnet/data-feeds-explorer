@@ -63,7 +63,6 @@ export default {
   position: relative;
   text-align: right;
   .option {
-    padding: 16px 24px;
     font-size: var(--text-size-medium);
     text-align: center;
     cursor: pointer;
