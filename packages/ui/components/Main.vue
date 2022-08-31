@@ -12,7 +12,9 @@
         </h2>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
-          <span class="bold text">{{ selectedNetworks }}</span
+          <span class="bold text">{{ selectedNetworks.first }}</span>
+          {{ $t('and') }}
+          <span class="bold text">{{ selectedNetworks.last }}</span
           >.
         </p>
       </div>
@@ -71,7 +73,11 @@ export default {
       const result = this.selected.map((option) => {
         return option.label
       })
-      return result.join(', ').replace(/, ([^,]*)$/, ' and $1')
+      const last = result.pop()
+      return {
+        first: result.join(', '),
+        last,
+      }
     },
     network() {
       return this.$route.params.network || 'ethereum'
