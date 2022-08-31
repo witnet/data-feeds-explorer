@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import networks from '@/apollo/queries/networks.gql'
 import { urls } from '../constants'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
+import networks from '@/apollo/queries/networks.gql'
 
 export default {
   apollo: {

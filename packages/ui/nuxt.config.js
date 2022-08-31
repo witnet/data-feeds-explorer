@@ -106,18 +106,12 @@ export default {
       { rel: 'shortcut icon', href: '/favicon.ico' },
     ],
   },
-  // You will have to add this new object if it doesn't exist already
+  css: ['~/assets/fonts/style.css'],
   styleResources: {
     scss: ['~/assets/styles/main.scss', '~/assets/styles/element-ui.scss'],
   },
   // ...
-  modules: [
-    '@nuxtjs/style-resources',
-    'nuxt-i18n',
-    '@nuxtjs/apollo',
-    'nuxt-element-ui',
-    '@nuxtjs/feed',
-  ],
+  modules: ['nuxt-i18n', '@nuxtjs/apollo', 'nuxt-element-ui', '@nuxtjs/feed'],
 
   feed: [
     {
@@ -152,6 +146,7 @@ export default {
       { path: '~/components/chart', extensions: ['vue'] },
       { path: '~/components/breadcrumbs', extensions: ['vue', 'js'] },
       { path: '~/components/cards', extensions: ['vue', 'js'] },
+      { path: '~/components/footer', extensions: ['vue', 'js'] },
     ],
   },
 
@@ -164,6 +159,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/style-resources',
     '@nuxtjs/svg',
   ],
   fontawesome: {

@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import feeds from '@/apollo/queries/feeds.gql'
 import { formatSvgName } from '../utils/formatSvgName'
+import feeds from '@/apollo/queries/feeds.gql'
 
 export default {
   name: 'DataFeeds',

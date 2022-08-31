@@ -1,4 +1,4 @@
-import { getI18nStringFromSectionItem } from '../../../../components/footer/getI18nStringFromSectionItem'
+import getI18nStringFromSectionItem from '../../../../components/footer/getI18nStringFromSectionItem'
 
 describe('getI18nStringFromSectionItem.spec', () => {
   it('should return the i18n key', () => {

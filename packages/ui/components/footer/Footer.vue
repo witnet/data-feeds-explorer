@@ -45,7 +45,7 @@
 
 <script>
 import { urls, footerSections } from '../../constants'
-import { getFooterLinks } from './getFooterLinks'
+import getFooterLinks from './getFooterLinks'
 
 export default {
   data() {

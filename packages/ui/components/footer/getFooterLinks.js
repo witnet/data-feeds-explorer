@@ -1,7 +1,7 @@
 import { urls } from '../../constants'
-import { getI18nStringFromSectionItem } from './getI18nStringFromSectionItem'
+import getI18nStringFromSectionItem from './getI18nStringFromSectionItem'
 
-export function getFooterLinks(sections) {
+export default function getFooterLinks(sections) {
   return Object.entries(sections).map(([sectionName, sectionItems]) => ({
     title: sectionName,
     links: sectionItems.map((sectionItem) => ({

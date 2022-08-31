@@ -18,9 +18,9 @@
 </template>
 
 <script>
+import { generateSelectOptions } from '../utils/generateSelectOptions'
 import networks from '@/apollo/queries/networks.gql'
 import feeds from '@/apollo/queries/feeds.gql'
-import { generateSelectOptions } from '../utils/generateSelectOptions'
 
 export default {
   apollo: {

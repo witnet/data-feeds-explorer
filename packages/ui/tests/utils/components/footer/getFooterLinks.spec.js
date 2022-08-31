@@ -1,4 +1,4 @@
-import { getFooterLinks } from '../../../../components/footer/getFooterLinks'
+import getFooterLinks from '../../../../components/footer/getFooterLinks'
 import { footerSections } from '../../../../constants'
 
 describe('getFooterLinks', () => {

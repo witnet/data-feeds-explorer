@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import networks from '@/apollo/queries/networks.gql'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { formatSvgChainName } from '../utils/formatSvgChainName'
+import networks from '@/apollo/queries/networks.gql'
 
 export default {
   apollo: {
