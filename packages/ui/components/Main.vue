@@ -12,8 +12,10 @@
         </h2>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
-          <span class="bold text">{{ selectedNetworks.first }}</span>
-          {{ $t('and') }}
+          <span v-if="selectedNetworks.first" class="bold text">{{
+            selectedNetworks.first
+          }}</span>
+          <span v-if="selectedNetworks.first">{{ $t('and') }}</span>
           <span class="bold text">{{ selectedNetworks.last }}</span
           >.
         </p>
