@@ -41,11 +41,6 @@ export default {
           img: 'upcoming_optimism',
         },
         {
-          name: 'Reef',
-          path: 'https://reef.io/',
-          img: 'upcoming_reef',
-        },
-        {
           name: 'Solana',
           path: 'https://solana.com/',
           img: 'upcoming_solana',
