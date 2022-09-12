@@ -1522,7 +1522,7 @@
           "blockExplorer": "https://testnet.reefscan.com/contract/{address}",
           "color": "#66ff00",
           "name": "Reef Testnet",
-          "pollingPeriod": 10000,
+          "pollingPeriod": 180000,
           "feeds": {
             "Price-REEF/USDT-6": {
               "label": "₮",
