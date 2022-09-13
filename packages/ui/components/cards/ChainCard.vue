@@ -52,7 +52,7 @@ a {
   align-items: center;
   justify-items: flex-start;
   width: 100%;
-  height: max-content;
+  min-height: 50px;
   font-weight: bold;
   padding: 8px 16px;
   cursor: pointer;
