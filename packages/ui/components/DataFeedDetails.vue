@@ -113,6 +113,7 @@ export default {
     normalizedFeed() {
       if (this.feed) {
         this.$emit('feed-name', this.feed.name.toUpperCase())
+        this.$emit('network', this.feed.networkName)
         return {
           name: this.feed.name.toUpperCase(),
           isRouted: this.feed.isRouted,
@@ -127,6 +128,7 @@ export default {
           lastResultValue: this.feed.lastResult,
           lastResultTimestamp: this.feed.lastResultTimestamp || '',
           networkName: this.feed.networkName,
+          label: this.feed.label,
           network: this.feed.network,
           urlUnderlyingContract: this.feed.blockExplorer.replace(
             `{address}`,
@@ -143,7 +145,7 @@ export default {
       }
     },
     lastResultDate() {
-      if (this.transactions) {
+      if (this.normalizedFeed) {
         this.$emit(
           'feed-date',
           formatTimestamp(this.normalizedFeed.lastResultTimestamp)
@@ -163,12 +165,10 @@ export default {
         : null
     },
     lastResultValue() {
-      if (this.transactions) {
-        const dataFeedLastValue = `${
-          this.transactions[0].data.label
-        } ${formatNumber(
+      if (this.normalizedFeed) {
+        const dataFeedLastValue = `${this.normalizedFeed.label}${formatNumber(
           parseFloat(this.normalizedFeed.lastResultValue) /
-            10 ** this.transactions[0].data.decimals
+            10 ** this.normalizedFeed.decimals
         )} `
         this.$emit('feed-value', dataFeedLastValue)
         return dataFeedLastValue
