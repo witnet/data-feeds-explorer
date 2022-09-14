@@ -36,11 +36,6 @@ export default {
           img: 'upcoming_gnosis',
         },
         {
-          name: 'Optimism',
-          path: 'https://www.optimism.io/',
-          img: 'upcoming_optimism',
-        },
-        {
           name: 'Solana',
           path: 'https://solana.com/',
           img: 'upcoming_solana',
