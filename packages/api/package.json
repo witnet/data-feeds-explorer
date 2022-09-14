@@ -12,7 +12,7 @@
     "start": "node dist/index.js",
     "test": "jest --runInBand",
     "prepare": "yarn codegen",
-    "docker:build": "docker build . --no-cache -t witnet/data-feeds-explorer-api --stream"
+    "docker:build": "docker build . --no-cache -t witnet/data-feeds-explorer-api"
   },
   "license": "ISC",
   "devDependencies": {
