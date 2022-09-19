@@ -35,32 +35,23 @@ export function createFeedFullName (network, name, decimals) {
 function getNetworksListByChain (config: RouterDataFeedsConfig) {
   return Object.values(config.chains).map(chain => {
     const networkNames = Object.keys(chain.networks)
-    const networks = Object.values(chain.networks).reduce(
-      (networks, network, index) => {
-        if (!chain.hide) {
-          networks.push({
-            key: networkNames[index]
-              .split('.')
-              .join('-')
-              .toLowerCase(),
-            label: network.name,
-            chain: chain.name
-          })
-        }
-        return networks
-      },
-      []
-    )
-    const testnetNetworks = networks.filter(
-      network => !network.label.includes('Mainnet')
-    )
-    const mainnetNetworks = networks.filter(network =>
-      network.label.includes('Mainnet')
-    )
-
-    // Return all the networks of a chain
-    return [...mainnetNetworks, ...testnetNetworks]
+    return Object.values(chain.networks).map((network, index) => {
+      return {
+        key: networkNames[index]
+          .split('.')
+          .join('-')
+          .toLowerCase(),
+        label: network.name,
+        chain: chain.name
+      }
+    })
   })
+}
+
+export function sortAlphabeticallyByLabel (networks) {
+  return networks.sort((chainA, chainB) =>
+    chainA.label.localeCompare(chainB.label)
+  )
 }
 
 // normalize config to fit network schema
@@ -79,9 +70,16 @@ export function normalizeNetworkConfig (
     })
     return networks
   }, [])
-  return networkConfig.sort((chainA, chainB) =>
-    chainA.label.localeCompare(chainB.label)
+  const testnetNetworks = networkConfig.filter(
+    network => !network.label.includes('Mainnet')
   )
+  const mainnetNetworks = networkConfig.filter(network =>
+    network.label.includes('Mainnet')
+  )
+  return [
+    ...sortAlphabeticallyByLabel(mainnetNetworks),
+    ...sortAlphabeticallyByLabel(testnetNetworks)
+  ]
 }
 
 // normalize config to fit schema
