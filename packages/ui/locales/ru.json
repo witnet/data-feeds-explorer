@@ -25,13 +25,13 @@
     "transactions": "Обновить историю",
     "witnet_explorer": "Транзакция в обозревателе блоков Witnet",
     "etherscan": "Etherscan",
-    "value": "Reported price",
+    "value": "Заявленная цена",
     "time": "Время"
   },
   "chart": {
     "w": "7дней",
     "m": "30дней",
-    "heartbeat": "ETA to next update",
+    "heartbeat": "Время до следующего обновления",
     "heartbeat_text": "The feed is updated before the heartbeat is reached",
     "deviation": "Предел отклонения",
     "deviation_text": "При движении цены больше порога отклонения, запрос данных отправляется в сеть Witnet для получения обновленного значения",
