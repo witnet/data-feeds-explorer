@@ -68,8 +68,8 @@
         "title": "Ecosystem",
         "full_node": "Full node",
         "wallet": "Wallet",
-        "block_explorer": "Block explorer",
-        "monitor": "Network monitor",
+        "block_explorer": "Обозреватель блоков",
+        "monitor": "Сетевой монитор",
         "data_feeds_explorer": "Data Feeds Explorer"
       },
       "community": {
@@ -81,8 +81,8 @@
         "youtube": "Youtube"
       },
       "developers": {
-        "title": "Developers",
-        "documentation": "Documentation",
+        "title": "Разработчики",
+        "documentation": "Документация",
         "price_feeds": "Price Feeds",
         "randomness": "Randomness",
         "get_post_request": "Data Requests"
@@ -91,24 +91,24 @@
     "ado_text": "Witnet is part of the Alliance of Decentralized Oracles (ADO), a joint effort by leading decentralized oracle solutions to make the life of smart contract developers easier by creating oracle standards. Learn more about the ADO at {0}",
     "copyright": {
       "base": "© {0} by {1} and individual contributors. Content available under a {2}.",
-      "witnet_foundation": "Witnet Foundation",
+      "witnet_foundation": "Организация Witnet",
       "license": "Creative Commons License"
     }
   },
   "landing": {
     "supported_chains": {
-      "title": "Supported chains",
-      "subtitle": "Blockchains in which the Witnet oracle is currently available"
+      "title": "Поддерживаемые цепочки",
+      "subtitle": "Блокчейны, в которых сейчас доступен оракул Witnet"
     },
     "upcoming_chains": {
       "title": "Chains with upcoming support"
     },
     "partners": {
-      "title": "Users and Partners"
+      "title": "Пользователи и Партнеры"
     }
   },
   "feeds": "feeds",
   "data_feeds": "Data feeds",
-  "networks": "Networks",
-  "chains": "Chains"
+  "networks": "Сети",
+  "chains": "Цепочки"
 }
