@@ -1,46 +1,46 @@
 {
   "data_feed_details": {
     "contract_address": "Integration details",
-    "trigger_parameters": "Triggering conditions",
+    "trigger_parameters": "Условия срабатывания",
     "integrate_proxy": "Integrate through proxy",
     "integrate_directly": "Integrate directly",
     "recommended_for_testing": "Recommended for testing and upgradability",
     "optimized_for_gas_cost": "Optimized for gas cost and decentralization",
-    "proxy_address": "Proxy address",
+    "proxy_address": "Адрес прокси",
     "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "ERC2362 asset ID",
-    "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
+    "integration_details_description": "Ценовые каналы Witnet могут быть интегрированы в ваши контракты {0} двумя разными способами:",
     "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}%.",
     "feed_description_routed": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated as soon as any of the related data feeds update.",
     "feed_description_routed_cached": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time any of the related data feeds update."
   },
   "main": {
-    "data_feeds": "Data feeds",
-    "network_subtitle": "Witnet data feeds currently available on"
+    "data_feeds": "Каналы данных",
+    "network_subtitle": "Каналы данных Witnet в настоящее время доступны на"
   },
   "navbar": {
-    "request_data_feed": "Request new price feed"
+    "request_data_feed": "Запросить новый ценовой канал"
   },
   "transactions_list": {
-    "transactions": "Update history",
-    "witnet_explorer": "Transaction in Witnet Block Explorer",
+    "transactions": "Обновить историю",
+    "witnet_explorer": "Транзакция в обозревателе блоков Witnet",
     "etherscan": "Etherscan",
     "value": "Reported price",
-    "time": "Time"
+    "time": "Время"
   },
   "chart": {
-    "w": "7d",
-    "m": "30d",
+    "w": "7дней",
+    "m": "30дней",
     "heartbeat": "ETA to next update",
     "heartbeat_text": "The feed is updated before the heartbeat is reached",
-    "deviation": "Deviation threshold",
-    "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
-    "use_data_feed": "Use this data feed",
-    "last_update": "Last update",
-    "status": "Status",
+    "deviation": "Предел отклонения",
+    "deviation_text": "При движении цены больше порога отклонения, запрос данных отправляется в сеть Witnet для получения обновленного значения",
+    "use_data_feed": "Использовать этот канал данных",
+    "last_update": "Последнее обновление",
+    "status": "Состояние",
     "operational": "Fully operational",
-    "delay": "Delay detected",
-    "error": "Error detected",
+    "delay": "Обнаружена задержка",
+    "error": "Обнаружена ошибка",
     "${serie": {
       "key}": ""
     },
@@ -48,32 +48,32 @@
       "key}": ""
     }
   },
-  "copied": "Copied",
-  "copy": "Copy",
-  "and": "and",
+  "copied": "Скопировано",
+  "copy": "Скопировать",
+  "and": "и",
   "footer": {
-    "documentation": "Documentation",
-    "request_data_feed": "Request new price feed",
-    "about_witnet": "About Witnet",
+    "documentation": "Документация",
+    "request_data_feed": "Запросить новый ценовой канал",
+    "about_witnet": "Информация о Witnet",
     "links": {
       "witnet": {
         "title": "Witnet",
-        "oracle": "Oracle",
-        "token": "Token",
-        "ecosystem": "Ecosystem",
-        "community": "Community",
-        "whitepaper": "Whitepaper"
+        "oracle": "Оракул",
+        "token": "Токен",
+        "ecosystem": "Экосистема",
+        "community": "Сообщество",
+        "whitepaper": "Техническая документация (whitepaper)"
       },
       "ecosystem": {
-        "title": "Ecosystem",
-        "full_node": "Full node",
-        "wallet": "Wallet",
+        "title": "Экосистема",
+        "full_node": "Полный узел сети",
+        "wallet": "Кошелек",
         "block_explorer": "Обозреватель блоков",
         "monitor": "Сетевой монитор",
-        "data_feeds_explorer": "Data Feeds Explorer"
+        "data_feeds_explorer": "Обозреватель каналов данных"
       },
       "community": {
-        "title": "Community",
+        "title": "Сообщество",
         "telegram": "Telegram",
         "discord": "Discord",
         "twitter": "Twitter",
@@ -83,16 +83,16 @@
       "developers": {
         "title": "Разработчики",
         "documentation": "Документация",
-        "price_feeds": "Price Feeds",
+        "price_feeds": "Ценовые каналы",
         "randomness": "Randomness",
-        "get_post_request": "Data Requests"
+        "get_post_request": "Запросы данных"
       }
     },
-    "ado_text": "Witnet is part of the Alliance of Decentralized Oracles (ADO), a joint effort by leading decentralized oracle solutions to make the life of smart contract developers easier by creating oracle standards. Learn more about the ADO at {0}",
+    "ado_text": "Witnet является частью альянса децентрализованных оракулов (ADO), совместными усилиями ведущих децентрализованных решений оракулов, направленных на облегчение жизни разработчиков смарт-контрактов путем создания стандартов оракулов. Узнайте больше об ADO на странице {0}",
     "copyright": {
-      "base": "© {0} by {1} and individual contributors. Content available under a {2}.",
+      "base": "© {0} от {1} и отдельных участников. Информация доступена под {2}.",
       "witnet_foundation": "Организация Witnet",
-      "license": "Creative Commons License"
+      "license": "Лицензия Creative Commons"
     }
   },
   "landing": {
@@ -101,14 +101,14 @@
       "subtitle": "Блокчейны, в которых сейчас доступен оракул Witnet"
     },
     "upcoming_chains": {
-      "title": "Chains with upcoming support"
+      "title": "Цепочки с предстоящей поддержкой"
     },
     "partners": {
       "title": "Пользователи и Партнеры"
     }
   },
-  "feeds": "feeds",
-  "data_feeds": "Data feeds",
+  "feeds": "ленты",
+  "data_feeds": "Каналы данных",
   "networks": "Сети",
   "chains": "Цепочки"
 }
