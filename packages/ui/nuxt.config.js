@@ -106,7 +106,6 @@ export default {
       { rel: 'shortcut icon', href: '/favicon.ico' },
     ],
   },
-  css: ['~/assets/fonts/style.css'],
   styleResources: {
     scss: ['~/assets/styles/main.scss', '~/assets/styles/element-ui.scss'],
   },
