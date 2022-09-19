@@ -3,6 +3,7 @@
   "chains": {
     "avalanche": {
       "name": "Avalanche",
+      "hide": true,
       "networks": {
         "avalanche.mainnet": {
           "address": "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
@@ -178,6 +179,7 @@
       "networks": {
         "celo.alfajores": {
           "address": "0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE",
+          "hide": true,
           "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
           "color": "#1cd8d2",
           "name": "Celo Alfajores",

@@ -5,11 +5,6 @@ describe('validateDataFeedsConfig', () => {
   it('check if the structure is correct', async () => {
     const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig)
     const expected = [
-      {
-        key: 'avalanche-fuji',
-        label: 'Avalanche Fuji',
-        chain: 'Avalanche'
-      },
       { key: 'boba-mainnet', label: 'Boba Mainnet', chain: 'Boba' },
       { key: 'boba-rinkeby', label: 'Boba Rinkeby', chain: 'Boba' },
       { key: 'celo-alfajores', label: 'Celo Alfajores', chain: 'Celo' },

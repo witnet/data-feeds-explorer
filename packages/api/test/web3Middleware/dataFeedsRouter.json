@@ -3,6 +3,7 @@
   "chains": {
     "avalanche": {
       "name": "Avalanche",
+      "hide": true,
       "networks": {
         "avalanche.fuji": {
           "address": "0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4",
@@ -37,6 +38,7 @@
       "name": "Boba",
       "networks": {
         "boba.rinkeby": {
+          "hide": true,
           "address": "0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a",
           "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
           "color": "#1cd83d",

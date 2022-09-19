@@ -35,16 +35,22 @@ export function createFeedFullName (network, name, decimals) {
 function getNetworksListByChain (config: RouterDataFeedsConfig) {
   return Object.values(config.chains).map(chain => {
     const networkNames = Object.keys(chain.networks)
-    const networks = Object.values(chain.networks).map((network, index) => {
-      return {
-        key: networkNames[index]
-          .split('.')
-          .join('-')
-          .toLowerCase(),
-        label: network.name,
-        chain: chain.name
-      }
-    })
+    const networks = Object.values(chain.networks).reduce(
+      (networks, network, index) => {
+        if (!chain.hide) {
+          networks.push({
+            key: networkNames[index]
+              .split('.')
+              .join('-')
+              .toLowerCase(),
+            label: network.name,
+            chain: chain.name
+          })
+        }
+        return networks
+      },
+      []
+    )
     const testnetNetworks = networks.filter(
       network => !network.label.includes('Mainnet')
     )
@@ -90,11 +96,14 @@ export function normalizeConfig (
   // Network Config list deleting key label
   const networksConfigMap = chains.flatMap((network: Chain) => {
     return Object.values(network.networks).map(
-      (feedConfig: FeedConfig, index) => ({
-        ...feedConfig,
-        chain: network.name,
-        network: Object.keys(network.networks)[index]
-      })
+      (feedConfig: FeedConfig, index) => {
+        return {
+          ...feedConfig,
+          chain: network.name,
+          hide: !!network.hide || feedConfig.hide,
+          network: Object.keys(network.networks)[index]
+        }
+      }
     )
   })
 
@@ -104,14 +113,14 @@ export function normalizeConfig (
       const feedsArrayConfig: Array<FeedParamsConfig> = Object.values(
         config.feeds
       )
-
       // Extracts feeds deleting key label
       const feedsArray: Array<FeedParsedParams> = feedsArrayConfig.map(
-        (feed, index) =>
-          ({
+        (feed, index) => {
+          return {
             ...feed,
             key: Object.keys(config.feeds)[index]
-          } as FeedParsedParams)
+          } as FeedParsedParams
+        }
       )
 
       feedsArray.forEach(feed => {
@@ -119,28 +128,29 @@ export function normalizeConfig (
         const network = parseNetworkName(config.network)
         const name = parseDataName(feed.key)
         const decimals = parseDataDecimals(feed.key)
-
-        acc.push({
-          feedFullName: createFeedFullName(network, name, decimals),
-          isRouted: !!feed.isRouted,
-          id: feed.key,
-          address: '0x0000000000000000000000000000000000000000',
-          contractId: '0x0000000000000000000000000000000000000000',
-          routerAddress: config.address,
-          network,
-          networkName: config.name,
-          chain,
-          name,
-          label: feed.label,
-          pollingPeriod: config.pollingPeriod,
-          color: config.color,
-          blockExplorer: config.blockExplorer,
-          deviation: feed.deviationPercentage?.toString() || null,
-          heartbeat: feed.maxSecsBetweenUpdates
-            ? `${feed.maxSecsBetweenUpdates}000`
-            : null,
-          finality: '900000'
-        })
+        if (!config.hide) {
+          acc.push({
+            feedFullName: createFeedFullName(network, name, decimals),
+            isRouted: !!feed.isRouted,
+            id: feed.key,
+            address: '0x0000000000000000000000000000000000000000',
+            contractId: '0x0000000000000000000000000000000000000000',
+            routerAddress: config.address,
+            network,
+            networkName: config.name,
+            chain,
+            name,
+            label: feed.label,
+            pollingPeriod: config.pollingPeriod,
+            color: config.color,
+            blockExplorer: config.blockExplorer,
+            deviation: feed.deviationPercentage?.toString() || null,
+            heartbeat: feed.maxSecsBetweenUpdates
+              ? `${feed.maxSecsBetweenUpdates}000`
+              : null,
+            finality: '900000'
+          })
+        }
       })
 
       return acc

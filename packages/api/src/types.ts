@@ -157,6 +157,7 @@ export type FeedParsedParams = {
 export type FeedConfig = {
   address: string
   blockExplorer: string
+  hide?: boolean
   color: string
   name: string
   pollingPeriod: number
@@ -169,12 +170,17 @@ export type ExtendedFeedConfig = {
   color: string
   name: string
   chain: string
+  hide: boolean
   network: string
   pollingPeriod: number
   feeds: FeedInfoRouterConfigMap
 }
 
-export type Chain = { name: string; networks: Record<string, FeedConfig> }
+export type Chain = {
+  name: string
+  hide?: boolean
+  networks: Record<string, FeedConfig>
+}
 
 export type NetworkConfigMap = Record<string, FeedConfig>
 
