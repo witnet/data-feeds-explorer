@@ -1,25 +1,23 @@
 <template>
   <div :class="type">
     <div v-for="option in options" :key="option" class="option">
-      <transition name="fill" mode="out-in">
-        <nuxt-link
-          :key="
-            ((selected[0] && selected[0].chain.toLowerCase()) || 'ethereum') ===
-            option.toLowerCase()
-          "
-          class="nav-link"
-          :to="
-            localeRoute({
-              name: 'network',
-              params: {
-                network: option.toLowerCase(),
-              },
-            })
-          "
-        >
-          {{ option }}
-        </nuxt-link>
-      </transition>
+      <nuxt-link
+        :key="
+          ((selected[0] && selected[0].chain.toLowerCase()) || 'ethereum') ===
+          option.toLowerCase()
+        "
+        class="nav-link"
+        :to="
+          localeRoute({
+            name: 'network',
+            params: {
+              network: option.toLowerCase(),
+            },
+          })
+        "
+      >
+        {{ option }}
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -58,58 +56,35 @@ export default {
 </script>
 
 <style lang="scss">
-.fill-enter-to,
-.fill-leave {
-  &::after {
-    left: 100%;
-    opacity: 1;
-  }
-}
-
-.fill-enter,
-.fill-leave-to {
-  transition: all 0.5s ease-in-out;
-  &::after {
-    transition: all 0.3s ease-in-out;
-    opacity: 1;
-    left: -0%;
-  }
-}
-
 .nav-link {
   font-size: 14px;
   padding: 16px 24px;
   border-radius: 4px;
   margin: 4px 0;
-  position: relative;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-end stretch;
   z-index: 1;
-  color: var(--light-text);
+  color: var(--network-color);
+  border: var(--network-border);
+  background: var(--network-background);
+
   &:hover {
     opacity: 0.8;
   }
   &.nuxt-link-active {
-    color: var(--btn-primary-color);
+    color: var(--network-selected-color);
+    border: var(--network-selected-border);
+    background: var(--network-selected-background);
+    transition: all 0.3s;
     &:hover {
       opacity: 1;
-    }
-    &::after {
-      content: '';
-      width: 100%;
-      height: 60px;
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      background: var(--tab-gradient-selected);
     }
   }
 }
 .sidebar {
   display: grid;
-  grid-template-columns: repeat(10, 100px);
+  grid-template-columns: repeat(auto-fit, 98px);
   grid-template-rows: max-content;
   grid-gap: 16px;
   color: var(--light-text);

@@ -97,6 +97,15 @@
   --selected-options-shadow: 1px 1px 10 2px #62B1B029;
   --selected-options-highlight: #62B1B015;
 
+  // Network options
+
+  --network-color: #bebebe;
+  --network-border: 1px solid transparent;
+  --network-background: #bebebe0d;
+  --network-selected-color: #fdfdfd;
+  --network-selected-border: 1px solid #00d4aa22;
+  --network-selected-background: #00D4AA16;
+
   // FeedCard
 
   --card-border: 1px solid #00d4aa22;
@@ -207,6 +216,15 @@
   --selected-options-border: 1px solid #fdfdfd;
   --selected-options-shadow: 1px 1px 10 2px #1F1F24;
   --selected-options-highlight: #1F1F2414;
+
+  // Network options
+
+  --network-color: #999;
+  --network-border: 1px solid transparent;
+  --network-background: rgba(187, 187, 187, 0.2);
+  --network-selected-color: #41bea5;
+  --network-selected-border: 1px solid #41bea5;
+  --network-selected-background: #fdfdfd;
 
   // FeedCard
 
