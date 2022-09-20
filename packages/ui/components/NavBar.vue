@@ -17,7 +17,7 @@
       <transition name="dropdown" class="dropdown">
         <div class="tab-container" :class="{ visible: isMenuVisible }">
           <div
-            v-if="networks"
+            v-if="networks && isMenuVisible"
             class="networks"
             :class="{ visible: isMenuVisible }"
             @click="closeMenu"

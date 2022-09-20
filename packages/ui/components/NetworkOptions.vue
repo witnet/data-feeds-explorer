@@ -1,29 +1,12 @@
 <template>
   <div :class="type">
-    <div v-for="option in options" :key="option" class="option">
-      <nuxt-link
-        :key="
-          ((selected[0] && selected[0].chain.toLowerCase()) || 'ethereum') ===
-          option.toLowerCase()
-        "
-        class="nav-link"
-        :to="
-          localeRoute({
-            name: 'network',
-            params: {
-              network: option.toLowerCase(),
-            },
-          })
-        "
-      >
-        {{ option }}
-      </nuxt-link>
+    <div v-for="option in options" :key="option.name" class="option">
+      <LazyNetworkLink :name="option.name" :svg="option.logo" />
     </div>
   </div>
 </template>
 
 <script>
-import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 export default {
   props: {
     type: {
@@ -38,54 +21,14 @@ export default {
       required: true,
     },
   },
-  computed: {
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
-    selectedOption() {
-      return this.$route.params.network || 'ethereum'
-    },
-  },
-  methods: {
-    capitalizeFirstLetter,
-    isSelected(option) {
-      return option.toLowerCase() === this.selectedOption.toLowerCase()
-    },
-  },
 }
 </script>
 
-<style lang="scss">
-.nav-link {
-  font-size: 14px;
-  padding: 16px 24px;
-  border-radius: 4px;
-  margin: 4px 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end stretch;
-  z-index: 1;
-  color: var(--network-color);
-  border: var(--network-border);
-  background: var(--network-background);
-
-  &:hover {
-    opacity: 0.8;
-  }
-  &.nuxt-link-active {
-    color: var(--network-selected-color);
-    border: var(--network-selected-border);
-    background: var(--network-selected-background);
-    transition: all 0.3s;
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
+<style lang="scss" scoped>
 .sidebar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 98px);
-  grid-template-rows: max-content;
+  grid-template-columns: repeat(auto-fit, 88px);
+  grid-template-rows: 88px;
   grid-gap: 16px;
   color: var(--light-text);
   .option {
