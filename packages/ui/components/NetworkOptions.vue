@@ -130,11 +130,15 @@ export default {
 .show-more-btn {
   display: flex;
   background-color: var(--network-background);
+  font-size: var(--text-size-medium);
+  color: var(--value-color);
   width: 100%;
   justify-content: center;
   border-radius: 4px;
   padding: 4px 8px;
   cursor: pointer;
+  font-style: italic;
+  font-family: Avenir Next Variable W05 Itali, sans-serif;
 }
 .navbar {
   display: grid;
