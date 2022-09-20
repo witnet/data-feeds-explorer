@@ -155,9 +155,8 @@ export default {
 <style lang="scss" scoped>
 .main {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-rows: max-content 1fr;
   grid-gap: 32px;
-  grid-template-rows: 1fr;
 }
 .section-header {
   display: flex;

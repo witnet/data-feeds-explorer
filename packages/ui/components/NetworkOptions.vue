@@ -108,8 +108,10 @@ export default {
   }
 }
 .sidebar {
-  position: relative;
-  text-align: right;
+  display: grid;
+  grid-template-columns: repeat(10, 100px);
+  grid-template-rows: max-content;
+  grid-gap: 16px;
   color: var(--light-text);
   .option {
     font-size: var(--text-size-medium);
