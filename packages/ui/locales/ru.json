@@ -1,6 +1,6 @@
 {
   "data_feed_details": {
-    "contract_address": "Integration details",
+    "contract_address": "Подробности интеграции",
     "trigger_parameters": "Условия срабатывания",
     "integrate_proxy": "Integrate through proxy",
     "integrate_directly": "Integrate directly",
