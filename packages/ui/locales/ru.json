@@ -2,8 +2,8 @@
   "data_feed_details": {
     "contract_address": "Подробности интеграции",
     "trigger_parameters": "Условия срабатывания",
-    "integrate_proxy": "Integrate through proxy",
-    "integrate_directly": "Integrate directly",
+    "integrate_proxy": "Интеграция через прокси",
+    "integrate_directly": "Интеграция напрямую",
     "recommended_for_testing": "Recommended for testing and upgradability",
     "optimized_for_gas_cost": "Optimized for gas cost and decentralization",
     "proxy_address": "Адрес прокси",
@@ -66,7 +66,7 @@
       },
       "ecosystem": {
         "title": "Экосистема",
-        "full_node": "Полный узел сети",
+        "full_node": "Полноценный узел сети",
         "wallet": "Кошелек",
         "block_explorer": "Обозреватель блоков",
         "monitor": "Сетевой монитор",
