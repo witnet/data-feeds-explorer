@@ -7,7 +7,7 @@
     "recommended_for_testing": "Рекомендовано для тестирования и обновления",
     "optimized_for_gas_cost": "Оптимизировано для затрат на газ и децентрализации",
     "proxy_address": "Адрес прокси",
-    "underlying_feed_contract": "Underlying feed contract address",
+    "underlying_feed_contract": "Основной контрактный адрес канала",
     "erc2362_asset_id": "Идентификатор актива ERC2362",
     "integration_details_description": "Ценовые каналы Witnet могут быть интегрированы в ваши контракты {0} двумя разными способами:",
     "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}%.",
