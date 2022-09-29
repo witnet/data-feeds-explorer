@@ -8,7 +8,7 @@
     "optimized_for_gas_cost": "Оптимизировано для затрат на газ и децентрализации",
     "proxy_address": "Адрес прокси",
     "underlying_feed_contract": "Underlying feed contract address",
-    "erc2362_asset_id": "ERC2362 asset ID",
+    "erc2362_asset_id": "Идентификатор актива ERC2362",
     "integration_details_description": "Ценовые каналы Witnet могут быть интегрированы в ваши контракты {0} двумя разными способами:",
     "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}%.",
     "feed_description_routed": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated as soon as any of the related data feeds update.",
@@ -38,7 +38,7 @@
     "use_data_feed": "Использовать этот канал данных",
     "last_update": "Последнее обновление",
     "status": "Состояние",
-    "operational": "Fully operational",
+    "operational": "Полностью функционирует",
     "delay": "Обнаружена задержка",
     "error": "Обнаружена ошибка",
     "${serie": {
@@ -90,7 +90,7 @@
     },
     "ado_text": "Witnet является частью альянса децентрализованных оракулов (ADO), совместными усилиями ведущих децентрализованных решений оракулов, направленных на облегчение жизни разработчиков смарт-контрактов путем создания стандартов оракулов. Узнайте больше об ADO на странице {0}",
     "copyright": {
-      "base": "© {0} от {1} и отдельных участников. Информация доступена под {2}.",
+      "base": "© {0} от {1} и отдельных участников. Контент доступен {2}.",
       "witnet_foundation": "Организация Witnet",
       "license": "Лицензия Creative Commons"
     }
