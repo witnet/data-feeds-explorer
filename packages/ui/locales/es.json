@@ -40,13 +40,7 @@
     "status": "Estado",
     "operational": "Operativo",
     "delay": "Retraso detectado",
-    "error": "Error detectado",
-    "${serie": {
-      "key}": ""
-    },
-    "${dataFeedStatus": {
-      "key}": ""
-    }
+    "error": "Error detectado"
   },
   "copied": "Copiado",
   "copy": "Copiar",
@@ -110,5 +104,7 @@
   "feeds": "feeds",
   "data_feeds": "Data feeds",
   "networks": "Networks",
-  "chains": "Chains"
+  "chains": "Chains",
+  "less_networks": "Less networks",
+  "more_networks": "More networks"
 }
