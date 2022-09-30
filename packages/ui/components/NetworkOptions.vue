@@ -17,8 +17,16 @@
       </div>
     </transition>
     <div v-if="type === 'sidebar'" class="show-more-btn" @click="toggleShowAll">
-      <p v-if="showAll">↑ {{ $t('less_networks') }} {{ networksLeft }} ↑</p>
-      <p v-if="!showAll">↓ {{ $t('more_networks') }} {{ networksLeft }} ↓</p>
+      <p v-if="showAll">
+        <span class="arrow">▲</span> {{ $t('less_networks') }}
+        {{ networksLeft }}
+        <span class="arrow">▲</span>
+      </p>
+      <p v-if="!showAll">
+        <span class="arrow">▼</span> {{ $t('more_networks') }}
+        {{ networksLeft }}
+        <span class="arrow">▼</span>
+      </p>
     </div>
   </div>
 </template>
@@ -64,7 +72,7 @@ export default {
       })
     },
     networksLeft() {
-      return `(${this.filteredOptions.length}+)`
+      return `(${this.filteredOptions.length}${this.showAll ? '-' : '+'})`
     },
     mainOptions() {
       const result = this.options.filter((option) => {
@@ -139,6 +147,11 @@ export default {
   cursor: pointer;
   font-style: italic;
   font-family: Avenir Next Variable W05 Itali, sans-serif;
+  .arrow {
+    color: var(--light-icon);
+    font-style: normal;
+    font-size: 10px;
+  }
 }
 .navbar {
   display: grid;
