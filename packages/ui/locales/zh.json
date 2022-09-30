@@ -40,13 +40,7 @@
     "status": "状态：",
     "operational": "完全运行",
     "delay": "检测到延时",
-    "error": "检测到错误",
-    "${serie": {
-      "key}": ""
-    },
-    "${dataFeedStatus": {
-      "key}": ""
-    }
+    "error": "检测到错误"
   },
   "copied": "已复制",
   "copy": "复制",
@@ -110,5 +104,7 @@
   "feeds": "数据源",
   "data_feeds": "数据推送",
   "networks": "网络",
-  "chains": "链"
+  "chains": "链",
+  "less_networks": "Less networks",
+  "more_networks": "More networks"
 }
