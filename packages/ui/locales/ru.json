@@ -40,13 +40,7 @@
     "status": "Состояние",
     "operational": "Полностью функционирует",
     "delay": "Обнаружена задержка",
-    "error": "Обнаружена ошибка",
-    "${serie": {
-      "key}": ""
-    },
-    "${dataFeedStatus": {
-      "key}": ""
-    }
+    "error": "Обнаружена ошибка"
   },
   "copied": "Скопировано",
   "copy": "Скопировать",
@@ -110,5 +104,7 @@
   "feeds": "ленты",
   "data_feeds": "Каналы данных",
   "networks": "Сети",
-  "chains": "Цепочки"
+  "chains": "Цепочки",
+  "less_networks": "Less networks",
+  "more_networks": "More networks"
 }
