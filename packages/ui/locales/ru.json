@@ -7,19 +7,19 @@
     "recommended_for_testing": "Рекомендовано для тестирования и обновления",
     "optimized_for_gas_cost": "Оптимизировано для затрат на газ и децентрализации",
     "proxy_address": "Адрес прокси",
-    "underlying_feed_contract": "Основной контрактный адрес канала",
+    "underlying_feed_contract": "Основной потоковый адрес контракта",
     "erc2362_asset_id": "Идентификатор актива ERC2362",
     "integration_details_description": "Ценовые каналы Witnet могут быть интегрированы в ваши контракты {0} двумя разными способами:",
-    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}%.",
-    "feed_description_routed": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated as soon as any of the related data feeds update.",
-    "feed_description_routed_cached": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time any of the related data feeds update."
+    "feed_description": "Это поток данных {name} на базе Witnet, доступный в {network}. Последнее значение: {value} (обновлено {date}). Этот поток данных обновляется каждые {heartbeat} или каждый раз, когда цена изменяется более чем на {deviation}%.",
+    "feed_description_routed": "Это поток данных {name} на базе Witnet, доступный в {network}. Последнее значение: {value} (обновлено {date}). Этот поток данных обновляется, как только обновляется любой из связанных потоков данных.",
+    "feed_description_routed_cached": "Это поток данных {name} на базе Witnet, доступный в {network}. Последнее значение: {value} (обновлено {date}). Этот поток данных обновляется каждые {heartbeat} или при каждом обновлении любого из связанных потоков данных."
   },
   "main": {
-    "data_feeds": "Каналы данных",
+    "data_feeds": "Потоки данных",
     "network_subtitle": "Каналы данных Witnet в настоящее время доступны на"
   },
   "navbar": {
-    "request_data_feed": "Запросить новый ценовой канал"
+    "request_data_feed": "Запросить новый ценовой поток"
   },
   "transactions_list": {
     "transactions": "Обновить историю",
@@ -32,7 +32,7 @@
     "w": "7дней",
     "m": "30дней",
     "heartbeat": "Время до следующего обновления",
-    "heartbeat_text": "The feed is updated before the heartbeat is reached",
+    "heartbeat_text": "Лента обновляется до того, как будет достигнут пульс",
     "deviation": "Предел отклонения",
     "deviation_text": "При движении цены больше порога отклонения, запрос данных отправляется в сеть Witnet для получения обновленного значения",
     "use_data_feed": "Использовать этот канал данных",
@@ -105,6 +105,6 @@
   "data_feeds": "Каналы данных",
   "networks": "Сети",
   "chains": "Цепочки",
-  "less_networks": "Less networks",
-  "more_networks": "More networks"
+  "less_networks": "Меньше сетей",
+  "more_networks": "Больше сетей"
 }
