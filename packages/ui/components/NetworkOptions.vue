@@ -172,8 +172,27 @@ export default {
   }
 }
 @media (max-width: 850px) {
+  .navbar {
+    .networks {
+      grid-template-columns: repeat(6, 88px);
+    }
+  }
   .sidebar {
     display: none;
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    .networks {
+      grid-template-columns: repeat(3, 88px);
+    }
+  }
+}
+@media (max-width: 300px) {
+  .navbar {
+    .networks {
+      grid-template-columns: repeat(2, 88px);
+    }
   }
 }
 </style>

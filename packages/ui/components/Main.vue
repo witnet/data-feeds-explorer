@@ -2,6 +2,7 @@
   <div class="main">
     <NetworkOptions
       v-if="networks && networks.length > 1"
+      class="network-options"
       :options="navBarOptions"
     />
     <div v-if="selected && selected.length" class="feeds-container">
@@ -205,17 +206,15 @@ export default {
   }
 }
 @media screen and (max-width: 1100px) {
-  .list-container {
-    margin-right: 16px;
+  .main {
+    margin: 0 16px;
   }
 }
 
 @media (max-width: 850px) {
-  .list-container {
-    margin-right: 0;
-  }
   .main {
     grid-template-columns: 1fr;
+    margin: 0;
     padding: 0 24px;
   }
   .section-header {
