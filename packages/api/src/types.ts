@@ -158,6 +158,7 @@ export type FeedConfig = {
   address: string
   blockExplorer: string
   hide?: boolean
+  mainnet?: boolean
   color: string
   name: string
   pollingPeriod: number

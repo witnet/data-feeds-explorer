@@ -42,6 +42,7 @@ function getNetworksListByChain (config: RouterDataFeedsConfig) {
           .join('-')
           .toLowerCase(),
         label: network.name,
+        mainnet: !!network.mainnet,
         chain: chain.name
       }
     })
@@ -70,12 +71,8 @@ export function normalizeNetworkConfig (
     })
     return networks
   }, [])
-  const testnetNetworks = networkConfig.filter(
-    network => !network.label.includes('Mainnet')
-  )
-  const mainnetNetworks = networkConfig.filter(network =>
-    network.label.includes('Mainnet')
-  )
+  const testnetNetworks = networkConfig.filter(network => !network.mainnet)
+  const mainnetNetworks = networkConfig.filter(network => network.mainnet)
   return [
     ...sortAlphabeticallyByLabel(mainnetNetworks),
     ...sortAlphabeticallyByLabel(testnetNetworks)

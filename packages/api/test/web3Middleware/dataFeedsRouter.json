@@ -108,6 +108,7 @@
           }
         },
         "boba.mainnet": {
+          "mainnet": true,
           "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
           "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
           "color": "#007dff",
@@ -191,6 +192,7 @@
           }
         },
         "celo.mainnet": {
+          "mainnet": true,
           "address": "0x931673904eB6E69D775e35F522c0EA35575297Cb",
           "blockExplorer": "https://explorer.celo.org/address/{address}",
           "color": "#ff8100",
@@ -330,6 +332,7 @@
           }
         },
         "ethereum.mainnet": {
+          "mainnet": true,
           "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
           "blockExplorer": "https://etherscan.io/address/{address}",
           "color": "#ff5599",
@@ -409,6 +412,7 @@
           }
         },
         "kcc.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://scan.kcc.io/address/{address}",
           "color": "#ff0066",
@@ -468,6 +472,7 @@
           }
         },
         "metis.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}",
           "color": "#ff6600",
@@ -509,6 +514,7 @@
           }
         },
         "polygon.mainnet": {
+          "mainnet": true,
           "address": "0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4",
           "blockExplorer": "https://polygonscan.com/address/{address}",
           "color": "#66ff00",

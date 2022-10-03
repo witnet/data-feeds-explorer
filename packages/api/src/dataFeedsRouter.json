@@ -5,6 +5,7 @@
       "name": "Avalanche",
       "networks": {
         "avalanche.mainnet": {
+          "mainnet": true,
           "address": "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
           "blockExplorer": "https://snowtrace.io/address/{address}",
           "color": "#070fdf",
@@ -115,6 +116,7 @@
           }
         },
         "boba.mainnet": {
+          "mainnet": true,
           "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
           "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
           "color": "#007dff",
@@ -216,6 +218,7 @@
           }
         },
         "celo.mainnet": {
+          "mainnet": true,
           "address": "0x931673904eB6E69D775e35F522c0EA35575297Cb",
           "blockExplorer": "https://explorer.celo.org/address/{address}",
           "color": "#ff8100",
@@ -287,6 +290,7 @@
           }
         },
         "conflux.espace.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://evm.confluxscan.net/address/{address}",
           "color": "#6600ff",
@@ -548,6 +552,7 @@
           }
         },
         "cronos.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://cronoscan.com/address/{address}",
           "color": "#6600ff",
@@ -651,6 +656,7 @@
           }
         },
         "cube.mainnet": {
+          "mainnet": true,
           "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
           "blockExplorer": "https://cubescan.network/en-us/address/{address}",
           "color": "#ff6600",
@@ -759,6 +765,7 @@
           }
         },
         "ethereum.mainnet": {
+          "mainnet": true,
           "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
           "blockExplorer": "https://etherscan.io/address/{address}",
           "color": "#ff5599",
@@ -811,6 +818,7 @@
       "name": "Kava",
       "networks": {
         "kava.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://explorer.kava.io/address/{address}",
           "color": "#ff0066",
@@ -971,6 +979,7 @@
           }
         },
         "kcc.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://scan.kcc.io/address/{address}",
           "color": "#ff0066",
@@ -1045,6 +1054,7 @@
       "name": "Klaytn",
       "networks": {
         "klaytn.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://scope.klaytn.com/account/{address}",
           "color": "#ff0066",
@@ -1159,6 +1169,7 @@
           }
         },
         "metis.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}",
           "color": "#ff6600",
@@ -1200,6 +1211,7 @@
           }
         },
         "meter.mainnet": {
+          "mainnet": true,
           "address": "0xA0Ea8C99159843afdAE9eD092E8eaec0368e8A20",
           "blockExplorer": "https://scan.meter.io/address/{address}",
           "color": "#ff6600",
@@ -1226,6 +1238,7 @@
       "name": "Moonbeam",
       "networks": {
         "moonbeam.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://moonbeam.moonscan.io/address/{address}",
           "color": "#ff6600",
@@ -1409,6 +1422,7 @@
           }
         },
         "okxchain.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://www.oklink.com/en/okc/address/{address}",
           "color": "#ff0066",
@@ -1450,6 +1464,7 @@
           }
         },
         "optimism.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://optimistic.etherscan.io/address/{address}",
           "color": "#66ff00",
@@ -1509,6 +1524,7 @@
           }
         },
         "polygon.mainnet": {
+          "mainnet": true,
           "address": "0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4",
           "blockExplorer": "https://polygonscan.com/address/{address}",
           "color": "#66ff00",
@@ -1588,6 +1604,7 @@
           }
         },
         "smartbch.mainnet": {
+          "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://www.smartscan.cash/address/{address}",
           "color": "#66ff00",
