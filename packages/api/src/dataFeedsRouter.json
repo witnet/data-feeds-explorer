@@ -737,33 +737,6 @@
             }
           }
         },
-        "ethereum.rinkeby": {
-          "address": "0xa50b17C2fc373c247C3b603f83df6A7800cB0DC9",
-          "blockExplorer": "https://rinkeby.etherscan.io/address/{address}",
-          "color": "#ff5599",
-          "name": "Ethereum Rinkeby",
-          "pollingPeriod": 45000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-NATION/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
         "ethereum.mainnet": {
           "mainnet": true,
           "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
