@@ -38,8 +38,8 @@
       "name": "Boba",
       "networks": {
         "boba.rinkeby": {
-          "hide": true,
           "address": "0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a",
+          "hide": true,
           "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
           "color": "#1cd83d",
           "name": "Boba Rinkeby",

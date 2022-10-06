@@ -1,7 +1,7 @@
-import { PaginatedFeedsObject, FeedInfo, Network } from '../types'
+import { PaginatedFeedsObject, FeedInfo } from '../types'
 
 export class FeedRepository {
-  sortedDataFeeds: Array<FeedInfo>
+  dataFeeds: Array<FeedInfo>
   // TODO: replace string with Network
   dataFeedsByNetwork: Record<string, Array<FeedInfo>>
 
@@ -15,21 +15,11 @@ export class FeedRepository {
       }),
       {}
     )
-
-    const sortedFeedsWithoutEth = dataFeeds
-      .filter(feed => !feed.network.includes(Network.EthereumMainnet))
-      .sort((a, b) => (b.network < a.network ? 1 : -1))
-
-    this.sortedDataFeeds = [
-      ...this.dataFeedsByNetwork[Network.EthereumMainnet],
-      ...this.dataFeedsByNetwork[Network.EthereumGoerli],
-      ...this.dataFeedsByNetwork[Network.EthereumRinkeby],
-      ...sortedFeedsWithoutEth
-    ]
+    this.dataFeeds = dataFeeds
   }
 
   get (feedFullName: string): FeedInfo {
-    return this.sortedDataFeeds.find(feed => feed.feedFullName === feedFullName)
+    return this.dataFeeds.find(feed => feed.feedFullName === feedFullName)
   }
 
   async getFeedsByNetwork (
@@ -42,7 +32,6 @@ export class FeedRepository {
     } else {
       feeds = this.dataFeedsByNetwork[network]
     }
-
     return {
       feeds: feeds || [],
       total: feeds ? feeds.length : 0
@@ -57,10 +46,8 @@ export class FeedRepository {
       feed.feedFullName === feedFullName
 
     // Update address in sortedDataFeeds
-    const sortedDataFeedIndex = this.sortedDataFeeds.findIndex(
-      hasSameFeedFullName
-    )
-    const feed = this.sortedDataFeeds[sortedDataFeedIndex]
+    const sortedDataFeedIndex = this.dataFeeds.findIndex(hasSameFeedFullName)
+    const feed = this.dataFeeds[sortedDataFeedIndex]
     feed.address = address
     feed.contractId = contractId
     // Update address in dataFeedsByNetwork cache
