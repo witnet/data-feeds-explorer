@@ -1601,8 +1601,24 @@
           "address": "0x9E943Ab1FD0D35B3BaDe31AA78D60C485EA1a604",
           "blockExplorer": "https://tanenbaum.io/address/{address}",
           "color": "#66ff00",
-          "name": "Syscoin Tanenbaum (testnet)",
-          "pollingPeriod": 10000,
+          "name": "Syscoin NEVM Tanenbaum (testnet)",
+          "pollingPeriod": 90000,
+          "feeds": {
+            "Price-SYS/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
+        "syscoin.mainnet": {
+          "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
+          "blockExplorer": "https://syscoin.io/address/{address}",
+          "color": "#66ff00",
+          "mainnet": true,
+          "name": "Syscoin NEVM Mainnet",
+          "pollingPeriod": 90000,
           "feeds": {
             "Price-SYS/USDT-6": {
               "label": "₮",
