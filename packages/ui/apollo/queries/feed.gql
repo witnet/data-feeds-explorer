@@ -1,4 +1,4 @@
-query feed($feedFullName: String!, $timestamp: Int!) {
+query feed($feedFullName: String!, $timestamp: Int!, $page: Int!, $size: Int!) {
   feed(feedFullName: $feedFullName) {
     feedFullName 
     isRouted
@@ -25,5 +25,13 @@ query feed($feedFullName: String!, $timestamp: Int!) {
     blockExplorer
     color
     logo
+  }
+
+  requests(feedFullName: $feedFullName, page: $page, size: $size) {
+    feedFullName
+    result
+    drTxHash,
+    requestId
+    timestamp
   }
 }

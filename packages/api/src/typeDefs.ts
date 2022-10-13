@@ -31,6 +31,13 @@ const typeDefs = gql`
   type FeedsPage {
     feeds: [Feed]
     total: Int!
+    network: String!
+  }
+
+  type Ecosystem {
+    networks: [FeedsPage]
+    name: String!
+    logo: String!
   }
 
   type NetworksConfig {
@@ -58,9 +65,10 @@ const typeDefs = gql`
 
   type Query {
     feed(feedFullName: String!): Feed
-    feeds(network: String): FeedsPage!
+    feeds(networks: [String]): [FeedsPage]!
     requests(feedFullName: String!, page: Int!, size: Int!): [ResultRequest]!
     networks: [NetworksConfig]!
+    ecosystem(ecosystem: String!): Ecosystem
   }
 `
 

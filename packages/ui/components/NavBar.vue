@@ -44,15 +44,8 @@ import { urls } from '../constants'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import networks from '@/apollo/queries/networks.gql'
 
 export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-  },
   data() {
     return {
       hover: false,
@@ -62,6 +55,9 @@ export default {
     }
   },
   computed: {
+    networks() {
+      return this.$store.state.networks
+    },
     navBarOptions() {
       return generateNavOptions(Object.values(this.options))
     },

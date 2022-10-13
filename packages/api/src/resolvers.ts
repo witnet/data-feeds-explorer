@@ -2,8 +2,25 @@ import { Context } from './types'
 
 const resolvers = {
   Query: {
+    ecosystem: async (_parent, args, { feedRepository, loaders }: Context) => {
+      return {
+        networks: await feedRepository.getEcosystemFeeds(args.ecosystem),
+        name: args.ecosystem,
+        logo: await loaders.logos.load(args.ecosystem)
+      }
+    },
     feeds: async (_parent, args, { feedRepository }: Context) => {
-      return await feedRepository.getFeedsByNetwork(args.network)
+      if (
+        !args.networks ||
+        !args.networks.length ||
+        args.networks.includes('all')
+      ) {
+        return feedRepository.getAllFeedsByNetwork()
+      }
+
+      return await Promise.all(
+        args.networks.map(network => feedRepository.getFeedsByNetwork(network))
+      )
     },
 
     networks: (_parent, _args, { config }: Context) => {

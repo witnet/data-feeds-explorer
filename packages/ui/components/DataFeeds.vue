@@ -20,23 +20,14 @@
 
 <script>
 import { formatSvgName } from '../utils/formatSvgName'
-import feeds from '@/apollo/queries/feeds.gql'
 
 export default {
   name: 'DataFeeds',
-  apollo: {
-    feeds: {
-      prefetch: true,
-      query: feeds,
-      variables() {
-        return {
-          network: this.network.key.toLowerCase(),
-        }
-      },
-      pollInterval: 60000,
-    },
-  },
   props: {
+    feeds: {
+      type: Object,
+      required: true,
+    },
     network: {
       type: Object,
       required: true,

@@ -30,7 +30,7 @@ export async function createServer (
         }),
         {}
       )
-
+      // FIXME: pass loaders as argument to avoid create object in every call
       const loaders = new Loaders(repositories, svgCache)
       return {
         ...repositories,
