@@ -131,7 +131,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vueSelect.js', ssr: false },
+    { src: '~/plugins/vueSelect.js', ssr: true },
     {
       src: '~/plugins/lightweightcharts.js',
       ssr: false,
