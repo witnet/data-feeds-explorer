@@ -1213,7 +1213,7 @@
         "moonbeam.mainnet": {
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://moonbeam.moonscan.io/address/{address}",
+          "blockExplorer": "https://blockscout.moonbeam.network/address/{address}",
           "color": "#ff6600",
           "name": "Moonbeam Mainnet",
           "pollingPeriod": 45000,
