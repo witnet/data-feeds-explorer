@@ -1,54 +1,54 @@
 {
   "data_feed_details": {
-    "contract_address": "Integration details",
+    "contract_address": "Détails de l'intégration",
     "trigger_parameters": "Conditions de déclenchement",
     "integrate_proxy": "Intégrer via le proxy",
     "integrate_directly": "Intégrer directement",
-    "recommended_for_testing": "Recommended for testing and upgradability",
-    "optimized_for_gas_cost": "Optimized for gas cost and decentralization",
+    "recommended_for_testing": "Recommandé pour les tests et la mise à jour",
+    "optimized_for_gas_cost": "Optimisé pour le coût du gaz et la décentralisation",
     "proxy_address": "Adresse proxy",
-    "underlying_feed_contract": "Underlying feed contract address",
+    "underlying_feed_contract": "Adresse du contrat du flux sous-jacent",
     "erc2362_asset_id": "ERC2362 asset ID",
-    "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
-    "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}%.",
-    "feed_description_routed": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated as soon as any of the related data feeds update.",
-    "feed_description_routed_cached": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time any of the related data feeds update."
+    "integration_details_description": "Les flux de prix Witnet peuvent être intégrés à vos propres contrats {0} de deux manières différentes :",
+    "feed_description": "Il s'agit d'un flux de données {name} alimenté par Witnet disponible sur {network}. La dernière valeur rapportée est {value} (mise à jour le {date}). Ce flux de données est mis à jour tous les {heartbeat}, ou chaque fois que le prix change de plus de {deviation}%.",
+    "feed_description_routed": "Il s'agit d'un flux de données {name} alimenté par Witnet disponible sur {network}. La dernière valeur rapportée est {value} (mise à jour le {date}). Ce flux de données est mis à jour dès que le flux de données y afférent se met à jour.",
+    "feed_description_routed_cached": "Il s'agit d'un flux de données {name} alimenté par Witnet disponible sur {network}. La dernière valeur rapportée est {value} (mise à jour le {date}). Ce flux de données est mis à jour tous les {heartbeat}, ou chaque fois qu'un des flux de données connexes est mis à jour."
   },
   "main": {
     "data_feeds": "Flux de données",
     "network_subtitle": "Witnet data feeds currently available on"
   },
   "navbar": {
-    "request_data_feed": "Request new price feed"
+    "request_data_feed": "Demander un nouveau flux de prix"
   },
   "transactions_list": {
-    "transactions": "Update history",
-    "witnet_explorer": "Transaction in Witnet Block Explorer",
+    "transactions": "Mettre à jour l’historique",
+    "witnet_explorer": "Transaction dans Witnet Block Explorer",
     "etherscan": "Etherscan",
-    "value": "Reported price",
+    "value": "Prix rapporté",
     "time": "Temps"
   },
   "chart": {
-    "w": "7d",
-    "m": "30d",
-    "heartbeat": "ETA to next update",
+    "w": "7j",
+    "m": "30J",
+    "heartbeat": "Délai avant la prochaine mise à jour",
     "heartbeat_text": "The feed is updated before the heartbeat is reached",
-    "deviation": "Deviation threshold",
-    "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
-    "use_data_feed": "Use this data feed",
+    "deviation": "Seuil de déviation",
+    "deviation_text": "Lorsque le prix dépasse le seuil d'écart, une demande de données est envoyée au réseau Witnet pour obtenir une valeur mise à jour",
+    "use_data_feed": "Utiliser ce flux de données",
     "last_update": "Dernière mise à jour",
     "status": "Statut",
-    "operational": "Fully operational",
+    "operational": "Entièrement opérationnel",
     "delay": "Délai détecté",
     "error": "Erreur détectée"
   },
   "copied": "Copié",
-  "copy": "Copy",
-  "and": "and",
+  "copy": "Copier",
+  "and": "et",
   "footer": {
     "documentation": "Documentation",
-    "request_data_feed": "Request new price feed",
-    "about_witnet": "About Witnet",
+    "request_data_feed": "Demander un nouveau flux de prix",
+    "about_witnet": "À propos de Witnet",
     "links": {
       "witnet": {
         "title": "Witnet",
@@ -67,44 +67,44 @@
         "data_feeds_explorer": "Explorateur de flux de données"
       },
       "community": {
-        "title": "Community",
+        "title": "Communauté",
         "telegram": "Telegram",
         "discord": "Discord",
         "twitter": "Twitter",
         "reddit": "Reddit",
-        "youtube": "Youtube"
+        "youtube": "YouTube"
       },
       "developers": {
-        "title": "Developers",
+        "title": "Développeurs",
         "documentation": "Documentation",
-        "price_feeds": "Price Feeds",
-        "randomness": "Randomness",
-        "get_post_request": "Data Requests"
+        "price_feeds": "Flux de prix",
+        "randomness": "Aléatoire",
+        "get_post_request": "Demandes de données"
       }
     },
-    "ado_text": "Witnet is part of the Alliance of Decentralized Oracles (ADO), a joint effort by leading decentralized oracle solutions to make the life of smart contract developers easier by creating oracle standards. Learn more about the ADO at {0}",
+    "ado_text": "Witnet fait partie de l'Alliance des Oracles décentralisés (ADO), un effort conjoint en menant des solutions oracle décentralisées pour faciliter la vie des développeurs de contrats intelligents en créant des standards oracle. En savoir plus sur l'ADO à {0}",
     "copyright": {
-      "base": "© {0} by {1} and individual contributors. Content available under a {2}.",
-      "witnet_foundation": "Witnet Foundation",
+      "base": "© {0} par {1} et les contributeurs individuels. Contenu disponible sous {2}.",
+      "witnet_foundation": "Witnet Fondation",
       "license": "Creative Commons License"
     }
   },
   "landing": {
     "supported_chains": {
-      "title": "Supported chains",
-      "subtitle": "Blockchains in which the Witnet oracle is currently available"
+      "title": "Chaînes supportées",
+      "subtitle": "Chaînes de blocs dans lesquelles l'oracle Witnet est actuellement disponible"
     },
     "upcoming_chains": {
       "title": "Chains with upcoming support"
     },
     "partners": {
-      "title": "Users and Partners"
+      "title": "Utilisateurs et partenaires"
     }
   },
   "feeds": "feeds",
-  "data_feeds": "Data feeds",
+  "data_feeds": "Flux de données",
   "networks": "Networks",
-  "chains": "Chains",
+  "chains": "Chaînes",
   "less_networks": "Less networks",
   "more_networks": "More networks"
 }
