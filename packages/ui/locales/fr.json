@@ -1,12 +1,12 @@
 {
   "data_feed_details": {
     "contract_address": "Integration details",
-    "trigger_parameters": "Triggering conditions",
-    "integrate_proxy": "Integrate through proxy",
-    "integrate_directly": "Integrate directly",
+    "trigger_parameters": "Conditions de déclenchement",
+    "integrate_proxy": "Intégrer via le proxy",
+    "integrate_directly": "Intégrer directement",
     "recommended_for_testing": "Recommended for testing and upgradability",
     "optimized_for_gas_cost": "Optimized for gas cost and decentralization",
-    "proxy_address": "Proxy address",
+    "proxy_address": "Adresse proxy",
     "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "ERC2362 asset ID",
     "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
@@ -15,7 +15,7 @@
     "feed_description_routed_cached": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time any of the related data feeds update."
   },
   "main": {
-    "data_feeds": "Data feeds",
+    "data_feeds": "Flux de données",
     "network_subtitle": "Witnet data feeds currently available on"
   },
   "navbar": {
@@ -26,7 +26,7 @@
     "witnet_explorer": "Transaction in Witnet Block Explorer",
     "etherscan": "Etherscan",
     "value": "Reported price",
-    "time": "Time"
+    "time": "Temps"
   },
   "chart": {
     "w": "7d",
@@ -36,13 +36,13 @@
     "deviation": "Deviation threshold",
     "deviation_text": "When the price moves more than the deviation threshold, a data request is sent to the Witnet network to get an updated value",
     "use_data_feed": "Use this data feed",
-    "last_update": "Last update",
-    "status": "Status",
+    "last_update": "Dernière mise à jour",
+    "status": "Statut",
     "operational": "Fully operational",
-    "delay": "Delay detected",
-    "error": "Error detected"
+    "delay": "Délai détecté",
+    "error": "Erreur détectée"
   },
-  "copied": "Copied",
+  "copied": "Copié",
   "copy": "Copy",
   "and": "and",
   "footer": {
@@ -53,18 +53,18 @@
       "witnet": {
         "title": "Witnet",
         "oracle": "Oracle",
-        "token": "Token",
-        "ecosystem": "Ecosystem",
-        "community": "Community",
-        "whitepaper": "Whitepaper"
+        "token": "Jeton",
+        "ecosystem": "Écosystème",
+        "community": "Communauté",
+        "whitepaper": "Livre blanc"
       },
       "ecosystem": {
-        "title": "Ecosystem",
+        "title": "Écosystème",
         "full_node": "Full node",
         "wallet": "Wallet",
-        "block_explorer": "Block explorer",
-        "monitor": "Network monitor",
-        "data_feeds_explorer": "Data Feeds Explorer"
+        "block_explorer": "Explorateur de blocs",
+        "monitor": "Surveillance du réseau",
+        "data_feeds_explorer": "Explorateur de flux de données"
       },
       "community": {
         "title": "Community",
