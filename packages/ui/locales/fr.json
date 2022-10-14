@@ -16,7 +16,7 @@
   },
   "main": {
     "data_feeds": "Flux de données",
-    "network_subtitle": "Witnet data feeds currently available on"
+    "network_subtitle": "Flux de données Witnet actuellement disponible sur"
   },
   "navbar": {
     "request_data_feed": "Demander un nouveau flux de prix"
@@ -101,9 +101,9 @@
       "title": "Utilisateurs et partenaires"
     }
   },
-  "feeds": "feeds",
+  "feeds": "flux",
   "data_feeds": "Flux de données",
-  "networks": "Networks",
+  "networks": "Réseaux",
   "chains": "Chaînes",
   "less_networks": "Less networks",
   "more_networks": "More networks"
