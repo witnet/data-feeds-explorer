@@ -72,7 +72,7 @@ export default {
       })
     },
     networksLeft() {
-      return `(${this.filteredOptions.length}${this.showAll ? '-' : '+'})`
+      return `(${this.filteredOptions.length}+)`
     },
     mainOptions() {
       const result = this.options.filter((option) => {
