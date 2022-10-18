@@ -50,22 +50,24 @@ export default {
       }
     },
     supportedChains() {
-      return Object.values(this.options).map((network) => {
-        const chain = network[0].chain
-        return {
-          name: chain,
-          count:
-            this.feeds?.feeds.filter((feed) => feed.chain === chain).length ||
-            0,
-          detailsPath: {
-            name: 'network',
-            params: {
-              network: chain.toLowerCase(),
+      return Object.values(this.options)
+        .map((network) => {
+          const chain = network[0].chain
+          return {
+            name: chain,
+            count:
+              this.feeds?.feeds.filter((feed) => feed.chain === chain).length ||
+              0,
+            detailsPath: {
+              name: 'network',
+              params: {
+                network: chain.toLowerCase(),
+              },
             },
-          },
-          svg: network[0].logo,
-        }
-      })
+            svg: network[0].logo,
+          }
+        })
+        .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
     },
   },
   mounted() {
