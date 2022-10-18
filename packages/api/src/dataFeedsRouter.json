@@ -269,7 +269,7 @@
               "label": "🔗",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 3600
             },
             "Price-NCT/USD-6": {
               "isRouted": true,
