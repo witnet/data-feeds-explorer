@@ -727,6 +727,26 @@
         }
       }
     },
+    "dogechain": {
+      "name": "Dogechain",
+      "networks": {
+        "dogechain.testnet": {
+          "address": "0x9E943Ab1FD0D35B3BaDe31AA78D60C485EA1a604",
+          "blockExplorer": "https://explorer-testnet.dogechain.dog/address/{address}",
+          "color": "#f6006f",
+          "name": "Dogechain Testnet",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-DOGE/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
+    },
     "ethereum": {
       "name": "Ethereum",
       "networks": {
