@@ -216,7 +216,7 @@
               "minSecsBetweenUpdates": 300
             },
             "Price-NCT/CELO-6": {
-              "label": "🔗",
+              "label": " ",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
