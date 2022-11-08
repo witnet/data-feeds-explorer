@@ -50,13 +50,13 @@
       }
     },
     "boba": {
-      "name": "Boba",
-      "networks": {
-        "boba.rinkeby": {
+      "name": "Boba Networks",
+      "networks": {        
+        "boba.ethereum.rinkeby": {
           "address": "0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a",
           "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
           "color": "#1cd83d",
-          "name": "Boba Rinkeby",
+          "name": "Boba Ethereum Testnet",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-BOBA/USDT-6": {
@@ -115,12 +115,12 @@
             }
           }
         },
-        "boba.mainnet": {
+        "boba.ethereum.mainnet": {
           "mainnet": true,
           "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
           "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
           "color": "#007dff",
-          "name": "Boba Mainnet",
+          "name": "Boba Ethereum Mainnet",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-BOBA/USDT-6": {
@@ -282,11 +282,11 @@
     "conflux": {
       "name": "Conflux",
       "networks": {
-        "conflux.tethys": {
+        "conflux.core.mainnet": {
           "address": "0x806c8dFd322EE2d52b188CC472e0814F64304C32",
           "blockExplorer": "https://confluxscan.io/address/{address}",
           "color": "#ff0000",
-          "name": "Conflux Core (Hydra)",
+          "name": "Conflux Core (Mainnet)",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-CFX/USDT-6": {
@@ -349,7 +349,7 @@
             }
           }
         },
-        "conflux.testnet": {
+        "conflux.core.testnet": {
           "address": "0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25",
           "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
           "color": "#6600ff",
