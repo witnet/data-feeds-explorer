@@ -51,12 +51,70 @@
     },
     "boba": {
       "name": "Boba Networks",
-      "networks": {        
+      "networks": {
+        "boba.ethereum.mainnet": {
+          "mainnet": true,
+          "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
+          "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
+          "color": "#007dff",
+          "name": "Boba ETH/L2 Mainnet",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-BOBA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-OLO/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-FRAX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
         "boba.ethereum.rinkeby": {
           "address": "0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a",
           "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
           "color": "#1cd83d",
-          "name": "Boba Ethereum Testnet",
+          "name": "Boba ETH/L2 Rinkeby",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-BOBA/USDT-6": {
@@ -115,12 +173,11 @@
             }
           }
         },
-        "boba.ethereum.mainnet": {
-          "mainnet": true,
-          "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
-          "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
-          "color": "#007dff",
-          "name": "Boba Ethereum Mainnet",
+        "boba.moonbeam.bobabase": {
+          "address": "0xD9465D38f50f364b3263Cb219e58d4dB2D584530",
+          "blockExplorer": "https://blockexplorer.bobabase.boba.network/address/{address}",
+          "color": "#1cd83d",
+          "name": "Boba DEV/L2 Bobabase",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-BOBA/USDT-6": {
@@ -129,45 +186,9 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-OLO/USDC-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-FRAX/USDT-6": {
+            "Price-GLMR/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -286,7 +307,7 @@
           "address": "0x806c8dFd322EE2d52b188CC472e0814F64304C32",
           "blockExplorer": "https://confluxscan.io/address/{address}",
           "color": "#ff0000",
-          "name": "Conflux Core (Mainnet)",
+          "name": "Conflux Core (Hydra)",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-CFX/USDT-6": {
@@ -314,7 +335,7 @@
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://evm.confluxscan.net/address/{address}",
           "color": "#6600ff",
-          "name": "Conflux eSpace (Mainnet)",
+          "name": "Conflux eSpace (Hydra)",
           "pollingPeriod": 45000,
           "feeds": {
             "Price-BTC/USD-6": {
