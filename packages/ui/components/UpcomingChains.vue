@@ -21,11 +21,6 @@ export default {
           img: 'upcoming_algorand',
         },
         {
-          name: 'Arbitrum',
-          path: 'https://arbitrum.io/',
-          img: 'upcoming_arbitrum',
-        },
-        {
           name: 'Aurora',
           path: 'https://aurora.dev/',
           img: 'upcoming_aurora',
