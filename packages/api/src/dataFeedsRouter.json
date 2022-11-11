@@ -70,7 +70,7 @@
       }
     },
     "boba": {
-      "name": "Boba Networks",
+      "name": "Boba",
       "networks": {
         "boba.ethereum.mainnet": {
           "mainnet": true,

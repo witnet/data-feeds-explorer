@@ -1,24 +1,21 @@
 module.exports = {
-    async up(db) {
-        return Promise.all(
-            (await db.collection("result_request").find({
-                feedFullName: /boba-/
-            }))
-            .map(result => {
-                return {
-                    ...result,
-                    feedFullName: result.feedFullName.replace(
-                        /boba-/, 
-                        "boba-ethereum-"
-                    )
-                }
-            })
-            .map(result => {
-                return db.updateOne(
-                    { _id: result._id },
-                    { $set: { feedFullName: result.feedFullName }}
-                )
-            })
+  async up (db) {
+    const resultRequestCollection = db.collection('result_request')
+    await Promise.all(
+      (await resultRequestCollection.find({ feedFullName: /boba-/ }).toArray())
+        .map(resultRequest => ({
+          ...resultRequest,
+          feedFullName: resultRequest.feedFullName.replace(
+            /boba-/,
+            'boba-ethereum-'
+          )
+        }))
+        .map(resultRequest =>
+          resultRequestCollection.updateOne(
+            { _id: resultRequest._id },
+            { $set: { feedFullName: resultRequest.feedFullName } }
+          )
         )
-    }
+    )
+  }
 }

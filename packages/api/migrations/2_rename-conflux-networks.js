@@ -1,44 +1,44 @@
 module.exports = {
-    async up(db) {
-        await Promise.all(
-            (await db.collection("result_request").find({
-                feedFullName: /conflux-tethys/
-            }))
-            .map(result => {
-                return {
-                    ...result,
-                    feedFullName: result.feedFullName.replace(
-                        /conflux-tethys/, 
-                        "conflux-core-mainnet"
-                    )
-                }
-            })
-            .map(result => {
-                return db.updateOne(
-                    { _id: result._id },
-                    { $set: { feedFullName: result.feedFullName }}
-                )
-            })
+  async up (db) {
+    const resultRequestCollection = db.collection('result_request')
+    const updateConfluxTethysPromises = (
+      await resultRequestCollection
+        .find({ feedFullName: /conflux-tethys/ })
+        .toArray()
+    )
+      .map(resultRequest => ({
+        ...resultRequest,
+        feedFullName: resultRequest.feedFullName.replace(
+          /conflux-tethys/,
+          'conflux-core-mainnet'
         )
-        await Promise.all(
-            (await db.collection("result_request").find({
-                feedFullName: /conflux-rinkeby/
-            }))
-            .map(result => {
-                return {
-                    ...result,
-                    feedFullName: result.feedFullName.replace(
-                        /conflux-rinkeby/, 
-                        "conflux-core-rinkeby"
-                    )
-                }
-            })
-            .map(result => {
-                return db.updateOne(
-                    { _id: result._id },
-                    { $set: { feedFullName: result.feedFullName }}
-                )
-            })
+      }))
+      .map(resultRequest =>
+        resultRequestCollection.updateOne(
+          { _id: resultRequest._id },
+          { $set: { feedFullName: resultRequest.feedFullName } }
         )
-    }
+      )
+    const updateConfluxRinkebyPromises = (
+      await resultRequestCollection.find({
+        feedFullName: /conflux-rinkeby/
+      })
+    )
+      .map(resultRequest => ({
+        ...resultRequest,
+        feedFullName: resultRequest.feedFullName.replace(
+          /conflux-rinkeby/,
+          'conflux-core-rinkeby'
+        )
+      }))
+      .map(resultRequest =>
+        resultRequestCollection.updateOne(
+          { _id: resultRequest._id },
+          { $set: { feedFullName: resultRequest.feedFullName } }
+        )
+      )
+    await Promise.all(
+      [updateConfluxTethysPromises, updateConfluxRinkebyPromises].flat()
+    )
+  }
 }
