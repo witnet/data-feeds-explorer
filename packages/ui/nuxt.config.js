@@ -8,6 +8,7 @@ export default {
   router: {
     base: '/',
   },
+  telemetry: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Data Feeds Explorer | Witnet',
