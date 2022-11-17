@@ -11,10 +11,7 @@ export class MongoManager {
   }
 
   async connect (uri: string, name: string): Promise<Db | null> {
-    this.client = new MongoClient(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+    this.client = new MongoClient(uri)
 
     try {
       await this.client.connect()

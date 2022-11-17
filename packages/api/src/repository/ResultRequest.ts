@@ -9,7 +9,10 @@ import {
 import { containFalsyValues } from './containFalsyValues'
 
 export class ResultRequestRepository {
-  collection: Collection<ResultRequestDbObject>
+  // TODO: find a better way to deal with auto generated ids
+  collection: Collection<
+    ResultRequestDbObject | WithoutId<ResultRequestDbObject>
+  >
 
   constructor (db: Db, _dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
@@ -86,7 +89,7 @@ export class ResultRequestRepository {
     if (this.isValidResultRequest(resultRequest)) {
       const response = await this.collection.insertOne(resultRequest)
 
-      return this.normalizeId(response.ops[0])
+      return this.normalizeId(response[0])
     } else {
       console.error(
         'Error inserting result request: Validation Error',

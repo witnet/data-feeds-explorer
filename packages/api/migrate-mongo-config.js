@@ -3,11 +3,7 @@ require('dotenv/config')
 const config = {
   mongodb: {
     url: process.env.MONGO_URI,
-    databaseName: process.env.MONGO_INITDB_DATABASE,
-    options: {
-      useNewUrlParser: true, // removes a deprecation warning when connecting
-      useUnifiedTopology: true // removes a deprecating warning when connecting
-    }
+    databaseName: process.env.MONGO_INITDB_DATABASE
   },
   migrationsDir: 'migrations',
   changelogCollectionName: 'changelog',

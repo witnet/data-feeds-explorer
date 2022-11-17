@@ -6,6 +6,7 @@ import { CHART_RANGE } from './constants'
 import { MongoManager } from './../src/database'
 import { FeedRepository } from '../src/repository/Feed'
 import { ResultRequestRepository } from '../src/repository/ResultRequest'
+import { env } from 'process'
 
 import { normalizeNetworkConfig } from '../src/utils'
 import { normalizeAndValidateDataFeedConfig } from '../src/readDataFeeds'
@@ -16,11 +17,47 @@ const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig).map(c => ({
   ...c,
   logo: '<svg></svg>'
 }))
+type QueryResultRequest = {
+  data: {
+    feeds: {
+      feeds: Array<{
+        id: String
+        name: String
+        address: String
+        lastResult: String
+        network: String
+        label: String
+        feedFullName: String
+      }>
+    }
+  }
+}
+
+type QueryFeed = {
+  data: {
+    feed: {
+      id: String
+      name: String
+      lastResult: String
+      network: String
+      label: String
+      blockExplorer: String
+      color: String
+      requests: Array<{
+        feedFullName: String
+        result: String
+        drTxHash: String
+        requestId: String
+        timestamp: String
+      }>
+    }
+  }
+}
 
 const state: {
-  mongoManager: MongoManager
-  testClient: ApolloServerTestClient
-  server: ApolloServer
+  mongoManager: MongoManager | null
+  testClient: ApolloServerTestClient | null
+  server: ApolloServer | null
 } = {
   mongoManager: null,
   testClient: null,
@@ -30,40 +67,41 @@ describe.skip('feeds', function () {
   beforeAll(async function () {
     const ciUri = 'mongodb://localhost'
     const mongoManager = new MongoManager()
-    const db = await mongoManager.start(process.env.CI ? ciUri : null)
+    const db = await mongoManager.start(env.CI ? ciUri : undefined)
 
     const get = jest.fn(() => '<svg></svg>')
     const getMany = jest.fn(arr => arr.map(_ => '<svg></svg>'))
     const svgCache = jest.fn(() => ({ get, getMany }))
-
-    const server = await createServer(
-      {
-        feedRepository: new FeedRepository(dataFeeds),
-        resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
-      },
-      svgCache as any,
-      {
-        dataFeedsConfig: dataFeeds,
-        networksConfig: networksConfig
-      }
-    )
-    await new Promise(resolve => {
-      server.listen(info => {
-        resolve(info)
+    if (db) {
+      const server = await createServer(
+        {
+          feedRepository: new FeedRepository(dataFeeds),
+          resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
+        },
+        svgCache as any,
+        {
+          dataFeedsConfig: dataFeeds,
+          networksConfig: networksConfig
+        }
+      )
+      await new Promise(resolve => {
+        server.listen(info => {
+          resolve(info)
+        })
       })
-    })
-    state.mongoManager = mongoManager
-    state.server = server
-    state.testClient = createTestClient(server)
+      state.mongoManager = mongoManager
+      state.server = server
+      state.testClient = createTestClient(server)
+    }
   })
 
   afterAll(async function () {
-    await state.mongoManager.stop()
-    await state.server.stop()
+    await state.mongoManager?.stop()
+    await state.server?.stop()
   })
 
   beforeEach(async function () {
-    await state.mongoManager.drop()
+    await state.mongoManager?.drop()
   })
 
   it('get feed list without data feeds', async () => {
@@ -86,20 +124,20 @@ describe.skip('feeds', function () {
       data: {
         feeds: { feeds }
       }
-    } = await state.testClient.query({
+    } = (await state.testClient?.query({
       query: GET_FEEDS,
       variables: {
         page: 1,
         pageSize: 6,
         network: 'all'
       }
-    })
+    })) as QueryResultRequest
     expect(feeds.length).toBe(0)
   })
 
   it('get feed list with data feeds', async () => {
     const dataFeed = dataFeeds[0]
-    await state.mongoManager.db.collection('feed').insertOne(dataFeed)
+    await state.mongoManager?.db.collection('feed').insertOne(dataFeed)
 
     const GET_FEEDS = gql`
       query feeds($page: Int!, $pageSize: Int!, $network: String!) {
@@ -120,14 +158,14 @@ describe.skip('feeds', function () {
       data: {
         feeds: { feeds }
       }
-    } = await state.testClient.query({
+    } = (await state.testClient?.query({
       query: GET_FEEDS,
       variables: {
         page: 1,
         pageSize: 6,
         network: 'all'
       }
-    })
+    })) as QueryResultRequest
     expect(feeds.length).toBe(1)
     expect(feeds[0]).toHaveProperty('address', dataFeed.address)
     expect(feeds[0]).toHaveProperty('name', dataFeed.name)
@@ -136,11 +174,13 @@ describe.skip('feeds', function () {
   })
 
   it('get feed', async () => {
-    const feedResponse = await state.mongoManager.db
+    const feedResponse = await state.mongoManager?.db
       .collection('feed')
-      .insert(dataFeeds[0])
+      .insertOne(dataFeeds[0])
 
-    const { feedFullName } = feedResponse.ops[0]
+    console.log(JSON.stringify(feedResponse))
+
+    const { feedFullName } = feedResponse ? feedResponse[0] : null
     const resultRequestExample1 = {
       result: '1111.0',
       feedFullName,
@@ -157,12 +197,12 @@ describe.skip('feeds', function () {
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a'
     }
-    await state.mongoManager.db
+    await state.mongoManager?.db
       .collection('result_request')
-      .insert(resultRequestExample1)
-    await state.mongoManager.db
+      .insertOne(resultRequestExample1)
+    await state.mongoManager?.db
       .collection('result_request')
-      .insert(resultRequestExample2)
+      .insertOne(resultRequestExample2)
     const GET_FEED = gql`
       query Feed($feedFullName: String!, $timestamp: Int!) {
         feed(feedFullName: $feedFullName) {
@@ -186,14 +226,14 @@ describe.skip('feeds', function () {
       }
     `
 
-    const data = await state.testClient.query({
+    const data = await state.testClient?.query({
       query: GET_FEED,
       variables: {
         feedFullName,
         timestamp: getTimestampByRange(CHART_RANGE.m.value)
       }
     })
-    const feed = data.data.feed
+    const feed = data?.data.feed
     expect(feed).toHaveProperty('address', dataFeeds[0].address)
     expect(feed).toHaveProperty('name', dataFeeds[0].name)
     expect(feed).toHaveProperty('lastResult', resultRequestExample2.result)
@@ -233,11 +273,11 @@ describe.skip('feeds', function () {
   })
 
   it('get requests with range 7d', async () => {
-    const feedResponse = await state.mongoManager.db
+    const feedResponse = await state.mongoManager?.db
       .collection('feed')
-      .insert(dataFeeds[0])
+      .insertOne(dataFeeds[0])
 
-    const { feedFullName } = feedResponse.ops[0]
+    const { feedFullName } = feedResponse ? feedResponse[0] : null
 
     const resultRequestExample1 = {
       result: '1111.0',
@@ -255,12 +295,12 @@ describe.skip('feeds', function () {
       drTxHash:
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a'
     }
-    await state.mongoManager.db
+    await state.mongoManager?.db
       .collection('result_request')
-      .insert(resultRequestExample1)
-    await state.mongoManager.db
+      .insertOne(resultRequestExample1)
+    await state.mongoManager?.db
       .collection('result_request')
-      .insert(resultRequestExample2)
+      .insertOne(resultRequestExample2)
 
     const GET_FEED = gql`
       query Feed($feedFullName: String!, $timestamp: Int!) {
@@ -285,13 +325,13 @@ describe.skip('feeds', function () {
     `
     const {
       data: { feed }
-    } = await state.testClient.query({
+    } = (await state.testClient?.query({
       query: GET_FEED,
       variables: {
-        feedFullName: feedResponse.ops[0].feedFullName,
+        feedFullName: feedResponse ? feedResponse[0].feedFullName : null,
         timestamp: getTimestampByRange(CHART_RANGE.w.value)
       }
-    })
+    })) as QueryFeed
     expect(feed).toHaveProperty('address', dataFeeds[0].address)
     expect(feed).toHaveProperty('name', dataFeeds[0].name)
     expect(feed).toHaveProperty('lastResult', resultRequestExample1.result)
@@ -315,11 +355,11 @@ describe.skip('feeds', function () {
   })
 
   it('get requests with range 30d', async () => {
-    const feedResponse = await state.mongoManager.db
+    const feedResponse = await state.mongoManager?.db
       .collection('feed')
-      .insert(dataFeeds[0])
+      .insertOne(dataFeeds[0])
 
-    const { feedFullName } = feedResponse.ops[0]
+    const { feedFullName } = feedResponse ? feedResponse[0] : null
 
     const resultRequestExample1 = {
       result: '1111.0',
@@ -339,12 +379,12 @@ describe.skip('feeds', function () {
         '666f4735c3cbfb71d6e2f06cd13e4705751c50500c1720162b16532072bae88a',
       label: '$'
     }
-    await state.mongoManager.db
+    await state.mongoManager?.db
       .collection('result_request')
-      .insert(resultRequestExample1)
-    await state.mongoManager.db
+      .insertOne(resultRequestExample1)
+    await state.mongoManager?.db
       .collection('result_request')
-      .insert(resultRequestExample2)
+      .insertOne(resultRequestExample2)
     const GET_FEED = gql`
       query Feed($feedFullName: String!, $timestamp: Int!) {
         feed(feedFullName: $feedFullName) {
@@ -368,13 +408,13 @@ describe.skip('feeds', function () {
     `
     const {
       data: { feed }
-    } = await state.testClient.query({
+    } = (await state.testClient?.query({
       query: GET_FEED,
       variables: {
         feedFullName,
         timestamp: getTimestampByRange(CHART_RANGE.m.value)
       }
-    })
+    })) as QueryFeed
 
     expect(feed).toHaveProperty('address', dataFeeds[0].address)
     expect(feed).toHaveProperty('name', dataFeeds[0].name)
@@ -415,8 +455,8 @@ describe.skip('feeds', function () {
   })
 
   it('get all feeds inserted', async () => {
-    await state.mongoManager.db.collection('feed').insertOne(dataFeeds[0])
-    await state.mongoManager.db.collection('feed').insertOne(dataFeeds[1])
+    await state.mongoManager?.db.collection('feed').insertOne(dataFeeds[0])
+    await state.mongoManager?.db.collection('feed').insertOne(dataFeeds[1])
 
     const GET_FEEDS = gql`
       query feeds($page: Int!, $pageSize: Int!, $network: String!) {
@@ -437,14 +477,14 @@ describe.skip('feeds', function () {
       data: {
         feeds: { feeds }
       }
-    } = await state.testClient.query({
+    } = (await state.testClient?.query({
       query: GET_FEEDS,
       variables: {
         page: 1,
         pageSize: 6,
         network: 'all'
       }
-    })
+    })) as QueryResultRequest
 
     expect(feeds.length).toBe(2)
   })

@@ -1,11 +1,12 @@
 import Web3 from './__mocks__/web3'
 
-import { FeedInfo, Db, ObjectId } from '../../src/types'
+import { FeedInfo, Db } from '../../src/types'
 import { FeedRepository } from '../../src/repository/Feed'
 import { ResultRequestRepository } from '../../src/repository/ResultRequest'
 import { Web3Middleware } from '../../src/web3Middleware/index'
 import { normalizeConfig } from '../../src/utils'
 import dataFeedsRouter from './dataFeedsRouter.json'
+import { ObjectId } from 'mongodb'
 
 const dataFeeds = normalizeConfig(dataFeedsRouter)
 

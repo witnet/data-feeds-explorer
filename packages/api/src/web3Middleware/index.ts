@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb'
 import Web3 from 'web3'
 import { toHex } from 'web3-utils'
 import {
@@ -6,7 +7,6 @@ import {
   FeedInfo,
   Repositories,
   ResultRequestDbObject,
-  ObjectId,
   ContractInfo,
   Contract
 } from '../types'
