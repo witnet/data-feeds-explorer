@@ -21,14 +21,14 @@ module.exports = {
       )
     const updateConfluxRinkebyPromises = (
       await resultRequestCollection.find({
-        feedFullName: /conflux-rinkeby/
+        feedFullName: /conflux-testnet/
       })
     )
       .map(resultRequest => ({
         ...resultRequest,
         feedFullName: resultRequest.feedFullName.replace(
-          /conflux-rinkeby/,
-          'conflux-core-rinkeby'
+          /conflux-testnet/,
+          'conflux-core-testnet'
         )
       }))
       .map(resultRequest =>
