@@ -27,8 +27,8 @@ module.exports = {
       .map(resultRequest => ({
         ...resultRequest,
         feedFullName: resultRequest.feedFullName.replace(
-          /conflux-rinkeby/,
-          'conflux-core-rinkeby'
+          /conflux-testnet/,
+          'conflux-core-testnet'
         )
       }))
       .map(resultRequest =>
