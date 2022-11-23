@@ -60,7 +60,7 @@
       },
       "ecosystem": {
         "title": "Écosystème",
-        "full_node": "Full node",
+        "full_node": "Nœud complet",
         "wallet": "Wallet",
         "block_explorer": "Explorateur de blocs",
         "monitor": "Surveillance du réseau",
@@ -95,7 +95,7 @@
       "subtitle": "Chaînes de blocs dans lesquelles l'oracle Witnet est actuellement disponible"
     },
     "upcoming_chains": {
-      "title": "Chains with upcoming support"
+      "title": "Chaînes avec support à venir"
     },
     "partners": {
       "title": "Utilisateurs et partenaires"
@@ -105,6 +105,6 @@
   "data_feeds": "Flux de données",
   "networks": "Réseaux",
   "chains": "Chaînes",
-  "less_networks": "Less networks",
-  "more_networks": "More networks"
+  "less_networks": "Moins de réseaux",
+  "more_networks": "Plus de réseaux"
 }
