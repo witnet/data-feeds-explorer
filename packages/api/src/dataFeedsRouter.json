@@ -1740,6 +1740,26 @@
           }
         }
       }
+    },
+    "ultron": {
+      "name": "Ultron",
+      "networks": {
+        "ultron.testnet": {
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
+          "blockExplorer": "https://explorer.ultron-dev.io/address/{address}",
+          "color": "#66ff00",
+          "name": "Ultron Testnet",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-ULX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
     }
   }
 }
