@@ -1646,7 +1646,7 @@
           "feeds": {
             "Price-REEF/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
@@ -1661,7 +1661,7 @@
           "feeds": {
             "Price-REEF/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 1.0,
+              "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
