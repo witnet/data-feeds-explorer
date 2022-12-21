@@ -1702,6 +1702,44 @@
         }
       }
     },
+    "scroll": {
+      "name": "Scroll",
+      "networks": {
+        "scroll.alpha": {
+          "address": "0xE2Efa3fe66352e63F118bB9165435C5BEDB777d0",
+          "blockExplorer": "https://l2scan.scroll.io/address/{address}",
+          "color": "#66ff00",
+          "name": "Scroll Alpha (Testnet)",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-UNI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.2,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
+    },
     "smartbch": {
       "name": "SmartBCH",
       "networks": {
