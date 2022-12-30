@@ -9,7 +9,7 @@
           "blockExplorer": "https://goerli.arbiscan.io/address/{address}",
           "color": "#E84142",
           "name": "Arbitrum Nitro Goerli",
-          "pollingPeriod": 45000,
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-ETH/USD-6": {
               "label": "$",
@@ -794,7 +794,7 @@
           "blockExplorer": "https://goerli.etherscan.io/address/{address}",
           "color": "#ff5599",
           "name": "Ethereum Goerli",
-          "pollingPeriod": 45000,
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
               "label": "$",
@@ -822,7 +822,7 @@
           "blockExplorer": "https://etherscan.io/address/{address}",
           "color": "#ff5599",
           "name": "Ethereum Mainnet",
-          "pollingPeriod": 45000,
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-ETH/USD-6": {
               "label": "$",
@@ -1479,7 +1479,7 @@
           "blockExplorer": "https://blockscout.com/optimism/goerli/address/{address}",
           "color": "#66ff00",
           "name": "Optimism Goerli (testnet)",
-          "pollingPeriod": 45000,
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-OP/USDT-6": {
               "label": "₮",
@@ -1495,7 +1495,7 @@
           "blockExplorer": "https://optimistic.etherscan.io/address/{address}",
           "color": "#66ff00",
           "name": "Optimism Mainnet",
-          "pollingPeriod": 45000,
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-OP/USDT-6": {
               "label": "₮",
