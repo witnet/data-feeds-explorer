@@ -1456,28 +1456,6 @@
               "minSecsBetweenUpdates": 300
             }
           }
-        },
-        "okxchain.mainnet": {
-          "mainnet": true,
-          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://www.oklink.com/en/okc/address/{address}",
-          "color": "#ff0066",
-          "name": "OKXChain Mainnet",
-          "pollingPeriod": 45000,
-          "feeds": {
-            "Price-OKT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            }
-          }
         }
       }
     },
