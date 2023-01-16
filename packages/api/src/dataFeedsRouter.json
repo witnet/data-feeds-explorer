@@ -1219,22 +1219,6 @@
               "minSecsBetweenUpdates": 900
             }
           }
-        },
-        "metis.mainnet": {
-          "mainnet": true,
-          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://andromeda-explorer.metis.io/address/{address}",
-          "color": "#ff6600",
-          "name": "Metis Mainnet",
-          "pollingPeriod": 45000,
-          "feeds": {
-            "Price-METIS/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
         }
       }
     },
