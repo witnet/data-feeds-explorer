@@ -1,0 +1,57 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to Container Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Create Deployment Files
+        shell: bash
+        env:
+          ENVARS: ${{ secrets.ENVIRONMENT_VARIABLES }}
+          AINV: ${{ secrets.ANSIBLE_INVENTORY }}
+          APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
+          CADDY: ${{ secrets.CADDY_FILE }}
+        run: |
+          echo "$ENVARS" > ./packages/ui/.env
+          echo "$ENVARS" > ./packages/api/.env
+          echo "$ENVARS" > ./ansible/.env
+          echo "$AINV" > ./ansible/inventory.ini
+          echo "$APKEY" > ./ansible/key.pem
+          echo "$CADDY" > ./ansible/Caddyfile
+          chmod 400 ./ansible/key.pem
+      - name: Build Containers
+        run: |
+          docker build -t witnet/data-feed-app-ui:latest -f ./ansible/docker/ui.dockerfile ./packages/ui
+          docker build -t witnet/data-feed-app-api:latest -f ./ansible/docker/api.dockerfile ./packages/api
+      - name: Publish Containers
+        run: |
+          docker push witnet/data-feed-app-ui:latest
+          docker push witnet/data-feed-app-api:latest
+      - name: Deploy with Ansible
+        shell: bash
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          cd ansible
+          ansible-galaxy install -r requirements.yml
+          export ANSIBLE_CONFIG=./ansible.cfg
+          export ANSIBLE_FORCE_COLOR=True
+          export ANSIBLE_STDOUT_CALLBACK=yaml
+          export FORCE_COLOR=1
+          export TERM=xterm-color
+          ansible-playbook ./helper/docker-playbook.yml -vv
+          ansible-playbook playbook.yml -vv
