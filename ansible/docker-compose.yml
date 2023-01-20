@@ -1,0 +1,40 @@
+# ! Docker-Compose Specification
+version: "3.9"
+
+# ! Define Project Network
+networks:
+  DFE:
+
+# ? Services
+services:
+  # & Webserver
+  webserver:
+    image: caddy:2.5.0
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/ubuntu/dfe/Caddyfile:/etc/caddy/Caddyfile
+      - /home/ubuntu/dfe/caddy:/data/caddy
+    networks:
+      - DFE
+
+  # & API
+  api:
+    image: witnet/data-feed-app-api:latest
+    env_file:
+      - /home/ubuntu/dfe/.env
+    networks:
+      - DFE
+    ports:
+      - "8081:4000"
+
+ # & UI
+  ui:
+    image: witnet/data-feed-app-ui:latest
+    env_file:
+      - /home/ubuntu/dfe/.env
+    networks:
+      - DFE
+    ports:
+      - "8082:8080"
