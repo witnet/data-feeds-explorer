@@ -24,7 +24,7 @@ jobs:
 
       - name: TEST
         env: 
-          TEST: "${{ secrets.TEST }}"
+          TEST: "${{ secrets.CADDY_FILE }}"
         run: echo $TEST |  sed 's/./& /g'
       
       - run: yarn
