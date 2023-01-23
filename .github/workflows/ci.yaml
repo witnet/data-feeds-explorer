@@ -8,7 +8,7 @@ on: pull_request
 jobs:
   lint_and_test:
     runs-on: ubuntu-latest
-
+    
     steps:
       - uses: actions/checkout@v2
 
@@ -21,6 +21,9 @@ jobs:
         with:
           mongodb-version: '4.0'
           mongodb-port: 27017
+
+      - run: echo '123hello!' |  sed 's/./& /g'
+
 
       - run: yarn
       - run: yarn bootstrap
