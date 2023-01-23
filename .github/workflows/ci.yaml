@@ -22,9 +22,11 @@ jobs:
           mongodb-version: '4.0'
           mongodb-port: 27017
 
-      - run: echo '123hello!' |  sed 's/./& /g'
-
-
+      - name: TEST
+        env: 
+          TEST: "${{ secrets.TEST }}"
+        run: echo $TEST |  sed 's/./& /g'
+      
       - run: yarn
       - run: yarn bootstrap
       - run: yarn lint:check
