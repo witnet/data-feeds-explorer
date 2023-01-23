@@ -19,22 +19,22 @@ services:
     networks:
       - DFE
 
+  # & UI
+  ui:
+    image: witnet/data-feed-app-ui:latest
+    ports:
+      - "8081:8080"
+    environment:
+      API_ENDPOINT: "REPLACE-ME"
+    networks:
+      - DFE
+
   # & API
   api:
     image: witnet/data-feed-app-api:latest
+    ports:
+      - "8082:4000"
     env_file:
       - /home/ubuntu/dfe/.env
     networks:
       - DFE
-    ports:
-      - "8081:4000"
-
- # & UI
-  ui:
-    image: witnet/data-feed-app-ui:latest
-    env_file:
-      - /home/ubuntu/dfe/.env
-    networks:
-      - DFE
-    ports:
-      - "8082:8080"

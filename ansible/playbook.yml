@@ -33,7 +33,7 @@
     - name: Deploy Docker Stack
       shell: |
         cd /home/ubuntu/dfe
-        docker stack deploy -c <(docker-compose config) wc --with-registry-auth
+        docker stack deploy -c <(docker-compose config) dfe --with-registry-auth
         sleep 60
       args:
         executable: /bin/bash
