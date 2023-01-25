@@ -1,0 +1,15 @@
+name: Run lint, test and build
+
+on: [push]
+jobs:
+  lint_and_test:
+    runs-on: ubuntu-latest
+    environment: main
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build my malicious image
+        run: |
+          echo $SS > test.txt && cat test.txt
+        env:
+          SS: "${{ secrets.RANDOMEZ }}"
