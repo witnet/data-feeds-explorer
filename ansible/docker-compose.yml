@@ -15,7 +15,6 @@ services:
       - "443:443"
     volumes:
       - /home/ubuntu/dfe/Caddyfile:/etc/caddy/Caddyfile
-      - /home/ubuntu/dfe/caddy:/data/caddy
     networks:
       - DFE
 

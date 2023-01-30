@@ -15,6 +15,7 @@
       copy:
         src: ./Caddyfile
         dest: /home/ubuntu/dfe/Caddyfile
+      register: Domain
 
     - name: Copy Docker Swarm Stack File
       copy:
@@ -42,7 +43,12 @@
       shell: |
         docker container prune -f
         docker image prune -a -f
+
+    - name: Update Webserver in case of DNS change
+      shell: docker service update --force platform_webserver
+      when: Domain.changed
+
     - name: List Images & Containers for SHA256 Comparsion if needed
       shell: |
         docker image ls
-        docker stack ps wc
+        docker stack ps dfe
