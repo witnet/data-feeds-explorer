@@ -9,7 +9,7 @@ networks:
 services:
   # & Webserver
   webserver:
-    image: caddy:latest
+    image: caddy:2.5.1
     ports:
       - "80:80"
       - "443:443"
