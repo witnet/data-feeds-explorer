@@ -21,20 +21,22 @@ jobs:
       - name: Create Deployment Files
         shell: bash
         env:
-          ENVARS: ${{ secrets.ENVIRONMENT_VARIABLES }}
-          AINV: ${{ secrets.ANSIBLE_INVENTORY }}
-          APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
+          LOKI: ${{ secrets.LOKI_URL }}
           CADDY: ${{ secrets.CADDY_FILE }}
+          AINV: ${{ secrets.ANSIBLE_INVENTORY }}
           API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
+          ENVARS: ${{ secrets.ENVIRONMENT_VARIABLES }}
         run: |
-          echo "$ENVARS" > ./packages/ui/.env
-          echo "$ENVARS" > ./packages/api/.env
           echo "$ENVARS" > ./ansible/.env
-          echo "$AINV" > ./ansible/inventory.ini
           echo "$APKEY" > ./ansible/key.pem
+          echo "$ENVARS" > ./packages/ui/.env
           echo "$CADDY" > ./ansible/Caddyfile
+          echo "$ENVARS" > ./packages/api/.env
+          echo "$AINV" > ./ansible/inventory.ini
           chmod 400 ./ansible/key.pem
-          sed -i "s#REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
+          sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
+          sed -i "s#API-REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
 
       - name: Build Containers
         run: |
