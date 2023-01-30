@@ -45,7 +45,7 @@
         docker image prune -a -f
 
     - name: Update Webserver in case of DNS change
-      shell: docker service update --force platform_webserver
+      shell: docker service update --force dfe_webserver
       when: Domain.changed
 
     - name: List Images & Containers for SHA256 Comparsion if needed
