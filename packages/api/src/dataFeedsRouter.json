@@ -1767,6 +1767,64 @@
               "minSecsBetweenUpdates": 900
             }
           }
+        },
+        "ultron.mainnet": {
+          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+          "blockExplorer": "https://ulxscan.com/address/{address}",
+          "color": "#66ff00",
+          "mainnet": true,
+          "name": "Ultron Mainnet",
+          "pollingPeriod": 45000,
+          "feeds": {
+            "Price-AVAX/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-FTM/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MATIC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ULX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WBTC/WULX-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WETH/WULX-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         }
       }
     }

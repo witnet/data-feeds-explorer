@@ -5,7 +5,7 @@ import { createFeed } from './rss/createFeed'
 export default {
   server: {
     port: 8080,
-    host: '0'
+    host: '0',
   },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
