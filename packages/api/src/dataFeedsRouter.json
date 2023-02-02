@@ -1529,6 +1529,22 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
+            "Price-QUICK/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-QUICK/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-VSQ/DAI-6": {
               "label": "◈",
               "deviationPercentage": 1.0,
@@ -1566,6 +1582,22 @@
             "Price-MATIC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-QUICK/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
