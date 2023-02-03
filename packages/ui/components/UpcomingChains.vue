@@ -16,24 +16,29 @@ export default {
     return {
       chains: [
         {
-          name: 'Algorand',
-          path: 'https://www.algorand.com/',
-          img: 'upcoming_algorand',
-        },
-        {
-          name: 'Aurora',
-          path: 'https://aurora.dev/',
-          img: 'upcoming_aurora',
-        },
-        {
           name: 'Gnosis',
           path: 'https://gnosis.io/',
           img: 'upcoming_gnosis',
         },
         {
-          name: 'Solana',
-          path: 'https://solana.com/',
-          img: 'upcoming_solana',
+          name: 'Fantom',
+          path: 'https://fantom.foundation/',
+          img: 'upcoming_fantom',
+        },
+        {
+          name: 'Scroll',
+          path: 'https://scroll.io/',
+          img: 'upcoming_scroll',
+        },
+        {
+          name: 'StarkNet',
+          path: 'https://starkware.co/starknet/',
+          img: 'upcoming_starknet',
+        },
+        {
+          name: 'Obscuro',
+          path: 'https://obscu.ro/',
+          img: 'upcoming_obscuro',
         },
       ],
     }
