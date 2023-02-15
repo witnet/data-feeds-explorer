@@ -1551,6 +1551,18 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
+            "Price-QUICK/WETH-9": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/WMATIC-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
@@ -1603,6 +1615,18 @@
             },
             "Price-QUICK/USDC-6": {
               "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/WETH-9": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/WMATIC-6": {
+              "label": " ",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
