@@ -26,11 +26,6 @@ export default {
           img: 'upcoming_fantom',
         },
         {
-          name: 'Scroll',
-          path: 'https://scroll.io/',
-          img: 'upcoming_scroll',
-        },
-        {
           name: 'StarkNet',
           path: 'https://starkware.co/starknet/',
           img: 'upcoming_starknet',
