@@ -1666,7 +1666,7 @@
           }
         },
         "reef.mainnet": {
-          "address": "0xa22AbF47Fd1eDDf7C0967C9d7fF06FB3c42B26E2",
+          "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
           "blockExplorer": "https://reefscan.com/contract/{address}",
           "color": "#66ff00",
           "name": "Reef Mainnet",
