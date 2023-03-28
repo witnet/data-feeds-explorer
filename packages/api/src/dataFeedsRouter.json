@@ -112,7 +112,7 @@
             },
             "Price-FRAX/USDT-6": {
               "label": "₮",
-              "deviationPercentage": 0.1,
+              "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
