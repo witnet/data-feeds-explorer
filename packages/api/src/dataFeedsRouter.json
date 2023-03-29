@@ -860,32 +860,6 @@
         }
       }
     },
-    "harmony": {
-      "name": "Harmony",
-      "networks": {
-        "harmony.testnet": {
-          "address": "0x08d479a544b05B297454e5CAc133abA3a584AB8E",
-          "blockExplorer": "https://explorer.pops.one/address/{address}",
-          "color": "#f6006f",
-          "name": "Harmony Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            }
-          }
-        }
-      }
-    },
     "kava": {
       "name": "Kava",
       "networks": {
