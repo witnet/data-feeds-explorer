@@ -797,7 +797,7 @@
           "pollingPeriod": 120000,
           "feeds": {
             "Price-ELA/USDT-6": {
-              "label": "$",
+              "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
