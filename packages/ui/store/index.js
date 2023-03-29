@@ -1,5 +1,6 @@
 export const state = () => ({
   selectedNetwork: [],
+  networks: {},
 })
 
 export const mutations = {
@@ -8,5 +9,8 @@ export const mutations = {
   },
   deleteEmptyNetwork(state, { index }) {
     state.selectedNetwork.splice(index, 1)
+  },
+  setNetworks(state, { networks }) {
+    state.networks = networks
   },
 }

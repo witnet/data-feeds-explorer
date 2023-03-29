@@ -4,6 +4,7 @@ export class FeedRepository {
   dataFeeds: Array<FeedInfo>
   // TODO: replace string with Network
   dataFeedsByNetwork: Record<string, Array<FeedInfo>>
+  networksByEcosystem: Record<string, Array<string>>
 
   constructor (dataFeeds: Array<FeedInfo>) {
     this.dataFeedsByNetwork = dataFeeds.reduce(
@@ -16,25 +17,61 @@ export class FeedRepository {
       {}
     )
     this.dataFeeds = dataFeeds
+    this.networksByEcosystem = Object.keys(this.dataFeedsByNetwork).reduce(
+      (acc, network) => {
+        const ecosystem = network.split('-')[0]
+
+        if (!acc[ecosystem]) {
+          acc[ecosystem] = []
+        }
+
+        acc[ecosystem].push(network)
+
+        return acc
+      },
+      {}
+    )
   }
 
   get (feedFullName: string): FeedInfo {
     return this.dataFeeds.find(feed => feed.feedFullName === feedFullName)
   }
 
+  getAllFeedsByNetwork (): Array<PaginatedFeedsObject> {
+    return Object.entries(this.dataFeedsByNetwork).reduce(
+      (acc, [network, feeds]) => [
+        ...acc,
+        { network, feeds, total: feeds.length }
+      ],
+      []
+    )
+  }
+
+  async getEcosystemFeeds (
+    ecosystem: string
+  ): Promise<Array<PaginatedFeedsObject>> {
+    const networks: Array<string> = this.networksByEcosystem[ecosystem]
+
+    return this.getFeedsByNetworks(networks)
+  }
+
+  async getFeedsByNetworks (
+    networks: Array<string>
+  ): Promise<Array<PaginatedFeedsObject>> {
+    return await Promise.all(
+      networks.map(network => this.getFeedsByNetwork(network))
+    )
+  }
+
   async getFeedsByNetwork (
     // starts in 1
     network: string
   ): Promise<PaginatedFeedsObject> {
-    let feeds: Array<FeedInfo>
-    if (network === 'all') {
-      feeds = Object.values(this.dataFeedsByNetwork).flat()
-    } else {
-      feeds = this.dataFeedsByNetwork[network]
-    }
+    let feeds: Array<FeedInfo> = this.dataFeedsByNetwork[network]
     return {
       feeds: feeds || [],
-      total: feeds ? feeds.length : 0
+      total: feeds ? feeds.length : 0,
+      network
     }
   }
 

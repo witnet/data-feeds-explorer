@@ -99,6 +99,7 @@ export type FeedInfoConfig = FeedInfoGeneric<string>
 
 export type PaginatedFeedsObject = {
   feeds: Array<FeedInfo>
+  network: string
   total: number
 }
 

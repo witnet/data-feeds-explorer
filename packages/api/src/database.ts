@@ -7,7 +7,14 @@ export class MongoManager {
 
   async start (uri?: string): Promise<Db | null> {
     const mongoDbUri = uri || process.env.MONGO_URI
-    return this.connect(mongoDbUri, process.env.MONGO_INITDB_DATABASE as string)
+
+    const db = await this.connect(
+      mongoDbUri,
+      process.env.MONGO_INITDB_DATABASE as string
+    )
+    this.db = db
+
+    return db
   }
 
   async connect (uri: string, name: string): Promise<Db | null> {

@@ -1,20 +1,22 @@
 <template>
   <div class="breacrumbs-wrapper">
     <div class="breadcrumbs container">
-      <nuxt-link
-        v-for="option in breadCumbsOptions.filter((option) => option.label)"
-        :key="option.label"
-        :aria-label="option.label"
-        :class="{ selected: option.selected }"
-        :to="localeRoute(option.path)"
-        class="breadcrumbs-link"
-      >
-        <transition name="slide-in">
-          <h3 v-if="option.label" class="breadcrumbs">
-            <span class="breadcrumbs-label">{{ option.label }}</span> /
-          </h3>
-        </transition>
-      </nuxt-link>
+      <client-only>
+        <nuxt-link
+          v-for="option in breadCumbsOptions.filter((option) => option.label)"
+          :key="option.label"
+          :aria-label="option.label"
+          :class="{ selected: option.selected }"
+          :to="localeRoute(option.path)"
+          class="breadcrumbs-link"
+        >
+          <transition name="slide-in">
+            <h3 v-if="option.label" class="breadcrumbs">
+              <span class="breadcrumbs-label">{{ option.label }}</span> /
+            </h3>
+          </transition>
+        </nuxt-link>
+      </client-only>
     </div>
     <Socials />
   </div>

@@ -1,0 +1,32 @@
+query ecosystem ($ecosystem: String!) {
+  ecosystem (ecosystem: $ecosystem) {
+    logo
+    name
+    networks {
+      total
+      network
+      feeds {
+        feedFullName
+        name
+        address
+        lastResult
+        lastResultTimestamp
+        network
+        label
+        chain
+        blockExplorer
+        color
+        heartbeat
+        finality
+        logo
+      }
+    }
+  }
+  
+  networks {
+    label,
+    key,
+    chain,
+    logo
+  }
+}

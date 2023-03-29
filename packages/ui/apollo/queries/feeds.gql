@@ -1,5 +1,5 @@
-query feeds ($network: String!) {
-  feeds (network: $network) {
+query feeds ($networks: [String]!) {
+  feeds (networks: $networks) {
     feeds {
       feedFullName
       name
@@ -16,5 +16,13 @@ query feeds ($network: String!) {
       logo
     }
     total
+    network
+  }
+
+  networks {
+    label,
+    key,
+    chain,
+    logo
   }
 }
