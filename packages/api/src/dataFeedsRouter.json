@@ -1654,6 +1654,21 @@
               "minSecsBetweenUpdates": 900
             }
           }
+        },
+        "polygon.zkevm.goerli": {
+          "address": "0xFEeEed553b5a5C236EDd047BB034EF303d36f827",
+          "blockExplorer": "https://testnet-zkevm.polygonscan.com/{address}",
+          "color": "#66ff00",
+          "name": "Polygon zkEVM Testnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         }
       }
     },
