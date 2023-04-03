@@ -1511,6 +1511,16 @@
           "name": "Polygon Mumbai",
           "pollingPeriod": 120000,
           "feeds": {
+            "Price-BAT/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-BAT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
@@ -1558,6 +1568,12 @@
               "minSecsBetweenUpdates": 900
             },
             "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
