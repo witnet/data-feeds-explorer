@@ -130,69 +130,6 @@
             }
           }
         },
-        "boba.ethereum.rinkeby": {
-          "address": "0x36928Aeedaaf7D85bcA39aDfB2A39ec529ce221a",
-          "blockExplorer": "https://blockexplorer.rinkeby.boba.network/address/{address}",
-          "color": "#1cd83d",
-          "name": "Boba ETH/L2 Rinkeby",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BOBA/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.25,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-OLO/USDC-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-FRAX/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.25,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-FXS/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.25,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.25,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
         "boba.ethereum.goerli": {
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://testnet.bobascan.com/address/{address}",
