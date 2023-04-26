@@ -51,6 +51,7 @@ export default {
     },
     supportedChains() {
       return Object.values(this.options)
+        .filter((network) => network && network[0])
         .map((network) => {
           const chain = network[0].chain
           return {
