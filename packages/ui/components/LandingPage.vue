@@ -42,33 +42,30 @@ export default {
     chainsFeeds() {
       return this.feeds ? this.feeds : []
     },
-    options() {
-      if (this.networks) {
-        return generateSelectOptions(this.networks)
-      } else {
-        return null
-      }
-    },
     supportedChains() {
-      return Object.values(this.options)
-        .filter((network) => network && network[0])
-        .map((network) => {
-          const chain = network[0].chain
-          return {
-            name: chain,
-            count:
-              this.feeds?.feeds.filter((feed) => feed.chain === chain).length ||
-              0,
-            detailsPath: {
-              name: 'network',
-              params: {
-                network: chain.toLowerCase(),
+      if (this.networks) {
+        return Object.values(generateSelectOptions(this.networks))
+          .filter((network) => network && network[0])
+          .map((network) => {
+            const chain = network[0].chain
+            return {
+              name: chain,
+              count:
+                this.feeds?.feeds.filter((feed) => feed.chain === chain)
+                  .length || 0,
+              detailsPath: {
+                name: 'network',
+                params: {
+                  network: chain.toLowerCase(),
+                },
               },
-            },
-            svg: network[0].logo,
-          }
-        })
-        .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
+              svg: network[0].logo,
+            }
+          })
+          .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
+      } else {
+        return []
+      }
     },
   },
   mounted() {
