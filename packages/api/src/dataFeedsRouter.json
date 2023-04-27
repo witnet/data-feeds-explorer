@@ -1609,7 +1609,7 @@
           }
         },
         "polygon.zkevm.goerli": {
-          "address": "0xFEeEed553b5a5C236EDd047BB034EF303d36f827",
+          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://testnet-zkevm.polygonscan.com/{address}",
           "color": "#66ff00",
           "name": "Polygon zkEVM Testnet",
