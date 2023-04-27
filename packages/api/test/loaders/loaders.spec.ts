@@ -1,4 +1,4 @@
-import { Loaders } from '../../src/loaders'
+import { LoadersFactory } from '../../src/loaders'
 
 describe('loaders', () => {
   describe('lastResult', () => {
@@ -7,7 +7,7 @@ describe('loaders', () => {
       const get = jest.fn(() => '<svg></svg>')
       const getMany = jest.fn(arr => arr.map(_ => '<svg></svg>'))
       const svgCache = jest.fn(() => ({ get, getMany }))
-      const loaders = new Loaders(
+      const loaders = new LoadersFactory(
         {
           resultRequestRepository: {
             getLastResult: getLastResultMock
@@ -26,7 +26,7 @@ describe('loaders', () => {
       const get = jest.fn(() => '<svg></svg>')
       const getMany = jest.fn(arr => arr.map(_ => '<svg></svg>'))
       const svgCache = jest.fn(() => ({ get, getMany }))
-      const loaders = new Loaders(
+      const loaders = new LoadersFactory(
         {
           resultRequestRepository: {
             getLastResult: getLastResultMock
@@ -47,7 +47,7 @@ describe('loaders', () => {
       const get = jest.fn(() => '<svg></svg>')
       const getMany = jest.fn(arr => arr.map(_ => '<svg></svg>'))
       const svgCache = jest.fn(() => ({ get, getMany }))
-      const loaders = new Loaders(
+      const loaders = new LoadersFactory(
         {
           resultRequestRepository: {
             getLastResult: getLastResultMock
@@ -69,7 +69,7 @@ describe('loaders', () => {
       const getMany = jest.fn(arr => arr.map(_ => '<svg></svg>'))
       const svgCache = jest.fn(() => ({ get, getMany }))
       const timestamp = Math.floor(Date.now() / 1000) - 10000
-      const loaders = new Loaders(
+      const loaders = new LoadersFactory(
         {
           resultRequestRepository: {
             getFeedRequests: getFeedRequestsMock
@@ -92,7 +92,7 @@ describe('loaders', () => {
       const svgCache = jest.fn(() => ({ get, getMany }))
       const timestamp1 = Math.floor(Date.now() / 1000) - 10000
       const timestamp2 = Math.floor(Date.now() / 1000) - 20000
-      const loaders = new Loaders(
+      const loaders = new LoadersFactory(
         {
           resultRequestRepository: {
             getFeedRequests: getFeedRequestsMock
@@ -128,7 +128,7 @@ describe('loaders', () => {
       const getMany = jest.fn(arr => arr.map(_ => '<svg></svg>'))
       const svgCache = jest.fn(() => ({ get, getMany }))
       const timestamp = Math.floor(Date.now() / 1000) - 10000
-      const loaders = new Loaders(
+      const loaders = new LoadersFactory(
         {
           resultRequestRepository: {
             getFeedRequests: getFeedRequestsMock

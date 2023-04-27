@@ -13,28 +13,28 @@ export { Db, Collection, WithId } from 'mongodb'
 
 export type WithoutId<T> = Omit<T, '_id' | 'id'>
 
-export type Context = {
+export type Loaders = {
+  lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
+  requests: DataLoader<
+    | string
+    | {
+        feedFullName: string
+        timestamp: number
+      },
+    ResultRequestDbObjectNormalized,
+    string
+  >
+  logos: DataLoader<string, string, string>
+}
+
+export interface Context {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
   config: {
     feedsConfig: ConfigByFullName
     networksConfig: Array<NetworksConfig>
   }
-  loaders: {
-    lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
-    requests: DataLoader<
-      {
-        feedFullName: string
-        timestamp: number
-      },
-      ResultRequestDbObjectNormalized,
-      {
-        feedFullName: string
-        timestamp: number
-      }
-    >
-    logos: DataLoader<string, string, string>
-  }
+  loaders: Loaders
 }
 
 export type ConfigByFullName = {

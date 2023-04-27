@@ -51,16 +51,10 @@ async function main () {
   )
   web3Middleware.listen()
 
-  const server = await createServer(repositories, svgCache, {
+  await createServer(repositories, svgCache, {
     dataFeedsConfig: dataFeeds,
     networksConfig
   })
-
-  server
-    .listen({ host: '0.0.0.0', port: process.env.SERVER_PORT })
-    .then(({ url }) => {
-      console.log(`🚀  Server ready at ${url}`)
-    })
 }
 
 main()

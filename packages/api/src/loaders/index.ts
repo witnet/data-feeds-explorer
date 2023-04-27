@@ -1,8 +1,12 @@
 import DataLoader from 'dataloader'
 import { SvgCache } from '../svgCache'
-import { Repositories, ResultRequestDbObjectNormalized } from '../types'
+import {
+  Loaders,
+  Repositories,
+  ResultRequestDbObjectNormalized
+} from '../types'
 
-export class Loaders {
+export class LoadersFactory {
   repositories: Repositories
   svgCache: SvgCache
 
@@ -30,11 +34,7 @@ export class Loaders {
     })
   }
 
-  getLoaders (): {
-    lastResult: DataLoader<string, ResultRequestDbObjectNormalized, string>
-    requests: DataLoader<string, ResultRequestDbObjectNormalized, string>
-    logos: DataLoader<string, string, string>
-  } {
+  getLoaders (): Loaders {
     return {
       lastResult: this.genericLoader<Promise<ResultRequestDbObjectNormalized>>(
         async (feedFullName: string) =>
