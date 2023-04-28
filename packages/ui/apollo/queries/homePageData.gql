@@ -1,0 +1,8 @@
+query homePageData {
+  feeds (network: "all") {
+    feeds {
+      chain
+    }
+    total
+  }
+}

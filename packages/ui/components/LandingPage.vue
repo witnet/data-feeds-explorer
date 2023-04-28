@@ -20,7 +20,7 @@
 <script>
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import networks from '@/apollo/queries/networks.gql'
-import feeds from '@/apollo/queries/feeds.gql'
+import homePageData from '@/apollo/queries/homePageData.gql'
 
 export default {
   apollo: {
@@ -30,12 +30,7 @@ export default {
     },
     feeds: {
       prefetch: true,
-      query: feeds,
-      variables() {
-        return {
-          network: 'all',
-        }
-      },
+      query: homePageData,
     },
   },
   computed: {
