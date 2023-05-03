@@ -1667,7 +1667,7 @@
           }
         },
         "polygon.zkevm.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xc2462eE5d9F8C70f3E0C4CE5881dFFF291Ff2205",
           "blockExplorer": "https://testnet-zkevm.polygonscan.com/{address}",
           "color": "#66ff00",
           "name": "Polygon zkEVM Testnet",
@@ -1750,7 +1750,7 @@
       "name": "Scroll",
       "networks": {
         "scroll.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xBfFA2ec6225390C517A1bEB83b27a171C6734294",
           "blockExplorer": "https://blockscout.scroll.io/address/{address}",
           "color": "#66ff00",
           "name": "Scroll Alpha (Testnet)",
