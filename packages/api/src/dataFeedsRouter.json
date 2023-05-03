@@ -743,7 +743,7 @@
           }
         },
         "elastos.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x4874cb1732eE1167A006E0Ab047D940ACF04D771",
           "blockExplorer": "https://esc-testnet.elastos.io/address/{address}",
           "color": "#66ff00",
           "name": "Elastos Testnet",
