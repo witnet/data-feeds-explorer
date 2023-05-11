@@ -1265,11 +1265,11 @@
     "metis": {
       "name": "Metis",
       "networks": {
-        "metis.rinkeby": {
-          "address": "0x5134EAF08bcf8cE1922991150AAad1774e93751f",
-          "blockExplorer": "https://stardust-explorer.metis.io/address/{address}",
+        "metis.goerli": {
+          "address": "0xBfFA2ec6225390C517A1bEB83b27a171C6734294",
+          "blockExplorer": "https://goerli.explorer.metisdevops.link/address/{address}",
           "color": "#ff6600",
-          "name": "Metis Rinkeby",
+          "name": "Metis Goerli",
           "pollingPeriod": 120000,
           "feeds": {
             "Price-METIS/USDT-6": {
