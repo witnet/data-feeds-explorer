@@ -4,6 +4,21 @@
     "arbitrum": {
       "name": "Arbitrum",
       "networks": {
+        "arbitrum.one": {
+          "address": "0xf56E739C436EA6e65A17DBfaC9D7E57062D19422",
+          "blockExplorer": "https://arbiscan.io/address/{address}",
+          "color": "#E84142",
+          "name": "Arbitrum ONE",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
         "arbitrum.goerli": {
           "address": "0xAafb2D27E2E0f83dcE501a2879aaD710ec377403",
           "blockExplorer": "https://goerli.arbiscan.io/address/{address}",
