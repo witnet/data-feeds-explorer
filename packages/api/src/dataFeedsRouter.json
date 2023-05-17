@@ -8,6 +8,7 @@
           "address": "0xf56E739C436EA6e65A17DBfaC9D7E57062D19422",
           "blockExplorer": "https://arbiscan.io/address/{address}",
           "color": "#E84142",
+          "mainnet": "true",
           "name": "Arbitrum ONE",
           "pollingPeriod": 120000,
           "feeds": {
