@@ -1646,12 +1646,6 @@
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
-            },
-            "Price-VSQ/DAI-6": {
-              "label": "◈",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
             }
           }
         },
@@ -1712,12 +1706,6 @@
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-VSQ/DAI-6": {
-              "label": "◈",
-              "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
