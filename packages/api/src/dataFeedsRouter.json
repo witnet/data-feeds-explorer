@@ -842,12 +842,6 @@
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
-            },
-            "Price-NATION/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
             }
           }
         },
@@ -864,12 +858,6 @@
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 604800,
               "minSecsBetweenUpdates": 604800
-            },
-            "Price-NATION/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 604800,
-              "minSecsBetweenUpdates": 86400
             }
           }
         }
