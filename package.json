@@ -40,8 +40,8 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "volta": {
-    "node": "16.18.1",
-    "yarn": "1.22.10"
+    "node": "16.20.0",
+    "yarn": "1.22.19"
   },
   "husky": {
     "hooks": {
