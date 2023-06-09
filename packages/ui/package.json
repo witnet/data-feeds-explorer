@@ -17,6 +17,7 @@
     "docker:build": "docker build . --no-cache -t witnet/data-feeds-explorer-ui"
   },
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
