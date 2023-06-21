@@ -765,9 +765,41 @@
           "name": "Elastos Mainnet",
           "pollingPeriod": 120000,
           "feeds": {
+            "Price-BNB/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-BNB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-ELA/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-HT/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-HT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
