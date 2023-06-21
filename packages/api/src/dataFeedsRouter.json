@@ -759,7 +759,7 @@
       "networks": {
         "elastos.mainnet": {
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x0Aa147F25CE8BfaA4E6B4B2CCa91f595bD732CD4",
           "blockExplorer": "https://esc.elastos.io/address/{address}",
           "color": "#66ff00",
           "name": "Elastos Mainnet",
