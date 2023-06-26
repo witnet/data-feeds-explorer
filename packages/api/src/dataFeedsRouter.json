@@ -179,6 +179,34 @@
             }
           }
         },
+        "boba.bnb.mainnet": {
+          "mainnet": true,
+          "address": "0x62a1b1D6E5bA031846894FC5C3609f586c78D23D",
+          "blockExplorer": "https://blockexplorer.bnb.boba.network/address/{address}",
+          "color": "#1cd83d",
+          "name": "Boba BNB/L2 Mainnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-BNB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BOBA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WIT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
         "boba.bnb.testnet": {
           "address": "0x8D20457d968c937b7cb65be6B8cC766613fBcF28",
           "blockExplorer": "https://blockexplorer.testnet.bnb.boba.network/address/{address}",
