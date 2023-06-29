@@ -184,8 +184,8 @@ export default {
       }
     },
     numberOfPages() {
-      return this.feed
-        ? Math.ceil(this.feed.requests.length / this.itemsPerPage)
+      return this.requests
+        ? Math.ceil(this.requests.total / this.itemsPerPage)
         : 0
     },
     chartData() {
@@ -204,8 +204,8 @@ export default {
       }
     },
     transactions() {
-      if (this.feed && this.requests && this.requests.length > 0) {
-        return this.requests.map((request) => ({
+      if (this.requests && this.requests.total > 0) {
+        return this.requests.requests.map((request) => ({
           witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
           drTxHash: request.drTxHash,
           data: {

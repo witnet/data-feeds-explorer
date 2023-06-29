@@ -4,7 +4,8 @@ import {
   Db,
   Collection,
   FeedInfo,
-  WithoutId
+  WithoutId,
+  PaginatedRequests
 } from '../types'
 import { containFalsyValues } from './containFalsyValues'
 
@@ -49,17 +50,26 @@ export class ResultRequestRepository {
     feedFullName: string,
     page: number,
     size: number
-  ): Promise<Array<ResultRequestDbObjectNormalized>> {
-    return (
-      await this.collection
-        .find({
-          feedFullName
-        })
-        .sort({ timestamp: -1 })
-        .skip(size * (page - 1))
-        .limit(size)
-        .toArray()
-    ).map(this.normalizeId)
+  ): Promise<PaginatedRequests> {
+    return {
+      requests: (
+        await this.collection
+          .find({
+            feedFullName
+          })
+          .sort({ timestamp: -1 })
+          .skip(size * (page - 1))
+          .limit(size)
+          .toArray()
+      ).map(this.normalizeId),
+      total: (
+        await this.collection
+          .find({
+            feedFullName
+          })
+          .toArray()
+      ).length
+    }
   }
 
   async getLastResult (

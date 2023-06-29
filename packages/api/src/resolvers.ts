@@ -11,11 +11,13 @@ const resolvers = {
     },
 
     requests: async (_parent, args, { resultRequestRepository }: Context) => {
-      return await resultRequestRepository.getFeedRequestsPage(
+      const result = await resultRequestRepository.getFeedRequestsPage(
         args.feedFullName,
         args.page,
         args.size
       )
+      console.log('result', result)
+      return result
     },
 
     feed: async (_parent, args, { feedRepository }: Context) => {
