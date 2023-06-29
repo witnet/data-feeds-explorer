@@ -1010,7 +1010,7 @@
       "networks": {
         "gnosis.testnet": {
           "mainnet": false,
-          "address": "0xB4f1f8E27799256ec95C5b5A8d2A5722Bd542E69",
+          "address": "0xA8767A6EA3099De344499B35f725A38E3cD15562",
           "blockExplorer": "https://blockscout.com/gnosis/chiado/address/{address}",
           "color": "#66ff00",
           "name": "Gnosis Testnet",
