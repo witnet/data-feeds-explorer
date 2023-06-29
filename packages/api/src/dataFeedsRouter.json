@@ -1005,6 +1005,33 @@
         }
       }
     },
+    "gnosis": {
+      "name": "Gnosis",
+      "networks": {
+        "gnosis.testnet": {
+          "mainnet": false,
+          "address": "0xB4f1f8E27799256ec95C5b5A8d2A5722Bd542E69",
+          "blockExplorer": "https://blockscout.com/gnosis/chiado/address/{address}",
+          "color": "#66ff00",
+          "name": "Gnosis Testnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WIT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        }
+      }
+    },
     "kava": {
       "name": "Kava",
       "networks": {
