@@ -112,10 +112,10 @@ export default {
     ],
   },
   styleResources: {
-    scss: ['~/assets/styles/main.scss', '~/assets/styles/element-ui.scss'],
+    scss: ['~/assets/styles/main.scss'],
   },
   // ...
-  modules: ['nuxt-i18n', '@nuxtjs/apollo', 'nuxt-element-ui', '@nuxtjs/feed'],
+  modules: ['nuxt-i18n', '@nuxtjs/apollo', '@nuxtjs/feed'],
 
   feed: [
     {
@@ -129,10 +129,6 @@ export default {
       data: [],
     },
   ],
-
-  elementUI: {
-    components: ['Pagination'],
-  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -203,23 +199,6 @@ export default {
     },
     strategy: 'prefix_and_default',
     defaultLocale,
-  },
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    transpile: [/^element-ui/],
-    extractCSS: true,
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /.(css|vue)$/,
-            chunks: 'all',
-            enforce: true,
-          },
-        },
-      },
-    },
   },
   apollo: {
     clientConfigs: {
