@@ -16,11 +16,6 @@ export default {
     return {
       chains: [
         {
-          name: 'Gnosis',
-          path: 'https://gnosis.io/',
-          img: 'upcoming_gnosis',
-        },
-        {
           name: 'Fantom',
           path: 'https://fantom.foundation/',
           img: 'upcoming_fantom',
