@@ -150,6 +150,11 @@ export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {
   id: string
 }
 
+export type PaginatedRequests = {
+  requests: Array<ResultRequestDbObjectNormalized>
+  total: number
+}
+
 export type Repositories = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository

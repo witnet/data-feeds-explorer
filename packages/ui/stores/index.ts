@@ -57,7 +57,7 @@ export const useStore = defineStore('data', {
         page,
         size,
       })
-      this.paginatedFeedRequest = result.requests
+      this.paginatedFeedRequest = result
       return this.paginatedFeedRequest
     },
     updateSelectedNetwork({ networks }: { networks: Network[] | [] }) {
