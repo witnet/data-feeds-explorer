@@ -175,6 +175,8 @@ export default {
         'faCopy',
         'faInfoCircle',
         'faExternalLinkAlt',
+        'faAngleLeft',
+        'faAngleRight',
       ],
     },
   },
