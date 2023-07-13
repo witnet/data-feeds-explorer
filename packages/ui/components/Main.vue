@@ -5,6 +5,7 @@
       class="network-options"
       :options="navBarOptions"
     />
+     111 {{ selected }}
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <h2 class="title bold">
@@ -37,120 +38,87 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
-import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
-import { formatSvgChainName } from '../utils/formatSvgChainName'
-import networks from '@/apollo/queries/networks.gql'
 
-export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-  },
-  i18n: {
-    seo: true,
-  },
-  data() {
-    return {
-      feedExist: true,
-      currentPage: 1,
-      itemsPerPage: 28,
-      currentNetwork: this.$route.params.network.toUpperCase(),
+const store = useNetwork()
+
+const emit = defineEmits(['set-network'])
+
+const networksQuery = gql`
+  query networks {
+    networks {
+      label,
+      key,
+      chain,
+      logo
     }
-  },
-  head() {
-    return {
-      title: `Witnet Data Feeds on ${this.currentNetwork}`,
-      meta: [
-        {
-          hid: 'title',
-          name: 'title',
-          content: `Witnet Data Feeds on ${this.currentNetwork}`,
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: `Explore the list of decentralized data feeds on ${this.currentNetwork}, using the Witnet oracle network`,
-        },
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: `Witnet Data Feeds on ${this.currentNetwork}`,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: `Explore the list of decentralized data feeds on ${this.currentNetwork}, using the Witnet oracle network`,
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: `Witnet Data Feeds on ${this.currentNetwork}`,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: `Explore the list of decentralized data feeds on ${this.currentNetwork}, using the Witnet oracle network`,
-        },
-      ],
+  }`
+    
+const networksFetch = await useAsyncQuery(networksQuery)
+
+const networks = computed(() => {
+  return networksFetch?.data?.value?.networks
+})
+
+const route = useRoute()
+const currentPage = ref(1)
+const currentNetwork = computed(() =>
+  route.params.network.toUpperCase()
+)
+  const selected = computed(() => {
+    return store.selectedNetwork
+  })
+  const options = computed(() => {
+    if (networks.value) {
+      const options = generateSelectOptions(networks.value)
+      setCurrentNetwork(options)
+      return options
+    } else {
+      return null
     }
-  },
-  computed: {
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
-    options() {
-      if (this.networks) {
-        const options = generateSelectOptions(this.networks)
-        this.setCurrentNetwork(options)
-        return options
-      } else {
-        return null
-      }
-    },
-    navBarOptions() {
-      return generateNavOptions(Object.values(this.options))
-    },
-    selectedNetworks() {
-      const result = this.selected.map((option) => {
-        return option.label
-      })
-      const last = result.pop()
-      return {
-        first: result.join(', '),
-        last,
-      }
-    },
-    network() {
-      const network = this.$route.params.network || 'ethereum'
-      this.$emit('set-network', network.toUpperCase())
-      return network
-    },
-  },
-  mounted() {
-    const networks = this.options[this.network]
-    this.$store.commit('updateSelectedNetwork', {
-      network: networks,
+  })
+
+  const navBarOptions = computed(() => {
+    return generateNavOptions(Object.values(options.value))
+  })
+
+  const selectedNetworks = computed(() => {
+    const result = selected.value.map((option) => {
+      return option.label
     })
-  },
-  methods: {
-    capitalizeFirstLetter,
-    formatSvgChainName,
-    updateOptions(index) {
-      this.$store.commit('deleteEmptyNetwork', { index })
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val
-    },
-    setCurrentNetwork(options) {
-      this.currentNetwork = options[this.$route.params.network][0].chain
-    },
-  },
-}
+    const last = result.pop()
+    return {
+      first: result.join(', '),
+      last,
+    }
+  })
+
+  const network = computed(() => {
+    const network = route.params.network || 'ethereum'
+    emit('set-network', network.toUpperCase())
+    return network
+  })
+
+  onMounted(() => {
+    const networks = options.value?.[network.value]
+    store.updateSelectedNetwork({
+      network: networks
+    })
+  })
+
+    function updateOptions(index) {
+      store.deleteEmptyNetwork({ index })
+    }
+
+    function handleCurrentChange(val) {
+      currentPage.value = val
+    }
+
+    function setCurrentNetwork(options) {
+      currentNetwork.value = options[route.params.network][0].chain
+    }
 </script>
 
 <style lang="scss" scoped>

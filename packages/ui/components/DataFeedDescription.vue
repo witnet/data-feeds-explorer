@@ -1,9 +1,9 @@
 <template>
-  <i18n :path="description.i18nPath" tag="p" class="feed-description">
-    <template v-for="field in description.fields" #[field]>
+  <i18n-t :keypath="description.i18nPath" tag="p" class="feed-description">
+    <template v-for="field in description.fields" #[field] :key="field.i18nPath">
       <span :key="field.i18nPath" class="bold">{{ fieldToProp[field] }}</span>
     </template>
-  </i18n>
+  </i18n-t>
 </template>
 
 <script>

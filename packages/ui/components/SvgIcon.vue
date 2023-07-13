@@ -1,18 +1,26 @@
 <template>
   <!-- We are using v-html assuming we never use user-provided content -->
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-if="name" v-html="require(`~/assets/svg/${name}.svg?raw`)" />
+  <!-- <div v-if="name" v-html="import.meta.glob(`./assets/svg/${name}.svg`, { as: 'raw' })" /> -->
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-else-if="svg" v-html="svg" />
+  <div v-html="svg" />
 </template>
 
-<script>
-export default {
-  props: {
-    name: { type: String, default: '' },
-    svg: { type: String, default: '' },
-  },
-}
+<script setup>
+  const props = defineProps({ name: String })
+  // TODO: avoid load all icons 
+  const icons = Object.fromEntries(
+    Object.entries(import.meta.glob('~/assets/svg/*.svg', { as: 'raw' }))
+    .map(
+      ([key, value]) => {
+        const filename = key.split('/').pop().split('.').shift()
+        return [filename, value]
+      },
+    ),
+  )
+
+const svg = icons[props.name] ? await icons[props.name]() : '<svg></svg>'
+
 </script>
 
 <style lang="scss">

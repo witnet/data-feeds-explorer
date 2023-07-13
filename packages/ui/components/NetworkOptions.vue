@@ -5,7 +5,7 @@
         <LazyNetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
-    <transition name="dropdown" class="dropdown">
+    <!-- <transition name="dropdown" class="dropdown"> -->
       <div v-if="showAll" class="networks">
         <div
           v-for="option in filteredOptions"
@@ -15,7 +15,7 @@
           <LazyNetworkLink :name="option.name" :svg="option.logo" />
         </div>
       </div>
-    </transition>
+    <!-- </transition> -->
     <div v-if="type === 'sidebar'" class="show-more-btn" @click="toggleShowAll">
       <p v-if="showAll">
         <span class="arrow">▲</span> {{ $t('less_networks') }}
@@ -31,67 +31,69 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    type: {
-      type: String,
-      default: 'sidebar',
-      validator(value) {
-        return ['navbar', 'sidebar'].includes(value)
-      },
+<script setup>
+const store = useNetwork()
+const props = defineProps({
+  type: {
+    type: String,
+    validator(value) {
+      return ['navbar', 'sidebar'].includes(value)
     },
-    options: {
-      type: Array,
-      required: true,
+    default() {
+      return 'sidebar'
     },
   },
-  data() {
-    return {
-      priorityNetworks: ['ethereum', 'avalanche', 'polygon'],
-      showAll: this.type === 'navbar',
-    }
+  options: {
+    type: Array,
+    required: true,
   },
-  computed: {
-    selectedNetwork() {
-      return this.$store.state.selectedNetwork[0]
-        ? this.$store.state.selectedNetwork[0].chain.toLowerCase()
+})
+
+
+const priorityNetworks = ref(['ethereum', 'avalanche', 'polygon'])
+const showAll = ref(props.type === 'navbar')
+
+
+    const selectedNetwork = computed(() => {
+      return store.selectedNetwork[0]
+        ? store.selectedNetwork[0].chain.toLowerCase()
         : 'ethereum'
-    },
-    selectedOption() {
-      return this.options.filter((option) => {
-        return option.name.toLowerCase() === this.selectedNetwork
+    })
+
+    const selectedOption = computed(() => {
+      return props.options.filter((option) => {
+        return option.name.toLowerCase() === selectedNetwork.value
       })[0]
-    },
-    filteredOptions() {
-      return this.options.filter((option) => {
+    })
+
+    const filteredOptions = computed(() => {
+      return props.options.filter((option) => {
         return (
-          !this.priorityNetworks.includes(option.name.toLowerCase()) &&
-          option.name.toLowerCase() !== this.selectedOption.name.toLowerCase()
+          !priorityNetworks.value.includes(option.name.toLowerCase()) &&
+          option.name.toLowerCase() !== selectedOption.value.name.toLowerCase()
         )
       })
-    },
-    networksLeft() {
-      return `(${this.filteredOptions.length}+)`
-    },
-    mainOptions() {
-      const result = this.options.filter((option) => {
-        return this.priorityNetworks.includes(option.name.toLowerCase())
+    })
+
+    const networksLeft = computed(() => {
+      return `(${filteredOptions.value.length}+)`
+    })
+
+    const mainOptions = computed(() => {
+      const result = props.options.filter((option) => {
+        return priorityNetworks.value.includes(option.name.toLowerCase())
       })
       const filteredNames = result.map((option) => option.name.toLowerCase())
-      if (filteredNames.includes(this.selectedOption.name.toLowerCase())) {
+      if (filteredNames.includes(selectedOption.value.name.toLowerCase())) {
         return result
       } else {
-        return [...result, this.selectedOption]
+        return [...result, selectedOption.value]
       }
-    },
-  },
-  methods: {
-    toggleShowAll() {
-      this.showAll = !this.showAll
-    },
-  },
-}
+    })
+
+    function toggleShowAll() {
+      showAll.value = !showAll.value
+    }
 </script>
 
 <style lang="scss" scoped>

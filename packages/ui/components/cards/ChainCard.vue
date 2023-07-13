@@ -1,6 +1,6 @@
 <template>
   <BaseCard>
-    <nuxt-link :to="localeRoute(detailsPath)">
+    <nuxt-link :to="detailsPath">
       <div class="card-container">
         <div class="title">
           <SvgIcon class="img" :svg="svg" />
@@ -14,7 +14,6 @@
 
 <script>
 export default {
-  name: 'ChainCard',
   props: {
     detailsPath: {
       type: Object,

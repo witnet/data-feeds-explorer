@@ -1,15 +1,34 @@
 <template>
   <div :class="{ 'hide-scroll': hideScroll, preload, background: true }">
     <MainSection>
-      <NavBar slot="navbar" @scroll="handleScroll" />
-      <div slot="cover" class="cover" :class="{ show: hideScroll }"></div>
-      <BreadCrumbs slot="breadcrumbs" />
-      <div slot="content">
-        <transition name="fade">
-          <nuxt />
-        </transition>
-      </div>
-      <Footer slot="footer" />
+
+      <template v-slot:navbar>
+        <NavBar @scroll="handleScroll" />
+      </template>
+
+      <template v-slot:cover>
+        <div class="cover" :class="{ show: hideScroll }"></div>
+      </template>
+
+
+      <template v-slot:breadcrumbs>
+        <Breadcrumbs />
+      </template>
+
+
+      <template v-slot:content>
+        <div>
+          <!-- <transition name="fade"> -->
+            <slot />
+          <!-- </transition> -->
+        </div>
+      </template>
+
+
+      <template v-slot:footer>
+        <Footer />
+      </template>
+
     </MainSection>
   </div>
 </template>
@@ -22,12 +41,13 @@ export default {
       preload: true,
     }
   },
-  i18n: {
-    seo: true,
-  },
-  head() {
-    return this.$nuxtI18nHead({ addSeoAttributes: true })
-  },
+  // TODO: not available yet
+  // i18n: {
+  //  seo: true,
+  // },
+  // head() {
+  //   return this.$nuxtI18nHead({ addSeoAttributes: true })
+  // },
   created() {
     this.preload = false
   },

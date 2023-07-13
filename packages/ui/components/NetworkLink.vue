@@ -5,38 +5,28 @@
       name.toLowerCase()
     "
     class="nav-link"
-    :to="
-      localeRoute({
-        name: 'network',
-        params: {
-          network: name.toLowerCase(),
-        },
-      })
-    "
+    :to="{ name: 'network', params: { network: name.toLowerCase(), } }"
   >
     <SvgIcon :svg="svg" />
-    {{ name }}
   </nuxt-link>
 </template>
 
-<script>
-export default {
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    svg: {
-      type: String,
-      required: true,
-    },
+<script setup>
+const store = useNetwork()
+
+const selected = computed(() => {
+  return store.selectedNetwork
+})
+const props = defineProps({
+  name: {
+    type: String,
+    required: true,
   },
-  computed: {
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
+  svg: {
+    type: String,
+    required: true,
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

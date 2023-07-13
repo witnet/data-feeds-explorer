@@ -6,27 +6,32 @@
         :key="option.label"
         :aria-label="option.label"
         :class="{ selected: option.selected }"
-        :to="localeRoute(option.path)"
+        :to="option.path"
         class="breadcrumbs-link"
       >
-        <transition name="slide-in">
+        <!-- <transition name="slide-in"> -->
           <h3 v-if="option.label" class="breadcrumbs">
             <span class="breadcrumbs-label">{{ option.label }}</span> /
           </h3>
-        </transition>
+        <!-- </transition> -->
       </nuxt-link>
     </div>
     <Socials />
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
-    breadCumbsOptions() {
+<script setup>
+// TODO: add localeRoute on to
+const store = useNetwork()
+const route = useRoute()
+const router = useRouter()
+
+
+    const selected = computed(() => {
+      return store.selectedNetwork
+    })
+
+    const breadCumbsOptions = computed(() => {
       return [
         {
           label: 'Home',
@@ -36,38 +41,37 @@ export default {
           selected: false,
         },
         {
-          label: this.selected ? this.selected[0]?.chain : null,
+          label: selected.value ? selected.value[0]?.chain : null,
           path: {
             name: 'network',
             params: {
-              network: this.$route.params.network || 'ethereum',
+              network: route.params.network || 'ethereum',
             },
           },
           selected: false,
         },
         {
           label:
-            this.$route.params.id && this.selected
-              ? this.selected[0]?.label
+            route.params.id && selected.value
+              ? selected.value[0]?.label
               : null,
           path: {
             name: 'network-id',
             params: {
-              network: this.$route.params.network,
-              id: this.$route.params.id,
+              network: route.params.network,
+              id: route.params.id,
             },
           },
           selected: false,
         },
       ]
-    },
-  },
-  mounted() {
-    if (!this.selected) {
-      this.$router.push('/')
+    })
+
+  onMounted(() => {
+    if (!selected.value) {
+      router.push('/')
     }
-  },
-}
+  })
 </script>
 
 <style lang="scss">

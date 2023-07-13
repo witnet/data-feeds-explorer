@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { createChart } from 'lightweight-charts';
 import { formatNumber } from '@/utils/formatNumber'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
@@ -100,8 +101,7 @@ export default {
       return this.range || this.ranges.w.key
     },
     chart() {
-      const { LightWeightCharts } = this.$lwcCore()
-      return LightWeightCharts.createChart(this.$refs.container, {
+      return createChart(this.$refs.container, {
         height: 400,
         rightPriceScale: {
           scaleMargins: {

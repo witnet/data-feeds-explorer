@@ -7,7 +7,7 @@
     <SupportedChains :chains="supportedChains" />
     <DataFeedsCount
       :chains="supportedChains.length"
-      :networks="networks.length"
+      :networks="networksLength"
       :feeds="chainsFeeds.total"
     />
     <h2 class="title">{{ $t('landing.upcoming_chains.title') }}</h2>
@@ -17,36 +17,59 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import networks from '@/apollo/queries/networks.gql'
-import homePageData from '@/apollo/queries/homePageData.gql'
+const networksQuery = gql`
+  query networks {
+    networks {
+      label,
+      key,
+      chain,
+      logo
+    }
+  }`
+    
+const networksFetch = await useAsyncQuery(networksQuery)
 
-export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-    feeds: {
-      prefetch: true,
-      query: homePageData,
-    },
-  },
-  computed: {
-    chainsFeeds() {
-      return this.feeds ? this.feeds : []
-    },
-    supportedChains() {
-      if (this.networks) {
-        return Object.values(generateSelectOptions(this.networks))
+const variables = { network: 'all'}
+
+      const feedsQuery = gql`
+        query homePageData {
+          feeds (network: "all") {
+            feeds {
+              chain
+            }
+            total
+          }
+        }`
+const feedsFetch = await useAsyncQuery(feedsQuery, variables)
+
+
+const chainsFeeds = computed(() => {
+  return feeds || []
+})
+
+const networks = computed(() => {
+  return networksFetch?.data?.value?.networks
+})
+const networksLength = computed(() => {
+  return networks.value ? networks.length : 0
+})
+
+const feeds = computed(() => {
+  return feedsFetch?.data?.value?.feeds?.feeds
+})
+
+const supportedChains = computed(() => {
+      if (networks.value) {
+        return Object.values(generateSelectOptions(networks.value))
           .filter((network) => network && network[0])
           .map((network) => {
             const chain = network[0].chain
             return {
               name: chain,
               count:
-                this.feeds?.feeds.filter((feed) => feed.chain === chain)
+                feeds.value?.filter((feed) => feed.chain === chain)
                   .length || 0,
               detailsPath: {
                 name: 'network',
@@ -61,14 +84,8 @@ export default {
       } else {
         return []
       }
-    },
-  },
-  mounted() {
-    this.$store.commit('updateSelectedNetwork', {
-      network: [],
     })
-  },
-}
+
 </script>
 
 <style lang="scss" scoped>

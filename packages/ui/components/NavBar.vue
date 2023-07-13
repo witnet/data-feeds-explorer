@@ -2,7 +2,8 @@
   <div :class="{ drop: isMenuVisible }">
     <nav class="navbar" :class="{ open: isMenuVisible }">
       <div class="menu-container">
-        <nuxt-link :to="localePath('/')" aria-label="home">
+        <!-- <nuxt-link :to="localePath('/')" aria-label="home"> -->
+        <nuxt-link :to="'/'" aria-label="home">
           <SvgIcon name="witnet-logo" class="logo" />
         </nuxt-link>
         <button aria-label="menu" class="responsive-menu" @click="toggleMenu">
@@ -14,7 +15,7 @@
           </div>
         </button>
       </div>
-      <transition name="dropdown" class="dropdown">
+      <!-- <transition name="dropdown" class="dropdown"> -->
         <div class="tab-container" :class="{ visible: isMenuVisible }">
           <div
             v-if="networks && isMenuVisible"
@@ -34,88 +35,96 @@
             </a>
           </div>
         </div>
-      </transition>
+      <!-- </transition> -->
     </nav>
   </div>
 </template>
 
-<script>
+<script setup>
+const emit = defineEmits(['scroll'])
+const store = useNetwork()
+
 import { urls } from '../constants'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import networks from '@/apollo/queries/networks.gql'
 
-export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-  },
-  data() {
-    return {
-      hover: false,
-      displayBox: false,
-      isMenuVisible: false,
-      urls,
+
+      const networksQuery = gql`
+        query networks {
+          networks {
+            label,
+            key,
+            chain,
+            logo
+          }
+        }`
+    
+const networks = await useAsyncQuery(networksQuery)
+
+const hover = ref(false)
+const displayBox = ref(false)
+const isMenuVisible = ref(false)
+
+    function resizeHandler(event) {
+      if (event.target.outerWidth > 850) {
+        closeMenu()
+      }
     }
-  },
-  computed: {
-    navBarOptions() {
-      return generateNavOptions(Object.values(this.options))
-    },
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
-    options() {
-      if (this.networks) {
-        return generateSelectOptions(this.networks)
+
+   function closeMenu() {
+      isMenuVisible.value = false
+      emit('scroll', isMenuVisible)
+    }
+    
+    function toggleMenu() {
+      isMenuVisible.value = !isMenuVisible.value
+      emit('scroll', isMenuVisible)
+    }
+    function displayDropDown() {
+      displayBox.value = !displayBox.value
+    }
+
+    function onClose() {
+      active.value = false
+    }
+
+
+    const navBarOptions = computed(() => {
+      return generateNavOptions(Object.values(options.value))
+    }) 
+
+    const selected = computed(() => {
+      return store.selectedNetwork
+    })
+
+   const options = computed(() => {
+      if (networks.data.value.networks) {
+        return generateSelectOptions(networks.data.value.networks)
       } else {
         return null
       }
-    },
-    selectedOption() {
-      return this.selected[0]?.chain || 'Ethereum'
-    },
-  },
-  watch: {
-    selected: {
-      handler(selected) {
-        this.$emit('update-selected', selected)
-      },
-      deep: true,
-    },
-  },
-  mounted() {
-    window.addEventListener('resize', this.resizeHandler)
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resizeHandler)
-  },
-  methods: {
-    capitalizeFirstLetter,
-    resizeHandler(event) {
-      if (event.target.outerWidth > 850) {
-        this.closeMenu()
-      }
-    },
-    closeMenu() {
-      this.isMenuVisible = false
-      this.$emit('scroll', this.isMenuVisible)
-    },
-    toggleMenu() {
-      this.isMenuVisible = !this.isMenuVisible
-      this.$emit('scroll', this.isMenuVisible)
-    },
-    displayDropDown() {
-      this.displayBox = !this.displayBox
-    },
-    onClose() {
-      this.active = false
-    },
-  },
-}
+    })
+
+    const selectedOption = computed(() => {
+      return selected[0]?.chain || 'Ethereum'
+    })
+
+
+  watch(
+    () => selected,
+    (newValue, oldvalue) => emit('update-selected', newValue),
+    { deep: true }
+  )
+
+  onMounted(() => {
+    window.addEventListener('resize', resizeHandler)
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', resizeHandler)
+  })
+
 </script>
 
 <style lang="scss">

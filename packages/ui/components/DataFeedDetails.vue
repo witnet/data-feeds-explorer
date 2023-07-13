@@ -57,7 +57,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import feed from '@/apollo/queries/feed.gql'
 import requests from '@/apollo/queries/requests.gql'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
@@ -67,182 +67,208 @@ import { formatNumber } from '@/utils/formatNumber'
 import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 
-export default {
-  apollo: {
-    feed: {
-      prefetch: true,
-      query: feed,
-      variables() {
-        return {
-          timestamp: this.timestamp,
-          feedFullName: this.feedFullName,
-        }
-      },
-      pollInterval: 60000,
-    },
-    requests: {
-      prefetch: true,
-      query: requests,
-      variables() {
-        return {
-          feedFullName: this.feedFullName,
-          page: this.currentPage,
-          size: this.itemsPerPage,
-        }
-      },
-      pollInterval: 60000,
-    },
-  },
-  data() {
+
+const feedQuery = gql`
+  query feed($feedFullName: String!, $timestamp: Int!) {
+    feed(feedFullName: $feedFullName) {
+      feedFullName 
+      isRouted
+      name
+      address
+      contractId
+      lastResult
+      lastResultTimestamp
+      network
+      networkName
+      chain
+      label
+      deviation
+      proxyAddress
+      heartbeat
+      finality
+      requests(timestamp: $timestamp) {
+        feedFullName 
+        result
+        drTxHash
+        requestId
+        timestamp
+      }
+      blockExplorer
+      color
+      logo
+    }
+  }`
+    
+const variables = { timestamp: this.timestamp, feedFullName: this.feedFullName }
+// pollInterval: 60000,
+const feed = await useAsyncQuery(feedQuery, variables)
+
+const requests = gql`
+query requests($feedFullName: String!, $page: Int!, $size: Int!) {
+  requests(feedFullName: $feedFullName, page: $page, size: $size) {
+    feedFullName
+    result
+    drTxHash,
+    requestId
+    timestamp
+  }
+}`
+
+const store = useNetwork()
+const route = useRoute()
+
+// pollInterval: 60000,
+const requestsVariables = {
+  feedFullName: this.feedFullName,
+  page: this.currentPage,
+  size: this.itemsPerPage,
+}
+
+const ranges = ref(CHART_RANGE)
+const currentPage = ref(1)
+const itemsPerPage = ref(25)
+const range = ref(24)
+const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
+const feedFullName = ref(route.params.id)
+
+const small = computed(() => {
+  return numberOfPages.value > 10
+})
+const normalizedFeed = computed(() => {
+  if (this.feed) {
+    this.$emit('feed-name', this.feed.name.toUpperCase())
+    this.$emit('network', this.feed.networkName)
     return {
-      ranges: CHART_RANGE,
-      currentPage: 1,
-      itemsPerPage: 25,
-      range: 24,
-      timestamp: getTimestampByRange(CHART_RANGE.w.value),
-      feedFullName: this.$route.params.id,
+      name: this.feed.name.toUpperCase(),
+      isRouted: this.feed.isRouted,
+      address: this.feed.address,
+      proxyAddress: this.feed.proxyAddress,
+      contractId: this.feed.contractId,
+      finality: Number(this.feed.finality),
+      deviation: this.feed.deviation,
+      heartbeat: Number(this.feed.heartbeat),
+      decimals: this.feed.feedFullName.split('_').pop() || 3,
+      chain: this.feed.chain,
+      lastResultValue: this.feed.lastResult,
+      lastResultTimestamp: this.feed.lastResultTimestamp || '',
+      networkName: this.feed.networkName,
+      label: this.feed.label,
+      network: this.feed.network,
+      urlUnderlyingContract: this.feed.blockExplorer.replace(
+        `{address}`,
+        this.feed.address
+      ),
+      urlProxyContract: this.feed.blockExplorer.replace(
+        `{address}`,
+        this.feed.proxyAddress
+      ),
+      logo: this.feed.logo,
+    }
+  } else {
+    return null
+  }
+})
+const lastResultDate = computed(() => {
+  if (normalizedFeed.value) {
+    this.$emit(
+      'feed-date',
+      formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+    )
+    return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+  } else {
+    return ''
+  }
+})
+const feedTimeToUpdate = computed(() => {
+  return normalizedFeed.value.heartbeat
+    ? formatMilliseconds(
+        normalizedFeed.value.heartbeat + normalizedFeed.value.finality,
+        ` ${this.$t('and')} `,
+        this.$i18n.locale
+      )
+    : null
+})
+const lastResultValue = computed(() => {
+  if (normalizedFeed.value) {
+    const dataFeedLastValue = `${normalizedFeed.value.label}${formatNumber(
+      parseFloat(normalizedFeed.value.lastResultValue) /
+        10 ** normalizedFeed.value.decimals
+    )} `
+    this.$emit('feed-value', dataFeedLastValue)
+    return dataFeedLastValue
+  } else {
+    return null
+  }
+})
+const maxTimeToResolve = computed(() => {
+  if (normalizedFeed.value.heartbeat) {
+    return normalizedFeed.value.heartbeat + normalizedFeed.value.finality
+  } else {
+    return null
+  }
+})
+const numberOfPages = computed(() => {
+  return this.feed
+    ? Math.ceil(this.feed.requests.length / itemsPerPage.value)
+    : 0
+})
+const chartData = computed(() => {
+  if (this.feed && this.feed.requests.length > 0) {
+    return this.feed.requests
+      .map((request) => {
+        return {
+          time: Number(request.timestamp),
+          value:
+            parseFloat(request.result) / 10 ** normalizedFeed.value.decimals,
+        }
+      })
+      .sort((t1, t2) => t1.time - t2.time)
+  } else {
+    return [{ time: 0, value: 0 }]
+  }
+})
+const transactions = computed(() => {
+  if (this.feed && this.requests && this.requests.length > 0) {
+    return this.requests.map((request) => ({
+      witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
+      drTxHash: request.drTxHash,
+      data: {
+        label: this.feed.label,
+        value: request.result,
+        decimals: normalizedFeed.value.decimals,
+      },
+      timestamp: request.timestamp,
+    }))
+  } else {
+    return null
+  }
+})
+
+watch(
+  () => normalizedFeed,
+  () => {
+    if (value) {
+      store.updateSelectedNetwork({
+        network: [
+          {
+            chain: value.chain,
+            key: value.network,
+            label: value.networkName,
+          },
+        ],
+
+        })
     }
   },
-  computed: {
-    small() {
-      return this.numberOfPages > 10
-    },
-    normalizedFeed() {
-      if (this.feed) {
-        this.$emit('feed-name', this.feed.name.toUpperCase())
-        this.$emit('network', this.feed.networkName)
-        return {
-          name: this.feed.name.toUpperCase(),
-          isRouted: this.feed.isRouted,
-          address: this.feed.address,
-          proxyAddress: this.feed.proxyAddress,
-          contractId: this.feed.contractId,
-          finality: Number(this.feed.finality),
-          deviation: this.feed.deviation,
-          heartbeat: Number(this.feed.heartbeat),
-          decimals: this.feed.feedFullName.split('_').pop() || 3,
-          chain: this.feed.chain,
-          lastResultValue: this.feed.lastResult,
-          lastResultTimestamp: this.feed.lastResultTimestamp || '',
-          networkName: this.feed.networkName,
-          label: this.feed.label,
-          network: this.feed.network,
-          urlUnderlyingContract: this.feed.blockExplorer.replace(
-            `{address}`,
-            this.feed.address
-          ),
-          urlProxyContract: this.feed.blockExplorer.replace(
-            `{address}`,
-            this.feed.proxyAddress
-          ),
-          logo: this.feed.logo,
-        }
-      } else {
-        return null
-      }
-    },
-    lastResultDate() {
-      if (this.normalizedFeed) {
-        this.$emit(
-          'feed-date',
-          formatTimestamp(this.normalizedFeed.lastResultTimestamp)
-        )
-        return formatTimestamp(this.normalizedFeed.lastResultTimestamp)
-      } else {
-        return ''
-      }
-    },
-    feedTimeToUpdate() {
-      return this.normalizedFeed.heartbeat
-        ? formatMilliseconds(
-            this.normalizedFeed.heartbeat + this.normalizedFeed.finality,
-            ` ${this.$t('and')} `,
-            this.$i18n.locale
-          )
-        : null
-    },
-    lastResultValue() {
-      if (this.normalizedFeed) {
-        const dataFeedLastValue = `${this.normalizedFeed.label}${formatNumber(
-          parseFloat(this.normalizedFeed.lastResultValue) /
-            10 ** this.normalizedFeed.decimals
-        )} `
-        this.$emit('feed-value', dataFeedLastValue)
-        return dataFeedLastValue
-      } else {
-        return null
-      }
-    },
-    maxTimeToResolve() {
-      if (this.normalizedFeed.heartbeat) {
-        return this.normalizedFeed.heartbeat + this.normalizedFeed.finality
-      } else {
-        return null
-      }
-    },
-    numberOfPages() {
-      return this.feed
-        ? Math.ceil(this.feed.requests.length / this.itemsPerPage)
-        : 0
-    },
-    chartData() {
-      if (this.feed && this.feed.requests.length > 0) {
-        return this.feed.requests
-          .map((request) => {
-            return {
-              time: Number(request.timestamp),
-              value:
-                parseFloat(request.result) / 10 ** this.normalizedFeed.decimals,
-            }
-          })
-          .sort((t1, t2) => t1.time - t2.time)
-      } else {
-        return [{ time: 0, value: 0 }]
-      }
-    },
-    transactions() {
-      if (this.feed && this.requests && this.requests.length > 0) {
-        return this.requests.map((request) => ({
-          witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
-          drTxHash: request.drTxHash,
-          data: {
-            label: this.feed.label,
-            value: request.result,
-            decimals: this.normalizedFeed.decimals,
-          },
-          timestamp: request.timestamp,
-        }))
-      } else {
-        return null
-      }
-    },
-  },
-  watch: {
-    normalizedFeed: {
-      deep: true,
-      handler(value) {
-        if (value) {
-          this.$store.commit('updateSelectedNetwork', {
-            network: [
-              {
-                chain: value.chain,
-                key: value.network,
-                label: value.networkName,
-              },
-            ],
-          })
-        }
-      },
-    },
-  },
-  methods: {
-    handleCurrentChange(val) {
-      this.currentPage = val
-    },
-    updateQuery(val) {
-      this.timestamp = getTimestampByRange(this.ranges[val].value)
-    },
-  },
+  { deep: true }
+)
+
+function handleCurrentChange(val) {
+  this.currentPage = val
+}
+
+function updateQuery(val) {
+  this.timestamp = getTimestampByRange(ranges.value[val].value)
 }
 </script>
 
