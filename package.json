@@ -20,27 +20,26 @@
     "docker:build": "lerna run docker:build"
   },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@commitlint/config-lerna-scopes": "^11.0.0",
-    "commitlint": "^11.0.0",
-    "husky": "^4.3.0",
-    "lerna": "^3.22.1",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@commitlint/config-lerna-scopes": "^17.6.6",
+    "commitlint": "^17.6.6",
+    "husky": "^8.0.3",
     "prettier-standard": "^16.4.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.18.0",
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-vue": "^7.5.0",
-    "prettier": "^2.2.1",
-    "migrate-mongo": "^9.0.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-nuxt": "^3.2.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.15.1",
+    "prettier": "^2.8.8",
+    "migrate-mongo": "^10.0.0",
     "stylelint": "^13.9.0",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^33.0.0"
   },
   "volta": {
-    "node": "16.20.0",
+    "node": "18.16.1",
     "yarn": "1.22.19"
   },
   "husky": {
