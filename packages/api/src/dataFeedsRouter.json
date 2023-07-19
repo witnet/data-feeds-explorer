@@ -1043,6 +1043,12 @@
           "name": "Kava EVM Mainnet",
           "pollingPeriod": 10000,
           "feeds": {
+            "Price-ATOM/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
@@ -1092,6 +1098,12 @@
           "name": "Kava EVM Testnet",
           "pollingPeriod": 10000,
           "feeds": {
+            "Price-ATOM/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
