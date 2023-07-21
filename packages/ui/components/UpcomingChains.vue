@@ -21,14 +21,19 @@ export default {
           img: 'upcoming_fantom',
         },
         {
-          name: 'StarkNet',
-          path: 'https://starkware.co/starknet/',
-          img: 'upcoming_starknet',
-        },
-        {
           name: 'Obscuro',
           path: 'https://obscu.ro/',
           img: 'upcoming_obscuro',
+        },
+        {
+          name: 'Mantle',
+          path: 'https://www.mantle.xyz/',
+          img: 'mantle',
+        },
+        {
+          name: 'Router',
+          path: 'https://www.routerprotocol.com/',
+          img: 'router',
         },
       ],
     }
