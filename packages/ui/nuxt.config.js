@@ -224,5 +224,8 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['./stores'],
   },
+  css: [
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ]
 })
 
