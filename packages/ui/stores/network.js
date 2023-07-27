@@ -5,11 +5,12 @@ export const useNetwork = defineStore('network', {
     selectedNetwork: [],
   }),
   actions: {
-    updateSelectedNetwork(state, network) {
-      state.selectedNetwork = network
+    updateSelectedNetwork(network) {
+      debugger
+      this.selectedNetwork = network
     },
-    deleteEmptyNetwork(state, { index }) {
-      state.selectedNetwork.splice(index, 1)
+    deleteEmptyNetwork({ index }) {
+      this.selectedNetwork.splice(index, 1)
     },
   },
 })

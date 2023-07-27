@@ -5,7 +5,7 @@
       class="network-options"
       :options="navBarOptions"
     />
-     111 {{ selected }}
+     {{ selected }}
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <h2 class="title bold">
@@ -41,6 +41,7 @@
 <script setup>
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
+// import { watch } from 'vue'
 
 const store = useNetwork()
 
@@ -64,61 +65,62 @@ const networks = computed(() => {
 
 const route = useRoute()
 const currentPage = ref(1)
-const currentNetwork = computed(() =>
-  route.params.network.toUpperCase()
-)
-  const selected = computed(() => {
-    return store.selectedNetwork
+const currentNetwork = ref(route.params.network.toUpperCase())
+
+const selected = computed(() => {
+  return store.selectedNetwork
+})
+const options = computed(() => {  
+  if (networks.value) {
+    const options = generateSelectOptions(unref(networks))
+    return options
+  } else {
+    return null
+  }
+})
+
+const navBarOptions = computed(() => {
+  return generateNavOptions(Object.values(options.value))
+})
+
+const selectedNetworks = computed(() => {
+  const result = selected.value.map((option) => {
+    return option.label
   })
-  const options = computed(() => {
-    if (networks.value) {
-      const options = generateSelectOptions(networks.value)
-      setCurrentNetwork(options)
-      return options
-    } else {
-      return null
-    }
-  })
+  const last = result.pop()
+  return {
+    first: result.join(', '),
+    last,
+  }
+})
 
-  const navBarOptions = computed(() => {
-    return generateNavOptions(Object.values(options.value))
-  })
+const network = computed(() => {
+  const network = route.params.network || 'ethereum'
+  emit('set-network', network.toUpperCase())
+  return network
+})
 
-  const selectedNetworks = computed(() => {
-    const result = selected.value.map((option) => {
-      return option.label
-    })
-    const last = result.pop()
-    return {
-      first: result.join(', '),
-      last,
-    }
-  })
+watch(options, (newOptions) => {
+  if (newOptions) {
+    setCurrentNetwork(newOptions)
+  }
+  console.log("network.value", JSON.stringify(network.value))
+  console.log("options.value", JSON.stringify(newOptions))
+  const networks = newOptions?.[network.value]
+  store.updateSelectedNetwork(networks)
+})
 
-  const network = computed(() => {
-    const network = route.params.network || 'ethereum'
-    emit('set-network', network.toUpperCase())
-    return network
-  })
+function updateOptions(index) {
+  store.deleteEmptyNetwork({ index })
+}
 
-  onMounted(() => {
-    const networks = options.value?.[network.value]
-    store.updateSelectedNetwork({
-      network: networks
-    })
-  })
+function handleCurrentChange(val) {
+  currentPage.value = val
+}
 
-    function updateOptions(index) {
-      store.deleteEmptyNetwork({ index })
-    }
-
-    function handleCurrentChange(val) {
-      currentPage.value = val
-    }
-
-    function setCurrentNetwork(options) {
-      currentNetwork.value = options[route.params.network][0].chain
-    }
+function setCurrentNetwork(options) {
+  currentNetwork.value = options[route.params.network][0].chain
+}
 </script>
 
 <style lang="scss" scoped>

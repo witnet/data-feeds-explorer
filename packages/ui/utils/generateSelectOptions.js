@@ -1,3 +1,4 @@
+
 export function generateSelectOptions(list) {
   if (!list) return {}
   return list.reduce((chainByNetwork, network) => {

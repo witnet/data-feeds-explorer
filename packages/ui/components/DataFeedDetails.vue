@@ -248,16 +248,15 @@ watch(
   () => normalizedFeed,
   () => {
     if (value) {
-      store.updateSelectedNetwork({
-        network: [
+      store.updateSelectedNetwork(
+        [
           {
             chain: value.chain,
             key: value.network,
             label: value.networkName,
           },
         ],
-
-        })
+        )
     }
   },
   { deep: true }
