@@ -6,7 +6,6 @@ export const useNetwork = defineStore('network', {
   }),
   actions: {
     updateSelectedNetwork(network) {
-      debugger
       this.selectedNetwork = network
     },
     deleteEmptyNetwork({ index }) {

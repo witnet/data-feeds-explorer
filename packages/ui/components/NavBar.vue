@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['scroll'])
+const emit = defineEmits(['scroll', 'update-selected'])
 const store = useNetwork()
 
 import { urls } from '../constants'
@@ -111,11 +111,12 @@ const isMenuVisible = ref(false)
     })
 
 
-  watch(
-    () => selected,
-    (newValue, oldvalue) => emit('update-selected', newValue),
-    { deep: true }
-  )
+  // TODO
+  // watch(
+  //   () => selected,
+  //   (newValue, oldvalue) => emit('update-selected', newValue),
+  //   { deep: true }
+  // )
 
   onMounted(() => {
     window.addEventListener('resize', resizeHandler)

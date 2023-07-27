@@ -5,7 +5,6 @@
       class="network-options"
       :options="navBarOptions"
     />
-     {{ selected }}
     <div v-if="selected && selected.length" class="feeds-container">
       <div class="title-container">
         <h2 class="title bold">

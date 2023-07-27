@@ -1,4 +1,5 @@
 <template>
+  <div> {{ lastResultValue }}</div>
   <div v-if="normalizedFeed" class="content">
     <LazyChart
       v-if="feed"
@@ -67,7 +68,39 @@ import { formatNumber } from '@/utils/formatNumber'
 import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 
+const vm = getCurrentInstance();
 
+const store = useNetwork()
+const route = useRoute()
+
+const emit = defineEmits(['feed-name', 'network', 'feed-date'])
+
+const ranges = ref(CHART_RANGE)
+const currentPage = ref(1)
+const itemsPerPage = ref(25)
+const range = ref(24)
+const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
+const feedFullName = ref(route.params.id)
+    
+const variables = { timestamp: timestamp.value, feedFullName: feedFullName.value }
+
+const requestsQuery = gql`
+query requests($feedFullName: String!, $page: Int!, $size: Int!) {
+  requests(feedFullName: $feedFullName, page: $page, size: $size) {
+    feedFullName
+    result
+    drTxHash,
+    requestId
+    timestamp
+  }
+}`
+
+// pollInterval: 60000,
+const requestsVariables = {
+  feedFullName: feedFullName.value,
+  page: currentPage.value,
+  size: itemsPerPage.value,
+}
 const feedQuery = gql`
   query feed($feedFullName: String!, $timestamp: Int!) {
     feed(feedFullName: $feedFullName) {
@@ -98,95 +131,74 @@ const feedQuery = gql`
       logo
     }
   }`
-    
-const variables = { timestamp: this.timestamp, feedFullName: this.feedFullName }
+
+
 // pollInterval: 60000,
 const feed = await useAsyncQuery(feedQuery, variables)
+// const requests = await useAsyncQuery(requestsQuery, requestsVariables)
 
-const requests = gql`
-query requests($feedFullName: String!, $page: Int!, $size: Int!) {
-  requests(feedFullName: $feedFullName, page: $page, size: $size) {
-    feedFullName
-    result
-    drTxHash,
-    requestId
-    timestamp
-  }
-}`
+// const small = computed(() => {
+//   return numberOfPages.value > 10
+// })
 
-const store = useNetwork()
-const route = useRoute()
-
-// pollInterval: 60000,
-const requestsVariables = {
-  feedFullName: this.feedFullName,
-  page: this.currentPage,
-  size: this.itemsPerPage,
-}
-
-const ranges = ref(CHART_RANGE)
-const currentPage = ref(1)
-const itemsPerPage = ref(25)
-const range = ref(24)
-const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
-const feedFullName = ref(route.params.id)
-
-const small = computed(() => {
-  return numberOfPages.value > 10
-})
 const normalizedFeed = computed(() => {
-  if (this.feed) {
-    this.$emit('feed-name', this.feed.name.toUpperCase())
-    this.$emit('network', this.feed.networkName)
+  if (feed.data.value) {
+    const adaptedFeed = feed.data.value.feed
+    emit('feed-name', adaptedFeed.name.toUpperCase())
+    emit('network', adaptedFeed.networkName)
     return {
-      name: this.feed.name.toUpperCase(),
-      isRouted: this.feed.isRouted,
-      address: this.feed.address,
-      proxyAddress: this.feed.proxyAddress,
-      contractId: this.feed.contractId,
-      finality: Number(this.feed.finality),
-      deviation: this.feed.deviation,
-      heartbeat: Number(this.feed.heartbeat),
-      decimals: this.feed.feedFullName.split('_').pop() || 3,
-      chain: this.feed.chain,
-      lastResultValue: this.feed.lastResult,
-      lastResultTimestamp: this.feed.lastResultTimestamp || '',
-      networkName: this.feed.networkName,
-      label: this.feed.label,
-      network: this.feed.network,
-      urlUnderlyingContract: this.feed.blockExplorer.replace(
+      name: adaptedFeed.name.toUpperCase(),
+      isRouted: adaptedFeed.isRouted,
+      address: adaptedFeed.address,
+      proxyAddress: adaptedFeed.proxyAddress,
+      contractId: adaptedFeed.contractId,
+      finality: Number(adaptedFeed.finality),
+      deviation: adaptedFeed.deviation,
+      heartbeat: Number(adaptedFeed.heartbeat),
+      decimals: adaptedFeed.feedFullName.split('_').pop() || 3,
+      chain: adaptedFeed.chain,
+      lastResultValue: adaptedFeed.lastResult,
+      lastResultTimestamp: adaptedFeed.lastResultTimestamp || '',
+      networkName: adaptedFeed.networkName,
+      label: adaptedFeed.label,
+      network: adaptedFeed.network,
+      urlUnderlyingContract: adaptedFeed.blockExplorer.replace(
         `{address}`,
-        this.feed.address
+        adaptedFeed.address
       ),
-      urlProxyContract: this.feed.blockExplorer.replace(
+      urlProxyContract: adaptedFeed.blockExplorer.replace(
         `{address}`,
-        this.feed.proxyAddress
+        adaptedFeed.proxyAddress
       ),
-      logo: this.feed.logo,
+      logo: adaptedFeed.logo,
     }
   } else {
     return null
   }
 })
-const lastResultDate = computed(() => {
-  if (normalizedFeed.value) {
-    this.$emit(
-      'feed-date',
-      formatTimestamp(normalizedFeed.value.lastResultTimestamp)
-    )
-    return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
-  } else {
-    return ''
-  }
-})
+
+// const lastResultDate = computed(() => {
+//   console.log('normalizedfeed.value', normalizedFeed.value)
+//   if (normalizedFeed.value) {
+//     emit(
+//       'feed-date',
+//       formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+//     )
+//     return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+//   } else {
+//     return ''
+//   }
+// })
 const feedTimeToUpdate = computed(() => {
-  return normalizedFeed.value.heartbeat
-    ? formatMilliseconds(
-        normalizedFeed.value.heartbeat + normalizedFeed.value.finality,
-        ` ${this.$t('and')} `,
-        this.$i18n.locale
-      )
-    : null
+  // todo: make i18n work here
+  // return normalizedFeed.value && normalizedFeed.value.heartbeat
+  //   ? formatMilliseconds(
+  //       normalizedFeed.value.heartbeat + normalizedFeed.value.finality,
+  //       ` ${$t('and')} `,
+  //       $i18n.locale
+  //     )
+  //   : null
+  return null
 })
 const lastResultValue = computed(() => {
   if (normalizedFeed.value) {
@@ -194,59 +206,59 @@ const lastResultValue = computed(() => {
       parseFloat(normalizedFeed.value.lastResultValue) /
         10 ** normalizedFeed.value.decimals
     )} `
-    this.$emit('feed-value', dataFeedLastValue)
+    emit('feed-value', dataFeedLastValue)
     return dataFeedLastValue
   } else {
     return null
   }
 })
 const maxTimeToResolve = computed(() => {
-  if (normalizedFeed.value.heartbeat) {
+  if (normalizedFeed.value && normalizedFeed.value.heartbeat) {
     return normalizedFeed.value.heartbeat + normalizedFeed.value.finality
   } else {
     return null
   }
 })
 const numberOfPages = computed(() => {
-  return this.feed
-    ? Math.ceil(this.feed.requests.length / itemsPerPage.value)
+  return feed.data.value
+    ? Math.ceil(feed.data.value.feed.requests.length / itemsPerPage.value)
     : 0
 })
-const chartData = computed(() => {
-  if (this.feed && this.feed.requests.length > 0) {
-    return this.feed.requests
-      .map((request) => {
-        return {
-          time: Number(request.timestamp),
-          value:
-            parseFloat(request.result) / 10 ** normalizedFeed.value.decimals,
-        }
-      })
-      .sort((t1, t2) => t1.time - t2.time)
-  } else {
-    return [{ time: 0, value: 0 }]
-  }
-})
-const transactions = computed(() => {
-  if (this.feed && this.requests && this.requests.length > 0) {
-    return this.requests.map((request) => ({
-      witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
-      drTxHash: request.drTxHash,
-      data: {
-        label: this.feed.label,
-        value: request.result,
-        decimals: normalizedFeed.value.decimals,
-      },
-      timestamp: request.timestamp,
-    }))
-  } else {
-    return null
-  }
-})
+// const chartData = computed(() => {
+//   if (feed.data.value.feed && feed.data.value.feed.requests.length > 0) {
+//     return feed.data.value.feed.requests
+//       .map((request) => {
+//         return {
+//           time: Number(request.timestamp),
+//           value:
+//             parseFloat(request.result) / 10 ** normalizedFeed.value.decimals,
+//         }
+//       })
+//       .sort((t1, t2) => t1.time - t2.time)
+//   } else {
+//     return [{ time: 0, value: 0 }]
+//   }
+// })
+// const transactions = computed(() => {
+//   if (feed.data.value && this.requests && this.requests.length > 0) {
+//     return this.requests.map((request) => ({
+//       witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
+//       drTxHash: request.drTxHash,
+//       data: {
+//         label: feed.data.value.feed.label,
+//         value: request.result,
+//         decimals: normalizedFeed.value.decimals,
+//       },
+//       timestamp: request.timestamp,
+//     }))
+//   } else {
+//     return null
+//   }
+// })
 
 watch(
   () => normalizedFeed,
-  () => {
+  (value) => {
     if (value) {
       store.updateSelectedNetwork(
         [
@@ -263,11 +275,11 @@ watch(
 )
 
 function handleCurrentChange(val) {
-  this.currentPage = val
+  currentPage.value = val
 }
 
 function updateQuery(val) {
-  this.timestamp = getTimestampByRange(ranges.value[val].value)
+  timestamp.value = getTimestampByRange(ranges.value[val].value)
 }
 </script>
 
