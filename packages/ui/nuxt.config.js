@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/apollo',
     '@pinia/nuxt',
+    '@nuxtjs/color-mode',
   ],
   // server: {
   //   port: 8080,

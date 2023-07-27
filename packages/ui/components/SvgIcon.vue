@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-  const props = defineProps({ name: String })
+  const props = defineProps({ name: String, svg: String })
   // TODO: avoid load all icons 
   const icons = Object.fromEntries(
     Object.entries(import.meta.glob('~/assets/svg/*.svg', { as: 'raw' }))
@@ -19,7 +19,14 @@
     ),
   )
 
-const svg = icons[props.name] ? await icons[props.name]() : '<svg></svg>'
+let svg
+if (props.svg) {
+  svg = props.svg
+} else if (icons[props.name]) {
+  svg = await icons[props.name]() 
+} else {
+  svg = '<svg></svg>'
+}
 
 </script>
 

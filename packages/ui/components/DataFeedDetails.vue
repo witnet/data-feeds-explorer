@@ -58,8 +58,8 @@
 </template>
 
 <script setup>
-import feed from '@/apollo/queries/feed.gql'
-import requests from '@/apollo/queries/requests.gql'
+// import feed from '@/apollo/queries/feed.gql'
+// import requests from '@/apollo/queries/requests.gql'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
