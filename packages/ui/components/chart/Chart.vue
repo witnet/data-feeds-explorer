@@ -123,8 +123,10 @@ export default {
           },
         },
         layout: {
-          backgroundColor: 'transparent',
           textColor: '#d1d4dc',
+          background: {
+            color: 'transparent'
+          }
         },
         grid: {
           vertLines: {

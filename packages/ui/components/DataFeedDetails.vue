@@ -178,7 +178,6 @@ const normalizedFeed = computed(() => {
 })
 
 const lastResultDate = computed(() => {
-  // console.log('normalizedfeed.value', normalizedFeed.value)
   if (normalizedFeed.value) {
     emit(
       'feed-date',
