@@ -65,7 +65,6 @@ const variables = {
 // pollInterval: 60000,
 
 const feeds = await useAsyncQuery(feedsQuery, variables)
-console.log('feeds.data', feeds.data)
 // const currentPage = ref(1)
 // const itemsPerPage = ref(28)
 

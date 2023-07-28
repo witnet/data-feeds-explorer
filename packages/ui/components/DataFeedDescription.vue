@@ -1,5 +1,5 @@
 <template>
-  <i18n-t :keypath="description.i18nPath" tag="p" class="feed-description">
+  <i18n-t :keypath="description.i18nPath" tag="p" class="feed-description" scope="global">
     <template v-for="field in description.fields" #[field] :key="field.i18nPath">
       <span :key="field.i18nPath" class="bold">{{ fieldToProp[field] }}</span>
     </template>

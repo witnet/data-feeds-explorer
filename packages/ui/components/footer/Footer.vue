@@ -16,7 +16,7 @@
         </div>
         <div class="alliance-text">
           <SvgIcon class="logo white" name="ado_member" />
-          <i18n-t keypath="footer.ado_text" tag="p" class="small-description">
+          <i18n-t keypath="footer.ado_text" tag="p" class="small-description" scope="global">
             <a class="link underline" :href="urls.ado" target="_blank">
               theado.org
             </a>
@@ -25,7 +25,7 @@
       </div>
       <div class="bottom">
         <SvgIcon class="logo white" name="witnet_dark" />
-        <i18n-t keypath="footer.copyright.base" class="copyright" tag="p">
+        <i18n-t keypath="footer.copyright.base" class="copyright" tag="p" scope="global">
           <span>2018-{{ new Date().getFullYear() }}</span>
           <a class="link" href="https://witnet.foundation" target="_blank">{{
             $t('footer.copyright.witnet_foundation')

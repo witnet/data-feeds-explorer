@@ -103,8 +103,6 @@ watch(options, (newOptions) => {
   if (newOptions) {
     setCurrentNetwork(newOptions)
   }
-  console.log("network.value", JSON.stringify(network.value))
-  console.log("options.value", JSON.stringify(newOptions))
   const networks = newOptions?.[network.value]
   store.updateSelectedNetwork(networks)
 })
