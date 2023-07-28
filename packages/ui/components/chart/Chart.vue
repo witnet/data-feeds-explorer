@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { createChart } from 'lightweight-charts';
+import { createChart, PriceScaleMode } from 'lightweight-charts';
 import { formatNumber } from '@/utils/formatNumber'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
@@ -108,7 +108,7 @@ export default {
             top: 0.1,
             bottom: 0.1,
           },
-          mode: LightWeightCharts.PriceScaleMode.Logarithmic,
+          mode: PriceScaleMode.Logarithmic,
           borderVisible: false,
         },
         timeScale: {
@@ -183,10 +183,10 @@ export default {
       this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
       this.date = this.dateToString(this.data[this.data.length - 1].time)
       this.chart.subscribeCrosshairMove((param) => {
-        const price = param.seriesPrices.get(this.lineChart)
+        const price = param.seriesData.get(this.lineChart)
         if (param.time) {
           const dateStr = this.dateToString(param.time)
-          this.value = `${this.dataLabel} ${formatNumber(price)}`
+          this.value = `${this.dataLabel} ${formatNumber(price.value)}`
           this.date = dateStr
         }
         const toolTipMargin = 24

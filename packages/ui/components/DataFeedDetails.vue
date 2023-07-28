@@ -2,13 +2,13 @@
   <div> {{ lastResultValue }}</div>
   <div v-if="normalizedFeed" class="content">
     <LazyChart
-      v-if="feed"
+      v-if="normalizedFeed"
       class="chart"
       :data="chartData"
-      :logo="feed.logo"
+      :logo="normalizedFeed.logo"
       :last-result-timestamp="normalizedFeed.lastResultTimestamp"
       :last-result-value="lastResultValue"
-      :data-label="feed.label"
+      :data-label="normalizedFeed.label"
       :name="normalizedFeed.name"
       :time-to-update="maxTimeToResolve"
       :decimals="normalizedFeed.decimals"
@@ -73,7 +73,7 @@ const vm = getCurrentInstance();
 const store = useNetwork()
 const route = useRoute()
 
-const emit = defineEmits(['feed-name', 'network', 'feed-date'])
+const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
 
 const ranges = ref(CHART_RANGE)
 const currentPage = ref(1)
@@ -135,7 +135,7 @@ const feedQuery = gql`
 
 // pollInterval: 60000,
 const feed = await useAsyncQuery(feedQuery, variables)
-// const requests = await useAsyncQuery(requestsQuery, requestsVariables)
+const requests = await useAsyncQuery(requestsQuery, requestsVariables)
 
 // const small = computed(() => {
 //   return numberOfPages.value > 10
@@ -177,18 +177,18 @@ const normalizedFeed = computed(() => {
   }
 })
 
-// const lastResultDate = computed(() => {
-//   console.log('normalizedfeed.value', normalizedFeed.value)
-//   if (normalizedFeed.value) {
-//     emit(
-//       'feed-date',
-//       formatTimestamp(normalizedFeed.value.lastResultTimestamp)
-//     )
-//     return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
-//   } else {
-//     return ''
-//   }
-// })
+const lastResultDate = computed(() => {
+  // console.log('normalizedfeed.value', normalizedFeed.value)
+  if (normalizedFeed.value) {
+    emit(
+      'feed-date',
+      formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+    )
+    return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+  } else {
+    return ''
+  }
+})
 const feedTimeToUpdate = computed(() => {
   // todo: make i18n work here
   // return normalizedFeed.value && normalizedFeed.value.heartbeat
@@ -224,37 +224,37 @@ const numberOfPages = computed(() => {
     ? Math.ceil(feed.data.value.feed.requests.length / itemsPerPage.value)
     : 0
 })
-// const chartData = computed(() => {
-//   if (feed.data.value.feed && feed.data.value.feed.requests.length > 0) {
-//     return feed.data.value.feed.requests
-//       .map((request) => {
-//         return {
-//           time: Number(request.timestamp),
-//           value:
-//             parseFloat(request.result) / 10 ** normalizedFeed.value.decimals,
-//         }
-//       })
-//       .sort((t1, t2) => t1.time - t2.time)
-//   } else {
-//     return [{ time: 0, value: 0 }]
-//   }
-// })
-// const transactions = computed(() => {
-//   if (feed.data.value && this.requests && this.requests.length > 0) {
-//     return this.requests.map((request) => ({
-//       witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
-//       drTxHash: request.drTxHash,
-//       data: {
-//         label: feed.data.value.feed.label,
-//         value: request.result,
-//         decimals: normalizedFeed.value.decimals,
-//       },
-//       timestamp: request.timestamp,
-//     }))
-//   } else {
-//     return null
-//   }
-// })
+const chartData = computed(() => {
+  if (feed.data.value.feed && feed.data.value.feed.requests.length > 0) {
+    return feed.data.value.feed.requests
+      .map((request) => {
+        return {
+          time: Number(request.timestamp),
+          value:
+            parseFloat(request.result) / 10 ** normalizedFeed.value.decimals,
+        }
+      })
+      .sort((t1, t2) => t1.time - t2.time)
+  } else {
+    return [{ time: 0, value: 0 }]
+  }
+})
+const transactions = computed(() => {
+  if (feed.data.value && requests.data.value && requests.data.value.requests.length > 0) {
+    return requests.data.value.requests.map((request) => ({
+      witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
+      drTxHash: request.drTxHash,
+      data: {
+        label: feed.data.value.feed.label,
+        value: request.result,
+        decimals: normalizedFeed.value.decimals,
+      },
+      timestamp: request.timestamp,
+    }))
+  } else {
+    return null
+  }
+})
 
 watch(
   () => normalizedFeed,
