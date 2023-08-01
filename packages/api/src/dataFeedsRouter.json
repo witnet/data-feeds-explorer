@@ -597,11 +597,15 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
-            "Price-TUSD/USD-6": {
-              "label": "$",
+            "Price-TUSD/USDT-6": {
+              "label": "₮",
               "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
+            },
+            "Price-TUSD/USD-6": {
+              "isRouted": true,
+              "label": "$"
             },
             "Price-USDC/USD-6": {
               "label": "$",
