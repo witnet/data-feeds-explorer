@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import getFooterLinks from '../../../../components/footer/getFooterLinks'
 import { footerSections } from '../../../../constants'
 

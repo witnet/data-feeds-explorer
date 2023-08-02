@@ -8,7 +8,7 @@
     <DataFeedsCount
       :chains="supportedChains.length"
       :networks="networksLength"
-      :feeds="chainsFeeds.total"
+      :feeds="total"
     />
     <h2 class="title">{{ $t('landing.upcoming_chains.title') }}</h2>
     <UpcomingChains />
@@ -18,7 +18,10 @@
 </template>
 
 <script setup>
-import { generateSelectOptions } from '../utils/generateSelectOptions'
+import { useQuery } from '@vue/apollo-composable'
+import { gql } from "@apollo/client/core"
+import { getSupportedChains } from '../utils/supportedChains';
+
 const networksQuery = gql`
   query networks {
     networks {
@@ -29,7 +32,7 @@ const networksQuery = gql`
     }
   }`
     
-const networksFetch = await useAsyncQuery(networksQuery)
+const { result: networksQueryResult } = await useQuery(networksQuery)
 
 const variables = { network: 'all'}
 
@@ -42,49 +45,26 @@ const variables = { network: 'all'}
             total
           }
         }`
-const feedsFetch = await useAsyncQuery(feedsQuery, variables)
+const { result } = await useQuery(feedsQuery, variables)
 
-
-const chainsFeeds = computed(() => {
-  return feeds || []
+const total = computed(() => {
+  return result?.value?.feeds?.total
 })
 
 const networks = computed(() => {
-  return networksFetch?.data?.value?.networks
+  return networksQueryResult.value?.networks
 })
 const networksLength = computed(() => {
   return networks.value ? networks.length : 0
 })
 
 const feeds = computed(() => {
-  return feedsFetch?.data?.value?.feeds?.feeds
+  return result?.value?.feeds?.feeds
 })
 
 const supportedChains = computed(() => {
-      if (networks.value) {
-        return Object.values(generateSelectOptions(networks.value))
-          .filter((network) => network && network[0])
-          .map((network) => {
-            const chain = network[0].chain
-            return {
-              name: chain,
-              count:
-                feeds.value?.filter((feed) => feed.chain === chain)
-                  .length || 0,
-              detailsPath: {
-                name: 'network',
-                params: {
-                  network: chain.toLowerCase(),
-                },
-              },
-              svg: network[0].logo,
-            }
-          })
-          .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
-      } else {
-        return []
-      }
-    })
+  return getSupportedChains(networks.value, feeds.value)
+})
 
 </script>
 

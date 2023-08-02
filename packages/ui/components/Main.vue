@@ -38,10 +38,11 @@
 </template>
 
 <script setup>
+import { useQuery, useResult } from '@vue/apollo-composable'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
-// import { watch } from 'vue'
-
+import { gql } from "@apollo/client/core"
+console.log(1)
 const store = useNetwork()
 
 const emit = defineEmits(['set-network'])
@@ -56,10 +57,11 @@ const networksQuery = gql`
     }
   }`
     
-const networksFetch = await useAsyncQuery(networksQuery)
+const { result } = await useQuery(networksQuery)
 
 const networks = computed(() => {
-  return networksFetch?.data?.value?.networks
+  console.log('result///-', result.value)
+  return result.value?.networks
 })
 
 const route = useRoute()
@@ -99,7 +101,7 @@ const network = computed(() => {
   return network
 })
 
-watch(options, (newOptions) => {
+watch(() => options.value, (newOptions) => {
   if (newOptions) {
     setCurrentNetwork(newOptions)
   }

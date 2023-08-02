@@ -134,16 +134,16 @@ const feedQuery = gql`
 
 
 // pollInterval: 60000,
-const feed = await useAsyncQuery(feedQuery, variables)
-const requests = await useAsyncQuery(requestsQuery, requestsVariables)
+const feed = await useQuery(feedQuery, variables)
+const requests = await useQuery(requestsQuery, requestsVariables)
 
 // const small = computed(() => {
 //   return numberOfPages.value > 10
 // })
 
 const normalizedFeed = computed(() => {
-  if (feed.data.value) {
-    const adaptedFeed = feed.data.value.feed
+  if (feed.result.value) {
+    const adaptedFeed = feed.result.value.feed
     emit('feed-name', adaptedFeed.name.toUpperCase())
     emit('network', adaptedFeed.networkName)
     return {
@@ -219,13 +219,13 @@ const maxTimeToResolve = computed(() => {
   }
 })
 const numberOfPages = computed(() => {
-  return feed.data.value
-    ? Math.ceil(feed.data.value.feed.requests.length / itemsPerPage.value)
+  return feed.result.value
+    ? Math.ceil(feed.result.value.feed.requests.length / itemsPerPage.value)
     : 0
 })
 const chartData = computed(() => {
-  if (feed.data.value.feed && feed.data.value.feed.requests.length > 0) {
-    return feed.data.value.feed.requests
+  if (feed.result.value.feed && feed.result.value.feed.requests.length > 0) {
+    return feed.result.value.feed.requests
       .map((request) => {
         return {
           time: Number(request.timestamp),
@@ -239,12 +239,12 @@ const chartData = computed(() => {
   }
 })
 const transactions = computed(() => {
-  if (feed.data.value && requests.data.value && requests.data.value.requests.length > 0) {
+  if (feed.result.value && requests.data.value && requests.data.value.requests.length > 0) {
     return requests.data.value.requests.map((request) => ({
       witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
       drTxHash: request.drTxHash,
       data: {
-        label: feed.data.value.feed.label,
+        label: feed.result.value.feed.label,
         value: request.result,
         decimals: normalizedFeed.value.decimals,
       },

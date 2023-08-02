@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { generateSelectOptions } from '../../utils/generateSelectOptions'
 
 describe('generateSelectOptions.js', () => {

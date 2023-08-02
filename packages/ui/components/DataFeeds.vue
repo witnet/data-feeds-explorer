@@ -20,6 +20,8 @@
 
 <script setup>
 import { formatSvgName } from '../utils/formatSvgName'
+import { gql } from "@apollo/client/core"
+import { useQuery } from '@vue/apollo-composable'
 // import feeds from '@/apollo/queries/feeds.gql'
 
 const emit = defineEmits(['empty'])
@@ -64,13 +66,13 @@ const variables = {
 
 // pollInterval: 60000,
 
-const feeds = await useAsyncQuery(feedsQuery, variables)
+const { result }= await useQuery(feedsQuery, variables)
 // const currentPage = ref(1)
 // const itemsPerPage = ref(28)
 
 const allFeeds = computed(() => {
-  if (feeds.data.value.feeds) {
-    const adaptedFeeds = feeds.data.value.feeds.feeds
+  if (result.value?.feeds) {
+    const adaptedFeeds = result.value.feeds.feeds
       .filter((feed) => {
         return feed.lastResult && Number(feed.lastResultTimestamp) > 0
       })

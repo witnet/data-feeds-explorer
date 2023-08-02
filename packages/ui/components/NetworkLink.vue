@@ -8,6 +8,7 @@
     :to="{ name: 'network', params: { network: name.toLowerCase(), } }"
   >
     <SvgIcon :svg="svg" />
+    {{ name }}
   </nuxt-link>
 </template>
 

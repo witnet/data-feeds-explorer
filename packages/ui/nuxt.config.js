@@ -6,7 +6,6 @@ import graphql from '@rollup/plugin-graphql'
 
 export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/apollo',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
   ],

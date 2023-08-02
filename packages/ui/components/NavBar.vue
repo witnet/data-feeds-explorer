@@ -15,7 +15,7 @@
           </div>
         </button>
       </div>
-      <!-- <transition name="dropdown" class="dropdown"> -->
+      <transition name="dropdown" class="dropdown">
         <div class="tab-container" :class="{ visible: isMenuVisible }">
           <div
             v-if="networks && isMenuVisible"
@@ -35,7 +35,7 @@
             </a>
           </div>
         </div>
-      <!-- </transition> -->
+      </transition>
     </nav>
   </div>
 </template>
@@ -48,19 +48,31 @@ import { urls } from '../constants'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
+import { gql } from "@apollo/client/core"
+import { useQuery } from '@vue/apollo-composable'
+
+const query = gql`
+    query networks {
+      networks {
+        label,
+        key,
+        chain,
+        logo
+      }
+    }`
 
 
-      const networksQuery = gql`
-        query networks {
-          networks {
-            label,
-            key,
-            chain,
-            logo
-          }
-        }`
-    
-const networks = await useAsyncQuery(networksQuery)
+
+const { result: networks }= await useQuery(query)
+      // const networksQuery = gql`
+      //   query networks {
+      //     networks {
+      //       label,
+      //       key,
+      //       chain,
+      //       logo
+      //     }
+      //   }`
 
 const hover = ref(false)
 const displayBox = ref(false)
@@ -99,8 +111,8 @@ const isMenuVisible = ref(false)
     })
 
    const options = computed(() => {
-      if (networks.data.value.networks) {
-        return generateSelectOptions(networks.data.value.networks)
+      if (networks.value.networks) {
+        return generateSelectOptions(networks.value.networks)
       } else {
         return null
       }
@@ -147,7 +159,8 @@ const isMenuVisible = ref(false)
     justify-content: center;
     padding: 24px 0;
     .networks {
-      display: none;
+      color: red;
+      // display: none;
       &.visible {
         background: var(--bg);
         display: block;

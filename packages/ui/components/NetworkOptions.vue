@@ -5,7 +5,7 @@
         <LazyNetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
-    <!-- <transition name="dropdown" class="dropdown"> -->
+    <transition name="dropdown" class="dropdown">
       <div v-if="showAll" class="networks">
         <div
           v-for="option in filteredOptions"
@@ -15,7 +15,7 @@
           <LazyNetworkLink :name="option.name" :svg="option.logo" />
         </div>
       </div>
-    <!-- </transition> -->
+    </transition>
     <div v-if="type === 'sidebar'" class="show-more-btn" @click="toggleShowAll">
       <p v-if="showAll">
         <span class="arrow">▲</span> {{ $t('less_networks') }}
