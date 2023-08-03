@@ -33,6 +33,7 @@
     "lightweight-charts": "^4.0.1",
     "lodash.snakecase": "^4.1.1",
     "nuxt": "3.5.3",
+    "rss": "^1.2.2",
     "sass": "^1.63.6",
     "vue-select": "4.0.0-beta.6"
   },

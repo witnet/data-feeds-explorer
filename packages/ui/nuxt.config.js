@@ -9,6 +9,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
   ],
+  nitro: {
+    prerender: {
+      routes: ['/rss.xml'],
+    },
+  },
   // server: {
   //   port: 8080,
   //   host: '0',
