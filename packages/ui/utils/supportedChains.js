@@ -10,7 +10,6 @@ export function getSupportedChains(networks, feeds) {
     .filter((network) => network && network[0])
     .map((network) => {
       const { chain, logo } = network[0]
-      console.log("logo", network[0])
       return {
         name: chain,
         count:

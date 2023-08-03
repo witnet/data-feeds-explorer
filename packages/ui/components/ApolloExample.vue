@@ -3,9 +3,8 @@
 </template>
 
 <script setup>
-import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { gql } from "@apollo/client/core"
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery } from '@vue/apollo-composable'
 const networksQuery = gql`
   query networks {
     networks {

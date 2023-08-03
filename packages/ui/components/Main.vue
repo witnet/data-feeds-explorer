@@ -42,7 +42,6 @@ import { useQuery, useResult } from '@vue/apollo-composable'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { gql } from "@apollo/client/core"
-console.log(1)
 const store = useNetwork()
 
 const emit = defineEmits(['set-network'])
@@ -56,21 +55,19 @@ const networksQuery = gql`
       logo
     }
   }`
-    
 const { result } = await useQuery(networksQuery)
 
 const networks = computed(() => {
-  console.log('result///-', result.value)
   return result.value?.networks
 })
 
 const route = useRoute()
-const currentPage = ref(1)
 const currentNetwork = ref(route.params.network.toUpperCase())
 
 const selected = computed(() => {
   return store.selectedNetwork
 })
+
 const options = computed(() => {  
   if (networks.value) {
     const options = generateSelectOptions(unref(networks))
@@ -107,15 +104,15 @@ watch(() => options.value, (newOptions) => {
   }
   const networks = newOptions?.[network.value]
   store.updateSelectedNetwork(networks)
-})
+}, { immediate: true })
 
 function updateOptions(index) {
   store.deleteEmptyNetwork({ index })
 }
 
-function handleCurrentChange(val) {
-  currentPage.value = val
-}
+// function handleCurrentChange(val) {
+//   currentPage.value = val
+// }
 
 function setCurrentNetwork(options) {
   currentNetwork.value = options[route.params.network][0].chain

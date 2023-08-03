@@ -59,14 +59,12 @@
 </template>
 
 <script setup>
-// import feed from '@/apollo/queries/feed.gql'
-// import requests from '@/apollo/queries/requests.gql'
-import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
+import { useQuery } from '@vue/apollo-composable'
+import { gql } from "@apollo/client/core"
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
-import { formatNumber } from '@/utils/formatNumber'
-import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
+import { getAdaptedFeed, getChartData, getLastResultValue, getMaxTimeToResolve, getTransactions } from '../utils/dataFeedDetails'
 
 const vm = getCurrentInstance();
 
@@ -142,39 +140,12 @@ const requests = await useQuery(requestsQuery, requestsVariables)
 // })
 
 const normalizedFeed = computed(() => {
-  if (feed.result.value) {
-    const adaptedFeed = feed.result.value.feed
+  const adaptedFeed = getAdaptedFeed(feed?.result?.value?.feed)
+  if (adaptedFeed) {
     emit('feed-name', adaptedFeed.name.toUpperCase())
     emit('network', adaptedFeed.networkName)
-    return {
-      name: adaptedFeed.name.toUpperCase(),
-      isRouted: adaptedFeed.isRouted,
-      address: adaptedFeed.address,
-      proxyAddress: adaptedFeed.proxyAddress,
-      contractId: adaptedFeed.contractId,
-      finality: Number(adaptedFeed.finality),
-      deviation: adaptedFeed.deviation,
-      heartbeat: Number(adaptedFeed.heartbeat),
-      decimals: adaptedFeed.feedFullName.split('_').pop() || 3,
-      chain: adaptedFeed.chain,
-      lastResultValue: adaptedFeed.lastResult,
-      lastResultTimestamp: adaptedFeed.lastResultTimestamp || '',
-      networkName: adaptedFeed.networkName,
-      label: adaptedFeed.label,
-      network: adaptedFeed.network,
-      urlUnderlyingContract: adaptedFeed.blockExplorer.replace(
-        `{address}`,
-        adaptedFeed.address
-      ),
-      urlProxyContract: adaptedFeed.blockExplorer.replace(
-        `{address}`,
-        adaptedFeed.proxyAddress
-      ),
-      logo: adaptedFeed.logo,
-    }
-  } else {
-    return null
   }
+  return adaptedFeed
 })
 
 const lastResultDate = computed(() => {
@@ -200,59 +171,28 @@ const feedTimeToUpdate = computed(() => {
   return null
 })
 const lastResultValue = computed(() => {
-  if (normalizedFeed.value) {
-    const dataFeedLastValue = `${normalizedFeed.value.label}${formatNumber(
-      parseFloat(normalizedFeed.value.lastResultValue) /
-        10 ** normalizedFeed.value.decimals
-    )} `
+  return getLastResultValue(normalizedFeed.value)
+})
+
+watch(lastResultValue.value, (value) => {
+  if (value) {
     emit('feed-value', dataFeedLastValue)
-    return dataFeedLastValue
-  } else {
-    return null
   }
 })
+
 const maxTimeToResolve = computed(() => {
-  if (normalizedFeed.value && normalizedFeed.value.heartbeat) {
-    return normalizedFeed.value.heartbeat + normalizedFeed.value.finality
-  } else {
-    return null
-  }
+  return getMaxTimeToResolve(normalizedFeed.value)
 })
-const numberOfPages = computed(() => {
-  return feed.result.value
-    ? Math.ceil(feed.result.value.feed.requests.length / itemsPerPage.value)
-    : 0
-})
+// const numberOfPages = computed(() => {
+//   return feed.result.value
+//     ? Math.ceil(feed.result.value.feed.requests.length / itemsPerPage.value)
+//     : 0
+// })
 const chartData = computed(() => {
-  if (feed.result.value.feed && feed.result.value.feed.requests.length > 0) {
-    return feed.result.value.feed.requests
-      .map((request) => {
-        return {
-          time: Number(request.timestamp),
-          value:
-            parseFloat(request.result) / 10 ** normalizedFeed.value.decimals,
-        }
-      })
-      .sort((t1, t2) => t1.time - t2.time)
-  } else {
-    return [{ time: 0, value: 0 }]
-  }
+  return getChartData(feed?.result?.value?.feed?.requests, normalizedFeed.value)
 })
 const transactions = computed(() => {
-  if (feed.result.value && requests.data.value && requests.data.value.requests.length > 0) {
-    return requests.data.value.requests.map((request) => ({
-      witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
-      drTxHash: request.drTxHash,
-      data: {
-        label: feed.result.value.feed.label,
-        value: request.result,
-        decimals: normalizedFeed.value.decimals,
-      },
-      timestamp: request.timestamp,
-    }))
-  } else {
-    return null
-  }
+  return getTransactions(normalizedFeed.value, requests?.result.value?.requests)
 })
 
 watch(

@@ -36,15 +36,15 @@ const { result: networksQueryResult } = await useQuery(networksQuery)
 
 const variables = { network: 'all'}
 
-      const feedsQuery = gql`
-        query homePageData {
-          feeds (network: "all") {
-            feeds {
-              chain
-            }
-            total
-          }
-        }`
+const feedsQuery = gql`
+  query homePageData {
+    feeds (network: "all") {
+      feeds {
+        chain
+      }
+      total
+    }
+  }`
 const { result } = await useQuery(feedsQuery, variables)
 
 const total = computed(() => {
@@ -55,7 +55,7 @@ const networks = computed(() => {
   return networksQueryResult.value?.networks
 })
 const networksLength = computed(() => {
-  return networks.value ? networks.length : 0
+  return networks.value ? networks.value.length : 0
 })
 
 const feeds = computed(() => {
