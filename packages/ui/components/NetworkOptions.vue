@@ -49,51 +49,50 @@ const props = defineProps({
   },
 })
 
-
 const priorityNetworks = ref(['ethereum', 'avalanche', 'polygon'])
+// eslint-disable-next-line vue/no-setup-props-destructure
 const showAll = ref(props.type === 'navbar')
 
+const selectedNetwork = computed(() => {
+  return store.selectedNetwork[0]
+    ? store.selectedNetwork[0].chain.toLowerCase()
+    : 'ethereum'
+})
 
-    const selectedNetwork = computed(() => {
-      return store.selectedNetwork[0]
-        ? store.selectedNetwork[0].chain.toLowerCase()
-        : 'ethereum'
-    })
+const selectedOption = computed(() => {
+  return props.options.filter((option) => {
+    return option.name.toLowerCase() === selectedNetwork.value
+  })[0]
+})
 
-    const selectedOption = computed(() => {
-      return props.options.filter((option) => {
-        return option.name.toLowerCase() === selectedNetwork.value
-      })[0]
-    })
+const filteredOptions = computed(() => {
+  return props.options.filter((option) => {
+    return (
+      !priorityNetworks.value.includes(option.name.toLowerCase()) &&
+      option.name.toLowerCase() !== selectedOption.value.name.toLowerCase()
+    )
+  })
+})
 
-    const filteredOptions = computed(() => {
-      return props.options.filter((option) => {
-        return (
-          !priorityNetworks.value.includes(option.name.toLowerCase()) &&
-          option.name.toLowerCase() !== selectedOption.value.name.toLowerCase()
-        )
-      })
-    })
+const networksLeft = computed(() => {
+  return `(${filteredOptions.value.length}+)`
+})
 
-    const networksLeft = computed(() => {
-      return `(${filteredOptions.value.length}+)`
-    })
+const mainOptions = computed(() => {
+  const result = props.options.filter((option) => {
+    return priorityNetworks.value.includes(option.name.toLowerCase())
+  })
+  const filteredNames = result.map((option) => option.name.toLowerCase())
+  if (filteredNames.includes(selectedOption.value.name.toLowerCase())) {
+    return result
+  } else {
+    return [...result, selectedOption.value]
+  }
+})
 
-    const mainOptions = computed(() => {
-      const result = props.options.filter((option) => {
-        return priorityNetworks.value.includes(option.name.toLowerCase())
-      })
-      const filteredNames = result.map((option) => option.name.toLowerCase())
-      if (filteredNames.includes(selectedOption.value.name.toLowerCase())) {
-        return result
-      } else {
-        return [...result, selectedOption.value]
-      }
-    })
-
-    function toggleShowAll() {
-      showAll.value = !showAll.value
-    }
+function toggleShowAll() {
+  showAll.value = !showAll.value
+}
 </script>
 
 <style lang="scss" scoped>
@@ -102,41 +101,49 @@ const showAll = ref(props.type === 'navbar')
   opacity: 0.5;
   transform: translateY(-4px);
 }
+
 .dropdown-leave-active {
   transition: all 0.2s ease;
   opacity: 0.5;
   transform: translateY(0);
 }
+
 .dropdown-enter-to {
   opacity: 1;
   transform: translateY(0);
 }
+
 .dropdown-leave-to {
   opacity: 0.5;
   transform: translateY(-4px);
 }
+
 .sidebar {
   display: grid;
   grid-template-rows: max-content max-content;
   grid-gap: 16px;
 }
+
 .networks {
   display: grid;
   grid-template-columns: repeat(auto-fit, 88px);
   grid-template-rows: 88px;
   grid-gap: 16px;
   color: var(--light-text);
+
   .option {
     font-size: var(--text-size-medium);
     text-align: center;
     cursor: pointer;
     color: var(--light-text);
     font-weight: bold;
+
     &.selected {
       border-radius: 4px;
     }
   }
 }
+
 .show-more-btn {
   display: flex;
   background-color: var(--network-background);
@@ -149,23 +156,27 @@ const showAll = ref(props.type === 'navbar')
   cursor: pointer;
   font-style: italic;
   font-family: Avenir Next Variable W05 Itali, sans-serif;
+
   .arrow {
     color: var(--light-icon);
     font-style: normal;
     font-size: 10px;
   }
 }
+
 .navbar {
   display: grid;
   grid-template-rows: max-content max-content;
   grid-gap: 16px;
   justify-content: center;
+
   .networks {
     display: grid;
     grid-template-columns: repeat(3, 88px);
     grid-template-rows: 88px;
     grid-gap: 16px;
   }
+
   .option {
     text-align: center;
     cursor: pointer;
@@ -179,6 +190,7 @@ const showAll = ref(props.type === 'navbar')
       grid-template-columns: repeat(6, 88px);
     }
   }
+
   .sidebar {
     display: none;
   }

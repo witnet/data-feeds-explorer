@@ -20,9 +20,11 @@
 <style scoped lang="scss">
 .github-logo {
   width: 24px;
+
   .logo {
     fill: var(--logo-main);
   }
+
   &:hover {
     .logo {
       fill: var(--text-hover);

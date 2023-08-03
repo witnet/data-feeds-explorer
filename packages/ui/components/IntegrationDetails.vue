@@ -92,34 +92,41 @@ export default {
   align-items: center;
   grid-template-columns: 1fr 1fr;
   column-gap: 16px;
+
   .left {
     text-align: center;
     border-right: 1px solid var(--bg);
     padding-right: 16px;
+
     .title-details {
       font-size: var(--text-size);
       font-weight: normal;
       margin-bottom: 16px;
     }
+
     .bottom {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-gap: 8px;
       grid-template-rows: max-content max-content;
+
       .btn {
         height: max-content;
       }
     }
   }
+
   .right {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 8px;
+
     .title-address {
       font-size: var(--text-size-medium);
       font-weight: bold;
       margin-top: 8px;
     }
+
     .contract-id {
       font-size: var(--text-size);
       margin-bottom: 8px;
@@ -127,6 +134,7 @@ export default {
       word-break: break-all;
       max-width: 400px;
     }
+
     .contract-info {
       font-family: Roboto Mono, monospace;
       color: var(--text-hover);
@@ -135,6 +143,7 @@ export default {
       margin-bottom: 8px;
       cursor: pointer;
     }
+
     .icon {
       font-size: 10px;
       width: 10px;
@@ -146,16 +155,20 @@ export default {
   .integration-details {
     grid-template-columns: 1fr;
     grid-gap: 16px;
+
     .right {
       border-right: none;
     }
+
     .left {
       border-right: none;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--bg);
+
       .testing {
         grid-row: 2;
       }
+
       .bottom {
         display: grid;
         grid-template-columns: 1fr;

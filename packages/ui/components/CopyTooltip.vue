@@ -99,6 +99,7 @@ export default {
   margin-right: 0;
   margin-right: 8px;
 }
+
 .tooltip,
 .copy-tooltip {
   position: absolute;
@@ -109,9 +110,11 @@ export default {
   background-color: var(--bg);
   color: var(--text);
 }
+
 .container {
   display: flex;
 }
+
 .copy {
   padding: 16px;
   margin: -16px;

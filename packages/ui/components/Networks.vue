@@ -32,6 +32,7 @@ export default {
 <style lang="scss" scoped>
 .networks {
   display: flex;
+
   .network {
     margin-right: 8px;
     padding: 4px 8px;
@@ -41,6 +42,7 @@ export default {
     width: max-content;
     text-transform: capitalize;
   }
+
   .network:last-of-type {
     margin-right: 0;
   }

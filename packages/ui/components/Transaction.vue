@@ -66,25 +66,30 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .value {
   font-size: var(--text-size);
   padding: 8px 0;
   border-radius: 4px;
   color: var(--text);
 }
+
 .link {
   color: var(--witnet-transaction);
   font-family: Roboto Mono, monospace;
   transition: all 0.3 ease-in-out;
+
   &:hover {
     opacity: 0.8;
   }
+
   .icon {
     width: 10px;
     height: 10px;
     font-size: var(--text-size-small);
   }
 }
+
 .truncate {
   white-space: nowrap;
   overflow: hidden;

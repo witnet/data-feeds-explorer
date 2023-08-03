@@ -128,6 +128,7 @@ export default {
       default: () => 1,
     },
   },
+  emits: ['current-change'],
   computed: {
     lastPage() {
       if (this.paginationRange) {

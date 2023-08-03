@@ -552,7 +552,7 @@ describe('supprtedChains.js', () => {
         name: 'Ultron',
         count: 2,
         detailsPath: { name: 'network', params: { network: 'ultron' } },
-        "svg": "<svg>Ultron</svg>",
+        svg: '<svg>Ultron</svg>',
       },
     ]
 

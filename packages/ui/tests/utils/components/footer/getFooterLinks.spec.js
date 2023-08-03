@@ -16,7 +16,7 @@ describe('getFooterLinks', () => {
   it('should create an array of objects that have the section links as an object with the url and i18n key', () => {
     const footerLinks = getFooterLinks(footerSections)
 
-    footerLinks.forEach((footerLink, index) => {
+    footerLinks.forEach((footerLink) => {
       footerLink.links.forEach((link) => {
         expect(link.url).toBeTruthy()
         expect(link.text).toBeTruthy()

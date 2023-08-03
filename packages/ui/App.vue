@@ -1,11 +1,11 @@
 <template>
   <div>
     <NuxtLayout>
-      <NuxtPage/>
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
 <style lang="scss">
-@use "~/assets/styles/main.scss";
+@use '~/assets/styles/main.scss';
 </style>

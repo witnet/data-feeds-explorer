@@ -3,31 +3,38 @@
   <!-- eslint-disable-next-line vue/no-v-html -->
   <!-- <div v-if="name" v-html="import.meta.glob(`./assets/svg/${name}.svg`, { as: 'raw' })" /> -->
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-html="svg" />
+  <div v-html="svgIcon" />
 </template>
 
 <script setup>
-  const props = defineProps({ name: String, svg: String })
-  // TODO: avoid load all icons 
-  const icons = Object.fromEntries(
-    Object.entries(import.meta.glob('~/assets/svg/*.svg', { as: 'raw' }))
-    .map(
-      ([key, value]) => {
-        const filename = key.split('/').pop().split('.').shift()
-        return [filename, value]
-      },
-    ),
+const props = defineProps({
+  name: {
+    type: String,
+    default: '',
+  },
+  svg: {
+    type: String,
+    default: '',
+  },
+})
+// TODO: avoid load all icons
+const icons = Object.fromEntries(
+  Object.entries(import.meta.glob('~/assets/svg/*.svg', { as: 'raw' })).map(
+    ([key, value]) => {
+      const filename = key.split('/').pop().split('.').shift()
+      return [filename, value]
+    }
   )
+)
 
-let svg
+let svgIcon
 if (props.svg) {
-  svg = props.svg
+  svgIcon = props.svg
 } else if (icons[props.name]) {
-  svg = await icons[props.name]() 
+  svgIcon = await icons[props.name]()
 } else {
-  svg = '<svg></svg>'
+  svgIcon = '<svg></svg>'
 }
-
 </script>
 
 <style lang="scss">
@@ -35,22 +42,27 @@ if (props.svg) {
   max-width: 250px;
   height: 100%;
 }
+
 .socials-size {
   width: 18px;
   height: 18px;
 }
+
 .icon-size {
   width: 24px;
   height: 30px;
   transition: all 0.3s ease;
 }
+
 .fill {
   fill: var(--text);
 }
+
 .partner-size {
   width: 140px;
   height: 40px;
 }
+
 .active {
   .fill {
     fill: var(--witnet-green);

@@ -4,7 +4,9 @@
       <div class="card-container">
         <div class="title">
           <SvgIcon class="img" :svg="svg" />
-          <p class="name title">{{ name.toUpperCase() }}</p>
+          <p class="name title">
+            {{ name.toUpperCase() }}
+          </p>
           <InfoTooltip
             v-if="dataFeedStatus.key !== 'operational'"
             :show-icon="false"
@@ -100,23 +102,29 @@ export default {
 .nuxt-link-exact-active {
   color: var(--value-color);
 }
+
 .nuxt-link-active {
   color: var(--value-color);
 }
+
 a {
   color: var(--value-color);
 }
+
 .card-border {
   &.operational {
     border: var(--card-border);
   }
+
   &.delay {
     border: var(--delay-status-border);
   }
+
   &.error {
     border: var(--error-status-border);
   }
 }
+
 .card-container {
   display: grid;
   grid-template-columns: 1fr max-content;
@@ -129,18 +137,21 @@ a {
   row-gap: 8px;
   padding: 8px 16px;
   transition: box-shadow 0.3s;
+
   .title {
     grid-row: 1 / span 2;
     justify-content: center;
     align-items: center;
     display: flex;
     grid-column-gap: 8px;
+
     .img {
       display: flex;
       justify-content: center;
       align-self: center;
     }
   }
+
   .timestamp {
     color: var(--value-color);
     font-size: var(--text-size-small);
@@ -149,12 +160,14 @@ a {
     justify-self: flex-end;
     font-weight: normal;
   }
+
   .name {
     color: var(--name-color);
     font-size: 18px;
     display: flex;
     align-items: center;
   }
+
   .value {
     color: var(--value-color);
     font-size: 18px;

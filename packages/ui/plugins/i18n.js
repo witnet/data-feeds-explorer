@@ -10,7 +10,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
     messages: {
       en,
       es,
-    }
+    },
   })
 
   vueApp.use(i18n)

@@ -1,6 +1,5 @@
-
 import { formatNumber } from './formatNumber'
-import { getWitnetBlockExplorerLink } from "./getWitnetBlockExplorerLink"
+import { getWitnetBlockExplorerLink } from './getWitnetBlockExplorerLink'
 
 export function getAdaptedFeed(feed) {
   if (!feed) {
@@ -50,7 +49,6 @@ export function getTransactions(feed, requests) {
     },
     timestamp: request.timestamp,
   }))
-
 }
 
 export function getLastResultValue(feed) {
@@ -58,8 +56,7 @@ export function getLastResultValue(feed) {
     return null
   }
   const dataFeedLastValue = `${feed.label}${formatNumber(
-    parseFloat(feed.lastResultValue) /
-      10 ** feed.decimals
+    parseFloat(feed.lastResultValue) / 10 ** feed.decimals
   )} `
   return dataFeedLastValue
 }
@@ -72,7 +69,7 @@ export function getMaxTimeToResolve(feed) {
   return feed.heartbeat + feed.finality
 }
 
-export function getChartData (requests, normalizedFeed) {
+export function getChartData(requests, normalizedFeed) {
   if (!requests?.length) {
     return [{ time: 0, value: 0 }]
   }
@@ -81,8 +78,7 @@ export function getChartData (requests, normalizedFeed) {
     .map((request) => {
       return {
         time: Number(request.timestamp),
-        value:
-          parseFloat(request.result) / 10 ** normalizedFeed.decimals,
+        value: parseFloat(request.result) / 10 ** normalizedFeed.decimals,
       }
     })
     .sort((t1, t2) => t1.time - t2.time)

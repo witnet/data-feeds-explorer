@@ -1,4 +1,4 @@
-import { generateSelectOptions } from "./generateSelectOptions"
+import { generateSelectOptions } from './generateSelectOptions'
 
 export function getSupportedChains(networks, feeds) {
   if (!networks) {
@@ -12,9 +12,7 @@ export function getSupportedChains(networks, feeds) {
       const { chain, logo } = network[0]
       return {
         name: chain,
-        count:
-          allFeeds.filter((feed) => feed.chain === chain)
-            .length,
+        count: allFeeds.filter((feed) => feed.chain === chain).length,
         detailsPath: {
           name: 'network',
           params: {

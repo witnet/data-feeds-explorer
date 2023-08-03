@@ -2,7 +2,7 @@
   <div class="breacrumbs-wrapper">
     <div class="breadcrumbs container">
       <nuxt-link
-        v-for="option in breadCumbsOptions.filter((option) => option.label)"
+        v-for="option in breadCumbsOptions"
         :key="option.label"
         :aria-label="option.label"
         :class="{ selected: option.selected }"
@@ -10,9 +10,9 @@
         class="breadcrumbs-link"
       >
         <!-- <transition name="slide-in"> -->
-          <h3 v-if="option.label" class="breadcrumbs">
-            <span class="breadcrumbs-label">{{ option.label }}</span> /
-          </h3>
+        <h3 v-if="option.label" class="breadcrumbs">
+          <span class="breadcrumbs-label">{{ option.label }}</span> /
+        </h3>
         <!-- </transition> -->
       </nuxt-link>
     </div>
@@ -26,52 +26,49 @@ const store = useNetwork()
 const route = useRoute()
 const router = useRouter()
 
+const selected = computed(() => {
+  return store.selectedNetwork
+})
 
-    const selected = computed(() => {
-      return store.selectedNetwork
-    })
+const breadCumbsOptions = computed(() => {
+  return [
+    {
+      label: 'Home',
+      path: {
+        name: 'index',
+      },
+      selected: false,
+    },
+    {
+      label: selected.value ? selected.value[0]?.chain : null,
+      path: {
+        name: 'network',
+        params: {
+          network: route.params.network || 'ethereum',
+        },
+      },
+      selected: false,
+    },
+    {
+      label:
+        route.params.id && selected.value ? selected.value[0]?.label : null,
+      path: {
+        name: 'network-id',
+        params: {
+          network: route.params.network,
+          id: route.params.id,
+        },
+      },
+      selected: false,
+    },
+  ].filter((option) => option.label)
+})
 
-    const breadCumbsOptions = computed(() => {
-      return [
-        {
-          label: 'Home',
-          path: {
-            name: 'index',
-          },
-          selected: false,
-        },
-        {
-          label: selected.value ? selected.value[0]?.chain : null,
-          path: {
-            name: 'network',
-            params: {
-              network: route.params.network || 'ethereum',
-            },
-          },
-          selected: false,
-        },
-        {
-          label:
-            route.params.id && selected.value
-              ? selected.value[0]?.label
-              : null,
-          path: {
-            name: 'network-id',
-            params: {
-              network: route.params.network,
-              id: route.params.id,
-            },
-          },
-          selected: false,
-        },
-      ]
-    })
-
-  onMounted(() => {
-    if (!selected.value) {
-      router.push('/')
-    }
-  })
+onMounted(() => {
+  if (!selected.value) {
+    router.push('/')
+  }
+})
 </script>
 
 <style lang="scss">
@@ -81,14 +78,17 @@ const router = useRouter()
   opacity: 0;
   transform: translateX(-4px);
 }
+
 .slide-in-enter-to {
   opacity: 1;
   transform: translateY(0);
 }
+
 .slide-in-leave-to {
   opacity: 0;
   transform: translateX(-4px);
 }
+
 .breacrumbs-wrapper {
   display: grid;
   grid-template-columns: max-content max-content;
@@ -96,23 +96,28 @@ const router = useRouter()
   justify-content: space-between;
   grid-gap: 16px;
 }
+
 .breadcrumbs {
   height: min-content;
   display: flex;
   color: var(--text);
   font-size: var(--text-size-medium);
+
   .breadcrumbs-label {
     color: var(--selected-option);
     font-weight: bold;
     font-size: var(--text-size-medium);
     margin-right: 4px;
     transition: all 0.3 ease-in-out;
+
     &:hover {
       opacity: 0.8;
     }
   }
+
   .breadcrumbs-link {
     margin-left: 4px;
+
     &:first-of-type {
       margin-left: 0;
     }
@@ -132,8 +137,10 @@ const router = useRouter()
     grid-template-rows: max-content max-content;
     justify-content: space-between;
   }
+
   .breadcrumbs {
     grid-row: 2;
+
     &.container {
       padding: 0 24px;
     }

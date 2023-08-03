@@ -5,10 +5,7 @@ import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import graphql from '@rollup/plugin-graphql'
 
 export default defineNuxtConfig({
-  modules: [
-    '@pinia/nuxt',
-    '@nuxtjs/color-mode',
-  ],
+  modules: ['@pinia/nuxt', '@nuxtjs/color-mode'],
   nitro: {
     prerender: {
       routes: ['/rss.xml'],
@@ -136,11 +133,11 @@ export default defineNuxtConfig({
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {
     dirs: [
-      { path: '~/components', pathPrefix: false, },
-      { path: '~/components/chart',  pathPrefix: false,},
-      { path: '~/components/breadcrumbs', pathPrefix: false, },
-      { path: '~/components/cards', pathPrefix: false, },
-      { path: '~/components/footer', pathPrefix: false, },
+      { path: '~/components', pathPrefix: false },
+      { path: '~/components/chart', pathPrefix: false },
+      { path: '~/components/breadcrumbs', pathPrefix: false },
+      { path: '~/components/cards', pathPrefix: false },
+      { path: '~/components/footer', pathPrefix: false },
     ],
   },
 
@@ -194,28 +191,32 @@ export default defineNuxtConfig({
     clients: {
       // load httpEndpoint on runtime to be able to read it from env variable
       default: {
-          httpEndpoint: import.meta.env.VITE_API_ENDPOINT,
-          // uri: import.meta.env.VITE_API_ENDPOINT,
-        }
+        httpEndpoint: import.meta.env.VITE_API_ENDPOINT,
+        // uri: import.meta.env.VITE_API_ENDPOINT,
       },
     },
-    // TODO: error handler
-    // errorHandler: '~/plugins/apollo-error-handler.js',
- vite: {
+  },
+  // TODO: error handler
+  // errorHandler: '~/plugins/apollo-error-handler.js',
+  vite: {
     resolve: {
       alias: {
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js'
-      }
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
+      },
     },
     plugins: [
-      VueI18nVitePlugin({
-        include: [
-          resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')
-        ]
-      },
-      graphql(),
-      )
-    ]
+      VueI18nVitePlugin(
+        {
+          include: [
+            resolve(
+              dirname(fileURLToPath(import.meta.url)),
+              './locales/*.json'
+            ),
+          ],
+        },
+        graphql()
+      ),
+    ],
   },
   pinia: {
     autoImports: [
@@ -228,14 +229,11 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['./stores'],
   },
-  css: [
-    '@fortawesome/fontawesome-svg-core/styles.css'
-  ],
+  css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   build: {
-  transpile: [
-    '@fortawesome/fontawesome-svg-core',
-    '@fortawesome/free-brands-svg-icons'
-  ]
-} 
+    transpile: [
+      '@fortawesome/fontawesome-svg-core',
+      '@fortawesome/free-brands-svg-icons',
+    ],
+  },
 })
-

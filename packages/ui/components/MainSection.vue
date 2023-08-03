@@ -1,13 +1,13 @@
 <template>
   <div class="main-section-container">
     <div class="main-section">
-      <slot name="navbar"></slot>
-      <slot name="breadcrumbs"></slot>
-      <slot name="cover"></slot>
-      <slot name="content"></slot>
+      <slot name="navbar" />
+      <slot name="breadcrumbs" />
+      <slot name="cover" />
+      <slot name="content" />
       <ThemeSwitch class="theme-switch" />
     </div>
-    <slot name="footer"></slot>
+    <slot name="footer" />
   </div>
 </template>
 
@@ -19,6 +19,7 @@
   grid-template-rows: 1fr max-content;
   grid-template-columns: 1fr;
 }
+
 .main-section {
   color: var(--text);
   display: grid;
@@ -29,6 +30,7 @@
   max-width: var(--desktop-margin);
   row-gap: 24px;
   margin: 0 auto;
+
   .theme-switch {
     position: fixed;
     bottom: 0;

@@ -53,10 +53,12 @@ export default {
   font-size: 20px;
   width: 20px;
   height: 20px;
+
   &:hover {
     transform: scale(1.1);
   }
 }
+
 .icon-container {
   cursor: pointer;
   background-color: var(--icon-background);

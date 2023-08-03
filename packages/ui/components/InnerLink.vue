@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{ hash: `#${hash}` }" @click.native="handleClick(hash)">
+  <nuxt-link :to="{ hash: `#${hash}` }" @click="handleClick(hash)">
     <slot />
   </nuxt-link>
 </template>

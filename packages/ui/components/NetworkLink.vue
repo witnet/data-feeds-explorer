@@ -5,7 +5,7 @@
       name.toLowerCase()
     "
     class="nav-link"
-    :to="{ name: 'network', params: { network: name.toLowerCase(), } }"
+    :to="{ name: 'network', params: { network: name.toLowerCase() } }"
   >
     <SvgIcon :svg="svg" />
     {{ name }}
@@ -13,12 +13,7 @@
 </template>
 
 <script setup>
-const store = useNetwork()
-
-const selected = computed(() => {
-  return store.selectedNetwork
-})
-const props = defineProps({
+defineProps({
   name: {
     type: String,
     required: true,
@@ -27,6 +22,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
+})
+
+const store = useNetwork()
+
+const selected = computed(() => {
+  return store.selectedNetwork
 })
 </script>
 
@@ -51,11 +52,13 @@ const props = defineProps({
   &:hover {
     opacity: 0.8;
   }
+
   &.nuxt-link-active {
     color: var(--network-selected-color);
     border: var(--network-selected-border);
     background: var(--network-selected-background);
     transition: all 0.3s;
+
     &:hover {
       opacity: 1;
     }

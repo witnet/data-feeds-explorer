@@ -49,6 +49,7 @@ a {
   padding: 20px 0;
   height: max-content;
   width: max-content;
+
   .logo {
     height: 100%;
     max-width: 100%;
@@ -57,9 +58,11 @@ a {
       grayscale(100%);
     transition: all 0.2s ease;
   }
+
   &:hover {
     opacity: 1;
     filter: brightness(1);
+
     .logo {
       filter: brightness(1) grayscale(0%);
     }

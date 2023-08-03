@@ -1,16 +1,28 @@
 <template>
   <div class="count-strip-container">
     <div class="item">
-      <p class="count">{{ feeds }}</p>
-      <p class="title">{{ $t('data_feeds') }}</p>
+      <p class="count">
+        {{ feeds }}
+      </p>
+      <p class="title">
+        {{ $t('data_feeds') }}
+      </p>
     </div>
     <div class="item">
-      <p class="count">{{ networks }}</p>
-      <p class="title">{{ $t('networks') }}</p>
+      <p class="count">
+        {{ networks }}
+      </p>
+      <p class="title">
+        {{ $t('networks') }}
+      </p>
     </div>
     <div class="item">
-      <p class="count">{{ chains }}</p>
-      <p class="title">{{ $t('chains') }}</p>
+      <p class="count">
+        {{ chains }}
+      </p>
+      <p class="title">
+        {{ $t('chains') }}
+      </p>
     </div>
   </div>
 </template>
@@ -43,15 +55,18 @@ export default {
   border-radius: 4px;
   padding: 32px 0;
 }
+
 .item {
   display: grid;
   justify-items: center;
   font-weight: bold;
   font-size: var(--text-size);
+
   .count {
     font-size: 32px;
     color: var(--text);
   }
+
   .title {
     color: var(--text-medium-emphasis);
   }

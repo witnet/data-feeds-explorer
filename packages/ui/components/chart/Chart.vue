@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { createChart, PriceScaleMode } from 'lightweight-charts';
+import { createChart, PriceScaleMode } from 'lightweight-charts'
 import { formatNumber } from '@/utils/formatNumber'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
@@ -76,6 +76,7 @@ export default {
       required: true,
     },
   },
+  emits: ['change-range'],
   data() {
     return {
       tooltip: true,
@@ -125,8 +126,8 @@ export default {
         layout: {
           textColor: '#d1d4dc',
           background: {
-            color: 'transparent'
-          }
+            color: 'transparent',
+          },
         },
         grid: {
           vertLines: {
@@ -218,6 +219,7 @@ export default {
   max-width: 1500px;
   position: relative;
 }
+
 .tv-lightweight-charts {
   height: 500px;
 }
@@ -229,6 +231,7 @@ export default {
   margin-right: 16px;
   justify-content: flex-end;
   margin-bottom: 32px;
+
   .item {
     cursor: pointer;
     padding: 4px 8px;
@@ -236,10 +239,12 @@ export default {
     background-color: transparent;
     color: var(--switcher-item-color);
     transition: all 0.3s ease;
+
     &:hover {
       opacity: 0.8;
     }
   }
+
   .active {
     background-color: var(--switcher-item-background);
   }
@@ -248,11 +253,14 @@ export default {
   .tooltip {
     padding-left: 24px;
     font-size: var(--text-size-title);
+
     .name {
       font-size: var(--text-size);
     }
+
     .value {
       font-size: var(--text-size-title);
+
       .date {
         font-size: var(--text-size);
       }

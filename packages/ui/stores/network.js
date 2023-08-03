@@ -13,5 +13,3 @@ export const useNetwork = defineStore('network', {
     },
   },
 })
-
-

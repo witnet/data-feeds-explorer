@@ -19,32 +19,34 @@
 
 <script setup>
 import { useQuery } from '@vue/apollo-composable'
-import { gql } from "@apollo/client/core"
-import { getSupportedChains } from '../utils/supportedChains';
+import { gql } from '@apollo/client/core'
+import { getSupportedChains } from '../utils/supportedChains'
 
 const networksQuery = gql`
   query networks {
     networks {
-      label,
-      key,
-      chain,
+      label
+      key
+      chain
       logo
     }
-  }`
-    
+  }
+`
+
 const { result: networksQueryResult } = await useQuery(networksQuery)
 
-const variables = { network: 'all'}
+const variables = { network: 'all' }
 
 const feedsQuery = gql`
   query homePageData {
-    feeds (network: "all") {
+    feeds(network: "all") {
       feeds {
         chain
       }
       total
     }
-  }`
+  }
+`
 const { result } = await useQuery(feedsQuery, variables)
 
 const total = computed(() => {
@@ -65,17 +67,18 @@ const feeds = computed(() => {
 const supportedChains = computed(() => {
   return getSupportedChains(networks.value, feeds.value)
 })
-
 </script>
 
 <style lang="scss" scoped>
 .landing-page {
   display: grid;
   row-gap: 32px;
+
   .text {
     display: grid;
     row-gap: 16px;
   }
+
   .title {
     font-size: var(--text-size-title);
   }

@@ -19,54 +19,57 @@
 </template>
 
 <script setup>
-import { formatSvgName } from '../utils/formatSvgName'
-import { gql } from "@apollo/client/core"
+import { gql } from '@apollo/client/core'
 import { useQuery } from '@vue/apollo-composable'
-// import feeds from '@/apollo/queries/feeds.gql'
+import { formatSvgName } from '../utils/formatSvgName'
 
 const emit = defineEmits(['empty'])
 
 const props = defineProps({
-    network: {
-      type: Object,
-      required: true,
-    },
-    networkIndex: {
-      type: Number,
-      required: true,
-    },
-  })
+  network: {
+    type: Object,
+    required: true,
+  },
+  networkIndex: {
+    type: Number,
+    required: true,
+  },
+})
 
 const route = useRoute()
 
-const feedsQuery = gql`query feeds ($network: String!) {
-  feeds (network: $network) {
-    feeds {
-      feedFullName
-      name
-      address
-      lastResult
-      lastResultTimestamp
-      network
-      label
-      chain
-      blockExplorer
-      color
-      heartbeat
-      finality
-      logo
+const feedsQuery = gql`
+  query feeds($network: String!) {
+    feeds(network: $network) {
+      feeds {
+        feedFullName
+        name
+        address
+        lastResult
+        lastResultTimestamp
+        network
+        label
+        chain
+        blockExplorer
+        color
+        heartbeat
+        finality
+        logo
+      }
+      total
     }
-    total
   }
-}`
+`
 
-const variables = { 
-  network: props.network.key.toLowerCase()
+// eslint-disable-next-line vue/no-setup-props-destructure
+const variables = {
+  // eslint-disable-next-line vue/no-setup-props-destructure
+  network: props.network.key.toLowerCase(),
 }
 
 // pollInterval: 60000,
 
-const { result }= await useQuery(feedsQuery, variables)
+const { result } = await useQuery(feedsQuery, variables)
 // const currentPage = ref(1)
 // const itemsPerPage = ref(28)
 
@@ -105,7 +108,7 @@ const allFeeds = computed(() => {
         }
       })
       .sort((feed1, feed2) => feed1.name.localeCompare(feed2.name))
-    return adaptedFeeds 
+    return adaptedFeeds
   } else {
     return []
   }

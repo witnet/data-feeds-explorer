@@ -1,5 +1,5 @@
 <template>
-  <div> {{ lastResultValue }}</div>
+  <div>{{ lastResultValue }}</div>
   <div v-if="normalizedFeed" class="content">
     <LazyChart
       v-if="normalizedFeed"
@@ -60,13 +60,17 @@
 
 <script setup>
 import { useQuery } from '@vue/apollo-composable'
-import { gql } from "@apollo/client/core"
+import { gql } from '@apollo/client/core'
+import {
+  getAdaptedFeed,
+  getChartData,
+  getLastResultValue,
+  getMaxTimeToResolve,
+  getTransactions,
+} from '../utils/dataFeedDetails'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
-import { getAdaptedFeed, getChartData, getLastResultValue, getMaxTimeToResolve, getTransactions } from '../utils/dataFeedDetails'
-
-const vm = getCurrentInstance();
 
 const store = useNetwork()
 const route = useRoute()
@@ -76,22 +80,26 @@ const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
 const ranges = ref(CHART_RANGE)
 const currentPage = ref(1)
 const itemsPerPage = ref(25)
-const range = ref(24)
+// const range = ref(24)
 const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
 const feedFullName = ref(route.params.id)
-    
-const variables = { timestamp: timestamp.value, feedFullName: feedFullName.value }
+
+const variables = {
+  timestamp: timestamp.value,
+  feedFullName: feedFullName.value,
+}
 
 const requestsQuery = gql`
-query requests($feedFullName: String!, $page: Int!, $size: Int!) {
-  requests(feedFullName: $feedFullName, page: $page, size: $size) {
-    feedFullName
-    result
-    drTxHash,
-    requestId
-    timestamp
+  query requests($feedFullName: String!, $page: Int!, $size: Int!) {
+    requests(feedFullName: $feedFullName, page: $page, size: $size) {
+      feedFullName
+      result
+      drTxHash
+      requestId
+      timestamp
+    }
   }
-}`
+`
 
 // pollInterval: 60000,
 const requestsVariables = {
@@ -102,7 +110,7 @@ const requestsVariables = {
 const feedQuery = gql`
   query feed($feedFullName: String!, $timestamp: Int!) {
     feed(feedFullName: $feedFullName) {
-      feedFullName 
+      feedFullName
       isRouted
       name
       address
@@ -118,7 +126,7 @@ const feedQuery = gql`
       heartbeat
       finality
       requests(timestamp: $timestamp) {
-        feedFullName 
+        feedFullName
         result
         drTxHash
         requestId
@@ -128,8 +136,8 @@ const feedQuery = gql`
       color
       logo
     }
-  }`
-
+  }
+`
 
 // pollInterval: 60000,
 const feed = await useQuery(feedQuery, variables)
@@ -150,10 +158,7 @@ const normalizedFeed = computed(() => {
 
 const lastResultDate = computed(() => {
   if (normalizedFeed.value) {
-    emit(
-      'feed-date',
-      formatTimestamp(normalizedFeed.value.lastResultTimestamp)
-    )
+    emit('feed-date', formatTimestamp(normalizedFeed.value.lastResultTimestamp))
     return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
   } else {
     return ''
@@ -199,15 +204,13 @@ watch(
   () => normalizedFeed,
   (value) => {
     if (value) {
-      store.updateSelectedNetwork(
-        [
-          {
-            chain: value.chain,
-            key: value.network,
-            label: value.networkName,
-          },
-        ],
-        )
+      store.updateSelectedNetwork([
+        {
+          chain: value.chain,
+          key: value.network,
+          label: value.networkName,
+        },
+      ])
     }
   },
   { deep: true }
@@ -226,6 +229,7 @@ function updateQuery(val) {
 .content {
   display: grid;
   grid-template: max-content max-content max-content max-content 1fr / 1fr;
+
   .pagination {
     padding-bottom: 16px;
     justify-self: center;

@@ -36,7 +36,7 @@ export async function createFeed() {
       const url = `https://feeds.witnet.io/${dataFeed.chain.toLowerCase()}/${
         dataFeed.feedFullName
       }`
-      return ({
+      return {
         author: {
           name: 'Witnet Foundation',
           email: 'info@witnet.foundation',
@@ -48,7 +48,7 @@ export async function createFeed() {
         title: `${dataFeed.name.toUpperCase()} price feed available on ${
           dataFeed.networkName
         }`,
-      })
+      }
     })
   } else return []
 }

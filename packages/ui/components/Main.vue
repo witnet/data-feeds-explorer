@@ -38,10 +38,10 @@
 </template>
 
 <script setup>
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery } from '@vue/apollo-composable'
+import { gql } from '@apollo/client/core'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
-import { gql } from "@apollo/client/core"
 const store = useNetwork()
 
 const emit = defineEmits(['set-network'])
@@ -49,12 +49,13 @@ const emit = defineEmits(['set-network'])
 const networksQuery = gql`
   query networks {
     networks {
-      label,
-      key,
-      chain,
+      label
+      key
+      chain
       logo
     }
-  }`
+  }
+`
 const { result } = await useQuery(networksQuery)
 
 const networks = computed(() => {
@@ -68,7 +69,7 @@ const selected = computed(() => {
   return store.selectedNetwork
 })
 
-const options = computed(() => {  
+const options = computed(() => {
   if (networks.value) {
     const options = generateSelectOptions(unref(networks))
     return options
@@ -98,13 +99,17 @@ const network = computed(() => {
   return network
 })
 
-watch(() => options.value, (newOptions) => {
-  if (newOptions) {
-    setCurrentNetwork(newOptions)
-  }
-  const networks = newOptions?.[network.value]
-  store.updateSelectedNetwork(networks)
-}, { immediate: true })
+watch(
+  () => options.value,
+  (newOptions) => {
+    if (newOptions) {
+      setCurrentNetwork(newOptions)
+    }
+    const networks = newOptions?.[network.value]
+    store.updateSelectedNetwork(networks)
+  },
+  { immediate: true }
+)
 
 function updateOptions(index) {
   store.deleteEmptyNetwork({ index })
@@ -125,32 +130,39 @@ function setCurrentNetwork(options) {
   grid-template-rows: max-content 1fr;
   grid-gap: 32px;
 }
+
 .section-header {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
   .section-title {
     font-size: 18px;
     align-self: flex-end;
     font-weight: 600;
   }
 }
+
 .feeds-container {
   height: max-content;
   margin-bottom: 24px;
 }
+
 .title-container {
   margin-bottom: 32px;
+
   .title {
     font-size: var(--text-size-title);
     margin-bottom: 4px;
     display: flex;
     align-items: center;
+
     .logo {
       margin-right: 8px;
       display: flex;
     }
   }
+
   .subtitle {
     font-size: var(--text-size);
   }
@@ -163,9 +175,11 @@ function setCurrentNetwork(options) {
   justify-items: flex-start;
   align-items: flex-start;
   row-gap: 16px;
+
   .title {
     font-size: var(--text-size);
   }
+
   .pagination {
     margin-bottom: 16px;
     justify-self: center;
@@ -183,19 +197,23 @@ function setCurrentNetwork(options) {
     margin: 0;
     padding: 0 24px;
   }
+
   .section-header {
-    padding: 0 32px 32px 32px;
+    padding: 0 32px 32px;
   }
 }
 @media (max-width: 600px) {
   .main {
     grid-template-columns: 1fr;
   }
+
   .section-header {
-    padding: 0 16px 16px 16px;
+    padding: 0 16px 16px;
   }
+
   .list-container {
     margin-right: 0;
+
     .pagination {
       margin-bottom: 48px;
     }
