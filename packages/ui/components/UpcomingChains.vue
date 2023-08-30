@@ -26,11 +26,6 @@ export default {
           img: 'upcoming_obscuro',
         },
         {
-          name: 'Mantle',
-          path: 'https://www.mantle.xyz/',
-          img: 'mantle',
-        },
-        {
           name: 'Router',
           path: 'https://www.routerprotocol.com/',
           img: 'router',
