@@ -1192,12 +1192,6 @@
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
-            "Price-KSW/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
             "Price-MJT/KCS-9": {
               "label": " ",
               "deviationPercentage": 0.5,
@@ -1260,12 +1254,6 @@
               "label": "₮",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-KSW/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-MJT/KCS-9": {
