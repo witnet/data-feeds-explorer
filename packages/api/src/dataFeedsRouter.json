@@ -2107,6 +2107,21 @@
               "minSecsBetweenUpdates": 900
             }
           }
+        },
+        "syscoin.rollux.testnet": {
+          "address": "0x4874cb1732eE1167A006E0Ab047D940ACF04D771",
+          "blockExplorer": "https://rpc-tanenbaum.rollux.com/{address}",
+          "color": "#66ff00",
+          "name": "Syscoin Rollux Testnet",
+          "pollingPeriod": 90000,
+          "feeds": {
+            "Price-SYS/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         }
       }
     },
