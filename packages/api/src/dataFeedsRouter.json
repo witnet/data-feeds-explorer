@@ -2000,6 +2000,7 @@
           }
         },
         "reef.mainnet": {
+          "mainnet": true,
           "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
           "blockExplorer": "https://reefscan.com/contract/{address}",
           "color": "#66ff00",
@@ -2019,6 +2020,40 @@
     "scroll": {
       "name": "Scroll",
       "networks": {
+        "scroll.mainnet": {
+          "mainnet": true,
+          "address": "0x0d13c6058DDE86da77565ED6038C065Af71e9208",
+          "blockExplorer": "https://scrollscan.com/address/{address}",
+          "color": "#66ff00",
+          "name": "Scroll Mainnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-UNI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.2,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
         "scroll.goerli": {
           "address": "0xBfFA2ec6225390C517A1bEB83b27a171C6734294",
           "blockExplorer": "https://blockscout.scroll.io/address/{address}",
