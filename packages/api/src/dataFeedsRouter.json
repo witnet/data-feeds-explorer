@@ -2069,11 +2069,11 @@
             }
           }
         },
-        "scroll.goerli": {
-          "address": "0xBfFA2ec6225390C517A1bEB83b27a171C6734294",
-          "blockExplorer": "https://blockscout.scroll.io/address/{address}",
+        "scroll.sepolia": {
+          "address": "0xdC101573cB42EB7006Ad6C7E08ce8C91fEAcB62C",
+          "blockExplorer": "https://sepolia.etherscan.io/{address}",
           "color": "#66ff00",
-          "name": "Scroll Alpha (Testnet)",
+          "name": "Scroll Sepolia (testnet)",
           "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
