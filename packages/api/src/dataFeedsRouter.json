@@ -1520,6 +1520,10 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
+            "Price-MTRG/USD-6": {
+              "label": "$",
+              "isRouted": true
+            },
             "Price-MTRG/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
@@ -1527,6 +1531,12 @@
               "minSecsBetweenUpdates": 900
             },
             "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
@@ -1560,6 +1570,10 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
+            "Price-MTRG/USD-6": {
+              "label": "$",
+              "isRouted": true
+            },
             "Price-MTRG/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
@@ -1567,6 +1581,12 @@
               "minSecsBetweenUpdates": 900
             },
             "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
