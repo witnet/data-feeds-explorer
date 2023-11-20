@@ -52,7 +52,7 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -100,7 +100,7 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-BTC/USD-6": {
               "label": "$",
@@ -112,37 +112,37 @@
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-OLO/USDC-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-FRAX/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.25,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -191,19 +191,19 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-BOBA/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-WIT/USDT-6": {
               "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -294,13 +294,13 @@
               "label": "€",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-CELO/USD-6": {
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-BTC/USD-6": {
               "label": "$",
@@ -370,19 +370,19 @@
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
+              "minSecsBetweenUpdates": 900
             },
             "Price-CFX/USDT-6": {
               "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
+              "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
+              "minSecsBetweenUpdates": 900
             },
             "Price-USDC/USD-6": {
               "label": "$",
@@ -636,19 +636,19 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-CRO/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-CRO/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ELON/USD-9": {
               "isRouted": true,
@@ -658,19 +658,19 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -759,7 +759,7 @@
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -784,19 +784,19 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ELA/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-HT/USD-6": {
               "isRouted": true,
@@ -806,13 +806,13 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -942,7 +942,7 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 604800,
-              "minSecsBetweenUpdates": 604800
+              "minSecsBetweenUpdates": 86400
             }
           }
         }
@@ -1045,25 +1045,25 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-DAI/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KAVA/USD-6": {
               "isRouted": true,
@@ -1073,19 +1073,19 @@
               "label": "₮",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -1224,55 +1224,55 @@
               "label": "₮",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-DAI/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KCS/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-MJT/KCS-9": {
               "label": " ",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-SAX/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -1297,19 +1297,19 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KRW/USD-9": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KSP/KRW-6": {
               "label": "₩",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KSP/USD-6": {
               "isRouted": true,
@@ -1319,7 +1319,7 @@
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -1338,19 +1338,19 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KRW/USD-9": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KSP/KRW-6": {
               "label": "₩",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-KSP/USD-6": {
               "isRouted": true,
@@ -1360,7 +1360,7 @@
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -1420,31 +1420,31 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-MNT/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -1556,19 +1556,19 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-MTR/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-MTRG/USD-6": {
               "label": "$",
@@ -1578,19 +1578,19 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -1611,19 +1611,19 @@
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 300
+              "minSecsBetweenUpdates": 3600
             },
             "Price-GLINT/USDC-6": {
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-GLMR/USD-6": {
               "isRouted": true,
@@ -1633,7 +1633,7 @@
               "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-STELLA/USD-6": {
               "isRouted": true,
@@ -1643,25 +1643,25 @@
               "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-GLINT/USD-6": {
               "isRouted": true,
               "label": "$",
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -1741,19 +1741,19 @@
               "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -1815,7 +1815,7 @@
               "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -1913,25 +1913,25 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-DAI/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-MATIC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/USD-6": {
               "isRouted": true,
@@ -1941,25 +1941,25 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WETH-9": {
               "label": " ",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WMATIC-6": {
               "label": " ",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -2018,7 +2018,7 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/USD-6": {
               "isRouted": true,
@@ -2028,25 +2028,25 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WETH-9": {
               "label": " ",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WMATIC-6": {
               "label": " ",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -2082,7 +2082,7 @@
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
@@ -2103,25 +2103,25 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-UNI/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.2,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -2210,7 +2210,7 @@
               "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         },
@@ -2303,49 +2303,49 @@
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-FTM/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-MATIC/USD-6": {
               "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-ULX/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-WBTC/WULX-6": {
               "label": " ",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             },
             "Price-WETH/WULX-6": {
               "label": " ",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
