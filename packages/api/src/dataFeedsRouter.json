@@ -1790,17 +1790,23 @@
           "name": "OKXChain X1 Sepolia",
           "pollingPeriod": 120000,
           "feeds": {
-            "Price-OKT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            },
-            "Price-USDT/USD-6": {
+            "Price-BTC/USD-6": {
               "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-OKB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
             }
           }
         }
