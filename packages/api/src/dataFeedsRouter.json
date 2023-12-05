@@ -1759,35 +1759,14 @@
         }
       }
     },
-    "okxchain": {
-      "name": "OKXChain",
+    "okx": {
+      "name": "OKX",
       "networks": {
-        "okxchain.testnet": {
-          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
-          "blockExplorer": "https://www.oklink.com/en/okc-test/address/{address}",
-          "color": "#ff0066",
-          "name": "OKXChain Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-OKT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            }
-          }
-        },
-        "okxchain.x1.sepolia": {
+        "okx.x1.sepolia": {
           "address": "0x6dc0E2AC80550F901cd4d5F5a4C48333A0ca97Ee",
           "blockExplorer": "https://www.oklink.com/x1-test/address/{address}",
           "color": "#ff0066",
-          "name": "OKXChain X1 Sepolia",
+          "name": "OKX X1 Sepolia",
           "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
@@ -1807,6 +1786,27 @@
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
+            }
+          }
+        },
+        "okx.okxchain.testnet": {
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
+          "blockExplorer": "https://www.oklink.com/en/okc-test/address/{address}",
+          "color": "#ff0066",
+          "name": "OKXChain Testnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-OKT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
             }
           }
         }
