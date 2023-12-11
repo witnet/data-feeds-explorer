@@ -1809,9 +1809,9 @@
         },
         "okx.okxchain.testnet": {
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
-          "blockExplorer": "https://www.oklink.com/en/okc-test/address/{address}",
+          "blockExplorer": "https://www.oklink.com/en/oktc-test/address/{address}",
           "color": "#ff0066",
-          "name": "OKXChain Testnet",
+          "name": "OKT Testnet",
           "pollingPeriod": 120000,
           "feeds": {
             "Price-OKT/USDT-6": {
