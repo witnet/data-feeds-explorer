@@ -839,16 +839,6 @@
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
-            "Price-BUSD/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-BUSD/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
             "Price-ELA/USD-6": {
               "isRouted": true,
               "label": "$"
