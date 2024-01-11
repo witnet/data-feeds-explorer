@@ -1542,43 +1542,9 @@
           "name": "Meter Mainnet",
           "pollingPeriod": 120000,
           "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
             "Price-MTR/USDT-6": {
               "label": "₮",
               "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-MTRG/USD-6": {
-              "label": "$",
-              "isRouted": true
-            },
-            "Price-MTRG/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
