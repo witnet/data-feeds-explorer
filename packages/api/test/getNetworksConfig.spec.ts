@@ -6,8 +6,8 @@ describe('validateNetworkConfig', () => {
     const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig)
     const expected = [
       {
-        key: 'boba-mainnet',
-        label: 'Boba Mainnet',
+        key: 'boba-bnb-mainnet',
+        label: 'Boba BNB/L2 Mainnet',
         chain: 'Boba',
         mainnet: true
       },
@@ -25,26 +25,26 @@ describe('validateNetworkConfig', () => {
       },
       { key: 'kcc-mainnet', label: 'KCC Mainnet', chain: 'KCC', mainnet: true },
       {
-        key: 'metis-mainnet',
-        label: 'Metis Mainnet',
-        chain: 'Metis',
-        mainnet: true
-      },
-      {
         key: 'polygon-mainnet',
         label: 'Polygon Mainnet',
         chain: 'Polygon',
         mainnet: true
       },
       {
-        key: 'avalanche-fuji',
-        label: 'Avalanche Fuji',
-        chain: 'Avalanche',
+        key: 'polygon-zkevm-mainnet',
+        label: 'Polygon zkEVM Mainnet',
+        chain: 'Polygon',
+        mainnet: true
+      },
+      {
+        key: 'boba-bnb-testnet',
+        label: 'Boba BNB/L2 Testnet',
+        chain: 'Boba',
         mainnet: false
       },
       {
-        key: 'boba-rinkeby',
-        label: 'Boba Rinkeby',
+        key: 'boba-ethereum-goerli',
+        label: 'Boba ETH/L2 Goerli',
         chain: 'Boba',
         mainnet: false
       },
@@ -55,14 +55,20 @@ describe('validateNetworkConfig', () => {
         mainnet: false
       },
       {
-        key: 'conflux-tethys',
+        key: 'conflux-core-mainnet',
         label: 'Conflux Core (Hydra)',
         chain: 'Conflux',
         mainnet: false
       },
       {
-        key: 'conflux-testnet',
+        key: 'conflux-core-testnet',
         label: 'Conflux Core (Testnet)',
+        chain: 'Conflux',
+        mainnet: false
+      },
+      {
+        key: 'conflux-espace-testnet',
+        label: 'Conflux eSpace (Testnet)',
         chain: 'Conflux',
         mainnet: false
       },
@@ -73,15 +79,9 @@ describe('validateNetworkConfig', () => {
         mainnet: false
       },
       {
-        key: 'ethereum-rinkeby',
-        label: 'Ethereum Rinkeby',
+        key: 'ethereum-sepolia',
+        label: 'Ethereum Sepolia',
         chain: 'Ethereum',
-        mainnet: false
-      },
-      {
-        key: 'harmony-testnet',
-        label: 'Harmony Testnet',
-        chain: 'Harmony',
         mainnet: false
       },
       {
@@ -91,14 +91,20 @@ describe('validateNetworkConfig', () => {
         mainnet: false
       },
       {
-        key: 'metis-rinkeby',
-        label: 'Metis Rinkeby',
+        key: 'metis-goerli',
+        label: 'Metis Goerli',
         chain: 'Metis',
         mainnet: false
       },
       {
         key: 'polygon-goerli',
         label: 'Polygon Mumbai',
+        chain: 'Polygon',
+        mainnet: false
+      },
+      {
+        key: 'polygon-zkevm-goerli',
+        label: 'Polygon zkEVM Testnet',
         chain: 'Polygon',
         mainnet: false
       }

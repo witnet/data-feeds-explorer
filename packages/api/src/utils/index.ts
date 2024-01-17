@@ -32,7 +32,7 @@ export function createFeedFullName (network, name, decimals) {
 }
 
 // Get networks list by chain
-function getNetworksListByChain (config: RouterDataFeedsConfig) {
+export function getNetworksListByChain (config: RouterDataFeedsConfig) {
   return Object.values(config.chains).map(chain => {
     const networkNames = Object.keys(chain.networks)
     return Object.values(chain.networks).map((network, index) => {
@@ -105,9 +105,9 @@ export function normalizeConfig (
   // Parse Feed adding common config
   const feeds: FeedInfosWithoutAbis = networksConfigMap.reduce(
     (acc: FeedInfosWithoutAbis, config: ExtendedFeedConfig) => {
-      const feedsArrayConfig: Array<FeedParamsConfig> = Object.values(
+      const feedsArrayConfig: Array<FeedParamsConfig> = config.feeds ? Object.values(
         config.feeds
-      )
+      ) : []
       // Extracts feeds deleting key label
       const feedsArray: Array<FeedParsedParams> = feedsArrayConfig.map(
         (feed, index) => {

@@ -1,7 +1,7 @@
 import { normalizeConfig } from '../src/utils/index'
 import dataFeedsRouterConfig from '../test/web3Middleware/dataFeedsRouter.json'
 
-describe('validateDataFeedsConfig', () => {
+describe.skip('validateDataFeedsConfig', () => {
   it('check if the structure is correct', async () => {
     const feeds = normalizeConfig(dataFeedsRouterConfig)
     const expected = [

@@ -42,24 +42,64 @@ export type ConfigByFullName = {
 }
 
 export enum Network {
-  EthereumMainnet = 'ethereum-mainnet',
-  EthereumGoerli = 'ethereum-goerli',
-  EthereumRinkeby = 'ethereum-rinkeby',
+  ArbitrumOne = 'arbitrum-one' ,
+  ArbitrumGoerli = 'arbitrum-goerli',
+  AvalancheMainnet = 'avalanche-mainnet',
   AvalancheFuji = 'avalanche-fuji',
-  BobaMainnet = 'boba-mainnet',
-  BobaRinkeby = 'boba-rinkeby',
-  ConfluxTethys = 'conflux-tethys',
-  ConfluxTestnet = 'conflux-testnet',
-  CeloMainnet = 'celo-mainnet',
+  BobaEthereumMainnet = 'boba-ethereum-mainnet',
+  BobaEthereumGoerli = 'boba-ethereum-goerli',
+  BobaBnbMainnet = 'boba-bnb-mainnet',
+  BobaBnbTestnet = 'boba-bnb-testnet',
   CeloAlfajores = 'celo-alfajores',
-  HarmonyTestnet = 'harmony-testnet',
-  MetisMainnet = 'metis-mainnet',
-  MetisRinkeby = 'metis-rinkeby',
+  CeloMainnet = 'celo-mainnet',
+  ConfluxCoreMainnet = 'conflux-core-mainnet',
+  ConfluxEspaceMainnet = 'conflux-espace-mainnet',
+  ConfluxCoreTestnet = 'conflux-core-testnet',
+  ConfluxEspaceTestnet = 'conflux-espace-testnet',
+  CronosTestnet = 'cronos-testnet',
+  CronosMainnet = 'cronos-mainnet',
+  CubeTestnet = 'cube-testnet',
+  DogechainTestnet = 'dogechain-testnet',
+  DogechainMainnet = 'dogechain-mainnet',
+  ElastosMainnet = 'elastos-mainnet',
+  ElastosTestnet = 'elastos-testnet',
+  EthereumGoerli = 'ethereum-goerli',
+  EthereumSepolia = 'ethereum-sepolia',
+  EthereumMainnet = 'ethereum-mainnet',
+  FuseTestnet = 'fuse-testnet',
+  GnosisTestnet = 'gnosis-testnet',
+  KavaMainnet = 'kava-mainnet',
+  KavaTestnet = 'kava-testnet',
+  KccTestnet = 'kcc-testnet',
+  KccMainnet = 'kcc-mainnet',
+  KlaytnMainnet = 'klaytn-mainnet',
+  KlaytnTestnet = 'klaytn-testnet',
+  MantleTestnet = 'mantle-testnet',
+  MantleMainnet = 'mantle-mainnet',
+  MetisGoerli = 'metis-goerli',
+  MeterTestnet = 'meter-testnet',
+  MeterMainnet = 'meter-mainnet',
+  MoonbeamMainnet = 'moonbeam-mainnet',
   MoonbeamMoonbase = 'moonbeam-moonbase',
-  PolygonMainnet = 'polygon-mainnet',
+  MoonbeamMoonriver = 'moonbeam-moonriver',
+  OkxX1Sepolia = 'okx-x1-sepolia',
+  OkxOkxchainTestnet = 'okx-okxchain-testnet',
+  OptimismGoerli = 'optimism-goerli',
+  OptimismMainnet = 'optimism-mainnet',
   PolygonGoerli = 'polygon-goerli',
-  KCCMainnet = 'KCC-mainnet',
-  KCCTestnet = 'KCC-testnet'
+  PolygonMainnet = 'polygon-mainnet',
+  PolygonZkevmGoerli = 'polygon-zkevm-goerli',
+  PolygonZkevmMainnet = 'polygon-zkevm-mainnet',
+  ReefTestnet = 'reef-testnet',
+  ReefMainnet = 'reef-mainnet',
+  ScrollMainnet = 'scroll-mainnet',
+  ScrollSepolia = 'scroll-sepolia',
+  SmartbchAmber = 'smartbch-amber',
+  SyscoinTestnet = 'syscoin-testnet',
+  SyscoinMainnet = 'syscoin-mainnet',
+  SyscoinRolluxTestnet = 'syscoin-rollux-testnet',
+  UltronTestnet = 'ultron-testnet',
+  UltronMainnet = 'ultron-mainnet'
 }
 
 export type FeedInfoGeneric<ABI> = {
@@ -137,7 +177,7 @@ export type FeedInfoRouterConfigMap = {
 }
 
 export type FeedParamsConfig = {
-  label: string
+  label?: string
   isRouted?: boolean
   deviationPercentage?: number
   maxSecsBetweenUpdates?: number
@@ -155,14 +195,16 @@ export type FeedParsedParams = {
 }
 
 export type FeedConfig = {
-  address: string
+  legacy?: boolean,
+  address?: string
   blockExplorer: string
+  blockProvider?: string
   hide?: boolean
   mainnet?: boolean
   color: string
   name: string
-  pollingPeriod: number
-  feeds: FeedInfoRouterConfigMap
+  pollingPeriod?: number
+  feeds?: FeedInfoRouterConfigMap
 }
 
 export type ExtendedFeedConfig = {
@@ -186,8 +228,32 @@ export type Chain = {
 export type NetworkConfigMap = Record<string, FeedConfig>
 
 export type RouterDataFeedsConfig = {
-  abi: string
+   contract: {
+    legacy: {
+        abi: string,
+        pollingPeriod: number 
+    },
+    "2.0": {
+        abi: string,
+        address: string,
+        pollingPeriod: number 
+    }
+  },
   chains: Record<string, Chain>
+  conditions: FeedInfoRouterConfigMap & {
+      default: {
+        deviationPercentage: number,
+        maxSecsBetweenUpdates: number,
+        minSecsBetweenUpdates: number 
+    },
+  },
+  currencies: Record<string, string>
+
+}
+
+export type LegacyRouterDataFeedsConfig = {
+  abi: string,
+  chains: Record<string, Chain> 
 }
 
 export type FeedInfosWithoutAbis = Array<
