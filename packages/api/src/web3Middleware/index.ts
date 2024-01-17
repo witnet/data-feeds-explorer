@@ -6,36 +6,49 @@ import {
   ContractsState,
   FeedInfo,
   Repositories,
-  ResultRequestDbObject,
   ContractInfo,
-  Contract
+  Contract,
 } from '../types'
 import { isZeroAddress } from '../utils/index'
 import { getProvider } from './provider'
+import { NetworkRouter } from './NetworkRouter'
+import { Configuration } from './Configuration'
 
 export class Web3Middleware {
   public repositories: Repositories
   private Web3: typeof Web3
-  public dataFeeds: Array<FeedInfo>
-  public lastStoredResult: Record<string, ResultRequestDbObject> = {}
+  public legacyDataFeeds: Array<FeedInfo>
   public routerContractByNetwork: Record<string, Contract> = {}
   public contractIdByFeedId: Record<string, string> = {}
   // feedFullname -> address
   public currentFeedAddresses: Record<string, string> = {}
+  public networkRouters: Array<NetworkRouter>
+  public configuration: Configuration
 
   private intervals = []
 
   constructor (
+    configuration: Configuration,
     dependencies: { Web3: typeof Web3; repositories: Repositories },
-    dataFeeds: Array<FeedInfo>
+    legacyDataFeeds: Array<FeedInfo>,
   ) {
     this.repositories = dependencies.repositories
-    this.dataFeeds = dataFeeds
+    this.legacyDataFeeds =legacyDataFeeds
     this.Web3 = dependencies.Web3
+    this.configuration = configuration
   }
 
-  public async initializeAddresses (): Promise<Array<FeedInfo>> {
-    const promises = this.dataFeeds.map(feed => this.recheckFeedAddress(feed))
+  public listen() {
+    this.listenLegacyPriceRouter()
+    this.listenWitnetPriceFeeds()
+  }
+
+  public async listenWitnetPriceFeeds () {
+    this.configuration.listNetworksUsingPriceFeedsContract().forEach(networkInfo => new NetworkRouter(this.configuration, this.repositories, networkInfo).listen())
+  }
+
+  private async initializeAddresses (): Promise<Array<FeedInfo>> {
+    const promises = this.legacyDataFeeds.map(feed => this.recheckFeedAddress(feed))
 
     const feeds = await Promise.all(promises)
 
@@ -78,10 +91,10 @@ export class Web3Middleware {
     return feedInfo
   }
 
-  async listen () {
+  async listenLegacyPriceRouter () {
     const feeds = await this.initializeAddresses()
 
-    const feedDictionary = this.dataFeeds.reduce(
+    const feedDictionary = this.legacyDataFeeds.reduce(
       (
         acc: Record<string, { feedInfo: FeedInfo; feedId: ObjectId }>,
         feedInfo: FeedInfo
@@ -253,26 +266,16 @@ export class Web3Middleware {
           contracts,
           feedFullName
         )
-        const decodedDrTxHash = toHex(lastDrTxHash)
-        const lastStoredResult =
-          this.lastStoredResult[feedFullName] ||
-          (await this.repositories.resultRequestRepository.getLastResult(
+        await this.repositories.resultRequestRepository.insertIfLatest(
+          {
+            result: lastPrice,
+            timestamp: lastTimestamp,
+            requestId: requestId,
+            drTxHash: toHex(lastDrTxHash).slice(2),
             feedFullName
-          ))
-        const timestampChanged = lastStoredResult?.timestamp !== lastTimestamp
-        if (timestampChanged) {
-          const result = await this.repositories.resultRequestRepository.insert(
-            {
-              result: lastPrice,
-              timestamp: lastTimestamp,
-              requestId: requestId,
-              drTxHash: decodedDrTxHash.slice(2),
-              feedFullName
-            }
-          )
-          this.lastStoredResult[feedFullName] = result
-          resolve(true)
-        }
+          }
+        )
+        resolve(true)
       } catch (error) {
         console.error(
           `Error reading contracts state for ${feedFullName}:`,

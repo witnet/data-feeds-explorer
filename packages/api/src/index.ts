@@ -5,7 +5,7 @@ import { MongoManager } from './database'
 import { FeedRepository } from './repository/Feed'
 import { ResultRequestRepository } from './repository/ResultRequest'
 import { createServer } from './server'
-import { Repositories, RouterDataFeedsConfig, NetworksConfig } from './types'
+import {  RouterDataFeedsConfig, Repositories, FeedInfo, NetworksConfig } from './types'
 import { Web3Middleware } from './web3Middleware/index'
 import { normalizeNetworkConfig } from './utils/index'
 import {
@@ -13,17 +13,21 @@ import {
   fetchDataFeedsRouterConfig
 } from './readDataFeeds'
 import { SvgCache } from './svgCache'
+import { NetworkRouter } from './web3Middleware/NetworkRouter'
+import { Configuration } from './web3Middleware/Configuration'
 
 async function main () {
   const svgCache = new SvgCache()
   const mongoManager = new MongoManager()
   const db = await mongoManager.start()
-  const dataFeedsRouterConfig: RouterDataFeedsConfig = await fetchDataFeedsRouterConfig()
-  const dataFeeds = normalizeAndValidateDataFeedConfig(dataFeedsRouterConfig)
+  const configurationFile: RouterDataFeedsConfig = await fetchDataFeedsRouterConfig()
+  const configuration = new Configuration(configurationFile)
+
+  const legacyFeeds: Array<FeedInfo> = normalizeAndValidateDataFeedConfig(configurationFile)
   const networksConfigPartial: Array<Omit<
     NetworksConfig,
     'logo'
-  >> = normalizeNetworkConfig(dataFeedsRouterConfig)
+  >> = normalizeNetworkConfig(configurationFile)
 
   const logosToFetch = networksConfigPartial.map(
     (networksConfig: NetworksConfig) => {
@@ -40,19 +44,40 @@ async function main () {
     logo: networksLogos[logosToFetch[index]]
   }))
 
+  const routers = configuration.listNetworksUsingPriceFeedsContract()
+    .filter(config => {
+      if (!config.provider) {
+        console.warn("No provider found for ", config.key)
+      }
+      return config.provider
+    })
+    .map(networkInfo => new NetworkRouter(configuration, repositories, networkInfo))
+
+
+  const newFeeds: Array<FeedInfo> = []
+
+  for (let router of routers) {
+    const feedInfos = await router.getFeedInfos()
+    newFeeds.concat(feedInfos)
+  }
+
+  const feeds = [...legacyFeeds, ...newFeeds]
+
   const repositories: Repositories = {
-    feedRepository: new FeedRepository(dataFeeds),
-    resultRequestRepository: new ResultRequestRepository(db, dataFeeds)
+    feedRepository: new FeedRepository(feeds),
+    resultRequestRepository: new ResultRequestRepository(db, feeds)
   }
 
   const web3Middleware = new Web3Middleware(
+    configuration,
     { repositories, Web3: Web3 },
-    dataFeeds
+    legacyFeeds,
   )
+
   web3Middleware.listen()
 
   await createServer(repositories, svgCache, {
-    dataFeedsConfig: dataFeeds,
+    dataFeedsConfig: feeds,
     networksConfig
   })
 }

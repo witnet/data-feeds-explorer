@@ -42,24 +42,64 @@ export type ConfigByFullName = {
 }
 
 export enum Network {
-  EthereumMainnet = 'ethereum-mainnet',
-  EthereumGoerli = 'ethereum-goerli',
-  EthereumRinkeby = 'ethereum-rinkeby',
+  ArbitrumOne = 'arbitrum-one' ,
+  ArbitrumGoerli = 'arbitrum-goerli',
+  AvalancheMainnet = 'avalanche-mainnet',
   AvalancheFuji = 'avalanche-fuji',
-  BobaMainnet = 'boba-mainnet',
-  BobaRinkeby = 'boba-rinkeby',
-  ConfluxTethys = 'conflux-tethys',
-  ConfluxTestnet = 'conflux-testnet',
-  CeloMainnet = 'celo-mainnet',
+  BobaEthereumMainnet = 'boba-ethereum-mainnet',
+  BobaEthereumGoerli = 'boba-ethereum-goerli',
+  BobaBnbMainnet = 'boba-bnb-mainnet',
+  BobaBnbTestnet = 'boba-bnb-testnet',
   CeloAlfajores = 'celo-alfajores',
-  HarmonyTestnet = 'harmony-testnet',
-  MetisMainnet = 'metis-mainnet',
-  MetisRinkeby = 'metis-rinkeby',
+  CeloMainnet = 'celo-mainnet',
+  ConfluxCoreMainnet = 'conflux-core-mainnet',
+  ConfluxEspaceMainnet = 'conflux-espace-mainnet',
+  ConfluxCoreTestnet = 'conflux-core-testnet',
+  ConfluxEspaceTestnet = 'conflux-espace-testnet',
+  CronosTestnet = 'cronos-testnet',
+  CronosMainnet = 'cronos-mainnet',
+  CubeTestnet = 'cube-testnet',
+  DogechainTestnet = 'dogechain-testnet',
+  DogechainMainnet = 'dogechain-mainnet',
+  ElastosMainnet = 'elastos-mainnet',
+  ElastosTestnet = 'elastos-testnet',
+  EthereumGoerli = 'ethereum-goerli',
+  EthereumSepolia = 'ethereum-sepolia',
+  EthereumMainnet = 'ethereum-mainnet',
+  FuseTestnet = 'fuse-testnet',
+  GnosisTestnet = 'gnosis-testnet',
+  KavaMainnet = 'kava-mainnet',
+  KavaTestnet = 'kava-testnet',
+  KccTestnet = 'kcc-testnet',
+  KccMainnet = 'kcc-mainnet',
+  KlaytnMainnet = 'klaytn-mainnet',
+  KlaytnTestnet = 'klaytn-testnet',
+  MantleTestnet = 'mantle-testnet',
+  MantleMainnet = 'mantle-mainnet',
+  MetisGoerli = 'metis-goerli',
+  MeterTestnet = 'meter-testnet',
+  MeterMainnet = 'meter-mainnet',
+  MoonbeamMainnet = 'moonbeam-mainnet',
   MoonbeamMoonbase = 'moonbeam-moonbase',
-  PolygonMainnet = 'polygon-mainnet',
+  MoonbeamMoonriver = 'moonbeam-moonriver',
+  OkxX1Sepolia = 'okx-x1-sepolia',
+  OkxOkxchainTestnet = 'okx-okxchain-testnet',
+  OptimismGoerli = 'optimism-goerli',
+  OptimismMainnet = 'optimism-mainnet',
   PolygonGoerli = 'polygon-goerli',
-  KCCMainnet = 'KCC-mainnet',
-  KCCTestnet = 'KCC-testnet'
+  PolygonMainnet = 'polygon-mainnet',
+  PolygonZkevmGoerli = 'polygon-zkevm-goerli',
+  PolygonZkevmMainnet = 'polygon-zkevm-mainnet',
+  ReefTestnet = 'reef-testnet',
+  ReefMainnet = 'reef-mainnet',
+  ScrollMainnet = 'scroll-mainnet',
+  ScrollSepolia = 'scroll-sepolia',
+  SmartbchAmber = 'smartbch-amber',
+  SyscoinTestnet = 'syscoin-testnet',
+  SyscoinMainnet = 'syscoin-mainnet',
+  SyscoinRolluxTestnet = 'syscoin-rollux-testnet',
+  UltronTestnet = 'ultron-testnet',
+  UltronMainnet = 'ultron-mainnet'
 }
 
 export type FeedInfoGeneric<ABI> = {
@@ -155,6 +195,7 @@ export type FeedParsedParams = {
 }
 
 export type FeedConfig = {
+  legacy?: boolean,
   address: string
   blockExplorer: string
   hide?: boolean
@@ -188,6 +229,7 @@ export type NetworkConfigMap = Record<string, FeedConfig>
 export type RouterDataFeedsConfig = {
   abi: string
   chains: Record<string, Chain>
+  feeds: FeedInfoRouterConfigMap
 }
 
 export type FeedInfosWithoutAbis = Array<

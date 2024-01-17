@@ -13,6 +13,7 @@ export class ResultRequestRepository {
   collection: Collection<
     ResultRequestDbObject | WithoutId<ResultRequestDbObject>
   >
+  latestResults: Record<string, WithoutId<ResultRequestDbObject>> = {}
 
   constructor (db: Db, _dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
@@ -78,8 +79,10 @@ export class ResultRequestRepository {
           numericOrdering: true
         }
       }
-    )
-
+    ).catch(e => {
+      console.log(`Error in getLastResult: ${feedFullName}`, e)
+      return null
+    })
     return this.normalizeId(lastResultRequest)
   }
 
@@ -88,6 +91,9 @@ export class ResultRequestRepository {
   ): Promise<ResultRequestDbObjectNormalized | null> {
     if (this.isValidResultRequest(resultRequest)) {
       const response = await this.collection.insertOne(resultRequest)
+
+      // store in cache
+      this.latestResults[resultRequest.feedFullName] = resultRequest
 
       return this.normalizeId(response[0])
     } else {
@@ -98,6 +104,29 @@ export class ResultRequestRepository {
       return null
     }
   }
+
+  async insertIfLatest (
+    resultRequest: WithoutId<ResultRequestDbObject>
+  ): Promise<ResultRequestDbObjectNormalized | null> {
+
+    let storedResult = this.latestResults[resultRequest.feedFullName]
+    if (!storedResult) {
+      storedResult = await this.getLastResult(resultRequest.feedFullName)
+    }
+
+    const timestampChanged = storedResult?.timestamp !== resultRequest.timestamp
+
+    if (timestampChanged) {
+      return await this.insert(resultRequest)
+    } else {
+      console.log(
+        'Not inserting result because timestap is already inserted',
+        resultRequest
+      )
+      return null
+    }
+  }
+
 
   private normalizeId (
     resultRequest: ResultRequestDbObject

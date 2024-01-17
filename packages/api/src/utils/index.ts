@@ -32,7 +32,7 @@ export function createFeedFullName (network, name, decimals) {
 }
 
 // Get networks list by chain
-function getNetworksListByChain (config: RouterDataFeedsConfig) {
+export function getNetworksListByChain (config: RouterDataFeedsConfig) {
   return Object.values(config.chains).map(chain => {
     const networkNames = Object.keys(chain.networks)
     return Object.values(chain.networks).map((network, index) => {

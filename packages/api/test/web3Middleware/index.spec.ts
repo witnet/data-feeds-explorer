@@ -7,6 +7,7 @@ import { Web3Middleware } from '../../src/web3Middleware/index'
 import { normalizeConfig } from '../../src/utils'
 import dataFeedsRouter from './dataFeedsRouter.json'
 import { ObjectId } from 'mongodb'
+import { Configuration } from '../../src/web3Middleware/Configuration'
 
 const dataFeeds = normalizeConfig(dataFeedsRouter)
 
@@ -87,8 +88,9 @@ describe.skip('web3Middleware', () => {
       }
     )
     const feedRepository = new FeedRepository(feedInfos)
-
+    const configuration = new Configuration(dataFeedsRouter)
     const middleware = new Web3Middleware(
+      configuration,
       {
         repositories: { feedRepository, resultRequestRepository },
         Web3: Web3Mock

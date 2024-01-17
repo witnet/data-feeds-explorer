@@ -537,5 +537,489 @@
         }
       }
     }
+  },
+  "feeds": {
+      "Price-ADA/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-ALGO/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-APE/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-ATOM/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-AVAX/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-BAT/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-BAT/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-BCH/USD-6": {
+      "label": "$",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-BNB/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-BNB/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-BOBA/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-BORING/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 0.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-BTC/USD-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-BUSD/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-BUSD/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-CELO/EUR-6": {
+      "label": "€",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-CELO/USD-6": {
+      "label": "$",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-CFX/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 3600,
+      "minSecsBetweenUpdates": 300
+    },
+    "Price-CRO/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-CRO/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-CUBE/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-CUBE/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-DAI/USD-6": {
+      "label": "$",
+      "deviationPercentage": 0.1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-DOGE/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-DOT/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-ELA/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-ELA/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-ELON/USD-9": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-ELON/USDT-9": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-EOS/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-ETH/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-FRAX/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 0.25,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-FTM/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-FUSE/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-GLINT/USD-6": {
+      "isRouted": true,
+      "label": "$",
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-GLINT/USDC-6": {
+      "label": "$",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-GLMR/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-GLMR/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-HT/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-HT/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-KAVA/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-KAVA/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 0.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-KCS/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 0.5,
+      "maxSecsBetweenUpdates": 3600,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-KLAY/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-KLAY/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-KRW/USD-9": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-KSP/KRW-6": {
+      "label": "₩",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-KSP/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-LINK/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-MATIC/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-METIS/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-METIS/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-MJT/KCS-9": {
+      "label": " ",
+      "deviationPercentage": 0.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-MNT/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-MOVR/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-MTR/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-MTRG/USD-6": {
+      "label": "$",
+      "isRouted": true
+    },
+    "Price-MTRG/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-NCT/CELO-6": {
+      "label": " ",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-NCT/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-OKB/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-OKT/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 0.5,
+      "maxSecsBetweenUpdates": 3600,
+      "minSecsBetweenUpdates": 300
+    },
+    "Price-OLO/USDC-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-OP/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-QUICK/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-QUICK/USDC-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-QUICK/WETH-9": {
+      "label": " ",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-QUICK/WMATIC-6": {
+      "label": " ",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-REEF/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-SAX/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 0.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-SHIB/USD-9": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-SOL/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-STELLA/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-STELLA/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-SYS/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-TUSD/USD-6": {
+      "isRouted": true,
+      "label": "$"
+    },
+    "Price-TUSD/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 0.25,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-ULX/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-UNI/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-USDC/USD-6": {
+      "label": "₮",
+      "deviationPercentage": 0.1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-USDT/USD-6": {
+      "label": "$",
+      "deviationPercentage": 0.1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-WBTC/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-WBTC/WULX-6": {
+      "label": " ",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 3600
+    },
+    "Price-WETH/WULX-6": {
+      "label": " ",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-WIT/USDT-6": {
+      "label": "₮",
+      "deviationPercentage": 1,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    },
+    "Price-XLM/USD-6": {
+      "label": "$",
+      "deviationPercentage": 3.5,
+      "maxSecsBetweenUpdates": 86400,
+      "minSecsBetweenUpdates": 900
+    }
   }
 }
