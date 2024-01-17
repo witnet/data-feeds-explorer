@@ -142,6 +142,7 @@
           }
         },
         "boba.bnb.mainnet": {
+          "legacy": false,
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://blockexplorer.bnb.boba.network/address/{address}",
@@ -177,6 +178,7 @@
           "name": "Celo Alfajores"
         },
         "celo.mainnet": {
+          "legacy": false,
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://explorer.celo.org/address/{address}",
@@ -489,6 +491,7 @@
       "name": "Elastos",
       "networks": {
         "elastos.mainnet": {
+          "legacy": false,
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://esc.elastos.io/address/{address}",
@@ -882,6 +885,7 @@
           "pollingPeriod": 90000
         },
         "mantle.mainnet": {
+          "legacy": false,
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://explorer.mantle.xyz/address/{address}",
@@ -1198,6 +1202,7 @@
           }
         },
         "polygon.mainnet": {
+          "legacy": false,
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://polygonscan.com/address/{address}",
@@ -1237,6 +1242,7 @@
           "name": "Polygon zkEVM Testnet"
         },
         "polygon.zkevm.mainnet": {
+          "legacy": false,
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://zkevm.polygonscan.com/address/{address}",
@@ -1304,6 +1310,7 @@
       "name": "Scroll",
       "networks": {
         "scroll.mainnet": {
+          "legacy": false,
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://scrollscan.com/address/{address}",
@@ -1672,7 +1679,6 @@
     },
     "Price-GLINT/USD-6": {
       "isRouted": true,
-
       "maxSecsBetweenUpdates": 86400,
       "minSecsBetweenUpdates": 900
     },

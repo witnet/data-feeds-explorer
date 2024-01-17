@@ -582,7 +582,6 @@
     },
     "Price-GLINT/USD-6": {
       "isRouted": true,
-
       "maxSecsBetweenUpdates": 86400,
       "minSecsBetweenUpdates": 900
     },
