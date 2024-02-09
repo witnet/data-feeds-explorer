@@ -2232,6 +2232,38 @@
         }
       }
     },
+    "ten": {
+      "name": "TEN",
+      "networks": {
+        "ten.testnet": {
+          "address": "0xE490b89AfADE571d8Afa158446C603D530608ceA",
+          "blockExplorer": "",
+          "color": "#66ff00",
+          "name": "TEN Testnet",
+          "pollingPeriod": 60000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WIT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            }
+          }
+        }
+      }
+    },
     "ultron": {
       "name": "Ultron",
       "networks": {
