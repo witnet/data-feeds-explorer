@@ -47,14 +47,11 @@
       class="transactions"
       :transactions="transactions"
     />
-    <el-pagination
-      v-if="feed && numberOfPages > 1"
-      :small="small"
+    <Pagination
       class="pagination"
-      layout="prev, pager, next"
-      :pager-count="5"
-      :page-count="numberOfPages"
       :current-page="currentPage"
+      :total-count="200"
+      :page-size="itemsPerPage"
       @current-change="handleCurrentChange"
     />
   </div>
