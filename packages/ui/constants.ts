@@ -1,11 +1,11 @@
 import { es, enGB } from 'date-fns/locale'
-import { localeCodes, type LanguageDictionary } from './types'
+import { localeCodes, type LanguageDictionary, type ChartRange } from './types'
 
 export const LANGUAGE_LOCALES: LanguageDictionary = {
   [localeCodes.en]: {
     code: 'en-US',
     iso: 'en-US',
-    name: 'English(US)',
+    name: 'English',
     file: 'en-US.json',
     fnsLocale: enGB,
   },
@@ -83,7 +83,7 @@ export const dataFeedStatus = {
   },
 }
 
-export const CHART_RANGE: { [key: string]: any } = {
+export const CHART_RANGE: { [key: string]: ChartRange } = {
   w: {
     key: 'w',
     value: 24 * 7,
