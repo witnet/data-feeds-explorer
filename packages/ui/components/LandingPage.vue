@@ -60,7 +60,6 @@ const supportedChains = computed(() => {
 onMounted(async () => {
   store.updateSelectedNetwork({ network: [] })
   await store.fetchEcosystems()
-  await store.fetchNetworks()
 })
 </script>
 

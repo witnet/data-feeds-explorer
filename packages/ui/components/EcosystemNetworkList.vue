@@ -88,10 +88,7 @@ const network = computed(() => {
   emit('set-network', network.toLowerCase())
   return network.toLowerCase()
 })
-onMounted(async () => {
-  if (store.networks.length < 1) {
-    await store.fetchNetworks()
-  }
+onMounted(() => {
   const networks = options.value[network.value]
   store.updateSelectedNetwork({ networks })
 })
