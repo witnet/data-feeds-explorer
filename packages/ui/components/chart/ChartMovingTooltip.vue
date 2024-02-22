@@ -34,18 +34,18 @@ export default {
   position: relative;
   font-weight: bold;
   margin-top: -60px;
-  font-size: var(--text-size-title);
-  background-color: var(--tooltip-bg);
+  font-size: 16px;
+  background-color: $black;
   padding: 8px 16px;
   border-radius: 4px;
-  color: var(--text);
+  color: $white;
   z-index: 13;
   .value {
-    font-size: var(--text-size);
+    font-size: 16px;
   }
   .time {
-    font-size: var(--text-size-small);
-    color: var(--text-medium-emphasis);
+    font-size: 12px;
+    color: $white;
   }
 }
 </style>

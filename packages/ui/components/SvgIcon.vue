@@ -1,21 +1,34 @@
 <template>
   <!-- We are using v-html assuming we never use user-provided content -->
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-if="name" v-html="require(`~/assets/svg/${name}.svg?raw`)" />
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-else-if="svg" v-html="svg" />
+  <div v-if="svg" class="icon" v-html="svg" />
+  <customIcon v-else-if="name" />
 </template>
 
-<script>
-export default {
-  props: {
-    name: { type: String, default: '' },
-    svg: { type: String, default: '' },
+<script setup lang="ts">
+const props = defineProps({
+  svg: { type: String, default: '' },
+  className: {
+    type: String,
+    default: null,
   },
-}
+  name: {
+    type: String,
+    default: null,
+  },
+})
+const customIcon = defineAsyncComponent(
+  () => import(`@/assets/svg/${url.value}.svg`),
+)
+const url = computed(() => `${props.name}`.trim())
 </script>
 
 <style lang="scss">
+.icon {
+  display: flex;
+  justify-content: center;
+}
 .witnet-logo {
   max-width: 250px;
   height: 100%;

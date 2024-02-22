@@ -2,7 +2,7 @@
   <div class="nav-container" :class="type">
     <div class="networks">
       <div v-for="option in mainOptions" :key="option.name" class="option">
-        <LazyNetworkLink :name="option.name" :svg="option.logo" />
+        <NetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
     <transition name="dropdown" class="dropdown">
@@ -12,7 +12,7 @@
           :key="option.name"
           class="option"
         >
-          <LazyNetworkLink :name="option.name" :svg="option.logo" />
+          <NetworkLink :name="option.name" :svg="option.logo" />
         </div>
       </div>
     </transition>
@@ -31,67 +31,58 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    type: {
-      type: String,
-      default: 'sidebar',
-      validator(value) {
-        return ['navbar', 'sidebar'].includes(value)
-      },
-    },
-    options: {
-      type: Array,
-      required: true,
+<script setup lang="ts">
+const store = useStore()
+const props = defineProps({
+  type: {
+    type: String,
+    default: 'sidebar',
+    validator(value: string) {
+      return ['navbar', 'sidebar'].includes(value)
     },
   },
-  data() {
-    return {
-      priorityNetworks: ['ethereum', 'avalanche', 'polygon'],
-      showAll: this.type === 'navbar',
-    }
+  options: {
+    type: Array<{ name: string; logo: string }>,
+    required: true,
   },
-  computed: {
-    selectedNetwork() {
-      return this.$store.state.selectedNetwork[0]
-        ? this.$store.state.selectedNetwork[0].chain.toLowerCase()
-        : 'ethereum'
-    },
-    selectedOption() {
-      return this.options.filter((option) => {
-        return option.name.toLowerCase() === this.selectedNetwork
-      })[0]
-    },
-    filteredOptions() {
-      return this.options.filter((option) => {
-        return (
-          !this.priorityNetworks.includes(option.name.toLowerCase()) &&
-          option.name.toLowerCase() !== this.selectedOption.name.toLowerCase()
-        )
-      })
-    },
-    networksLeft() {
-      return `(${this.filteredOptions.length}+)`
-    },
-    mainOptions() {
-      const result = this.options.filter((option) => {
-        return this.priorityNetworks.includes(option.name.toLowerCase())
-      })
-      const filteredNames = result.map((option) => option.name.toLowerCase())
-      if (filteredNames.includes(this.selectedOption.name.toLowerCase())) {
-        return result
-      } else {
-        return [...result, this.selectedOption]
-      }
-    },
-  },
-  methods: {
-    toggleShowAll() {
-      this.showAll = !this.showAll
-    },
-  },
-}
+})
+const priorityNetworks: Array<string> = ['ethereum', 'avalanche', 'polygon']
+const showAll: Ref<boolean> = ref(props.type === 'navbar')
+
+const selectedEcosystemName = computed(() => {
+  return store.selectedEcosystem && store.selectedEcosystem.length > 0
+    ? store.selectedEcosystem[0].chain.toLowerCase()
+    : 'ethereum'
+})
+const selectedOption = computed(() => {
+  return props.options.filter((option) => {
+    return option.name.toLowerCase() === selectedEcosystemName.value
+  })[0]
+})
+
+const filteredOptions = computed(() => {
+  return props.options.filter((option) => {
+    return (
+      !priorityNetworks.includes(option.name.toLowerCase()) &&
+      option.name.toLowerCase() !== selectedEcosystemName.value.toLowerCase()
+    )
+  })
+})
+const networksLeft = computed(() => {
+  return `(${filteredOptions.value.length}+)`
+})
+const mainOptions = computed(() => {
+  const result = props.options.filter((option) => {
+    return priorityNetworks.includes(option.name.toLowerCase())
+  })
+  const filteredNames = result.map((option) => option.name.toLowerCase())
+  if (filteredNames.includes(selectedOption.value.name.toLowerCase())) {
+    return result
+  } else {
+    return [...result, selectedOption.value]
+  }
+})
+const toggleShowAll = () => (showAll.value = !showAll.value)
 </script>
 
 <style lang="scss" scoped>
@@ -146,7 +137,7 @@ export default {
   padding: 4px 8px;
   cursor: pointer;
   font-style: italic;
-  font-family: Avenir Next Variable W05 Itali, sans-serif;
+  font-family: 'Avenir Next Variable W05 Itali', sans-serif;
   .arrow {
     color: var(--light-icon);
     font-style: normal;

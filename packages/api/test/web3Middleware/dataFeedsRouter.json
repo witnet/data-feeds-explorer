@@ -423,6 +423,7 @@
       "minSecsBetweenUpdates": 3600
     },
     "Price-ADA/USD-6": {
+      "label": "$",
       "deviationPercentage": 3.5,
       "maxSecsBetweenUpdates": 86400,
       "minSecsBetweenUpdates": 900
