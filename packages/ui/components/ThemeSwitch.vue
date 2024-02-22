@@ -5,26 +5,27 @@
 </template>
 
 <script setup lang="ts">
-const colorMode = useColorMode()
-const themes: any = {
-  light: {
+import { type Themes, ThemeKey } from '@/types'
+import { themeFromColorValue, changeColorMode } from '@/utils/colorMode'
+
+const themes: Themes = {
+  [ThemeKey.light]: {
     icon: 'moon',
-    key: 'light',
+    key: ThemeKey.light,
   },
-  dark: {
+  [ThemeKey.dark]: {
     icon: 'sun',
-    key: 'dark',
+    key: ThemeKey.dark,
   },
 }
-const currentTheme: Ref<string> = ref(colorMode.value)
-const icon = computed(() => themes[colorMode.value].icon)
+
+const icon = computed(() => themes[themeFromColorValue.value].icon)
 const toggleMode = () => {
-  if (colorMode.value === themes.dark.key) {
-    colorMode.preference = 'light'
+  if (themeFromColorValue.value === ThemeKey.light) {
+    changeColorMode(ThemeKey.dark)
   } else {
-    colorMode.preference = 'dark'
+    changeColorMode(ThemeKey.light)
   }
-  currentTheme.value = colorMode.preference
 }
 </script>
 

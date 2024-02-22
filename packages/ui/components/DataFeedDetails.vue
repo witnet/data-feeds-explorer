@@ -48,6 +48,7 @@
       :transactions="transactions"
     />
     <PaginationSection
+      v-if="itemsLength && itemsLength > 25"
       :items-length="itemsLength"
       @change-page="handleCurrentChange"
     />
@@ -55,6 +56,7 @@
 </template>
 
 <script setup lang="ts">
+import type { AreaData, Time } from 'lightweight-charts'
 import PaginationSection from './PaginationSection.vue'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 import { CHART_RANGE, POLLER_MILLISECONDS } from '@/constants'
@@ -71,7 +73,7 @@ const route = useRoute()
 const asyncFeedsInterval = new AsyncInterval(POLLER_MILLISECONDS)
 const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
 const ranges = CHART_RANGE
-const currentRange = ref(null)
+const currentRange: Ref<number | null> = ref(null)
 const currentPage = ref(1)
 const itemsPerPage = ref(25)
 const { locale, t } = useI18n({ useScope: 'global' })
@@ -96,7 +98,7 @@ const normalizedFeed = computed(() => {
       finality: Number(feed.value.finality),
       deviation: feed.value.deviation,
       heartbeat: Number(feed.value.heartbeat),
-      decimals: feed.value.feedFullName.split('_').pop() || 3,
+      decimals: feed.value.feedFullName.split('_').pop() || '3',
       chain: feed.value.chain,
       lastResultValue: feed.value.lastResult,
       lastResultTimestamp: feed.value.lastResultTimestamp || '',
@@ -139,7 +141,7 @@ const lastResultValue = computed(() => {
     const dataFeedLastValue = `${normalizedFeed.value.label}${formatNumber(
       (
         parseFloat(normalizedFeed.value.lastResultValue) /
-        10 ** normalizedFeed.value.decimals
+        10 ** parseInt(normalizedFeed.value.decimals.toString())
       ).toString(),
     )} `
     emit('feed-value', dataFeedLastValue)
@@ -157,7 +159,7 @@ const maxTimeToResolve = computed(() => {
 })
 
 const itemsLength = computed(() => {
-  return feed.value.requests.length
+  return feed.value?.requests.length
 })
 const fetchData = async () => {
   await store.fetchFeedInfo({
@@ -171,19 +173,20 @@ const fetchData = async () => {
   })
 }
 
-const chartData = computed(() => {
+const chartData: Ref<AreaData<Time>[]> = computed(() => {
   if (feed.value && feed.value.requests.length > 0) {
     return feed.value.requests
       .map((request: any) => {
         return {
           time: Number(request.timestamp),
           value:
-            parseFloat(request.result) / 10 ** normalizedFeed.value?.decimals,
-        }
+            parseFloat(request.result) /
+            10 ** parseInt((normalizedFeed.value?.decimals ?? 3).toString()),
+        } as AreaData<Time>
       })
       .sort((t1: any, t2: any) => t1.time - t2.time)
   } else {
-    return [{ time: 0, value: 0 }]
+    return [{ time: 0, value: 0 } as AreaData<Time>]
   }
 })
 const transactions = computed(() => {
@@ -196,7 +199,7 @@ const transactions = computed(() => {
       witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
       drTxHash: request.drTxHash,
       data: {
-        label: feed.value.label,
+        label: feed.value?.label,
         value: request.result,
         decimals: normalizedFeed.value?.decimals,
       },
@@ -242,6 +245,7 @@ watch(
             chain: value.chain,
             key: value.network,
             label: value.networkName,
+            logo: value.logo,
           },
         ],
       })
