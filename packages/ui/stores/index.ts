@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { type DataStore, type Network } from '@/types'
 import {
   getEcosystems,
   getNetworks,
@@ -6,22 +7,6 @@ import {
   getFeedInfo,
   getFeedRequests,
 } from '@/api/index'
-
-export type Network = {
-  chain: string
-  key: string
-  label: string
-  logo: string
-}
-
-export interface DataStore {
-  selectedEcosystem: Array<any>
-  networks: Array<Network | undefined>
-  ecosystems: any
-  totalFeeds: any
-  feed: any
-  paginatedFeedRequest: any
-}
 
 export const useStore = defineStore('data', {
   state: () =>
@@ -36,8 +21,8 @@ export const useStore = defineStore('data', {
   actions: {
     async fetchEcosystems() {
       const result = await getEcosystems()
-      this.ecosystems = result.feeds.feeds
-      this.totalFeeds = result.feeds.total
+      this.ecosystems = result.feeds
+      this.totalFeeds = result.total
     },
     async fetchNetworks() {
       this.networks = (await getNetworks()).networks
@@ -70,7 +55,7 @@ export const useStore = defineStore('data', {
       })
       this.paginatedFeedRequest = result.requests
     },
-    updateSelectedNetwork({ networks }: any) {
+    updateSelectedNetwork({ networks }: { networks: Network[] | [] }) {
       this.selectedEcosystem = networks
     },
     deleteEmptyNetwork({ index }: { index: number }) {

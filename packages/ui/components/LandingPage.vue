@@ -33,7 +33,6 @@ useServerSeoMeta({
     'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
 })
 
-const feeds = computed(() => store.ecosystems)
 const totalFeeds = computed(() => store.totalFeeds)
 const networks = computed(() => store.networks)
 const supportedChains = computed(() => {
@@ -44,7 +43,8 @@ const supportedChains = computed(() => {
       return {
         name: chain,
         count:
-          feeds.value.filter((feed: any) => feed.chain === chain).length || 0,
+          store.ecosystems.filter((feed: any) => feed.chain === chain).length ||
+          0,
         detailsPath: {
           name: 'network',
           params: {
@@ -58,7 +58,7 @@ const supportedChains = computed(() => {
 })
 
 onMounted(async () => {
-  store.updateSelectedNetwork({ network: [] })
+  store.updateSelectedNetwork({ networks: [] })
   await store.fetchEcosystems()
 })
 </script>
