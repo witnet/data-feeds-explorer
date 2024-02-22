@@ -91,8 +91,11 @@ export default {
       deep: true,
     },
   },
-  mounted() {
+  async mounted() {
     window.addEventListener('resize', this.resizeHandler)
+    if (store.networks.length < 1) {
+      await store.fetchNetworks()
+    }
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.resizeHandler)

@@ -71,6 +71,7 @@ const route = useRoute()
 const asyncFeedsInterval = new AsyncInterval(POLLER_MILLISECONDS)
 const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
 const ranges = CHART_RANGE
+const currentRange = ref(null)
 const currentPage = ref(1)
 const itemsPerPage = ref(25)
 const { locale, t } = useI18n({ useScope: 'global' })
@@ -216,11 +217,20 @@ const handleCurrentChange = async (val: number) => {
   }
 }
 const updateQuery = async (val: string) => {
-  timestamp.value = getTimestampByRange(ranges[val].value)
-  await store.fetchFeedInfo({
-    feedFullName: route.params.id.toString(),
-    timestamp: timestamp.value,
-  })
+  let allowUpdateInfo: boolean = false
+  if (currentRange.value) {
+    allowUpdateInfo = true
+  }
+  if (currentRange.value !== ranges[val].value) {
+    currentRange.value = ranges[val].value
+    timestamp.value = getTimestampByRange(ranges[val].value)
+    if (allowUpdateInfo) {
+      await store.fetchFeedInfo({
+        feedFullName: route.params.id.toString(),
+        timestamp: timestamp.value,
+      })
+    }
+  }
 }
 watch(
   normalizedFeed,
