@@ -20,9 +20,9 @@
       />
     </div>
     <InnerLink class="link" hash="integrate">
-      <Button class="btn" type="secondary">{{
+      <CustomButton class="btn" type="secondary">{{
         $t('chart.use_data_feed')
-      }}</Button>
+      }}</CustomButton>
     </InnerLink>
   </div>
 </template>

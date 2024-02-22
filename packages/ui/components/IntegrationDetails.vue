@@ -6,13 +6,13 @@
       </p>
       <div class="bottom">
         <a :href="urls.integrateThroughProxy" target="_blank">
-          <Button class="btn">
-            {{ $t('data_feed_details.integrate_proxy') }}</Button
+          <CustomButton class="btn">
+            {{ $t('data_feed_details.integrate_proxy') }}</CustomButton
           >
         </a>
         <a :href="urls.integrateDirectly" target="_blank">
-          <Button class="btn">
-            {{ $t('data_feed_details.integrate_directly') }}</Button
+          <CustomButton class="btn">
+            {{ $t('data_feed_details.integrate_directly') }}</CustomButton
           >
         </a>
         <p class="subtitle testing">
@@ -123,12 +123,16 @@ export default {
     .contract-id {
       font-size: var(--text-size);
       margin-bottom: 8px;
-      font-family: Roboto Mono, monospace;
+      font-family:
+        Roboto Mono,
+        monospace;
       word-break: break-all;
       max-width: 400px;
     }
     .contract-info {
-      font-family: Roboto Mono, monospace;
+      font-family:
+        Roboto Mono,
+        monospace;
       color: var(--text-hover);
       font-size: var(--text-size);
       word-break: break-all;

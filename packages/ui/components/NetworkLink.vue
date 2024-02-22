@@ -1,9 +1,5 @@
 <template>
   <nuxt-link
-    :key="
-      ((selected[0] && selected[0].chain.toLowerCase()) || 'ethereum') ===
-      name.toLowerCase()
-    "
     class="nav-link"
     :to="
       localeRoute({
@@ -19,24 +15,18 @@
   </nuxt-link>
 </template>
 
-<script>
-export default {
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    svg: {
-      type: String,
-      required: true,
-    },
+<script setup lang="ts">
+const localeRoute = useLocaleRoute()
+defineProps({
+  name: {
+    type: String,
+    required: true,
   },
-  computed: {
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
+  svg: {
+    type: String,
+    required: true,
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

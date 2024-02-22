@@ -1,10 +1,10 @@
 <template>
-  <Fieldset
+  <FieldsetCard
     :title="$t('transactions_list.transactions')"
     class="transactions-container"
   >
     <div class="collection collection-container">
-      <div class="item-container blur">
+      <div class="item-container item-blur">
         <div class="attribute-container values-time">
           <div class="attribute">{{ $t('transactions_list.time') }}</div>
         </div>
@@ -17,17 +17,17 @@
           </div>
         </div>
       </div>
-      <Transaction
+      <TransactionItem
         v-for="(transaction, index) in transactions"
         :key="transaction.timestamp + index"
-        :class="{ blur: index % 2 }"
+        :class="{ ['item-blur']: index % 2 }"
         :witnet-link="transaction.witnetLink"
         :data="transaction.data"
         :timestamp="transaction.timestamp"
         :dr-tx-hash="transaction.drTxHash"
       />
     </div>
-  </Fieldset>
+  </FieldsetCard>
 </template>
 
 <script>
@@ -50,7 +50,7 @@ export default {
   align-items: center;
   column-gap: 16px;
   row-gap: 24px;
-  &.blur {
+  &.item-blur {
     background-color: var(--transaction-blur-background);
   }
 

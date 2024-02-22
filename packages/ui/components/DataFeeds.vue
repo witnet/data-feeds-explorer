@@ -1,6 +1,6 @@
 <template>
   <div class="feeds-container">
-    <LazyFeedCard
+    <FeedCard
       v-for="feed in allFeeds"
       :key="feed.name + feed.network + feed.value + feed.color"
       :details-path="feed.detailsPath"
@@ -18,90 +18,67 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { formatSvgName } from '../utils/formatSvgName'
-import feeds from '@/apollo/queries/feeds.gql'
-
-export default {
-  name: 'DataFeeds',
-  apollo: {
-    feeds: {
-      prefetch: true,
-      query: feeds,
-      variables() {
+const store = useStore()
+const props = defineProps({
+  network: {
+    type: Object,
+    required: true,
+  },
+  networkIndex: {
+    type: Number,
+    required: true,
+  },
+})
+const route = useRoute()
+const netowrkFeeds: Ref<any> = ref(null)
+// const emit = defineEmits(['empty'])
+const allFeeds = computed(() => {
+  if (netowrkFeeds.value?.total) {
+    const feeds = netowrkFeeds.value?.feeds
+      .filter((feed: any) => {
+        return feed.lastResult && Number(feed.lastResultTimestamp) > 0
+      })
+      .map((feed: any) => {
         return {
-          network: this.network.key.toLowerCase(),
+          detailsPath: {
+            name: 'network-id',
+            params: {
+              network: route.params.network || 'ethereum',
+              id: feed.feedFullName,
+            },
+          },
+          decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+          name: feed.name,
+          value: feed.lastResult,
+          lastResultTimestamp: feed.lastResultTimestamp || '0',
+          label: feed.label,
+          timeToUpdate: feed.heartbeat
+            ? Number(feed.heartbeat) + Number(feed.finality)
+            : null,
+          img: {
+            name: formatSvgName(feed.name),
+            alt: feed.name,
+          },
+          network: feed.network,
+          chain: feed.chain,
+          color: feed.color,
+          blockExplorer: feed.blockExplorer,
+          svg: feed.logo,
         }
-      },
-      pollInterval: 60000,
-    },
-  },
-  props: {
-    network: {
-      type: Object,
-      required: true,
-    },
-    networkIndex: {
-      type: Number,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      currentPage: 1,
-      itemsPerPage: 28,
-    }
-  },
-  computed: {
-    allFeeds() {
-      if (this.feeds) {
-        const feeds = this.feeds.feeds
-          .filter((feed) => {
-            return feed.lastResult && Number(feed.lastResultTimestamp) > 0
-          })
-          .map((feed) => {
-            return {
-              detailsPath: {
-                name: 'network-id',
-                params: {
-                  network: this.$route.params.network || 'ethereum',
-                  id: feed.feedFullName,
-                },
-              },
-              decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-              name: feed.name,
-              value: feed.lastResult,
-              lastResultTimestamp: feed.lastResultTimestamp || '0',
-              label: feed.label,
-              timeToUpdate: feed.heartbeat
-                ? Number(feed.heartbeat) + Number(feed.finality)
-                : null,
-              img: {
-                name: formatSvgName(feed.name),
-                alt: feed.name,
-              },
-              network: feed.network,
-              chain: feed.chain,
-              color: feed.color,
-              blockExplorer: feed.blockExplorer,
-              svg: feed.logo,
-            }
-          })
-          .sort((feed1, feed2) => feed1.name.localeCompare(feed2.name))
-        return feeds
-      } else {
-        return []
-      }
-    },
-  },
-  watch: {
-    allFeeds() {
-      if (this.allFeeds.length < 1) {
-        this.$emit('empty', this.networkIndex)
-      }
-    },
-  },
-}
+      })
+      .sort((feed1: any, feed2: any) => feed1.name.localeCompare(feed2.name))
+    return feeds
+  } else {
+    return []
+  }
+})
+onMounted(async () => {
+  netowrkFeeds.value = await store.fetchFeeds({
+    network: props.network.key.toLowerCase(),
+  })
+})
 </script>
 
 <style lang="scss" scoped>

@@ -50,8 +50,12 @@ a {
   height: max-content;
   width: max-content;
   .logo {
-    height: 100%;
-    max-width: 100%;
+    display: flex;
+    width: max-content;
+    height: 30px;
+    max-width: 200px;
+    justify-content: center;
+    align-items: center;
     transform: scale(var(--scale));
     filter: brightness(calc(#{var(--brightness-theme)} + #{var(--brightness)}))
       grayscale(100%);

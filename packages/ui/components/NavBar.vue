@@ -15,7 +15,11 @@
         </button>
       </div>
       <transition name="dropdown" class="dropdown">
-        <div class="tab-container" :class="{ visible: isMenuVisible }">
+        <div
+          v-if="isMenuVisible"
+          class="tab-container"
+          :class="{ visible: isMenuVisible }"
+        >
           <div
             v-if="networks && isMenuVisible"
             class="networks"
@@ -30,7 +34,9 @@
               :href="urls.requestDataFeed"
               target="_blank"
             >
-              <Button class="btn">{{ $t('navbar.request_data_feed') }}</Button>
+              <CustomButton class="btn">{{
+                $t('navbar.request_data_feed')
+              }}</CustomButton>
             </a>
           </div>
         </div>
@@ -44,15 +50,10 @@ import { urls } from '../constants'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import networks from '@/apollo/queries/networks.gql'
+const store = useStore()
 
 export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-  },
+  emits: ['update-selected', 'scroll'],
   data() {
     return {
       hover: false,
@@ -62,11 +63,14 @@ export default {
     }
   },
   computed: {
+    networks() {
+      return store.networks
+    },
     navBarOptions() {
       return generateNavOptions(Object.values(this.options))
     },
     selected() {
-      return this.$store.state.selectedNetwork
+      return store.selectedNetwork
     },
     options() {
       if (this.networks) {
@@ -90,7 +94,7 @@ export default {
   mounted() {
     window.addEventListener('resize', this.resizeHandler)
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('resize', this.resizeHandler)
   },
   methods: {
@@ -137,7 +141,6 @@ export default {
     justify-content: center;
     padding: 24px 0;
     .networks {
-      display: none;
       &.visible {
         background: var(--bg);
         display: block;
@@ -278,9 +281,11 @@ export default {
     list-style: none;
     padding: 0;
     position: absolute;
-    -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+    -webkit-transition:
+      -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
       color 1s cubic-bezier(0.23, 1, 0.32, 1);
-    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+    transition:
+      transform 1s cubic-bezier(0.23, 1, 0.32, 1),
       color 1s cubic-bezier(0.23, 1, 0.32, 1);
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -294,9 +299,11 @@ export default {
       margin-top: -0.75px;
       -webkit-transform: translateY(-3.75px) translateZ(0);
       transform: translateY(-3.75px) translateZ(0);
-      -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+      -webkit-transition:
+        -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
         background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
-      transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+      transition:
+        transform 1s cubic-bezier(0.23, 1, 0.32, 1),
         background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
       &:last-child {
         -webkit-transform: translateY(3.75px) translateZ(0);
