@@ -10,7 +10,7 @@
       <InfoTooltip :value="$t('chart.heartbeat_text')">
         <p>{{ $t('chart.heartbeat') }}</p>
       </InfoTooltip>
-      <Heartbeat
+      <HeartbeatInfo
         class="value"
         :milliseconds="maxTimeToResolve"
         :last-result-timestamp="lastResultTimestamp"

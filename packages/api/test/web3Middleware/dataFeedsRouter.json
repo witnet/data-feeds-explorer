@@ -537,9 +537,17 @@
         }
       }
     }
+<<<<<<< HEAD
   },
   "feeds": {
       "Price-ADA/USD-6": {
+=======
+<<<<<<< HEAD
+=======
+  },
+  "feeds": {
+    "Price-ADA/USD-6": {
+>>>>>>> 6c74911 (feat: migrate ui package to nuxt3)
       "label": "$",
       "deviationPercentage": 3.5,
       "maxSecsBetweenUpdates": 86400,
@@ -1021,5 +1029,9 @@
       "maxSecsBetweenUpdates": 86400,
       "minSecsBetweenUpdates": 900
     }
+<<<<<<< HEAD
+=======
+>>>>>>> 3ed77b4 (feat: migrate ui package to nuxt3)
+>>>>>>> 6c74911 (feat: migrate ui package to nuxt3)
   }
 }

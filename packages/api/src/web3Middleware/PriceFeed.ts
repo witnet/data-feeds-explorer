@@ -25,7 +25,11 @@ export class PriceFeed {
   configuration: Configuration
   networkName: string
 
+<<<<<<< HEAD
   constructor(configuration: Configuration, args: FeedInfo) {
+=======
+  constructor (configuration: Configuration, args: FeedInfo) {
+>>>>>>> 6c74911 (feat: migrate ui package to nuxt3)
     this.configuration = configuration
     this.feedFullName = args.feedFullName
     this.id = args.id

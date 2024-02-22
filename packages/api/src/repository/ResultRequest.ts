@@ -74,9 +74,14 @@ export class ResultRequestRepository {
         sort: {
           timestamp: -1
         },
-        collation: {
-          locale: 'en_US',
-          numericOrdering: true
+        {
+          sort: {
+            timestamp: -1
+          },
+          collation: {
+            locale: 'en_US',
+            numericOrdering: true
+          }
         }
       }
     ).catch(e => {

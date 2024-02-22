@@ -1,16 +1,23 @@
 <template>
-  <div :class="{ 'hide-scroll': hideScroll, preload, background: true }">
-    <MainSection>
-      <NavBar slot="navbar" @scroll="handleScroll" />
-      <div slot="cover" class="cover" :class="{ show: hideScroll }"></div>
-      <BreadCrumbs slot="breadcrumbs" />
-      <div slot="content">
-        <transition name="fade">
-          <nuxt />
-        </transition>
+  <div
+    :class="{
+      'hide-scroll': hideScroll,
+      preload,
+      background: true,
+      [`${$colorMode.value}-mode`]: true,
+    }"
+    class="component-root"
+  >
+    <div class="main-section-container">
+      <div class="main-section">
+        <NavBar @scroll="handleScroll" />
+        <div class="cover" :class="{ show: hideScroll }"></div>
+        <BreadCrumbs />
+        <slot />
+        <ThemeSwitch class="theme-switch" />
       </div>
-      <Footer slot="footer" />
-    </MainSection>
+      <FooterSection />
+    </div>
   </div>
 </template>
 
@@ -21,12 +28,6 @@ export default {
       hideScroll: false,
       preload: true,
     }
-  },
-  i18n: {
-    seo: true,
-  },
-  head() {
-    return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
   created() {
     this.preload = false
@@ -39,27 +40,11 @@ export default {
 }
 </script>
 <style lang="scss">
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-  opacity: 0;
-  transform: translateX(-4px);
-}
-.fade-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-.fade-leave-to {
-  opacity: 0;
-  transform: translateX(-4px);
-}
 img {
   width: 100%;
   height: 100%;
 }
 html {
-  font-family: Almarai, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
   font-size: var(--text-size);
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -127,5 +112,35 @@ a {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+.main-section-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: grid;
+  grid-template-rows: 1fr max-content;
+  grid-template-columns: 1fr;
+}
+.main-section {
+  color: var(--text);
+  display: grid;
+  min-height: max-content;
+  grid-template-rows: max-content max-content 1fr max-content;
+  grid-template-columns: 1fr;
+  width: 100vw;
+  max-width: var(--desktop-margin);
+  row-gap: 24px;
+  margin: 0 auto;
+  .theme-switch {
+    position: fixed;
+    bottom: 0;
+    z-index: 5;
+    right: 0;
+  }
+}
+@media (max-width: 850px) {
+  .main-section {
+    grid-template-rows: max-content max-content max-content;
+    padding: 0;
+  }
 }
 </style>

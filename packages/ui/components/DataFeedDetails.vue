@@ -1,15 +1,15 @@
 <template>
   <div v-if="normalizedFeed" class="content">
-    <LazyChart
+    <ChartWidget
       v-if="feed"
       class="chart"
       :data="chartData"
       :logo="feed.logo"
       :last-result-timestamp="normalizedFeed.lastResultTimestamp"
-      :last-result-value="lastResultValue"
+      :last-result-value="lastResultValue ?? ''"
       :data-label="feed.label"
       :name="normalizedFeed.name"
-      :time-to-update="maxTimeToResolve"
+      :time-to-update="maxTimeToResolve ?? 0"
       :decimals="normalizedFeed.decimals"
       @change-range="updateQuery"
     />
@@ -17,12 +17,12 @@
       :is-routed="normalizedFeed.isRouted"
       :feed-name="normalizedFeed.name"
       :network-name="normalizedFeed.networkName"
-      :last-result-value="lastResultValue"
+      :last-result-value="lastResultValue ?? ''"
       :last-result-date="lastResultDate"
-      :feed-time-to-update="feedTimeToUpdate"
+      :feed-time-to-update="feedTimeToUpdate ?? ''"
       :deviation="normalizedFeed.deviation"
     />
-    <Fieldset
+    <FieldsetCard
       v-if="maxTimeToResolve || normalizedFeed.deviation"
       :title="$t('data_feed_details.trigger_parameters')"
     >
@@ -31,8 +31,8 @@
         :max-time-to-resolve="maxTimeToResolve"
         :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
       />
-    </Fieldset>
-    <Fieldset :title="$t('data_feed_details.contract_address')">
+    </FieldsetCard>
+    <FieldsetCard :title="$t('data_feed_details.contract_address')">
       <IntegrationDetails
         :network="normalizedFeed.networkName"
         :proxy-address="normalizedFeed.proxyAddress"
@@ -41,212 +41,219 @@
         :url-underlying-contract="normalizedFeed.urlUnderlyingContract"
         :url-proxy-contract="normalizedFeed.urlProxyContract"
       />
-    </Fieldset>
+    </FieldsetCard>
     <TransactionsList
       v-if="transactions"
       class="transactions"
       :transactions="transactions"
     />
-    <el-pagination
-      v-if="feed && numberOfPages > 1"
-      :small="small"
-      class="pagination"
-      layout="prev, pager, next"
-      :pager-count="5"
-      :page-count="numberOfPages"
-      :current-page="currentPage"
-      @current-change="handleCurrentChange"
+    <PaginationSection
+      :items-length="itemsLength"
+      @change-page="handleCurrentChange"
     />
   </div>
 </template>
 
-<script>
-import feed from '@/apollo/queries/feed.gql'
-import requests from '@/apollo/queries/requests.gql'
+<script setup lang="ts">
+import PaginationSection from './PaginationSection.vue'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
-import { CHART_RANGE } from '@/constants'
+import { CHART_RANGE, POLLER_MILLISECONDS } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
 import { formatNumber } from '@/utils/formatNumber'
 import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
+import { AsyncInterval } from '@/utils/asyncInterval'
 
-export default {
-  apollo: {
-    feed: {
-      prefetch: true,
-      query: feed,
-      variables() {
-        return {
-          timestamp: this.timestamp,
-          feedFullName: this.feedFullName,
-        }
-      },
-      pollInterval: 60000,
-    },
-    requests: {
-      prefetch: true,
-      query: requests,
-      variables() {
-        return {
-          feedFullName: this.feedFullName,
-          page: this.currentPage,
-          size: this.itemsPerPage,
-        }
-      },
-      pollInterval: 60000,
-    },
-  },
-  data() {
+const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
+
+const store = useStore()
+const route = useRoute()
+const asyncFeedsInterval = new AsyncInterval(POLLER_MILLISECONDS)
+const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
+const ranges = CHART_RANGE
+const currentPage = ref(1)
+const itemsPerPage = ref(25)
+const { locale, t } = useI18n({ useScope: 'global' })
+
+onMounted(() => {
+  asyncFeedsInterval.setAsyncInterval(fetchData)
+})
+onBeforeUnmount(() => {
+  asyncFeedsInterval.clearAsyncInterval()
+})
+const feed = computed(() => store.feed)
+const normalizedFeed = computed(() => {
+  if (feed.value) {
+    emit('feed-name', feed.value.name?.toUpperCase())
+    emit('network', feed.value.networkName)
     return {
-      ranges: CHART_RANGE,
-      currentPage: 1,
-      itemsPerPage: 25,
-      range: 24,
-      timestamp: getTimestampByRange(CHART_RANGE.w.value),
-      feedFullName: this.$route.params.id,
+      name: feed.value.name?.toUpperCase(),
+      isRouted: feed.value.isRouted,
+      address: feed.value.address,
+      proxyAddress: feed.value.proxyAddress,
+      contractId: feed.value.contractId,
+      finality: Number(feed.value.finality),
+      deviation: feed.value.deviation,
+      heartbeat: Number(feed.value.heartbeat),
+      decimals: feed.value.feedFullName.split('_').pop() || 3,
+      chain: feed.value.chain,
+      lastResultValue: feed.value.lastResult,
+      lastResultTimestamp: feed.value.lastResultTimestamp || '',
+      networkName: feed.value.networkName,
+      label: feed.value.label,
+      network: feed.value.network,
+      urlUnderlyingContract: feed.value.blockExplorer.replace(
+        `{address}`,
+        feed.value.address,
+      ),
+      urlProxyContract: feed.value.blockExplorer.replace(
+        `{address}`,
+        feed.value.proxyAddress,
+      ),
+      logo: feed.value.logo,
+    }
+  } else {
+    return null
+  }
+})
+const lastResultDate = computed(() => {
+  if (normalizedFeed.value) {
+    emit('feed-date', formatTimestamp(normalizedFeed.value.lastResultTimestamp))
+    return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+  } else {
+    return ''
+  }
+})
+const feedTimeToUpdate = computed(() => {
+  return normalizedFeed.value && normalizedFeed.value.heartbeat
+    ? formatMilliseconds(
+        normalizedFeed.value.heartbeat + normalizedFeed.value.finality,
+        ` ${t('and')} `,
+        locale.value,
+      )
+    : null
+})
+const lastResultValue = computed(() => {
+  if (normalizedFeed.value) {
+    const dataFeedLastValue = `${normalizedFeed.value.label}${formatNumber(
+      (
+        parseFloat(normalizedFeed.value.lastResultValue) /
+        10 ** normalizedFeed.value.decimals
+      ).toString(),
+    )} `
+    emit('feed-value', dataFeedLastValue)
+    return dataFeedLastValue
+  } else {
+    return null
+  }
+})
+const maxTimeToResolve = computed(() => {
+  if (normalizedFeed.value && normalizedFeed.value.heartbeat) {
+    return normalizedFeed.value.heartbeat + normalizedFeed.value.finality
+  } else {
+    return null
+  }
+})
+
+const itemsLength = computed(() => {
+  return feed.value.requests.length
+})
+const fetchData = async () => {
+  await store.fetchFeedInfo({
+    feedFullName: route.params.id.toString(),
+    timestamp: timestamp.value,
+  })
+  await store.fetchPaginatedFeedRequests({
+    feedFullName: route.params.id.toString(),
+    page: currentPage.value,
+    size: itemsPerPage.value,
+  })
+}
+
+const chartData = computed(() => {
+  if (feed.value && feed.value.requests.length > 0) {
+    return feed.value.requests
+      .map((request: any) => {
+        return {
+          time: Number(request.timestamp),
+          value:
+            parseFloat(request.result) / 10 ** normalizedFeed.value?.decimals,
+        }
+      })
+      .sort((t1: any, t2: any) => t1.time - t2.time)
+  } else {
+    return [{ time: 0, value: 0 }]
+  }
+})
+const transactions = computed(() => {
+  if (
+    feed.value &&
+    store.paginatedFeedRequest &&
+    store.paginatedFeedRequest.length > 0
+  ) {
+    return store.paginatedFeedRequest.map((request: any) => ({
+      witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
+      drTxHash: request.drTxHash,
+      data: {
+        label: feed.value.label,
+        value: request.result,
+        decimals: normalizedFeed.value?.decimals,
+      },
+      timestamp: request.timestamp,
+    }))
+  } else {
+    return null
+  }
+})
+const handleCurrentChange = async (val: number) => {
+  if (currentPage.value !== val) {
+    currentPage.value = val
+    await store.fetchPaginatedFeedRequests({
+      feedFullName: route.params.id.toString(),
+      page: currentPage.value,
+      size: itemsPerPage.value,
+    })
+  }
+}
+const updateQuery = async (val: string) => {
+  timestamp.value = getTimestampByRange(ranges[val].value)
+  await store.fetchFeedInfo({
+    feedFullName: route.params.id.toString(),
+    timestamp: timestamp.value,
+  })
+}
+watch(
+  normalizedFeed,
+  (value) => {
+    if (value) {
+      store.updateSelectedNetwork({
+        networks: [
+          {
+            chain: value.chain,
+            key: value.network,
+            label: value.networkName,
+          },
+        ],
+      })
     }
   },
-  computed: {
-    small() {
-      return this.numberOfPages > 10
-    },
-    normalizedFeed() {
-      if (this.feed) {
-        this.$emit('feed-name', this.feed.name.toUpperCase())
-        this.$emit('network', this.feed.networkName)
-        return {
-          name: this.feed.name.toUpperCase(),
-          isRouted: this.feed.isRouted,
-          address: this.feed.address,
-          proxyAddress: this.feed.proxyAddress,
-          contractId: this.feed.contractId,
-          finality: Number(this.feed.finality),
-          deviation: this.feed.deviation,
-          heartbeat: Number(this.feed.heartbeat),
-          decimals: this.feed.feedFullName.split('_').pop() || 3,
-          chain: this.feed.chain,
-          lastResultValue: this.feed.lastResult,
-          lastResultTimestamp: this.feed.lastResultTimestamp || '',
-          networkName: this.feed.networkName,
-          label: this.feed.label,
-          network: this.feed.network,
-          urlUnderlyingContract: this.feed.blockExplorer.replace(
-            `{address}`,
-            this.feed.address
-          ),
-          urlProxyContract: this.feed.blockExplorer.replace(
-            `{address}`,
-            this.feed.proxyAddress
-          ),
-          logo: this.feed.logo,
-        }
-      } else {
-        return null
-      }
-    },
-    lastResultDate() {
-      if (this.normalizedFeed) {
-        this.$emit(
-          'feed-date',
-          formatTimestamp(this.normalizedFeed.lastResultTimestamp)
-        )
-        return formatTimestamp(this.normalizedFeed.lastResultTimestamp)
-      } else {
-        return ''
-      }
-    },
-    feedTimeToUpdate() {
-      return this.normalizedFeed.heartbeat
-        ? formatMilliseconds(
-            this.normalizedFeed.heartbeat + this.normalizedFeed.finality,
-            ` ${this.$t('and')} `,
-            this.$i18n.locale
-          )
-        : null
-    },
-    lastResultValue() {
-      if (this.normalizedFeed) {
-        const dataFeedLastValue = `${this.normalizedFeed.label}${formatNumber(
-          parseFloat(this.normalizedFeed.lastResultValue) /
-            10 ** this.normalizedFeed.decimals
-        )} `
-        this.$emit('feed-value', dataFeedLastValue)
-        return dataFeedLastValue
-      } else {
-        return null
-      }
-    },
-    maxTimeToResolve() {
-      if (this.normalizedFeed.heartbeat) {
-        return this.normalizedFeed.heartbeat + this.normalizedFeed.finality
-      } else {
-        return null
-      }
-    },
-    numberOfPages() {
-      return this.feed
-        ? Math.ceil(this.feed.requests.length / this.itemsPerPage)
-        : 0
-    },
-    chartData() {
-      if (this.feed && this.feed.requests.length > 0) {
-        return this.feed.requests
-          .map((request) => {
-            return {
-              time: Number(request.timestamp),
-              value:
-                parseFloat(request.result) / 10 ** this.normalizedFeed.decimals,
-            }
-          })
-          .sort((t1, t2) => t1.time - t2.time)
-      } else {
-        return [{ time: 0, value: 0 }]
-      }
-    },
-    transactions() {
-      if (this.feed && this.requests && this.requests.length > 0) {
-        return this.requests.map((request) => ({
-          witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
-          drTxHash: request.drTxHash,
-          data: {
-            label: this.feed.label,
-            value: request.result,
-            decimals: this.normalizedFeed.decimals,
-          },
-          timestamp: request.timestamp,
-        }))
-      } else {
-        return null
-      }
-    },
-  },
-  watch: {
-    normalizedFeed: {
-      deep: true,
-      handler(value) {
-        if (value) {
-          this.$store.commit('updateSelectedNetwork', {
-            network: [
-              {
-                chain: value.chain,
-                key: value.network,
-                label: value.networkName,
-              },
-            ],
-          })
-        }
-      },
-    },
-  },
-  methods: {
-    handleCurrentChange(val) {
-      this.currentPage = val
-    },
-    updateQuery(val) {
-      this.timestamp = getTimestampByRange(this.ranges[val].value)
-    },
-  },
-}
+  { deep: true },
+)
+
+useSeoMeta({
+  ogTitle: () =>
+    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+  title: () =>
+    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+  description: () =>
+    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+  ogDescription: () =>
+    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+  twitterTitle: () =>
+    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+  twitterDescription: () =>
+    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+})
 </script>
 
 <style lang="scss" scoped>

@@ -1,12 +1,23 @@
-@font-face{
-  font-family:"Avenir Next Variable W05 Itali";
-  src: url("~assets/fonts/5616356/cf7047b5-ced0-4cb1-b66e-688e29567e96.woff2") format("woff2"), url("~assets/fonts/5616356/8a2ab6e1-4ba1-439f-a73b-29918942af3b.woff") format("woff");
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap');
+@import '~/assets/styles/colors.scss';
+
+@font-face {
+  font-family: 'Avenir Next Variable W05 Itali';
+  src:
+    url('~/assets/fonts/5616356/cf7047b5-ced0-4cb1-b66e-688e29567e96.woff2')
+      format('woff2'),
+    url('~/assets/fonts/5616356/8a2ab6e1-4ba1-439f-a73b-29918942af3b.woff')
+      format('woff');
   font-display: swap;
 }
 
-@font-face{
-  font-family:"Avenir Next Variable W05835004";
-  src: url("~assets/fonts/5835004/42801c92-f679-41d6-ab36-6c7ca7c7fa6c.woff2") format("woff2"), url("~assets/fonts/5835004/20522a37-c9e1-4059-b349-66eee8da006b.woff") format("woff");
+@font-face {
+  font-family: 'Avenir Next Variable W05835004';
+  src:
+    url('~/assets/fonts/5835004/42801c92-f679-41d6-ab36-6c7ca7c7fa6c.woff2')
+      format('woff2'),
+    url('~/assets/fonts/5835004/20522a37-c9e1-4059-b349-66eee8da006b.woff')
+      format('woff');
   font-display: swap;
 }
 
@@ -15,7 +26,11 @@
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 400;
-  src: url('~assets/fonts/roboto-mono/roboto-mono-v22-latin-regular.woff2') format('woff2'), url('~assets/fonts/roboto-mono/roboto-mono-v22-latin-regular.woff') format('woff');
+  src:
+    url('~/assets/fonts/roboto-mono/roboto-mono-v22-latin-regular.woff2')
+      format('woff2'),
+    url('~/assets/fonts/roboto-mono/roboto-mono-v22-latin-regular.woff')
+      format('woff');
   font-display: swap;
 }
 
@@ -24,7 +39,9 @@
   font-family: 'Almarai';
   font-style: normal;
   font-weight: 300;
-  src: url('~assets/fonts/almarai/almarai-v12-arabic-300.woff2') format('woff2'), url('~assets/fonts/almarai/almarai-v12-arabic-300.woff') format('woff');
+  src:
+    url('~/assets/fonts/almarai/almarai-v12-arabic-300.woff2') format('woff2'),
+    url('~/assets/fonts/almarai/almarai-v12-arabic-300.woff') format('woff');
   font-display: swap;
 }
 
@@ -33,7 +50,10 @@
   font-family: 'Almarai';
   font-style: normal;
   font-weight: 400;
-  src: url('~assets/fonts/almarai/almarai-v12-arabic-regular.woff2') format('woff2'), url('~assets/fonts/almarai/almarai-v12-arabic-regular.woff') format('woff');
+  src:
+    url('~/assets/fonts/almarai/almarai-v12-arabic-regular.woff2')
+      format('woff2'),
+    url('~/assets/fonts/almarai/almarai-v12-arabic-regular.woff') format('woff');
   font-display: swap;
 }
 
@@ -42,7 +62,9 @@
   font-family: 'Almarai';
   font-style: normal;
   font-weight: 700;
-  src: url('~assets/fonts/almarai/almarai-v12-arabic-700.woff2') format('woff2'), url('~assets/fonts/almarai/almarai-v12-arabic-700.woff') format('woff');
+  src:
+    url('~/assets/fonts/almarai/almarai-v12-arabic-700.woff2') format('woff2'),
+    url('~/assets/fonts/almarai/almarai-v12-arabic-700.woff') format('woff');
   font-display: swap;
 }
 
@@ -51,21 +73,21 @@
   --text-size: 16px;
   --text-size-small: 12px;
   --text-size-medium: 14px;
-  --bg: #2D2C39;
+  --bg: #2d2c39;
   --responsive-menu: #fdfdfd;
   --text: #fdfdfd;
   --text-background: #112338d3;
   --default-border: 1px solid #fdfdfd;
   --desktop-margin: 1124px;
-  --witnet-green: #41BEA5;
+  --witnet-green: #41bea5;
 }
 
 .dark-mode {
-  --bg: #2D2C39;
+  --bg: #2d2c39;
   --responsive-menu: #fdfdfd;
   --text: #fdfdfd;
   --light-text: #bebebe;
-  --link: #E54343;
+  --link: #e54343;
   --text-background: #2d2c39d3;
   --default-border: 1px solid #fdfdfd;
   --white-text: #fdfdfd;
@@ -74,29 +96,29 @@
 
   //Pagination
 
-  --pagination-number: #fdfdfd; 
-  --pagination-button-active: #41BEA5;
-  --pagination-number-active: #41BEA5;
-  --pagination-number-active-text: #2D2C39;
-  --app-background-color: #2D2C39;
+  --pagination-number: #fdfdfd;
+  --pagination-button-active: #41bea5;
+  --pagination-number-active: #41bea5;
+  --pagination-number-active-text: #2d2c39;
+  --app-background-color: #2d2c39;
   --pagination-button: #fdfdfd;
 
   //Tooltip
 
-  --tooltip-background: #FFFFFF10;
-  --tooltip-bg: #2D2C39;
+  --tooltip-background: #ffffff10;
+  --tooltip-bg: #2d2c39;
 
   // Select
 
   --selected-background: #37414c;
   --selected-text: #fdfdfd;
-  --selected-icon: #62B1B058;
-  --selected-border: 2px solid #62B1B015;
+  --selected-icon: #62b1b058;
+  --selected-border: 2px solid #62b1b015;
   --selected-options-background: #37414c;
   --selected-options-text: #fdfdfd;
-  --selected-options-border: 2px solid #62B1B015;
-  --selected-options-shadow: 1px 1px 10 2px #62B1B029;
-  --selected-options-highlight: #62B1B015;
+  --selected-options-border: 2px solid #62b1b015;
+  --selected-options-shadow: 1px 1px 10 2px #62b1b029;
+  --selected-options-highlight: #62b1b015;
 
   // Network options
 
@@ -105,24 +127,24 @@
   --network-background: #bebebe0d;
   --network-selected-color: #fdfdfd;
   --network-selected-border: 1px solid #00d4aa22;
-  --network-selected-background: #00D4AA16;
+  --network-selected-background: #00d4aa16;
 
   // FeedCard
 
   --card-border: 1px solid #00d4aa22;
-  --delay-status-border: 1px solid #DFC44B23;
-  --error-status-border: 1px solid #DF4B4B23;
-  --card-background: #00D4AA08;
+  --delay-status-border: 1px solid #dfc44b23;
+  --error-status-border: 1px solid #df4b4b23;
+  --card-background: #00d4aa08;
   --card-box-selected-shadow: 0 0 11px #cacaca18;
   //Fieledset
 
   --fieldset-title: #fdfdfd;
-  --fieldset-background: #FFFFFF10;
+  --fieldset-background: #ffffff10;
 
   //Logo
 
   --logo-main: #fdfdfd;
-  --logo-dot: #41BEA5;
+  --logo-dot: #41bea5;
 
   //NavBar
 
@@ -131,7 +153,7 @@
 
   // links
 
-  --text-hover: #41BEA5;
+  --text-hover: #41bea5;
   --text-medium-emphasis: #fdfdfdc0;
 
   // links
@@ -145,62 +167,69 @@
 
   //Transaction
 
-  --witnet-transaction: #41BEA5;
+  --witnet-transaction: #41bea5;
 
   //ContractAddress
 
-  --contract-address: #41BEA5;
+  --contract-address: #41bea5;
 
   //Switcher
 
-  --switcher-item-background: #41BEA5;
+  --switcher-item-background: #41bea5;
   --switcher-item-color: white;
 
   //Button
 
-  --btn-primary-color: #EDEDED;
-  --btn-primary-background-color: #00D4AA16;
+  --btn-primary-color: #ededed;
+  --btn-primary-background-color: #00d4aa16;
   --btn-primary-background-color-active: #00d4aa36;
-  --btn-primary-border-color: #00D4AA16;
-  --btn-secondary-color: #4AB6A1;
-  --btn-secondary-background-color: #4AB6A1;
-  --btn-secondary-border-color: #4AB6A1;
+  --btn-primary-border-color: #00d4aa16;
+  --btn-secondary-color: #4ab6a1;
+  --btn-secondary-background-color: #4ab6a1;
+  --btn-secondary-border-color: #4ab6a1;
 
   //footer
   --footer-bg: #4ab6a02c;
-  --footer-border: 8px solid #00D4AA16;
+  --footer-border: 8px solid #00d4aa16;
 
-  //language selector 
-  --language-selector-bg: #2D2C39;
+  //language selector
+  --language-selector-bg: #2d2c39;
 
   //sidebar
   --tab-gradient: linear-gradient(90deg, #2d2c39d3 95%, #4ab6a02c);
-  --tab-background: #2D2C39;
-  --tab-gradient-selected: linear-gradient(90deg, rgba(45, 44, 57, 0) 0%, rgba(74, 182, 160, 0.05) 20%, rgba(74, 182, 160, 0.10) 24%, rgba(74, 182, 160, 0.15) 30%, rgba(74, 182, 160, 0.20) 35%);
+  --tab-background: #2d2c39;
+  --tab-gradient-selected: linear-gradient(
+    90deg,
+    rgba(45, 44, 57, 0) 0%,
+    rgba(74, 182, 160, 0.05) 20%,
+    rgba(74, 182, 160, 0.1) 24%,
+    rgba(74, 182, 160, 0.15) 30%,
+    rgba(74, 182, 160, 0.2) 35%
+  );
 
   //breadcrumbs
-  --selected-option: #4AB6A1;
+  --selected-option: #4ab6a1;
 }
 
 .light-mode {
   --bg: #fdfdfd;
-  --responsive-menu: #2D2C39;
+  --responsive-menu: #2d2c39;
   --text: #112338;
   --light-text: #666;
-  --link: #E54343;
+  --link: #e54343;
   --text-background: #ffffffd3;
-  --default-border: 1px solid #2D2C39;
+  --default-border: 1px solid #2d2c39;
   --white-text: #fdfdfd;
   --brightness-theme: 0.1;
   --light-icon: #94939374;
 
   //Pagination
 
-  --pagination-number: #2D2C39; 
-  --pagination-button-active: #41BEA5;
-  --pagination-number-active: #41BEA5;
+  --pagination-number: #2d2c39;
+  --pagination-button-active: #41bea5;
+  --pagination-number-active: #41bea5;
   --pagination-number-active-text: #fdfdfd;
-  --pagination-button: #2D2C39;
+  --pagination-button: #2d2c39;
 
   //Tooltip
 
@@ -209,15 +238,15 @@
 
   // Select
 
-  --selected-background: linear-gradient(90deg, #3f92a5 0%, #41bea5 57%);;
+  --selected-background: linear-gradient(90deg, #3f92a5 0%, #41bea5 57%);
   --selected-text: #fdfdfd;
   --selected-icon: #fdfdfd;
   --selected-border: none;
-  --selected-options-background: #F6F6F6;
-  --selected-options-text: #1F1F24;
+  --selected-options-background: #f6f6f6;
+  --selected-options-text: #1f1f24;
   --selected-options-border: 1px solid #fdfdfd;
-  --selected-options-shadow: 1px 1px 10 2px #1F1F24;
-  --selected-options-highlight: #1F1F2414;
+  --selected-options-shadow: 1px 1px 10 2px #1f1f24;
+  --selected-options-highlight: #1f1f2414;
 
   // Network options
 
@@ -231,17 +260,17 @@
   // FeedCard
 
   --card-border: 1px solid #41bea5;
-  --delay-status-border: 1px solid #DFC44B;
+  --delay-status-border: 1px solid #dfc44b;
   --error-status-border: 1px solid #df4b4b;
   --card-background: transparent;
-  --name-color: #2D2C39;
-  --value-color: #2D2C39;
+  --name-color: #2d2c39;
+  --value-color: #2d2c39;
   --card-box-shadow: #98979716 0 4px 4px;
   --card-box-selected-shadow: 0 0 11px rgba(152, 151, 151, 0.271);
 
   //Fieledset
 
-  --fieldset-title: #2D2C39;
+  --fieldset-title: #2d2c39;
   --fieldset-background: #11233808;
 
   //Logo
@@ -264,7 +293,7 @@
 
   //ThemeSwitch
 
-  --icon-color: #2D2C39;
+  --icon-color: #2d2c39;
   --icon-background: #ffffffd3;
 
   //Transaction
@@ -278,11 +307,11 @@
   //switcher
 
   --switcher-item-background: #41bea5;
-  --switcher-item-color: #2D2C39;
+  --switcher-item-color: #2d2c39;
 
   //Button
 
-  --btn-primary-color: #FDFDFD;
+  --btn-primary-color: #fdfdfd;
   --btn-primary-background-color: #41bea5;
   --btn-primary-background-color-active: #41bea5dd;
   --btn-primary-border-color: #41bea5;
@@ -294,46 +323,38 @@
   --footer-bg: #112338;
   --footer-border: 8px solid #41bea5;
 
-  //language selector 
+  //language selector
   --language-selector-bg: #112338;
 
   //sidebar
   --tab-gradient: linear-gradient(90deg, #fdfdfd 95%, #cbf5ed);
   --tab-background: #fdfdfd;
-  --tab-gradient-selected: linear-gradient(90deg, #fdfdfd 0%, rgba(74, 182, 160, 0.80) 20%, rgba(74, 182, 160, 0.90) 24%, rgba(74, 182, 160, 0.97) 30%, rgba(74,182,161,1) 35%);
+  --tab-gradient-selected: linear-gradient(
+    90deg,
+    #fdfdfd 0%,
+    rgba(74, 182, 160, 0.8) 20%,
+    rgba(74, 182, 160, 0.9) 24%,
+    rgba(74, 182, 160, 0.97) 30%,
+    rgba(74, 182, 161, 1) 35%
+  );
 
   //breadcrumbs
   --selected-option: #41bea5;
 }
 
-h1 {
-  font-weight: bold;
-  font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
-}
-p {
-  font-family: 'Almarai', sans-serif;
-  line-height: 1.5;
-  &.title {
-    font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
-  }
-}
-.btn {
-  font-family: 'Almarai', sans-serif;
-}
-.title {
-  font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
-}
-.bold {
-  font-weight: bold;
-}
-.light-text {
-  color: var(--light-text);
-}
-.text {
-  color: var(--text);
+body {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.8);
 }
 
-a {
-  text-decoration: none;
-  font-size: 1rem;
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: black;
+}
+
+body {
+  font-family: 'Almarai';
 }

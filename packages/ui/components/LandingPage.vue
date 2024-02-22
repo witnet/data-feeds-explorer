@@ -8,67 +8,60 @@
     <DataFeedsCount
       :chains="supportedChains.length"
       :networks="networks.length"
-      :feeds="chainsFeeds.total"
+      :feeds="totalFeeds"
     />
     <h2 class="title">{{ $t('landing.upcoming_chains.title') }}</h2>
     <UpcomingChains />
     <h2 class="title">{{ $t('landing.partners.title') }}</h2>
-    <Partners />
+    <PartnersSection />
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import networks from '@/apollo/queries/networks.gql'
-import homePageData from '@/apollo/queries/homePageData.gql'
+const store = useStore()
 
-export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-    feeds: {
-      prefetch: true,
-      query: homePageData,
-    },
-  },
-  computed: {
-    chainsFeeds() {
-      return this.feeds ? this.feeds : []
-    },
-    supportedChains() {
-      if (this.networks) {
-        return Object.values(generateSelectOptions(this.networks))
-          .filter((network) => network && network[0])
-          .map((network) => {
-            const chain = network[0].chain
-            return {
-              name: chain,
-              count:
-                this.feeds?.feeds.filter((feed) => feed.chain === chain)
-                  .length || 0,
-              detailsPath: {
-                name: 'network',
-                params: {
-                  network: chain.toLowerCase(),
-                },
-              },
-              svg: network[0].logo,
-            }
-          })
-          .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
-      } else {
-        return []
+useServerSeoMeta({
+  ogTitle: () => 'Data Feeds Explorer | Witnet',
+  title: () => 'Data Feeds Explorer | Witnet',
+  description: () =>
+    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
+  ogDescription: () =>
+    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
+  twitterTitle: () => 'Data Feeds Explorer | Witnet',
+  twitterDescription: () =>
+    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
+})
+
+const feeds = computed(() => store.ecosystems)
+const totalFeeds = computed(() => store.totalFeeds)
+const networks = computed(() => store.networks)
+const supportedChains = computed(() => {
+  return Object.values(generateSelectOptions(networks.value))
+    .filter((network: any) => network && network[0])
+    .map((network: any) => {
+      const chain = network[0].chain
+      return {
+        name: chain,
+        count:
+          feeds.value.filter((feed: any) => feed.chain === chain).length || 0,
+        detailsPath: {
+          name: 'network',
+          params: {
+            network: chain.toLowerCase(),
+          },
+        },
+        svg: network[0].logo,
       }
-    },
-  },
-  mounted() {
-    this.$store.commit('updateSelectedNetwork', {
-      network: [],
     })
-  },
-}
+    .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
+})
+
+onMounted(async () => {
+  store.updateSelectedNetwork({ network: [] })
+  await store.fetchEcosystems()
+  await store.fetchNetworks()
+})
 </script>
 
 <style lang="scss" scoped>
