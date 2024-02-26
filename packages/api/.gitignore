@@ -2,3 +2,9 @@
 build
 src/generated
 node_modules
+dist
+**/*.sh
+codegen.yml
+dist
+dist/**
+**/generated/**
