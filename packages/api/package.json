@@ -6,8 +6,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "codegen": "graphql-codegen --config ./codegen.yml",
-    "lint": "prettier-standard --format",
-    "lint:check": "prettier-standard --check",
+    "lint:js": "eslint --ext \".ts\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check --ignore-path .gitignore .",
+    "lint": "pnpm lint:js && pnpm lint:prettier",
+    "lintfix": "prettier --write --list-different . && pnpm lint:js --fix",
     "dev": "nodemon",
     "start": "node dist/index.js",
     "test": "jest --runInBand",
@@ -25,7 +27,6 @@
     "@types/node": "18.11.9",
     "husky": "^8.0.3",
     "nodemon": "^2.0.22",
-    "prettier-standard": "^16.4.1",
     "ts-jest": "29.1.0",
     "ts-node": "10.9.1",
     "typescript": "^5.0.4"
