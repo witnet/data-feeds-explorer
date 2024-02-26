@@ -9,26 +9,26 @@ describe('validateNetworkConfig', () => {
         key: 'boba-bnb-mainnet',
         label: 'Boba BNB/L2 Mainnet',
         chain: 'Boba',
-        mainnet: true
+        mainnet: true,
       },
       {
         key: 'celo-mainnet',
         label: 'Celo Mainnet',
         chain: 'Celo',
-        mainnet: true
+        mainnet: true,
       },
       {
         key: 'ethereum-mainnet',
         label: 'Ethereum Mainnet',
         chain: 'Ethereum',
-        mainnet: true
+        mainnet: true,
       },
       { key: 'kcc-mainnet', label: 'KCC Mainnet', chain: 'KCC', mainnet: true },
       {
         key: 'polygon-mainnet',
         label: 'Polygon Mainnet',
         chain: 'Polygon',
-        mainnet: true
+        mainnet: true,
       },
       {
         key: 'polygon-zkevm-mainnet',
@@ -46,25 +46,25 @@ describe('validateNetworkConfig', () => {
         key: 'boba-ethereum-goerli',
         label: 'Boba ETH/L2 Goerli',
         chain: 'Boba',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'celo-alfajores',
         label: 'Celo Alfajores',
         chain: 'Celo',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'conflux-core-mainnet',
         label: 'Conflux Core (Hydra)',
         chain: 'Conflux',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'conflux-core-testnet',
         label: 'Conflux Core (Testnet)',
         chain: 'Conflux',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'conflux-espace-testnet',
@@ -76,25 +76,25 @@ describe('validateNetworkConfig', () => {
         key: 'ethereum-goerli',
         label: 'Ethereum Goerli',
         chain: 'Ethereum',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'ethereum-sepolia',
         label: 'Ethereum Sepolia',
         chain: 'Ethereum',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'kcc-testnet',
         label: 'KCC Testnet',
         chain: 'KCC',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'metis-goerli',
         label: 'Metis Goerli',
         chain: 'Metis',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'polygon-goerli',

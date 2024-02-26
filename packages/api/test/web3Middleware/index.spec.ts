@@ -20,19 +20,19 @@ const lastValueMock = jest.fn(() => ({
       _lastPrice: '10000',
       _lastTimestamp: '1624363045258',
       _lastDrTxHash: '99999',
-      _lastestUpdateStatus: 200
+      _lastestUpdateStatus: 200,
     }
-  })
+  }),
 }))
 const currencyPairIdMock = jest.fn(() => ({
   call: jest.fn(() => {
     return '9999999000001624363045258'
-  })
+  }),
 }))
 const getPriceFeedMock = jest.fn(() => ({
   call: jest.fn(() => {
     return '0x000001624363045258'
-  })
+  }),
 }))
 const requestIdMock = jest.fn(() => ({ call: jest.fn(() => '1') }))
 const contractMock = jest.fn(() => ({
@@ -40,14 +40,14 @@ const contractMock = jest.fn(() => ({
     lastValue: lastValueMock,
     latestQueryId: requestIdMock,
     currencyPairId: currencyPairIdMock,
-    getPriceFeed: getPriceFeedMock
-  }
+    getPriceFeed: getPriceFeedMock,
+  },
 }))
-const Web3Mock = (jest.fn(() => ({
+const Web3Mock = jest.fn(() => ({
   eth: {
-    Contract: contractMock
-  }
-})) as unknown) as typeof Web3
+    Contract: contractMock,
+  },
+})) as unknown as typeof Web3
 
 const originalenv = process.env
 
@@ -62,7 +62,7 @@ beforeEach(() => {
     BOBA_MAINNET_PROVIDER: `https://mainnet.boba.network`,
     CELO_ALFAJORES_PROVIDER: `https://alfajores-forno.celo-testnet.org`,
     CELO_MAINNET_PROVIDER: `https://forno.celo.org`,
-    ETHEREUM_MAINNET_PROVIDER: `https://mainnet.infura.io`
+    ETHEREUM_MAINNET_PROVIDER: `https://mainnet.infura.io`,
   }
   jest.clearAllMocks()
 })
@@ -71,8 +71,8 @@ describe.skip('web3Middleware', () => {
   it('should read the state of each datafeed provided', async () => {
     const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo]
     const resultRequestRepository = new ResultRequestRepository(
-      ('' as unknown) as Db,
-      feedInfos
+      '' as unknown as Db,
+      feedInfos,
     )
     resultRequestRepository.insert = jest.fn(
       async ({ result, requestId, timestamp, drTxHash, feedFullName }) => {
@@ -83,9 +83,9 @@ describe.skip('web3Middleware', () => {
           requestId,
           timestamp,
           drTxHash,
-          feedFullName
+          feedFullName,
         }
-      }
+      },
     )
     const feedRepository = new FeedRepository(feedInfos)
     const configuration = new Configuration(dataFeedsRouter)
@@ -93,12 +93,12 @@ describe.skip('web3Middleware', () => {
       configuration,
       {
         repositories: { feedRepository, resultRequestRepository },
-        Web3: Web3Mock
+        Web3: Web3Mock,
       },
-      feedInfos
+      feedInfos,
     )
     await middleware.listen()
-    await new Promise(resolve => setTimeout(() => resolve(''), 1000))
+    await new Promise((resolve) => setTimeout(() => resolve(''), 1000))
     middleware.stop()
 
     expect(Web3Mock).toBeCalledTimes(4)

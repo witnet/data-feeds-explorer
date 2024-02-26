@@ -59,5 +59,5 @@ export const getFeedRequests = async ({
     page,
     size,
   })) as {
-    requests: any
+    requests: FeedRequests[]
   }

@@ -11,26 +11,26 @@ export class Configuration {
   }
 
   // normalize config to fit network schema
-  public normalizeNetworkConfig (
-    config: RouterDataFeedsConfig
+  public normalizeNetworkConfig(
+    config: RouterDataFeedsConfig,
   ): Array<Omit<NetworksConfig, 'logo'>> {
     // Get a list of networks where every element of the array contains another array with networks that belong to a chain.
     const networks = getNetworksListByChain(config)
 
     // Put all networks at the same level removing the nested arrays
     const networkConfig = networks.reduce((networks, network) => {
-      network.map(network => {
+      network.map((network) => {
         networks.push({
-          ...network
+          ...network,
         })
       })
       return networks
     }, [])
-    const testnetNetworks = networkConfig.filter(network => !network.mainnet)
-    const mainnetNetworks = networkConfig.filter(network => network.mainnet)
+    const testnetNetworks = networkConfig.filter((network) => !network.mainnet)
+    const mainnetNetworks = networkConfig.filter((network) => network.mainnet)
     return [
       ...sortAlphabeticallyByLabel(mainnetNetworks),
-      ...sortAlphabeticallyByLabel(testnetNetworks)
+      ...sortAlphabeticallyByLabel(testnetNetworks),
     ]
   }
 
@@ -54,9 +54,15 @@ export class Configuration {
     const abi = this.configurationFile.contract.legacy.abi
     const chains = Object.entries(this.configurationFile.chains).reduce((acc, [chainKey, chain]) => {
 
-      if (chain.hide) {
-        return acc
-      }
+        const networks = Object.entries(chain.networks).reduce(
+          (accNetworks, [networkKey, network]) => {
+            // add the network entry if it's legacy
+            return network.legacy
+              ? { ...accNetworks, [networkKey]: network }
+              : accNetworks
+          },
+          {},
+        )
 
       const networks = Object.entries(chain.networks).reduce((accNetworks, [networkKey, network]) => {
         // add the network entry if it's legacy
