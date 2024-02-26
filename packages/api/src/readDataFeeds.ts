@@ -10,22 +10,20 @@ function isRouterDataFeedsConfig (val: any): val is RouterDataFeedsConfig {
   return val?.contract && val?.chains && val.conditions && val.currencies
 }
 
-export async function fetchDataFeedsRouterConfig (): Promise<
-  RouterDataFeedsConfig | null
-> {
+export async function fetchDataFeedsRouterConfig(): Promise<RouterDataFeedsConfig | null> {
   return await axios
     .get(CONFIG_URL)
-    .then(res => {
+    .then((res) => {
       if (isRouterDataFeedsConfig(res.data)) {
         return res.data
       } else {
         throw new Error('Received data is not of type RouterDataFeedsConfig')
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(
         `There was an error fetching the config file from ${CONFIG_URL}`,
-        err
+        err,
       )
 
       return null
@@ -38,13 +36,11 @@ export async function fetchDataFeedsRouterConfig (): Promise<
  * structure to check if it has sense right now or only because it was the previous configuration
  * format
  */
-export function normalizeAndValidateDataFeedConfig (
-  config: RouterDataFeedsConfig
+export function normalizeAndValidateDataFeedConfig(
+  config: RouterDataFeedsConfig,
 ): Array<FeedInfo> {
-  const dataFeeds: Array<Omit<
-    FeedInfoConfig,
-    'abi' | 'routerAbi'
-  >> = normalizeConfig(config)
+  const dataFeeds: Array<Omit<FeedInfoConfig, 'abi' | 'routerAbi'>> =
+    normalizeConfig(config)
 
   // Throw and error if config file is not valid
   // validateDataFeeds(dataFeeds)
@@ -56,8 +52,8 @@ export function normalizeAndValidateDataFeedConfig (
           process.env.DATA_FEED_ROUTER_ABI_PATH ||
             config.contract.legacy.abi
         ),
-        'utf-8'
-      )
+        'utf-8',
+      ),
     ),
     abi: JSON.parse(
       fs.readFileSync(
@@ -65,9 +61,9 @@ export function normalizeAndValidateDataFeedConfig (
           // TODO: should this abi be in the config file?
           process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json'
         ),
-        'utf-8'
-      )
-    )
+        'utf-8',
+      ),
+    ),
   }))
 }
 

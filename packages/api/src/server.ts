@@ -8,23 +8,23 @@ import {
   FeedInfo,
   Loaders,
   NetworksConfig,
-  Repositories
+  Repositories,
 } from './types'
 import { startStandaloneServer } from '@apollo/server/standalone'
 import { LoadersFactory } from './loaders'
 import SvgCache from './svgCache'
 
-export async function createServer (
+export async function createServer(
   repositories: Repositories,
   svgCache: SvgCache,
   config: {
     dataFeedsConfig: Array<FeedInfo>
     networksConfig: Array<NetworksConfig>
-  }
+  },
 ): Promise<{ url; server: ApolloServer<Context> }> {
   const server = new ApolloServer<Context>({
     typeDefs: [DIRECTIVES, typeDefs],
-    resolvers
+    resolvers,
   })
 
   const { url } = await startStandaloneServer<Context>(server, {
@@ -33,14 +33,14 @@ export async function createServer (
       const configByFullName: ConfigByFullName = config.dataFeedsConfig.reduce(
         (acc, feedInfo) => ({
           ...acc,
-          [`${feedInfo.feedFullName}`]: feedInfo
+          [`${feedInfo.feedFullName}`]: feedInfo,
         }),
-        {}
+        {},
       )
 
       const loaders: Loaders = new LoadersFactory(
         repositories,
-        svgCache
+        svgCache,
       ).getLoaders()
 
       return {
@@ -48,11 +48,11 @@ export async function createServer (
         resultRequestRepository: repositories.resultRequestRepository,
         config: {
           feedsConfig: configByFullName,
-          networksConfig: config.networksConfig
+          networksConfig: config.networksConfig,
         },
-        loaders: loaders
+        loaders: loaders,
       }
-    }
+    },
   })
   console.log(`🚀 Server ready at ${url}`)
 

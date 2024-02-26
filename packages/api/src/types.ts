@@ -42,7 +42,7 @@ export type ConfigByFullName = {
 }
 
 export enum Network {
-  ArbitrumOne = 'arbitrum-one' ,
+  ArbitrumOne = 'arbitrum-one',
   ArbitrumGoerli = 'arbitrum-goerli',
   AvalancheMainnet = 'avalanche-mainnet',
   AvalancheFuji = 'avalanche-fuji',
@@ -99,7 +99,7 @@ export enum Network {
   SyscoinMainnet = 'syscoin-mainnet',
   SyscoinRolluxTestnet = 'syscoin-rollux-testnet',
   UltronTestnet = 'ultron-testnet',
-  UltronMainnet = 'ultron-mainnet'
+  UltronMainnet = 'ultron-mainnet',
 }
 
 export type FeedInfoGeneric<ABI> = {

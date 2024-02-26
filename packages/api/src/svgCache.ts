@@ -4,12 +4,12 @@ import { DEFAULT_SVG, fetchSvgs } from './fetchSvgs'
 export class SvgCache {
   cache: NodeCache
 
-  constructor () {
+  constructor() {
     this.cache = new NodeCache({ checkperiod: 0 })
   }
 
-  async getMany (svgNames: Array<string>): Promise<{ [key: string]: string }> {
-    const missingSvgs = svgNames.filter(name => !this.cache.get(name))
+  async getMany(svgNames: Array<string>): Promise<{ [key: string]: string }> {
+    const missingSvgs = svgNames.filter((name) => !this.cache.get(name))
     const fetchedSvgs = await fetchSvgs(missingSvgs)
     // set missing svgs
     Object.entries(fetchedSvgs).forEach(([key, value]) => {
@@ -21,9 +21,9 @@ export class SvgCache {
     return svgNames.reduce(
       (acc, name) => ({
         ...acc,
-        [name]: this.cache.get(name) || fetchedSvgs[name]
+        [name]: this.cache.get(name) || fetchedSvgs[name],
       }),
-      {}
+      {},
     )
   }
 }

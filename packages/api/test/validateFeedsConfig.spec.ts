@@ -22,7 +22,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'boba-mainnet_btc-usd_6',
@@ -41,7 +41,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'boba-mainnet_eth-usd_6',
@@ -60,7 +60,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'boba-mainnet_frax-usdt_6',
@@ -79,7 +79,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         deviation: '0.25',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'boba-mainnet_usdc-usd_6',
@@ -98,7 +98,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         deviation: '0.25',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'boba-mainnet_usdt-usd_6',
@@ -117,7 +117,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://blockexplorer.boba.network/address/{address}',
         deviation: '0.25',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-alfajores_btc-usd_6',
@@ -137,7 +137,7 @@ describe.skip('validateDataFeedsConfig', () => {
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-alfajores_celo-eur_6',
@@ -157,7 +157,7 @@ describe.skip('validateDataFeedsConfig', () => {
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-alfajores_celo-usd_6',
@@ -177,7 +177,7 @@ describe.skip('validateDataFeedsConfig', () => {
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-alfajores_eth-usd_6',
@@ -197,7 +197,7 @@ describe.skip('validateDataFeedsConfig', () => {
           'https://alfajores-blockscout.celo-testnet.org/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-mainnet_celo-eur_6',
@@ -216,7 +216,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-mainnet_celo-usd_6',
@@ -235,7 +235,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-mainnet_btc-usd_6',
@@ -254,7 +254,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'celo-mainnet_eth-usd_6',
@@ -273,7 +273,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://explorer.celo.org/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'conflux-testnet_cfx-usdt_6',
@@ -292,7 +292,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'conflux-testnet_btc-usd_6',
@@ -311,7 +311,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'conflux-testnet_eth-usd_6',
@@ -330,7 +330,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://testnet.confluxscan.io/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'conflux-tethys_cfx-usdt_6',
@@ -349,7 +349,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://confluxscan.io/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'conflux-tethys_btc-usd_6',
@@ -368,7 +368,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://confluxscan.io/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'conflux-tethys_eth-usd_6',
@@ -387,7 +387,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://confluxscan.io/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'ethereum-goerli_btc-usd_6',
@@ -406,7 +406,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://goerli.etherscan.io/address/{address}',
         deviation: '1',
         heartbeat: '28800000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'ethereum-goerli_eth-usd_6',
@@ -425,7 +425,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://goerli.etherscan.io/address/{address}',
         deviation: '1',
         heartbeat: '28800000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'ethereum-rinkeby_btc-usd_6',
@@ -444,7 +444,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'ethereum-rinkeby_eth-usd_6',
@@ -463,7 +463,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://rinkeby.etherscan.io/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'ethereum-mainnet_btc-usd_6',
@@ -482,7 +482,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://etherscan.io/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'ethereum-mainnet_eth-usd_6',
@@ -501,7 +501,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://etherscan.io/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'harmony-testnet_btc-usd_6',
@@ -520,7 +520,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://explorer.pops.one/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'harmony-testnet_eth-usd_6',
@@ -539,7 +539,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://explorer.pops.one/address/{address}',
         deviation: '1',
         heartbeat: '3600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'kcc-testnet_kcs-usdt_6',
@@ -558,7 +558,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
         deviation: '0.5',
         heartbeat: '600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'kcc-testnet_btc-usd_6',
@@ -577,7 +577,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
         deviation: '0.5',
         heartbeat: '600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'kcc-testnet_eth-usd_6',
@@ -596,7 +596,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://scan-testnet.kcc.network/address/{address}',
         deviation: '0.5',
         heartbeat: '600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'kcc-mainnet_kcs-usdt_6',
@@ -615,7 +615,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://scan.kcc.io/address/{address}',
         deviation: '0.5',
         heartbeat: '600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'kcc-mainnet_btc-usd_6',
@@ -634,7 +634,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://scan.kcc.io/address/{address}',
         deviation: '0.5',
         heartbeat: '600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'kcc-mainnet_eth-usd_6',
@@ -653,7 +653,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://scan.kcc.io/address/{address}',
         deviation: '0.5',
         heartbeat: '600000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'metis-rinkeby_metis-usdt_6',
@@ -672,7 +672,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'metis-rinkeby_btc-usd_6',
@@ -691,7 +691,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'metis-rinkeby_eth-usd_6',
@@ -710,7 +710,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://stardust-explorer.metis.io/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'metis-mainnet_metis-usdt_6',
@@ -729,7 +729,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://andromeda-explorer.metis.io/address/{address}',
         deviation: '2',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'polygon-goerli_btc-usd_6',
@@ -748,7 +748,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://mumbai.polygonscan.com/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'polygon-goerli_eth-usd_6',
@@ -767,7 +767,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://mumbai.polygonscan.com/address/{address}',
         deviation: '3.5',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'polygon-mainnet_btc-usd_6',
@@ -786,7 +786,7 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://polygonscan.com/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
+        finality: '900000',
       },
       {
         feedFullName: 'polygon-mainnet_eth-usd_6',
@@ -805,8 +805,8 @@ describe.skip('validateDataFeedsConfig', () => {
         blockExplorer: 'https://polygonscan.com/address/{address}',
         deviation: '1',
         heartbeat: '86400000',
-        finality: '900000'
-      }
+        finality: '900000',
+      },
     ]
 
     expect(feeds).toStrictEqual(expected)
