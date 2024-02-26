@@ -450,7 +450,7 @@
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
-            "Price-HK$/USD-6": {
+            "Price-HKD/USD-6": {
               "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
