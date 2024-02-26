@@ -10,12 +10,12 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "yarn lerna bootstrap",
-    "build": "yarn lerna run build --stream --concurrency 1",
-    "test": "yarn lerna run test --stream ",
-    "lint": "yarn lerna run lint --stream --concurrency 1",
-    "lint:check": "yarn lerna run lint:check --stream --concurrency 1",
-    "clean": "yarn lerna run clean --concurrency 4",
+    "bootstrap": "pnpm lerna bootstrap",
+    "build": "pnpm lerna run build --stream --concurrency 1",
+    "test": "pnpm lerna run test --stream ",
+    "lint": "pnpm lerna run lint --stream --concurrency 1",
+    "lintfix": "pnpm lerna run lintfix --stream --concurrency 1",
+    "clean": "pnpm lerna run clean --concurrency 4",
     "prepare": "lerna run prepare",
     "docker:build": "lerna run docker:build"
   },
@@ -23,20 +23,22 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@commitlint/config-lerna-scopes": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
     "commitlint": "^11.0.0",
-    "lerna": "^3.22.1",
-    "@typescript-eslint/parser": "^6.17.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
-    "prettier": "^3.1.1",
+    "eslint-plugin-vue": "^9.22.0",
+    "lerna": "^3.22.1",
     "migrate-mongo": "^9.0.0",
-    "stylelint": "^13.9.0",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^20.0.0"
+    "prettier": "^3.1.1",
+    "stylelint": "^16.2.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^36.0.0"
   },
   "volta": {
-    "node": "18.17.0",
+    "node": "21.6.1",
     "yarn": "1.22.19"
   }
 }
