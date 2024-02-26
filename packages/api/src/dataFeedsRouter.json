@@ -1438,9 +1438,7 @@
           "color": "#66ff00",
           "name": "Optimism Goerli (testnet)",
           "pollingPeriod": 120000,
-          "feeds": {
-
-          }
+          "feeds": {}
         },
         "optimism.mainnet": {
           "legacy": true,
@@ -1774,8 +1772,7 @@
           "color": "#66ff00",
           "name": "Syscoin Rollux Testnet",
           "pollingPeriod": 90000,
-          "feeds": {
-          }
+          "feeds": {}
         }
       }
     },

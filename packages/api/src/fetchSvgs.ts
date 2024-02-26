@@ -8,18 +8,18 @@ const STATIC_LOGOS_SVG_URL = process.env.TEST_BRANCH
   ? `https://raw.githubusercontent.com/witnet/data-feeds-explorer//${process.env.TEST_BRANCH}/packages/ui/assets/svg/`
   : 'https://raw.githubusercontent.com/witnet/data-feeds-explorer/main/packages/ui/assets/svg/'
 
-export async function fetchSvgs (
-  networksToFetch: Array<string>
+export async function fetchSvgs(
+  networksToFetch: Array<string>,
 ): Promise<{ [key: string]: string }> {
   const networksWithoutRepeated = removeRepeatedElements(networksToFetch)
   const logosUrls = networksWithoutRepeated.map(
-    (networkToFetch: string) => `${STATIC_LOGOS_SVG_URL}${networkToFetch}.svg`
+    (networkToFetch: string) => `${STATIC_LOGOS_SVG_URL}${networkToFetch}.svg`,
   )
 
   // Fetch all logos from github
-  const promises = logosUrls.map(url => axios.get(url))
-  return new Promise(resolve => {
-    Promise.allSettled(promises).then(results => {
+  const promises = logosUrls.map((url) => axios.get(url))
+  return new Promise((resolve) => {
+    Promise.allSettled(promises).then((results) => {
       const svgs = results.map((result, index) => {
         if (result.status === 'rejected') {
           console.log(`Error fetching logo from: ${logosUrls[index]}`)
@@ -32,9 +32,9 @@ export async function fetchSvgs (
       const svgByName = networksWithoutRepeated.reduce(
         (acc, val, index) => ({
           ...acc,
-          [val]: svgs[index]
+          [val]: svgs[index],
         }),
-        {}
+        {},
       )
 
       resolve(svgByName)

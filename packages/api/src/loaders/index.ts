@@ -3,26 +3,26 @@ import { SvgCache } from '../svgCache'
 import {
   Loaders,
   Repositories,
-  ResultRequestDbObjectNormalized
+  ResultRequestDbObjectNormalized,
 } from '../types'
 
 export class LoadersFactory {
   repositories: Repositories
   svgCache: SvgCache
 
-  constructor (repositories: Repositories, svgCache: SvgCache) {
+  constructor(repositories: Repositories, svgCache: SvgCache) {
     this.repositories = repositories
     this.svgCache = svgCache
   }
   // returns a loader that fetches data using the given function
-  private genericLoader<T> (load: (filter) => T) {
+  private genericLoader<T>(load: (filter) => T) {
     return new DataLoader(async (filters: Array<string>) => {
       // load data from all
       const data = await Promise.all(
         await filters.map(async (filter, index) => ({
           data: await load(filter),
-          index
-        }))
+          index,
+        })),
       )
       // ensure they are sorted
       const fetchedDataByIndex = data.reduce((acc, val) => {
@@ -34,13 +34,13 @@ export class LoadersFactory {
     })
   }
 
-  getLoaders (): Loaders {
+  getLoaders(): Loaders {
     return {
       lastResult: this.genericLoader<Promise<ResultRequestDbObjectNormalized>>(
         async (feedFullName: string) =>
           await this.repositories.resultRequestRepository.getLastResult(
-            feedFullName
-          )
+            feedFullName,
+          ),
       ),
 
       requests: this.genericLoader<
@@ -53,7 +53,7 @@ export class LoadersFactory {
         if (filter.timestamp.toString().length !== 10) {
           // invalid timestamp
           console.log(
-            '[requests] invalid timestamp argument -> returning last 7 days'
+            '[requests] invalid timestamp argument -> returning last 7 days',
           )
           timestamp = dateNow - sevenDaysInSeconds
         }
@@ -61,7 +61,7 @@ export class LoadersFactory {
         if (dateNow < filter.timestamp) {
           // received timestamp is greater than current time
           console.log(
-            '[requests] invalid timestamp argument -> returning last 7 days'
+            '[requests] invalid timestamp argument -> returning last 7 days',
           )
           timestamp = dateNow - sevenDaysInSeconds
         }
@@ -74,12 +74,12 @@ export class LoadersFactory {
 
         return await this.repositories.resultRequestRepository.getFeedRequests(
           filter.feedFullName,
-          timestamp
+          timestamp,
         )
       }),
       logos: new DataLoader(async (logos: Array<string>) => {
         return Object.values(await this.svgCache.getMany(logos))
-      })
+      }),
     }
   }
 }

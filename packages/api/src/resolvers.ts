@@ -14,18 +14,18 @@ const resolvers = {
       return await resultRequestRepository.getFeedRequestsPage(
         args.feedFullName,
         args.page,
-        args.size
+        args.size,
       )
     },
 
     feed: async (_parent, args, { feedRepository }: Context) => {
       return await feedRepository.get(args.feedFullName)
-    }
+    },
   },
   NetworksConfig: {
     logo: async (parent, _args, { loaders }: Context) => {
       return await loaders.logos.load(parent.chain.toLowerCase())
-    }
+    },
   },
   Feed: {
     logo: async (parent, _args, { loaders }: Context) => {
@@ -34,7 +34,7 @@ const resolvers = {
     requests: async (parent, args, { loaders }: Context) => {
       return await loaders.requests.load({
         feedFullName: parent.feedFullName,
-        timestamp: args.timestamp
+        timestamp: args.timestamp,
       })
     },
     lastResult: async (parent, _args, { loaders }: Context) => {
@@ -65,8 +65,8 @@ const resolvers = {
     finality: async (parent, _args, { config }: Context) => {
       // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
       return config.feedsConfig[parent.feedFullName]?.finality || ''
-    }
-  }
+    },
+  },
 }
 
 export default resolvers

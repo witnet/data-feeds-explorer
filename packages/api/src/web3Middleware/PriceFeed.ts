@@ -1,8 +1,8 @@
-import { AbiItem, FeedInfo, Network } from "../types";
-import { SupportedFeed } from "./NetworkRouter";
+import { AbiItem, FeedInfo, Network } from '../types'
+import { SupportedFeed } from './NetworkRouter'
 import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json'
-import { createFeedFullName } from "../utils";
-import { Configuration, getChain } from "./Configuration";
+import { createFeedFullName } from '../utils'
+import { Configuration, getChain } from './Configuration'
 
 export class PriceFeed {
   feedFullName: string
@@ -25,11 +25,7 @@ export class PriceFeed {
   configuration: Configuration
   networkName: string
 
-<<<<<<< HEAD
   constructor(configuration: Configuration, args: FeedInfo) {
-=======
-  constructor (configuration: Configuration, args: FeedInfo) {
->>>>>>> 6c74911 (feat: migrate ui package to nuxt3)
     this.configuration = configuration
     this.feedFullName = args.feedFullName
     this.id = args.id
@@ -80,9 +76,12 @@ export class PriceFeed {
     feed: SupportedFeed,
     address: string,
     network: Network,
-    networkName: string
+    networkName: string,
   ): PriceFeed {
-    const feedConfiguration = configuration.getFeedConfiguration(feed.caption, network)
+    const feedConfiguration = configuration.getFeedConfiguration(
+      feed.caption,
+      network,
+    )
     const networkConfiguration = configuration.getNetworkConfiguration(network)
 
     if (!feedConfiguration || Object.keys(feedConfiguration).length === 0) {
@@ -94,7 +93,7 @@ export class PriceFeed {
       feedConfiguration.deviationPercentage = 0
     }
 
-    const decimals = feed.caption.split("-").reverse()[0]
+    const decimals = feed.caption.split('-').reverse()[0]
     return new PriceFeed(configuration, {
       feedFullName: createFeedFullName(network, feed.caption, decimals),
       id: feed.id,
@@ -116,7 +115,7 @@ export class PriceFeed {
       deviation: feedConfiguration.deviationPercentage.toString(),
       heartbeat: feedConfiguration.maxSecsBetweenUpdates.toString(),
       finality: '900000',
-      chain: getChain(network)
+      chain: getChain(network),
     })
   }
 }

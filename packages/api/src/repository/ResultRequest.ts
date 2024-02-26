@@ -4,7 +4,7 @@ import {
   Db,
   Collection,
   FeedInfo,
-  WithoutId
+  WithoutId,
 } from '../types'
 import { containFalsyValues } from './containFalsyValues'
 
@@ -15,46 +15,48 @@ export class ResultRequestRepository {
   >
   latestResults: Record<string, WithoutId<ResultRequestDbObject>> = {}
 
-  constructor (db: Db, _dataFeeds: Array<FeedInfo>) {
+  constructor(db: Db, _dataFeeds: Array<FeedInfo>) {
     this.collection = db.collection('result_request')
   }
 
-  async getFeedRequests (
+  async getFeedRequests(
     feedFullName: string,
-    timestamp: number
+    timestamp: number,
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find(
           {
             feedFullName,
-            timestamp: { $gt: timestamp.toString() }
+            timestamp: { $gt: timestamp.toString() },
           },
           {
             sort: { timestamp: -1 },
             collation: {
               locale: 'en_US',
-              numericOrdering: true
-            }
-          }
+              numericOrdering: true,
+            },
+          },
         )
         .toArray()
     )
       .filter((request, index, self) => {
-        return index === self.findIndex(x => x.timestamp === request.timestamp)
+        return (
+          index === self.findIndex((x) => x.timestamp === request.timestamp)
+        )
       })
       .map(this.normalizeId)
   }
 
-  async getFeedRequestsPage (
+  async getFeedRequestsPage(
     feedFullName: string,
     page: number,
-    size: number
+    size: number,
   ): Promise<Array<ResultRequestDbObjectNormalized>> {
     return (
       await this.collection
         .find({
-          feedFullName
+          feedFullName,
         })
         .sort({ timestamp: -1 })
         .skip(size * (page - 1))
@@ -63,36 +65,33 @@ export class ResultRequestRepository {
     ).map(this.normalizeId)
   }
 
-  async getLastResult (
-    feedFullName: string
+  async getLastResult(
+    feedFullName: string,
   ): Promise<ResultRequestDbObjectNormalized | null> {
-    const lastResultRequest = await this.collection.findOne(
-      {
-        feedFullName
-      },
-      {
-        sort: {
-          timestamp: -1
+    const lastResultRequest = await this.collection
+      .findOne(
+        {
+          feedFullName,
         },
         {
           sort: {
-            timestamp: -1
+            timestamp: -1,
           },
           collation: {
             locale: 'en_US',
-            numericOrdering: true
-          }
-        }
-      }
-    ).catch(e => {
-      console.log(`Error in getLastResult: ${feedFullName}`, e)
-      return null
-    })
+            numericOrdering: true,
+          },
+        },
+      )
+      .catch((e) => {
+        console.log(`Error in getLastResult: ${feedFullName}`, e)
+        return null
+      })
     return this.normalizeId(lastResultRequest)
   }
 
-  async insert (
-    resultRequest: WithoutId<ResultRequestDbObject>
+  async insert(
+    resultRequest: WithoutId<ResultRequestDbObject>,
   ): Promise<ResultRequestDbObjectNormalized | null> {
     if (this.isValidResultRequest(resultRequest)) {
       const response = await this.collection.insertOne(resultRequest)
@@ -104,16 +103,15 @@ export class ResultRequestRepository {
     } else {
       console.error(
         'Error inserting result request: Validation Error',
-        resultRequest
+        resultRequest,
       )
       return null
     }
   }
 
-  async insertIfLatest (
-    resultRequest: WithoutId<ResultRequestDbObject>
+  async insertIfLatest(
+    resultRequest: WithoutId<ResultRequestDbObject>,
   ): Promise<ResultRequestDbObjectNormalized | null> {
-
     let storedResult = this.latestResults[resultRequest.feedFullName]
     if (!storedResult) {
       storedResult = await this.getLastResult(resultRequest.feedFullName)
@@ -126,15 +124,14 @@ export class ResultRequestRepository {
     } else {
       console.log(
         'Not inserting result because timestap is already inserted',
-        resultRequest
+        resultRequest,
       )
       return null
     }
   }
 
-
-  private normalizeId (
-    resultRequest: ResultRequestDbObject
+  private normalizeId(
+    resultRequest: ResultRequestDbObject,
   ): ResultRequestDbObjectNormalized | null {
     if (resultRequest?._id) {
       return { ...resultRequest, id: resultRequest._id.toString() }
@@ -144,8 +141,8 @@ export class ResultRequestRepository {
     }
   }
 
-  private isValidResultRequest (
-    resultRequest: WithoutId<ResultRequestDbObject>
+  private isValidResultRequest(
+    resultRequest: WithoutId<ResultRequestDbObject>,
   ): boolean {
     return !containFalsyValues(resultRequest) && resultRequest.timestamp !== '0'
   }

@@ -5,26 +5,26 @@ export class FeedRepository {
   // TODO: replace string with Network
   dataFeedsByNetwork: Record<string, Array<FeedInfo>>
 
-  constructor (dataFeeds: Array<FeedInfo>) {
+  constructor(dataFeeds: Array<FeedInfo>) {
     this.dataFeedsByNetwork = dataFeeds.reduce(
       (acc: Record<string, Array<FeedInfo>>, feedInfo: FeedInfo) => ({
         ...acc,
         [feedInfo.network]: acc[feedInfo.network]
           ? [...acc[feedInfo.network], feedInfo]
-          : [feedInfo]
+          : [feedInfo],
       }),
-      {}
+      {},
     )
     this.dataFeeds = dataFeeds
   }
 
-  get (feedFullName: string): FeedInfo {
-    return this.dataFeeds.find(feed => feed.feedFullName === feedFullName)
+  get(feedFullName: string): FeedInfo {
+    return this.dataFeeds.find((feed) => feed.feedFullName === feedFullName)
   }
 
-  async getFeedsByNetwork (
+  async getFeedsByNetwork(
     // starts in 1
-    network: string
+    network: string,
   ): Promise<PaginatedFeedsObject> {
     let feeds: Array<FeedInfo>
     if (network === 'all') {
@@ -34,13 +34,13 @@ export class FeedRepository {
     }
     return {
       feeds: feeds || [],
-      total: feeds ? feeds.length : 0
+      total: feeds ? feeds.length : 0,
     }
   }
 
-  updateFeedAddress (
+  updateFeedAddress(
     feedFullName: string,
-    { address, contractId }: { address: string; contractId: string }
+    { address, contractId }: { address: string; contractId: string },
   ): FeedInfo {
     const hasSameFeedFullName = (feed: FeedInfo) =>
       feed.feedFullName === feedFullName
@@ -51,16 +51,13 @@ export class FeedRepository {
     feed.address = address
     feed.contractId = contractId
     // Update address in dataFeedsByNetwork cache
-    const dataFeedsByNetworkIndex = this.dataFeedsByNetwork[
-      feed.network
-    ].findIndex(hasSameFeedFullName)
-    this.dataFeedsByNetwork[feed.network][
-      dataFeedsByNetworkIndex
-    ].address = address
+    const dataFeedsByNetworkIndex =
+      this.dataFeedsByNetwork[feed.network].findIndex(hasSameFeedFullName)
+    this.dataFeedsByNetwork[feed.network][dataFeedsByNetworkIndex].address =
+      address
     // Update contractId in dataFeedsByNetwork cache
-    this.dataFeedsByNetwork[feed.network][
-      dataFeedsByNetworkIndex
-    ].contractId = contractId
+    this.dataFeedsByNetwork[feed.network][dataFeedsByNetworkIndex].contractId =
+      contractId
 
     return feed
   }
