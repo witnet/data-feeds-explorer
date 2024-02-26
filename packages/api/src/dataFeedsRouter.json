@@ -2243,7 +2243,7 @@
       "networks": {
         "ten.testnet": {
           "address": "0xE490b89AfADE571d8Afa158446C603D530608ceA",
-          "blockExplorer": "",
+          "blockExplorer": "https://tenscan.io/{address}",
           "color": "#66ff00",
           "name": "TEN Testnet",
           "pollingPeriod": 60000,
