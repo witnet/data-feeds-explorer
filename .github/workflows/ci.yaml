@@ -11,21 +11,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v2.1.2
+      - uses: pnpm/action-setup@v3
         with:
-          node-version: '14'
+          version: 8
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
 
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.6.0
         with:
           mongodb-version: '4.0'
           mongodb-port: 27017
-
-      - run: yarn
-      - run: yarn bootstrap
-      - run: yarn lint:check
-
-      - run: yarn test
-
-      - run: yarn build
+          
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm build

@@ -10,7 +10,7 @@ import {
   Repositories,
   FeedInfo,
   NetworksConfig,
-} from './types'
+} from '../types'
 import { Web3Middleware } from './web3Middleware/index'
 import { normalizeNetworkConfig } from './utils/index'
 import {
@@ -58,7 +58,7 @@ async function main() {
     })
     .map(
       (networkInfo) =>
-        new NetworkRouter(configuration, repositories, networkInfo),
+        new NetworkRouter(configuration, Web3, repositories, networkInfo),
     )
 
   const newFeeds: Array<FeedInfo> = []

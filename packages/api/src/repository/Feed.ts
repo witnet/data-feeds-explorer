@@ -1,4 +1,4 @@
-import { PaginatedFeedsObject, FeedInfo } from '../types'
+import { PaginatedFeedsObject, FeedInfo } from '../../types'
 
 export class FeedRepository {
   dataFeeds: Array<FeedInfo>

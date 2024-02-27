@@ -6,6 +6,25 @@ describe.skip('validateDataFeedsConfig', () => {
     const feeds = normalizeConfig(dataFeedsRouterConfig)
     const expected = [
       {
+        address: '0x0000000000000000000000000000000000000000',
+        blockExplorer: 'https://arbiscan.io/address/{address}',
+        chain: 'Arbitrum',
+        color: '#E84142',
+        contractId: '0x0000000000000000000000000000000000000000',
+        deviation: '3.5',
+        feedFullName: 'arbitrum-one_eth-usd_6',
+        finality: '900000',
+        heartbeat: '86400000',
+        id: 'Price-ETH/USD-6',
+        isRouted: false,
+        label: '$',
+        name: 'eth/usd',
+        network: 'arbitrum-one',
+        networkName: 'Arbitrum ONE',
+        pollingPeriod: 120000,
+        routerAddress: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
+      },
+      {
         feedFullName: 'boba-mainnet_boba-usdt_6',
         isRouted: false,
         id: 'Price-BOBA/USDT-6',

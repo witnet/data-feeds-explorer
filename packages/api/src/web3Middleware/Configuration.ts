@@ -1,4 +1,4 @@
-import { FeedParamsConfig, LegacyRouterDataFeedsConfig, Network, NetworksConfig, RouterDataFeedsConfig } from "../types";
+import { FeedParamsConfig, LegacyRouterDataFeedsConfig, Network, NetworksConfig, RouterDataFeedsConfig } from "../../types";
 import { getNetworksListByChain, sortAlphabeticallyByLabel } from "../utils";
 import { NetworkInfo } from "./NetworkRouter";
 import { getProvider } from "./provider";
@@ -40,6 +40,7 @@ export class Configuration {
       .flatMap(chain => Object.entries(chain.networks))
       .filter(([_, network])=> !network.legacy)
       .map(([networkKey, network]) => {
+        console.log(networkKey.replaceAll('.', '-') as Network)
         return {
           provider: network.blockProvider || getProvider(networkKey.replaceAll('.', '-') as Network) || "",
           address: network.address || this.configurationFile.contract["2.0"].address,

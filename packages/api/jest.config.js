@@ -1,4 +1,5 @@
-// require('dotenv/config')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config({ path: './test/.test.env' })
 
 module.exports = {
   preset: 'ts-jest',

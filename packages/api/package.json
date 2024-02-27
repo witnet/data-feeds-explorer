@@ -23,13 +23,16 @@
     "@graphql-codegen/typescript-mongodb": "2.4.6",
     "@graphql-codegen/typescript-resolvers": "3.2.1",
     "@graphql-tools/schema": "^9.0.19",
-    "@types/jest": "^29.5.0",
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
     "@types/node": "18.11.9",
     "husky": "^8.0.3",
+    "mocha": "^10.3.0",
     "nodemon": "^2.0.22",
     "ts-jest": "29.1.0",
     "ts-node": "10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "web3-eth-contract": "^4.2.0"
   },
   "dependencies": {
     "@apollo/server": "^4.7.0",
@@ -42,7 +45,7 @@
     "migrate-mongo": "^8.2.3",
     "mongodb": "4.16.0",
     "node-cache": "^5.1.2",
-    "web3": "^1.9.0",
+    "web3": "^1.10.4",
     "web3-eth-contract": "^1.10.0",
     "web3-utils": "^1.9.0"
   }

@@ -8,7 +8,7 @@ import {
   NetworksConfig,
   Chain,
   FeedConfig,
-} from '../types'
+} from '../../types'
 // parse network name to fit schema
 export function parseNetworkName(value) {
   return value.toLowerCase().split('.').join('-')
