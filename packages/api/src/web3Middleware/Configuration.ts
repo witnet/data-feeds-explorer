@@ -3,7 +3,7 @@ import {
   Network,
   NetworksConfig,
   RouterDataFeedsConfig,
-} from '../types'
+} from '../../types'
 import { getNetworksListByChain, sortAlphabeticallyByLabel } from '../utils'
 import { NetworkInfo } from './NetworkRouter'
 import { getProvider } from './provider'
@@ -45,6 +45,7 @@ export class Configuration {
       .flatMap((chain) => Object.entries(chain.networks))
       .filter(([_, network]) => network.legacy === false)
       .map(([networkKey, network]) => {
+        console.log(networkKey.replaceAll('.', '-') as Network)
         return {
           provider: getProvider(networkKey.replaceAll('.', '-') as Network),
           address: network.address,

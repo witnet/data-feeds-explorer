@@ -7,8 +7,7 @@ import {
   FeedInfo,
   Repositories,
   ContractInfo,
-  Contract,
-} from '../types'
+} from '../../types'
 import { isZeroAddress } from '../utils/index'
 import { getProvider } from './provider'
 import { NetworkRouter } from './NetworkRouter'
@@ -18,14 +17,14 @@ export class Web3Middleware {
   public repositories: Repositories
   private Web3: typeof Web3
   public legacyDataFeeds: Array<FeedInfo>
-  public routerContractByNetwork: Record<string, Contract> = {}
+  public routerContractByNetwork: Record<string, any> = {}
   public contractIdByFeedId: Record<string, string> = {}
   // feedFullname -> address
   public currentFeedAddresses: Record<string, string> = {}
   public networkRouters: Array<NetworkRouter>
   public configuration: Configuration
 
-  private intervals = []
+  private intervals: NodeJS.Timer[] = []
 
   constructor(
     configuration: Configuration,
@@ -49,6 +48,7 @@ export class Web3Middleware {
       .forEach((networkInfo) =>
         new NetworkRouter(
           this.configuration,
+          this.Web3,
           this.repositories,
           networkInfo,
         ).listen(),
@@ -114,7 +114,7 @@ export class Web3Middleware {
           [feedInfo.feedFullName]: {
             feedInfo,
           },
-        }
+        } as Record<string, { feedInfo: FeedInfo; feedId: ObjectId }>
       },
       {},
     )
@@ -131,7 +131,7 @@ export class Web3Middleware {
     })
 
     const promises = Object.values(feedDictionary).map(
-      async (entry) => await this.listenToDataFeed(entry.feedInfo),
+      async (entry) => await this.listenToDataFeed(entry?.feedInfo),
     )
 
     Promise.all(promises).catch((err) => {
@@ -153,16 +153,19 @@ export class Web3Middleware {
         try {
           const provider = getProvider(feedInfo.network)
           const timeout = 30000
+          let web3: Web3 | undefined
           //FIXME: make timeout work
-          const web3 = new this.Web3(
-            new Web3.providers.HttpProvider(provider, { timeout }),
-          )
+          if (provider) {
+            web3 = new this.Web3(
+              new Web3.providers.HttpProvider(provider, { timeout }),
+            )
+          }
           //FIXME: use web3 timeout instead of custom
           setTimeout(() => {
             reject('Timeout')
           }, timeout)
 
-          if (!this.routerContractByNetwork[feedInfo.network]) {
+          if (web3 && !this.routerContractByNetwork[feedInfo.network]) {
             this.routerContractByNetwork[feedInfo.network] =
               new web3.eth.Contract(feedInfo.routerAbi, feedInfo.routerAddress)
           }

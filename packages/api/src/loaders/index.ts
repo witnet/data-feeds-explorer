@@ -4,7 +4,7 @@ import {
   Loaders,
   Repositories,
   ResultRequestDbObjectNormalized,
-} from '../types'
+} from '../../types'
 
 export class LoadersFactory {
   repositories: Repositories

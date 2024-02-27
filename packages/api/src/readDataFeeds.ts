@@ -1,7 +1,7 @@
 import axios from 'axios'
 import path from 'path'
 import fs from 'fs'
-import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from './types'
+import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types'
 import { normalizeConfig } from './utils'
 
 const CONFIG_URL = process.env.TEST_BRANCH

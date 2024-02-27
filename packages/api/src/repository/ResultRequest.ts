@@ -5,7 +5,7 @@ import {
   Collection,
   FeedInfo,
   WithoutId,
-} from '../types'
+} from '../../types'
 import { containFalsyValues } from './containFalsyValues'
 
 export class ResultRequestRepository {

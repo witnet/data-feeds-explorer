@@ -1,4 +1,4 @@
-import { Network, RouterDataFeedsConfig } from '../../src/types'
+import { Network, RouterDataFeedsConfig } from '../../types'
 import { Configuration } from '../../src/web3Middleware/Configuration'
 
 const configurationFile: RouterDataFeedsConfig = {
@@ -110,6 +110,9 @@ describe('Configuration', () => {
   it('listNetworksUsingPriceFeedsContract', () => {
     const configuration = new Configuration(configurationFile)
     const result = configuration.listNetworksUsingPriceFeedsContract()
+    process.env.ARBITRUM_ONE_PROVIDER = 'provider-arbitrum-one'
+    process.env.ARBITRUM_GOERLI_PROVIDER = 'provider-arbitrum-goerli'
+    process.env.AVALANCHE_FUJI_PROVIDER = 'provider-avalanche-fuji'
 
     const expected = [
       {
@@ -117,21 +120,21 @@ describe('Configuration', () => {
         key: 'arbitrum-one',
         networkName: 'Arbitrum ONE',
         pollingPeriod: 120000,
-        provider: 'https://arb1.arbitrum.io/rpc/',
+        provider: 'provider-arbitrum-one',
       },
       {
         address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
         key: 'arbitrum-goerli',
         networkName: 'Arbitrum Nitro Goerli',
         pollingPeriod: 120000,
-        provider: 'https://goerli-rollup.arbitrum.io/rpc',
+        provider: 'provider-arbitrum-goerli',
       },
       {
         address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
         key: 'avalanche-fuji',
         networkName: 'Avalanche Fuji',
         pollingPeriod: 120000,
-        provider: 'https://api.avax-test.network/ext/bc/C/rpc',
+        provider: 'provider-avalanche-fuji',
       },
     ]
 

@@ -6,6 +6,12 @@ describe('validateNetworkConfig', () => {
     const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig)
     const expected = [
       {
+        chain: 'Arbitrum',
+        key: 'arbitrum-one',
+        label: 'Arbitrum ONE',
+        mainnet: true,
+      },
+      {
         key: 'boba-mainnet',
         label: 'Boba Mainnet',
         chain: 'Boba',

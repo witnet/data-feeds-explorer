@@ -1,15 +1,13 @@
 import { AbiItem } from 'web3-utils'
-import { ResultRequestDbObject } from './generated/types'
-import { Contract } from 'web3-eth-contract'
-
-import { FeedRepository } from './repository/Feed'
-import { ResultRequestRepository } from './repository/ResultRequest'
+import { ResultRequestDbObject } from './src/generated/types'
+import { FeedRepository } from './src/repository/Feed'
+import { ResultRequestRepository } from './src/repository/ResultRequest'
 import DataLoader from 'dataloader'
 
-export * from './generated/types'
+export * from './src/generated/types'
+export { Db, Collection, WithId } from 'mongodb'
 export { AbiItem } from 'web3-utils'
 export { Contract } from 'web3-eth-contract'
-export { Db, Collection, WithId } from 'mongodb'
 
 export type WithoutId<T> = Omit<T, '_id' | 'id'>
 
@@ -169,7 +167,7 @@ export type LastResponse = {
 }
 
 export type Contracts = {
-  feedContract: Contract
+  feedContract: any
 }
 
 export type FeedInfoRouterConfigMap = {
