@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["ES2021", "DOM"],
+    "skipLibCheck": true,
     "target": "es5",
     "module": "commonjs",
     "esModuleInterop": true,
@@ -11,7 +12,8 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "noImplicitReturns": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "types": ["jest"]
   },
-  "include": ["src/"]
+  "include": ["src/", "types.ts", "**/*.spec.ts", "**/*.test.ts"]
 }

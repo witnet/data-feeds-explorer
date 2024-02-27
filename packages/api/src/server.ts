@@ -9,7 +9,7 @@ import {
   Loaders,
   NetworksConfig,
   Repositories,
-} from './types'
+} from '../types'
 import { startStandaloneServer } from '@apollo/server/standalone'
 import { LoadersFactory } from './loaders'
 import SvgCache from './svgCache'

@@ -1,4 +1,4 @@
-import { AbiItem, FeedInfo, Network } from '../types'
+import { AbiItem, FeedInfo, Network } from '../../types'
 import { SupportedFeed } from './NetworkRouter'
 import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json'
 import { createFeedFullName } from '../utils'

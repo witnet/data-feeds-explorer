@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json'
-import { FeedInfo, Network, Repositories } from './../types'
-import { toHex } from 'web3-utils'
+import { FeedInfo, Network, Repositories } from '../../types'
+import { AbiItem, toHex } from 'web3-utils'
 import { createFeedFullName } from '../utils'
 import { PriceFeed } from './PriceFeed'
 import { Configuration } from './Configuration'
@@ -41,6 +41,7 @@ export type NetworkSnapshot = {
 }
 
 export class NetworkRouter {
+  private Web3: typeof Web3
   public contract: any
   public network: Network
   public networkName: string
@@ -53,19 +54,24 @@ export class NetworkRouter {
 
   constructor(
     configuration: Configuration,
+    web3Dep: typeof Web3,
     repositories: Repositories,
     networkInfo: NetworkInfo,
   ) {
+    this.Web3 = web3Dep
     const { provider, address, pollingPeriod, key } = networkInfo
 
     if (!provider) {
       throw new Error(`Missing provider for ${networkInfo.networkName}`)
     }
-    const web3 = new Web3(
+    const web3: Web3 = new this.Web3(
       new Web3.providers.HttpProvider(provider, { timeout: 30000 }),
     )
     // TODO: why this type isn't working?
-    this.contract = new web3.eth.Contract(WitnetPriceFeedsABI as any, address)
+    this.contract = new web3.eth.Contract(
+      WitnetPriceFeedsABI as AbiItem[],
+      address,
+    )
     ;(this.pollingPeriod = pollingPeriod), (this.repositories = repositories)
     this.network = key
     this.configuration = configuration

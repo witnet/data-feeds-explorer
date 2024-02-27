@@ -1,6 +1,6 @@
-import Web3 from './__mocks__/web3'
-
-import { FeedInfo, Db } from '../../src/types'
+// FIXME: create a proper mock for web3
+import Web3 from 'web3'
+import { FeedInfo, Db } from '../../types'
 import { FeedRepository } from '../../src/repository/Feed'
 import { ResultRequestRepository } from '../../src/repository/ResultRequest'
 import { Web3Middleware } from '../../src/web3Middleware/index'
