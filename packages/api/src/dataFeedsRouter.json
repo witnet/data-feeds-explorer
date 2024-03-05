@@ -1810,6 +1810,27 @@
             }
           }
         },
+        "optimism.sepolia": {
+          "address": "0x1111AbA2164AcdC6D291b08DfB374280035E1111",
+          "blockExplorer": "https://blockscout.com/optimism/sepolia/address/{address}",
+          "color": "#66ff00",
+          "name": "Optimism Sepolia (testnet)",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-OP/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
+        },
         "optimism.mainnet": {
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
