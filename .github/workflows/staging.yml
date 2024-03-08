@@ -38,7 +38,7 @@ jobs:
           chmod 400 ./ansible/key.pem
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/caddy.docker-compose.yml
-          sed -i "s#API-REPLACE-ME#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
+          sed -i "s#API-REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
 
       - name: Build Containers
         run: |
