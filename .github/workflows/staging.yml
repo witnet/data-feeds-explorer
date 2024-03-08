@@ -19,6 +19,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Get the latest tag
+        id: gettag
+        run: |
+          git fetch --tags
+          echo ::set-output name=TAG::$(git describe --tags $(git rev-list --tags --max-count=1)
+
       - name: Create Deployment Files
         shell: bash
         env:
@@ -37,6 +43,7 @@ jobs:
           echo "$AINV" > ./ansible/inventory.ini
           chmod 400 ./ansible/key.pem
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
+          sed -i "s#<LATEST_PROD>#${{ steps.gettag.outputs.TAG }}#g" ./ansible/docker-compose.yml
           sed -i "s#API-REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
           sed -i "s#STAGING-API-REPLACE-ME#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
 
