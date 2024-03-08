@@ -41,4 +41,4 @@
     - name: List Images & Containers for SHA256 Comparsion if needed
       shell: |
         docker image ls
-        docker stack ps staging-dfe
+        docker stack ps stagingdfe
