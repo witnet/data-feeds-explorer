@@ -1,4 +1,4 @@
-name: Run lint, test and build
+name: Lint, Test and Build
 
 env:
   CI: true
