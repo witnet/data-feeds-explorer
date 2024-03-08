@@ -6,10 +6,17 @@
         path: /home/ubuntu/dfe
         state: directory
 
-    - name: Copy .env File
+    - name: Copy staging.env File
       copy:
-        src: ./.env
-        dest: /home/ubuntu/dfe/.env
+        src: ./staging.env
+        dest: /home/ubuntu/dfe/staging.env
+      loop: "{{ query('fileglob', './staging.env'') }}"
+
+    - name: Copy production.env File
+      copy:
+        src: ./production.env
+        dest: /home/ubuntu/dfe/production.env
+      loop: "{{ query('fileglob', './production.env'') }}"
 
     - name: Copy Docker Swarm Stack File
       copy:

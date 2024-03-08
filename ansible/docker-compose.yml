@@ -44,7 +44,7 @@ services:
   sapi:
     image: witnet/data-feed-app-api:latest
     env_file:
-      - /home/ubuntu/dfe/.env
+      - /home/ubuntu/dfe/staging.env
     networks:
       - DFE
     logging: *default-loki
@@ -63,7 +63,7 @@ services:
   api:
     image: witnet/data-feed-app-api:latest
     env_file:
-      - /home/ubuntu/dfe/.env
+      - /home/ubuntu/dfe/production.env
     networks:
       - DFE
     logging: *default-loki

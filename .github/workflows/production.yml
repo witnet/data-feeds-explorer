@@ -33,7 +33,7 @@ jobs:
           echo "$APKEY" > ./ansible/key.pem
           echo "$ENVARS" > ./packages/ui/.env
           echo "$CADDY" > ./ansible/Caddyfile
-          echo "$ENVARS" > ./packages/api/.env
+          echo "$ENVARS" > ./packages/api/production.env
           echo "$AINV" > ./ansible/inventory.ini
           chmod 400 ./ansible/key.pem
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
