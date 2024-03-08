@@ -16,6 +16,12 @@
         src: ./docker-compose.yml
         dest: /home/ubuntu/dfe/docker-compose.yml
 
+    - name: Copy Caddy File
+      copy:
+        src: ./Caddyfile
+        dest: /home/ubuntu/dfe/Caddyfile
+      register: Domain
+
     - name: Login Into Docker hub Registry
       community.docker.docker_login:
         username: "{{ lookup('env','DOCKER_USERNAME') }}"
@@ -32,6 +38,10 @@
         sleep 60
       args:
         executable: /bin/bash
+
+    - name: Update Webserver in case of DNS change
+      shell: docker service update --force dfe_webserver
+      when: Domain.changed
 
     - name: Prune Useless Docker Images
       shell: |

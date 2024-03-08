@@ -24,7 +24,8 @@ jobs:
           LOKI: ${{ secrets.LOKI_URL }}
           CADDY: ${{ secrets.CADDY_FILE }}
           AINV: ${{ secrets.ANSIBLE_INVENTORY }}
-          API_ENDPOINT: ${{ vars.API_ENDPOINT }}
+          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          STAGING_API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
           APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
           ENVARS: ${{ vars.ENVARS }}
         run: |
@@ -36,8 +37,8 @@ jobs:
           echo "$AINV" > ./ansible/inventory.ini
           chmod 400 ./ansible/key.pem
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
-          sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/caddy.docker-compose.yml
           sed -i "s#API-REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
+          sed -i "s#STAGING-API-REPLACE-ME#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
 
       - name: Pull & Rename Images
         run: |
@@ -64,5 +65,4 @@ jobs:
           export ANSIBLE_STDOUT_CALLBACK=yaml
           export FORCE_COLOR=1
           export TERM=xterm-color
-          ansible-playbook production.yml -vv
-          ansible-playbook caddy.yml -vv
+          ansible-playbook playbook.yml -vv
