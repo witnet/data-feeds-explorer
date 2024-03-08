@@ -36,11 +36,12 @@ jobs:
           APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
           ENVARS: ${{ vars.ENVARS }}
         run: |
-          echo "$ENVARS" > ./ansible/.env
-          echo "$APKEY" > ./ansible/key.pem
-          echo "$ENVARS" > ./packages/ui/staging.env
-          echo "$CADDY" > ./ansible/Caddyfile
           echo "$AINV" > ./ansible/inventory.ini
+          echo "$APKEY" > ./ansible/key.pem
+          echo "$CADDY" > ./ansible/Caddyfile
+          echo "$ENVARS" > ./ansible/production.env
+          echo "$ENVARS" > ./packages/api/.env
+          echo "$ENVARS" > ./packages/ui/.env
           chmod 400 ./ansible/key.pem
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
           sed -i "s#<LATEST_PROD>#${{ steps.gettag.outputs.TAG }}#g" ./ansible/docker-compose.yml
