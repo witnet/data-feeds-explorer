@@ -28,7 +28,7 @@
     - name: Deploy Staging Stack
       shell: |
         cd /home/ubuntu/staging-dfe
-        docker stack deploy -c <(docker-compose config) staging-dfe --with-registry-auth
+        docker stack deploy -c <(docker-compose config) stagingdfe --with-registry-auth
         sleep 60
       args:
         executable: /bin/bash
