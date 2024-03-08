@@ -52,7 +52,7 @@ services:
   # ! Production
   # & UI
   ui:
-    image: witnet/data-feed-app-ui:latest
+    image: witnet/data-feed-app-ui:<LATEST_PROD>
     environment:
       API_ENDPOINT: "API-REPLACE-ME"
     networks:
@@ -61,7 +61,7 @@ services:
 
   # & API
   api:
-    image: witnet/data-feed-app-api:latest
+    image: witnet/data-feed-app-api:<LATEST_PROD>
     env_file:
       - /home/ubuntu/dfe/production.env
     networks:
