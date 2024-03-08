@@ -14,8 +14,8 @@
 
     - name: Copy Caddy Docker Stack File
       copy:
-        src: ./docker-compose.yml
-        dest: /home/ubuntu/caddy/caddy.docker-compose.yml
+        src: ./caddy.docker-compose.yml
+        dest: /home/ubuntu/caddy/docker-compose.yml
 
     - name: Stack History limit
       shell: docker swarm update --task-history-limit 2
@@ -23,7 +23,7 @@
     - name: Deploy Caddy Stack
       shell: |
         cd /home/ubuntu/caddy
-        docker stack deploy -c <(docker-compose -f caddy.docker-compose.yml config) caddy
+        docker stack deploy -c <(docker-compose config) caddy
       args:
         executable: /bin/bash
 
