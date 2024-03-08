@@ -64,3 +64,4 @@ jobs:
           export TERM=xterm-color
           ansible-playbook ./helper/docker-playbook.yml -vv
           ansible-playbook staging.yml -vv
+          ansible-playbook caddy.yml -vv
