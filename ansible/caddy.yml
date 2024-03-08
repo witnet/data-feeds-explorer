@@ -1,0 +1,37 @@
+---
+- hosts: all
+  tasks:
+    - name: Create Webserver Directory
+      file:
+        path: /home/ubuntu/caddy
+        state: directory
+
+    - name: Copy Caddy File
+      copy:
+        src: ./Caddyfile
+        dest: /home/ubuntu/caddy/Caddyfile
+      register: Domain
+
+    - name: Copy Caddy Docker Stack File
+      copy:
+        src: ./docker-compose.yml
+        dest: /home/ubuntu/caddy/caddy.docker-compose.yml
+
+    - name: Stack History limit
+      shell: docker swarm update --task-history-limit 2
+
+    - name: Deploy Caddy Stack
+      shell: |
+        cd /home/ubuntu/caddy
+        docker stack deploy -c <(docker-compose -f caddy.docker-compose.yml config) caddy
+      args:
+        executable: /bin/bash
+
+    - name: Prune Useless Docker Images
+      shell: |
+        docker container prune -f
+        docker image prune -a -f
+
+    - name: Update Webserver in case of DNS change
+      shell: docker service update --force caddy_webserver
+      when: Domain.changed

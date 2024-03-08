@@ -1,0 +1,44 @@
+---
+- hosts: all
+  tasks:
+    - name: Create Deployment Directory
+      file:
+        path: /home/ubuntu/staging-dfe
+        state: directory
+
+    - name: Copy .env File
+      copy:
+        src: ./.env
+        dest: /home/ubuntu/staging-dfe/.env
+
+    - name: Copy Docker Swarm Stack File
+      copy:
+        src: ./docker-compose.yml
+        dest: /home/ubuntu/staging-dfe/docker-compose.yml
+
+    - name: Login Into Docker hub Registry
+      community.docker.docker_login:
+        username: "{{ lookup('env','DOCKER_USERNAME') }}"
+        password: "{{ lookup('env','DOCKER_PASSWORD') }}"
+        reauthorize: yes
+
+    - name: Stack History limit
+      shell: docker swarm update --task-history-limit 2
+
+    - name: Deploy Staging Stack
+      shell: |
+        cd /home/ubuntu/staging-dfe
+        docker stack deploy -c <(docker-compose config) staging-dfe --with-registry-auth
+        sleep 60
+      args:
+        executable: /bin/bash
+
+    - name: Prune Useless Docker Images
+      shell: |
+        docker container prune -f
+        docker image prune -a -f
+
+    - name: List Images & Containers for SHA256 Comparsion if needed
+      shell: |
+        docker image ls
+        docker stack ps staging-dfe

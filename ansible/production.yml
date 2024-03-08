@@ -11,12 +11,6 @@
         src: ./.env
         dest: /home/ubuntu/dfe/.env
 
-    - name: Copy Caddy File
-      copy:
-        src: ./Caddyfile
-        dest: /home/ubuntu/dfe/Caddyfile
-      register: Domain
-
     - name: Copy Docker Swarm Stack File
       copy:
         src: ./docker-compose.yml
@@ -31,7 +25,7 @@
     - name: Stack History limit
       shell: docker swarm update --task-history-limit 2
 
-    - name: Deploy Docker Stack
+    - name: Deploy Production Stack
       shell: |
         cd /home/ubuntu/dfe
         docker stack deploy -c <(docker-compose config) dfe --with-registry-auth
@@ -43,10 +37,6 @@
       shell: |
         docker container prune -f
         docker image prune -a -f
-
-    - name: Update Webserver in case of DNS change
-      shell: docker service update --force dfe_webserver
-      when: Domain.changed
 
     - name: List Images & Containers for SHA256 Comparsion if needed
       shell: |
