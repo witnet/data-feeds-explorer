@@ -39,7 +39,7 @@ jobs:
           echo "$AINV" > ./ansible/inventory.ini
           echo "$APKEY" > ./ansible/key.pem
           echo "$CADDY" > ./ansible/Caddyfile
-          echo "$ENVARS" > ./ansible/production.env
+          echo "$ENVARS" > ./ansible/staging.env
           echo "$ENVARS" > ./packages/api/.env
           echo "$ENVARS" > ./packages/ui/.env
           chmod 400 ./ansible/key.pem
