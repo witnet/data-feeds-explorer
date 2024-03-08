@@ -12,6 +12,8 @@ x-logging:
 # ! Define Project Network
 networks:
   DFE:
+    external:
+      name: GLOBALDFE
 
 # ? Services
 services:
