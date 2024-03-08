@@ -50,7 +50,7 @@ jobs:
       - name: Pull & Rename Images
         run: |
           docker pull witnet/data-feed-app-ui:latest
-          docker build -t witnet/data-feed-app-api:latest
+          docker pull witnet/data-feed-app-api:latest
           docker tag witnet/data-feed-app-ui:latest witnet/data-feed-app-ui:${{github.ref_name}}
           docker tag witnet/data-feed-app-api:latest witnet/data-feed-app-api:${{github.ref_name}}
 
