@@ -18,7 +18,7 @@ networks:
 # & Webserver
 services:
   webserver:
-    image: caddy:2.5.1
+    image: caddy:2.7.6
     ports:
       - target: 80
         published: 80
