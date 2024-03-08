@@ -21,7 +21,7 @@
       shell: docker swarm update --task-history-limit 2
 
     - name: create Global docker network for DFE
-      run: docker network create --scope swarm GLOBALDFE || true
+      shell: docker network create --scope swarm GLOBALDFE || true
 
     - name: Deploy Caddy Stack
       shell: |
