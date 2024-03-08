@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Staging
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Login to Container Registry
         uses: docker/login-action@v3
@@ -23,7 +23,7 @@ jobs:
         id: gettag
         run: |
           git fetch --tags
-          echo ::set-output name=TAG::$(git describe --tags $(git rev-list --tags --max-count=1)
+          echo ::set-output name=TAG::$(git describe --tags $(git rev-list --tags --max-count=1))
 
       - name: Create Deployment Files
         shell: bash
