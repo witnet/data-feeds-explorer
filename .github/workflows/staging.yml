@@ -32,7 +32,7 @@ jobs:
           CADDY: ${{ secrets.CADDY_FILE }}
           AINV: ${{ secrets.ANSIBLE_INVENTORY }}
           API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
-          STAGING_API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          STAGING_API_ENDPOINT: ${{ secrets.STAGING_API_ENDPOINT }}
           APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
           ENVARS: ${{ vars.ENVARS }}
         run: |
@@ -45,8 +45,8 @@ jobs:
           chmod 400 ./ansible/key.pem
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
           sed -i "s#<LATEST_PROD>#${{ steps.gettag.outputs.TAG }}#g" ./ansible/docker-compose.yml
-          sed -i "s#API-REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
-          sed -i "s#STAGING-API-REPLACE-ME#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
+          sed -i "s#<PRODUCTION_API_ENDPOINT>#$API_ENDPOINT#g" ./ansible/docker-compose.yml
+          sed -i "s#<STAGING_API_ENDPOINT>#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
 
       - name: Build Containers
         run: |

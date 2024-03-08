@@ -35,7 +35,7 @@ services:
   sui:
     image: witnet/data-feed-app-ui:latest
     environment:
-      API_ENDPOINT: "STAGING-API-REPLACE-ME"
+      API_ENDPOINT: "<STAGING_API_ENDPOINT>"
     networks:
       - DFE
     logging: *default-loki
@@ -54,7 +54,7 @@ services:
   ui:
     image: witnet/data-feed-app-ui:<LATEST_PROD>
     environment:
-      API_ENDPOINT: "API-REPLACE-ME"
+      API_ENDPOINT: "<PRODUCTION_API_ENDPOINT>"
     networks:
       - DFE
     logging: *default-loki
