@@ -69,7 +69,7 @@ export default {
   beforeMount() {
     this.startPolling()
   },
-  beforeDestroy() {
+  beforeUnmount() {
     clearInterval(this.pollingInterval)
   },
   methods: {

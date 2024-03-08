@@ -7,12 +7,16 @@
           {{ name.toUpperCase() }}
         </h2>
       </div>
-      <p class="value-title">{{ $t('chart.last_update') }}</p>
+      <p class="value-title">
+        {{ $t('chart.last_update') }}
+      </p>
       <p class="value">
         {{ lastResultValue }}
         <span class="time">{{ formattedTimestamp }}</span>
       </p>
-      <p v-if="timeToUpdate" class="value-title">{{ $t('chart.status') }}</p>
+      <p v-if="timeToUpdate" class="value-title">
+        {{ $t('chart.status') }}
+      </p>
       <DataFeedStatus
         v-if="timeToUpdate"
         :last-result-timestamp="lastResultTimestamp"
@@ -20,9 +24,9 @@
       />
     </div>
     <InnerLink class="link" hash="integrate">
-      <Button class="btn" type="secondary">{{
-        $t('chart.use_data_feed')
-      }}</Button>
+      <Button class="btn" type="secondary">
+        {{ $t('chart.use_data_feed') }}
+      </Button>
     </InnerLink>
   </div>
 </template>
@@ -77,45 +81,55 @@ export default {
   justify-content: space-between;
   margin-bottom: 24px;
 }
+
 .link {
   align-self: start;
 }
+
 .tooltip {
   font-weight: bold;
   font-size: var(--text-size-title);
   background-color: var(--bg);
   transition: background-color 0.3s ease;
   color: var(--text);
+
   .feed-title {
     display: flex;
     align-items: center;
     justify-items: center;
     margin-bottom: 8px;
+
     .icon {
       display: flex;
     }
+
     .feed-name {
       font-size: var(--text-size-title);
       margin-left: 8px;
     }
   }
+
   .item {
     font-size: var(--text-size);
     margin-top: 8px;
     color: var(--text-medium-emphasis);
     display: flex;
+
     .title {
       font-size: var(--text-size);
       margin-right: 10px;
       color: var(--text-hover);
     }
   }
+
   .value-title {
     font-size: var(--text-size-small);
   }
+
   .value {
     font-size: var(--text-size);
     margin-bottom: 8px;
+
     .time {
       font-size: var(--text-size-small);
       color: var(--text-medium-emphasis);
@@ -137,6 +151,7 @@ export default {
     grid-template-columns: 1fr;
     margin-bottom: 32px;
   }
+
   .link {
     justify-self: flex-end;
     align-self: flex-end;

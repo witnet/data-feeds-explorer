@@ -3,7 +3,9 @@
     <p class="value">
       {{ value }}
     </p>
-    <p class="time">{{ date }}</p>
+    <p class="time">
+      {{ date }}
+    </p>
   </div>
 </template>
 
@@ -40,9 +42,11 @@ export default {
   border-radius: 4px;
   color: var(--text);
   z-index: 13;
+
   .value {
     font-size: var(--text-size);
   }
+
   .time {
     font-size: var(--text-size-small);
     color: var(--text-medium-emphasis);

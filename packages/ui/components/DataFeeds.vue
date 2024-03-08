@@ -1,6 +1,6 @@
 <template>
   <div class="feeds-container">
-    <LazyFeedCard
+    <FeedCard
       v-for="feed in allFeeds"
       :key="feed.name + feed.network + feed.value + feed.color"
       :details-path="feed.detailsPath"
@@ -18,90 +18,107 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { gql } from '@apollo/client/core'
+import { useQuery } from '@vue/apollo-composable'
 import { formatSvgName } from '../utils/formatSvgName'
-import feeds from '@/apollo/queries/feeds.gql'
 
-export default {
-  name: 'DataFeeds',
-  apollo: {
-    feeds: {
-      prefetch: true,
-      query: feeds,
-      variables() {
-        return {
-          network: this.network.key.toLowerCase(),
-        }
-      },
-      pollInterval: 60000,
-    },
+const emit = defineEmits(['empty'])
+
+const props = defineProps({
+  network: {
+    type: Object,
+    required: true,
   },
-  props: {
-    network: {
-      type: Object,
-      required: true,
-    },
-    networkIndex: {
-      type: Number,
-      required: true,
-    },
+  networkIndex: {
+    type: Number,
+    required: true,
   },
-  data() {
-    return {
-      currentPage: 1,
-      itemsPerPage: 28,
+})
+
+const route = useRoute()
+
+const feedsQuery = gql`
+  query feeds($network: String!) {
+    feeds(network: $network) {
+      feeds {
+        feedFullName
+        name
+        address
+        lastResult
+        lastResultTimestamp
+        network
+        label
+        chain
+        blockExplorer
+        color
+        heartbeat
+        finality
+        logo
+      }
+      total
     }
-  },
-  computed: {
-    allFeeds() {
-      if (this.feeds) {
-        const feeds = this.feeds.feeds
-          .filter((feed) => {
-            return feed.lastResult && Number(feed.lastResultTimestamp) > 0
-          })
-          .map((feed) => {
-            return {
-              detailsPath: {
-                name: 'network-id',
-                params: {
-                  network: this.$route.params.network || 'ethereum',
-                  id: feed.feedFullName,
-                },
-              },
-              decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
-              name: feed.name,
-              value: feed.lastResult,
-              lastResultTimestamp: feed.lastResultTimestamp || '0',
-              label: feed.label,
-              timeToUpdate: feed.heartbeat
-                ? Number(feed.heartbeat) + Number(feed.finality)
-                : null,
-              img: {
-                name: formatSvgName(feed.name),
-                alt: feed.name,
-              },
-              network: feed.network,
-              chain: feed.chain,
-              color: feed.color,
-              blockExplorer: feed.blockExplorer,
-              svg: feed.logo,
-            }
-          })
-          .sort((feed1, feed2) => feed1.name.localeCompare(feed2.name))
-        return feeds
-      } else {
-        return []
-      }
-    },
-  },
-  watch: {
-    allFeeds() {
-      if (this.allFeeds.length < 1) {
-        this.$emit('empty', this.networkIndex)
-      }
-    },
-  },
+  }
+`
+
+// eslint-disable-next-line vue/no-setup-props-destructure
+const variables = {
+  // eslint-disable-next-line vue/no-setup-props-destructure
+  network: props.network.key.toLowerCase(),
 }
+
+// pollInterval: 60000,
+
+const { result } = await useQuery(feedsQuery, variables)
+// const currentPage = ref(1)
+// const itemsPerPage = ref(28)
+
+const allFeeds = computed(() => {
+  if (result.value?.feeds) {
+    const adaptedFeeds = result.value.feeds.feeds
+      .filter((feed) => {
+        return feed.lastResult && Number(feed.lastResultTimestamp) > 0
+      })
+      .map((feed) => {
+        return {
+          detailsPath: {
+            name: 'network-id',
+            params: {
+              network: route.params.network || 'ethereum',
+              id: feed.feedFullName,
+            },
+          },
+          decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+          name: feed.name,
+          value: feed.lastResult,
+          lastResultTimestamp: feed.lastResultTimestamp || '0',
+          label: feed.label,
+          timeToUpdate: feed.heartbeat
+            ? Number(feed.heartbeat) + Number(feed.finality)
+            : null,
+          img: {
+            name: formatSvgName(feed.name),
+            alt: feed.name,
+          },
+          network: feed.network,
+          chain: feed.chain,
+          color: feed.color,
+          blockExplorer: feed.blockExplorer,
+          svg: feed.logo,
+        }
+      })
+      .sort((feed1, feed2) => feed1.name.localeCompare(feed2.name))
+    return adaptedFeeds
+  } else {
+    return []
+  }
+})
+
+watch(allFeeds, (allFeedsNew) => {
+  if (allFeedsNew.length < 1) {
+    emit('empty', props.networkIndex)
+  }
+})
 </script>
 
 <style lang="scss" scoped>

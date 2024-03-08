@@ -14,6 +14,7 @@
   height: max-content;
   border: var(--card-border);
   transition: all 0.3s ease;
+
   &:hover {
     box-shadow: var(--card-box-selected-shadow);
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="integrations-card-container">
-    <LazyPartnersCard
+    <PartnersCard
       v-for="integration in integrations"
       :key="integration.title"
       :name="integration.name"

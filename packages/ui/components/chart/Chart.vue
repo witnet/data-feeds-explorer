@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { createChart, PriceScaleMode } from 'lightweight-charts'
 import { formatNumber } from '@/utils/formatNumber'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
@@ -75,6 +76,7 @@ export default {
       required: true,
     },
   },
+  emits: ['change-range'],
   data() {
     return {
       tooltip: true,
@@ -100,15 +102,14 @@ export default {
       return this.range || this.ranges.w.key
     },
     chart() {
-      const { LightWeightCharts } = this.$lwcCore()
-      return LightWeightCharts.createChart(this.$refs.container, {
+      return createChart(this.$refs.container, {
         height: 400,
         rightPriceScale: {
           scaleMargins: {
             top: 0.1,
             bottom: 0.1,
           },
-          mode: LightWeightCharts.PriceScaleMode.Logarithmic,
+          mode: PriceScaleMode.Logarithmic,
           borderVisible: false,
         },
         timeScale: {
@@ -123,8 +124,10 @@ export default {
           },
         },
         layout: {
-          backgroundColor: 'transparent',
           textColor: '#d1d4dc',
+          background: {
+            color: 'transparent',
+          },
         },
         grid: {
           vertLines: {
@@ -183,10 +186,10 @@ export default {
       this.value = `${this.dataLabel} ${this.data[this.data.length - 1].value}`
       this.date = this.dateToString(this.data[this.data.length - 1].time)
       this.chart.subscribeCrosshairMove((param) => {
-        const price = param.seriesPrices.get(this.lineChart)
+        const price = param.seriesData.get(this.lineChart)
         if (param.time) {
           const dateStr = this.dateToString(param.time)
-          this.value = `${this.dataLabel} ${formatNumber(price)}`
+          this.value = `${this.dataLabel} ${formatNumber(price.value)}`
           this.date = dateStr
         }
         const toolTipMargin = 24
@@ -216,6 +219,7 @@ export default {
   max-width: 1500px;
   position: relative;
 }
+
 .tv-lightweight-charts {
   height: 500px;
 }
@@ -227,6 +231,7 @@ export default {
   margin-right: 16px;
   justify-content: flex-end;
   margin-bottom: 32px;
+
   .item {
     cursor: pointer;
     padding: 4px 8px;
@@ -234,10 +239,12 @@ export default {
     background-color: transparent;
     color: var(--switcher-item-color);
     transition: all 0.3s ease;
+
     &:hover {
       opacity: 0.8;
     }
   }
+
   .active {
     background-color: var(--switcher-item-background);
   }
@@ -246,11 +253,14 @@ export default {
   .tooltip {
     padding-left: 24px;
     font-size: var(--text-size-title);
+
     .name {
       font-size: var(--text-size);
     }
+
     .value {
       font-size: var(--text-size-title);
+
       .date {
         font-size: var(--text-size);
       }

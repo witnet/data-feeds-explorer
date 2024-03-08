@@ -1,13 +1,14 @@
 <template>
+  <div>{{ lastResultValue }}</div>
   <div v-if="normalizedFeed" class="content">
     <LazyChart
-      v-if="feed"
+      v-if="normalizedFeed"
       class="chart"
       :data="chartData"
-      :logo="feed.logo"
+      :logo="normalizedFeed.logo"
       :last-result-timestamp="normalizedFeed.lastResultTimestamp"
       :last-result-value="lastResultValue"
-      :data-label="feed.label"
+      :data-label="normalizedFeed.label"
       :name="normalizedFeed.name"
       :time-to-update="maxTimeToResolve"
       :decimals="normalizedFeed.decimals"
@@ -47,205 +48,180 @@
       class="transactions"
       :transactions="transactions"
     />
-    <el-pagination
-      v-if="feed && numberOfPages > 1"
-      :small="small"
+    <Pagination
       class="pagination"
-      layout="prev, pager, next"
-      :pager-count="5"
-      :page-count="numberOfPages"
       :current-page="currentPage"
+      :total-count="200"
+      :page-size="itemsPerPage"
       @current-change="handleCurrentChange"
     />
   </div>
 </template>
 
-<script>
-import feed from '@/apollo/queries/feed.gql'
-import requests from '@/apollo/queries/requests.gql'
-import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
+<script setup>
+import { useQuery } from '@vue/apollo-composable'
+import { gql } from '@apollo/client/core'
+import {
+  getAdaptedFeed,
+  getChartData,
+  getLastResultValue,
+  getMaxTimeToResolve,
+  getTransactions,
+} from '../utils/dataFeedDetails'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
-import { formatNumber } from '@/utils/formatNumber'
-import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 
-export default {
-  apollo: {
-    feed: {
-      prefetch: true,
-      query: feed,
-      variables() {
-        return {
-          timestamp: this.timestamp,
-          feedFullName: this.feedFullName,
-        }
-      },
-      pollInterval: 60000,
-    },
-    requests: {
-      prefetch: true,
-      query: requests,
-      variables() {
-        return {
-          feedFullName: this.feedFullName,
-          page: this.currentPage,
-          size: this.itemsPerPage,
-        }
-      },
-      pollInterval: 60000,
-    },
-  },
-  data() {
-    return {
-      ranges: CHART_RANGE,
-      currentPage: 1,
-      itemsPerPage: 25,
-      range: 24,
-      timestamp: getTimestampByRange(CHART_RANGE.w.value),
-      feedFullName: this.$route.params.id,
+const store = useNetwork()
+const route = useRoute()
+
+const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
+
+const ranges = ref(CHART_RANGE)
+const currentPage = ref(1)
+const itemsPerPage = ref(25)
+// const range = ref(24)
+const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
+const feedFullName = ref(route.params.id)
+
+const variables = {
+  timestamp: timestamp.value,
+  feedFullName: feedFullName.value,
+}
+
+const requestsQuery = gql`
+  query requests($feedFullName: String!, $page: Int!, $size: Int!) {
+    requests(feedFullName: $feedFullName, page: $page, size: $size) {
+      feedFullName
+      result
+      drTxHash
+      requestId
+      timestamp
+    }
+  }
+`
+
+// pollInterval: 60000,
+const requestsVariables = {
+  feedFullName: feedFullName.value,
+  page: currentPage.value,
+  size: itemsPerPage.value,
+}
+const feedQuery = gql`
+  query feed($feedFullName: String!, $timestamp: Int!) {
+    feed(feedFullName: $feedFullName) {
+      feedFullName
+      isRouted
+      name
+      address
+      contractId
+      lastResult
+      lastResultTimestamp
+      network
+      networkName
+      chain
+      label
+      deviation
+      proxyAddress
+      heartbeat
+      finality
+      requests(timestamp: $timestamp) {
+        feedFullName
+        result
+        drTxHash
+        requestId
+        timestamp
+      }
+      blockExplorer
+      color
+      logo
+    }
+  }
+`
+
+// pollInterval: 60000,
+const feed = await useQuery(feedQuery, variables)
+const requests = await useQuery(requestsQuery, requestsVariables)
+
+// const small = computed(() => {
+//   return numberOfPages.value > 10
+// })
+
+const normalizedFeed = computed(() => {
+  const adaptedFeed = getAdaptedFeed(feed?.result?.value?.feed)
+  if (adaptedFeed) {
+    emit('feed-name', adaptedFeed.name.toUpperCase())
+    emit('network', adaptedFeed.networkName)
+  }
+  return adaptedFeed
+})
+
+const lastResultDate = computed(() => {
+  if (normalizedFeed.value) {
+    emit('feed-date', formatTimestamp(normalizedFeed.value.lastResultTimestamp))
+    return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
+  } else {
+    return ''
+  }
+})
+const feedTimeToUpdate = computed(() => {
+  // todo: make i18n work here
+  // return normalizedFeed.value && normalizedFeed.value.heartbeat
+  //   ? formatMilliseconds(
+  //       normalizedFeed.value.heartbeat + normalizedFeed.value.finality,
+  //       ` ${$t('and')} `,
+  //       $i18n.locale
+  //     )
+  //   : null
+  return null
+})
+const lastResultValue = computed(() => {
+  return getLastResultValue(normalizedFeed.value)
+})
+
+watch(lastResultValue.value, (value) => {
+  if (value) {
+    emit('feed-value', dataFeedLastValue)
+  }
+})
+
+const maxTimeToResolve = computed(() => {
+  return getMaxTimeToResolve(normalizedFeed.value)
+})
+// const numberOfPages = computed(() => {
+//   return feed.result.value
+//     ? Math.ceil(feed.result.value.feed.requests.length / itemsPerPage.value)
+//     : 0
+// })
+const chartData = computed(() => {
+  return getChartData(feed?.result?.value?.feed?.requests, normalizedFeed.value)
+})
+const transactions = computed(() => {
+  return getTransactions(normalizedFeed.value, requests?.result.value?.requests)
+})
+
+watch(
+  () => normalizedFeed,
+  (value) => {
+    if (value) {
+      store.updateSelectedNetwork([
+        {
+          chain: value.chain,
+          key: value.network,
+          label: value.networkName,
+        },
+      ])
     }
   },
-  computed: {
-    small() {
-      return this.numberOfPages > 10
-    },
-    normalizedFeed() {
-      if (this.feed) {
-        this.$emit('feed-name', this.feed.name.toUpperCase())
-        this.$emit('network', this.feed.networkName)
-        return {
-          name: this.feed.name.toUpperCase(),
-          isRouted: this.feed.isRouted,
-          address: this.feed.address,
-          proxyAddress: this.feed.proxyAddress,
-          contractId: this.feed.contractId,
-          finality: Number(this.feed.finality),
-          deviation: this.feed.deviation,
-          heartbeat: Number(this.feed.heartbeat),
-          decimals: this.feed.feedFullName.split('_').pop() || 3,
-          chain: this.feed.chain,
-          lastResultValue: this.feed.lastResult,
-          lastResultTimestamp: this.feed.lastResultTimestamp || '',
-          networkName: this.feed.networkName,
-          label: this.feed.label,
-          network: this.feed.network,
-          urlUnderlyingContract: this.feed.blockExplorer.replace(
-            `{address}`,
-            this.feed.address
-          ),
-          urlProxyContract: this.feed.blockExplorer.replace(
-            `{address}`,
-            this.feed.proxyAddress
-          ),
-          logo: this.feed.logo,
-        }
-      } else {
-        return null
-      }
-    },
-    lastResultDate() {
-      if (this.normalizedFeed) {
-        this.$emit(
-          'feed-date',
-          formatTimestamp(this.normalizedFeed.lastResultTimestamp)
-        )
-        return formatTimestamp(this.normalizedFeed.lastResultTimestamp)
-      } else {
-        return ''
-      }
-    },
-    feedTimeToUpdate() {
-      return this.normalizedFeed.heartbeat
-        ? formatMilliseconds(
-            this.normalizedFeed.heartbeat + this.normalizedFeed.finality,
-            ` ${this.$t('and')} `,
-            this.$i18n.locale
-          )
-        : null
-    },
-    lastResultValue() {
-      if (this.normalizedFeed) {
-        const dataFeedLastValue = `${this.normalizedFeed.label}${formatNumber(
-          parseFloat(this.normalizedFeed.lastResultValue) /
-            10 ** this.normalizedFeed.decimals
-        )} `
-        this.$emit('feed-value', dataFeedLastValue)
-        return dataFeedLastValue
-      } else {
-        return null
-      }
-    },
-    maxTimeToResolve() {
-      if (this.normalizedFeed.heartbeat) {
-        return this.normalizedFeed.heartbeat + this.normalizedFeed.finality
-      } else {
-        return null
-      }
-    },
-    numberOfPages() {
-      return this.feed
-        ? Math.ceil(this.feed.requests.length / this.itemsPerPage)
-        : 0
-    },
-    chartData() {
-      if (this.feed && this.feed.requests.length > 0) {
-        return this.feed.requests
-          .map((request) => {
-            return {
-              time: Number(request.timestamp),
-              value:
-                parseFloat(request.result) / 10 ** this.normalizedFeed.decimals,
-            }
-          })
-          .sort((t1, t2) => t1.time - t2.time)
-      } else {
-        return [{ time: 0, value: 0 }]
-      }
-    },
-    transactions() {
-      if (this.feed && this.requests && this.requests.length > 0) {
-        return this.requests.map((request) => ({
-          witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
-          drTxHash: request.drTxHash,
-          data: {
-            label: this.feed.label,
-            value: request.result,
-            decimals: this.normalizedFeed.decimals,
-          },
-          timestamp: request.timestamp,
-        }))
-      } else {
-        return null
-      }
-    },
-  },
-  watch: {
-    normalizedFeed: {
-      deep: true,
-      handler(value) {
-        if (value) {
-          this.$store.commit('updateSelectedNetwork', {
-            network: [
-              {
-                chain: value.chain,
-                key: value.network,
-                label: value.networkName,
-              },
-            ],
-          })
-        }
-      },
-    },
-  },
-  methods: {
-    handleCurrentChange(val) {
-      this.currentPage = val
-    },
-    updateQuery(val) {
-      this.timestamp = getTimestampByRange(this.ranges[val].value)
-    },
-  },
+  { deep: true }
+)
+
+function handleCurrentChange(val) {
+  currentPage.value = val
+}
+
+function updateQuery(val) {
+  timestamp.value = getTimestampByRange(ranges.value[val].value)
 }
 </script>
 
@@ -253,6 +229,7 @@ export default {
 .content {
   display: grid;
   grid-template: max-content max-content max-content max-content 1fr / 1fr;
+
   .pagination {
     padding-bottom: 16px;
     justify-self: center;

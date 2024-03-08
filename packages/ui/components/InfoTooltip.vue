@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="showIcon" :ref="value" class="value truncate">
-      <slot></slot>
+      <slot />
     </div>
     <div
       v-else
@@ -10,7 +10,7 @@
       @mousemove="showTooltip = true"
       @mouseleave="showTooltip = false"
     >
-      <slot></slot>
+      <slot />
     </div>
     <div
       ref="info"
@@ -70,10 +70,12 @@ export default {
   text-overflow: ellipsis;
   font-size: var(--text-size);
   margin-right: 8px;
+
   &.show-info {
     margin-right: 0;
   }
 }
+
 .tooltip,
 .info-tooltip {
   position: absolute;
@@ -84,14 +86,17 @@ export default {
   padding: 8px;
   background-color: var(--bg);
   color: var(--text-medium-emphasis);
+
   &.hidden {
     display: none;
   }
 }
+
 .container {
   display: flex;
   align-items: center;
 }
+
 .info {
   display: flex;
   align-items: center;

@@ -1,13 +1,9 @@
 import axios from 'axios'
 import { getFeedDescription } from './getFeedDescription'
 
-export async function createFeed(feed) {
+export async function createFeed() {
   let dataFeeds
-  feed.options = {
-    title: 'Witnet Data Feed Explorer',
-    link: 'https://feeds.witnet.io/feed.xml',
-    description: 'This is the Witnet data feed explorer feed!',
-  }
+
   const feedsQuery = `query feeds {
     feeds (network: "all") {
       feeds {
@@ -24,8 +20,9 @@ export async function createFeed(feed) {
       total
     }
   }`
+
   await axios({
-    url: process.env.API_ENDPOINT,
+    url: import.meta.env.VITE_API_ENDPOINT,
     method: 'post',
     data: {
       query: feedsQuery,
@@ -33,12 +30,13 @@ export async function createFeed(feed) {
   }).then((result) => {
     dataFeeds = result.data.data.feeds.feeds
   })
+
   if (dataFeeds) {
-    dataFeeds.forEach((dataFeed) => {
+    return dataFeeds.map((dataFeed) => {
       const url = `https://feeds.witnet.io/${dataFeed.chain.toLowerCase()}/${
         dataFeed.feedFullName
       }`
-      feed.addItem({
+      return {
         author: {
           name: 'Witnet Foundation',
           email: 'info@witnet.foundation',
@@ -50,7 +48,7 @@ export async function createFeed(feed) {
         title: `${dataFeed.name.toUpperCase()} price feed available on ${
           dataFeed.networkName
         }`,
-      })
+      }
     })
-  }
+  } else return []
 }

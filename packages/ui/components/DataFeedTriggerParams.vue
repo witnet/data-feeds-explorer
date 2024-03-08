@@ -44,17 +44,20 @@ export default {
   display: grid;
   grid-template-rows: max-content;
   row-gap: 16px;
+
   .item {
     display: flex;
     flex-wrap: wrap;
     grid-gap: 8px;
     font-weight: bold;
     column-gap: 8px;
+
     .value {
       display: flex;
       align-items: center;
     }
   }
+
   .contract-address {
     display: flex;
     align-items: center;
@@ -63,6 +66,7 @@ export default {
     font-size: var(--text-size-title);
     cursor: pointer;
     color: var(--contract-address);
+
     .icon {
       margin-left: 16px;
     }

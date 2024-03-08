@@ -2,7 +2,8 @@
   <div :class="{ drop: isMenuVisible }">
     <nav class="navbar" :class="{ open: isMenuVisible }">
       <div class="menu-container">
-        <nuxt-link :to="localePath('/')" aria-label="home">
+        <!-- <nuxt-link :to="localePath('/')" aria-label="home"> -->
+        <nuxt-link :to="'/'" aria-label="home">
           <SvgIcon name="witnet-logo" class="logo" />
         </nuxt-link>
         <button aria-label="menu" class="responsive-menu" @click="toggleMenu">
@@ -39,83 +40,99 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { gql } from '@apollo/client/core'
+import { useQuery } from '@vue/apollo-composable'
 import { urls } from '../constants'
-import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import networks from '@/apollo/queries/networks.gql'
 
-export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-  },
-  data() {
-    return {
-      hover: false,
-      displayBox: false,
-      isMenuVisible: false,
-      urls,
+const emit = defineEmits(['scroll', 'update-selected'])
+// const store = useNetwork()
+
+const query = gql`
+  query networks {
+    networks {
+      label
+      key
+      chain
+      logo
     }
-  },
-  computed: {
-    navBarOptions() {
-      return generateNavOptions(Object.values(this.options))
-    },
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
-    options() {
-      if (this.networks) {
-        return generateSelectOptions(this.networks)
-      } else {
-        return null
-      }
-    },
-    selectedOption() {
-      return this.selected[0]?.chain || 'Ethereum'
-    },
-  },
-  watch: {
-    selected: {
-      handler(selected) {
-        this.$emit('update-selected', selected)
-      },
-      deep: true,
-    },
-  },
-  mounted() {
-    window.addEventListener('resize', this.resizeHandler)
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resizeHandler)
-  },
-  methods: {
-    capitalizeFirstLetter,
-    resizeHandler(event) {
-      if (event.target.outerWidth > 850) {
-        this.closeMenu()
-      }
-    },
-    closeMenu() {
-      this.isMenuVisible = false
-      this.$emit('scroll', this.isMenuVisible)
-    },
-    toggleMenu() {
-      this.isMenuVisible = !this.isMenuVisible
-      this.$emit('scroll', this.isMenuVisible)
-    },
-    displayDropDown() {
-      this.displayBox = !this.displayBox
-    },
-    onClose() {
-      this.active = false
-    },
-  },
+  }
+`
+
+const { result: networks } = await useQuery(query)
+// const networksQuery = gql`
+//   query networks {
+//     networks {
+//       label,
+//       key,
+//       chain,
+//       logo
+//     }
+//   }`
+
+// const hover = ref(false)
+// const displayBox = ref(false)
+const isMenuVisible = ref(false)
+
+function resizeHandler(event) {
+  if (event.target.outerWidth > 850) {
+    closeMenu()
+  }
 }
+
+function closeMenu() {
+  isMenuVisible.value = false
+  emit('scroll', isMenuVisible)
+}
+
+function toggleMenu() {
+  isMenuVisible.value = !isMenuVisible.value
+  emit('scroll', isMenuVisible)
+}
+// function displayDropDown() {
+//   displayBox.value = !displayBox.value
+// }
+
+// function onClose() {
+//   active.value = false
+// }
+
+const navBarOptions = computed(() => {
+  return generateNavOptions(Object.values(options.value))
+})
+
+// const selected = computed(() => {
+//   return store.selectedNetwork
+// })
+
+const options = computed(() => {
+  if (networks.value.networks) {
+    return generateSelectOptions(networks.value.networks)
+  } else {
+    return null
+  }
+})
+
+// const selectedOption = computed(() => {
+//   return selected[0]?.chain || 'Ethereum'
+// })
+
+// TODO
+// watch(
+//   () => selected,
+//   (newValue, oldvalue) => emit('update-selected', newValue),
+//   { deep: true }
+// )
+
+onMounted(() => {
+  window.addEventListener('resize', resizeHandler)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resizeHandler)
+})
 </script>
 
 <style lang="scss">
@@ -126,29 +143,35 @@ export default {
   background-color: var(--bg);
   height: 100px;
   transition: background-color 0.3s ease;
+
   .responsive-menu {
     display: none;
     font-size: 34px;
   }
+
   .tab-container {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px 0;
+
     .networks {
-      display: none;
+      color: red;
+      // display: none;
       &.visible {
         background: var(--bg);
         display: block;
         padding: 32px 0;
       }
     }
+
     &.visible {
       background: var(--bg);
       display: block;
       padding: 0;
     }
+
     .tab {
       font-size: 1rem;
       font-weight: 600;
@@ -156,18 +179,22 @@ export default {
       align-items: center;
       text-decoration: none;
       transition: color 0.1s ease;
+
       &.last-item {
         display: flex;
         justify-content: center;
       }
+
       .btn-container {
         width: max-content;
       }
+
       .btn {
         max-width: 100%;
         margin: 16px 0;
         margin: 0;
       }
+
       .slash {
         color: var(--nav-bar-slash-color);
       }
@@ -175,6 +202,7 @@ export default {
       &:hover {
         color: var(--nav-bar-slash-color);
       }
+
       &:last-child {
         padding-right: 0;
       }
@@ -186,10 +214,12 @@ export default {
   .navbar {
     height: max-content;
     margin: 0 16px;
+
     &.open {
       height: 100vh;
     }
   }
+
   .drop {
     position: absolute;
   }
@@ -208,11 +238,13 @@ export default {
     display: block;
     margin: 0;
     margin-top: 16px;
+
     .menu-container {
       display: flex;
       justify-content: space-between;
       padding: 0 16px;
     }
+
     .responsive-menu {
       background: none;
       border: none;
@@ -222,6 +254,7 @@ export default {
       width: 32px;
       padding: 0;
     }
+
     .tab-container {
       list-style: none;
       display: none;
@@ -229,19 +262,23 @@ export default {
       width: 100vw;
       margin: 0;
       cursor: pointer;
+
       &.visible {
         box-sizing: border-box;
         display: block;
         padding: 0;
       }
+
       .tab {
         cursor: pointer;
         display: block;
         align-items: center;
         text-decoration: none;
+
         &.last-item {
           padding-bottom: 24px;
         }
+
         .social {
           display: none;
         }
@@ -254,37 +291,43 @@ export default {
   display: block;
   transition: 0.5s;
   height: 32px;
+
   &:hover {
     cursor: pointer;
     opacity: 0.45;
   }
+
   &.visible {
     ul.buns {
       width: 32px;
       height: 32px;
+
       li.bun {
-        -webkit-transform: rotate(45deg) translateZ(0);
         transform: rotate(45deg) translateZ(0);
+        transform: rotate(45deg) translateZ(0);
+
         &:last-child {
-          -webkit-transform: rotate(-45deg) translateZ(0);
+          transform: rotate(-45deg) translateZ(0);
           transform: rotate(-45deg) translateZ(0);
         }
       }
     }
   }
+
   .buns {
     width: 32px;
     height: 32px;
     list-style: none;
     padding: 0;
     position: absolute;
-    -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+    transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
       color 1s cubic-bezier(0.23, 1, 0.32, 1);
     transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1),
       color 1s cubic-bezier(0.23, 1, 0.32, 1);
-    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     transform: translateZ(0);
     color: var(--text);
+
     .bun {
       width: 100%;
       height: 3px;
@@ -292,14 +335,15 @@ export default {
       position: absolute;
       top: 50%;
       margin-top: -0.75px;
-      -webkit-transform: translateY(-3.75px) translateZ(0);
       transform: translateY(-3.75px) translateZ(0);
-      -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
+      transform: translateY(-3.75px) translateZ(0);
+      transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1),
         background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
       transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1),
         background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
+
       &:last-child {
-        -webkit-transform: translateY(3.75px) translateZ(0);
+        transform: translateY(3.75px) translateZ(0);
         transform: translateY(3.75px) translateZ(0);
       }
     }

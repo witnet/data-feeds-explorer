@@ -37,119 +37,90 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { useQuery } from '@vue/apollo-composable'
+import { gql } from '@apollo/client/core'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
-import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
-import { formatSvgChainName } from '../utils/formatSvgChainName'
-import networks from '@/apollo/queries/networks.gql'
+const store = useNetwork()
 
-export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-  },
-  i18n: {
-    seo: true,
-  },
-  data() {
-    return {
-      feedExist: true,
-      currentPage: 1,
-      itemsPerPage: 28,
-      currentNetwork: this.$route.params.network.toUpperCase(),
+const emit = defineEmits(['set-network'])
+
+const networksQuery = gql`
+  query networks {
+    networks {
+      label
+      key
+      chain
+      logo
     }
-  },
-  head() {
-    return {
-      title: `Witnet Data Feeds on ${this.currentNetwork}`,
-      meta: [
-        {
-          hid: 'title',
-          name: 'title',
-          content: `Witnet Data Feeds on ${this.currentNetwork}`,
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: `Explore the list of decentralized data feeds on ${this.currentNetwork}, using the Witnet oracle network`,
-        },
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: `Witnet Data Feeds on ${this.currentNetwork}`,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: `Explore the list of decentralized data feeds on ${this.currentNetwork}, using the Witnet oracle network`,
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: `Witnet Data Feeds on ${this.currentNetwork}`,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: `Explore the list of decentralized data feeds on ${this.currentNetwork}, using the Witnet oracle network`,
-        },
-      ],
+  }
+`
+const { result } = await useQuery(networksQuery)
+
+const networks = computed(() => {
+  return result.value?.networks
+})
+
+const route = useRoute()
+const currentNetwork = ref(route.params.network.toUpperCase())
+
+const selected = computed(() => {
+  return store.selectedNetwork
+})
+
+const options = computed(() => {
+  if (networks.value) {
+    const options = generateSelectOptions(unref(networks))
+    return options
+  } else {
+    return null
+  }
+})
+
+const navBarOptions = computed(() => {
+  return generateNavOptions(Object.values(options.value))
+})
+
+const selectedNetworks = computed(() => {
+  const result = selected.value.map((option) => {
+    return option.label
+  })
+  const last = result.pop()
+  return {
+    first: result.join(', '),
+    last,
+  }
+})
+
+const network = computed(() => {
+  const network = route.params.network || 'ethereum'
+  emit('set-network', network.toUpperCase())
+  return network
+})
+
+watch(
+  () => options.value,
+  (newOptions) => {
+    if (newOptions) {
+      setCurrentNetwork(newOptions)
     }
+    const networks = newOptions?.[network.value]
+    store.updateSelectedNetwork(networks)
   },
-  computed: {
-    selected() {
-      return this.$store.state.selectedNetwork
-    },
-    options() {
-      if (this.networks) {
-        const options = generateSelectOptions(this.networks)
-        this.setCurrentNetwork(options)
-        return options
-      } else {
-        return null
-      }
-    },
-    navBarOptions() {
-      return generateNavOptions(Object.values(this.options))
-    },
-    selectedNetworks() {
-      const result = this.selected.map((option) => {
-        return option.label
-      })
-      const last = result.pop()
-      return {
-        first: result.join(', '),
-        last,
-      }
-    },
-    network() {
-      const network = this.$route.params.network || 'ethereum'
-      this.$emit('set-network', network.toUpperCase())
-      return network
-    },
-  },
-  mounted() {
-    const networks = this.options[this.network]
-    this.$store.commit('updateSelectedNetwork', {
-      network: networks,
-    })
-  },
-  methods: {
-    capitalizeFirstLetter,
-    formatSvgChainName,
-    updateOptions(index) {
-      this.$store.commit('deleteEmptyNetwork', { index })
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val
-    },
-    setCurrentNetwork(options) {
-      this.currentNetwork = options[this.$route.params.network][0].chain
-    },
-  },
+  { immediate: true }
+)
+
+function updateOptions(index) {
+  store.deleteEmptyNetwork({ index })
+}
+
+// function handleCurrentChange(val) {
+//   currentPage.value = val
+// }
+
+function setCurrentNetwork(options) {
+  currentNetwork.value = options[route.params.network][0].chain
 }
 </script>
 
@@ -159,32 +130,39 @@ export default {
   grid-template-rows: max-content 1fr;
   grid-gap: 32px;
 }
+
 .section-header {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
   .section-title {
     font-size: 18px;
     align-self: flex-end;
     font-weight: 600;
   }
 }
+
 .feeds-container {
   height: max-content;
   margin-bottom: 24px;
 }
+
 .title-container {
   margin-bottom: 32px;
+
   .title {
     font-size: var(--text-size-title);
     margin-bottom: 4px;
     display: flex;
     align-items: center;
+
     .logo {
       margin-right: 8px;
       display: flex;
     }
   }
+
   .subtitle {
     font-size: var(--text-size);
   }
@@ -197,9 +175,11 @@ export default {
   justify-items: flex-start;
   align-items: flex-start;
   row-gap: 16px;
+
   .title {
     font-size: var(--text-size);
   }
+
   .pagination {
     margin-bottom: 16px;
     justify-self: center;
@@ -217,19 +197,23 @@ export default {
     margin: 0;
     padding: 0 24px;
   }
+
   .section-header {
-    padding: 0 32px 32px 32px;
+    padding: 0 32px 32px;
   }
 }
 @media (max-width: 600px) {
   .main {
     grid-template-columns: 1fr;
   }
+
   .section-header {
-    padding: 0 16px 16px 16px;
+    padding: 0 16px 16px;
   }
+
   .list-container {
     margin-right: 0;
+
     .pagination {
       margin-bottom: 48px;
     }

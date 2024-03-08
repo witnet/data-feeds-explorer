@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import getI18nStringFromSectionItem from '../../../../components/footer/getI18nStringFromSectionItem'
 
 describe('getI18nStringFromSectionItem.spec', () => {

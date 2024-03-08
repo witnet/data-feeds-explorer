@@ -1,17 +1,39 @@
 <template>
   <!-- We are using v-html assuming we never use user-provided content -->
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-if="name" v-html="require(`~/assets/svg/${name}.svg?raw`)" />
+  <!-- <div v-if="name" v-html="import.meta.glob(`./assets/svg/${name}.svg`, { as: 'raw' })" /> -->
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-else-if="svg" v-html="svg" />
+  <div v-html="svgIcon" />
 </template>
 
-<script>
-export default {
-  props: {
-    name: { type: String, default: '' },
-    svg: { type: String, default: '' },
+<script setup>
+const props = defineProps({
+  name: {
+    type: String,
+    default: '',
   },
+  svg: {
+    type: String,
+    default: '',
+  },
+})
+// TODO: avoid load all icons
+const icons = Object.fromEntries(
+  Object.entries(import.meta.glob('~/assets/svg/*.svg', { as: 'raw' })).map(
+    ([key, value]) => {
+      const filename = key.split('/').pop().split('.').shift()
+      return [filename, value]
+    }
+  )
+)
+
+let svgIcon
+if (props.svg) {
+  svgIcon = props.svg
+} else if (icons[props.name]) {
+  svgIcon = await icons[props.name]()
+} else {
+  svgIcon = '<svg></svg>'
 }
 </script>
 
@@ -20,22 +42,27 @@ export default {
   max-width: 250px;
   height: 100%;
 }
+
 .socials-size {
   width: 18px;
   height: 18px;
 }
+
 .icon-size {
   width: 24px;
   height: 30px;
   transition: all 0.3s ease;
 }
+
 .fill {
   fill: var(--text);
 }
+
 .partner-size {
   width: 140px;
   height: 40px;
 }
+
 .active {
   .fill {
     fill: var(--witnet-green);

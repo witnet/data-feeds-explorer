@@ -7,8 +7,8 @@
     <SupportedChains :chains="supportedChains" />
     <DataFeedsCount
       :chains="supportedChains.length"
-      :networks="networks.length"
-      :feeds="chainsFeeds.total"
+      :networks="networksLength"
+      :feeds="total"
     />
     <h2 class="title">{{ $t('landing.upcoming_chains.title') }}</h2>
     <UpcomingChains />
@@ -17,68 +17,68 @@
   </div>
 </template>
 
-<script>
-import { generateSelectOptions } from '../utils/generateSelectOptions'
-import networks from '@/apollo/queries/networks.gql'
-import homePageData from '@/apollo/queries/homePageData.gql'
+<script setup>
+import { useQuery } from '@vue/apollo-composable'
+import { gql } from '@apollo/client/core'
+import { getSupportedChains } from '../utils/supportedChains'
 
-export default {
-  apollo: {
-    networks: {
-      prefetch: true,
-      query: networks,
-    },
-    feeds: {
-      prefetch: true,
-      query: homePageData,
-    },
-  },
-  computed: {
-    chainsFeeds() {
-      return this.feeds ? this.feeds : []
-    },
-    supportedChains() {
-      if (this.networks) {
-        return Object.values(generateSelectOptions(this.networks))
-          .filter((network) => network && network[0])
-          .map((network) => {
-            const chain = network[0].chain
-            return {
-              name: chain,
-              count:
-                this.feeds?.feeds.filter((feed) => feed.chain === chain)
-                  .length || 0,
-              detailsPath: {
-                name: 'network',
-                params: {
-                  network: chain.toLowerCase(),
-                },
-              },
-              svg: network[0].logo,
-            }
-          })
-          .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
-      } else {
-        return []
+const networksQuery = gql`
+  query networks {
+    networks {
+      label
+      key
+      chain
+      logo
+    }
+  }
+`
+
+const { result: networksQueryResult } = await useQuery(networksQuery)
+
+const variables = { network: 'all' }
+
+const feedsQuery = gql`
+  query homePageData {
+    feeds(network: "all") {
+      feeds {
+        chain
       }
-    },
-  },
-  mounted() {
-    this.$store.commit('updateSelectedNetwork', {
-      network: [],
-    })
-  },
-}
+      total
+    }
+  }
+`
+const { result } = await useQuery(feedsQuery, variables)
+
+const total = computed(() => {
+  return result?.value?.feeds?.total
+})
+
+const networks = computed(() => {
+  return networksQueryResult.value?.networks
+})
+const networksLength = computed(() => {
+  return networks.value ? networks.value.length : 0
+})
+
+const feeds = computed(() => {
+  return result?.value?.feeds?.feeds
+})
+
+const supportedChains = computed(() => {
+  return getSupportedChains(networks.value, feeds.value)
+})
 </script>
 
 <style lang="scss" scoped>
 .landing-page {
   display: grid;
   row-gap: 32px;
+
   .text {
     display: grid;
     row-gap: 16px;
   }
+
   .title {
     font-size: var(--text-size-title);
   }

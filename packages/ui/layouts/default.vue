@@ -1,15 +1,29 @@
 <template>
   <div :class="{ 'hide-scroll': hideScroll, preload, background: true }">
     <MainSection>
-      <NavBar slot="navbar" @scroll="handleScroll" />
-      <div slot="cover" class="cover" :class="{ show: hideScroll }"></div>
-      <BreadCrumbs slot="breadcrumbs" />
-      <div slot="content">
-        <transition name="fade">
-          <nuxt />
-        </transition>
-      </div>
-      <Footer slot="footer" />
+      <template #navbar>
+        <NavBar @scroll="handleScroll" />
+      </template>
+
+      <template #cover>
+        <div class="cover" :class="{ show: hideScroll }" />
+      </template>
+
+      <template #breadcrumbs>
+        <Breadcrumbs />
+      </template>
+
+      <template #content>
+        <div>
+          <!-- <transition name="fade"> -->
+          <slot />
+          <!-- </transition> -->
+        </div>
+      </template>
+
+      <template #footer>
+        <Footer />
+      </template>
     </MainSection>
   </div>
 </template>
@@ -22,12 +36,13 @@ export default {
       preload: true,
     }
   },
-  i18n: {
-    seo: true,
-  },
-  head() {
-    return this.$nuxtI18nHead({ addSeoAttributes: true })
-  },
+  // TODO: not available yet
+  // i18n: {
+  //  seo: true,
+  // },
+  // head() {
+  //   return this.$nuxtI18nHead({ addSeoAttributes: true })
+  // },
   created() {
     this.preload = false
   },
@@ -45,42 +60,49 @@ export default {
   opacity: 0;
   transform: translateX(-4px);
 }
+
 .fade-enter-to {
   opacity: 1;
   transform: translateY(0);
 }
+
 .fade-leave-to {
   opacity: 0;
   transform: translateX(-4px);
 }
+
 img {
   width: 100%;
   height: 100%;
 }
+
 html {
   font-family: Almarai, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
   font-size: var(--text-size);
   word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   scroll-behavior: smooth;
   background-color: var(--bg);
 }
+
 .background {
   background-color: var(--bg);
   transition: all 0.3s ease;
+
   &.preload {
     transition: none !important;
-    -webkit-transition: none !important;
-    -moz-transition: none !important;
-    -ms-transition: none !important;
-    -o-transition: none !important;
+    transition: none !important;
+    transition: none !important;
+    transition: none !important;
+    transition: none !important;
   }
 }
+
 .hide-scroll {
   height: 100vh;
   position: absolute;
@@ -90,6 +112,7 @@ html {
 
 .cover {
   display: none;
+
   &.show {
     display: block;
     min-height: 100%;
@@ -111,9 +134,11 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
+
 .nuxt-link-exact-active {
   color: var(--text);
 }
+
 .nuxt-link-active {
   color: var(--text);
 }
@@ -122,6 +147,7 @@ a {
   color: var(--text);
   text-decoration: none;
 }
+
 *,
 *::before,
 *::after {
