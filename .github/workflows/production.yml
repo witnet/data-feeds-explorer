@@ -1,0 +1,67 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to Container Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Create Deployment Files
+        shell: bash
+        env:
+          LOKI: ${{ secrets.LOKI_URL }}
+          CADDY: ${{ secrets.CADDY_FILE }}
+          AINV: ${{ secrets.ANSIBLE_INVENTORY }}
+          API_ENDPOINT: ${{ vars.API_ENDPOINT }}
+          APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
+          ENVARS: ${{ vars.ENVARS }}
+        run: |
+          echo "$ENVARS" > ./ansible/.env
+          echo "$APKEY" > ./ansible/key.pem
+          echo "$ENVARS" > ./packages/ui/.env
+          echo "$CADDY" > ./ansible/Caddyfile
+          echo "$ENVARS" > ./packages/api/.env
+          echo "$AINV" > ./ansible/inventory.ini
+          chmod 400 ./ansible/key.pem
+          sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
+          sed -i "s#API-REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
+
+      - name: Pull & Rename Images
+        run: |
+          docker pull witnet/data-feed-app-ui:latest
+          docker build -t witnet/data-feed-app-api:latest
+          docker tag witnet/data-feed-app-ui:latest witnet/data-feed-app-ui:${{github.ref_name}}
+          docker tag witnet/data-feed-app-api:latest witnet/data-feed-app-api:${{github.ref_name}}
+
+      - name: Publish Containers
+        run: |
+          docker push witnet/data-feed-app-ui:${{github.ref_name}}
+          docker push witnet/data-feed-app-api:${{github.ref_name}}
+
+      - name: Deploy with Ansible
+        shell: bash
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          cd ansible
+          ansible-galaxy install -r requirements.yml
+          export ANSIBLE_CONFIG=./ansible.cfg
+          export ANSIBLE_FORCE_COLOR=True
+          export ANSIBLE_STDOUT_CALLBACK=yaml
+          export FORCE_COLOR=1
+          export TERM=xterm-color
+          ansible-playbook production.yml -vv

@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: main
+    environment: Staging
     steps:
       - uses: actions/checkout@v3
 
@@ -25,9 +25,9 @@ jobs:
           LOKI: ${{ secrets.LOKI_URL }}
           CADDY: ${{ secrets.CADDY_FILE }}
           AINV: ${{ secrets.ANSIBLE_INVENTORY }}
-          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          API_ENDPOINT: ${{ vars.API_ENDPOINT }}
           APKEY: ${{ secrets.ANSIBLE_PRIVATE_KEY }}
-          ENVARS: ${{ secrets.ENVIRONMENT_VARIABLES }}
+          ENVARS: ${{ vars.ENVARS }}
         run: |
           echo "$ENVARS" > ./ansible/.env
           echo "$APKEY" > ./ansible/key.pem
@@ -37,7 +37,7 @@ jobs:
           echo "$AINV" > ./ansible/inventory.ini
           chmod 400 ./ansible/key.pem
           sed -i "s#LOKI-REPLACE-ME#$LOKI#g" ./ansible/docker-compose.yml
-          sed -i "s#API-REPLACE-ME#$API_ENDPOINT#g" ./ansible/docker-compose.yml
+          sed -i "s#API-REPLACE-ME#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
 
       - name: Build Containers
         run: |
@@ -63,4 +63,4 @@ jobs:
           export FORCE_COLOR=1
           export TERM=xterm-color
           ansible-playbook ./helper/docker-playbook.yml -vv
-          ansible-playbook playbook.yml -vv
+          ansible-playbook staging.yml -vv
