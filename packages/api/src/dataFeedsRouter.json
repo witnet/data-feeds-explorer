@@ -1811,8 +1811,8 @@
           }
         },
         "optimism.sepolia": {
-          "address": "0x1111AbA2164AcdC6D291b08DfB374280035E1111",
-          "blockExplorer": "https://blockscout.com/optimism/sepolia/address/{address}",
+          "address": "0xAb19Da1bD91E29813942d10459e29B93365a34E8",
+          "blockExplorer": "https://sepolia-optimism.etherscan.io/address/{address}",
           "color": "#66ff00",
           "name": "Optimism Sepolia (testnet)",
           "pollingPeriod": 120000,
