@@ -1811,7 +1811,7 @@
           }
         },
         "optimism.sepolia": {
-          "address": "0xAb19Da1bD91E29813942d10459e29B93365a34E8",
+          "address": "0x4326d5b067EC4Bb5c2F71909E278Def8e4906B19",
           "blockExplorer": "https://sepolia-optimism.etherscan.io/address/{address}",
           "color": "#66ff00",
           "name": "Optimism Sepolia (testnet)",
