@@ -1,6 +1,6 @@
 <template>
   <div class="chains-container">
-    <LazyChainCard
+    <ChainCard
       v-for="chain in chains"
       :key="chain.label"
       :name="chain.name"

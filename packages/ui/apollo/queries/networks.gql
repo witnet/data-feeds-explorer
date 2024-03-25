@@ -1,8 +1,0 @@
-query networks {
-  networks {
-    label,
-    key,
-    chain,
-    logo
-  }
-}

@@ -1,7 +1,12 @@
-import { FeedParamsConfig, Network, NetworksConfig, RouterDataFeedsConfig } from "../types";
-import { getNetworksListByChain, sortAlphabeticallyByLabel } from "../utils";
-import { NetworkInfo } from "./NetworkRouter";
-import { getProvider } from "./provider";
+import {
+  FeedParamsConfig,
+  Network,
+  NetworksConfig,
+  RouterDataFeedsConfig,
+} from '../../types'
+import { getNetworksListByChain, sortAlphabeticallyByLabel } from '../utils'
+import { NetworkInfo } from './NetworkRouter'
+import { getProvider } from './provider'
 
 export class Configuration {
   private configurationFile: RouterDataFeedsConfig
@@ -11,35 +16,36 @@ export class Configuration {
   }
 
   // normalize config to fit network schema
-  public normalizeNetworkConfig (
-    config: RouterDataFeedsConfig
+  public normalizeNetworkConfig(
+    config: RouterDataFeedsConfig,
   ): Array<Omit<NetworksConfig, 'logo'>> {
     // Get a list of networks where every element of the array contains another array with networks that belong to a chain.
     const networks = getNetworksListByChain(config)
 
     // Put all networks at the same level removing the nested arrays
     const networkConfig = networks.reduce((networks, network) => {
-      network.map(network => {
+      network.map((network) => {
         networks.push({
-          ...network
+          ...network,
         })
       })
       return networks
     }, [])
-    const testnetNetworks = networkConfig.filter(network => !network.mainnet)
-    const mainnetNetworks = networkConfig.filter(network => network.mainnet)
+    const testnetNetworks = networkConfig.filter((network) => !network.mainnet)
+    const mainnetNetworks = networkConfig.filter((network) => network.mainnet)
     return [
       ...sortAlphabeticallyByLabel(mainnetNetworks),
-      ...sortAlphabeticallyByLabel(testnetNetworks)
+      ...sortAlphabeticallyByLabel(testnetNetworks),
     ]
   }
 
   // return networks using the new price feeds router contract
   public listNetworksUsingPriceFeedsContract(): Array<NetworkInfo> {
     return Object.values(this.configurationFile.chains)
-      .flatMap(chain => Object.entries(chain.networks))
-      .filter(([_, network])=> network.legacy === false)
+      .flatMap((chain) => Object.entries(chain.networks))
+      .filter(([_, network]) => network.legacy === false)
       .map(([networkKey, network]) => {
+        console.log(networkKey.replaceAll('.', '-') as Network)
         return {
           provider: getProvider(networkKey.replaceAll('.', '-') as Network),
           address: network.address,
@@ -51,19 +57,28 @@ export class Configuration {
   }
 
   public getLegacyConfigurationFile(): RouterDataFeedsConfig {
-    const chains = Object.entries(this.configurationFile.chains).reduce((acc, [chainKey, chain]) => {
+    const chains = Object.entries(this.configurationFile.chains).reduce(
+      (acc, [chainKey, chain]) => {
+        if (chain.hide) {
+          return acc
+        }
 
-      if (chain.hide) {
-        return acc
-      }
+        const networks = Object.entries(chain.networks).reduce(
+          (accNetworks, [networkKey, network]) => {
+            // add the network entry if it's legacy
+            return network.legacy
+              ? { ...accNetworks, [networkKey]: network }
+              : accNetworks
+          },
+          {},
+        )
 
-      const networks = Object.entries(chain.networks).reduce((accNetworks, [networkKey, network]) => {
-        // add the network entry if it's legacy
-        return network.legacy ? { ...accNetworks, [networkKey]: network } : accNetworks;
-      }, {})
-
-      return Object.keys(networks).length > 0 ? { ...acc, [chainKey]: { ...chain, networks } } : acc
-    }, {})
+        return Object.keys(networks).length > 0
+          ? { ...acc, [chainKey]: { ...chain, networks } }
+          : acc
+      },
+      {},
+    )
 
     return {
       ...this.configurationFile,
@@ -71,9 +86,13 @@ export class Configuration {
     }
   }
 
-  public getFeedConfiguration(priceFeedName: string, network: Network): FeedParamsConfig {
+  public getFeedConfiguration(
+    priceFeedName: string,
+    network: Network,
+  ): FeedParamsConfig {
     const defaultFeed = this.configurationFile.feeds[priceFeedName]
-    const specificFeedConfiguration = this.getNetworkConfiguration(network).feeds[priceFeedName]
+    const specificFeedConfiguration =
+      this.getNetworkConfiguration(network).feeds[priceFeedName]
 
     return { ...defaultFeed, ...specificFeedConfiguration }
   }
@@ -83,7 +102,9 @@ export class Configuration {
   }
 
   public getNetworkConfiguration(network: Network) {
-    return this.configurationFile.chains[getChain(network)].networks[networkToKey(network)]
+    return this.configurationFile.chains[getChain(network)].networks[
+      networkToKey(network)
+    ]
   }
 
   private fromNetworkKeyToNetwork(networkKey: string): Network {

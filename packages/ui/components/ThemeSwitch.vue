@@ -4,46 +4,28 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      currentTheme: 'light',
-      themes: {
-        light: {
-          icon: 'moon',
-          key: 'light',
-        },
-        dark: {
-          icon: 'sun',
-          key: 'dark',
-        },
-      },
-    }
+<script setup lang="ts">
+import { type Themes, ThemeKey } from '@/types'
+import { themeFromColorValue, changeColorMode } from '@/utils/colorMode'
+
+const themes: Themes = {
+  [ThemeKey.light]: {
+    icon: 'moon',
+    key: ThemeKey.light,
   },
-  computed: {
-    current() {
-      return this.$colorMode.value
-    },
-    icon() {
-      return this.themes[this.currentTheme].icon
-    },
+  [ThemeKey.dark]: {
+    icon: 'sun',
+    key: ThemeKey.dark,
   },
-  beforeMount() {
-    if (this.$colorMode.value !== 'system') {
-      this.currentTheme = this.$colorMode.value
-    }
-  },
-  methods: {
-    toggleMode() {
-      if (this.$colorMode.value === this.themes.dark.key) {
-        this.$colorMode.preference = 'light'
-      } else {
-        this.$colorMode.preference = 'dark'
-      }
-      this.currentTheme = this.$colorMode.preference
-    },
-  },
+}
+
+const icon = computed(() => themes[themeFromColorValue.value].icon)
+const toggleMode = () => {
+  if (themeFromColorValue.value === ThemeKey.light) {
+    changeColorMode(ThemeKey.dark)
+  } else {
+    changeColorMode(ThemeKey.light)
+  }
 }
 </script>
 

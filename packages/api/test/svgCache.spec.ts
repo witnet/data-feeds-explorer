@@ -4,11 +4,11 @@ import { fetchSvgs } from '../src/fetchSvgs'
 jest.mock('../src/fetchSvgs')
 
 jest.mock('../src/fetchSvgs', () => {
-  const fetchSvgsMock = jest.fn(arr =>
-    arr.reduce((acc, val) => ({ ...acc, [val]: val }), {})
+  const fetchSvgsMock = jest.fn((arr) =>
+    arr.reduce((acc, val) => ({ ...acc, [val]: val }), {}),
   )
   return {
-    fetchSvgs: fetchSvgsMock
+    fetchSvgs: fetchSvgsMock,
   }
 })
 

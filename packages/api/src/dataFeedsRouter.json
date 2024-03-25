@@ -676,60 +676,6 @@
         }
       }
     },
-    "ethereum": {
-      "name": "Ethereum",
-      "networks": {
-        "ethereum.goerli": {
-          "legacy": false,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
-          "blockExplorer": "https://goerli.etherscan.io/address/{address}",
-          "color": "#ff5599",
-          "name": "Ethereum Goerli",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
-        "ethereum.sepolia": {
-          "legacy": false,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
-          "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
-          "color": "#ff5599",
-          "name": "Ethereum Sepolia",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
-        "ethereum.mainnet": {
-          "legacy": true,
-          "mainnet": true,
-          "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
-          "blockExplorer": "https://etherscan.io/address/{address}",
-          "color": "#ff5599",
-          "name": "Ethereum Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 604800,
-              "minSecsBetweenUpdates": 86400
-            }
-          }
-        }
-      }
-    },
     "fuse": {
       "name": "Fuse",
       "networks": {
@@ -1428,39 +1374,6 @@
         }
       }
     },
-    "optimism": {
-      "name": "Optimism",
-      "networks": {
-        "optimism.goerli": {
-          "legacy": false,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
-          "blockExplorer": "https://blockscout.com/optimism/goerli/address/{address}",
-          "color": "#66ff00",
-          "name": "Optimism Goerli (testnet)",
-          "pollingPeriod": 120000,
-          "feeds": {
-
-          }
-        },
-        "optimism.mainnet": {
-          "legacy": true,
-          "mainnet": true,
-          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://optimistic.etherscan.io/address/{address}",
-          "color": "#66ff00",
-          "name": "Optimism Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-OP/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
-        }
-      }
-    },
     "polygon": {
       "name": "Polygon",
       "networks": {
@@ -1774,8 +1687,7 @@
           "color": "#66ff00",
           "name": "Syscoin Rollux Testnet",
           "pollingPeriod": 90000,
-          "feeds": {
-          }
+          "feeds": {}
         }
       }
     },

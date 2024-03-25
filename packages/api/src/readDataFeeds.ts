@@ -1,33 +1,31 @@
 import axios from 'axios'
 import path from 'path'
 import fs from 'fs'
-import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from './types'
+import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types'
 import { normalizeConfig } from './utils'
 
 const CONFIG_URL = process.env.TEST_BRANCH
   ? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`
   : 'https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json'
 
-function isRouterDataFeedsConfig (val: any): val is RouterDataFeedsConfig {
+function isRouterDataFeedsConfig(val: any): val is RouterDataFeedsConfig {
   return val?.abi && val?.chains
 }
 
-export async function fetchDataFeedsRouterConfig (): Promise<
-  RouterDataFeedsConfig | null
-> {
+export async function fetchDataFeedsRouterConfig(): Promise<RouterDataFeedsConfig | null> {
   return await axios
     .get(CONFIG_URL)
-    .then(res => {
+    .then((res) => {
       if (isRouterDataFeedsConfig(res.data)) {
         return res.data
       } else {
         throw new Error('Received data is not of type RouterDataFeedsConfig')
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(
         `There was an error fetching the config file from ${CONFIG_URL}`,
-        err
+        err,
       )
 
       return null
@@ -40,42 +38,40 @@ export async function fetchDataFeedsRouterConfig (): Promise<
  * structure to check if it has sense right now or only because it was the previous configuration
  * format
  */
-export function normalizeAndValidateDataFeedConfig (
-  config: RouterDataFeedsConfig
+export function normalizeAndValidateDataFeedConfig(
+  config: RouterDataFeedsConfig,
 ): Array<FeedInfo> {
-  const dataFeeds: Array<Omit<
-    FeedInfoConfig,
-    'abi' | 'routerAbi'
-  >> = normalizeConfig(config)
+  const dataFeeds: Array<Omit<FeedInfoConfig, 'abi' | 'routerAbi'>> =
+    normalizeConfig(config)
 
   // Throw and error if config file is not valid
   validateDataFeeds(dataFeeds)
 
-  return dataFeeds.map(dataFeed => ({
+  return dataFeeds.map((dataFeed) => ({
     ...dataFeed,
     routerAbi: JSON.parse(
       fs.readFileSync(
         path.resolve(
           process.env.DATA_FEED_ROUTER_ABI_PATH ||
-            './src/abi/PriceFeedRouter.json'
+            './src/abi/PriceFeedRouter.json',
         ),
-        'utf-8'
-      )
+        'utf-8',
+      ),
     ),
     abi: JSON.parse(
       fs.readFileSync(
         path.resolve(
-          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json'
+          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json',
         ),
-        'utf-8'
-      )
-    )
+        'utf-8',
+      ),
+    ),
   }))
 }
 
 // Throw an error if a field is missing in the data feed config file
-function validateDataFeeds (
-  dataFeeds: Array<Omit<FeedInfoConfig, 'abi' | 'routerAbi'>>
+function validateDataFeeds(
+  dataFeeds: Array<Omit<FeedInfoConfig, 'abi' | 'routerAbi'>>,
 ) {
   const expectedFields = [
     'feedFullName',
@@ -94,13 +90,13 @@ function validateDataFeeds (
     'deviation',
     'heartbeat',
     'finality',
-    'isRouted'
+    'isRouted',
   ]
 
   const optionalFields = ['deviation', 'heartbeat', 'isRouted']
 
   dataFeeds.forEach((feedInfoConfig, index) => {
-    expectedFields.forEach(field => {
+    expectedFields.forEach((field) => {
       // Validate nested keys in a field
       field.split('.').reduce((acc, val) => {
         // Throw error if the key is not found or has a falsy value
@@ -109,14 +105,14 @@ function validateDataFeeds (
             return acc[val]
           } else {
             throw new Error(
-              `Missing field ${field} in index ${index} in data feed config file`
+              `Missing field ${field} in index ${index} in data feed config file`,
             )
           }
         } else {
           // Throw error if not validated new fields are added in the config file
           if (Object.keys(feedInfoConfig).length !== expectedFields.length) {
             throw new Error(
-              `There are more fields in the feed config than expected`
+              `There are more fields in the feed config than expected`,
             )
           }
           return acc[val]

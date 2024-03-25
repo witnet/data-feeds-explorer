@@ -1,0 +1,63 @@
+import { request } from 'graphql-request'
+import ecosystemsQuery from './queries/ecosystems'
+import feedQuery from './queries/feed'
+import feedsQuery from './queries/feeds'
+import networksQuery from './queries/networks'
+import feedRequestsQuery from './queries/requests'
+import type { Ecosystem, Feed, FeedRequests, Network } from '~/types'
+
+export const getAllFeedsRequests = async ({ network }: { network: string }) =>
+  (await request(useRuntimeConfig().public.apiBase, feedsQuery, {
+    network,
+  })) as {
+    feeds: FeedRequests[]
+    total: number
+  }
+
+export const getEcosystems = async () => {
+  const result: { feeds: any } = await request(
+    useRuntimeConfig().public.apiBase,
+    ecosystemsQuery,
+    {
+      network: 'all',
+    },
+  )
+  return result.feeds as {
+    feeds: Ecosystem[]
+    total: number
+  }
+}
+
+export const getNetworks = async () =>
+  (await request(useRuntimeConfig().public.apiBase, networksQuery)) as {
+    networks: Network[]
+  }
+
+export const getFeedInfo = async ({
+  timestamp,
+  feedFullName,
+}: {
+  timestamp: number
+  feedFullName: string
+}) =>
+  (await request(useRuntimeConfig().public.apiBase, feedQuery, {
+    timestamp,
+    feedFullName,
+  })) as { feed: Feed }
+
+export const getFeedRequests = async ({
+  feedFullName,
+  page,
+  size,
+}: {
+  feedFullName: string
+  page: number
+  size: number
+}) =>
+  (await request(useRuntimeConfig().public.apiBase, feedRequestsQuery, {
+    feedFullName,
+    page,
+    size,
+  })) as {
+    requests: FeedRequests[]
+  }

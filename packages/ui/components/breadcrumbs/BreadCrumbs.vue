@@ -2,7 +2,7 @@
   <div class="breacrumbs-wrapper">
     <div class="breadcrumbs container">
       <nuxt-link
-        v-for="option in breadCumbsOptions.filter((option) => option.label)"
+        v-for="option in breadCumbsOptions"
         :key="option.label"
         :aria-label="option.label"
         :class="{ selected: option.selected }"
@@ -16,58 +16,62 @@
         </transition>
       </nuxt-link>
     </div>
-    <Socials />
+    <SocialLinks />
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    selected() {
-      return this.$store.state.selectedNetwork
+<script setup>
+const store = useStore()
+const route = useRoute()
+const router = useRouter()
+
+onMounted(() => {
+  if (!selected.value) {
+    router.push('/')
+  }
+})
+
+const selected = computed(() => {
+  return store.selectedEcosystem
+})
+const currentParams = computed(() => {
+  return route.params
+})
+const breadCumbsOptions = computed(() => {
+  return [
+    {
+      label: 'Home',
+      path: {
+        name: 'index',
+      },
+      selected: false,
     },
-    breadCumbsOptions() {
-      return [
-        {
-          label: 'Home',
-          path: {
-            name: 'index',
-          },
-          selected: false,
+    {
+      label: selected.value ? selected.value[0]?.chain : null,
+      path: {
+        name: 'network',
+        params: {
+          network: currentParams.value.network || 'ethereum',
         },
-        {
-          label: this.selected ? this.selected[0]?.chain : null,
-          path: {
-            name: 'network',
-            params: {
-              network: this.$route.params.network || 'ethereum',
-            },
-          },
-          selected: false,
-        },
-        {
-          label:
-            this.$route.params.id && this.selected
-              ? this.selected[0]?.label
-              : null,
-          path: {
-            name: 'network-id',
-            params: {
-              network: this.$route.params.network,
-              id: this.$route.params.id,
-            },
-          },
-          selected: false,
-        },
-      ]
+      },
+      selected: false,
     },
-  },
-  mounted() {
-    if (!this.selected) {
-      this.$router.push('/')
-    }
-  },
-}
+    {
+      label:
+        currentParams.value.id && selected.value
+          ? selected.value[0]?.label
+          : null,
+      path: {
+        name: 'network-id',
+        params: {
+          network: currentParams.value.network,
+          id: currentParams.value.id,
+        },
+      },
+      selected: false,
+    },
+  ]
+})
 </script>
 
 <style lang="scss">

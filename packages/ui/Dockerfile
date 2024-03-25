@@ -1,4 +1,6 @@
-FROM node:14-alpine
+FROM alpine:3.18
+
+ENV NODE_VERSION 21.6.2
 
 WORKDIR /usr/src/app
 
