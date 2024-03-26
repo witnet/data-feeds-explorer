@@ -358,3 +358,35 @@ html {
 body {
   font-family: 'Almarai';
 }
+
+h1 {
+  font-weight: bold;
+  font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
+}
+p {
+  font-family: 'Almarai', sans-serif;
+  line-height: 1.5;
+  &.title {
+    font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
+  }
+}
+.btn {
+  font-family: 'Almarai', sans-serif;
+}
+.title {
+  font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
+}
+.bold {
+  font-weight: bold;
+}
+.light-text {
+  color: var(--light-text);
+}
+.text {
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  font-size: 1rem;
+}
