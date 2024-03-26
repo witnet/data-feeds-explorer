@@ -8,7 +8,7 @@
     <transition name="dropdown" class="dropdown">
       <div v-if="showAll" class="networks">
         <div
-          v-for="option in filteredOptions"
+          v-for="option in hiddenEcosystems"
           :key="option.name"
           class="option"
         >
@@ -46,40 +46,47 @@ const props = defineProps({
     required: true,
   },
 })
-const priorityNetworks: Array<string> = ['ethereum', 'avalanche', 'polygon']
+const priorityEcosystemNames: Array<string> = [
+  'ethereum',
+  'avalanche',
+  'polygon',
+]
 const showAll: Ref<boolean> = ref(props.type === 'navbar')
+const selectedEcosystemName = computed(() => store.selectedEcosystemName)
 
-const selectedEcosystemName = computed(() => {
-  return store.selectedEcosystem && store.selectedEcosystem.length > 0
-    ? store.selectedEcosystem[0].chain.toLowerCase()
-    : 'ethereum'
-})
-const selectedOption = computed(() => {
+const priorityEcosystems = computed(() => {
   return props.options.filter((option) => {
-    return option.name.toLowerCase() === selectedEcosystemName.value
+    return priorityEcosystemNames.includes(option.name.toLowerCase())
+  })
+})
+
+const selectedEcosystem = computed(() => {
+  return props.options.filter((option) => {
+    return (
+      option.name.toLowerCase() ===
+      selectedEcosystemName.value.toLocaleLowerCase()
+    )
   })[0]
 })
 
-const filteredOptions = computed(() => {
+const hiddenEcosystems = computed(() => {
   return props.options.filter((option) => {
     return (
-      !priorityNetworks.includes(option.name.toLowerCase()) &&
+      !priorityEcosystemNames.includes(option.name.toLowerCase()) &&
       option.name.toLowerCase() !== selectedEcosystemName.value.toLowerCase()
     )
   })
 })
 const networksLeft = computed(() => {
-  return `(${filteredOptions.value.length}+)`
+  return `(${hiddenEcosystems.value.length}+)`
 })
 const mainOptions = computed(() => {
-  const result = props.options.filter((option) => {
-    return priorityNetworks.includes(option.name.toLowerCase())
-  })
-  const filteredNames = result.map((option) => option.name.toLowerCase())
-  if (filteredNames.includes(selectedOption.value.name.toLowerCase())) {
-    return result
+  if (
+    priorityEcosystemNames.includes(selectedEcosystemName.value.toLowerCase())
+  ) {
+    return priorityEcosystems.value
   } else {
-    return [...result, selectedOption.value]
+    return [...priorityEcosystems.value, selectedEcosystem.value]
   }
 })
 const toggleShowAll = () => (showAll.value = !showAll.value)

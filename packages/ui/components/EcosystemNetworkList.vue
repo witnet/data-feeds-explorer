@@ -1,28 +1,29 @@
 <template>
   <div class="main">
-    <NetworkOptions
-      v-if="store.networks && store.networks.length > 1"
-      class="network-options"
-      :options="navBarOptions"
-    />
-    <div v-if="selected && selected.length" class="feeds-container">
+    <NetworkOptions class="network-options" :options="navBarOptions" />
+    <div
+      v-if="selectedEcosystem && selectedEcosystem.length"
+      class="feeds-container"
+    >
       <div class="title-container">
         <h2 class="title bold">
-          <SvgIcon class="logo" :svg="selected[0].logo" />
-          {{ selected[0].chain }}
+          <SvgIcon class="logo" :svg="selectedEcosystem[0].logo" />
+          {{ selectedEcosystem[0].chain }}
         </h2>
         <p class="subtitle light-text bold">
           {{ $t('main.network_subtitle') }}
-          <span v-if="selectedNetworks.first" class="bold text">{{
-            selectedNetworks.first
+          <span v-if="ecosystemNetworksNames.first" class="bold text">{{
+            ecosystemNetworksNames.first
           }}</span>
-          <span v-if="selectedNetworks.first">{{ $t('and') }}</span>
-          <span class="bold text">{{ selectedNetworks.last }}</span
+          <span v-if="ecosystemNetworksNames.first" class="networks-separator">
+            {{ $t('and') }}
+          </span>
+          <span class="bold text">{{ ecosystemNetworksNames.last }}</span
           >.
         </p>
       </div>
       <div
-        v-for="(option, index) in selected"
+        v-for="(option, index) in selectedEcosystem"
         :key="option.key"
         class="list-container"
       >
@@ -43,38 +44,27 @@ import { generateNavOptions } from '../utils/generateNavOptions'
 
 const store = useStore()
 const route = useRoute()
-const emit = defineEmits(['set-network'])
 
 useServerSeoMeta({
-  ogTitle: () => `Witnet Data Feeds on ${currentNetwork.value}`,
-  title: () => `Witnet Data Feeds on ${currentNetwork.value}`,
+  ogTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+  title: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
   description: () =>
-    `Explore the list of decentralized data feeds on ${currentNetwork.value}, using the Witnet oracle network`,
+    `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
   ogDescription: () =>
-    `Explore the list of decentralized data feeds on ${currentNetwork.value}, using the Witnet oracle network`,
-  twitterTitle: () => `Witnet Data Feeds on ${currentNetwork.value}`,
+    `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+  twitterTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
   twitterDescription: () =>
-    `Explore the list of decentralized data feeds on ${currentNetwork.value}, using the Witnet oracle network`,
+    `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
 })
-
-const currentNetwork: Ref<string> = ref(
-  route.params.network.toString().toUpperCase(),
-)
-const selected = computed(() => store.selectedEcosystem)
-const options = computed(() => {
-  if (store.networks) {
-    const options = generateSelectOptions(store.networks)
-    setCurrentNetwork(options)
-    return options
-  } else {
-    return null
-  }
+const currentEcosystem = ref(route.params.network.toString())
+const currentEcosystemSeoFormat = ref(currentEcosystem.value.toUpperCase())
+const selectedEcosystem = computed(() => store.selectedEcosystem)
+const ecosystemsList = computed(() => generateSelectOptions(store.networks))
+const navBarOptions = computed(() => {
+  return generateNavOptions(Object.values(ecosystemsList.value))
 })
-const navBarOptions = computed(() =>
-  generateNavOptions(Object.values(options.value)),
-)
-const selectedNetworks = computed(() => {
-  const result = selected.value.map((option) => {
+const ecosystemNetworksNames = computed(() => {
+  const result = selectedEcosystem.value.map((option) => {
     return option.label
   })
   const last = result.pop()
@@ -83,24 +73,20 @@ const selectedNetworks = computed(() => {
     last,
   }
 })
-const network = computed(() => {
-  const network = currentNetwork.value || 'ethereum'
-  emit('set-network', network.toLowerCase())
-  return network.toLowerCase()
-})
-onMounted(() => {
-  const networks = options.value[network.value]
-  store.updateSelectedNetwork({ networks })
+onMounted(async () => {
+  if (store.networks.length < 1) {
+    await store.fetchNetworks()
+  }
+  const selectedEcosystemNetworks =
+    ecosystemsList.value[currentEcosystem.value.toLocaleLowerCase()]
+  store.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
 })
 function updateOptions(index: number) {
   store.deleteEmptyNetwork({ index })
 }
-function setCurrentNetwork(options: any) {
-  currentNetwork.value = options[route.params.network.toString()][0].chain
-}
 
 useHead({
-  title: `Witnet Data Feeds on ${currentNetwork.value}`,
+  title: `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
   htmlAttrs: {
     lang: 'en',
   },
@@ -113,22 +99,22 @@ useHead({
     {
       hid: 'title',
       name: 'title',
-      content: `Witnet Data Feeds on ${currentNetwork.value}`,
+      content: `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
     },
     {
       hid: 'description',
       name: 'description',
-      content: `Explore the list of decentralized data feeds on ${currentNetwork.value}, using the Witnet oracle network`,
+      content: `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
     },
     {
       hid: 'twitter:title',
       name: 'twitter:title',
-      content: `Witnet Data Feeds on ${currentNetwork.value}`,
+      content: `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
     },
     {
       hid: 'twitter:description',
       name: 'twitter:description',
-      content: `Explore the list of decentralized data feeds on ${currentNetwork.value}, using the Witnet oracle network`,
+      content: `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
     },
     {
       hid: 'twitter:image',
@@ -148,7 +134,7 @@ useHead({
     {
       hid: 'og:description',
       property: 'og:description',
-      content: `Explore the list of decentralized data feeds on ${currentNetwork.value}, using the Witnet oracle network`,
+      content: `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
     },
     {
       hid: 'og:image',
@@ -203,6 +189,9 @@ useHead({
   }
   .subtitle {
     font-size: var(--text-size);
+    .networks-separator {
+      margin: 0 4px 0 4px;
+    }
   }
 }
 

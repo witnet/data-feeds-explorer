@@ -84,9 +84,10 @@ export type Feed = {
 
 export interface DataStore {
   selectedEcosystem: Network[] | []
+  selectedEcosystemName: String
   networks: Array<Network | undefined>
   ecosystems: Ecosystem[] | []
   totalFeeds: number
   feed: Feed | null
-  paginatedFeedRequest: Request[] | null
+  paginatedFeedRequest: FeedRequests[] | null
 }
