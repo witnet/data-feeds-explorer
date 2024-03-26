@@ -4,6 +4,7 @@
     :keypath="description.i18nPath"
     scope="global"
     tag="p"
+    class="feed-description"
   >
     <template
       v-for="field in description.fields"

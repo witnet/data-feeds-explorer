@@ -72,6 +72,7 @@ onMounted(async () => {
     row-gap: 16px;
   }
   .title {
+    font-weight: bold;
     font-size: var(--text-size-title);
   }
 }
