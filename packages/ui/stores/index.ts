@@ -12,6 +12,7 @@ export const useStore = defineStore('data', {
   state: () =>
     ({
       selectedEcosystem: [],
+      selectedEcosystemName: 'ethereum',
       networks: [],
       ecosystems: [],
       totalFeeds: 0,
@@ -57,6 +58,9 @@ export const useStore = defineStore('data', {
     },
     updateSelectedNetwork({ networks }: { networks: Network[] | [] }) {
       this.selectedEcosystem = networks
+      if (networks.length) {
+        this.selectedEcosystemName = networks[0].chain
+      }
     },
     deleteEmptyNetwork({ index }: { index: number }) {
       this.selectedEcosystem.splice(index, 1)
