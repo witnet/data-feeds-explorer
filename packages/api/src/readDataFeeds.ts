@@ -1,36 +1,39 @@
-import axios from 'axios'
+// import axios from 'axios'
 import path from 'path'
 import fs from 'fs'
 import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types'
 import { normalizeConfig } from './utils'
 
-const CONFIG_URL = process.env.TEST_BRANCH
-  ? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`
-  : `https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json`
+// const CONFIG_URL = process.env.TEST_BRANCH
+//   ? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`
+//   : `https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json`
 
-function isRouterDataFeedsConfig (val: any): val is RouterDataFeedsConfig {
-  return val?.contract && val?.chains && val.conditions && val.currencies
-}
-
+// function isRouterDataFeedsConfig (val: any): val is RouterDataFeedsConfig {
+//   return val?.contract && val?.chains && val.conditions && val.currencies
+// }
 export async function fetchDataFeedsRouterConfig(): Promise<RouterDataFeedsConfig | null> {
-  return await axios
-    .get(CONFIG_URL)
-    .then((res) => {
-      if (isRouterDataFeedsConfig(res.data)) {
-        return res.data
-      } else {
-        throw new Error('Received data is not of type RouterDataFeedsConfig')
-      }
-    })
-    .catch((err) => {
-      console.error(
-        `There was an error fetching the config file from ${CONFIG_URL}`,
-        err,
-      )
-
-      return null
-    })
+  return JSON.parse(fs.readFileSync('./src/dataFeedsRouter.json', 'utf-8'))
 }
+
+// export async function fetchDataFeedsRouterConfig(): Promise<RouterDataFeedsConfig | null> {
+//   return await axios
+//     .get(CONFIG_URL)
+//     .then((res) => {
+//       if (isRouterDataFeedsConfig(res.data)) {
+//         return res.data
+//       } else {
+//         throw new Error('Received data is not of type RouterDataFeedsConfig')
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(
+//         `There was an error fetching the config file from ${CONFIG_URL}`,
+//         err,
+//       )
+
+//       return null
+//     })
+// }
 /**
  * FIXME(#197): normalizeAndValidateDataFeedConfig could be refactored to include the ABI to avoid
  * have multiple functions to build the object. So we should review how we are fetching,

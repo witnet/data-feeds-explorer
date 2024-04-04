@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import { removeRepeatedElements } from './utils'
 
 export const DEFAULT_SVG =
@@ -17,17 +17,19 @@ export async function fetchSvgs(
   )
 
   // Fetch all logos from github
-  const promises = logosUrls.map((url) => axios.get(url))
+  // const promises = logosUrls.map((url) => axios.get(url))
+  const promises = logosUrls.map(_x => DEFAULT_SVG)
   return new Promise((resolve) => {
-    Promise.allSettled(promises).then((results) => {
-      const svgs = results.map((result, index) => {
-        if (result.status === 'rejected') {
-          console.log(`Error fetching logo from: ${logosUrls[index]}`)
-          return DEFAULT_SVG
-        }
+    Promise.allSettled(promises).then((_results) => {
+      // const svgs = results.map((result, index) => {
+      //   if (result.status === 'rejected') {
+      //     console.log(`Error fetching logo from: ${logosUrls[index]}`)
+      //     return DEFAULT_SVG
+      //   }
 
-        return result.value.data
-      })
+      //   // return result.value.data
+      // })
+      const svgs = promises
 
       const svgByName = networksWithoutRepeated.reduce(
         (acc, val, index) => ({
