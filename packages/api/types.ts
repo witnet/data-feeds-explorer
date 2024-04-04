@@ -193,7 +193,7 @@ export type FeedParsedParams = {
 }
 
 export type FeedConfig = {
-  legacy?: boolean,
+  version?: "legacy" | "2.0",
   address?: string
   blockExplorer: string
   blockProvider?: string

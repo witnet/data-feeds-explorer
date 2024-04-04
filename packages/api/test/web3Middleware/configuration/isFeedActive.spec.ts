@@ -1,4 +1,4 @@
-import { RouterDataFeedsConfig } from "../../../src/types"
+import { RouterDataFeedsConfig } from "../../../types"
 import { Configuration } from "../../../src/web3Middleware/Configuration"
 
 const configurationFile: RouterDataFeedsConfig = {
@@ -25,7 +25,7 @@ const configurationFile: RouterDataFeedsConfig = {
       name: "Arbitrum",
       networks: {
         "arbitrum.one": {
-          legacy: false,
+          version: "2.0",
           address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           blockExplorer: "https://arbiscan.io/address/{address}",
           color: "#E84142",
@@ -42,7 +42,7 @@ const configurationFile: RouterDataFeedsConfig = {
           },
         },
         "arbitrum.goerli": {
-          legacy: false,
+          version: "2.0",
           address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           blockExplorer: "https://goerli.arbiscan.io/address/{address}",
           color: "#E84142",
@@ -63,7 +63,7 @@ const configurationFile: RouterDataFeedsConfig = {
       name: "Avalanche",
       networks: {
         "avalanche.mainnet": {
-          legacy: true,
+          version: "legacy",
           mainnet: true,
           address: "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
           blockExplorer: "https://snowtrace.io/address/{address}",
@@ -80,7 +80,7 @@ const configurationFile: RouterDataFeedsConfig = {
           },
         },
         "avalanche.fuji": {
-          legacy: false,
+          version: "2.0",
           address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           blockExplorer: "https://testnet.snowtrace.io/address/{address}",
           color: "#E84142",
@@ -101,7 +101,7 @@ const configurationFile: RouterDataFeedsConfig = {
       name: "Boba",
       networks: {
         "boba.ethereum.mainnet": {
-          legacy: true,
+          version: "legacy",
           mainnet: true,
           address: "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
           blockExplorer: "https://blockexplorer.boba.network/address/{address}",

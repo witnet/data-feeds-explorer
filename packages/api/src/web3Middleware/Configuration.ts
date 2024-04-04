@@ -38,9 +38,8 @@ export class Configuration {
   public listNetworksUsingPriceFeedsContract(): Array<NetworkInfo> {
     return Object.values(this.configurationFile.chains)
       .flatMap(chain => Object.entries(chain.networks))
-      .filter(([_, network])=> !network.legacy)
+      .filter(([_, network])=> network.version === '2.0')
       .map(([networkKey, network]) => {
-        console.log(networkKey.replaceAll('.', '-') as Network)
         return {
           provider: network.blockProvider || getProvider(networkKey.replaceAll('.', '-') as Network) || "",
           address: network.address || this.configurationFile.contract["2.0"].address,
@@ -57,7 +56,7 @@ export class Configuration {
       const networks = Object.entries(chain.networks).reduce(
         (accNetworks, [networkKey, network]) => {
           // add the network entry if it's legacy
-          return network.legacy
+          return !network.version || network.version === 'legacy'
             ? { ...accNetworks, [networkKey]: network }
             : accNetworks
         },

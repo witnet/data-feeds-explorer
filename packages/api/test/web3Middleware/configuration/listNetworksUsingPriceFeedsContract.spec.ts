@@ -1,4 +1,5 @@
 import { Configuration } from "../../../src/web3Middleware/Configuration"
+import { RouterDataFeedsConfig } from "../../../types"
 import { baseConfigurationFile } from './baseConfigurationFile'
 
 describe("listNetworksUsingPriceFeedsContract", () => {
@@ -27,6 +28,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
           name: "Arbitrum",
           networks: {
             "arbitrum.one": {
+              version: '2.0',
               blockExplorer: "https://arbiscan.io/address/{address}",
               color: "#E84142",
               mainnet: true,
@@ -41,7 +43,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
               },
             },
             "arbitrum.goerli": {
-              legacy: false,
+              version: "2.0",
               address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
               blockExplorer: "https://goerli.arbiscan.io/address/{address}",
               color: "#E84142",
@@ -62,7 +64,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
           name: "Avalanche",
           networks: {
             "avalanche.mainnet": {
-              legacy: true,
+              version: "legacy",
               mainnet: true,
               address: "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
               blockExplorer: "https://snowtrace.io/address/{address}",
@@ -79,7 +81,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
               },
             },
             "avalanche.fuji": {
-              legacy: false,
+              version: "2.0",
               address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
               blockExplorer: "https://testnet.snowtrace.io/address/{address}",
               color: "#E84142",
@@ -98,7 +100,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
           name: "Boba",
           networks: {
             "boba.ethereum.mainnet": {
-              legacy: true,
+              version: "legacy",
               mainnet: true,
               address: "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
               blockExplorer:
@@ -123,7 +125,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         },
       },
     }
-    const configuration = new Configuration(configurationFile)
+    const configuration = new Configuration(configurationFile as RouterDataFeedsConfig)
     const result = configuration.listNetworksUsingPriceFeedsContract()
 
     const expected = [
@@ -132,21 +134,21 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         key: "arbitrum-one",
         networkName: "Arbitrum ONE",
         pollingPeriod: 120000,
-        provider: "",
+        provider: "provider-arbitrum-one",
       },
       {
         address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
         key: "arbitrum-goerli",
         networkName: "Arbitrum Nitro Goerli",
         pollingPeriod: 120000,
-        provider: "",
+        provider: "provider-arbitrum-goerli",
       },
       {
         address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
         key: "avalanche-fuji",
         networkName: "Avalanche Fuji",
         pollingPeriod: 120000,
-        provider: "",
+        provider: "provider-avalanche-fuji",
       },
     ]
 
@@ -162,6 +164,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
             name: "Arbitrum",
             networks: {
               "arbitrum.one": {
+                version: '2.0',
                 blockExplorer: "https://arbiscan.io/address/{address}",
                 color: "#E84142",
                 mainnet: true,
@@ -179,7 +182,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         },
       }
 
-      const configuration = new Configuration(configurationFile)
+      const configuration = new Configuration(configurationFile as RouterDataFeedsConfig)
       const result = configuration.listNetworksUsingPriceFeedsContract()
 
       const expected = [
@@ -188,7 +191,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
           key: "arbitrum-one",
           networkName: "Arbitrum ONE",
           pollingPeriod: 120000,
-          provider: "",
+          provider: "provider-arbitrum-one",
         },
       ]
 
@@ -203,6 +206,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
             name: "Arbitrum",
             networks: {
               "arbitrum.one": {
+                version: '2.0',
                 pollingPeriod: 1000,
                 blockExplorer: "",
                 color: "#E84142",
@@ -221,7 +225,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         },
       }
 
-      const configuration = new Configuration(configurationFile)
+      const configuration = new Configuration(configurationFile as RouterDataFeedsConfig)
       const result = configuration.listNetworksUsingPriceFeedsContract()
 
       const expected = [
@@ -230,7 +234,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
           key: "arbitrum-one",
           networkName: "Arbitrum ONE",
           pollingPeriod: 1000,
-          provider: "",
+          provider: "provider-arbitrum-one",
         },
       ]
 
@@ -247,6 +251,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
             name: "Arbitrum",
             networks: {
               "arbitrum.one": {
+                version: '2.0',
                 blockExplorer: "https://arbiscan.io/address/{address}",
                 color: "#E84142",
                 mainnet: true,
@@ -264,7 +269,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         },
       }
 
-      const configuration = new Configuration(configurationFile)
+      const configuration = new Configuration(configurationFile as RouterDataFeedsConfig)
       const result = configuration.listNetworksUsingPriceFeedsContract()
 
       const expected = [
@@ -273,7 +278,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
           key: "arbitrum-one",
           networkName: "Arbitrum ONE",
           pollingPeriod: 120000,
-          provider: "",
+          provider: "provider-arbitrum-one",
         },
       ]
 
@@ -288,6 +293,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
             name: "Arbitrum",
             networks: {
               "arbitrum.one": {
+                version: '2.0',
                 blockProvider: "public-provider",
                 blockExplorer: "https://arbiscan.io/address/{address}",
                 color: "#E84142",
@@ -306,7 +312,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         },
       }
 
-      const configuration = new Configuration(configurationFile)
+      const configuration = new Configuration(configurationFile as RouterDataFeedsConfig)
       const result = configuration.listNetworksUsingPriceFeedsContract()
 
       const expected = [
@@ -332,6 +338,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
             name: "Arbitrum",
             networks: {
               "arbitrum.one": {
+                version: '2.0',
                 blockExplorer: "https://arbiscan.io/address/{address}",
                 color: "#E84142",
                 mainnet: true,
@@ -349,7 +356,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         },
       }
 
-      const configuration = new Configuration(configurationFile)
+      const configuration = new Configuration(configurationFile as RouterDataFeedsConfig)
       const result = configuration.listNetworksUsingPriceFeedsContract()
 
       const expected = [
@@ -358,7 +365,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
           key: "arbitrum-one",
           networkName: "Arbitrum ONE",
           pollingPeriod: 120000,
-          provider: "",
+          provider: "provider-arbitrum-one",
         },
       ]
 
@@ -372,6 +379,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
             name: "Arbitrum",
             networks: {
               "arbitrum.one": {
+                version: '2.0',
                 address: "0x2222222222222222222222222222222222222222",
                 blockProvider: "https://arb1.arbitrum.io/rpc/",
                 blockExplorer: "https://arbiscan.io/address/{address}",
@@ -391,7 +399,7 @@ describe("listNetworksUsingPriceFeedsContract", () => {
         },
       }
 
-      const configuration = new Configuration(configurationFile)
+      const configuration = new Configuration(configurationFile as RouterDataFeedsConfig)
       const result = configuration.listNetworksUsingPriceFeedsContract()
 
       const expected = [

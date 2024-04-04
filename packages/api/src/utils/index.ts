@@ -84,7 +84,7 @@ export function normalizeConfig(
   )
   // Network Config list deleting key label
   const networksConfigMap = chains.flatMap((network: Chain) => {
-    return Object.values(network.networks).map(
+    return Object.values(network.networks).filter(network => !network.version|| network.version === 'legacy').map(
       (feedConfig: FeedConfig, index) => {
         return {
           ...feedConfig,
