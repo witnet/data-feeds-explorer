@@ -54,21 +54,15 @@ export class Configuration {
   public getLegacyConfigurationFile(): LegacyRouterDataFeedsConfig {
     const abi = this.configurationFile.contract.legacy.abi
     const chains = Object.entries(this.configurationFile.chains).reduce((acc, [chainKey, chain]) => {
-
-        const networks = Object.entries(chain.networks).reduce(
-          (accNetworks, [networkKey, network]) => {
-            // add the network entry if it's legacy
-            return network.legacy
-              ? { ...accNetworks, [networkKey]: network }
-              : accNetworks
-          },
-          {},
-        )
-
-      const networks = Object.entries(chain.networks).reduce((accNetworks, [networkKey, network]) => {
-        // add the network entry if it's legacy
-        return network.legacy ? { ...accNetworks, [networkKey]: network } : accNetworks;
-      }, {})
+      const networks = Object.entries(chain.networks).reduce(
+        (accNetworks, [networkKey, network]) => {
+          // add the network entry if it's legacy
+          return network.legacy
+            ? { ...accNetworks, [networkKey]: network }
+            : accNetworks
+        },
+        {},
+      )
       return Object.keys(networks).length > 0 ? { ...acc, [chainKey]: { ...chain, networks } } : acc
     }, {})
 

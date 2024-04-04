@@ -1,0 +1,845 @@
+// "legacy" -> "version", defaulting to "legacy"
+// "mainnet" defaults to false
+// What happends if we want a different config depending on the network
+{
+    "contract": {
+        "legacy": {
+            "abi": "./src/abi/WitnetPriceRouter.json",
+            "pollingPeriod": 120000
+        },
+        "2.0": {
+            "abi": "./src/abi/WitnetPriceFeeds.json",
+            "address": "0x1111AbA2164AcdC6D291b08DfB374280035E1111",
+            "pollingPeriod": 120000
+        }
+    },
+    "chains": {
+        "arbitrum": {
+            "name": "Arbitrum",
+            "networks": {
+                "arbitrum.one": {
+                    "address": "",
+                    "blockExplorer": "https://arbiscan.io/address/{address}",
+                    "blockProvider": "<public-urls-only>",
+                    "mainnet": true,
+                    "name": "Arbitrum ONE",
+                    "feeds": [
+                        "Price-ETH/USD-6"
+                    ]
+                },
+                "arbitrum.goerli": {
+                    "address": "",
+                    "blockExplorer": "https://goerli.arbiscan.io/address/{address}",
+                    "name": "Arbitrum Nitro Goerli",
+                    "feeds": [
+                        "Price-ETH/USD-6"
+                    ]
+                }
+            }
+        },
+        "avalanche": {
+            "name": "Avalanche",
+            "networks": {
+                "avalanche.mainnet": {
+                    "address": "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
+                    "blockExplorer": "https://snowtrace.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Avalanche Mainnet",
+                    "feeds": [
+                        "Price-AVAX/USD-6"
+                    ]
+                },
+                "avalanche.fuji": {
+                    "address": "",
+                    "blockExplorer": "https://testnet.snowtrace.io/address/{address}",
+                    "name": "Avalanche Fuji",
+                    "feeds": [
+                        "Price-AVAX/USD-6",
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6"
+                    ]
+                }
+            }
+        },
+        "base": {
+            "name": "Base",
+            "networks": {
+                "base.sepolia": {
+                    "blockExplorer": "",
+                    "blockProvider": "<public-urls-only>",
+                    "name": "Base ETH/L2 Sepolia",
+                    "version": "2.0"
+                }
+            }
+        },
+        "boba": {
+            "name": "Boba",
+            "networks": {
+                "boba.ethereum.mainnet": {
+                    "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
+                    "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
+                    "mainnet": true,
+                    "name": "Boba ETH/L2 Mainnet",
+                    "feeds": [
+                        "Price-BOBA/USDT-6",
+                        "Price-BTC/USD-6",
+                        "Price-DAI/USD-6",
+                        "Price-OLO/USDC-6",
+                        "Price-ETH/USD-6",
+                        "Price-FRAX/USDT-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                },
+                "boba.ethereum.sepolia": {
+                    "blockExplorer": "",
+                    "version": "2.0",
+                    "name": "Boba ETH/L2 Sepolia"
+                },
+                "boba.bnb.mainnet": {
+                    "address": "",
+                    "blockExplorer": "https://blockexplorer.bnb.boba.network/address/{address}",
+                    "mainnet": true,
+                    "name": "Boba BNB/L2 Mainnet",
+                    "feeds": [
+                        "Price-BNB/USDT-6",
+                        "Price-BOBA/USDT-6",
+                        "Price-WIT/USDT-6"
+                    ]
+                },
+                "boba.bnb.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://blockexplorer.testnet.bnb.boba.network/address/{address}",
+                    "name": "Boba BNB/L2 Testnet",
+                    "feeds": [
+                        "Price-BNB/USDT-6",
+                        "Price-BOBA/USDT-6"
+                    ]
+                }
+            }
+        },
+        "celo": {
+            "name": "Celo",
+            "networks": {
+                "celo.alfajores": {
+                    "address": "",
+                    "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
+                    "name": "Celo Alfajores",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6"
+                    ]
+                },
+                "celo.mainnet": {
+                    "address": "",
+                    "blockExplorer": "https://explorer.celo.org/address/{address}",
+                    "mainnet": true,
+                    "name": "Celo Mainnet",
+                    "feeds": [
+                        "Price-CELO/EUR-6",
+                        "Price-CELO/USD-6",
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-NCT/CELO-6"
+                    ]
+                }
+            }
+        },
+        "conflux": {
+            "name": "Conflux",
+            "networks": {
+                "conflux.core.mainnet": {
+                    "address": "0x806c8dFd322EE2d52b188CC472e0814F64304C32",
+                    "blockExplorer": "https://confluxscan.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Conflux Core (Hydra)",
+                    "feeds": [
+                        "Price-CFX/USDT-6",
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6"
+                    ]
+                },
+                "conflux.espace.mainnet": {
+                    "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+                    "blockExplorer": "https://evm.confluxscan.net/address/{address}",
+                    "mainnet": true,
+                    "name": "Conflux eSpace (Hydra)",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-CFX/USDT-6",
+                        "Price-ETH/USD-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                },
+                "conflux.core.testnet": {
+                    "address": "0x8FDD679F4D1d2bfb97B5e5fD90c8E3E6ce0ce75c",
+                    "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+                    "name": "Conflux Core (Testnet)",
+                    "feeds": [
+                        "Price-CFX/USDT-6",
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6"
+                    ]
+                },
+                "conflux.espace.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://evmtestnet.confluxscan.net/address/{address}",
+                    "name": "Conflux eSpace (Testnet)",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-CFX/USDT-6",
+                        "Price-ETH/USD-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "cronos": {
+            "name": "Cronos",
+            "networks": {
+                "cronos.testnet": {
+                    "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
+                    "blockExplorer": "https://testnet.cronoscan.com/address/{address}",
+                    "name": "Cronos Testnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ELON/USDT-9",
+                        "Price-USDT/USD-6",
+                        "Price-DAI/USD-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "cronos.mainnet": {
+                    "address": "",
+                    "blockExplorer": "https://cronoscan.com/address/{address}",
+                    "mainnet": true,
+                    "name": "Cronos Mainnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-CRO/USD-6",
+                        "Price-CRO/USDT-6",
+                        "Price-ETH/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "dogechain": {
+            "name": "Dogechain",
+            "networks": {
+                "dogechain.mainnet": {
+                    "address": "0xD7f7933992c25A504e9Ddf7e76a3c1D6c432b25D",
+                    "blockExplorer": "https://explorer.dogechain.dog/address/{address}",
+                    "mainnet": true,
+                    "name": "Dogechain Mainnet",
+                    "feeds": [
+                        "Price-DOGE/USD-6"
+                    ]
+                }
+            }
+        },
+        "elastos": {
+            "name": "Elastos",
+            "networks": {
+                "elastos.mainnet": {
+                    "address": "",
+                    "blockExplorer": "https://esc.elastos.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Elastos Mainnet",
+                    "feeds": [
+                        "Price-BNB/USDT-6",
+                        "Price-ETH/USD-6",
+                        "Price-HT/USDT-6",
+                        "Price-USDT/USD-6"
+                    ]
+                },
+                "elastos.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://esc-testnet.elastos.io/address/{address}",
+                    "name": "Elastos Testnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ELA/USDT-6",
+                        "Price-USDC/USD-6"
+                    ]
+                }
+            }
+        },
+        "ethereum": {
+            "name": "Ethereum",
+            "networks": {
+                "ethereum.sepolia": {
+                    "address": "",
+                    "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
+                    "name": "Ethereum Sepolia",
+                    "feeds": [
+                        "Price-ETH/USD-6"
+                    ]
+                },
+                "ethereum.mainnet": {
+                    "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
+                    "blockExplorer": "https://etherscan.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Ethereum Mainnet",
+                    "feeds": [
+                        "Price-ETH/USD-6"
+                    ]
+                }
+            }
+        },
+        "fuse": {
+            "name": "Fuse",
+            "networks": {
+                "fuse.testnet": {
+                    "address": "0xB4f1f8E27799256ec95C5b5A8d2A5722Bd542E69",
+                    "blockExplorer": "https://explorer.fusespark.io/address/{address}",
+                    "name": "Fuse Sparknet (Testnet)",
+                    "feeds": [
+                        "Price-BNB/USD-6",
+                        "Price-BNB/USDT-6",
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-FUSE/USDT-6",
+                        "Price-MATIC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "gnosis": {
+            "name": "Gnosis",
+            "networks": {
+                "gnosis.testnet": {
+                    "address": "0xA8767A6EA3099De344499B35f725A38E3cD15562",
+                    "blockExplorer": "https://blockscout.com/gnosis/chiado/address/{address}",
+                    "name": "Gnosis Testnet",
+                    "feeds": [
+                        "Price-DAI/USD-6",
+                        "Price-WIT/USDT-6"
+                    ]
+                }
+            }
+        },
+        "kava": {
+            "name": "Kava",
+            "networks": {
+                "kava.mainnet": {
+                    "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+                    "blockExplorer": "https://explorer.kava.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Kava EVM Mainnet",
+                    "feeds": [
+                        "Price-ATOM/USD-6",
+                        "Price-BTC/USD-6",
+                        "Price-DAI/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-KAVA/USD-6",
+                        "Price-KAVA/USDT-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                },
+                "kava.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://explorer.testnet.kava.io/address/{address}",
+                    "name": "Kava EVM Testnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-KAVA/USDT-6",
+                        "Price-USDC/USD-6"
+                    ]
+                }
+            }
+        },
+        "kcc": {
+            "name": "KCC",
+            "networks": {
+                "kcc.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
+                    "name": "KCC Testnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-KCS/USDT-6",
+                        "Price-SAX/USDT-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "kcc.mainnet": {
+                    "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+                    "blockExplorer": "https://scan.kcc.io/address/{address}",
+                    "mainnet": true,
+                    "name": "KCC Mainnet",
+                    "feeds": [
+                        "Price-BORING/USDT-6",
+                        "Price-BTC/USD-6",
+                        "Price-DAI/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-KCS/USDT-6",
+                        "Price-MJT/KCS-9",
+                        "Price-SAX/USDT-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "klaytn": {
+            "name": "Klaytn",
+            "networks": {
+                "klaytn.mainnet": {
+                    "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+                    "blockExplorer": "https://scope.klaytn.com/account/{address}",
+                    "mainnet": true,
+                    "name": "Klaytn Cypress (Mainnet)",
+                    "feeds": [
+                        "Price-KLAY/USD-6",
+                        "Price-KLAY/USDT-6",
+                        "Price-KRW/USD-9",
+                        "Price-KSP/KRW-6",
+                        "Price-KSP/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                },
+                "klaytn.testnet": {
+                    "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+                    "blockExplorer": "https://baobab.scope.klaytn.com/account/{address}",
+                    "name": "Klaytn Baobab (Testnet)",
+                    "feeds": [
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "mantle": {
+            "name": "Mantle",
+            "networks": {
+                "mantle.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://explorer.testnet.mantle.xyz/address/{address}",
+                    "name": "Mantle Testnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "mantle.mainnet": {
+                    "address": "",
+                    "blockExplorer": "https://explorer.mantle.xyz/address/{address}",
+                    "mainnet": true,
+                    "name": "Mantle Mainnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-MNT/USDT-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "metis": {
+            "name": "Metis",
+            "networks": {
+                "metis.sepolia": {
+                    "blockExplorer": "https://goerli.explorer.metisdevops.link/address/{address}",
+                    "name": "Metis Sepolia",
+                    "version": "2.0"
+                }
+            }
+        },
+        "meter": {
+            "name": "Meter",
+            "networks": {
+                "meter.testnet": {
+                    "address": "0x7BBA94e4f3a596AD0E528e51d49CaD789Bd6a22D",
+                    "blockExplorer": "https://scan-warringstakes.meter.io/address/{address}",
+                    "name": "Meter Testnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "meter.mainnet": {
+                    "address": "0xA0Ea8C99159843afdAE9eD092E8eaec0368e8A20",
+                    "blockExplorer": "https://scan.meter.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Meter Mainnet",
+                    "feeds": [
+                        "Price-MTR/USDT-6"
+                    ]
+                }
+            }
+        },
+        "moonbeam": {
+            "name": "Moonbeam",
+            "networks": {
+                "moonbeam.mainnet": {
+                    "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+                    "blockExplorer": "https://moonscan.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Moonbeam Mainnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-GLINT/USDC-6",
+                        "Price-GLMR/USD-6",
+                        "Price-GLMR/USDT-6",
+                        "Price-STELLA/USD-6",
+                        "Price-STELLA/USDT-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6",
+                        "Price-GLINT/USD-6"
+                    ]
+                },
+                "moonbeam.moonbase": {
+                    "address": "",
+                    "blockExplorer": "https://moonbase.moonscan.io/address/{address}",
+                    "name": "Moonbase Alpha",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-GLMR/USDT-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "moonbeam.moonriver": {
+                    "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
+                    "blockExplorer": "https://moonriver.moonscan.io/address/{address}",
+                    "name": "Moonriver",
+                    "feeds": [
+                        "Price-MOVR/USDT-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "okx": {
+            "name": "OKX",
+            "networks": {
+                "okx.x1.sepolia": {
+                    "address": "",
+                    "blockExplorer": "https://www.oklink.com/x1-test/address/{address}",
+                    "name": "OKX X1 Sepolia",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-USDC/USD-6",
+                        "Price-USDT/USD-6",
+                        "Price-WBTC/USD-6"
+                    ]
+                },
+                "okx.okxchain.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://www.oklink.com/en/oktc-test/address/{address}",
+                    "name": "OKT Testnet",
+                    "feeds": [
+                        "Price-USDT/USD-6"
+                    ]
+                }
+            }
+        },
+        "optimism": {
+            "name": "Optimism",
+            "networks": {
+                "optimism.mainnet": {
+                    "blockExplorer": "https://optimistic.etherscan.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Optimism Mainnet",
+                    "version": "2.0"
+                }
+            }
+        },
+        "polygon": {
+            "name": "Polygon",
+            "networks": {
+                "polygon.goerli": {
+                    "address": "",
+                    "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
+                    "name": "Polygon Mumbai",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "polygon.mainnet": {
+                    "address": "",
+                    "blockExplorer": "https://polygonscan.com/address/{address}",
+                    "mainnet": true,
+                    "name": "Polygon Mainnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-DAI/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-MATIC/USD-6",
+                        "Price-QUICK/USDC-6",
+                        "Price-QUICK/WETH-9",
+                        "Price-QUICK/WMATIC-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "polygon.zkevm.goerli": {
+                    "address": "",
+                    "blockExplorer": "https://testnet-zkevm.polygonscan.com/{address}",
+                    "name": "Polygon zkEVM Testnet",
+                    "feeds": [
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "polygon.zkevm.mainnet": {
+                    "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+                    "blockExplorer": "https://zkevm.polygonscan.com/address/{address}",
+                    "mainnet": true,
+                    "name": "Polygon zkEVM Mainnet",
+                    "feeds": [
+                        "Price-ETH/USD-6",
+                        "Price-QUICK/USDC-6",
+                        "Price-QUICK/WETH-9",
+                        "Price-QUICK/WMATIC-6",
+                        "Price-USDC/USD-6"
+                    ]
+                }
+            }
+        },
+        "reef": {
+            "name": "Reef",
+            "networks": {
+                "reef.testnet": {
+                    "blockExplorer": "https://testnet.reefscan.com/contract/{address}",
+                    "name": "Reef Testnet",
+                    "version": "2.0"
+                },
+                "reef.mainnet": {
+                    "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
+                    "blockExplorer": "https://reefscan.com/contract/{address}",
+                    "mainnet": true,
+                    "name": "Reef Mainnet",
+                    "feeds": [
+                        "Price-REEF/USDT-6"
+                    ]
+                }
+            }
+        },
+        "scroll": {
+            "name": "Scroll",
+            "networks": {
+                "scroll.mainnet": {
+                    "address": "",
+                    "blockExplorer": "https://scrollscan.com/address/{address}",
+                    "mainnet": true,
+                    "name": "Scroll Mainnet",
+                    "pollingPeriod": 120000,
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-UNI/USD-6",
+                        "Price-USDC/USD-6"
+                    ]
+                },
+                "scroll.sepolia": {
+                    "address": "",
+                    "blockExplorer": "https://sepolia.etherscan.io/{address}",
+                    "name": "Scroll Sepolia (testnet)",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-USDC/USD-6"
+                    ]
+                }
+            }
+        },
+        "syscoin": {
+            "name": "Syscoin",
+            "networks": {
+                "syscoin.mainnet": {
+                    "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
+                    "blockExplorer": "https://syscoin.io/address/{address}",
+                    "mainnet": true,
+                    "name": "Syscoin NEVM Mainnet",
+                    "feeds": [
+                        "Price-SYS/USDT-6"
+                    ]
+                },
+                "syscoin.rollux.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://rpc-tanenbaum.rollux.com/{address}",
+                    "name": "Syscoin Rollux Testnet",
+                    "feeds": [
+                        "Price-SYS/USDT-6"
+                    ]
+                }
+            }
+        },
+        "ultron": {
+            "name": "Ultron",
+            "networks": {
+                "ultron.testnet": {
+                    "address": "",
+                    "blockExplorer": "https://explorer.ultron-dev.io/address/{address}",
+                    "name": "Ultron Testnet",
+                    "feeds": [
+                        "Price-BTC/USD-6",
+                        "Price-WBTC/WULX-6"
+                    ]
+                },
+                "ultron.mainnet": {
+                    "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
+                    "blockExplorer": "https://ulxscan.com/address/{address}",
+                    "mainnet": true,
+                    "name": "Ultron Mainnet",
+                    "feeds": [
+                        "Price-AVAX/USD-6",
+                        "Price-BTC/USD-6",
+                        "Price-ETH/USD-6",
+                        "Price-FTM/USDT-6",
+                        "Price-MATIC/USD-6",
+                        "Price-ULX/USDT-6",
+                        "Price-WBTC/WULX-6",
+                        "Price-WETH/WULX-6"
+                    ]
+                }
+            }
+        }
+    },
+    "currencies": {
+        "EUR": "€",
+        "KRW": "₩",
+        "USD": "$",
+        "USDC": "$",
+        "USDT": "₮"
+    },
+    "conditions": {
+        "default": {
+            "deviationPercentage": 3.5,
+            "maxSecsBetweenUpdates": 86400,
+            "minSecsBetweenUpdates": 3600
+        },
+        "Price-BAT/USD-6": {
+            "isRouted": true
+        },
+        "Price-BNB/USD-6": {
+            "isRouted": true
+        },
+        "Price-BUSD/USD-6": {
+            "isRouted": true
+        },
+        "Price-CFX/USDT-6": {
+            "deviationPercentage": 1.0,
+            "maxSecsBetweenUpdates": 3600,
+            "minSecsBetweenUpdates": 300
+        },
+        "Price-CUBE/USD-6": {
+            "isRouted": true
+        },
+        "Price-DAI/USD-6": {
+            "deviationPercentage": 0.1,
+            "minSecsBetweenUpdates": 900
+        },
+        "Price-ELA/USD-6": {
+            "isRouted": true
+        },
+        "Price-ELON/USD-9": {
+            "isRouted": true
+        },
+        "Price-FRAX/USDT-6": {
+            "deviationPercentage": 0.25
+        },
+        "Price-GLINT/USD-6": {
+            "isRouted": true,
+            "maxSecsBetweenUpdates": 86400,
+            "minSecsBetweenUpdates": 900
+        },
+        "Price-GLINT/USDC-6": {
+            "deviationPercentage": 1.0
+        },
+        "Price-GLMR/USD-6": {
+            "isRouted": true
+        },
+        "Price-GLMR/USDT-6": {
+            "deviationPercentage": 1.0
+        },
+        "Price-HT/USD-6": {
+            "isRouted": true
+        },
+        "Price-HT/USDT-6": {
+            "deviationPercentage": 3.5
+        },
+        "Price-KAVA/USD-6": {
+            "isRouted": true
+        },
+        "Price-KAVA/USDT-6": {
+            "deviationPercentage": 0.5
+        },
+        "Price-KCS/USDT-6": {
+            "deviationPercentage": 0.5,
+            "maxSecsBetweenUpdates": 3600,
+            "minSecsBetweenUpdates": 3600
+        },
+        "Price-KLAY/USD-6": {
+            "isRouted": true
+        },
+        "Price-KSP/USD-6": {
+            "isRouted": true
+        },
+        "Price-METIS/USD-6": {
+            "isRouted": true
+        },
+        "Price-MJT/KCS-9": {
+            "deviationPercentage": 0.5
+        },
+        "Price-MOVR/USDT-6": {
+            "deviationPercentage": 1.0
+        },
+        "Price-MTRG/USD-6": {
+            "isRouted": true
+        },
+        "Price-NCT/USD-6": {
+            "isRouted": true
+        },
+        "Price-OKT/USDT-6": {
+            "deviationPercentage": 0.5,
+            "maxSecsBetweenUpdates": 3600,
+            "minSecsBetweenUpdates": 300
+        },
+        "Price-OP/USDT-6": {
+            "deviationPercentage": 1.0
+        },
+        "Price-QUICK/USD-6": {
+            "isRouted": true
+        },
+        "Price-SAX/USDT-6": {
+            "deviationPercentage": 0.5
+        },
+        "Price-STELLA/USD-6": {
+            "isRouted": true
+        },
+        "Price-STELLA/USDT-6": {
+            "deviationPercentage": 1.0
+        },
+        "Price-SYS/USDT-6": {
+            "deviationPercentage": 1.0
+        },
+        "Price-TUSD/USD-6": {
+            "isRouted": true
+        },
+        "Price-TUSD/USDT-6": {
+            "deviationPercentage": 0.25,
+            "minSecsBetweenUpdates": 900
+        },
+        "Price-USDC/USD-6": {
+            "deviationPercentage": 0.1,
+            "minSecsBetweenUpdates": 900
+        },
+        "Price-USDT/USD-6": {
+            "deviationPercentage": 0.1,
+            "minSecsBetweenUpdates": 900
+        },
+        "Price-WIT/USDT-6": {
+            "deviationPercentage": 1.0
+        }
+    }
+}
