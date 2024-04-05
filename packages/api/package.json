@@ -45,7 +45,7 @@
     "migrate-mongo": "^8.2.3",
     "mongodb": "4.16.0",
     "node-cache": "^5.1.2",
-    "web3": "^1.10.4",
+    "web3": "^4.7.0",
     "web3-eth-contract": "^1.10.0",
     "web3-utils": "^1.9.0"
   }
