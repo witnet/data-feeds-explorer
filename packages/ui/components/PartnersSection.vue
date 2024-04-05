@@ -1,17 +1,15 @@
 <template>
   <div class="integrations-card-container">
-    <MarqueeBanner>
-      <PartnersCard
-        v-for="integration in integrations"
-        :key="integration.title"
-        :name="integration.name"
-        :link="integration.link"
-        :title="integration.title"
-        :src="integration.src"
-        :brightness="integration.brightness"
-        :scale="integration.scale"
-      />
-    </MarqueeBanner>
+    <PartnersCard
+      v-for="integration in integrations"
+      :key="integration.title"
+      :name="integration.name"
+      :link="integration.link"
+      :title="integration.title"
+      :src="integration.src"
+      :brightness="integration.brightness"
+      :scale="integration.scale"
+    />
   </div>
 </template>
 
@@ -37,13 +35,14 @@ export default {
           title: 'Conflux Network',
           name: 'partner_conflux',
           link: 'https://confluxnetwork.org/',
-          scale: 1.2,
+          scale: 0.9,
         },
         {
           title: 'TriAngle DAO',
           name: 'partner_triangle',
           link: 'https://www.triangledao.finance/',
           brightness: 0.7,
+          scale: 0.8,
         },
         {
           title: 'Agora Space',
@@ -132,7 +131,7 @@ export default {
           title: 'Hoo Smart Chain',
           name: 'partner_hsc',
           link: 'https://www.hoosmartchain.com/',
-          scale: 1,
+          scale: 0.9,
           brightness: 1,
         },
         {
@@ -198,7 +197,12 @@ export default {
           scale: 1,
           brightness: 1,
         },
-      ],
+      ]
+        // This sorting algorithm is far for perfect (somehow biased), but it simply does the job here
+        .sort(() => 0.5 - Math.random())
+        // Limit the number of integrations shown, so they don't take too much space once we have dozens of them
+        // TODO: raise limit to 16 or 20
+        .slice(0, 18),
     }
   },
 }
