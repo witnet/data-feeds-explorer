@@ -193,7 +193,7 @@ export type FeedParsedParams = {
 }
 
 export type FeedConfig = {
-  legacy?: boolean,
+  version?: 'legacy' | '2.0'
   address?: string
   blockExplorer: string
   blockProvider?: string
@@ -226,32 +226,31 @@ export type Chain = {
 export type NetworkConfigMap = Record<string, FeedConfig>
 
 export type RouterDataFeedsConfig = {
-   contract: {
+  contract: {
     legacy: {
-        abi: string,
-        pollingPeriod: number 
-    },
-    "2.0": {
-        abi: string,
-        address: string,
-        pollingPeriod: number 
+      abi: string
+      pollingPeriod: number
     }
-  },
+    '2.0': {
+      abi: string
+      address: string
+      pollingPeriod: number
+    }
+  }
   chains: Record<string, Chain>
   conditions: FeedInfoRouterConfigMap & {
-      default: {
-        deviationPercentage: number,
-        maxSecsBetweenUpdates: number,
-        minSecsBetweenUpdates: number 
-    },
-  },
+    default: {
+      deviationPercentage: number
+      maxSecsBetweenUpdates: number
+      minSecsBetweenUpdates: number
+    }
+  }
   currencies: Record<string, string>
-
 }
 
 export type LegacyRouterDataFeedsConfig = {
-  abi: string,
-  chains: Record<string, Chain> 
+  abi: string
+  chains: Record<string, Chain>
 }
 
 export type FeedInfosWithoutAbis = Array<

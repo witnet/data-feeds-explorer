@@ -4,9 +4,11 @@ import fs from 'fs'
 import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types'
 import { normalizeConfig } from './utils'
 
-const CONFIG_URL = `https://raw.github.com/tommytrg/data-feeds-explorer/2.0/packages/api/src/dataFeedsRouter.json`
+const CONFIG_URL = process.env.TEST_BRANCH
+  ? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`
+  : `https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json`
 
-function isRouterDataFeedsConfig (val: any): val is RouterDataFeedsConfig {
+function isRouterDataFeedsConfig(val: any): val is RouterDataFeedsConfig {
   return val?.contract && val?.chains && val.conditions && val.currencies
 }
 
@@ -44,13 +46,12 @@ export function normalizeAndValidateDataFeedConfig(
 
   // Throw and error if config file is not valid
   // validateDataFeeds(dataFeeds)
-  return dataFeeds.map(dataFeed => ({
+  return dataFeeds.map((dataFeed) => ({
     ...dataFeed,
     routerAbi: JSON.parse(
       fs.readFileSync(
         path.resolve(
-          process.env.DATA_FEED_ROUTER_ABI_PATH ||
-            config.contract.legacy.abi
+          process.env.DATA_FEED_ROUTER_ABI_PATH || config.contract.legacy.abi,
         ),
         'utf-8',
       ),
@@ -59,7 +60,7 @@ export function normalizeAndValidateDataFeedConfig(
       fs.readFileSync(
         path.resolve(
           // TODO: should this abi be in the config file?
-          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json'
+          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json',
         ),
         'utf-8',
       ),

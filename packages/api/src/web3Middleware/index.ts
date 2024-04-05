@@ -156,9 +156,7 @@ export class Web3Middleware {
           let web3: Web3 | undefined
           //FIXME: make timeout work
           if (provider) {
-            web3 = new this.Web3(
-              new Web3.providers.HttpProvider(provider, { timeout }),
-            )
+            web3 = new this.Web3(new Web3.providers.HttpProvider(provider))
           }
           //FIXME: use web3 timeout instead of custom
           setTimeout(() => {
@@ -167,7 +165,10 @@ export class Web3Middleware {
 
           if (web3 && !this.routerContractByNetwork[feedInfo.network]) {
             this.routerContractByNetwork[feedInfo.network] =
-              new web3.eth.Contract(feedInfo.routerAbi, feedInfo.routerAddress)
+              new web3.eth.Contract(
+                feedInfo.routerAbi as any,
+                feedInfo.routerAddress,
+              )
           }
           const routerContract = this.routerContractByNetwork[feedInfo.network]
 
@@ -200,7 +201,10 @@ export class Web3Middleware {
     const web3 = new this.Web3(provider)
     const contractAddress = this.currentFeedAddresses[feedInfo.feedFullName]
     if (contractAddress && !isZeroAddress(contractAddress)) {
-      const feedContract = new web3.eth.Contract(feedInfo.abi, contractAddress)
+      const feedContract = new web3.eth.Contract(
+        feedInfo.abi as any,
+        contractAddress,
+      )
       console.log(
         `Reading ${feedInfo.feedFullName} contract state at address: ${contractAddress}`,
       )
@@ -241,11 +245,12 @@ export class Web3Middleware {
         `Latest contract update status for ${feedFullName}`,
         _latestUpdateStatus,
       )
+      const requestId = await feedContract.methods.latestQueryId().call()
       return {
-        lastPrice: _lastPrice,
-        lastTimestamp: _lastTimestamp,
-        lastDrTxHash: _lastDrTxHash,
-        requestId: await feedContract.methods.latestQueryId().call(),
+        lastPrice: _lastPrice.toString(),
+        lastTimestamp: _lastTimestamp.toString(),
+        lastDrTxHash: _lastDrTxHash.toString(),
+        requestId: requestId.toString(),
       }
     } catch (err) {
       throw new Error(`Error reading contract state for ${feedFullName} ${err}`)

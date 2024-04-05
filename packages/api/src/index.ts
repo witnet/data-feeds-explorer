@@ -63,11 +63,12 @@ async function main() {
 
   const newFeeds: Array<FeedInfo> = []
 
-  for (const router of routers) {
+  const promises = routers.map(async (router) => {
     const feedInfos = await router.getFeedInfos()
     newFeeds.concat(feedInfos)
-  }
+  })
 
+  await Promise.all(promises)
   const feeds = [...legacyFeeds, ...newFeeds]
 
   const repositories: Repositories = {
