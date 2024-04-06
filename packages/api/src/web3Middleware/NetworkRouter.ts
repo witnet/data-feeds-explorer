@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json'
 import { FeedInfo, Network, Repositories } from '../../types'
-import { AbiItem, toHex } from 'web3-utils'
+import { toHex } from 'web3-utils'
 import { createFeedFullName } from '../utils'
 import { PriceFeed } from './PriceFeed'
 import { Configuration } from './Configuration'
@@ -11,8 +11,8 @@ enum ResultStatus {
   Awaiting = 1,
   Ready = 2,
   Error = 3,
-  AwaitingReady = 4,
-  AwaitingError = 5,
+  Finaliziieng = 4,
+  Delivered = 5,
 }
 
 export type SupportedFeed = {
@@ -59,17 +59,17 @@ export class NetworkRouter {
     networkInfo: NetworkInfo,
   ) {
     this.Web3 = web3Dep
-    const { provider, address, pollingPeriod, key } = networkInfo
+    const { provider, address, pollingPeriod, key, networkName } = networkInfo
 
     if (!provider) {
-      throw new Error(`Missing provider for ${networkInfo.networkName}`)
+      throw new Error(`Missing provider for ${networkName}`)
     }
     const web3: Web3 = new this.Web3(
-      new Web3.providers.HttpProvider(provider, { timeout: 30000 }),
+      new Web3.providers.HttpProvider(provider),
     )
     // TODO: why this type isn't working?
     this.contract = new web3.eth.Contract(
-      WitnetPriceFeedsABI as AbiItem[],
+      WitnetPriceFeedsABI.abi as any,
       address,
     )
     ;(this.pollingPeriod = pollingPeriod), (this.repositories = repositories)
@@ -77,6 +77,7 @@ export class NetworkRouter {
     this.configuration = configuration
     this.provider = provider
     this.address = address
+    this.networkName = networkName
   }
 
   // Periodically fetch the price feed router contract and store it in mongodb
@@ -84,7 +85,9 @@ export class NetworkRouter {
     setInterval(async () => {
       const snapshot = await this.getSnapshot()
       const insertPromises = snapshot.feeds
-        .filter((feed) => feed.status !== ResultStatus.Ready)
+        .filter((feed) => {
+          return feed.status === ResultStatus.Ready
+        })
         .map((feed) => ({
           feedFullName: createFeedFullName(
             this.network,
@@ -92,9 +95,9 @@ export class NetworkRouter {
             feed.caption.split('-').reverse()[0],
           ),
           drTxHash: toHex(feed.tallyHash).slice(2),
-          requestId: feed.id,
-          result: feed.value,
-          timestamp: feed.timestamp,
+          requestId: feed.id.toString(),
+          result: feed.value.toString(),
+          timestamp: feed.timestamp.toString(),
         }))
         .map((resultRequest) => {
           return this.repositories.resultRequestRepository.insertIfLatest(
@@ -146,11 +149,11 @@ export class NetworkRouter {
   // Wrap supportedFeeds contract method
   async getSupportedFeeds(): Promise<Array<SupportedFeed>> {
     try {
-      const supportedFeeds = await this.contract.methods.supportedFeeds().call()
-      return supportedFeeds._ids.map((_, index) => ({
-        id: supportedFeeds._ids[index],
-        caption: supportedFeeds._captions[index],
-        solver: supportedFeeds._solvers[index],
+      const supportedFeeds = await Web3.utils.waitWithTimeout(this.contract.methods.supportedFeeds().call(), 10000)
+      return supportedFeeds[0].map((_, index) => ({
+        id: supportedFeeds[0][index],
+        caption: supportedFeeds[1][index],
+        solver: supportedFeeds[2][index],
       }))
     } catch (e) {
       console.log(
@@ -169,7 +172,7 @@ export class NetworkRouter {
         value: latestPrice.value.toString(),
         timestamp: latestPrice.timestamp.toString(),
         tallyHash: latestPrice.tallyHash,
-        status: Number(latestPrice.status),
+        status: Number(latestPrice.status.toString()),
       }))
     } catch (e) {
       console.log(

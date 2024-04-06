@@ -7,7 +7,7 @@ import { normalizeConfig } from './utils'
 const CONFIG_URL = `https://raw.github.com/tommytrg/data-feeds-explorer/2.0/packages/api/src/dataFeedsRouter.json`
 
 function isRouterDataFeedsConfig (val: any): val is RouterDataFeedsConfig {
-  return val?.contract && val?.chains && val.conditions && val.currencies
+  return val?.contracts && val?.chains && val.conditions && val.currencies
 }
 
 export async function fetchDataFeedsRouterConfig(): Promise<RouterDataFeedsConfig | null> {
@@ -44,13 +44,13 @@ export function normalizeAndValidateDataFeedConfig(
 
   // Throw and error if config file is not valid
   // validateDataFeeds(dataFeeds)
-  return dataFeeds.map(dataFeed => ({
+  return dataFeeds.map((dataFeed) => ({
     ...dataFeed,
     routerAbi: JSON.parse(
       fs.readFileSync(
         path.resolve(
           process.env.DATA_FEED_ROUTER_ABI_PATH ||
-            config.contract.legacy.abi
+            config.contracts.legacy.abi
         ),
         'utf-8',
       ),
@@ -59,7 +59,7 @@ export function normalizeAndValidateDataFeedConfig(
       fs.readFileSync(
         path.resolve(
           // TODO: should this abi be in the config file?
-          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json'
+          process.env.DATA_FEED_ABI_PATH || './src/abi/PriceFeed.json',
         ),
         'utf-8',
       ),

@@ -1,5 +1,5 @@
 {
-  "contract": {
+  "contracts": {
     "legacy": {
       "abi": "./src/abi/PriceFeedRouter.json",
       "pollingPeriod": 120000
@@ -22,20 +22,33 @@
       "name": "Arbitrum",
       "networks": {
         "arbitrum.one": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xf56E739C436EA6e65A17DBfaC9D7E57062D19422",
           "blockExplorer": "https://arbiscan.io/address/{address}",
           "color": "#E84142",
-          "mainnet": true,
-          "name": "Arbitrum ONE"
+          "mainnet": "true",
+          "name": "Arbitrum ONE",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         },
         "arbitrum.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xAafb2D27E2E0f83dcE501a2879aaD710ec377403",
           "blockExplorer": "https://goerli.arbiscan.io/address/{address}",
           "color": "#E84142",
           "name": "Arbitrum Nitro Goerli",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-ETH/USD-6": {
-              "deviationPercentage": 0.5
+              "label": "$",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             }
           }
         }
@@ -45,7 +58,6 @@
       "name": "Avalanche",
       "networks": {
         "avalanche.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
           "blockExplorer": "https://snowtrace.io/address/{address}",
@@ -54,6 +66,7 @@
           "pollingPeriod": 120000,
           "feeds": {
             "Price-AVAX/USD-6": {
+              "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
@@ -61,10 +74,31 @@
           }
         },
         "avalanche.fuji": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4",
           "blockExplorer": "https://testnet.snowtrace.io/address/{address}",
           "color": "#E84142",
-          "name": "Avalanche Fuji"
+          "name": "Avalanche Fuji",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-AVAX/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         }
       }
     },
@@ -72,7 +106,6 @@
       "name": "Boba",
       "networks": {
         "boba.ethereum.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
           "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
@@ -131,40 +164,92 @@
           }
         },
         "boba.ethereum.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://testnet.bobascan.com/address/{address}",
           "color": "#1cd83d",
           "name": "Boba ETH/L2 Goerli",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-BOBA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-DAI/USD-6": {
-              "deviationPercentage": 0.25
+              "label": "$",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-FRAX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-OLO/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             }
           }
         },
         "boba.bnb.mainnet": {
-          "legacy": false,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x62a1b1D6E5bA031846894FC5C3609f586c78D23D",
           "blockExplorer": "https://blockexplorer.bnb.boba.network/address/{address}",
           "color": "#1cd83d",
           "name": "Boba BNB/L2 Mainnet",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BNB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-BOBA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-WIT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
         },
         "boba.bnb.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x8D20457d968c937b7cb65be6B8cC766613fBcF28",
           "blockExplorer": "https://blockexplorer.testnet.bnb.boba.network/address/{address}",
           "color": "#1cd83d",
-          "name": "Boba BNB/L2 Testnet"
+          "name": "Boba BNB/L2 Testnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-BNB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BOBA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WIT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         }
       }
     },
@@ -172,30 +257,89 @@
       "name": "Celo",
       "networks": {
         "celo.alfajores": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE",
           "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
           "color": "#1cd8d2",
-          "name": "Celo Alfajores"
+          "name": "Celo Alfajores",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-CELO/EUR-6": {
+              "label": "€",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-CELO/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-NCT/CELO-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-NCT/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            }
+          }
         },
         "celo.mainnet": {
-          "legacy": false,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x931673904eB6E69D775e35F522c0EA35575297Cb",
           "blockExplorer": "https://explorer.celo.org/address/{address}",
           "color": "#ff8100",
           "name": "Celo Mainnet",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-CELO/EUR-6": {
+              "label": "€",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-CELO/USD-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-NCT/CELO-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
+            },
+            "Price-NCT/USD-6": {
+              "isRouted": true,
+              "label": "$"
             }
           }
         }
@@ -205,7 +349,6 @@
       "name": "Conflux",
       "networks": {
         "conflux.core.mainnet": {
-          "legacy": true,
           "address": "0x806c8dFd322EE2d52b188CC472e0814F64304C32",
           "blockExplorer": "https://confluxscan.io/address/{address}",
           "color": "#ff0000",
@@ -233,7 +376,6 @@
           }
         },
         "conflux.espace.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://evm.confluxscan.net/address/{address}",
@@ -274,36 +416,54 @@
           }
         },
         "conflux.core.testnet": {
-          "address": "0x8FDD679F4D1d2bfb97B5e5fD90c8E3E6ce0ce75c",
+          "address": "0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25",
           "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
           "color": "#6600ff",
           "name": "Conflux Core (Testnet)",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-CFX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
             "Price-BTC/USD-6": {
-              "deviationPercentage": 1,
+              "label": "$",
+              "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
             "Price-ETH/USD-6": {
-              "deviationPercentage": 1,
+              "label": "$",
+              "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             }
           }
         },
         "conflux.espace.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x49C0BCce51a8B28f92d008394F06d5B259657F33",
           "blockExplorer": "https://evmtestnet.confluxscan.net/address/{address}",
           "color": "#6600ff",
           "name": "Conflux eSpace (Testnet)",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
-              "deviationPercentage": 1,
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
+            "Price-CFX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
             "Price-ETH/USD-6": {
-              "deviationPercentage": 1,
+              "label": "$",
+              "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
@@ -333,29 +493,163 @@
       "name": "Cronos",
       "networks": {
         "cronos.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
           "blockExplorer": "https://testnet.cronoscan.com/address/{address}",
           "color": "#6600ff",
           "name": "Cronos Testnet",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-CRO/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ELON/USD-9": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-ELON/USDT-9": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
             "Price-USDT/USD-6": {
-              "deviationPercentage": 0.25
+              "label": "$",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ADA/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ATOM/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-AVAX/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-CRO/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             },
             "Price-DAI/USD-6": {
-              "deviationPercentage": 0.25
+              "label": "$",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-DOGE/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-DOT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-EOS/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-LINK/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-SHIB/USD-9": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-SOL/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-TUSD/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-TUSD/USD-6": {
+              "isRouted": true,
+              "label": "$"
             },
             "Price-USDC/USD-6": {
-              "deviationPercentage": 0.25
+              "label": "$",
+              "deviationPercentage": 0.25,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WBTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-XLM/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ALGO/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-APE/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MATIC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             }
           }
         },
         "cronos.mainnet": {
-          "legacy": true,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://cronoscan.com/address/{address}",
           "color": "#6600ff",
           "name": "Cronos Mainnet",
@@ -374,6 +668,16 @@
               "minSecsBetweenUpdates": 3600
             },
             "Price-CRO/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-ELON/USD-9": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-ELON/USDT-9": {
               "label": "₮",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
@@ -399,7 +703,6 @@
       "name": "Cube",
       "networks": {
         "cube.testnet": {
-          "legacy": true,
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://testnet.cubescan.network/en-us/address/{address}",
           "color": "#ff6600",
@@ -454,7 +757,6 @@
       "name": "Dogechain",
       "networks": {
         "dogechain.testnet": {
-          "legacy": true,
           "address": "0x9E943Ab1FD0D35B3BaDe31AA78D60C485EA1a604",
           "blockExplorer": "https://explorer-testnet.dogechain.dog/address/{address}",
           "color": "#f6006f",
@@ -470,7 +772,6 @@
           }
         },
         "dogechain.mainnet": {
-          "legacy": true,
           "address": "0xD7f7933992c25A504e9Ddf7e76a3c1D6c432b25D",
           "blockExplorer": "https://explorer.dogechain.dog/address/{address}",
           "color": "#f6006f",
@@ -491,34 +792,112 @@
       "name": "Elastos",
       "networks": {
         "elastos.mainnet": {
-          "legacy": false,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x0Aa147F25CE8BfaA4E6B4B2CCa91f595bD732CD4",
           "blockExplorer": "https://esc.elastos.io/address/{address}",
           "color": "#66ff00",
           "name": "Elastos Mainnet",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-BNB/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-BNB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-ELA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
+            "Price-HT/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-HT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
         },
         "elastos.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x4874cb1732eE1167A006E0Ab047D940ACF04D771",
           "blockExplorer": "https://esc-testnet.elastos.io/address/{address}",
           "color": "#66ff00",
           "name": "Elastos Testnet",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-BNB/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-BNB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ELA/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-ELA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-HT/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-HT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
           }
@@ -529,12 +908,20 @@
       "name": "Ethereum",
       "networks": {
         "ethereum.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x1cF3Aa9DBF4880d797945726B94B9d29164211BE",
           "blockExplorer": "https://goerli.etherscan.io/address/{address}",
           "color": "#ff5599",
           "name": "Ethereum Goerli",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
               "deviationPercentage": 3.5,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
@@ -542,13 +929,21 @@
           }
         },
         "ethereum.sepolia": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xdC101573cB42EB7006Ad6C7E08ce8C91fEAcB62C",
           "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
           "color": "#ff5599",
-          "name": "Ethereum Sepolia"
+          "name": "Ethereum Sepolia",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         },
         "ethereum.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
           "blockExplorer": "https://etherscan.io/address/{address}",
@@ -566,11 +961,11 @@
         }
       }
     },
+
     "fuse": {
       "name": "Fuse",
       "networks": {
         "fuse.testnet": {
-          "legacy": true,
           "mainnet": false,
           "address": "0xB4f1f8E27799256ec95C5b5A8d2A5722Bd542E69",
           "blockExplorer": "https://explorer.fusespark.io/address/{address}",
@@ -626,7 +1021,6 @@
       "name": "Gnosis",
       "networks": {
         "gnosis.testnet": {
-          "legacy": true,
           "mainnet": false,
           "address": "0xA8767A6EA3099De344499B35f725A38E3cD15562",
           "blockExplorer": "https://blockscout.com/gnosis/chiado/address/{address}",
@@ -654,7 +1048,6 @@
       "name": "Kava",
       "networks": {
         "kava.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://explorer.kava.io/address/{address}",
@@ -711,14 +1104,56 @@
           }
         },
         "kava.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://explorer.testnet.kava.io/address/{address}",
           "color": "#ff0066",
           "name": "Kava EVM Testnet",
           "pollingPeriod": 10000,
           "feeds": {
+            "Price-ATOM/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-KAVA/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-KAVA/USDT-6": {
+              "label": "₮",
               "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
           }
@@ -729,27 +1164,69 @@
       "name": "KCC",
       "networks": {
         "kcc.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a",
           "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
           "color": "#ff0066",
           "name": "KCC Testnet",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-BORING/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-BTC/USD-6": {
-              "deviationPercentage": 0.5
+              "label": "$",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
-              "deviationPercentage": 0.5
+              "label": "$",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             },
             "Price-KCS/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
+            "Price-MJT/KCS-9": {
+              "label": " ",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-SAX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
           }
         },
         "kcc.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://scan.kcc.io/address/{address}",
@@ -819,7 +1296,6 @@
       "name": "Klaytn",
       "networks": {
         "klaytn.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://scope.klaytn.com/account/{address}",
@@ -862,12 +1338,42 @@
           }
         },
         "klaytn.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xeD074DA2A76FD2Ca90C1508930b4FB4420e413B0",
           "blockExplorer": "https://baobab.scope.klaytn.com/account/{address}",
           "color": "#ff0066",
           "name": "Klaytn Baobab (Testnet)",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-KLAY/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-KLAY/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-KRW/USD-9": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-KSP/KRW-6": {
+              "label": "₩",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-KSP/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
@@ -878,34 +1384,80 @@
       "name": "Mantle",
       "networks": {
         "mantle.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x9f9bAB64229680E170835BC9cC1c96F2C63f7d16",
           "blockExplorer": "https://explorer.testnet.mantle.xyz/address/{address}",
           "color": "#ff6600",
           "name": "Mantle Testnet",
-          "pollingPeriod": 90000
+          "pollingPeriod": 90000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MNT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         },
         "mantle.mainnet": {
-          "legacy": false,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x0d13c6058DDE86da77565ED6038C065Af71e9208",
           "blockExplorer": "https://explorer.mantle.xyz/address/{address}",
           "color": "#ff6600",
           "name": "Mantle Mainnet",
           "pollingPeriod": 90000,
           "feeds": {
             "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-MNT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
@@ -916,7 +1468,6 @@
       "name": "Metis",
       "networks": {
         "metis.goerli": {
-          "legacy": true,
           "address": "0xBfFA2ec6225390C517A1bEB83b27a171C6734294",
           "blockExplorer": "https://goerli.explorer.metisdevops.link/address/{address}",
           "color": "#ff6600",
@@ -959,13 +1510,55 @@
       "name": "Meter",
       "networks": {
         "meter.testnet": {
-          "address": "0x7BBA94e4f3a596AD0E528e51d49CaD789Bd6a22D",
+          "address": "0xBbDB82a16d7b66bb076879f766042b914F1C7572",
           "blockExplorer": "https://scan-warringstakes.meter.io/address/{address}",
           "color": "#ff6600",
-          "name": "Meter Testnet"
+          "name": "Meter Testnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MTR/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MTRG/USD-6": {
+              "label": "$",
+              "isRouted": true
+            },
+            "Price-MTRG/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         },
         "meter.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xA0Ea8C99159843afdAE9eD092E8eaec0368e8A20",
           "blockExplorer": "https://scan.meter.io/address/{address}",
@@ -987,7 +1580,6 @@
       "name": "Moonbeam",
       "networks": {
         "moonbeam.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://moonscan.io/address/{address}",
@@ -1054,25 +1646,71 @@
           }
         },
         "moonbeam.moonbase": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x56834Ff8D4b27db647Da97CA3bd8540f7fA0e89D",
           "blockExplorer": "https://moonbase.moonscan.io/address/{address}",
           "color": "#ff6600",
           "name": "Moonbase Alpha",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
-              "deviationPercentage": 1.0
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             },
             "Price-ETH/USD-6": {
+              "label": "$",
               "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 300
             },
+            "Price-GLINT/USD-6": {
+              "isRouted": true,
+              "label": "$",
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-GLINT/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-GLMR/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-GLMR/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-STELLA/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-STELLA/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
           }
         },
         "moonbeam.moonriver": {
-          "legacy": true,
           "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
           "blockExplorer": "https://moonriver.moonscan.io/address/{address}",
           "color": "#ff6600",
@@ -1105,29 +1743,66 @@
       "name": "OKX",
       "networks": {
         "okx.x1.sepolia": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x6dc0E2AC80550F901cd4d5F5a4C48333A0ca97Ee",
           "blockExplorer": "https://www.oklink.com/x1-test/address/{address}",
           "color": "#ff0066",
           "name": "OKX X1 Sepolia",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-OKB/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-WBTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
         },
         "okx.okxchain.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://www.oklink.com/en/oktc-test/address/{address}",
           "color": "#ff0066",
           "name": "OKT Testnet",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-OKT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 0.5,
+              "maxSecsBetweenUpdates": 3600,
+              "minSecsBetweenUpdates": 300
+            },
             "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             }
@@ -1138,25 +1813,19 @@
     "optimism": {
       "name": "Optimism",
       "networks": {
-        "optimism.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
-          "blockExplorer": "https://blockscout.com/optimism/goerli/address/{address}",
-          "color": "#66ff00",
-          "name": "Optimism Goerli (testnet)"
-        },
         "optimism.sepolia": {
-          "address": "0x4326d5b067EC4Bb5c2F71909E278Def8e4906B19",
+          "version": "2.0",
           "blockExplorer": "https://sepolia-optimism.etherscan.io/address/{address}",
           "color": "#66ff00",
-          "name": "Optimism Sepolia (testnet)",
+          "name": "Optimism Sepolia (testnet)"
+        },
+        "optimism.goerli": {
+          "address": "0xD9465D38f50f364b3263Cb219e58d4dB2D584530",
+          "blockExplorer": "https://blockscout.com/optimism/goerli/address/{address}",
+          "color": "#66ff00",
+          "name": "Optimism Goerli (testnet)",
           "pollingPeriod": 120000,
           "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
             "Price-OP/USDT-6": {
               "label": "₮",
               "deviationPercentage": 1.0,
@@ -1166,7 +1835,6 @@
           }
         },
         "optimism.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://optimistic.etherscan.io/address/{address}",
@@ -1183,85 +1851,232 @@
           }
         }
       }
-    },
+    }, 
     "polygon": {
       "name": "Polygon",
       "networks": {
         "polygon.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb",
           "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
           "color": "#66ff00",
           "name": "Polygon Mumbai",
+          "pollingPeriod": 120000,
           "feeds": {
-            "Price-BTC/USD-6": {
+            "Price-BAT/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-BAT/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
-            "Price-ETH/USD-6": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
+            },
+            "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 3600
+            },
+            "Price-MATIC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-QUICK/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/WETH-9": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/WMATIC-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDT/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             }
           }
         },
         "polygon.mainnet": {
-          "legacy": false,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4",
           "blockExplorer": "https://polygonscan.com/address/{address}",
           "color": "#66ff00",
           "name": "Polygon Mainnet",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-DAI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-MATIC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
+            "Price-QUICK/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-QUICK/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WETH-9": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WMATIC-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
         },
         "polygon.zkevm.goerli": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xc2462eE5d9F8C70f3E0C4CE5881dFFF291Ff2205",
           "blockExplorer": "https://testnet-zkevm.polygonscan.com/{address}",
           "color": "#66ff00",
-          "name": "Polygon zkEVM Testnet"
+          "name": "Polygon zkEVM Testnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
+            "Price-QUICK/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/WETH-9": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-QUICK/WMATIC-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         },
         "polygon.zkevm.mainnet": {
-          "legacy": false,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xb99FA0430C73E7B82604Aa99d351d6aFdCe46A16",
           "blockExplorer": "https://zkevm.polygonscan.com/address/{address}",
           "color": "#66ff00",
           "name": "Polygon zkEVM Mainnet",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
+            "Price-QUICK/USD-6": {
+              "isRouted": true,
+              "label": "$"
+            },
             "Price-QUICK/USDC-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WETH-9": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-QUICK/WMATIC-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 0.1,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
@@ -1272,7 +2087,6 @@
       "name": "Reef",
       "networks": {
         "reef.testnet": {
-          "legacy": true,
           "address": "0xB600e92DbA7CA66895Aa353d9128514ba47e7896",
           "blockExplorer": "https://testnet.reefscan.com/contract/{address}",
           "color": "#66ff00",
@@ -1288,7 +2102,6 @@
           }
         },
         "reef.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
           "blockExplorer": "https://reefscan.com/contract/{address}",
@@ -1310,36 +2123,69 @@
       "name": "Scroll",
       "networks": {
         "scroll.mainnet": {
-          "legacy": false,
           "mainnet": true,
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x0d13c6058DDE86da77565ED6038C065Af71e9208",
           "blockExplorer": "https://scrollscan.com/address/{address}",
           "color": "#66ff00",
           "name": "Scroll Mainnet",
+          "pollingPeriod": 120000,
           "feeds": {
             "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-UNI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             },
             "Price-USDC/USD-6": {
+              "label": "$",
               "deviationPercentage": 0.2,
+              "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
             }
           }
         },
         "scroll.sepolia": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xdC101573cB42EB7006Ad6C7E08ce8C91fEAcB62C",
           "blockExplorer": "https://sepolia.etherscan.io/{address}",
           "color": "#66ff00",
           "name": "Scroll Sepolia (testnet)",
+          "pollingPeriod": 120000,
           "feeds": {
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-UNI/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
             "Price-USDC/USD-6": {
-              "deviationPercentage": 0.2
+              "label": "$",
+              "deviationPercentage": 0.2,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
             }
           }
         }
@@ -1349,7 +2195,6 @@
       "name": "SmartBCH",
       "networks": {
         "smartbch.amber": {
-          "legacy": true,
           "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://www.smartscan.cash/address/{address}",
           "color": "#66ff00",
@@ -1357,6 +2202,7 @@
           "pollingPeriod": 10000,
           "feeds": {
             "Price-BCH/USD-6": {
+              "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
@@ -1369,7 +2215,6 @@
       "name": "Syscoin",
       "networks": {
         "syscoin.testnet": {
-          "legacy": true,
           "address": "0x9E943Ab1FD0D35B3BaDe31AA78D60C485EA1a604",
           "blockExplorer": "https://tanenbaum.io/address/{address}",
           "color": "#66ff00",
@@ -1385,7 +2230,6 @@
           }
         },
         "syscoin.mainnet": {
-          "legacy": true,
           "address": "0xE22f48DDdcb34BD34489fE224d7fFC1b0a361D87",
           "blockExplorer": "https://syscoin.io/address/{address}",
           "color": "#66ff00",
@@ -1402,11 +2246,19 @@
           }
         },
         "syscoin.rollux.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0x4874cb1732eE1167A006E0Ab047D940ACF04D771",
           "blockExplorer": "https://rpc-tanenbaum.rollux.com/{address}",
           "color": "#66ff00",
           "name": "Syscoin Rollux Testnet",
-          "pollingPeriod": 90000
+          "pollingPeriod": 90000,
+          "feeds": {
+            "Price-SYS/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 1.0,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         }
       }
     },
@@ -1446,13 +2298,63 @@
       "name": "Ultron",
       "networks": {
         "ultron.testnet": {
-          "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
+          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
           "blockExplorer": "https://explorer.ultron-dev.io/address/{address}",
           "color": "#66ff00",
-          "name": "Ultron Testnet"
+          "name": "Ultron Testnet",
+          "pollingPeriod": 120000,
+          "feeds": {
+            "Price-AVAX/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-BTC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ETH/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-FTM/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-MATIC/USD-6": {
+              "label": "$",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-ULX/USDT-6": {
+              "label": "₮",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WBTC/WULX-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            },
+            "Price-WETH/WULX-6": {
+              "label": " ",
+              "deviationPercentage": 3.5,
+              "maxSecsBetweenUpdates": 86400,
+              "minSecsBetweenUpdates": 900
+            }
+          }
         },
         "ultron.mainnet": {
-          "legacy": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://ulxscan.com/address/{address}",
           "color": "#66ff00",

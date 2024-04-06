@@ -1,5 +1,5 @@
 {
-  "contract": {
+  "contracts": {
     "legacy": {
       "abi": "./src/abi/WitnetPriceRouter.json",
       "pollingPeriod": 120000

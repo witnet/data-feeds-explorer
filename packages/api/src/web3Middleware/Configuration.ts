@@ -1,7 +1,13 @@
-import { FeedParamsConfig, LegacyRouterDataFeedsConfig, Network, NetworksConfig, RouterDataFeedsConfig } from "../../types";
-import { getNetworksListByChain, sortAlphabeticallyByLabel } from "../utils";
-import { NetworkInfo } from "./NetworkRouter";
-import { getProvider } from "./provider";
+import {
+  FeedParamsConfig,
+  LegacyRouterDataFeedsConfig,
+  Network,
+  NetworksConfig,
+  RouterDataFeedsConfig,
+} from '../../types'
+import { getNetworksListByChain, sortAlphabeticallyByLabel } from '../utils'
+import { NetworkInfo } from './NetworkRouter'
+import { getProvider } from './provider'
 
 export class Configuration {
   private configurationFile: RouterDataFeedsConfig
@@ -38,13 +44,12 @@ export class Configuration {
   public listNetworksUsingPriceFeedsContract(): Array<NetworkInfo> {
     return Object.values(this.configurationFile.chains)
       .flatMap(chain => Object.entries(chain.networks))
-      .filter(([_, network])=> !network.legacy)
+      .filter(([_, network])=> network.version === '2.0')
       .map(([networkKey, network]) => {
-        console.log(networkKey.replaceAll('.', '-') as Network)
         return {
           provider: network.blockProvider || getProvider(networkKey.replaceAll('.', '-') as Network) || "",
-          address: network.address || this.configurationFile.contract["2.0"].address,
-          pollingPeriod: network.pollingPeriod || this.configurationFile.contract["2.0"].pollingPeriod,
+          address: network.address || this.configurationFile.contracts["2.0"].address,
+          pollingPeriod: network.pollingPeriod || this.configurationFile.contracts["2.0"].pollingPeriod,
           key: this.fromNetworkKeyToNetwork(networkKey),
           networkName: network.name,
         }
@@ -52,23 +57,17 @@ export class Configuration {
   }
 
   public getLegacyConfigurationFile(): LegacyRouterDataFeedsConfig {
-    const abi = this.configurationFile.contract.legacy.abi
+    const abi = this.configurationFile.contracts.legacy.abi
     const chains = Object.entries(this.configurationFile.chains).reduce((acc, [chainKey, chain]) => {
-
-        const networks = Object.entries(chain.networks).reduce(
-          (accNetworks, [networkKey, network]) => {
-            // add the network entry if it's legacy
-            return network.legacy
-              ? { ...accNetworks, [networkKey]: network }
-              : accNetworks
-          },
-          {},
-        )
-
-      const networks = Object.entries(chain.networks).reduce((accNetworks, [networkKey, network]) => {
-        // add the network entry if it's legacy
-        return network.legacy ? { ...accNetworks, [networkKey]: network } : accNetworks;
-      }, {})
+      const networks = Object.entries(chain.networks).reduce(
+        (accNetworks, [networkKey, network]) => {
+          // add the network entry if it's legacy
+          return !network.version || network.version === 'legacy'
+            ? { ...accNetworks, [networkKey]: network }
+            : accNetworks
+        },
+        {},
+      )
       return Object.keys(networks).length > 0 ? { ...acc, [chainKey]: { ...chain, networks } } : acc
     }, {})
 
@@ -78,12 +77,21 @@ export class Configuration {
     }
   }
 
-  public getFeedConfiguration(priceFeedName: string, network: Network): FeedParamsConfig {
+  public getFeedConfiguration(
+    priceFeedName: string,
+    network: Network,
+  ): FeedParamsConfig {
     const defaultConfiguration = this.configurationFile.conditions.default
     const defaultFeed = this.configurationFile.conditions[priceFeedName]
-    const specificFeedConfiguration = this.getNetworkConfiguration(network)?.feeds?.[priceFeedName]
+    const specificFeedConfiguration =
+      this.getNetworkConfiguration(network)?.feeds?.[priceFeedName]
 
-    return { ...defaultConfiguration, ...defaultFeed, ...specificFeedConfiguration, label: this.getFeedCurrencySymbol(priceFeedName) }
+    return {
+      ...defaultConfiguration,
+      ...defaultFeed,
+      ...specificFeedConfiguration,
+      label: this.getFeedCurrencySymbol(priceFeedName),
+    }
   }
 
   public isFeedActive(caption: string): boolean {
@@ -91,19 +99,21 @@ export class Configuration {
   }
 
   public getNetworkConfiguration(network: Network) {
-    const { address, pollingPeriod }= this.configurationFile.contract["2.0"]
+    const { address, pollingPeriod }= this.configurationFile.contracts["2.0"]
     return {
       address,
       pollingPeriod,
-      ...this.configurationFile.chains[getChain(network)].networks[networkToKey(network)],
-     }
+      ...this.configurationFile.chains[getChain(network)].networks[
+        networkToKey(network)
+      ],
+    }
   }
 
   public getFeedCurrencySymbol(priceFeedName: string) {
     // Example: Price-TOKEN/CURRENCY-6
     const currency = priceFeedName.split('/')[1].split('-')[0]
 
-    return this.configurationFile.currencies[currency] || " "
+    return this.configurationFile.currencies[currency] || ' '
   }
 
   private fromNetworkKeyToNetwork(networkKey: string): Network {

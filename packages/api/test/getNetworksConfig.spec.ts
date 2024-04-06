@@ -34,13 +34,13 @@ describe('validateNetworkConfig', () => {
         key: 'polygon-zkevm-mainnet',
         label: 'Polygon zkEVM Mainnet',
         chain: 'Polygon',
-        mainnet: true
+        mainnet: true,
       },
       {
         key: 'boba-bnb-testnet',
         label: 'Boba BNB/L2 Testnet',
         chain: 'Boba',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'boba-ethereum-goerli',
@@ -70,7 +70,7 @@ describe('validateNetworkConfig', () => {
         key: 'conflux-espace-testnet',
         label: 'Conflux eSpace (Testnet)',
         chain: 'Conflux',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'ethereum-goerli',
@@ -100,14 +100,14 @@ describe('validateNetworkConfig', () => {
         key: 'polygon-goerli',
         label: 'Polygon Mumbai',
         chain: 'Polygon',
-        mainnet: false
+        mainnet: false,
       },
       {
         key: 'polygon-zkevm-goerli',
         label: 'Polygon zkEVM Testnet',
         chain: 'Polygon',
-        mainnet: false
-      }
+        mainnet: false,
+      },
     ]
     expect(networksConfig).toStrictEqual(expected)
   })
