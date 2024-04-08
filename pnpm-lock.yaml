@@ -165,6 +165,9 @@ importers:
       date-fns:
         specifier: ^3.2.0
         version: 3.3.1
+      graphql:
+        specifier: ^15.5.0
+        version: 15.8.0
       graphql-request:
         specifier: ^6.1.0
         version: 6.1.0(graphql@15.8.0)
