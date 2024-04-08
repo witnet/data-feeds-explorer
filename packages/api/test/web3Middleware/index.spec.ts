@@ -1,6 +1,6 @@
 // FIXME: create a proper mock for web3
 import Web3 from 'web3'
-import { FeedInfo, Db } from '../../types'
+import { FeedInfo, Db, RouterDataFeedsConfig } from '../../types'
 import { FeedRepository } from '../../src/repository/Feed'
 import { ResultRequestRepository } from '../../src/repository/ResultRequest'
 import { Web3Middleware } from '../../src/web3Middleware/index'
@@ -9,7 +9,7 @@ import dataFeedsRouter from './dataFeedsRouter.json'
 import { ObjectId } from 'mongodb'
 import { Configuration } from '../../src/web3Middleware/Configuration'
 
-const dataFeeds = normalizeConfig(dataFeedsRouter)
+const dataFeeds = normalizeConfig(dataFeedsRouter as RouterDataFeedsConfig)
 
 jest.mock('../../src/repository/Feed')
 jest.mock('../../src/repository/ResultRequest')
@@ -88,7 +88,9 @@ describe.skip('web3Middleware', () => {
       },
     )
     const feedRepository = new FeedRepository(feedInfos)
-    const configuration = new Configuration(dataFeedsRouter)
+    const configuration = new Configuration(
+      dataFeedsRouter as RouterDataFeedsConfig,
+    )
     const middleware = new Web3Middleware(
       configuration,
       {

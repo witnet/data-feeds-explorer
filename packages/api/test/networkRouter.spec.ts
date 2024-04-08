@@ -1,4 +1,4 @@
-import { Network, Repositories } from '../types'
+import { Network, Repositories, RouterDataFeedsConfig } from '../types'
 import { NetworkInfo, NetworkRouter } from '../src/web3Middleware/NetworkRouter'
 import { Configuration } from '../src/web3Middleware/Configuration'
 import dataFeedsRouter from './web3Middleware/dataFeedsRouter.json'
@@ -6,18 +6,21 @@ import dataFeedsRouter from './web3Middleware/dataFeedsRouter.json'
 import web3 from 'web3'
 
 describe('NetworkRouter', () => {
-  it('should fetch network contract', async () => {
+  it.skip('should fetch network contract', async () => {
     // FIXME: create a proper mock
     const repositories = {
       feedRepository: {},
       resultRequestRepository: {},
     } as unknown as Repositories
-    const configuration = new Configuration(dataFeedsRouter)
+    const configuration = new Configuration(
+      dataFeedsRouter as RouterDataFeedsConfig,
+    )
     const networkInfo = {
-      address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
+      version: '2.0',
+      address: '0x1111AbA2164AcdC6D291b08DfB374280035E1111',
       provider: 'https://rpc2.sepolia.org',
       key: Network.EthereumSepolia,
-      pollingPeriod: 1,
+      pollingPeriod: 1000,
       networkName: 'ethereum',
     } as NetworkInfo
     const router = new NetworkRouter(

@@ -1,9 +1,12 @@
 import { normalizeNetworkConfig } from '../src/utils/index'
 import dataFeedsRouterConfig from '../test/web3Middleware/dataFeedsRouter.json'
+import { RouterDataFeedsConfig } from '../types'
 
 describe('validateNetworkConfig', () => {
   it('check if the structure is correct', async () => {
-    const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig)
+    const networksConfig = normalizeNetworkConfig(
+      dataFeedsRouterConfig as RouterDataFeedsConfig,
+    )
     const expected = [
       {
         key: 'boba-bnb-mainnet',

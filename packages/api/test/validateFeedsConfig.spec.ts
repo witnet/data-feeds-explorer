@@ -1,9 +1,12 @@
 import { normalizeConfig } from '../src/utils/index'
 import dataFeedsRouterConfig from '../test/web3Middleware/dataFeedsRouter.json'
+import { RouterDataFeedsConfig } from '../types'
 
 describe.skip('validateDataFeedsConfig', () => {
   it('check if the structure is correct', async () => {
-    const feeds = normalizeConfig(dataFeedsRouterConfig)
+    const feeds = normalizeConfig(
+      dataFeedsRouterConfig as RouterDataFeedsConfig,
+    )
     const expected = [
       {
         address: '0x0000000000000000000000000000000000000000',

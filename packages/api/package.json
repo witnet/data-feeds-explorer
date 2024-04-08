@@ -46,6 +46,6 @@
     "node-cache": "^5.1.2",
     "web3": "^4.7.0",
     "web3-eth-contract": "^4.2.0",
-    "web3-utils": "^1.9.0"
+    "web3-utils": "^4.2.2"
   }
 }

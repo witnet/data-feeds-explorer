@@ -22,6 +22,7 @@
       "name": "Boba",
       "networks": {
         "boba.ethereum.goerli": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://testnet.bobascan.com/address/{address}",
           "color": "#1cd83d",
@@ -33,6 +34,7 @@
           }
         },
         "boba.bnb.mainnet": {
+          "version": "2.0",
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://blockexplorer.bnb.boba.network/address/{address}",
@@ -51,6 +53,7 @@
           }
         },
         "boba.bnb.testnet": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://blockexplorer.testnet.bnb.boba.network/address/{address}",
           "color": "#1cd83d",
@@ -62,12 +65,14 @@
       "name": "Celo",
       "networks": {
         "celo.alfajores": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
           "color": "#1cd8d2",
           "name": "Celo Alfajores"
         },
         "celo.mainnet": {
+          "version": "2.0",
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://explorer.celo.org/address/{address}",
@@ -94,7 +99,6 @@
       "name": "Conflux",
       "networks": {
         "conflux.core.mainnet": {
-          "legacy": true,
           "address": "0x806c8dFd322EE2d52b188CC472e0814F64304C32",
           "blockExplorer": "https://confluxscan.io/address/{address}",
           "color": "#ff0000",
@@ -122,6 +126,7 @@
           }
         },
         "conflux.core.testnet": {
+          "version": "2.0",
           "address": "0x8FDD679F4D1d2bfb97B5e5fD90c8E3E6ce0ce75c",
           "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
           "color": "#6600ff",
@@ -140,6 +145,7 @@
           }
         },
         "conflux.espace.testnet": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://evmtestnet.confluxscan.net/address/{address}",
           "color": "#6600ff",
@@ -163,6 +169,7 @@
       "name": "Ethereum",
       "networks": {
         "ethereum.goerli": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://goerli.etherscan.io/address/{address}",
           "color": "#ff5599",
@@ -176,13 +183,13 @@
           }
         },
         "ethereum.sepolia": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
           "color": "#ff5599",
           "name": "Ethereum Sepolia"
         },
         "ethereum.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
           "blockExplorer": "https://etherscan.io/address/{address}",
@@ -204,6 +211,7 @@
       "name": "KCC",
       "networks": {
         "kcc.testnet": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
           "color": "#ff0066",
@@ -224,7 +232,6 @@
           }
         },
         "kcc.mainnet": {
-          "legacy": true,
           "mainnet": true,
           "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://scan.kcc.io/address/{address}",
@@ -294,7 +301,6 @@
       "name": "Metis",
       "networks": {
         "metis.goerli": {
-          "legacy": true,
           "address": "0xBfFA2ec6225390C517A1bEB83b27a171C6734294",
           "blockExplorer": "https://goerli.explorer.metisdevops.link/address/{address}",
           "color": "#ff6600",
@@ -337,6 +343,7 @@
       "name": "Polygon",
       "networks": {
         "polygon.goerli": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
           "color": "#66ff00",
@@ -351,6 +358,7 @@
           }
         },
         "polygon.mainnet": {
+          "version": "2.0",
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://polygonscan.com/address/{address}",
@@ -384,12 +392,14 @@
           }
         },
         "polygon.zkevm.goerli": {
+          "version": "2.0",
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://testnet-zkevm.polygonscan.com/{address}",
           "color": "#66ff00",
           "name": "Polygon zkEVM Testnet"
         },
         "polygon.zkevm.mainnet": {
+          "version": "2.0",
           "mainnet": true,
           "address": "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
           "blockExplorer": "https://zkevm.polygonscan.com/address/{address}",
