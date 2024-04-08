@@ -32,11 +32,11 @@ const props = defineProps({
   },
 })
 const route = useRoute()
-const netowrkFeeds: Ref<any> = ref(null)
-// const emit = defineEmits(['empty'])
+const networkFeeds: Ref<any> = ref(null)
+const emit = defineEmits(['empty'])
 const allFeeds = computed(() => {
-  if (netowrkFeeds.value?.total) {
-    const feeds = netowrkFeeds.value?.feeds
+  if (networkFeeds.value?.total) {
+    const feeds = networkFeeds.value?.feeds
       .filter((feed: any) => {
         return feed.lastResult && Number(feed.lastResultTimestamp) > 0
       })
@@ -74,8 +74,13 @@ const allFeeds = computed(() => {
     return []
   }
 })
+watch(networkFeeds, () => {
+  if (allFeeds.value.length < 1) {
+    emit('empty', props.networkIndex)
+  }
+})
 onMounted(async () => {
-  netowrkFeeds.value = await store.fetchFeeds({
+  networkFeeds.value = await store.fetchFeeds({
     network: props.network.key.toLowerCase(),
   })
 })
