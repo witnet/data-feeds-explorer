@@ -4,7 +4,7 @@ import fs from 'fs'
 import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types'
 import { normalizeConfig } from './utils'
 
-const CONFIG_URL = `https://raw.github.com/tommytrg/data-feeds-explorer/2.0/packages/api/src/dataFeedsRouter.json`
+const CONFIG_URL = `https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json`
 
 function isRouterDataFeedsConfig(val: any): val is RouterDataFeedsConfig {
   return val?.contracts && val?.chains && val.conditions && val.currencies
