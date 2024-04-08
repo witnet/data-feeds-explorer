@@ -6,7 +6,7 @@ import { normalizeConfig } from './utils'
 
 const CONFIG_URL = `https://raw.github.com/tommytrg/data-feeds-explorer/2.0/packages/api/src/dataFeedsRouter.json`
 
-function isRouterDataFeedsConfig (val: any): val is RouterDataFeedsConfig {
+function isRouterDataFeedsConfig(val: any): val is RouterDataFeedsConfig {
   return val?.contracts && val?.chains && val.conditions && val.currencies
 }
 
@@ -49,8 +49,7 @@ export function normalizeAndValidateDataFeedConfig(
     routerAbi: JSON.parse(
       fs.readFileSync(
         path.resolve(
-          process.env.DATA_FEED_ROUTER_ABI_PATH ||
-            config.contracts.legacy.abi
+          process.env.DATA_FEED_ROUTER_ABI_PATH || config.contracts.legacy.abi,
         ),
         'utf-8',
       ),

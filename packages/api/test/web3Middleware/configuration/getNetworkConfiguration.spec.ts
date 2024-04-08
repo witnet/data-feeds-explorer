@@ -1,6 +1,6 @@
-import { Network, RouterDataFeedsConfig } from "../../../types"
-import { Configuration } from "../../../src/web3Middleware/Configuration"
-import { baseConfigurationFile } from "./baseConfigurationFile"
+import { Network, RouterDataFeedsConfig } from '../../../types'
+import { Configuration } from '../../../src/web3Middleware/Configuration'
+import { baseConfigurationFile } from './baseConfigurationFile'
 
 describe('getNetworkConfiguration', () => {
   it('complete', () => {
@@ -27,11 +27,11 @@ describe('getNetworkConfiguration', () => {
         arbitrum: {
           name: 'Arbitrum',
           networks: {
-            "arbitrum.one": {
-              version: "2.0",
-              address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
-              blockExplorer: "https://arbiscan.io/address/{address}",
-              color: "#E84142",
+            'arbitrum.one': {
+              version: '2.0',
+              address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
+              blockExplorer: 'https://arbiscan.io/address/{address}',
+              color: '#E84142',
               mainnet: true,
               name: 'Arbitrum ONE',
               pollingPeriod: 120000,
@@ -44,12 +44,12 @@ describe('getNetworkConfiguration', () => {
                 },
               },
             },
-            "arbitrum.goerli": {
-              version: "2.0",
-              address: "0x9999999d139bdBFbF25923ba39F63bBFc7593400",
-              blockExplorer: "https://goerli.arbiscan.io/address/{address}",
-              color: "#E84142",
-              name: "Arbitrum Nitro Goerli",
+            'arbitrum.goerli': {
+              version: '2.0',
+              address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
+              blockExplorer: 'https://goerli.arbiscan.io/address/{address}',
+              color: '#E84142',
+              name: 'Arbitrum Nitro Goerli',
               pollingPeriod: 120000,
               feeds: {
                 'Price-ETH/USD-6': {
@@ -65,8 +65,8 @@ describe('getNetworkConfiguration', () => {
         avalanche: {
           name: 'Avalanche',
           networks: {
-            "avalanche.mainnet": {
-              version: "legacy",
+            'avalanche.mainnet': {
+              version: 'legacy',
               mainnet: true,
               address: '0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7',
               blockExplorer: 'https://snowtrace.io/address/{address}',
@@ -82,11 +82,11 @@ describe('getNetworkConfiguration', () => {
                 },
               },
             },
-            "avalanche.fuji": {
-              version: "2.0",
-              blockExplorer: "https://testnet.snowtrace.io/address/{address}",
-              color: "#E84142",
-              name: "Avalanche Fuji",
+            'avalanche.fuji': {
+              version: '2.0',
+              blockExplorer: 'https://testnet.snowtrace.io/address/{address}',
+              color: '#E84142',
+              name: 'Avalanche Fuji',
               pollingPeriod: 120000,
               feeds: {
                 'Price-ETH/USD-6': {
@@ -102,8 +102,8 @@ describe('getNetworkConfiguration', () => {
         boba: {
           name: 'Boba',
           networks: {
-            "boba.ethereum.mainnet": {
-              version: "legacy",
+            'boba.ethereum.mainnet': {
+              version: 'legacy',
               mainnet: true,
               address: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5',
               blockExplorer:
@@ -146,8 +146,8 @@ describe('getNetworkConfiguration', () => {
           minSecsBetweenUpdates: 900,
         },
       },
-      version: "2.0",
-      name: "Avalanche Fuji",
+      version: '2.0',
+      name: 'Avalanche Fuji',
       pollingPeriod: 120000,
     })
   })

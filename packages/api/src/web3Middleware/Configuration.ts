@@ -43,13 +43,19 @@ export class Configuration {
   // return networks using the new price feeds router contract
   public listNetworksUsingPriceFeedsContract(): Array<NetworkInfo> {
     return Object.values(this.configurationFile.chains)
-      .flatMap(chain => Object.entries(chain.networks))
-      .filter(([_, network])=> network.version === '2.0')
+      .flatMap((chain) => Object.entries(chain.networks))
+      .filter(([_, network]) => network.version === '2.0')
       .map(([networkKey, network]) => {
         return {
-          provider: network.blockProvider || getProvider(networkKey.replaceAll('.', '-') as Network) || "",
-          address: network.address || this.configurationFile.contracts["2.0"].address,
-          pollingPeriod: network.pollingPeriod || this.configurationFile.contracts["2.0"].pollingPeriod,
+          provider:
+            network.blockProvider ||
+            getProvider(networkKey.replaceAll('.', '-') as Network) ||
+            '',
+          address:
+            network.address || this.configurationFile.contracts['2.0'].address,
+          pollingPeriod:
+            network.pollingPeriod ||
+            this.configurationFile.contracts['2.0'].pollingPeriod,
           key: this.fromNetworkKeyToNetwork(networkKey),
           networkName: network.name,
         }
@@ -58,18 +64,23 @@ export class Configuration {
 
   public getLegacyConfigurationFile(): LegacyRouterDataFeedsConfig {
     const abi = this.configurationFile.contracts.legacy.abi
-    const chains = Object.entries(this.configurationFile.chains).reduce((acc, [chainKey, chain]) => {
-      const networks = Object.entries(chain.networks).reduce(
-        (accNetworks, [networkKey, network]) => {
-          // add the network entry if it's legacy
-          return !network.version || network.version === 'legacy'
-            ? { ...accNetworks, [networkKey]: network }
-            : accNetworks
-        },
-        {},
-      )
-      return Object.keys(networks).length > 0 ? { ...acc, [chainKey]: { ...chain, networks } } : acc
-    }, {})
+    const chains = Object.entries(this.configurationFile.chains).reduce(
+      (acc, [chainKey, chain]) => {
+        const networks = Object.entries(chain.networks).reduce(
+          (accNetworks, [networkKey, network]) => {
+            // add the network entry if it's legacy
+            return !network.version || network.version === 'legacy'
+              ? { ...accNetworks, [networkKey]: network }
+              : accNetworks
+          },
+          {},
+        )
+        return Object.keys(networks).length > 0
+          ? { ...acc, [chainKey]: { ...chain, networks } }
+          : acc
+      },
+      {},
+    )
 
     return {
       chains,
@@ -99,7 +110,7 @@ export class Configuration {
   }
 
   public getNetworkConfiguration(network: Network) {
-    const { address, pollingPeriod }= this.configurationFile.contracts["2.0"]
+    const { address, pollingPeriod } = this.configurationFile.contracts['2.0']
     return {
       address,
       pollingPeriod,

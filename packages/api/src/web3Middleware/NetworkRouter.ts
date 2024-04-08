@@ -64,9 +64,7 @@ export class NetworkRouter {
     if (!provider) {
       throw new Error(`Missing provider for ${networkName}`)
     }
-    const web3: Web3 = new this.Web3(
-      new Web3.providers.HttpProvider(provider),
-    )
+    const web3: Web3 = new this.Web3(new Web3.providers.HttpProvider(provider))
     // TODO: why this type isn't working?
     this.contract = new web3.eth.Contract(
       WitnetPriceFeedsABI.abi as any,
@@ -149,7 +147,10 @@ export class NetworkRouter {
   // Wrap supportedFeeds contract method
   async getSupportedFeeds(): Promise<Array<SupportedFeed>> {
     try {
-      const supportedFeeds = await Web3.utils.waitWithTimeout(this.contract.methods.supportedFeeds().call(), 10000)
+      const supportedFeeds = await Web3.utils.waitWithTimeout(
+        this.contract.methods.supportedFeeds().call(),
+        10000,
+      )
       return supportedFeeds[0].map((_, index) => ({
         id: supportedFeeds[0][index],
         caption: supportedFeeds[1][index],

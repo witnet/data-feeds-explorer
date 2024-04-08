@@ -4,3 +4,4 @@ codegen.yml
 dist
 dist/**
 **/generated/**
+pnpm-lock.yaml

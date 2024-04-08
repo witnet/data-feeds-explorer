@@ -63,7 +63,7 @@ async function main() {
 
   const newFeeds: Array<FeedInfo> = []
 
-  const promises = routers.map(async router => {
+  const promises = routers.map(async (router) => {
     const feedInfos = await router.getFeedInfos()
     newFeeds.concat(feedInfos)
   })

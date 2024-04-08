@@ -193,7 +193,7 @@ export type FeedParsedParams = {
 }
 
 export type FeedConfig = {
-  version?: "legacy" | "2.0",
+  version?: 'legacy' | '2.0'
   address?: string
   blockExplorer: string
   blockProvider?: string
@@ -226,7 +226,7 @@ export type Chain = {
 export type NetworkConfigMap = Record<string, FeedConfig>
 
 export type RouterDataFeedsConfig = {
-   contracts: {
+  contracts: {
     legacy: {
       abi: string
       pollingPeriod: number
