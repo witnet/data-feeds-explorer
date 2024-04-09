@@ -44,6 +44,7 @@ import { generateNavOptions } from '../utils/generateNavOptions'
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 
 useServerSeoMeta({
   ogTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
@@ -79,7 +80,11 @@ onMounted(async () => {
   }
   const selectedEcosystemNetworks =
     ecosystemsList.value[currentEcosystem.value.toLocaleLowerCase()]
-  store.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
+  if (selectedEcosystemNetworks) {
+    store.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
+  } else {
+    router.push('/')
+  }
 })
 function updateOptions(index: number) {
   store.deleteEmptyNetwork({ index })

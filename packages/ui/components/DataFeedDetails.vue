@@ -70,6 +70,7 @@ const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 const asyncFeedsInterval = new AsyncInterval(POLLER_MILLISECONDS)
 const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
 const ranges = CHART_RANGE
@@ -171,6 +172,9 @@ const fetchData = async () => {
     page: currentPage.value,
     size: itemsPerPage.value,
   })
+  if (!store.feed) {
+    router.push('/')
+  }
 }
 
 const chartData: Ref<AreaData<Time>[]> = computed(() => {
