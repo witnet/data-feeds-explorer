@@ -7,9 +7,14 @@ import feedRequestsQuery from './queries/requests'
 import type { Ecosystem, Feed, FeedRequests, Network } from '~/types'
 
 export const getAllFeedsRequests = async ({ network }: { network: string }) =>
-  (await request(useRuntimeConfig().public.apiBase, feedsQuery, {
-    network,
-  })) as {
+  (await request(
+    useRuntimeConfig().public.apiBase,
+    feedsQuery,
+    {
+      network,
+    },
+    { accept: 'application/json' },
+  )) as {
     feeds: FeedRequests[]
     total: number
   }
@@ -21,6 +26,7 @@ export const getEcosystems = async () => {
     {
       network: 'all',
     },
+    { accept: 'application/json' },
   )
   return result.feeds as {
     feeds: Ecosystem[]
@@ -40,10 +46,15 @@ export const getFeedInfo = async ({
   timestamp: number
   feedFullName: string
 }) =>
-  (await request(useRuntimeConfig().public.apiBase, feedQuery, {
-    timestamp,
-    feedFullName,
-  })) as { feed: Feed }
+  (await request(
+    useRuntimeConfig().public.apiBase,
+    feedQuery,
+    {
+      timestamp,
+      feedFullName,
+    },
+    { accept: 'application/json' },
+  )) as { feed: Feed }
 
 export const getFeedRequests = async ({
   feedFullName,
@@ -54,10 +65,15 @@ export const getFeedRequests = async ({
   page: number
   size: number
 }) =>
-  (await request(useRuntimeConfig().public.apiBase, feedRequestsQuery, {
-    feedFullName,
-    page,
-    size,
-  })) as {
+  (await request(
+    useRuntimeConfig().public.apiBase,
+    feedRequestsQuery,
+    {
+      feedFullName,
+      page,
+      size,
+    },
+    { accept: 'application/json' },
+  )) as {
     requests: FeedRequests[]
   }
