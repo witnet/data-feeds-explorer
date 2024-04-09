@@ -1,13 +1,15 @@
 FROM node:20-alpine
 
+RUN npm install -g pnpm
+
 WORKDIR /usr/src/app
 
 COPY . ./
 
-RUN yarn
+RUN pnpm install
 
 EXPOSE 4000
 
-RUN yarn build
+RUN pnpm run build
 
-CMD [ "node", "dist/index.js" ]
+CMD [ "node", "dist/src/index.js" ]

@@ -1,15 +1,18 @@
 FROM node:20-alpine
 
+RUN npm install -g pnpm
+
 WORKDIR /usr/src/app
 
 COPY . ./
-RUN yarn
+
+RUN pnpm install
 
 EXPOSE 8080
 
 ENV HOST=0.0.0.0
 ENV PORT=8080
 
-RUN yarn build
+RUN pnpm run build
 
-CMD [ "yarn", "start" ]
+CMD [ "node", ".output/server/index.mjs"]
