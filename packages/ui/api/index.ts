@@ -6,9 +6,22 @@ import networksQuery from './queries/networks'
 import feedRequestsQuery from './queries/requests'
 import type { Ecosystem, Feed, FeedRequests, Network } from '~/types'
 
+// TODO: Find a better way to pass the API_ENDPOINT and be able to use the same nuxt build
+// for staging and production environments
+function getApiEndpoint () {
+  const url = window.location.href 
+  if (url.includes('staging')) {
+    return 'https://staging-feeds-api.witnet.io/'
+  } else if (url.includes('localhost')) {
+    return useRuntimeConfig().public.apiBase
+  } else {
+    return 'https://feeds-api.witnet.io/'
+  }
+}
+
 export const getAllFeedsRequests = async ({ network }: { network: string }) =>
   (await request(
-    useRuntimeConfig().public.apiBase,
+    getApiEndpoint(),
     feedsQuery,
     {
       network,
@@ -21,7 +34,7 @@ export const getAllFeedsRequests = async ({ network }: { network: string }) =>
 
 export const getEcosystems = async () => {
   const result: { feeds: any } = await request(
-    useRuntimeConfig().public.apiBase,
+    getApiEndpoint(),
     ecosystemsQuery,
     {
       network: 'all',
@@ -35,7 +48,7 @@ export const getEcosystems = async () => {
 }
 
 export const getNetworks = async () =>
-  (await request(useRuntimeConfig().public.apiBase, networksQuery)) as {
+  (await request(getApiEndpoint(), networksQuery)) as {
     networks: Network[]
   }
 
@@ -47,7 +60,7 @@ export const getFeedInfo = async ({
   feedFullName: string
 }) =>
   (await request(
-    useRuntimeConfig().public.apiBase,
+    getApiEndpoint(),
     feedQuery,
     {
       timestamp,
@@ -66,7 +79,7 @@ export const getFeedRequests = async ({
   size: number
 }) =>
   (await request(
-    useRuntimeConfig().public.apiBase,
+    getApiEndpoint(),
     feedRequestsQuery,
     {
       feedFullName,
