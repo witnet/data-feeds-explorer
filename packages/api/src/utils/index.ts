@@ -25,7 +25,7 @@ export function parseDataDecimals(value) {
 }
 // parse data feed full name to fit schema
 export function createFeedFullName(network, name, decimals) {
-  return `${network}_${name.split('/').join('-')}_${decimals}`
+  return `${network}_${name.split('/').join('-')}_${decimals}`.toLowerCase()
 }
 
 // Get networks list by chain

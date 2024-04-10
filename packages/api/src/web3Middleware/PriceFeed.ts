@@ -93,9 +93,9 @@ export class PriceFeed {
       feedConfiguration.deviationPercentage = 0
     }
 
-    const decimals = feed.caption.split('-').reverse()[0]
+    const [decimals, caption] = feed.caption.split('-').reverse()
     return new PriceFeed(configuration, {
-      feedFullName: createFeedFullName(network, feed.caption, decimals),
+      feedFullName: createFeedFullName(network, caption, decimals),
       id: feed.id,
       abi: null,
       // TODO: remove any

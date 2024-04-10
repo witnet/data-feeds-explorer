@@ -89,7 +89,7 @@ export class NetworkRouter {
         .map((feed) => ({
           feedFullName: createFeedFullName(
             this.network,
-            feed.caption,
+            feed.caption.split('-').reverse()[1],
             feed.caption.split('-').reverse()[0],
           ),
           drTxHash: toHex(feed.tallyHash).slice(2),
