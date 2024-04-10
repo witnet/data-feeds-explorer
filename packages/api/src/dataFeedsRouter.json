@@ -712,21 +712,6 @@
     "dogechain": {
       "name": "Dogechain",
       "networks": {
-        "dogechain.testnet": {
-          "address": "0x9E943Ab1FD0D35B3BaDe31AA78D60C485EA1a604",
-          "blockExplorer": "https://explorer-testnet.dogechain.dog/address/{address}",
-          "color": "#f6006f",
-          "name": "Dogechain Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-DOGE/USD-6": {
-              "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
         "dogechain.mainnet": {
           "address": "0xD7f7933992c25A504e9Ddf7e76a3c1D6c432b25D",
           "blockExplorer": "https://explorer.dogechain.dog/address/{address}",
