@@ -709,60 +709,6 @@
         }
       }
     },
-    "cube": {
-      "name": "Cube",
-      "networks": {
-        "cube.testnet": {
-          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
-          "blockExplorer": "https://testnet.cubescan.network/en-us/address/{address}",
-          "color": "#ff6600",
-          "name": "Cube EVM Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-CUBE/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-CUBE/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "₮",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "₮",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        }
-      }
-    },
     "dogechain": {
       "name": "Dogechain",
       "networks": {
