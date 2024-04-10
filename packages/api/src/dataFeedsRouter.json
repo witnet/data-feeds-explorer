@@ -2060,26 +2060,6 @@
         }
       }
     },
-    "smartbch": {
-      "name": "SmartBCH",
-      "networks": {
-        "smartbch.amber": {
-          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
-          "blockExplorer": "https://www.smartscan.cash/address/{address}",
-          "color": "#66ff00",
-          "name": "SmartBCH Amber (testnet)",
-          "pollingPeriod": 10000,
-          "feeds": {
-            "Price-BCH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        }
-      }
-    },
     "syscoin": {
       "name": "Syscoin",
       "networks": {
