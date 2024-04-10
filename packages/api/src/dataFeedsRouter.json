@@ -848,27 +848,6 @@
     "ethereum": {
       "name": "Ethereum",
       "networks": {
-        "ethereum.goerli": {
-          "address": "0x1cF3Aa9DBF4880d797945726B94B9d29164211BE",
-          "blockExplorer": "https://goerli.etherscan.io/address/{address}",
-          "color": "#ff5599",
-          "name": "Ethereum Goerli",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
         "ethereum.sepolia": {
           "address": "0xdC101573cB42EB7006Ad6C7E08ce8C91fEAcB62C",
           "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
