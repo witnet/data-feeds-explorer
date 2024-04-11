@@ -91,6 +91,7 @@ export default {
 .container {
   display: flex;
   align-items: center;
+  width: min-content;
 }
 .info {
   display: flex;
