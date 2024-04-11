@@ -85,15 +85,13 @@ export function normalizeConfig(
   // Network Config list deleting key label
   const networksConfigMap = chains.flatMap((network: Chain) => {
     return Object.values(network.networks)
+      .map((chainConfig: FeedConfig, index) => ({
+        ...chainConfig,
+        chain: network.name,
+        hide: !!network.hide || chainConfig.hide,
+        network: Object.keys(network.networks)[index],
+      }))
       .filter((network) => !network.version || network.version === 'legacy')
-      .map((feedConfig: FeedConfig, index) => {
-        return {
-          ...feedConfig,
-          chain: network.name,
-          hide: !!network.hide || feedConfig.hide,
-          network: Object.keys(network.networks)[index],
-        }
-      })
   })
 
   // Parse Feed adding common config
