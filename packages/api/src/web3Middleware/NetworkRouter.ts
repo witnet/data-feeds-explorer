@@ -66,10 +66,7 @@ export class NetworkRouter {
     }
     const web3: Web3 = new this.Web3(new Web3.providers.HttpProvider(provider))
     // TODO: why this type isn't working?
-    this.contract = new web3.eth.Contract(
-      WitnetPriceFeedsABI.abi as any,
-      address,
-    )
+    this.contract = new web3.eth.Contract(WitnetPriceFeedsABI as any, address)
     ;(this.pollingPeriod = pollingPeriod), (this.repositories = repositories)
     this.network = key
     this.configuration = configuration
@@ -93,7 +90,7 @@ export class NetworkRouter {
             feed.caption.split('-').reverse()[0],
           ),
           drTxHash: toHex(feed.tallyHash).slice(2),
-          requestId: feed.id.toString(),
+          requestId: '',
           result: feed.value.toString(),
           timestamp: feed.timestamp.toString(),
         }))
