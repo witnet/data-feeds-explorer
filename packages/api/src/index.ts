@@ -61,16 +61,10 @@ async function main() {
         new NetworkRouter(configuration, Web3, repositories, networkInfo),
     )
 
-  const newFeeds: Array<FeedInfo> = []
+  const promises = routers.map(async (router) => await router.getFeedInfos())
 
-  const promises = routers.map(async (router) => {
-    const feedInfos = await router.getFeedInfos()
-    newFeeds.concat(feedInfos)
-  })
-
-  await Promise.all(promises)
+  const newFeeds: Array<FeedInfo> = (await Promise.all(promises)).flat()
   const feeds = [...legacyFeeds, ...newFeeds]
-
   const repositories: Repositories = {
     feedRepository: new FeedRepository(feeds),
     resultRequestRepository: new ResultRequestRepository(db, feeds),
