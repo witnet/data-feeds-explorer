@@ -116,7 +116,7 @@ export class PriceFeed {
       color: networkConfiguration.color,
       blockExplorer: networkConfiguration.blockExplorer,
       deviation: feedConfiguration.deviationPercentage.toString(),
-      heartbeat: feedConfiguration.maxSecsBetweenUpdates.toString(),
+      heartbeat: `${feedConfiguration.maxSecsBetweenUpdates.toString()}000`,
       finality: '900000',
       chain,
     })
