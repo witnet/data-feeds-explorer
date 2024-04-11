@@ -1705,19 +1705,9 @@
         },
         "optimism.mainnet": {
           "mainnet": true,
-          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
           "blockExplorer": "https://optimistic.etherscan.io/address/{address}",
-          "color": "#66ff00",
           "name": "Optimism Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-OP/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "version": "2.0"
         }
       }
     },
