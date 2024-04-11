@@ -56,7 +56,6 @@ export type FeedRequests = {
   feedFullName: string
   result: string
   drTxHash: string
-  requestId: string
   timestamp: string
 }
 

@@ -6,7 +6,6 @@ export default gql`
       feedFullName
       result
       drTxHash
-      requestId
       timestamp
     }
   }
