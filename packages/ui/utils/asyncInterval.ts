@@ -9,8 +9,8 @@ export class AsyncInterval {
   }
 
   private runAsyncInterval = async (callback: CallbackFn) => {
-    await callback()
     if (this.active) {
+      await callback()
       setTimeout(() => this.runAsyncInterval(callback), this.interval)
     }
   }

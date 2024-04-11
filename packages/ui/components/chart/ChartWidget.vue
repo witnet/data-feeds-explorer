@@ -208,7 +208,7 @@ const updateTooltip = () => {
       date.value = dateStr
     }
     const toolTipMargin = 24
-    const width = container.value.getBoundingClientRect().width
+    const width = container.value?.getBoundingClientRect().width
     const height = 400
     const y = param.point ? param.point.y : null
     const x = param.point ? param.point.x : null
