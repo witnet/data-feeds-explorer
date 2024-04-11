@@ -93,9 +93,9 @@ export class PriceFeed {
       feedConfiguration.deviationPercentage = 0
     }
 
-    const [decimals, caption] = feed.caption.split('-').reverse()
+    const [decimals, adaptedCaption] = feed.caption.split('-').reverse()
     return new PriceFeed(configuration, {
-      feedFullName: createFeedFullName(network, caption, decimals),
+      feedFullName: createFeedFullName(network, adaptedCaption, decimals),
       id: feed.id,
       abi: null,
       // TODO: remove any
@@ -105,11 +105,11 @@ export class PriceFeed {
       isRouted: feedConfiguration.isRouted,
       network: network,
       networkName: networkName,
-      name: feed.caption,
+      name: adaptedCaption.toLowerCase(),
       pollingPeriod: networkConfiguration.pollingPeriod,
       label: feedConfiguration.label,
-      // TODO: what's this field?
-      contractId: null,
+      // TODO: This field should be renamed to id4
+      contractId: feed.id,
       color: networkConfiguration.color,
       blockExplorer: networkConfiguration.blockExplorer,
       deviation: feedConfiguration.deviationPercentage.toString(),

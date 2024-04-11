@@ -81,6 +81,7 @@ async function main() {
   await createServer(repositories, svgCache, {
     dataFeedsConfig: feeds,
     networksConfig,
+    configuration,
   })
 }
 

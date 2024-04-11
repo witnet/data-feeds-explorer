@@ -66,6 +66,12 @@ const resolvers = {
       // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
       return config.feedsConfig[parent.feedFullName]?.finality || ''
     },
+    address: async (parent, _args, { config }: Context) => {
+      return parent.address || config.configuration.getDefaultAddress()
+    },
+    contractId: async (parent, _args) => {
+      return parent.contractId || '0x00000000'
+    },
   },
 }
 

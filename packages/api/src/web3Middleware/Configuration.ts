@@ -16,6 +16,10 @@ export class Configuration {
     this.configurationFile = json
   }
 
+  public getDefaultAddress() {
+    return this.configurationFile.contracts['2.0'].address
+  }
+
   // normalize config to fit network schema
   public normalizeNetworkConfig(
     config: RouterDataFeedsConfig,

@@ -3,6 +3,7 @@ import { ResultRequestDbObject } from './src/generated/types'
 import { FeedRepository } from './src/repository/Feed'
 import { ResultRequestRepository } from './src/repository/ResultRequest'
 import DataLoader from 'dataloader'
+import { Configuration } from './src/web3Middleware/Configuration'
 
 export * from './src/generated/types'
 export { Db, Collection, WithId } from 'mongodb'
@@ -31,6 +32,7 @@ export interface Context {
   config: {
     feedsConfig: ConfigByFullName
     networksConfig: Array<NetworksConfig>
+    configuration: Configuration
   }
   loaders: Loaders
 }

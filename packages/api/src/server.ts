@@ -13,6 +13,7 @@ import {
 import { startStandaloneServer } from '@apollo/server/standalone'
 import { LoadersFactory } from './loaders'
 import SvgCache from './svgCache'
+import { Configuration } from './web3Middleware/Configuration'
 
 export async function createServer(
   repositories: Repositories,
@@ -20,6 +21,7 @@ export async function createServer(
   config: {
     dataFeedsConfig: Array<FeedInfo>
     networksConfig: Array<NetworksConfig>
+    configuration: Configuration
   },
 ): Promise<{ url; server: ApolloServer<Context> }> {
   const server = new ApolloServer<Context>({
@@ -49,6 +51,7 @@ export async function createServer(
         config: {
           feedsConfig: configByFullName,
           networksConfig: config.networksConfig,
+          configuration: config.configuration,
         },
         loaders: loaders,
       }
