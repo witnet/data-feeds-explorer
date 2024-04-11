@@ -133,6 +133,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
     const expected = [
       {
         address: '0x0000000000000000000000000000000000000000',
+        chain: 'Arbitrum',
         key: 'arbitrum-one',
         networkName: 'Arbitrum ONE',
         pollingPeriod: 120000,
@@ -140,6 +141,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       },
       {
         address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
+        chain: 'Arbitrum',
         key: 'arbitrum-goerli',
         networkName: 'Arbitrum Nitro Goerli',
         pollingPeriod: 120000,
@@ -147,6 +149,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       },
       {
         address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
+        chain: 'Avalanche',
         key: 'avalanche-fuji',
         networkName: 'Avalanche Fuji',
         pollingPeriod: 120000,
@@ -192,6 +195,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       const expected = [
         {
           address: '0x0000000000000000000000000000000000000000',
+          chain: 'Arbitrum',
           key: 'arbitrum-one',
           networkName: 'Arbitrum ONE',
           pollingPeriod: 120000,
@@ -237,6 +241,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       const expected = [
         {
           address: '0x0000000000000000000000000000000000000000',
+          chain: 'Arbitrum',
           key: 'arbitrum-one',
           networkName: 'Arbitrum ONE',
           pollingPeriod: 1000,
@@ -283,6 +288,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       const expected = [
         {
           address: '0x0000000000000000000000000000000000000000',
+          chain: 'Arbitrum',
           key: 'arbitrum-one',
           networkName: 'Arbitrum ONE',
           pollingPeriod: 120000,
@@ -328,6 +334,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       const expected = [
         {
           address: '0x0000000000000000000000000000000000000000',
+          chain: 'Arbitrum',
           key: 'arbitrum-one',
           networkName: 'Arbitrum ONE',
           pollingPeriod: 120000,
@@ -374,6 +381,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       const expected = [
         {
           address: '0x0000000000000000000000000000000000000000',
+          chain: 'Arbitrum',
           key: 'arbitrum-one',
           networkName: 'Arbitrum ONE',
           pollingPeriod: 120000,
@@ -419,6 +427,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
       const expected = [
         {
           address: '0x2222222222222222222222222222222222222222',
+          chain: 'Arbitrum',
           key: 'arbitrum-one',
           networkName: 'Arbitrum ONE',
           pollingPeriod: 120000,

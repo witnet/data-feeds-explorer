@@ -22,6 +22,7 @@ describe('NetworkRouter', () => {
       key: Network.EthereumSepolia,
       pollingPeriod: 1000,
       networkName: 'ethereum',
+      chain: 'Ethereum',
     } as NetworkInfo
     const router = new NetworkRouter(
       configuration,
