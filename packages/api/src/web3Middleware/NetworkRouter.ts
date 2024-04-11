@@ -90,7 +90,8 @@ export class NetworkRouter {
             feed.caption.split('-').reverse()[0],
           ),
           drTxHash: toHex(feed.tallyHash).slice(2),
-          requestId: '',
+          // TODO: deprecate mandatory legacy field in database
+          requestId: '0',
           result: feed.value.toString(),
           timestamp: feed.timestamp.toString(),
         }))
