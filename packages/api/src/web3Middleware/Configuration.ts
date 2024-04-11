@@ -46,11 +46,11 @@ export class Configuration {
 
   // return networks using the new price feeds router contract
   public listNetworksUsingPriceFeedsContract(): Array<NetworkInfo> {
-    return Object.values(this.configurationFile.chains)
-      .flatMap((chain) => Object.entries(chain.networks))
-      .filter(([_, network]) => network.version === '2.0')
-      .map(([networkKey, network]) => {
-        return {
+    return Object.values(this.configurationFile.chains).flatMap((chain) =>
+      Object.entries(chain.networks)
+        .filter(([_, network]) => network.version === '2.0')
+        .map(([networkKey, network]) => ({
+          chain: chain.name,
           provider:
             network.blockProvider ||
             getProvider(networkKey.replaceAll('.', '-') as Network) ||
@@ -62,8 +62,8 @@ export class Configuration {
             this.configurationFile.contracts['2.0'].pollingPeriod,
           key: this.fromNetworkKeyToNetwork(networkKey),
           networkName: network.name,
-        }
-      })
+        })),
+    )
   }
 
   public getLegacyConfigurationFile(): LegacyRouterDataFeedsConfig {

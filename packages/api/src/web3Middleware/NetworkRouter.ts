@@ -34,6 +34,7 @@ export type NetworkInfo = {
   pollingPeriod: number
   key: Network
   networkName: string
+  chain: string
 }
 export type NetworkSnapshot = {
   network: string
@@ -45,6 +46,7 @@ export class NetworkRouter {
   public contract: any
   public network: Network
   public networkName: string
+  public chain: string
   public pollingPeriod: number
   public feeds?: Array<{ name: string }>
   public repositories: Repositories
@@ -59,7 +61,8 @@ export class NetworkRouter {
     networkInfo: NetworkInfo,
   ) {
     this.Web3 = web3Dep
-    const { provider, address, pollingPeriod, key, networkName } = networkInfo
+    const { provider, address, pollingPeriod, key, networkName, chain } =
+      networkInfo
 
     if (!provider) {
       throw new Error(`Missing provider for ${networkName}`)
@@ -73,6 +76,7 @@ export class NetworkRouter {
     this.provider = provider
     this.address = address
     this.networkName = networkName
+    this.chain = chain
   }
 
   // Periodically fetch the price feed router contract and store it in mongodb
@@ -136,6 +140,7 @@ export class NetworkRouter {
           this.address,
           this.network,
           this.networkName,
+          this.chain,
         ).toJson()
         return res
       })

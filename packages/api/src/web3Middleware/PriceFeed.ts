@@ -2,7 +2,7 @@ import { AbiItem, FeedInfo, Network } from '../../types'
 import { SupportedFeed } from './NetworkRouter'
 import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json'
 import { createFeedFullName } from '../utils'
-import { Configuration, getChain } from './Configuration'
+import { Configuration } from './Configuration'
 
 export class PriceFeed {
   feedFullName: string
@@ -24,6 +24,7 @@ export class PriceFeed {
   finality: string
   configuration: Configuration
   networkName: string
+  chain: string
 
   constructor(configuration: Configuration, args: FeedInfo) {
     this.configuration = configuration
@@ -45,6 +46,7 @@ export class PriceFeed {
     this.heartbeat = args.heartbeat
     this.finality = args.finality
     this.networkName = args.networkName
+    this.chain = args.chain
   }
 
   toJson(): FeedInfo {
@@ -62,7 +64,7 @@ export class PriceFeed {
       pollingPeriod: this.pollingPeriod,
       label: this.label,
       contractId: this.contractId,
-      chain: getChain(this.network),
+      chain: this.chain,
       color: this.color,
       blockExplorer: this.blockExplorer,
       deviation: this.deviation,
@@ -77,6 +79,7 @@ export class PriceFeed {
     address: string,
     network: Network,
     networkName: string,
+    chain: string,
   ): PriceFeed {
     const feedConfiguration = configuration.getFeedConfiguration(
       feed.caption,
@@ -115,7 +118,7 @@ export class PriceFeed {
       deviation: feedConfiguration.deviationPercentage.toString(),
       heartbeat: feedConfiguration.maxSecsBetweenUpdates.toString(),
       finality: '900000',
-      chain: getChain(network),
+      chain,
     })
   }
 }
