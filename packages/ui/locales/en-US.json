@@ -7,7 +7,7 @@
     "recommended_for_testing": "Recommended for testing and upgradability",
     "optimized_for_gas_cost": "Optimized for gas cost and decentralization",
     "proxy_address": "Proxy address",
-    "contract_address_title": "Contract address",
+    "contract_address_title": "Price Feeds Contract",
     "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "ERC2362 asset ID",
     "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
