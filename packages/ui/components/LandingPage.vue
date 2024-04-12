@@ -21,18 +21,6 @@
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 const store = useStore()
 
-useServerSeoMeta({
-  ogTitle: () => 'Data Feeds Explorer | Witnet',
-  title: () => 'Data Feeds Explorer | Witnet',
-  description: () =>
-    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-  ogDescription: () =>
-    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-  twitterTitle: () => 'Data Feeds Explorer | Witnet',
-  twitterDescription: () =>
-    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-})
-
 const totalFeeds = computed(() => store.totalFeeds)
 const networks = computed(() => store.networks)
 const supportedChains = computed(() => {
@@ -60,6 +48,18 @@ const supportedChains = computed(() => {
 onMounted(async () => {
   store.updateSelectedNetwork({ networks: [] })
   await store.fetchEcosystems()
+})
+
+useSeoMeta({
+  ogTitle: () => 'Data Feeds Explorer | Witnet',
+  title: () => 'Data Feeds Explorer | Witnet',
+  description: () =>
+    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
+  ogDescription: () =>
+    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
+  twitterTitle: () => 'Data Feeds Explorer | Witnet',
+  twitterDescription: () =>
+    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
 })
 </script>
 
