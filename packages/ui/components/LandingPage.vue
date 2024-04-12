@@ -49,18 +49,6 @@ onMounted(async () => {
   store.updateSelectedNetwork({ networks: [] })
   await store.fetchEcosystems()
 })
-
-// useServerSeoMeta({
-//   ogTitle: () => 'Data Feeds Explorer | Witnet',
-//   title: () => 'Data Feeds Explorer | Witnet',
-//   description: () =>
-//     'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-//   ogDescription: () =>
-//     'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-//   twitterTitle: () => 'Data Feeds Explorer | Witnet',
-//   twitterDescription: () =>
-//     'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-// })
 </script>
 
 <style lang="scss" scoped>

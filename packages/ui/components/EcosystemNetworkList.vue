@@ -146,28 +146,6 @@ useHead({
     },
   ],
 })
-// useServerSeoMeta({
-//   ogTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-//   title: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-//   description: () =>
-//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-//   ogDescription: () =>
-//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-//   twitterTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-//   twitterDescription: () =>
-//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-// })
-// useSeoMeta({
-//   ogTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-//   title: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-//   description: () =>
-//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-//   ogDescription: () =>
-//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-//   twitterTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-//   twitterDescription: () =>
-//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-// })
 </script>
 
 <style lang="scss" scoped>

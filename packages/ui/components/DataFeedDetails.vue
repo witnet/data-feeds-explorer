@@ -292,34 +292,6 @@ useHead({
     },
   ],
 })
-// useServerSeoMeta({
-//   ogTitle: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   title: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   description: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-//   ogDescription: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-//   twitterTitle: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   twitterDescription: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-// })
-// useSeoMeta({
-//   ogTitle: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   title: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   description: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-//   ogDescription: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-//   twitterTitle: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   twitterDescription: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-// })
 </script>
 
 <style lang="scss" scoped>
