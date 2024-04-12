@@ -45,18 +45,6 @@ import { generateNavOptions } from '../utils/generateNavOptions'
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
-
-useServerSeoMeta({
-  ogTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-  title: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-  description: () =>
-    `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-  ogDescription: () =>
-    `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-  twitterTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-  twitterDescription: () =>
-    `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
-})
 const currentEcosystem = ref(route.params.network.toString())
 const currentEcosystemSeoFormat = ref(currentEcosystem.value.toUpperCase())
 const selectedEcosystem = computed(() => store.selectedEcosystem)
@@ -134,7 +122,7 @@ useHead({
     {
       hid: 'og:title',
       property: 'og:title',
-      content: 'Data Feeds Explorer | Witnet',
+      content: `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
     },
     {
       hid: 'og:description',
@@ -158,6 +146,28 @@ useHead({
     },
   ],
 })
+// useServerSeoMeta({
+//   ogTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+//   title: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+//   description: () =>
+//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+//   ogDescription: () =>
+//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+//   twitterTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+//   twitterDescription: () =>
+//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+// })
+// useSeoMeta({
+//   ogTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+//   title: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+//   description: () =>
+//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+//   ogDescription: () =>
+//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+//   twitterTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+//   twitterDescription: () =>
+//     `Explore the list of decentralized data feeds on ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+// })
 </script>
 
 <style lang="scss" scoped>

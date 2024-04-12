@@ -257,21 +257,69 @@ watch(
   },
   { deep: true },
 )
-
-useSeoMeta({
-  ogTitle: () =>
-    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-  title: () =>
-    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-  description: () =>
-    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-  ogDescription: () =>
-    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-  twitterTitle: () =>
-    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-  twitterDescription: () =>
-    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+useHead({
+  title: `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+  meta: [
+    {
+      hid: 'title',
+      name: 'title',
+      content: `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+    },
+    {
+      hid: 'twitter:title',
+      name: 'twitter:title',
+      content: `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+    },
+    {
+      hid: 'twitter:description',
+      name: 'twitter:description',
+      content: `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+    },
+    {
+      hid: 'og:title',
+      property: 'og:title',
+      content: `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+    },
+    {
+      hid: 'og:description',
+      property: 'og:description',
+      content: `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+    },
+  ],
 })
+// useServerSeoMeta({
+//   ogTitle: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   title: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   description: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+//   ogDescription: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+//   twitterTitle: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   twitterDescription: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+// })
+// useSeoMeta({
+//   ogTitle: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   title: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   description: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+//   ogDescription: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+//   twitterTitle: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   twitterDescription: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+// })
 </script>
 
 <style lang="scss" scoped>
