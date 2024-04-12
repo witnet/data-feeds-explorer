@@ -7,6 +7,7 @@
     "recommended_for_testing": "Recomendado para pruebas y actualizaciones",
     "optimized_for_gas_cost": "Optimizado para el coste del gas y mayor descentralización",
     "proxy_address": "Dirección proxy",
+    "contract_address_title": "Dirección del contrato",
     "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "Identificador ERC2362",
     "integration_details_description": "Los data feed de Witnet pueden ser integrados en tu propio contrato de {0} de dos formas diferentes:",

@@ -24,20 +24,34 @@
       </div>
     </div>
     <div class="right">
-      <p class="title-address">
+      <p v-if="isContractVersion2" class="title-address">
+        {{ $t('data_feed_details.contract_address_title').toUpperCase() }}
+      </p>
+      <p v-else class="title-address">
         {{ $t('data_feed_details.proxy_address').toUpperCase() }}
       </p>
-      <a :href="urlProxyContract" target="_blank" class="contract-info">
+      <a
+        v-if="isContractVersion2"
+        :href="urlProxyContract"
+        target="_blank"
+        class="contract-info"
+      >
         {{ proxyAddress }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
-      <p class="title-address">
-        {{ $t('data_feed_details.underlying_feed_contract').toUpperCase() }}
-      </p>
-      <a :href="urlUnderlyingContract" target="_blank" class="contract-info">
-        {{ feedAddress }}
-        <font-awesome-icon class="icon" icon="external-link-alt" />
-      </a>
+      <div v-else class="contract-addresses">
+        <a :href="urlProxyContract" target="_blank" class="contract-info">
+          {{ proxyAddress }}
+          <font-awesome-icon class="icon" icon="external-link-alt" />
+        </a>
+        <p class="title-address">
+          {{ $t('data_feed_details.underlying_feed_contract').toUpperCase() }}
+        </p>
+        <a :href="urlUnderlyingContract" target="_blank" class="contract-info">
+          {{ feedAddress }}
+          <font-awesome-icon class="icon" icon="external-link-alt" />
+        </a>
+      </div>
       <p class="title-address">
         {{ $t('data_feed_details.erc2362_asset_id').toUpperCase() }}
       </p>
@@ -48,41 +62,37 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { urls } from '../constants'
-export default {
-  props: {
-    network: {
-      type: String,
-      required: true,
-    },
-    proxyAddress: {
-      type: String,
-      required: true,
-    },
-    feedAddress: {
-      type: String,
-      required: true,
-    },
-    contractId: {
-      type: String,
-      required: true,
-    },
-    urlUnderlyingContract: {
-      type: String,
-      required: true,
-    },
-    urlProxyContract: {
-      type: String,
-      required: true,
-    },
+const props = defineProps({
+  network: {
+    type: String,
+    required: true,
   },
-  data() {
-    return {
-      urls,
-    }
+  proxyAddress: {
+    type: String,
+    required: true,
   },
-}
+  feedAddress: {
+    type: String,
+    required: true,
+  },
+  contractId: {
+    type: String,
+    required: true,
+  },
+  urlUnderlyingContract: {
+    type: String,
+    required: true,
+  },
+  urlProxyContract: {
+    type: String,
+    required: true,
+  },
+})
+const isContractVersion2: boolean = computed(
+  () => props.feedAddress === props.proxyAddress,
+)
 </script>
 
 <style lang="scss" scoped>
@@ -129,6 +139,11 @@ export default {
       word-break: break-all;
       max-width: 400px;
     }
+    .contract-addresses {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 8px;
+    }
     .contract-info {
       font-family:
         Roboto Mono,
@@ -138,6 +153,9 @@ export default {
       word-break: break-all;
       margin-bottom: 8px;
       cursor: pointer;
+      display: flex;
+      gap: 4px;
+      align-items: center;
     }
     .icon {
       font-size: 10px;

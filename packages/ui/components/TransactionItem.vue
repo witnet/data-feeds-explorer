@@ -78,6 +78,9 @@ export default {
     Roboto Mono,
     monospace;
   transition: all 0.3 ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
   &:hover {
     opacity: 0.8;
