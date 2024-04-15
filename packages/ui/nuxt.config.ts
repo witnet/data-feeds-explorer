@@ -7,9 +7,6 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'default' },
     head: {
       title: 'Data Feeds Explorer | Witnet',
-      htmlAttrs: {
-        lang: 'en',
-      },
       meta: [
         { charset: 'utf-8' },
         {

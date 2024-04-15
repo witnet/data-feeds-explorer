@@ -5,20 +5,22 @@
         {{ formatTimestamp(timestamp) }}
       </div>
     </div>
-    <div class="attribute-container links">
-      <a :href="witnetLink" target="_blank" class="link truncate">
-        0x{{ drTxHash }}
-        <font-awesome-icon class="icon" icon="external-link-alt" />
-      </a>
-      <InfoTooltip
-        class="value attribute"
-        :value="value"
-        :show-icon="false"
-        :show-in-responsive="true"
-      >
-        {{ value }}
-      </InfoTooltip>
-    </div>
+    <client-only>
+      <div class="attribute-container links">
+        <a :href="witnetLink" target="_blank" class="link truncate">
+          0x{{ drTxHash }}
+          <font-awesome-icon class="icon" icon="external-link-alt" />
+        </a>
+        <InfoTooltip
+          class="value attribute"
+          :value="value"
+          :show-icon="false"
+          :show-in-responsive="true"
+        >
+          {{ value }}
+        </InfoTooltip>
+      </div>
+    </client-only>
   </div>
 </template>
 

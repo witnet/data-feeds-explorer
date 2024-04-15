@@ -24,9 +24,11 @@ export const useStore = defineStore('data', {
       const result = await getEcosystems()
       this.ecosystems = result.feeds
       this.totalFeeds = result.total
+      return result
     },
     async fetchNetworks() {
       this.networks = (await getNetworks()).networks
+      return this.networks
     },
     async fetchFeeds({ network }: { network: any }) {
       return (await getAllFeedsRequests({ network })).feeds
@@ -39,6 +41,7 @@ export const useStore = defineStore('data', {
       timestamp: number
     }) {
       this.feed = (await getFeedInfo({ feedFullName, timestamp })).feed
+      return this.feed
     },
     async fetchPaginatedFeedRequests({
       feedFullName,
@@ -55,6 +58,7 @@ export const useStore = defineStore('data', {
         size,
       })
       this.paginatedFeedRequest = result.requests
+      return this.paginatedFeedRequest
     },
     updateSelectedNetwork({ networks }: { networks: Network[] | [] }) {
       this.selectedEcosystem = networks

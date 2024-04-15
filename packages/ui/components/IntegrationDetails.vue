@@ -90,7 +90,7 @@ const props = defineProps({
     required: true,
   },
 })
-const isContractVersion2: boolean = computed(
+const isContractVersion2 = computed(
   () => props.feedAddress === props.proxyAddress,
 )
 </script>

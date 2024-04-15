@@ -1,18 +1,20 @@
 <template>
   <div v-if="normalizedFeed" class="content">
-    <ChartWidget
-      v-if="feed"
-      class="chart"
-      :data="chartData"
-      :logo="feed.logo"
-      :last-result-timestamp="normalizedFeed.lastResultTimestamp"
-      :last-result-value="lastResultValue ?? ''"
-      :data-label="feed.label"
-      :name="normalizedFeed.name"
-      :time-to-update="maxTimeToResolve ?? 0"
-      :decimals="normalizedFeed.decimals"
-      @change-range="updateQuery"
-    />
+    <client-only>
+      <ChartWidget
+        v-if="feed"
+        class="chart"
+        :data="chartData"
+        :logo="feed.logo"
+        :last-result-timestamp="normalizedFeed.lastResultTimestamp"
+        :last-result-value="lastResultValue ?? ''"
+        :data-label="feed.label"
+        :name="normalizedFeed.name"
+        :time-to-update="maxTimeToResolve ?? 0"
+        :decimals="normalizedFeed.decimals"
+        @change-range="updateQuery"
+      />
+    </client-only>
     <DataFeedDescription
       :is-routed="normalizedFeed.isRouted"
       :feed-name="normalizedFeed.name"
@@ -22,25 +24,29 @@
       :feed-time-to-update="feedTimeToUpdate ?? ''"
       :deviation="normalizedFeed.deviation"
     />
-    <FieldsetCard
-      v-if="maxTimeToResolve || normalizedFeed.deviation"
-      :title="$t('data_feed_details.trigger_parameters')"
-    >
-      <DataFeedTriggerParams
-        :deviation="normalizedFeed.deviation"
-        :max-time-to-resolve="maxTimeToResolve"
-        :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
-      />
-    </FieldsetCard>
+    <client-only>
+      <FieldsetCard
+        v-if="maxTimeToResolve || normalizedFeed.deviation"
+        :title="$t('data_feed_details.trigger_parameters')"
+      >
+        <DataFeedTriggerParams
+          :deviation="normalizedFeed.deviation"
+          :max-time-to-resolve="maxTimeToResolve"
+          :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
+        />
+      </FieldsetCard>
+    </client-only>
     <FieldsetCard :title="$t('data_feed_details.contract_address')">
-      <IntegrationDetails
-        :network="normalizedFeed.networkName"
-        :proxy-address="normalizedFeed.proxyAddress"
-        :feed-address="normalizedFeed.address"
-        :contract-id="normalizedFeed.contractId"
-        :url-underlying-contract="normalizedFeed.urlUnderlyingContract"
-        :url-proxy-contract="normalizedFeed.urlProxyContract"
-      />
+      <client-only>
+        <IntegrationDetails
+          :network="normalizedFeed.networkName"
+          :proxy-address="normalizedFeed.proxyAddress"
+          :feed-address="normalizedFeed.address"
+          :contract-id="normalizedFeed.contractId"
+          :url-underlying-contract="normalizedFeed.urlUnderlyingContract"
+          :url-proxy-contract="normalizedFeed.urlProxyContract"
+        />
+      </client-only>
     </FieldsetCard>
     <TransactionsList
       v-if="transactions"
@@ -79,15 +85,98 @@ const currentPage = ref(1)
 const itemsPerPage = ref(25)
 const { locale, t } = useI18n({ useScope: 'global' })
 
+const fetchData = async () => {
+  await store.fetchFeedInfo({
+    feedFullName: route.params.id.toString(),
+    timestamp: timestamp.value,
+  })
+  await store.fetchPaginatedFeedRequests({
+    feedFullName: route.params.id.toString(),
+    page: currentPage.value,
+    size: itemsPerPage.value,
+  })
+  useHead({
+    title: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+    meta: [
+      { charset: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'viewport-fit=cover, width=device-width, initial-scale=1',
+      },
+      {
+        hid: 'title',
+        name: 'title',
+        content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+      },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: 'https://feeds.witnet.io/meta-image.png',
+      },
+      {
+        hid: 'twitter:image:alt',
+        name: 'twitter:image:alt',
+        content: 'Witnet data feeds explorer',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://feeds.witnet.io/meta-image.png',
+      },
+      {
+        hid: 'og:image:secure_url',
+        property: 'og:image:secure_url',
+        content: 'https://feeds.witnet.io/meta-image.png',
+      },
+      {
+        hid: 'og:image:alt',
+        property: 'og:image:alt',
+        content: 'Witnet data feeds explorer',
+      },
+    ],
+  })
+  if (!store.feed) {
+    router.push('/')
+    return false
+  } else {
+    return true
+  }
+}
+const { data, refresh } = await useAsyncData('feed', fetchData)
 onMounted(() => {
-  asyncFeedsInterval.setAsyncInterval(fetchData)
+  asyncFeedsInterval.setAsyncInterval(refresh)
 })
 onBeforeUnmount(() => {
   asyncFeedsInterval.clearAsyncInterval()
 })
 const feed = computed(() => store.feed)
 const normalizedFeed = computed(() => {
-  if (feed.value) {
+  if (data && feed.value) {
     emit('feed-name', feed.value.name?.toUpperCase())
     emit('network', feed.value.networkName)
     return {
@@ -162,24 +251,12 @@ const maxTimeToResolve = computed(() => {
 const itemsLength = computed(() => {
   return feed.value?.requests.length
 })
-const fetchData = async () => {
-  await store.fetchFeedInfo({
-    feedFullName: route.params.id.toString(),
-    timestamp: timestamp.value,
-  })
-  await store.fetchPaginatedFeedRequests({
-    feedFullName: route.params.id.toString(),
-    page: currentPage.value,
-    size: itemsPerPage.value,
-  })
-  if (!store.feed) {
-    router.push('/')
-  }
-}
+const feedName = computed(() => normalizedFeed.value?.name ?? '')
+const networkName = computed(() => normalizedFeed.value?.networkName ?? '')
 
 const chartData: Ref<AreaData<Time>[]> = computed(() => {
-  if (feed.value && feed.value.requests.length > 0) {
-    return feed.value.requests
+  if (feed.value && feed.value?.requests.length > 0) {
+    return feed.value?.requests
       .map((request: any) => {
         return {
           time: Number(request.timestamp),
@@ -257,21 +334,85 @@ watch(
   },
   { deep: true },
 )
-
-useSeoMeta({
-  ogTitle: () =>
-    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-  title: () =>
-    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-  description: () =>
-    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-  ogDescription: () =>
-    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-  twitterTitle: () =>
-    `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-  twitterDescription: () =>
-    `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+useHead({
+  title: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+  meta: [
+    { charset: 'utf-8' },
+    {
+      name: 'viewport',
+      content: 'viewport-fit=cover, width=device-width, initial-scale=1',
+    },
+    {
+      hid: 'title',
+      name: 'title',
+      content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+    },
+    {
+      hid: 'twitter:title',
+      name: 'twitter:title',
+      content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+    },
+    {
+      hid: 'twitter:description',
+      name: 'twitter:description',
+      content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+    },
+    {
+      hid: 'twitter:image',
+      name: 'twitter:image',
+      content: 'https://feeds.witnet.io/meta-image.png',
+    },
+    {
+      hid: 'twitter:image:alt',
+      name: 'twitter:image:alt',
+      content: 'Witnet data feeds explorer',
+    },
+    {
+      hid: 'og:title',
+      property: 'og:title',
+      content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+    },
+    {
+      hid: 'og:description',
+      property: 'og:description',
+      content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+    },
+    {
+      hid: 'og:image',
+      property: 'og:image',
+      content: 'https://feeds.witnet.io/meta-image.png',
+    },
+    {
+      hid: 'og:image:secure_url',
+      property: 'og:image:secure_url',
+      content: 'https://feeds.witnet.io/meta-image.png',
+    },
+    {
+      hid: 'og:image:alt',
+      property: 'og:image:alt',
+      content: 'Witnet data feeds explorer',
+    },
+  ],
 })
+// useSeoMeta({
+//   ogTitle: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   title: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   description: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+//   ogDescription: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+//   twitterTitle: () =>
+//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
+//   twitterDescription: () =>
+//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
+// })
 </script>
 
 <style lang="scss" scoped>

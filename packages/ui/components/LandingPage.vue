@@ -20,19 +20,7 @@
 <script setup lang="ts">
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 const store = useStore()
-
-useServerSeoMeta({
-  ogTitle: () => 'Data Feeds Explorer | Witnet',
-  title: () => 'Data Feeds Explorer | Witnet',
-  description: () =>
-    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-  ogDescription: () =>
-    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-  twitterTitle: () => 'Data Feeds Explorer | Witnet',
-  twitterDescription: () =>
-    'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
-})
-
+const { data } = await useAsyncData('ecosystems', store.fetchEcosystems)
 const totalFeeds = computed(() => store.totalFeeds)
 const networks = computed(() => store.networks)
 const supportedChains = computed(() => {
@@ -43,8 +31,8 @@ const supportedChains = computed(() => {
       return {
         name: chain,
         count:
-          store.ecosystems.filter((feed: any) => feed.chain === chain).length ||
-          0,
+          data.value?.feeds.filter((feed: any) => feed.chain === chain)
+            .length || 0,
         detailsPath: {
           name: 'network',
           params: {
@@ -57,9 +45,8 @@ const supportedChains = computed(() => {
     .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
 })
 
-onMounted(async () => {
+onMounted(() => {
   store.updateSelectedNetwork({ networks: [] })
-  await store.fetchEcosystems()
 })
 </script>
 

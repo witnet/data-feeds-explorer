@@ -1,9 +1,7 @@
 <template>
-  <ColorScheme>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </ColorScheme>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <style lang="scss">

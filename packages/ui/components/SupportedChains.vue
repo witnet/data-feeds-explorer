@@ -1,23 +1,41 @@
 <template>
   <div class="chains-container">
-    <ChainCard
-      v-for="chain in chains"
-      :key="chain.label"
-      :name="chain.name"
-      :details-path="chain.detailsPath"
-      :svg="chain.svg"
-      :count="chain.count"
-    />
+    <client-only fallback-tag="div">
+      <ChainCard
+        v-for="chain in chains"
+        :key="chain.label"
+        :name="chain.name"
+        :details-path="chain.detailsPath"
+        :svg="chain.svg"
+        :count="chain.count"
+      />
+      <template #fallback>
+        <ChainCard
+          v-for="chain in defaultChains"
+          :key="chain.label"
+          :name="chain.name"
+          :details-path="chain.detailsPath"
+          :svg="chain.svg"
+          :count="chain.count"
+        />
+      </template>
+    </client-only>
   </div>
 </template>
 
 <script>
+import { getDefaultEcosystems } from '@/utils/getDefaultEcosystems'
 export default {
   props: {
     chains: {
       type: Array,
       required: true,
     },
+  },
+  data() {
+    return {
+      defaultChains: getDefaultEcosystems(),
+    }
   },
 }
 </script>

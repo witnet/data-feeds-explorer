@@ -1,7 +1,9 @@
 <template>
-  <a :href="link" :title="title" :style="customizable" target="_blank">
-    <SvgIcon class="logo" :name="name" />
-  </a>
+  <client-only>
+    <a :href="link" :title="title" :style="customizable" target="_blank">
+      <SvgIcon class="logo" :name="name" />
+    </a>
+  </client-only>
 </template>
 
 <script>

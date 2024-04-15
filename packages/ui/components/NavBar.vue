@@ -45,84 +45,55 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { urls } from '../constants'
-import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 const store = useStore()
+const { data } = await useAsyncData('networks', store.fetchNetworks)
+const emit = defineEmits(['update-selected', 'scroll'])
 
-export default {
-  emits: ['update-selected', 'scroll'],
-  data() {
-    return {
-      hover: false,
-      displayBox: false,
-      isMenuVisible: false,
-      urls,
-    }
+const isMenuVisible = ref(false)
+const networks = computed(() => data.value)
+const navBarOptions = computed(() => {
+  generateNavOptions(Object.values(options.value))
+})
+const selected = ref(store.selectedNetwork)
+const options = computed(() => {
+  if (networks.value) {
+    return generateSelectOptions(networks.value)
+  } else {
+    return null
+  }
+})
+
+watch(
+  selected,
+  () => {
+    emit('update-selected', selected)
   },
-  computed: {
-    networks() {
-      return store.networks
-    },
-    navBarOptions() {
-      return generateNavOptions(Object.values(this.options))
-    },
-    selected() {
-      return store.selectedNetwork
-    },
-    options() {
-      if (this.networks) {
-        return generateSelectOptions(this.networks)
-      } else {
-        return null
-      }
-    },
-    selectedOption() {
-      return this.selected[0]?.chain || 'Ethereum'
-    },
-  },
-  watch: {
-    selected: {
-      handler(selected) {
-        this.$emit('update-selected', selected)
-      },
-      deep: true,
-    },
-  },
-  async mounted() {
-    window.addEventListener('resize', this.resizeHandler)
-    if (store.networks.length < 1) {
-      await store.fetchNetworks()
-    }
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.resizeHandler)
-  },
-  methods: {
-    capitalizeFirstLetter,
-    resizeHandler(event) {
-      if (event.target.outerWidth > 850) {
-        this.closeMenu()
-      }
-    },
-    closeMenu() {
-      this.isMenuVisible = false
-      this.$emit('scroll', this.isMenuVisible)
-    },
-    toggleMenu() {
-      this.isMenuVisible = !this.isMenuVisible
-      this.$emit('scroll', this.isMenuVisible)
-    },
-    displayDropDown() {
-      this.displayBox = !this.displayBox
-    },
-    onClose() {
-      this.active = false
-    },
-  },
+  { deep: true },
+)
+
+function resizeHandler(event) {
+  if (event.target.outerWidth > 850) {
+    this.closeMenu()
+  }
 }
+function closeMenu() {
+  isMenuVisible.value = false
+  this.$emit('scroll', isMenuVisible.value)
+}
+function toggleMenu() {
+  this.isMenuVisible = !isMenuVisible.value
+  this.$emit('scroll', isMenuVisible.value)
+}
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resizeHandler)
+})
+
+onMounted(() => window.addEventListener('resize', resizeHandler))
 </script>
 
 <style lang="scss">

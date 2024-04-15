@@ -26,7 +26,9 @@
       >
         {{ value }}
       </div>
-      <font-awesome-icon v-if="showIcon" class="icon" icon="info-circle" />
+      <client-only>
+        <font-awesome-icon v-if="showIcon" class="icon" icon="info-circle" />
+      </client-only>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@
       'hide-scroll': hideScroll,
       preload,
       background: true,
-      [`${$colorMode.value}-mode`]: true,
+      [`dark-mode`]: true,
     }"
     class="component-root"
   >
@@ -14,7 +14,9 @@
         <div class="cover" :class="{ show: hideScroll }"></div>
         <BreadCrumbs />
         <slot />
-        <ThemeSwitch class="theme-switch" />
+        <client-only>
+          <ThemeSwitch class="theme-switch" />
+        </client-only>
       </div>
       <FooterSection />
     </div>

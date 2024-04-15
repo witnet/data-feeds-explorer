@@ -92,9 +92,6 @@ function updateOptions(index: number) {
 
 useHead({
   title: `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
-  htmlAttrs: {
-    lang: 'en',
-  },
   meta: [
     { charset: 'utf-8' },
     {
