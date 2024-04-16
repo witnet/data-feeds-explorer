@@ -95,7 +95,6 @@ export default defineNuxtConfig({
         { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '2D2C39' },
-        { rel: 'msapplication-TileColor', content: '2D2C39' },
         { rel: 'shortcut icon', href: '/favicon.ico' },
       ],
     },

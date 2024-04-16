@@ -95,71 +95,6 @@ const fetchData = async () => {
     page: currentPage.value,
     size: itemsPerPage.value,
   })
-  useHead({
-    title: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
-    meta: [
-      { charset: 'utf-8' },
-      {
-        name: 'viewport',
-        content: 'viewport-fit=cover, width=device-width, initial-scale=1',
-      },
-      {
-        hid: 'title',
-        name: 'title',
-        content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
-      },
-      {
-        hid: 'twitter:title',
-        name: 'twitter:title',
-        content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
-      },
-      {
-        hid: 'twitter:description',
-        name: 'twitter:description',
-        content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
-      },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: 'https://feeds.witnet.io/meta-image.png',
-      },
-      {
-        hid: 'twitter:image:alt',
-        name: 'twitter:image:alt',
-        content: 'Witnet data feeds explorer',
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: 'https://feeds.witnet.io/meta-image.png',
-      },
-      {
-        hid: 'og:image:secure_url',
-        property: 'og:image:secure_url',
-        content: 'https://feeds.witnet.io/meta-image.png',
-      },
-      {
-        hid: 'og:image:alt',
-        property: 'og:image:alt',
-        content: 'Witnet data feeds explorer',
-      },
-    ],
-  })
   if (!store.feed) {
     router.push('/')
     return false
@@ -399,20 +334,18 @@ useHead({
     },
   ],
 })
-// useSeoMeta({
-//   ogTitle: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   title: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   description: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-//   ogDescription: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-//   twitterTitle: () =>
-//     `${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'}`,
-//   twitterDescription: () =>
-//     `Last result of ${normalizedFeed.value?.name ?? ''} Witnet Data Feed on ${normalizedFeed.value?.networkName ?? 'selected network'} is ${lastResultValue.value} at ${lastResultDate.value}`,
-// })
+useSeoMeta({
+  ogTitle: () => `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+  title: () => `${feedName.value} Witnet Data Feed on ${networkName.value}`,
+  description: () =>
+    `Last result of ${feedName.value}} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+  ogDescription: () =>
+    `Last result of ${feedName.value}} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+  twitterTitle: () =>
+    `${feedName.value}} Witnet Data Feed on ${networkName.value}`,
+  twitterDescription: () =>
+    `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
+})
 </script>
 
 <style lang="scss" scoped>
