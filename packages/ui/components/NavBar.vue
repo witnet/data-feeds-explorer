@@ -56,12 +56,12 @@ const emit = defineEmits(['update-selected', 'scroll'])
 const isMenuVisible = ref(false)
 const networks = computed(() => data.value)
 const navBarOptions = computed(() => {
-  generateNavOptions(Object.values(options.value))
+  return generateNavOptions(Object.values(options.value))
 })
 const selected = ref(store.selectedNetwork)
 const options = computed(() => {
-  if (networks.value) {
-    return generateSelectOptions(networks.value)
+  if (data.value) {
+    return generateSelectOptions(data.value)
   } else {
     return null
   }
@@ -77,16 +77,16 @@ watch(
 
 function resizeHandler(event) {
   if (event.target.outerWidth > 850) {
-    this.closeMenu()
+    closeMenu()
   }
 }
 function closeMenu() {
   isMenuVisible.value = false
-  this.$emit('scroll', isMenuVisible.value)
+  emit('scroll', isMenuVisible.value)
 }
 function toggleMenu() {
-  this.isMenuVisible = !isMenuVisible.value
-  this.$emit('scroll', isMenuVisible.value)
+  isMenuVisible.value = !isMenuVisible.value
+  emit('scroll', isMenuVisible.value)
 }
 
 onBeforeUnmount(() => {
