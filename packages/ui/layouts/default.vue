@@ -4,7 +4,7 @@
       'hide-scroll': hideScroll,
       preload,
       background: true,
-      'dark-mode': true,
+      [`${colorMode}-mode`]: true,
     }"
     class="component-root"
   >
@@ -29,10 +29,25 @@ export default {
     return {
       hideScroll: false,
       preload: true,
+      colorMode: 'dark',
     }
+  },
+  computed: {
+    colorTheme() {
+      return this.$colorMode.value
+    },
+  },
+  watch: {
+    colorTheme(value) {
+      this.colorMode = value
+    },
   },
   created() {
     this.preload = false
+  },
+  mounted() {
+    // Avoids Hydration class mismatch
+    this.colorMode = this.$colorMode.value
   },
   methods: {
     handleScroll(scroll) {
