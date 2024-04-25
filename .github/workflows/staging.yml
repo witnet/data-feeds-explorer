@@ -49,10 +49,12 @@ jobs:
           sed -i "s#<STAGING_API_ENDPOINT>#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
 
       - name: Build Containers
+        env:
+          STAGING_API_ENDPOINT: ${{ secrets.STAGING_API_ENDPOINT }}
         run: |
           docker pull witnet/data-feed-app-ui:latest
           docker pull witnet/data-feed-app-api:latest
-          docker build -t witnet/data-feed-app-ui:latest -f ./ansible/docker/ui.dockerfile ./packages/ui
+          docker build --build-arg API_ENDPOINT=${{ secrets.STAGING_API_ENDPOINT }} -t witnet/data-feed-app-ui:latest -f ./ansible/docker/ui.dockerfile ./packages/ui
           docker build -t witnet/data-feed-app-api:latest -f ./ansible/docker/api.dockerfile ./packages/api
 
       - name: Publish Containers
