@@ -37,20 +37,10 @@
             }
           }
         },
-        "arbitrum.goerli": {
-          "address": "0xAafb2D27E2E0f83dcE501a2879aaD710ec377403",
-          "blockExplorer": "https://goerli.arbiscan.io/address/{address}",
-          "color": "#E84142",
-          "name": "Arbitrum Nitro Goerli",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
+        "arbitrum.sepolia": {
+          "name": "Arbitrum Sepolia",
+          "blockExplorer": "https://sepolia.arbiscan.io/address/{address}",
+          "version": "2.0"
         }
       }
     },
