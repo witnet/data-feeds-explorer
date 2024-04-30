@@ -235,47 +235,9 @@
       "name": "Celo",
       "networks": {
         "celo.alfajores": {
-          "address": "0x6f8A7E2bBc1eDb8782145cD1089251f6e2C738AE",
-          "blockExplorer": "https://alfajores-blockscout.celo-testnet.org/address/{address}",
-          "color": "#1cd8d2",
           "name": "Celo Alfajores",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-CELO/EUR-6": {
-              "label": "€",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-CELO/USD-6": {
-              "label": "$",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-NCT/CELO-6": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-NCT/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            }
-          }
+          "blockExplorer": "https://alfajores.celoscan.io/address/{address}",
+          "version": "2.0"
         },
         "celo.mainnet": {
           "mainnet": true,
@@ -1271,9 +1233,9 @@
       "name": "Mantle",
       "networks": {
         "mantle.sepolia": {
-          "version": "2.0",
           "blockExplorer": "https://explorer.sepolia.mantle.xyz/address/{address}",
-          "name": "Mantle Sepolia"
+          "name": "Mantle Sepolia",
+          "version": "2.0"
         },
         "mantle.mainnet": {
           "mainnet": true,
