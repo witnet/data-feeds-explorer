@@ -1682,82 +1682,10 @@
     "polygon": {
       "name": "Polygon",
       "networks": {
-        "polygon.goerli": {
-          "address": "0x6d5544ca5b35bf2e7a78ace4E7B8d191fe5C9FAb",
-          "blockExplorer": "https://mumbai.polygonscan.com/address/{address}",
-          "color": "#66ff00",
-          "name": "Polygon Mumbai",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BAT/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-BAT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-MATIC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-QUICK/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-QUICK/USDC-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-QUICK/WETH-9": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-QUICK/WMATIC-6": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
+        "polygon.amoy": {
+          "name": "Polygon Amoy",
+          "blockExplorer": "https://amoy.polygonscan.com/address/{address}",
+          "version": "2.0"
         },
         "polygon.mainnet": {
           "mainnet": true,
