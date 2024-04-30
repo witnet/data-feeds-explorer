@@ -47,11 +47,13 @@ jobs:
           sed -i "s#<PRODUCTION_API_ENDPOINT>#$API_ENDPOINT#g" ./ansible/docker-compose.yml
           sed -i "s#<STAGING_API_ENDPOINT>#$STAGING_API_ENDPOINT#g" ./ansible/docker-compose.yml
 
-      - name: Pull & Rename Images
+      - name: Pull & Rebuild Images
+        env:
+          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}  
         run: |
           docker pull witnet/data-feed-app-ui:latest
           docker pull witnet/data-feed-app-api:latest
-          docker tag witnet/data-feed-app-ui:latest witnet/data-feed-app-ui:${{github.ref_name}}
+          docker build --build-arg API_ENDPOINT=${{ secrets.API_ENDPOINT }} -t witnet/data-feed-app-ui:${{github.ref_name}} -f ./ansible/docker/ui.dockerfile ./packages/ui
           docker tag witnet/data-feed-app-api:latest witnet/data-feed-app-api:${{github.ref_name}}
 
       - name: Publish Containers
