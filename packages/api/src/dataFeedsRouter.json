@@ -63,32 +63,10 @@
             }
           }
         },
-        "avalanche.fuji": {
-          "address": "0x99Af0CF37d1C6b9Bdfe33cc0A89C00D97D3c42F4",
-          "blockExplorer": "https://testnet.snowtrace.io/address/{address}",
-          "color": "#E84142",
+        "avalanche.testnet": {
           "name": "Avalanche Fuji",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-AVAX/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
+          "blockExplorer": "https://testnet.snowtrace.io/address/{address}",
+          "version": "2.0"
         }
       }
     },
