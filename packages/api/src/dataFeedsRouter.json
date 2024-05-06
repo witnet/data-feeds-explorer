@@ -716,6 +716,7 @@
         "kava.testnet": {
           "name": "Kava EVM Testnet",
           "blockExplorer": "https://explorer.testnet.kava.io/address/{address}",
+          "version": "2.0",
           "feeds": {
             "Price-KAVA/USDT-6": {
               "label": "₮",
@@ -731,11 +732,9 @@
       "name": "KCC",
       "networks": {
         "kcc.testnet": {
-          "address": "0xba7CF62498340fa3734EC51Ca8A69928F0d9E03a",
-          "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
-          "color": "#ff0066",
           "name": "KCC Testnet",
-          "pollingPeriod": 120000,
+          "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
+          "version": "2.0",
           "feeds": {
             "Price-BORING/USDT-6": {
               "label": "₮",
@@ -746,12 +745,6 @@
             "Price-BTC/USD-6": {
               "label": "$",
               "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             },
@@ -776,18 +769,6 @@
             "Price-SAX/USDT-6": {
               "label": "₮",
               "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 900
             }
