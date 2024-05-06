@@ -547,67 +547,9 @@
           }
         },
         "elastos.testnet": {
-          "address": "0x4874cb1732eE1167A006E0Ab047D940ACF04D771",
-          "blockExplorer": "https://esc-testnet.elastos.io/address/{address}",
-          "color": "#66ff00",
           "name": "Elastos Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BNB/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-BNB/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ELA/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-ELA/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-HT/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-HT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
+          "blockExplorer": "https://esc-testnet.elastos.io/address/{address}",
+          "version": "2.0"
         }
       }
     },
