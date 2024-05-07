@@ -719,10 +719,7 @@
           "version": "2.0",
           "feeds": {
             "Price-KAVA/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "deviationPercentage": 0.5
             }
           }
         }
@@ -737,40 +734,24 @@
           "version": "2.0",
           "feeds": {
             "Price-BORING/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "deviationPercentage": 0.5
             },
             "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "deviationPercentage": 0.5
             },
             "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "deviationPercentage": 0.5
             },
             "Price-KCS/USDT-6": {
-              "label": "₮",
               "deviationPercentage": 0.5,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
             "Price-MJT/KCS-9": {
-              "label": " ",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "deviationPercentage": 0.5
             },
             "Price-SAX/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "deviationPercentage": 0.5
             }
           }
         },
