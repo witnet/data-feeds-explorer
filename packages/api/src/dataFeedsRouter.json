@@ -1431,35 +1431,12 @@
           }
         },
         "scroll.sepolia": {
-          "address": "0xdC101573cB42EB7006Ad6C7E08ce8C91fEAcB62C",
+          "name": "Scroll Sepolia",
           "blockExplorer": "https://sepolia.etherscan.io/{address}",
-          "color": "#66ff00",
-          "name": "Scroll Sepolia (testnet)",
-          "pollingPeriod": 120000,
+          "version": "2.0",
           "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-UNI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
             "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.2,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
+              "deviationPercentage": 0.2
             }
           }
         }
