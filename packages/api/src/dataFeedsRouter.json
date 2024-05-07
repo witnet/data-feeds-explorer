@@ -1203,12 +1203,10 @@
             }
           }
         },
-        "okx.okxchain.testnet": {
-          "address": "0xB4B2E2e00e9d6E5490d55623E4F403EC84c6D33f",
+        "okx.oktchain.testnet": {
+          "name": "OKT Chain Testnet",
           "blockExplorer": "https://www.oklink.com/en/oktc-test/address/{address}",
-          "color": "#ff0066",
-          "name": "OKT Testnet",
-          "pollingPeriod": 120000,
+          "version": "2.0",
           "feeds": {
             "Price-OKT/USDT-6": {
               "label": "₮",
