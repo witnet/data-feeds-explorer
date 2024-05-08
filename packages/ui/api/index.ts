@@ -6,18 +6,8 @@ import networksQuery from './queries/networks'
 import feedRequestsQuery from './queries/requests'
 import type { Ecosystem, Feed, FeedRequests, Network } from '~/types'
 
-// TODO: Find a better way to pass the API_ENDPOINT and be able to use the same nuxt build
-// for staging and production environments
 function getApiEndpoint() {
   return useRuntimeConfig().public.apiBase
-  // const url = window.location.href
-  // if (url.includes('staging')) {
-  //   return 'https://staging-feeds-api.witnet.io/'
-  // } else if (url.includes('localhost')) {
-  //   return useRuntimeConfig().public.apiBase
-  // } else {
-  //   return 'https://feeds-api.witnet.io/'
-  // }
 }
 
 export const getAllFeedsRequests = async ({ network }: { network: string }) =>

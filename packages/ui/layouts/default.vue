@@ -4,7 +4,7 @@
       'hide-scroll': hideScroll,
       preload,
       background: true,
-      [`dark-mode`]: true,
+      'dark-mode': true,
     }"
     class="component-root"
   >
