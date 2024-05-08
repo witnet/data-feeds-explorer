@@ -926,42 +926,10 @@
     "metis": {
       "name": "Metis",
       "networks": {
-        "metis.goerli": {
-          "address": "0xBfFA2ec6225390C517A1bEB83b27a171C6734294",
-          "blockExplorer": "https://goerli.explorer.metisdevops.link/address/{address}",
-          "color": "#ff6600",
-          "name": "Metis Goerli",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-METIS/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-METIS/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
+        "metis.sepolia": {
+          "name": "Metis Sepolia",
+          "blockExplorer": "https://sepolia-explorer.metisdevops.link/address/{address}",
+          "version": "2.0"
         }
       }
     },
