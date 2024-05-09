@@ -1251,21 +1251,6 @@
     "reef": {
       "name": "Reef",
       "networks": {
-        "reef.testnet": {
-          "address": "0xB600e92DbA7CA66895Aa353d9128514ba47e7896",
-          "blockExplorer": "https://testnet.reefscan.com/contract/{address}",
-          "color": "#66ff00",
-          "name": "Reef Testnet",
-          "pollingPeriod": 180000,
-          "feeds": {
-            "Price-REEF/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
         "reef.mainnet": {
           "mainnet": true,
           "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
