@@ -899,12 +899,6 @@
     "meter": {
       "name": "Meter",
       "networks": {
-        "meter.testnet": {
-          "address": "0xD9f5Af15288294678B0863A20F4B83eeeEAa775C",
-          "blockExplorer": "https://scan-warringstakes.meter.io/address/{address}",
-          "name": "Meter Testnet",
-          "version": "2.0"
-        },
         "meter.mainnet": {
           "mainnet": true,
           "address": "0xA0Ea8C99159843afdAE9eD092E8eaec0368e8A20",
