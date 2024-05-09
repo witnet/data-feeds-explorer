@@ -91,7 +91,9 @@ export class PriceFeed {
       throw new Error(`${feed.caption} not found in configuration file`)
     }
 
-    if (feedConfiguration.isRouted) {
+    const isRouted: boolean = feed.solver.endsWith('000000000000000000000000')
+
+    if (isRouted) {
       feedConfiguration.maxSecsBetweenUpdates = 0
       feedConfiguration.deviationPercentage = 0
     }
@@ -105,7 +107,7 @@ export class PriceFeed {
       routerAbi: WitnetPriceFeedsABI as any,
       address: null,
       routerAddress: address,
-      isRouted: feedConfiguration.isRouted,
+      isRouted: isRouted,
       network: network,
       networkName: networkName,
       name: adaptedCaption.toLowerCase(),
