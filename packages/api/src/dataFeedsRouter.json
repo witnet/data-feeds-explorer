@@ -329,19 +329,16 @@
           "version": "2.0",
           "feeds": {
             "Price-CFX/USDT-6": {
-              "label": "₮",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
             "Price-BTC/USD-6": {
-              "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
             },
             "Price-ETH/USD-6": {
-              "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 3600,
               "minSecsBetweenUpdates": 300
@@ -903,53 +900,10 @@
       "name": "Meter",
       "networks": {
         "meter.testnet": {
-          "address": "0xBbDB82a16d7b66bb076879f766042b914F1C7572",
+          "address": "0xD9f5Af15288294678B0863A20F4B83eeeEAa775C",
           "blockExplorer": "https://scan-warringstakes.meter.io/address/{address}",
-          "color": "#ff6600",
           "name": "Meter Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-MTR/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-MTRG/USD-6": {
-              "label": "$",
-              "isRouted": true
-            },
-            "Price-MTRG/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
+          "version": "2.0"
         },
         "meter.mainnet": {
           "mainnet": true,
