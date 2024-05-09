@@ -168,33 +168,6 @@
               "minSecsBetweenUpdates": 3600
             }
           }
-        },
-        "boba.bnb.testnet": {
-          "address": "0x8D20457d968c937b7cb65be6B8cC766613fBcF28",
-          "blockExplorer": "https://blockexplorer.testnet.bnb.boba.network/address/{address}",
-          "color": "#1cd83d",
-          "name": "Boba BNB/L2 Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BNB/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-BOBA/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-WIT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
         }
       }
     },
