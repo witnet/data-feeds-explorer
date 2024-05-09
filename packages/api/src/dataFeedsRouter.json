@@ -73,6 +73,12 @@
     "base": {
       "name": "Base",
       "networks": {
+        "base.mainnet": {
+          "blockExplorer": "https://basescan.com/address/{address}",
+          "mainnet": true,
+          "name": "Base Mainnet",
+          "version": "2.0"
+        },
         "base.sepolia": {
           "version": "2.0",
           "blockExplorer": "https://base-sepolia.blockscout.com/{address}",
