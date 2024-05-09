@@ -356,11 +356,10 @@
           }
         },
         "conflux.core.testnet": {
-          "address": "0x8F61C7b18F69bB87D6151B8a5D733E1945ea6c25",
-          "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
-          "color": "#6600ff",
+          "address": "0x8ba3C59e1029cd90010e8C731461ddFC5f49091b",
           "name": "Conflux Core Testnet",
-          "pollingPeriod": 120000,
+          "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
+          "version": "2.0",
           "feeds": {
             "Price-CFX/USDT-6": {
               "label": "₮",
