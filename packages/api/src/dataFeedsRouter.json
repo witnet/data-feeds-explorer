@@ -1202,49 +1202,6 @@
             }
           }
         },
-        "polygon.zkevm.goerli": {
-          "address": "0xc2462eE5d9F8C70f3E0C4CE5881dFFF291Ff2205",
-          "blockExplorer": "https://testnet-zkevm.polygonscan.com/{address}",
-          "color": "#66ff00",
-          "name": "Polygon zkEVM Testnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-QUICK/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-QUICK/USDC-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-QUICK/WETH-9": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-QUICK/WMATIC-6": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        },
         "polygon.zkevm.mainnet": {
           "mainnet": true,
           "address": "0xb99FA0430C73E7B82604Aa99d351d6aFdCe46A16",
