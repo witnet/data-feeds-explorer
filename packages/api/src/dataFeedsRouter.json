@@ -499,19 +499,9 @@
       "name": "Ethereum",
       "networks": {
         "ethereum.sepolia": {
-          "address": "0xdC101573cB42EB7006Ad6C7E08ce8C91fEAcB62C",
-          "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
-          "color": "#ff5599",
           "name": "Ethereum Sepolia",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
+          "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
+          "version": "2.0"
         },
         "ethereum.mainnet": {
           "mainnet": true,
