@@ -128,12 +128,6 @@ export class NetworkRouter {
 
     return suppoortedFeeds
       .map((supportedFeed) => {
-        if (!this.configuration.isFeedActive(supportedFeed.caption)) {
-          console.log(
-            `${supportedFeed.caption} in ${this.network} is deprecated`,
-          )
-          return null
-        }
         const res = PriceFeed.fromWitnetPriceFeedsContract(
           this.configuration,
           supportedFeed,
