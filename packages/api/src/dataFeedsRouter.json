@@ -1351,20 +1351,11 @@
       "maxSecsBetweenUpdates": 86400,
       "minSecsBetweenUpdates": 900
     },
-    "Price-BAT/USD-6": {
-      "isRouted": true
-    },
     "Price-BCH/USD-6": {
       "deviationPercentage": 1.0
     },
-    "Price-BNB/USD-6": {
-      "isRouted": true
-    },
     "Price-BORING/USDT-6": {
       "deviationPercentage": 0.5
-    },
-    "Price-BUSD/USD-6": {
-      "isRouted": true
     },
     "Price-CELO/EUR-6": {
       "deviationPercentage": 1.0
@@ -1383,9 +1374,6 @@
     "Price-CRO/USDT-6": {
       "deviationPercentage": 3.5
     },
-    "Price-CUBE/USD-6": {
-      "isRouted": true
-    },
     "Price-CUBE/USDT-6": {
       "deviationPercentage": 3.5
     },
@@ -1398,37 +1386,17 @@
     "Price-DOT/USD-6": {
       "deviationPercentage": 3.5
     },
-    "Price-ELA/USD-6": {
-      "isRouted": true
-    },
     "Price-ELA/USDT-6": {
       "deviationPercentage": 3.5
-    },
-    "Price-ELON/USD-9": {
-      "isRouted": true
     },
     "Price-FRAX/USDT-6": {
       "deviationPercentage": 0.25
     },
-    "Price-GLINT/USD-6": {
-      "isRouted": true,
-      "maxSecsBetweenUpdates": 86400,
-      "minSecsBetweenUpdates": 900
-    },
     "Price-GLINT/USDC-6": {
       "deviationPercentage": 1.0
     },
-    "Price-GLMR/USD-6": {
-      "isRouted": true
-    },
     "Price-GLMR/USDT-6": {
       "deviationPercentage": 1.0
-    },
-    "Price-HT/USD-6": {
-      "isRouted": true
-    },
-    "Price-KAVA/USD-6": {
-      "isRouted": true
     },
     "Price-KAVA/USDT-6": {
       "deviationPercentage": 0.5
@@ -1438,26 +1406,11 @@
       "maxSecsBetweenUpdates": 3600,
       "minSecsBetweenUpdates": 3600
     },
-    "Price-KLAY/USD-6": {
-      "isRouted": true
-    },
-    "Price-KSP/USD-6": {
-      "isRouted": true
-    },
-    "Price-METIS/USD-6": {
-      "isRouted": true
-    },
     "Price-MJT/KCS-9": {
       "deviationPercentage": 0.5
     },
     "Price-MOVR/USDT-6": {
       "deviationPercentage": 1.0
-    },
-    "Price-MTRG/USD-6": {
-      "isRouted": true
-    },
-    "Price-NCT/USD-6": {
-      "isRouted": true
     },
     "Price-OKT/USDT-6": {
       "deviationPercentage": 0.5
@@ -1465,23 +1418,14 @@
     "Price-OP/USDT-6": {
       "deviationPercentage": 1.0
     },
-    "Price-QUICK/USD-6": {
-      "isRouted": true
-    },
     "Price-SAX/USDT-6": {
       "deviationPercentage": 0.5
-    },
-    "Price-STELLA/USD-6": {
-      "isRouted": true
     },
     "Price-STELLA/USDT-6": {
       "deviationPercentage": 1.0
     },
     "Price-SYS/USDT-6": {
       "deviationPercentage": 1.0
-    },
-    "Price-TUSD/USD-6": {
-      "isRouted": true
     },
     "Price-TUSD/USDT-6": {
       "deviationPercentage": 0.25
