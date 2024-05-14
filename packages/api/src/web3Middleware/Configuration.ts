@@ -132,7 +132,7 @@ export class Configuration {
   }
 
   private fromNetworkKeyToNetwork(networkKey: string): Network {
-    return networkKey.replace('.', '-') as Network
+    return networkKey.replaceAll('.', '-') as Network
   }
 }
 
