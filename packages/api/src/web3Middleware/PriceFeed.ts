@@ -90,8 +90,7 @@ export class PriceFeed {
     if (!feedConfiguration || Object.keys(feedConfiguration).length === 0) {
       throw new Error(`${feed.caption} not found in configuration file`)
     }
-
-    const isRouted: boolean = feed.solver.endsWith('000000000000000000000000')
+    const isRouted: boolean = this.isRouted(feed.solver)
 
     if (isRouted) {
       feedConfiguration.maxSecsBetweenUpdates = 0
@@ -122,5 +121,10 @@ export class PriceFeed {
       finality: '900000',
       chain,
     })
+  }
+
+  static isRouted(solver: string): boolean {
+    // ends in 24 0s
+    return solver.endsWith('000000000000000000000000')
   }
 }

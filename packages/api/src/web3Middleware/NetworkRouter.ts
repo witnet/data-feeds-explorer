@@ -84,9 +84,7 @@ export class NetworkRouter {
     setInterval(async () => {
       const snapshot = await this.getSnapshot()
       const insertPromises = snapshot.feeds
-        .filter((feed) => {
-          return feed.status === ResultStatus.Ready
-        })
+        .filter((feed) => feed.timestamp !== '0')
         .map((feed) => ({
           feedFullName: createFeedFullName(
             this.network,
