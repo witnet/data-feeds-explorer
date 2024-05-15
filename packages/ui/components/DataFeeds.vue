@@ -41,6 +41,10 @@ const allFeeds = computed(() => {
         return feed.lastResult && Number(feed.lastResultTimestamp) > 0
       })
       .map((feed: any) => {
+        const heartbeat = Number(feed.heartbeat || '0')
+        const timeToUpdate =
+          heartbeat && !feed.isRouted ? heartbeat + Number(feed.finality) : null
+
         return {
           detailsPath: {
             name: 'network-id',
@@ -54,9 +58,7 @@ const allFeeds = computed(() => {
           value: feed.lastResult,
           lastResultTimestamp: feed.lastResultTimestamp || '0',
           label: feed.label,
-          timeToUpdate: feed.heartbeat
-            ? Number(feed.heartbeat) + Number(feed.finality)
-            : null,
+          timeToUpdate,
           img: {
             name: formatSvgName(feed.name),
             alt: feed.name,

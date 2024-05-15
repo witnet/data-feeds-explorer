@@ -4,6 +4,7 @@ export default gql`
   query feeds($network: String!) {
     feeds(network: $network) {
       feeds {
+        isRouted
         feedFullName
         name
         address
