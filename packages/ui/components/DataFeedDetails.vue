@@ -26,7 +26,10 @@
     />
     <client-only>
       <FieldsetCard
-        v-if="maxTimeToResolve || normalizedFeed.deviation"
+        v-if="
+          !normalizedFeed.isRouted &&
+          (maxTimeToResolve || normalizedFeed.deviation)
+        "
         :title="$t('data_feed_details.trigger_parameters')"
       >
         <DataFeedTriggerParams
