@@ -1059,109 +1059,15 @@
         },
         "polygon.mainnet": {
           "mainnet": true,
-          "address": "0x3806311c7138ddF2bAF2C2093ff3633E5A73AbD4",
-          "blockExplorer": "https://polygonscan.com/address/{address}",
-          "color": "#66ff00",
           "name": "Polygon Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-MATIC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-QUICK/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-QUICK/USDC-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-QUICK/WETH-9": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-QUICK/WMATIC-6": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "blockExplorer": "https://polygonscan.com/address/{address}",
+          "version": "2.0"
         },
         "polygon.zkevm.mainnet": {
           "mainnet": true,
-          "address": "0xb99FA0430C73E7B82604Aa99d351d6aFdCe46A16",
-          "blockExplorer": "https://zkevm.polygonscan.com/address/{address}",
-          "color": "#66ff00",
           "name": "Polygon zkEVM Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-QUICK/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-QUICK/USDC-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-QUICK/WETH-9": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-QUICK/WMATIC-6": {
-              "label": " ",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "blockExplorer": "https://zkevm.polygonscan.com/address/{address}",
+          "version": "2.0"
         }
       }
     },
