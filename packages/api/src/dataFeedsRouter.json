@@ -49,19 +49,9 @@
       "networks": {
         "avalanche.mainnet": {
           "mainnet": true,
-          "address": "0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7",
           "blockExplorer": "https://snowtrace.io/address/{address}",
-          "color": "#070fdf",
           "name": "Avalanche Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-AVAX/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "version": "2.0"
         },
         "avalanche.testnet": {
           "name": "Avalanche Fuji",
