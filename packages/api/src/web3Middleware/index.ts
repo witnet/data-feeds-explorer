@@ -24,7 +24,7 @@ export class Web3Middleware {
   public networkRouters: Array<NetworkRouter>
   public configuration: Configuration
 
-  private intervals: NodeJS.Timer[] = []
+  private intervals: Array<ReturnType<typeof setInterval>> = []
 
   constructor(
     configuration: Configuration,

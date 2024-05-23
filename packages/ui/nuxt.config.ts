@@ -99,15 +99,19 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   devtools: { enabled: true },
   components: [{ path: '~/components', pathPrefix: false }],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@nuxt/ui', '@nuxtjs/color-mode'],
+
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
     fallback: 'dark', // fallback value if not system preference found
@@ -118,6 +122,7 @@ export default defineNuxtConfig({
     classSuffix: '-mode',
     storageKey: 'nuxt-color-mode',
   },
+
   i18n: {
     lazy: true,
     langDir: 'locales',
@@ -130,15 +135,18 @@ export default defineNuxtConfig({
     },
     locales: Object.values(LANGUAGE_LOCALES),
   },
+
   runtimeConfig: {
     public: {
       apiBase: process.env.API_ENDPOINT,
     },
   },
+
   css: [
     '~/assets/styles/tailwind.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
+
   vite: {
     plugins: [
       svgLoader({
@@ -165,4 +173,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2024-07-16',
 })
