@@ -1,5 +1,8 @@
 {
   "name": "data-feeds-explorer",
+  "engines": {
+    "node": "20"
+  },
   "private": true,
   "version": "2.4.0",
   "description": "",
@@ -33,9 +36,5 @@
     "stylelint": "^16.2.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^36.0.0"
-  },
-  "volta": {
-    "node": "21.6.1",
-    "yarn": "1.22.19"
   }
 }
