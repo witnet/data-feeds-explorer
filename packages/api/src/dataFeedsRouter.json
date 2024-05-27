@@ -383,19 +383,10 @@
       "networks": {
         "meter.mainnet": {
           "mainnet": true,
-          "address": "0xA0Ea8C99159843afdAE9eD092E8eaec0368e8A20",
-          "blockExplorer": "https://scan.meter.io/address/{address}",
-          "color": "#ff6600",
           "name": "Meter Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-MTR/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "address": "0x27EF7A3e155F96e68A9988EAdBF8bd3eFdba1438",
+          "blockExplorer": "https://scan.meter.io/address/{address}",
+          "version": "2.0"
         }
       }
     },
