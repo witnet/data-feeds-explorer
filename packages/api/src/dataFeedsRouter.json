@@ -242,58 +242,7 @@
     },
     "fuse": {
       "name": "Fuse",
-      "networks": {
-        "fuse.testnet": {
-          "mainnet": false,
-          "address": "0xB4f1f8E27799256ec95C5b5A8d2A5722Bd542E69",
-          "blockExplorer": "https://explorer.fusespark.io/address/{address}",
-          "color": "#66ff00",
-          "name": "Fuse Sparknet (Testnet)",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BNB/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-BNB/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-FUSE/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-MATIC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 900
-            }
-          }
-        }
-      }
+      "networks": {}
     },
     "gnosis": {
       "name": "Gnosis",
