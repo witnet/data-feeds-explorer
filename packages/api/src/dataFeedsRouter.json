@@ -1192,26 +1192,8 @@
       "maxSecsBetweenUpdates": 3600,
       "minSecsBetweenUpdates": 300
     },
-    "Price-CRO/USD-6": {
-      "deviationPercentage": 3.5
-    },
-    "Price-CRO/USDT-6": {
-      "deviationPercentage": 3.5
-    },
-    "Price-CUBE/USDT-6": {
-      "deviationPercentage": 3.5
-    },
     "Price-DAI/USD-6": {
       "deviationPercentage": 0.1
-    },
-    "Price-DOGE/USD-6": {
-      "deviationPercentage": 3.5
-    },
-    "Price-DOT/USD-6": {
-      "deviationPercentage": 3.5
-    },
-    "Price-ELA/USDT-6": {
-      "deviationPercentage": 3.5
     },
     "Price-FRAX/USDT-6": {
       "deviationPercentage": 0.25
