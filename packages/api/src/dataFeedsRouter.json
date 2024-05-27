@@ -24,7 +24,8 @@
         "arbitrum.one": {
           "mainnet": "true",
           "name": "Arbitrum ONE",
-          "blockExplorer": "https://arbiscan.io/address/{address}"
+          "blockExplorer": "https://arbiscan.io/address/{address}",
+          "version": "2.0"
         },
         "arbitrum.sepolia": {
           "name": "Arbitrum Sepolia",
@@ -53,15 +54,15 @@
       "name": "Base",
       "networks": {
         "base.mainnet": {
-          "blockExplorer": "https://basescan.com/address/{address}",
           "mainnet": true,
           "name": "Base Mainnet",
+          "blockExplorer": "https://basescan.com/address/{address}",
           "version": "2.0"
         },
         "base.sepolia": {
-          "version": "2.0",
+          "name": "Base Sepolia",
           "blockExplorer": "https://base-sepolia.blockscout.com/{address}",
-          "name": "Base Sepolia"
+          "version": "2.0"
         }
       }
     },
@@ -70,60 +71,9 @@
       "networks": {
         "boba.ethereum.mainnet": {
           "mainnet": true,
-          "address": "0x93f61D0D5F623144e7C390415B70102A9Cc90bA5",
-          "blockExplorer": "https://blockexplorer.boba.network/address/{address}",
-          "color": "#007dff",
           "name": "Boba ETH/L2 Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BOBA/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-OLO/USDC-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-FRAX/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.25,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
+          "blockExplorer": "https://bobascan.com/address/{address}",
+          "version": "2.0"
           }
         },
         "boba.bnb.mainnet": {
