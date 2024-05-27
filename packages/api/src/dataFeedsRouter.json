@@ -278,89 +278,25 @@
           "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
           "version": "2.0",
           "feeds": {
-            "Price-BORING/USDT-6": {
-              "deviationPercentage": 0.5
-            },
             "Price-BTC/USD-6": {
               "deviationPercentage": 0.5
             },
             "Price-ETH/USD-6": {
-              "deviationPercentage": 0.5
-            },
-            "Price-KCS/USDT-6": {
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            },
-            "Price-MJT/KCS-9": {
-              "deviationPercentage": 0.5
-            },
-            "Price-SAX/USDT-6": {
               "deviationPercentage": 0.5
             }
           }
         },
         "kcc.mainnet": {
           "mainnet": true,
-          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://scan.kcc.io/address/{address}",
-          "color": "#ff0066",
           "name": "KCC Mainnet",
-          "pollingPeriod": 120000,
+          "blockExplorer": "https://scan.kcc.io/address/{address}",
+          "version": "2.0",
           "feeds": {
-            "Price-BORING/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
             "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-DAI/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "deviationPercentage": 0.5
             },
             "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-KCS/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-MJT/KCS-9": {
-              "label": " ",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-SAX/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 0.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
+              "deviationPercentage": 0.5
             }
           }
         }
