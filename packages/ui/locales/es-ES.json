@@ -102,6 +102,7 @@
       "title": "Users and Partners"
     }
   },
+  "empty_feeds": "No hay feeds activos en {0}. ¡Solicita un nuevo data feed!",
   "feeds": "feeds",
   "data_feeds": "Data feeds",
   "networks": "Networks",

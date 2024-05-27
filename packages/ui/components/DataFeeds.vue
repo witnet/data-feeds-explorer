@@ -1,5 +1,11 @@
 <template>
-  <div class="feeds-container">
+  <div v-if="noFeedsAvailable" class="empty-state">
+    <i18n-t keypath="empty_feeds" tag="p" scope="global">
+      <span class="bold">{{ network.label }}</span>
+    </i18n-t>
+    <RequestDataFeedBtn />
+  </div>
+  <div v-else-if="loading" class="feeds-container">
     <FeedCard
       v-for="feed in allFeeds"
       :key="feed.name + feed.network + feed.value + feed.color"
@@ -16,6 +22,7 @@
       :color="feed.color"
     />
   </div>
+  <div v-else class="feeds-container">Loading...</div>
 </template>
 
 <script setup lang="ts">
@@ -32,8 +39,10 @@ const props = defineProps({
   },
 })
 const route = useRoute()
+const loading = ref(false)
+const noFeedsAvailable = ref(false)
 const networkFeeds: Ref<any> = ref(null)
-const emit = defineEmits(['empty'])
+const emptyFeeds = computed(() => allFeeds.value.length < 1)
 const allFeeds = computed(() => {
   if (networkFeeds.value?.total) {
     const feeds = networkFeeds.value?.feeds
@@ -77,8 +86,10 @@ const allFeeds = computed(() => {
   }
 })
 watch(networkFeeds, () => {
-  if (allFeeds.value.length < 1) {
-    emit('empty', props.networkIndex)
+  loading.value = true
+  if (emptyFeeds.value) {
+    noFeedsAvailable.value = true
+    // emit('empty', props.networkIndex)
   }
 })
 onMounted(async () => {
@@ -97,6 +108,15 @@ onMounted(async () => {
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   justify-content: flex-start;
   align-items: center;
+}
+.empty-state {
+  display: grid;
+  grid-gap: 16px;
+  width: 100%;
+  grid-template-rows: 1fr;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 16px;
 }
 
 @media screen and (max-width: 1100px) {

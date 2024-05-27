@@ -29,15 +29,7 @@
             <NetworkOptions type="navbar" :options="navBarOptions" />
           </div>
           <div class="tab last-item" @click="closeMenu">
-            <a
-              class="btn-container"
-              :href="urls.requestDataFeed"
-              target="_blank"
-            >
-              <CustomButton class="btn">{{
-                $t('navbar.request_data_feed')
-              }}</CustomButton>
-            </a>
+            <RequestDataFeedBtn class="btn-container" />
           </div>
         </div>
       </transition>
@@ -46,7 +38,6 @@
 </template>
 
 <script setup>
-import { urls } from '../constants'
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 const store = useStore()

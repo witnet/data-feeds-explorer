@@ -102,6 +102,7 @@
       "title": "Users and Partners"
     }
   },
+  "empty_feeds": "There are no active feeds in {0}. Request new price feed!",
   "feeds": "feeds",
   "data_feeds": "Data feeds",
   "networks": "Networks",
