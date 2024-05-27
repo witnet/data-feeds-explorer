@@ -448,22 +448,6 @@
           "name": "Ethereum Sepolia",
           "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
           "version": "2.0"
-        },
-        "ethereum.mainnet": {
-          "mainnet": true,
-          "address": "0x83A757eAe821Ad7B520D9A74952337138A80b2AF",
-          "blockExplorer": "https://etherscan.io/address/{address}",
-          "color": "#ff5599",
-          "name": "Ethereum Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 604800,
-              "minSecsBetweenUpdates": 86400
-            }
-          }
         }
       }
     },
