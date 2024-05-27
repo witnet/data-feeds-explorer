@@ -190,8 +190,8 @@
         },
         "cronos.mainnet": {
           "mainnet": true,
-          "blockExplorer": "https://cronoscan.com/address/{address}",
           "name": "Cronos Mainnet",
+          "blockExplorer": "https://cronoscan.com/address/{address}",
           "version": "2.0"
         }
       }
@@ -200,14 +200,12 @@
       "name": "Dogechain",
       "networks": {
         "dogechain.mainnet": {
-          "address": "0xD7f7933992c25A504e9Ddf7e76a3c1D6c432b25D",
-          "blockExplorer": "https://explorer.dogechain.dog/address/{address}",
-          "color": "#f6006f",
+          "mainnet": true,
           "name": "Dogechain Mainnet",
-          "pollingPeriod": 120000,
+          "blockExplorer": "https://explorer.dogechain.dog/address/{address}",
+          "version": "2.0",
           "feeds": {
             "Price-DOGE/USD-6": {
-              "label": "$",
               "deviationPercentage": 1.0,
               "maxSecsBetweenUpdates": 86400,
               "minSecsBetweenUpdates": 3600
