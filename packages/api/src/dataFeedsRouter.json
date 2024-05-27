@@ -322,49 +322,15 @@
       "name": "Mantle",
       "networks": {
         "mantle.sepolia": {
-          "blockExplorer": "https://explorer.sepolia.mantle.xyz/address/{address}",
           "name": "Mantle Sepolia",
+          "blockExplorer": "https://explorer.sepolia.mantle.xyz/address/{address}",
           "version": "2.0"
         },
         "mantle.mainnet": {
           "mainnet": true,
-          "address": "0x0d13c6058DDE86da77565ED6038C065Af71e9208",
-          "blockExplorer": "https://explorer.mantle.xyz/address/{address}",
-          "color": "#ff6600",
           "name": "Mantle Mainnet",
-          "pollingPeriod": 90000,
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-MNT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDC/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "blockExplorer": "https://explorer.mantle.xyz/address/{address}",
+          "version": "2.0"
         }
       }
     },
