@@ -307,45 +307,9 @@
       "networks": {
         "klaytn.mainnet": {
           "mainnet": true,
-          "address": "0xD39D4d972C7E166856c4eb29E54D3548B4597F53",
-          "blockExplorer": "https://scope.klaytn.com/account/{address}",
-          "color": "#ff0066",
           "name": "Klaytn Cypress (Mainnet)",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-KLAY/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-KLAY/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-KRW/USD-9": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-KSP/KRW-6": {
-              "label": "₩",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-KSP/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "blockExplorer": "https://scope.klaytn.com/account/{address}",
+          "version": "2.0"
         },
         "klaytn.testnet": {
           "name": "Klaytn Baobab (Testnet)",
