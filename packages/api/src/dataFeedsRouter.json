@@ -219,51 +219,9 @@
       "networks": {
         "elastos.mainnet": {
           "mainnet": true,
-          "address": "0x0Aa147F25CE8BfaA4E6B4B2CCa91f595bD732CD4",
-          "blockExplorer": "https://esc.elastos.io/address/{address}",
-          "color": "#66ff00",
           "name": "Elastos Mainnet",
-          "pollingPeriod": 120000,
-          "feeds": {
-            "Price-BNB/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-BNB/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-ELA/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-ETH/USD-6": {
-              "label": "$",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-HT/USD-6": {
-              "isRouted": true,
-              "label": "$"
-            },
-            "Price-HT/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            },
-            "Price-USDT/USD-6": {
-              "label": "$",
-              "deviationPercentage": 0.1,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "blockExplorer": "https://esc.elastos.io/address/{address}",
+          "version": "2.0"
         },
         "elastos.testnet": {
           "name": "Elastos Testnet",
