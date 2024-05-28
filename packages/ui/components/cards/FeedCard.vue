@@ -1,6 +1,6 @@
 <template>
-  <BaseCard :class="dataFeedStatus.key">
-    <nuxt-link v-if="detailsPath.params.id" :to="localeRoute(detailsPath)">
+  <BaseCard v-if="!empty" :class="dataFeedStatus.key">
+    <nuxt-link :to="localeRoute(detailsPath)">
       <div class="card-container">
         <div class="title">
           <SvgIcon class="img" :svg="svg" />
@@ -23,6 +23,9 @@
       </div>
     </nuxt-link>
   </BaseCard>
+  <div v-else>
+    <FeedSkeleton />
+  </div>
 </template>
 
 <script>
@@ -33,21 +36,25 @@ import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
 export default {
   name: 'FeedCard',
   props: {
+    empty: {
+      type: Boolean,
+      default: false,
+    },
     detailsPath: {
       type: Object,
-      required: true,
+      default: () => {},
     },
     decimals: {
       type: Number,
-      required: true,
+      default: 2,
     },
     name: {
       type: String,
-      required: true,
+      default: 'Name',
     },
     svg: {
       type: String,
-      required: true,
+      default: 'svg',
     },
     value: {
       type: String,
@@ -55,11 +62,11 @@ export default {
     },
     label: {
       type: String,
-      required: true,
+      default: 'label',
     },
     lastResultTimestamp: {
       type: String,
-      required: true,
+      default: 'lastResultTimestamp',
     },
     timeToUpdate: {
       type: Number,
@@ -67,11 +74,11 @@ export default {
     },
     network: {
       type: String,
-      required: true,
+      default: 'Network',
     },
     color: {
       type: String,
-      required: true,
+      default: 'color',
     },
   },
   computed: {
@@ -96,7 +103,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .nuxt-link-exact-active {
   color: var(--value-color);
 }

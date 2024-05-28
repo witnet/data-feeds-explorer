@@ -209,6 +209,17 @@
 
   //breadcrumbs
   --selected-option: #4ab6a1;
+
+  //Placeholder
+  --placeholder-bg-color: #bebebe0d;
+  --placeholder-gradient: linear-gradient(
+    to right,
+    rgba(84, 84, 85, 0) 0%,
+    rgba(84, 84, 85, 0.07) 20%,
+    rgba(84, 84, 85, 0.12) 24%,
+    rgba(84, 84, 85, 0.17) 30%,
+    rgba(84, 84, 85, 0.22) 35%
+  );
 }
 
 .light-mode {
@@ -340,6 +351,17 @@
 
   //breadcrumbs
   --selected-option: #41bea5;
+
+  //Placeholder
+  --placeholder-bg-color: rgba(128, 128, 128, 0.051);
+  --placeholder-gradient: linear-gradient(
+    to right,
+    rgba(128, 128, 128, 0) 0%,
+    rgba(128, 128, 128, 0.001) 20%,
+    rgba(128, 128, 128, 0.005) 24%,
+    rgba(128, 128, 128, 0.008) 30%,
+    rgba(128, 128, 128, 0.03) 35%
+  );
 }
 
 body {
