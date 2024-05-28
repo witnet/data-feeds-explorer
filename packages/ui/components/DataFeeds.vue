@@ -115,7 +115,6 @@ onMounted(async () => {
   grid-gap: 16px;
   width: 100%;
   grid-template-rows: 1fr;
-  justify-content: flex-start;
   align-items: center;
   padding-bottom: 16px;
 }
