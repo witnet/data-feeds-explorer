@@ -5,8 +5,8 @@ import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types'
 import { normalizeConfig } from './utils'
 
 const CONFIG_URL = process.env.TEST_BRANCH
-? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`
-: `https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json`
+  ? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`
+  : `https://raw.github.com/witnet/data-feeds-explorer/main/packages/api/src/dataFeedsRouter.json`
 
 function isRouterDataFeedsConfig(val: any): val is RouterDataFeedsConfig {
   return val?.contracts && val?.chains && val.conditions && val.currencies
