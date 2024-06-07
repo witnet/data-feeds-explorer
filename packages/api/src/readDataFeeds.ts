@@ -13,7 +13,7 @@ function isRouterDataFeedsConfig(val: any): val is RouterDataFeedsConfig {
 }
 
 export async function fetchDataFeedsRouterConfig(): Promise<RouterDataFeedsConfig | null> {
-  console.log('CONFIG URL', CONFIG_URL)
+  console.log('Reading configuration file from:', CONFIG_URL)
   return await axios
     .get(CONFIG_URL)
     .then((res) => {
