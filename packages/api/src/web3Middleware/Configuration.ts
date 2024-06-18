@@ -109,10 +109,6 @@ export class Configuration {
     }
   }
 
-  public isFeedActive(caption: string): boolean {
-    return Object.keys(this.configurationFile.conditions).includes(caption)
-  }
-
   public getNetworkConfiguration(network: Network) {
     const { address, pollingPeriod } = this.configurationFile.contracts['2.0']
     return {
