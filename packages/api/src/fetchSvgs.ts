@@ -8,10 +8,24 @@ const STATIC_LOGOS_SVG_URL = process.env.TEST_BRANCH
   ? `https://raw.githubusercontent.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/ui/assets/svg/`
   : 'https://raw.githubusercontent.com/witnet/data-feeds-explorer/main/packages/ui/assets/svg/'
 
+// Avoid unnecesary queries to github in development
+const useEmptySvgs = process.env.USE_EMPTY_SVG || false
+
 export async function fetchSvgs(
   networksToFetch: Array<string>,
 ): Promise<{ [key: string]: string }> {
   const networksWithoutRepeated = removeRepeatedElements(networksToFetch)
+
+  if (useEmptySvgs) {
+    return networksWithoutRepeated.reduce(
+      (acc, val) => ({
+        ...acc,
+        [val]: DEFAULT_SVG,
+      }),
+      {},
+    )
+  }
+
   const logosUrls = networksWithoutRepeated.map(
     (networkToFetch: string) => `${STATIC_LOGOS_SVG_URL}${networkToFetch}.svg`,
   )
