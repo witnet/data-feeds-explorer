@@ -43,28 +43,46 @@ const resolvers = {
     lastResultTimestamp: async (parent, _args, { loaders }: Context) => {
       return (await loaders.lastResult.load(parent.feedFullName))?.timestamp
     },
-    isRouted: async (parent, _args, { config }: Context) => {
-      return !!config.feedsConfig[parent.feedFullName]?.isRouted
+    isRouted: async (parent, _args, { feedRepository }: Context) => {
+      return !!feedRepository.getConfigByFullName()[parent.feedFullName]
+        ?.isRouted
     },
-    color: async (parent, _args, { config }: Context) => {
-      return config.feedsConfig[parent.feedFullName]?.color || ''
+    color: async (parent, _args, { feedRepository }: Context) => {
+      return (
+        feedRepository.getConfigByFullName()[parent.feedFullName]?.color || ''
+      )
     },
-    blockExplorer: async (parent, _args, { config }: Context) => {
-      return config.feedsConfig[parent.feedFullName]?.blockExplorer || ''
+    blockExplorer: async (parent, _args, { feedRepository }: Context) => {
+      return (
+        feedRepository.getConfigByFullName()[parent.feedFullName]
+          ?.blockExplorer || ''
+      )
     },
-    proxyAddress: async (parent, _args, { config }: Context) => {
-      return config.feedsConfig[parent.feedFullName]?.routerAddress || ''
+    proxyAddress: async (parent, _args, { feedRepository }: Context) => {
+      return (
+        feedRepository.getConfigByFullName()[parent.feedFullName]
+          ?.routerAddress || ''
+      )
     },
-    deviation: async (parent, _args, { config }: Context) => {
-      return config.feedsConfig[parent.feedFullName]?.deviation || ''
+    deviation: async (parent, _args, { feedRepository }: Context) => {
+      return (
+        feedRepository.getConfigByFullName()[parent.feedFullName]?.deviation ||
+        ''
+      )
     },
-    heartbeat: async (parent, _args, { config }: Context) => {
+    heartbeat: async (parent, _args, { feedRepository }: Context) => {
       // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
-      return config.feedsConfig[parent.feedFullName]?.heartbeat || ''
+      return (
+        feedRepository.getConfigByFullName()[parent.feedFullName]?.heartbeat ||
+        ''
+      )
     },
-    finality: async (parent, _args, { config }: Context) => {
+    finality: async (parent, _args, { feedRepository }: Context) => {
       // Heartbeat plus aproximate time in milliseconds that takes to resolve the witnet dr
-      return config.feedsConfig[parent.feedFullName]?.finality || ''
+      return (
+        feedRepository.getConfigByFullName()[parent.feedFullName]?.finality ||
+        ''
+      )
     },
     address: async (parent, _args, { config }: Context) => {
       return parent.address || config.configuration.getDefaultAddress()

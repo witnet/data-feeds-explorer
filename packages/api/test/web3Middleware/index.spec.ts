@@ -8,6 +8,7 @@ import { normalizeConfig } from '../../src/utils'
 import dataFeedsRouter from './dataFeedsRouter.json'
 import { ObjectId } from 'mongodb'
 import { Configuration } from '../../src/web3Middleware/Configuration'
+import { FeedsState } from '../../src/repository/feedState'
 
 const dataFeeds = normalizeConfig(dataFeedsRouter as RouterDataFeedsConfig)
 
@@ -69,10 +70,10 @@ beforeEach(() => {
 // TODO: Fix tests
 describe.skip('web3Middleware', () => {
   it('should read the state of each datafeed provided', async () => {
+    const feedState = new FeedsState()
     const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo]
     const resultRequestRepository = new ResultRequestRepository(
       '' as unknown as Db,
-      feedInfos,
     )
     resultRequestRepository.insert = jest.fn(
       async ({ result, requestId, timestamp, drTxHash, feedFullName }) => {
@@ -87,7 +88,7 @@ describe.skip('web3Middleware', () => {
         }
       },
     )
-    const feedRepository = new FeedRepository(feedInfos)
+    const feedRepository = new FeedRepository(feedState)
     const configuration = new Configuration(
       dataFeedsRouter as RouterDataFeedsConfig,
     )

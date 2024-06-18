@@ -30,7 +30,6 @@ export interface Context {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
   config: {
-    feedsConfig: ConfigByFullName
     networksConfig: Array<NetworksConfig>
     configuration: Configuration
   }

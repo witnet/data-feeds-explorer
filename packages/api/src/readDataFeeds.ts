@@ -33,13 +33,13 @@ export async function fetchDataFeedsRouterConfig(): Promise<RouterDataFeedsConfi
     })
 }
 /**
- * FIXME(#197): normalizeAndValidateDataFeedConfig could be refactored to include the ABI to avoid
+ * FIXME(#197): fetchFeedsLegacy could be refactored to include the ABI to avoid
  * have multiple functions to build the object. So we should review how we are fetching,
  * validating and normalizing the configuration file We can even review the normalized object
  * structure to check if it has sense right now or only because it was the previous configuration
  * format
  */
-export function normalizeAndValidateDataFeedConfig(
+export function fetchFeedsLegacy(
   config: RouterDataFeedsConfig,
 ): Array<FeedInfo> {
   const dataFeeds: Array<Omit<FeedInfoConfig, 'abi' | 'routerAbi'>> =

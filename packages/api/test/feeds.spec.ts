@@ -9,11 +9,11 @@
 // import { env } from 'process'
 
 // import { normalizeNetworkConfig } from '../src/utils'
-// import { normalizeAndValidateDataFeedConfig } from '../src/readDataFeeds'
+// import { fetchFeedsLegacy } from '../src/readDataFeeds'
 // import dataFeedsRouterConfig from '../../api/src/dataFeedsRouter.json'
 // import { Context } from '../src/types'
 
-// const dataFeeds = normalizeAndValidateDataFeedConfig(dataFeedsRouterConfig)
+// const dataFeeds = fetchFeedsLegacy(dataFeedsRouterConfig)
 // const networksConfig = normalizeNetworkConfig(dataFeedsRouterConfig).map(c => ({
 //   ...c,
 //   logo: '<svg></svg>'

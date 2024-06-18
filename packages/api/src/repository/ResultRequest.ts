@@ -3,7 +3,6 @@ import {
   ResultRequestDbObject,
   Db,
   Collection,
-  FeedInfo,
   WithoutId,
 } from '../../types'
 import { containFalsyValues } from './containFalsyValues'
@@ -15,7 +14,7 @@ export class ResultRequestRepository {
   >
   latestResults: Record<string, WithoutId<ResultRequestDbObject>> = {}
 
-  constructor(db: Db, _dataFeeds: Array<FeedInfo>) {
+  constructor(db: Db) {
     this.collection = db.collection('result_request')
   }
 

@@ -1,12 +1,21 @@
-import { PaginatedFeedsObject, FeedInfo } from '../../types'
+import { FeedsState } from './feedState'
+import { PaginatedFeedsObject, FeedInfo, ConfigByFullName } from '../../types'
 
 export class FeedRepository {
-  dataFeeds: Array<FeedInfo>
+  feedsState: FeedsState
   // TODO: replace string with Network
   dataFeedsByNetwork: Record<string, Array<FeedInfo>>
+  configByFullName: ConfigByFullName
 
-  constructor(dataFeeds: Array<FeedInfo>) {
-    this.dataFeedsByNetwork = dataFeeds.reduce(
+  constructor(feedState: FeedsState) {
+    this.feedsState = feedState
+    this.initialize()
+  }
+
+  initialize() {
+    const feeds = this.feedsState.listFeeds()
+
+    this.dataFeedsByNetwork = feeds.reduce(
       (acc: Record<string, Array<FeedInfo>>, feedInfo: FeedInfo) => ({
         ...acc,
         [feedInfo.network]: acc[feedInfo.network]
@@ -15,11 +24,23 @@ export class FeedRepository {
       }),
       {},
     )
-    this.dataFeeds = dataFeeds
+    this.configByFullName = feeds.reduce(
+      (acc, feedInfo) => ({
+        ...acc,
+        [`${feedInfo.feedFullName}`]: feedInfo,
+      }),
+      {},
+    )
+  }
+
+  getConfigByFullName() {
+    return this.configByFullName
   }
 
   get(feedFullName: string): FeedInfo {
-    return this.dataFeeds.find((feed) => feed.feedFullName === feedFullName)
+    return this.feedsState
+      .listFeeds()
+      .find((feed) => feed.feedFullName === feedFullName)
   }
 
   async getFeedsByNetwork(
@@ -45,20 +66,38 @@ export class FeedRepository {
     const hasSameFeedFullName = (feed: FeedInfo) =>
       feed.feedFullName === feedFullName
 
-    // Update address in sortedDataFeeds
-    const sortedDataFeedIndex = this.dataFeeds.findIndex(hasSameFeedFullName)
-    const feed = this.dataFeeds[sortedDataFeedIndex]
-    feed.address = address
-    feed.contractId = contractId
-    // Update address in dataFeedsByNetwork cache
-    const dataFeedsByNetworkIndex =
-      this.dataFeedsByNetwork[feed.network].findIndex(hasSameFeedFullName)
-    this.dataFeedsByNetwork[feed.network][dataFeedsByNetworkIndex].address =
-      address
-    // Update contractId in dataFeedsByNetwork cache
-    this.dataFeedsByNetwork[feed.network][dataFeedsByNetworkIndex].contractId =
-      contractId
+    const legacyFeeds = this.feedsState.getLegacyFeeds()
+    const index = legacyFeeds.findIndex(hasSameFeedFullName)
+    const updatedFeed = { ...legacyFeeds[index], address, contractId }
+    legacyFeeds[index] = updatedFeed
+    this.feedsState.setLegacyFeeds(legacyFeeds)
 
-    return feed
+    this.initialize()
+
+    return updatedFeed
+  }
+
+  refreshV2NetworkFeeds(network: string, feedInfos: Array<FeedInfo>) {
+    const v2Feeds = this.feedsState.getV2Feeds()
+
+    const newV2Feeds = v2Feeds
+      .filter((feed) => {
+        feed.network !== network
+      })
+      .concat(feedInfos)
+
+    this.feedsState.setV2Feeds(newV2Feeds)
+
+    this.initialize()
+  }
+
+  setLegacyFeeds(legacyFeeds: Array<FeedInfo>) {
+    this.feedsState.setLegacyFeeds(legacyFeeds)
+    this.initialize()
+  }
+
+  setV2Feeds(v2Feeds: Array<FeedInfo>) {
+    this.feedsState.setV2Feeds(v2Feeds)
+    this.initialize()
   }
 }

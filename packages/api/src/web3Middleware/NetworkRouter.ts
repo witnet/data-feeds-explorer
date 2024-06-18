@@ -53,6 +53,7 @@ export class NetworkRouter {
   private address: string
   private configuration: Configuration
   private provider: string
+  private lastSupportedFeedsID = ''
 
   constructor(
     configuration: Configuration,
@@ -109,6 +110,18 @@ export class NetworkRouter {
 
   async getSnapshot(): Promise<NetworkSnapshot> {
     const supportedFeeds = await this.getSupportedFeeds()
+
+    const lastSupportedFeedsID = JSON.stringify(supportedFeeds)
+
+    if (this.lastSupportedFeedsID !== lastSupportedFeedsID) {
+      this.repositories.feedRepository.refreshV2NetworkFeeds(
+        this.network,
+        await this.getFeedInfos(),
+      )
+    }
+
+    this.lastSupportedFeedsID = JSON.stringify(supportedFeeds)
+
     const feedIds = supportedFeeds.map((feed) => feed.id)
     const latestPrices = await this.latestPrices(feedIds)
 
