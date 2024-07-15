@@ -558,7 +558,7 @@
     "default": {
       "deviationPercentage": 3.5,
       "maxSecsBetweenUpdates": 86400,
-      "minSecsBetweenUpdates": 900
+      "minSecsBetweenUpdates": 3600
     },
     "Price-BCH/USD-6": {
       "deviationPercentage": 1.0
@@ -594,8 +594,7 @@
     },
     "Price-KCS/USDT-6": {
       "deviationPercentage": 0.5,
-      "maxSecsBetweenUpdates": 3600,
-      "minSecsBetweenUpdates": 3600
+      "maxSecsBetweenUpdates": 3600
     },
     "Price-MJT/KCS-9": {
       "deviationPercentage": 0.5
