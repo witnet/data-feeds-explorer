@@ -483,7 +483,7 @@
           "mainnet": true,
           "name": "Reef Mainnet",
           "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
-          "blockExplorer": "https://reefscan.com/contract/{address}",          
+          "blockExplorer": "https://reefscan.com/contract/{address}",
           "pollingPeriod": 180000,
           "version": "2.0"
         }
