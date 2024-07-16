@@ -237,6 +237,12 @@
     "ethereum": {
       "name": "Ethereum",
       "networks": {
+        "ethereum.mainnet": {
+          "mainnet": true,
+          "name": "Ethereum Mainnet",
+          "blockExplorer": "https://etherscan.io/address",
+          "version": "2.0"
+        },
         "ethereum.sepolia": {
           "name": "Ethereum Sepolia",
           "blockExplorer": "https://sepolia.etherscan.io/address/{address}",
@@ -475,19 +481,11 @@
       "networks": {
         "reef.mainnet": {
           "mainnet": true,
-          "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
-          "blockExplorer": "https://reefscan.com/contract/{address}",
-          "color": "#66ff00",
           "name": "Reef Mainnet",
+          "address": "0x828D7517D9Cf0d99f952d709371117ef8825e81B",
+          "blockExplorer": "https://reefscan.com/contract/{address}",          
           "pollingPeriod": 180000,
-          "feeds": {
-            "Price-REEF/USDT-6": {
-              "label": "₮",
-              "deviationPercentage": 3.5,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "version": "2.0"
         }
       }
     },
