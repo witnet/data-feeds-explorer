@@ -827,4 +827,20 @@ describe('FeedRepository', () => {
     expect(updatedConfig).toStrictEqual(feedRepository.getConfigByFullName())
     expect(updatedConfig).not.toStrictEqual(baseConfigFullName)
   })
+
+  it('refreshV2NetworkFeeds concats new values in the state instead of overwrite them', () => {
+    const feedState = new FeedsState()
+
+    feedState.setLegacyFeeds(legacyFeeds)
+    feedState.setV2Feeds(v2Feeds)
+
+    const feedRepository = new FeedRepository(feedState)
+
+    feedRepository.refreshV2NetworkFeeds(v2Feed.network, [v2Feed])
+
+    expect(feedRepository.feedsState.getV2Feeds()).toStrictEqual([
+      ...v2Feeds,
+      v2Feed,
+    ])
+  })
 })

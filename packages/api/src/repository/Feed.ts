@@ -81,9 +81,7 @@ export class FeedRepository {
     const v2Feeds = this.feedsState.getV2Feeds()
 
     const newV2Feeds = v2Feeds
-      .filter((feed) => {
-        feed.network !== network
-      })
+      .filter((feed) => feed.network !== network)
       .concat(feedInfos)
 
     this.feedsState.setV2Feeds(newV2Feeds)
