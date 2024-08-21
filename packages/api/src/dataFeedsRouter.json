@@ -257,6 +257,12 @@
     "gnosis": {
       "name": "Gnosis",
       "networks": {
+        "gnosis.mainnet": {
+          "mainnet": true,
+          "name": "Gnosis Mainnet",
+          "blockExplorer": "https://gnosisscan.io/address/{address}",
+          "version": "2.0"
+        },
         "gnosis.testnet": {
           "name": "Gnosis Testnet",
           "blockExplorer": "https://blockscout.com/gnosis/chiado/address/{address}",
