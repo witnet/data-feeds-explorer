@@ -138,7 +138,7 @@ export default {
           title: 'Kaia',
           name: 'partner_kaia',
           link: 'https://www.kaia.io/',
-          scale: 0.8,
+          scale: 1.4,
           brightness: 0.5,
         },
         {

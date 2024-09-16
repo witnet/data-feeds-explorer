@@ -56,12 +56,12 @@
         "base.mainnet": {
           "mainnet": true,
           "name": "Base Mainnet",
-          "blockExplorer": "https://basescan.com/address/{address}",
+          "blockExplorer": "https://basescan.org/address/{address}",
           "version": "2.0"
         },
         "base.sepolia": {
           "name": "Base Sepolia",
-          "blockExplorer": "https://base-sepolia.blockscout.com/{address}",
+          "blockExplorer": "https://base-sepolia.blockscout.com/address/{address}",
           "version": "2.0"
         }
       }
