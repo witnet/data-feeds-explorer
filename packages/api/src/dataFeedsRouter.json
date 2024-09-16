@@ -319,17 +319,17 @@
       }
     },
     "klaytn": {
-      "name": "Klaytn",
+      "name": "Kaia",
       "networks": {
         "klaytn.mainnet": {
           "mainnet": true,
-          "name": "Klaytn Cypress (Mainnet)",
-          "blockExplorer": "https://scope.klaytn.com/account/{address}",
+          "name": "Kaia (Mainnet)",
+          "blockExplorer": "https://klaytnscope.com/account/{address}",
           "version": "2.0"
         },
         "klaytn.testnet": {
-          "name": "Klaytn Baobab (Testnet)",
-          "blockExplorer": "https://baobab.scope.klaytn.com/account/{address}",
+          "name": "Kairos (Testnet)",
+          "blockExplorer": "https://baobab.klaytnscope.com/account/{address}",
           "version": "2.0"
         }
       }

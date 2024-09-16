@@ -135,9 +135,9 @@ export default {
           brightness: 1,
         },
         {
-          title: 'Klaynt',
-          name: 'partner_klaynt',
-          link: 'https://klaytn.foundation/',
+          title: 'Kaia',
+          name: 'partner_kaia',
+          link: 'https://www.kaia.io/',
           scale: 0.8,
           brightness: 0.5,
         },
