@@ -556,6 +556,16 @@
           "version": "2.0"
         }
       }
+    },
+    "worldchain": {
+      "name": "Worldcoin",
+      "networks": {
+        "worldchain.sepolia": {
+          "name": "Worldchain Sepolia",
+          "blockExplorer": "https://worldchain-sepolia.explorer.alchemy.com/address/{address}",
+          "version": "2.0"
+        }
+      }
     }
   },
   "conditions": {
