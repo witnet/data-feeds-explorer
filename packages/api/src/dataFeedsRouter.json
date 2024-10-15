@@ -154,7 +154,15 @@
         "conflux.espace.testnet": {
           "name": "Conflux e-Space Testnet",
           "blockExplorer": "https://evmtestnet.confluxscan.io/address/{address}",
-          "version": "2.0"
+          "version": "2.0",
+          "feeds": {
+            "Price-BTC/USD-6": {
+              "deviationPercentage": 0.1
+            },
+            "Price-ETH/USD-6": {
+              "deviationPercentage": 0.1
+            }
+          }
         }
       }
     },
