@@ -568,6 +568,12 @@
     "worldchain": {
       "name": "Worldcoin",
       "networks": {
+        "worldchain.mainnet": {
+          "mainnet": true,
+          "name": "Worldchain Mainnet",
+          "blockExplorer": "https://worldchain-mainnet.explorer.alchemy.com/address/{address}",
+          "version": "2.0"
+        },
         "worldchain.sepolia": {
           "name": "Worldchain Sepolia",
           "blockExplorer": "https://worldchain-sepolia.explorer.alchemy.com/address/{address}",
