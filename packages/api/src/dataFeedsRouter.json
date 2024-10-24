@@ -570,12 +570,12 @@
       "networks": {
         "worldchain.mainnet": {
           "mainnet": true,
-          "name": "Worldchain Mainnet",
+          "name": "World Chain Mainnet",
           "blockExplorer": "https://worldchain-mainnet.explorer.alchemy.com/address/{address}",
           "version": "2.0"
         },
         "worldchain.sepolia": {
-          "name": "Worldchain Sepolia",
+          "name": "World Chain Sepolia",
           "blockExplorer": "https://worldchain-sepolia.explorer.alchemy.com/address/{address}",
           "version": "2.0"
         }
