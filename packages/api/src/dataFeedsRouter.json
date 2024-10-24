@@ -566,7 +566,7 @@
       }
     },
     "worldchain": {
-      "name": "Worldcoin",
+      "name": "World",
       "networks": {
         "worldchain.mainnet": {
           "mainnet": true,
