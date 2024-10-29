@@ -80,7 +80,6 @@ class DataFeedsExplorer {
       feedRepository: new FeedRepository(this.feedsState),
       resultRequestRepository: new ResultRequestRepository(db),
     }
-    console.log('legacyFeeds', JSON.stringify(v2Feeds))
     this.repositories.feedRepository.setLegacyFeeds(legacyFeeds)
     this.repositories.feedRepository.setV2Feeds(v2Feeds)
 
