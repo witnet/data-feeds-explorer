@@ -41,6 +41,12 @@ export type NetworkSnapshot = {
   feeds: Array<SupportedFeed & LatestPrice>
 }
 
+// LatestPrice is missing when JSONRPC `isFeedWithPrice` call fails
+export type PartialNetworkSnapshot = {
+  network: string
+  feeds: Array<SupportedFeed>
+}
+
 export class NetworkRouter {
   private Web3: typeof Web3
   public contract: any
@@ -85,8 +91,8 @@ export class NetworkRouter {
     setInterval(async () => {
       const snapshot = await this.getSnapshot()
       const insertPromises = snapshot.feeds
-        .filter((feed) => feed.timestamp !== '0')
-        .map((feed) => ({
+        .filter((feed) => isFeedWithPrice(feed) && feed.timestamp !== '0')
+        .map((feed: SupportedFeed & LatestPrice) => ({
           feedFullName: createFeedFullName(
             this.network,
             feed.caption.split('-').reverse()[1],
@@ -108,7 +114,7 @@ export class NetworkRouter {
     }, this.pollingPeriod)
   }
 
-  async getSnapshot(): Promise<NetworkSnapshot> {
+  async getSnapshot(): Promise<NetworkSnapshot | PartialNetworkSnapshot> {
     const supportedFeeds = await this.getSupportedFeeds()
 
     const lastSupportedFeedsID = JSON.stringify(supportedFeeds)
@@ -191,4 +197,16 @@ export class NetworkRouter {
       return []
     }
   }
+}
+
+// Type guard function to ensure received feed has type SupportedFeed & LatestPrice
+function isFeedWithPrice(
+  feed: SupportedFeed | (SupportedFeed & LatestPrice),
+): feed is SupportedFeed & LatestPrice {
+  return (
+    'value' in feed &&
+    'timestamp' in feed &&
+    'tallyHash' in feed &&
+    'status' in feed
+  )
 }

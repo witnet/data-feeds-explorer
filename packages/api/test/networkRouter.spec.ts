@@ -1,5 +1,9 @@
 import { Network, Repositories, RouterDataFeedsConfig } from '../types'
-import { NetworkInfo, NetworkRouter } from '../src/web3Middleware/NetworkRouter'
+import {
+  NetworkInfo,
+  NetworkRouter,
+  NetworkSnapshot,
+} from '../src/web3Middleware/NetworkRouter'
 import { Configuration } from '../src/web3Middleware/Configuration'
 import dataFeedsRouter from './web3Middleware/dataFeedsRouter.json'
 // FIXME: create a proper mock for web3
@@ -30,7 +34,8 @@ describe('NetworkRouter', () => {
       repositories,
       networkInfo,
     )
-    const snapshot = await router.getSnapshot()
+    const snapshot: NetworkSnapshot =
+      (await router.getSnapshot()) as NetworkSnapshot
 
     expect(snapshot.feeds[0].caption).toBeTruthy()
     expect(snapshot.feeds[0].id).toBeTruthy()
