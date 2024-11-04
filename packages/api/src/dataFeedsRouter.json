@@ -336,7 +336,7 @@
           "version": "2.0"
         },
         "klaytn.testnet": {
-          "name": "Kairos (Testnet)",
+          "name": "Kaia Kairos (Testnet)",
           "blockExplorer": "https://baobab.klaytnscope.com/account/{address}",
           "version": "2.0"
         }
