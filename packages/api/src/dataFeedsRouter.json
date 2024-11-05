@@ -121,10 +121,10 @@
           "version": "2.0",
           "feeds": {
             "Price-BTC/USD-6": {
-              "deviationPercentage": 1.0
+              "deviationPercentage": 0.1
             },
             "Price-ETH/USD-6": {
-              "deviationPercentage": 1.0
+              "deviationPercentage": 0.1
             }
           }
         },
