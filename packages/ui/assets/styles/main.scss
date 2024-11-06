@@ -407,8 +407,12 @@ p {
 .text {
   color: var(--text);
 }
-
 a {
   text-decoration: none;
   font-size: 1rem;
+}
+.tv-lightweight-charts {
+  a#tv-attr-logo {
+    display: none;
+  }
 }
