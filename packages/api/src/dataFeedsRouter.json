@@ -425,7 +425,12 @@
     "okx": {
       "name": "OKX",
       "networks": {
-        "okx.xlayer.sepolia": {
+        "okx.oktchain.testnet": {
+          "address": "0x0000000000000000000000000000000000000000",
+          "name": "OKT Chain",
+          "version": "2.0"
+        },
+        "okx.x1.sepolia": {
           "name": "X Layer Testnet",
           "blockExplorer": "https://www.oklink.com/xlayer-test/address/{address}",
           "version": "2.0"
@@ -473,6 +478,12 @@
     "reef": {
       "name": "Reef",
       "networks": {
+        "reef.mainnet": {
+          "address": "0x0000000000000000000000000000000000000000",
+          "mainnet": true,
+          "name": "Reef Chain",
+          "version": "2.0"
+        }
       }
     },
     "scroll": {
@@ -499,6 +510,11 @@
     "syscoin": {
       "name": "Syscoin",
       "networks": {
+        "syscoin.rollux.testnet": {
+          "address": "0x0000000000000000000000000000000000000000",
+          "name": "Syscoin Rollux",
+          "version": "2.0"
+        }
       }
     },
     "ten": {
