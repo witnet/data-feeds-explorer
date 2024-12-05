@@ -234,11 +234,6 @@
           "name": "Elastos Mainnet",
           "blockExplorer": "https://esc.elastos.io/address/{address}",
           "version": "2.0"
-        },
-        "elastos.testnet": {
-          "name": "Elastos Testnet",
-          "blockExplorer": "https://esc-testnet.elastos.io/address/{address}",
-          "version": "2.0"
         }
       }
     },
