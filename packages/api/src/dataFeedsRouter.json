@@ -499,16 +499,6 @@
     "syscoin": {
       "name": "Syscoin",
       "networks": {
-        "syscoin.rollux.testnet": {
-          "name": "Syscoin Rollux Testnet",
-          "blockExplorer": "https://rollux.tanenbaum.io/address/{address}",
-          "version": "2.0",
-          "feeds": {
-            "Price-SYS/USDT-6": {
-              "deviationPercentage": 1.0
-            }
-          }
-        }
       }
     },
     "ten": {
