@@ -425,7 +425,7 @@
     "okx": {
       "name": "OKX",
       "networks": {
-        "okx.xlayer.sepolia": {
+        "okx.x1.sepolia": {
           "name": "X Layer Testnet",
           "blockExplorer": "https://www.oklink.com/xlayer-test/address/{address}",
           "version": "2.0"
@@ -472,8 +472,7 @@
     },
     "reef": {
       "name": "Reef",
-      "networks": {
-      }
+      "networks": {}
     },
     "scroll": {
       "name": "Scroll",
@@ -498,8 +497,7 @@
     },
     "syscoin": {
       "name": "Syscoin",
-      "networks": {
-      }
+      "networks": {}
     },
     "ten": {
       "name": "TEN",
