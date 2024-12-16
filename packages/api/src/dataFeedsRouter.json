@@ -356,6 +356,12 @@
     "metis": {
       "name": "Metis",
       "networks": {
+        "metis.mainnet": {
+          "mainnet": true,
+          "name": "Metis Andromeda Mainnet",
+          "blockExplorer": "https://explorer.metis.io/address/{address}",
+          "version": "2.0"
+        },
         "metis.sepolia": {
           "name": "Metis Sepolia",
           "blockExplorer": "https://sepolia-explorer.metisdevops.link/address/{address}",
