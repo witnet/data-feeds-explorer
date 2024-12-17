@@ -549,6 +549,16 @@
         }
       }
     },
+    "unichain": {
+      "name": "Unichain",
+      "networks": {
+        "unichain.sepolia": {
+          "name": "Unichain Sepolia",
+          "blockExplorer": "https://sepolia.uniscan.xyz/address/{address}",
+          "version": "2.0"
+        }
+      }
+    },
     "worldchain": {
       "name": "World",
       "networks": {
