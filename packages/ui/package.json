@@ -18,6 +18,7 @@
     "autoprefixer": "^10.4.19",
     "lodash.snakecase": "^4.1.1",
     "nuxt": "^3.12.4",
+    "nuxt-gtag": "3.0.2",
     "postcss": "^8.4.39",
     "sass": "^1.77.8",
     "tailwindcss": "^3.4.6",

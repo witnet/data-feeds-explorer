@@ -110,7 +110,17 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@nuxt/ui', '@nuxtjs/color-mode'],
+  gtag: {
+    id: 'GTM-PT6DJRHL',
+  },
+
+  modules: [
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+    '@nuxt/ui',
+    '@nuxtjs/color-mode',
+    'nuxt-gtag',
+  ],
 
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
