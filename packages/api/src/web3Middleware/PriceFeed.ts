@@ -5,49 +5,28 @@ import { createFeedFullName } from '../utils'
 import { Configuration } from './Configuration'
 
 export class PriceFeed {
-  feedFullName: string
-  id: string
-  abi: Array<AbiItem>
-  routerAbi: Array<AbiItem>
-  address: string
-  routerAddress: string
-  isRouted: boolean
-  network: Network
-  name: string
-  pollingPeriod: number
-  label: string
-  contractId: string
-  color: string
-  blockExplorer: string
-  deviation: string | null
-  heartbeat: string | null
-  finality: string
-  configuration: Configuration
-  networkName: string
-  chain: string
-
-  constructor(configuration: Configuration, args: FeedInfo) {
-    this.configuration = configuration
-    this.feedFullName = args.feedFullName
-    this.id = args.id
-    this.abi = args.abi
-    this.routerAbi = args.routerAbi
-    this.address = args.address
-    this.routerAddress = args.routerAddress
-    this.isRouted = args.isRouted
-    this.network = args.network
-    this.name = args.name
-    this.pollingPeriod = args.pollingPeriod
-    this.label = args.label
-    this.contractId = args.contractId
-    this.color = args.color
-    this.blockExplorer = args.blockExplorer
-    this.deviation = args.deviation
-    this.heartbeat = args.heartbeat
-    this.finality = args.finality
-    this.networkName = args.networkName
-    this.chain = args.chain
-  }
+  constructor(
+    public configuration: Configuration,
+    public feedFullName: string,
+    public id: string,
+    public abi: Array<AbiItem>,
+    public routerAbi: Array<AbiItem>,
+    public address: string,
+    public routerAddress: string,
+    public isRouted: boolean,
+    public network: Network,
+    public networkName: string,
+    public name: string,
+    public pollingPeriod: number,
+    public label: string,
+    public contractId: string,
+    public color: string,
+    public blockExplorer: string,
+    public deviation: string | null,
+    public heartbeat: string | null,
+    public finality: string,
+    public chain: string,
+  ) {}
 
   toJson(): FeedInfo {
     return {
@@ -98,29 +77,30 @@ export class PriceFeed {
     }
 
     const [decimals, adaptedCaption] = feed.caption.split('-').reverse()
-    return new PriceFeed(configuration, {
-      feedFullName: createFeedFullName(network, adaptedCaption, decimals),
-      id: feed.id,
-      abi: null,
+    return new PriceFeed(
+      configuration,
+      createFeedFullName(network, adaptedCaption, decimals),
+      feed.id,
+      null,
       // TODO: remove any
-      routerAbi: WitnetPriceFeedsABI as any,
-      address: null,
-      routerAddress: address,
-      isRouted: isRouted,
-      network: network,
-      networkName: networkName,
-      name: adaptedCaption.toLowerCase(),
-      pollingPeriod: networkConfiguration.pollingPeriod,
-      label: feedConfiguration.label,
+      WitnetPriceFeedsABI as any,
+      null,
+      address,
+      isRouted,
+      network,
+      networkName,
+      adaptedCaption.toLowerCase(),
+      networkConfiguration.pollingPeriod,
+      feedConfiguration.label,
       // TODO: This field should be renamed to id4
-      contractId: feed.id,
-      color: networkConfiguration.color,
-      blockExplorer: networkConfiguration.blockExplorer,
-      deviation: feedConfiguration.deviationPercentage.toString(),
-      heartbeat: `${feedConfiguration.maxSecsBetweenUpdates.toString()}000`,
-      finality: '900000',
+      feed.id,
+      networkConfiguration.color,
+      networkConfiguration.blockExplorer,
+      feedConfiguration.deviationPercentage.toString(),
+      `${feedConfiguration.maxSecsBetweenUpdates.toString()}000`,
+      '900000',
       chain,
-    })
+    )
   }
 
   static isRouted(solver: string): boolean {

@@ -48,19 +48,20 @@ export type PartialNetworkSnapshot = {
 }
 
 export class NetworkRouter {
-  private Web3: typeof Web3
-  public contract: any
-  public network: Network
-  public networkName: string
-  public chain: string
-  public pollingPeriod: number
   public feeds?: Array<{ name: string }>
-  public repositories: Repositories
+
+  private Web3: typeof Web3
+  private contract: any
+  private network: Network
+  private networkName: string
+  private chain: string
+  private pollingPeriod: number
+  private repositories: Repositories
   private address: string
   private configuration: Configuration
   private provider: string
   private lastSupportedFeedsID = ''
-  private interval
+  private interval: NodeJS.Timeout | null = null
 
   constructor(
     configuration: Configuration,
@@ -90,48 +91,56 @@ export class NetworkRouter {
   // Periodically fetch the price feed router contract and store it in mongodb
   public listen() {
     this.interval = setInterval(async () => {
-      const snapshot = await this.getSnapshot()
-      const insertPromises = snapshot.feeds
-        .filter((feed) => isFeedWithPrice(feed) && feed.timestamp !== '0')
-        .map((feed: SupportedFeed & LatestPrice) => ({
-          feedFullName: createFeedFullName(
-            this.network,
-            feed.caption.split('-').reverse()[1],
-            feed.caption.split('-').reverse()[0],
-          ),
-          drTxHash: toHex(feed.tallyHash).slice(2),
-          // TODO: deprecate mandatory legacy field in database
-          requestId: '0',
-          result: feed.value.toString(),
-          timestamp: feed.timestamp.toString(),
-        }))
-        .map((resultRequest) => {
-          return this.repositories.resultRequestRepository.insertIfLatest(
-            resultRequest,
-          )
-        })
+      try {
+        const snapshot = await this.getSnapshot()
+        const insertPromises = snapshot.feeds
+          .filter((feed) => isFeedWithPrice(feed) && feed.timestamp !== '0')
+          .map((feed: SupportedFeed & LatestPrice) => ({
+            feedFullName: createFeedFullName(
+              this.network,
+              feed.caption.split('-').reverse()[1],
+              feed.caption.split('-').reverse()[0],
+            ),
+            drTxHash: toHex(feed.tallyHash).slice(2),
+            // TODO: deprecate mandatory legacy field in database
+            requestId: '0',
+            result: feed.value.toString(),
+            timestamp: feed.timestamp.toString(),
+          }))
+          .map((resultRequest) => {
+            return this.repositories.resultRequestRepository.insertIfLatest(
+              resultRequest,
+            )
+          })
 
-      Promise.all(insertPromises)
+        await Promise.all(insertPromises)
+      } catch (error) {
+        console.error('Error in listen interval:', error)
+      }
     }, this.pollingPeriod)
   }
 
   public stop() {
-    clearInterval(this.interval)
+    if (this.interval) {
+      clearInterval(this.interval)
+      this.interval = null
+    }
   }
 
-  async getSnapshot(): Promise<NetworkSnapshot | PartialNetworkSnapshot> {
+  public async getSnapshot(): Promise<
+    NetworkSnapshot | PartialNetworkSnapshot
+  > {
     const supportedFeeds = await this.getSupportedFeeds()
+    const currentSupportedFeedsID = JSON.stringify(supportedFeeds)
 
-    const lastSupportedFeedsID = JSON.stringify(supportedFeeds)
-
-    if (this.lastSupportedFeedsID !== lastSupportedFeedsID) {
+    if (this.lastSupportedFeedsID !== currentSupportedFeedsID) {
       this.repositories.feedRepository.refreshV2NetworkFeeds(
         this.network,
         await this.getFeedInfos(),
       )
-    }
 
-    this.lastSupportedFeedsID = JSON.stringify(supportedFeeds)
+      this.lastSupportedFeedsID = currentSupportedFeedsID
+    }
 
     const feedIds = supportedFeeds.map((feed) => feed.id)
     const latestPrices = await this.latestPrices(feedIds)
@@ -145,26 +154,25 @@ export class NetworkRouter {
     }
   }
 
-  async getFeedInfos(): Promise<Array<FeedInfo>> {
+  public async getFeedInfos(): Promise<Array<FeedInfo>> {
     const suppoortedFeeds = await this.getSupportedFeeds()
 
     return suppoortedFeeds
-      .map((supportedFeed) => {
-        const res = PriceFeed.fromWitnetPriceFeedsContract(
+      .map((supportedFeed) =>
+        PriceFeed.fromWitnetPriceFeedsContract(
           this.configuration,
           supportedFeed,
           this.address,
           this.network,
           this.networkName,
           this.chain,
-        ).toJson()
-        return res
-      })
-      .filter((x) => !!x)
+        ).toJson(),
+      )
+      .filter(Boolean)
   }
 
   // Wrap supportedFeeds contract method
-  async getSupportedFeeds(): Promise<Array<SupportedFeed>> {
+  private async getSupportedFeeds(): Promise<Array<SupportedFeed>> {
     try {
       const supportedFeeds = await Web3.utils.waitWithTimeout(
         this.contract.methods.supportedFeeds().call(),

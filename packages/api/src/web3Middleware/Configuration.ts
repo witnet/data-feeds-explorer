@@ -1,4 +1,5 @@
 import {
+  FeedConfig,
   FeedParamsConfig,
   Network,
   NetworksConfig,
@@ -27,14 +28,8 @@ export class Configuration {
     const networks = getNetworksListByChain(config)
 
     // Put all networks at the same level removing the nested arrays
-    const networkConfig = networks.reduce((networks, network) => {
-      network.map((network) => {
-        networks.push({
-          ...network,
-        })
-      })
-      return networks
-    }, [])
+    const networkConfig = networks.flatMap((network) => network)
+
     const testnetNetworks = networkConfig.filter((network) => !network.mainnet)
     const mainnetNetworks = networkConfig.filter((network) => network.mainnet)
     return [
@@ -43,25 +38,14 @@ export class Configuration {
     ]
   }
 
-  // return networks using the new price feeds router contract
+  // List networks using the price feeds router contract
   public listNetworksUsingPriceFeedsContract(): Array<NetworkInfo> {
     return Object.values(this.configurationFile.chains).flatMap((chain) =>
       Object.entries(chain.networks)
         .filter(([_, network]) => network.version === '2.0')
-        .map(([networkKey, network]) => ({
-          chain: chain.name,
-          provider:
-            network.blockProvider ||
-            getProvider(networkKey.replaceAll('.', '-') as Network) ||
-            '',
-          address:
-            network.address || this.configurationFile.contracts['2.0'].address,
-          pollingPeriod:
-            network.pollingPeriod ||
-            this.configurationFile.contracts['2.0'].pollingPeriod,
-          key: this.fromNetworkKeyToNetwork(networkKey),
-          networkName: network.name,
-        })),
+        .map(([networkKey, network]) =>
+          this.createNetworkInfo(chain.name, networkKey, network),
+        ),
     )
   }
 
@@ -102,6 +86,27 @@ export class Configuration {
 
   private fromNetworkKeyToNetwork(networkKey: string): Network {
     return networkKey.replaceAll('.', '-') as Network
+  }
+
+  // Helper to create a NetworkInfo
+  private createNetworkInfo(
+    chainName: string,
+    networkKey: string,
+    network: FeedConfig,
+  ): NetworkInfo {
+    const { address, pollingPeriod } = this.configurationFile.contracts['2.0']
+
+    return {
+      chain: chainName,
+      provider:
+        network.blockProvider ||
+        getProvider(this.fromNetworkKeyToNetwork(networkKey)) ||
+        '',
+      address: network.address || address,
+      pollingPeriod: network.pollingPeriod || pollingPeriod,
+      key: this.fromNetworkKeyToNetwork(networkKey),
+      networkName: network.name,
+    }
   }
 }
 
