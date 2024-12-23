@@ -1,9 +1,5 @@
 {
   "contracts": {
-    "legacy": {
-      "abi": "./src/abi/PriceFeedRouter.json",
-      "pollingPeriod": 120000
-    },
     "2.0": {
       "abi": "./src/abi/WitnetPriceFeeds.json",
       "address": "0x1111AbA2164AcdC6D291b08DfB374280035E1111",

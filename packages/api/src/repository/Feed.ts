@@ -59,24 +59,6 @@ export class FeedRepository {
     }
   }
 
-  updateFeedAddress(
-    feedFullName: string,
-    { address, contractId }: { address: string; contractId: string },
-  ): FeedInfo {
-    const hasSameFeedFullName = (feed: FeedInfo) =>
-      feed.feedFullName === feedFullName
-
-    const legacyFeeds = this.feedsState.getLegacyFeeds()
-    const index = legacyFeeds.findIndex(hasSameFeedFullName)
-    const updatedFeed = { ...legacyFeeds[index], address, contractId }
-    legacyFeeds[index] = updatedFeed
-    this.feedsState.setLegacyFeeds(legacyFeeds)
-
-    this.initialize()
-
-    return updatedFeed
-  }
-
   refreshV2NetworkFeeds(network: string, feedInfos: Array<FeedInfo>) {
     const v2Feeds = this.feedsState.getV2Feeds()
 
@@ -86,11 +68,6 @@ export class FeedRepository {
 
     this.feedsState.setV2Feeds(newV2Feeds)
 
-    this.initialize()
-  }
-
-  setLegacyFeeds(legacyFeeds: Array<FeedInfo>) {
-    this.feedsState.setLegacyFeeds(legacyFeeds)
     this.initialize()
   }
 

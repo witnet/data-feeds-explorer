@@ -1,6 +1,5 @@
 import {
   FeedParamsConfig,
-  LegacyRouterDataFeedsConfig,
   Network,
   NetworksConfig,
   RouterDataFeedsConfig,
@@ -64,32 +63,6 @@ export class Configuration {
           networkName: network.name,
         })),
     )
-  }
-
-  public getLegacyConfigurationFile(): LegacyRouterDataFeedsConfig {
-    const abi = this.configurationFile.contracts.legacy.abi
-    const chains = Object.entries(this.configurationFile.chains).reduce(
-      (acc, [chainKey, chain]) => {
-        const networks = Object.entries(chain.networks).reduce(
-          (accNetworks, [networkKey, network]) => {
-            // add the network entry if it's legacy
-            return !network.version || network.version === 'legacy'
-              ? { ...accNetworks, [networkKey]: network }
-              : accNetworks
-          },
-          {},
-        )
-        return Object.keys(networks).length > 0
-          ? { ...acc, [chainKey]: { ...chain, networks } }
-          : acc
-      },
-      {},
-    )
-
-    return {
-      chains,
-      abi,
-    }
   }
 
   public getFeedConfiguration(

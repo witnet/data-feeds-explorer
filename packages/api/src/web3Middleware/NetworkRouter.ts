@@ -60,6 +60,7 @@ export class NetworkRouter {
   private configuration: Configuration
   private provider: string
   private lastSupportedFeedsID = ''
+  private interval
 
   constructor(
     configuration: Configuration,
@@ -88,7 +89,7 @@ export class NetworkRouter {
 
   // Periodically fetch the price feed router contract and store it in mongodb
   public listen() {
-    setInterval(async () => {
+    this.interval = setInterval(async () => {
       const snapshot = await this.getSnapshot()
       const insertPromises = snapshot.feeds
         .filter((feed) => isFeedWithPrice(feed) && feed.timestamp !== '0')
@@ -112,6 +113,10 @@ export class NetworkRouter {
 
       Promise.all(insertPromises)
     }, this.pollingPeriod)
+  }
+
+  public stop() {
+    clearInterval(this.interval)
   }
 
   async getSnapshot(): Promise<NetworkSnapshot | PartialNetworkSnapshot> {

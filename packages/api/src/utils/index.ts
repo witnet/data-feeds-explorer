@@ -1,28 +1,5 @@
-import {
-  ExtendedFeedConfig,
-  FeedInfosWithoutAbis,
-  FeedParamsConfig,
-  FeedParsedParams,
-  NetworkConfigMap,
-  RouterDataFeedsConfig,
-  NetworksConfig,
-  Chain,
-  FeedConfig,
-} from '../../types'
-// parse network name to fit schema
-export function parseNetworkName(value) {
-  return value.toLowerCase().split('.').join('-')
-}
-export function parseChainName(value) {
-  return value.toLowerCase().split('.')[0]
-}
-// parse data feed name to fit schema
-export function parseDataName(value) {
-  return value.split('-')[1].toLowerCase()
-}
-export function parseDataDecimals(value) {
-  return value.split('-')[2]
-}
+import { RouterDataFeedsConfig, NetworksConfig } from '../../types'
+
 // parse data feed full name to fit schema
 export function createFeedFullName(network, name, decimals) {
   return `${network}_${name.split('/').join('-')}_${decimals}`.toLowerCase()
@@ -71,97 +48,6 @@ export function normalizeNetworkConfig(
     ...sortAlphabeticallyByLabel(mainnetNetworks),
     ...sortAlphabeticallyByLabel(testnetNetworks),
   ]
-}
-
-// normalize config to fit schema
-
-export function normalizeConfig(
-  config: RouterDataFeedsConfig,
-): FeedInfosWithoutAbis {
-  // Chain list
-  const chains: Array<{ networks: NetworkConfigMap }> = Object.values(
-    config.chains,
-  )
-  // Network Config list deleting key label
-  const networksConfigMap = chains.flatMap((network: Chain) => {
-    return Object.values(network.networks)
-      .map((chainConfig: FeedConfig, index) => ({
-        ...chainConfig,
-        chain: network.name,
-        hide: !!network.hide || chainConfig.hide,
-        network: Object.keys(network.networks)[index],
-      }))
-      .filter((network) => !network.version || network.version === 'legacy')
-  })
-
-  // Parse Feed adding common config
-  const feeds: FeedInfosWithoutAbis = networksConfigMap.reduce(
-    (acc: FeedInfosWithoutAbis, config: ExtendedFeedConfig) => {
-      const feedsArrayConfig: Array<FeedParamsConfig> = config.feeds
-        ? Object.values(config.feeds)
-        : []
-      // Extracts feeds deleting key label
-      const feedsArray: Array<FeedParsedParams> = feedsArrayConfig.map(
-        (feed, index) => {
-          return {
-            ...feed,
-            key: Object.keys(config.feeds)[index],
-          } as FeedParsedParams
-        },
-      )
-
-      feedsArray.forEach((feed) => {
-        const chain = config.chain
-        const network = parseNetworkName(config.network)
-        const name = parseDataName(feed.key)
-        const decimals = parseDataDecimals(feed.key)
-        if (!config.hide) {
-          acc.push({
-            feedFullName: createFeedFullName(network, name, decimals),
-            isRouted: !!feed.isRouted,
-            id: feed.key,
-            address: '0x0000000000000000000000000000000000000000',
-            contractId: '0x0000000000000000000000000000000000000000',
-            routerAddress: config.address,
-            network,
-            networkName: config.name,
-            chain,
-            name,
-            label: feed.label,
-            pollingPeriod: config.pollingPeriod,
-            color: config.color,
-            blockExplorer: config.blockExplorer,
-            deviation: feed.deviationPercentage?.toString() || null,
-            heartbeat: feed.maxSecsBetweenUpdates
-              ? `${feed.maxSecsBetweenUpdates}000`
-              : null,
-            finality: '900000',
-          })
-        }
-      })
-
-      return acc
-    },
-    [],
-  )
-
-  return feeds
-}
-
-export function isZeroAddress(address: string) {
-  return address === '0x0000000000000000000000000000000000000000' || !address
-}
-
-export function isZeroHash(hash: string) {
-  return (
-    hash ===
-      '0x0000000000000000000000000000000000000000000000000000000000000000' ||
-    !hash
-  )
-}
-
-export function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 export function removeRepeatedElements<T>(items: Array<T>): Array<T> {

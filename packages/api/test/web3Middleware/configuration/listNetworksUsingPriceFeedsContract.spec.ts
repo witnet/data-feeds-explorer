@@ -6,10 +6,6 @@ describe('listNetworksUsingPriceFeedsContract', () => {
   it('Full file', () => {
     const configurationFile = {
       contracts: {
-        legacy: {
-          abi: './src/abi/WitnetPriceRouter.json',
-          pollingPeriod: 120000,
-        },
         '2.0': {
           abi: './src/abi/WitnetPriceFeeds.json',
           address: '0x0000000000000000000000000000000000000000',
@@ -64,7 +60,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
           name: 'Avalanche',
           networks: {
             'avalanche.mainnet': {
-              version: 'legacy',
+              version: '2.0',
               mainnet: true,
               address: '0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7',
               blockExplorer: 'https://snowtrace.io/address/{address}',
@@ -100,7 +96,7 @@ describe('listNetworksUsingPriceFeedsContract', () => {
           name: 'Boba',
           networks: {
             'boba.ethereum.mainnet': {
-              version: 'legacy',
+              version: '2.0',
               mainnet: true,
               address: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5',
               blockExplorer:
@@ -148,12 +144,28 @@ describe('listNetworksUsingPriceFeedsContract', () => {
         provider: 'provider-arbitrum-goerli',
       },
       {
+        address: '0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7',
+        chain: 'Avalanche',
+        key: 'avalanche-mainnet',
+        networkName: 'Avalanche Mainnet',
+        pollingPeriod: 120000,
+        provider: 'provider-avalanche-mainnet',
+      },
+      {
         address: '0x9999999d139bdBFbF25923ba39F63bBFc7593400',
         chain: 'Avalanche',
         key: 'avalanche-fuji',
         networkName: 'Avalanche Fuji',
         pollingPeriod: 120000,
         provider: 'provider-avalanche-fuji',
+      },
+      {
+        address: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5',
+        chain: 'Boba',
+        key: 'boba-ethereum-mainnet',
+        networkName: 'Boba ETH/L2 Mainnet',
+        pollingPeriod: 120000,
+        provider: 'provider-boba-ethereum-mainnet',
       },
     ]
 

@@ -1,9 +1,5 @@
 export const baseConfigurationFile = {
   contracts: {
-    legacy: {
-      abi: './src/abi/WitnetPriceRouter.json',
-      pollingPeriod: 120000,
-    },
     '2.0': {
       abi: './src/abi/WitnetPriceFeeds.json',
       address: '0x0000000000000000000000000000000000000000',

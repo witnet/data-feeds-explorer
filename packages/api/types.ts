@@ -134,16 +134,9 @@ export type NetworksConfig = {
 
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
 
-export type FeedInfoConfig = FeedInfoGeneric<string>
-
 export type PaginatedFeedsObject = {
   feeds: Array<FeedInfo>
   total: number
-}
-
-export type ContractInfo = {
-  contractAddress: string
-  contractId: string
 }
 
 export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {
@@ -153,22 +146,6 @@ export type ResultRequestDbObjectNormalized = ResultRequestDbObject & {
 export type Repositories = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
-}
-
-export type ContractsState = {
-  lastPrice: string
-  lastTimestamp: string
-  lastDrTxHash: string
-  requestId: string
-}
-
-export type LastResponse = {
-  timestamp: string
-  drTxHash: string
-}
-
-export type Contracts = {
-  feedContract: any
 }
 
 export type FeedInfoRouterConfigMap = {
@@ -183,18 +160,8 @@ export type FeedParamsConfig = {
   minSecsBetweenUpdates?: number
 }
 
-export type FeedParsedParams = {
-  label: string
-  isRouted?: boolean
-  deviationPercentage?: number
-  maxSecsBetweenUpdates?: number
-  minSecsBetweenUpdates?: number
-  key: string
-  chain: string
-}
-
 export type FeedConfig = {
-  version?: 'legacy' | '2.0'
+  version?: '2.0'
   address?: string
   blockExplorer: string
   blockProvider?: string
@@ -206,32 +173,14 @@ export type FeedConfig = {
   feeds?: FeedInfoRouterConfigMap
 }
 
-export type ExtendedFeedConfig = {
-  address: string
-  blockExplorer: string
-  color: string
-  name: string
-  chain: string
-  hide: boolean
-  network: string
-  pollingPeriod: number
-  feeds: FeedInfoRouterConfigMap
-}
-
 export type Chain = {
   name: string
   hide?: boolean
   networks: Record<string, FeedConfig>
 }
 
-export type NetworkConfigMap = Record<string, FeedConfig>
-
 export type RouterDataFeedsConfig = {
   contracts: {
-    legacy: {
-      abi: string
-      pollingPeriod: number
-    }
     '2.0': {
       abi: string
       address: string
@@ -248,12 +197,3 @@ export type RouterDataFeedsConfig = {
   }
   currencies: Record<string, string>
 }
-
-export type LegacyRouterDataFeedsConfig = {
-  abi: string
-  chains: Record<string, Chain>
-}
-
-export type FeedInfosWithoutAbis = Array<
-  Omit<FeedInfoConfig, 'abi' | 'routerAbi'>
->

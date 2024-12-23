@@ -6,10 +6,6 @@ describe('getNetworkConfiguration', () => {
   it('complete', () => {
     const configurationFile: RouterDataFeedsConfig = {
       contracts: {
-        legacy: {
-          abi: './src/abi/WitnetPriceRouter.json',
-          pollingPeriod: 120000,
-        },
         '2.0': {
           abi: './src/abi/WitnetPriceFeeds.json',
           address: '0x1111AbA2164AcdC6D291b08DfB374280035E1111',
@@ -66,7 +62,7 @@ describe('getNetworkConfiguration', () => {
           name: 'Avalanche',
           networks: {
             'avalanche.mainnet': {
-              version: 'legacy',
+              version: '2.0',
               mainnet: true,
               address: '0xBaaF31F4AAc5ab5334b6E239a83bf4E855C55ea7',
               blockExplorer: 'https://snowtrace.io/address/{address}',
@@ -103,7 +99,7 @@ describe('getNetworkConfiguration', () => {
           name: 'Boba',
           networks: {
             'boba.ethereum.mainnet': {
-              version: 'legacy',
+              version: '2.0',
               mainnet: true,
               address: '0x93f61D0D5F623144e7C390415B70102A9Cc90bA5',
               blockExplorer:

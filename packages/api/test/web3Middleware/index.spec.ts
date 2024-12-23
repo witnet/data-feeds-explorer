@@ -1,16 +1,13 @@
 // FIXME: create a proper mock for web3
 import Web3 from 'web3'
-import { FeedInfo, Db, RouterDataFeedsConfig } from '../../types'
+import { Db, RouterDataFeedsConfig } from '../../types'
 import { FeedRepository } from '../../src/repository/Feed'
 import { ResultRequestRepository } from '../../src/repository/ResultRequest'
 import { Web3Middleware } from '../../src/web3Middleware/index'
-import { normalizeConfig } from '../../src/utils'
 import dataFeedsRouter from './dataFeedsRouter.json'
 import { ObjectId } from 'mongodb'
 import { Configuration } from '../../src/web3Middleware/Configuration'
 import { FeedsState } from '../../src/repository/feedState'
-
-const dataFeeds = normalizeConfig(dataFeedsRouter as RouterDataFeedsConfig)
 
 jest.mock('../../src/repository/Feed')
 jest.mock('../../src/repository/ResultRequest')
@@ -71,7 +68,6 @@ beforeEach(() => {
 describe.skip('web3Middleware', () => {
   it('should read the state of each datafeed provided', async () => {
     const feedState = new FeedsState()
-    const feedInfos: Array<FeedInfo> = [dataFeeds[0] as FeedInfo]
     const resultRequestRepository = new ResultRequestRepository(
       '' as unknown as Db,
     )
@@ -92,14 +88,10 @@ describe.skip('web3Middleware', () => {
     const configuration = new Configuration(
       dataFeedsRouter as RouterDataFeedsConfig,
     )
-    const middleware = new Web3Middleware(
-      configuration,
-      {
-        repositories: { feedRepository, resultRequestRepository },
-        Web3: Web3Mock,
-      },
-      feedInfos,
-    )
+    const middleware = new Web3Middleware(configuration, {
+      repositories: { feedRepository, resultRequestRepository },
+      Web3: Web3Mock,
+    })
     await middleware.listen()
     await new Promise((resolve) => setTimeout(() => resolve(''), 1000))
     middleware.stop()

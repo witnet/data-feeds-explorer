@@ -13,7 +13,7 @@ import {
 } from '../types'
 import { Web3Middleware } from './web3Middleware/index'
 import { normalizeNetworkConfig } from './utils/index'
-import { fetchFeedsLegacy, fetchDataFeedsRouterConfig } from './readDataFeeds'
+import { fetchDataFeedsRouterConfig } from './readDataFeeds'
 import { SvgCache } from './svgCache'
 import { NetworkRouter } from './web3Middleware/NetworkRouter'
 import { Configuration } from './web3Middleware/Configuration'
@@ -71,23 +71,18 @@ class DataFeedsExplorer {
     await this.initializeConfiguration(this.svgCache)
     this.routers = await this.initializeNetworkRouters()
 
-    const legacyFeeds: Array<FeedInfo> = fetchFeedsLegacy(
-      this.configurationFile,
-    )
     const v2Feeds: Array<FeedInfo> = await fetchFeedsV2(this.routers)
 
     this.repositories = {
       feedRepository: new FeedRepository(this.feedsState),
       resultRequestRepository: new ResultRequestRepository(db),
     }
-    this.repositories.feedRepository.setLegacyFeeds(legacyFeeds)
     this.repositories.feedRepository.setV2Feeds(v2Feeds)
 
-    const web3Middleware = new Web3Middleware(
-      this.configuration,
-      { repositories: this.repositories, Web3: Web3 },
-      legacyFeeds,
-    )
+    const web3Middleware = new Web3Middleware(this.configuration, {
+      repositories: this.repositories,
+      Web3: Web3,
+    })
 
     web3Middleware.listen()
 
