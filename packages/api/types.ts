@@ -40,6 +40,10 @@ export type ConfigByFullName = {
   [key: string]: FeedInfo
 }
 
+export type NetworkConfigByNetwork = {
+  [key: string]: Configuration
+}
+
 export enum Network {
   ArbitrumOne = 'arbitrum-one',
   ArbitrumGoerli = 'arbitrum-goerli',
@@ -257,6 +261,12 @@ export type RouterDataFeedsConfig = {
 export type LegacyRouterDataFeedsConfig = {
   abi: string
   chains: Record<string, Chain>
+}
+
+export type FeedsFilters = {
+  network: string | null
+  pair: string | null
+  mainnet: boolean
 }
 
 export type FeedInfosWithoutAbis = Array<

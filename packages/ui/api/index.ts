@@ -10,12 +10,22 @@ function getApiEndpoint() {
   return useRuntimeConfig().public.apiBase
 }
 
-export const getAllFeedsRequests = async ({ network }: { network: string }) =>
+export const getAllFeedsRequests = async ({
+  network,
+  mainnet,
+  pair,
+}: {
+  network: string | null
+  mainnet: boolean | null
+  pair: string | null
+}) =>
   (await request(
     getApiEndpoint(),
     feedsQuery,
     {
       network,
+      mainnet,
+      pair,
     },
     { accept: 'application/json' },
   )) as {

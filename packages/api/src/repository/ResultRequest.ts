@@ -48,6 +48,25 @@ export class ResultRequestRepository {
       .map(this.normalizeId)
   }
 
+  async getFeedRequestsPageByPair(
+    pair: string,
+    page: number,
+    size: number,
+  ): Promise<PaginatedRequests> {
+    const query = { feedFullName: { $regex: pair } }
+    return {
+      requests: (
+        await this.collection
+          .find(query)
+          .sort({ timestamp: -1 })
+          .skip(size * (page - 1))
+          .limit(size)
+          .toArray()
+      ).map(this.normalizeId),
+      total: (await this.collection.find(query).toArray()).length,
+    }
+  }
+
   async getFeedRequestsPage(
     feedFullName: string,
     page: number,
