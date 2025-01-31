@@ -1,6 +1,6 @@
 <template>
   <div class="fieldset">
-    <h3 class="title">{{ title.toUpperCase() }}</h3>
+    <h3 class="title text-bold">{{ title.toUpperCase() }}</h3>
     <div class="content">
       <slot></slot>
     </div>
@@ -27,8 +27,6 @@ export default {
   padding: 16px;
   .title {
     color: var(--fieldset-title);
-    font-weight: bold;
-    font-size: var(--text-size);
     padding: 16px 0 16px 0;
   }
   .content {

@@ -1,7 +1,7 @@
 <template>
   <BaseCard v-if="!empty" :class="dataFeedStatus.key">
     <nuxt-link :to="localeRoute(detailsPath)">
-      <div class="card-container">
+      <div class="card-container font-bold">
         <div class="title">
           <SvgIcon class="img" :svg="svg" />
           <p class="name title">{{ name.toUpperCase() }}</p>
@@ -17,7 +17,7 @@
           </InfoTooltip>
         </div>
         <p class="value">{{ label }} {{ formatedValue }}</p>
-        <p class="timestamp">
+        <p class="timestamp text-2-sm">
           {{ formattedTimestamp }}
         </p>
       </div>
@@ -132,7 +132,6 @@ a {
   justify-items: flex-start;
   width: 100%;
   height: max-content;
-  font-weight: bold;
   row-gap: 8px;
   padding: 8px 16px;
   transition: box-shadow 0.3s;
@@ -150,11 +149,8 @@ a {
   }
   .timestamp {
     color: var(--value-color);
-    font-size: var(--text-size-small);
     font-style: italic;
-    font-family: 'Avenir Next Variable W05 Itali', sans-serif;
     justify-self: flex-end;
-    font-weight: normal;
   }
   .name {
     color: var(--name-color);

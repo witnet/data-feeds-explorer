@@ -62,7 +62,6 @@ img {
   height: 100%;
 }
 html {
-  font-size: var(--text-size);
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

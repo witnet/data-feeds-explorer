@@ -1,12 +1,12 @@
 <template>
   <div class="info-container">
-    <div v-if="deviation" class="item">
+    <div v-if="deviation" class="text-small-bold">
       <InfoTooltip :value="$t('chart.deviation_text')">
         <p>{{ $t('chart.deviation') }}</p>
       </InfoTooltip>
       <div class="value">{{ deviation }}%</div>
     </div>
-    <div class="item">
+    <div class="item text-small-bold">
       <InfoTooltip :value="$t('chart.heartbeat_text')">
         <p>{{ $t('chart.heartbeat') }}</p>
       </InfoTooltip>
@@ -48,23 +48,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     grid-gap: 8px;
-    font-weight: bold;
     column-gap: 8px;
     .value {
       display: flex;
       align-items: center;
-    }
-  }
-  .contract-address {
-    display: flex;
-    align-items: center;
-    line-break: loose;
-    word-break: break-all;
-    font-size: var(--text-size-title);
-    cursor: pointer;
-    color: var(--contract-address);
-    .icon {
-      margin-left: 16px;
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="status-container">
     <StatusDotSvg :color="dataFeedStatus.color" />
-    <p class="status">{{ $t(`chart.${dataFeedStatus.key}`) }}</p>
+    <p class="status text-small">{{ $t(`chart.${dataFeedStatus.key}`) }}</p>
   </div>
 </template>
 
@@ -32,7 +32,6 @@ export default {
   align-items: center;
   .status {
     margin-left: 8px;
-    font-size: var(--text-size-medium);
   }
 }
 </style>

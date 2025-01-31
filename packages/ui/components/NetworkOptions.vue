@@ -1,7 +1,11 @@
 <template>
   <div class="nav-container" :class="type">
     <div class="networks">
-      <div v-for="option in mainOptions" :key="option.name" class="option">
+      <div
+        v-for="option in mainOptions"
+        :key="option.name"
+        class="option text-small-bold"
+      >
         <NetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
@@ -10,13 +14,17 @@
         <div
           v-for="option in hiddenEcosystems"
           :key="option.name"
-          class="option"
+          class="option text-small-bold"
         >
           <NetworkLink :name="option.name" :svg="option.logo" />
         </div>
       </div>
     </transition>
-    <div v-if="type === 'sidebar'" class="show-more-btn" @click="toggleShowAll">
+    <div
+      v-if="type === 'sidebar'"
+      class="show-more-btn text-small-bold"
+      @click="toggleShowAll"
+    >
       <p v-if="showAll">
         <span class="arrow">▲</span> {{ $t('less_networks') }}
         {{ networksLeft }}
@@ -123,11 +131,9 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
   grid-gap: 16px;
   color: var(--light-text);
   .option {
-    font-size: var(--text-size-medium);
     text-align: center;
     cursor: pointer;
     color: var(--light-text);
-    font-weight: bold;
     &.selected {
       border-radius: 4px;
     }
@@ -136,7 +142,6 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
 .show-more-btn {
   display: flex;
   background-color: var(--network-background);
-  font-size: var(--text-size-medium);
   color: var(--value-color);
   width: 100%;
   justify-content: center;
@@ -144,7 +149,6 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
   padding: 4px 8px;
   cursor: pointer;
   font-style: italic;
-  font-family: 'Avenir Next Variable W05 Itali', sans-serif;
   .arrow {
     color: var(--light-icon);
     font-style: normal;
@@ -166,7 +170,6 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
     text-align: center;
     cursor: pointer;
     color: var(--light-text);
-    font-weight: bold;
   }
 }
 @media (max-width: 850px) {

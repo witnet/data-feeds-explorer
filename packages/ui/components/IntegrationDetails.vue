@@ -1,7 +1,7 @@
 <template>
   <div id="integrate" class="integration-details">
     <div class="left">
-      <p class="title-details">
+      <p class="title-details text">
         {{ $t('data_feed_details.integration_details_description', [network]) }}
       </p>
       <div class="bottom">
@@ -24,38 +24,42 @@
       </div>
     </div>
     <div class="right">
-      <p v-if="isContractVersion2" class="title-address">
+      <p v-if="isContractVersion2" class="title-address text-small-bold">
         {{ $t('data_feed_details.contract_address_title').toUpperCase() }}
       </p>
-      <p v-else class="title-address">
+      <p v-else class="title-address text-small">
         {{ $t('data_feed_details.proxy_address').toUpperCase() }}
       </p>
       <a
         v-if="isContractVersion2"
         :href="urlProxyContract"
         target="_blank"
-        class="contract-info"
+        class="contract-info text font-mono"
       >
         {{ proxyAddress }}
         <font-awesome-icon class="icon" icon="external-link-alt" />
       </a>
       <div v-else class="contract-addresses">
-        <a :href="urlProxyContract" target="_blank" class="contract-info">
+        <a :href="urlProxyContract" target="_blank" class="contract-info text">
           {{ proxyAddress }}
           <font-awesome-icon class="icon" icon="external-link-alt" />
         </a>
-        <p class="title-address">
+        <p class="title-address text-small">
           {{ $t('data_feed_details.underlying_feed_contract').toUpperCase() }}
         </p>
-        <a :href="urlUnderlyingContract" target="_blank" class="contract-info">
+        <a
+          :href="urlUnderlyingContract"
+          target="_blank"
+          class="contract-info text"
+        >
           {{ feedAddress }}
           <font-awesome-icon class="icon" icon="external-link-alt" />
         </a>
       </div>
-      <p class="title-address">
+      <p class="title-address text-small">
         {{ $t('data_feed_details.erc2362_asset_id').toUpperCase() }}
       </p>
-      <p target="_blank" class="contract-id">
+      <p target="_blank" class="contract-id text font-mono">
         {{ contractId }}
       </p>
     </div>
@@ -107,8 +111,6 @@ const isContractVersion2 = computed(
     border-right: 1px solid var(--bg);
     padding-right: 16px;
     .title-details {
-      font-size: var(--text-size);
-      font-weight: normal;
       margin-bottom: 16px;
     }
     .bottom {
@@ -126,16 +128,10 @@ const isContractVersion2 = computed(
     grid-template-columns: 1fr;
     grid-gap: 8px;
     .title-address {
-      font-size: var(--text-size-medium);
-      font-weight: bold;
       margin-top: 8px;
     }
     .contract-id {
-      font-size: var(--text-size);
       margin-bottom: 8px;
-      font-family:
-        Roboto Mono,
-        monospace;
       word-break: break-all;
       max-width: 400px;
     }
@@ -145,11 +141,7 @@ const isContractVersion2 = computed(
       grid-gap: 8px;
     }
     .contract-info {
-      font-family:
-        Roboto Mono,
-        monospace;
       color: var(--text-hover);
-      font-size: var(--text-size);
       word-break: break-all;
       margin-bottom: 8px;
       cursor: pointer;

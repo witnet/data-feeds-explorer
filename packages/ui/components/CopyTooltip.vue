@@ -12,14 +12,14 @@
     </div>
     <div
       ref="copy"
-      class="copy"
+      class="copy text-2-sm"
       @click="copy"
       @mousemove="showCopyTooltip = true"
       @mouseleave="showCopyTooltip = false"
     >
       <div
         v-if="copied"
-        class="copy-tooltip"
+        class="copy-tooltip text"
         :style="{ top: copyTopPosition, left: copyLeftPosition }"
       >
         {{ $t('copied') }}
@@ -103,7 +103,6 @@ export default {
 .copy-tooltip {
   position: absolute;
   display: inline-block;
-  font-size: var(--text-size);
   padding: 8px;
   border-radius: 4px;
   background-color: var(--bg);
@@ -115,7 +114,6 @@ export default {
 .copy {
   padding: 16px;
   margin: -16px;
-  font-size: var(--text-size-small);
   cursor: pointer;
 }
 </style>

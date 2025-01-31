@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="[type]">
+  <button class="btn text-small-bold" :class="[type]">
     <slot class="btn-content"> </slot>
   </button>
 </template>
@@ -23,8 +23,6 @@ export default {
   width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
-  font-weight: bold;
-  font-size: var(--text-size-medium);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   &.primary {

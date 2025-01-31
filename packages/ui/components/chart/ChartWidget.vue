@@ -261,14 +261,14 @@ const updateTooltip = () => {
 @media (max-width: 850px) {
   .tooltip {
     padding-left: 24px;
-    font-size: var(--text-size-title);
+    @apply text-2xl font-semibold sm:text-xl;
     .name {
-      font-size: var(--text-size);
+      @apply text-2xl font-semibold sm:text-xl;
     }
     .value {
-      font-size: var(--text-size-title);
+      @apply text-2xl font-semibold sm:text-xl;
       .date {
-        font-size: var(--text-size);
+        @apply text-lg;
       }
     }
   }

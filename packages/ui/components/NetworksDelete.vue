@@ -1,9 +1,9 @@
 <template>
   <div class="networks">
-    <p class="network" :style="{ color, border: `1px solid ${color}` }">
+    <p class="network text" :style="{ color, border: `1px solid ${color}` }">
       {{ formatedNetwork[0] }}
     </p>
-    <p class="network" :style="{ color, border: `1px solid ${color}` }">
+    <p class="network text" :style="{ color, border: `1px solid ${color}` }">
       {{ formatedNetwork[1] }}
     </p>
   </div>
@@ -35,8 +35,6 @@ export default {
   .network {
     margin-right: 8px;
     padding: 4px 8px;
-    font-weight: 400;
-    font-size: var(--text-size);
     border-radius: 4px;
     width: max-content;
     text-transform: capitalize;

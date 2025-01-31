@@ -12,7 +12,7 @@
           <SvgIcon class="logo" :svg="selectedEcosystem[0].logo" />
           {{ selectedEcosystem[0].chain }}
         </h2>
-        <p class="subtitle light-text bold">
+        <p class="subtitle text light-text bold">
           {{ $t('main.network_subtitle') }}
           <span v-if="ecosystemNetworksNames.first" class="bold text">{{
             ecosystemNetworksNames.first
@@ -90,11 +90,6 @@ function updateOptions(index: number) {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  .section-title {
-    font-size: 18px;
-    align-self: flex-end;
-    font-weight: 600;
-  }
 }
 .feeds-container {
   height: max-content;
@@ -103,7 +98,6 @@ function updateOptions(index: number) {
 .title-container {
   margin-bottom: 32px;
   .title {
-    font-size: var(--text-size-title);
     margin-bottom: 4px;
     display: flex;
     align-items: center;
@@ -113,7 +107,6 @@ function updateOptions(index: number) {
     }
   }
   .subtitle {
-    font-size: var(--text-size);
     .networks-separator {
       margin: 0 4px 0 4px;
     }
@@ -127,9 +120,6 @@ function updateOptions(index: number) {
   justify-items: flex-start;
   align-items: flex-start;
   row-gap: 16px;
-  .title {
-    font-size: var(--text-size);
-  }
   .pagination {
     margin-bottom: 16px;
     justify-self: center;

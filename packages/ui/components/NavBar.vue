@@ -119,7 +119,6 @@ onMounted(() => window.addEventListener('resize', resizeHandler))
     }
     .tab {
       font-size: 1rem;
-      font-weight: 600;
       display: flex;
       align-items: center;
       text-decoration: none;

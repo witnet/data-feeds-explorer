@@ -6,7 +6,7 @@
     <div
       v-else
       :ref="value"
-      class="value truncate show-info"
+      class="text value truncate show-info"
       @mousemove="showTooltip = true"
       @mouseleave="showTooltip = false"
     >
@@ -20,7 +20,7 @@
     >
       <div
         v-if="showTooltip"
-        class="info-tooltip"
+        class="info-tooltip text-2-sm"
         :class="{ hidden: showInResponsive }"
         :style="{ top: textTopPosition, left: textLeftPosition }"
       >
@@ -70,7 +70,6 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: var(--text-size);
   margin-right: 8px;
   &.show-info {
     margin-right: 0;
@@ -82,7 +81,6 @@ export default {
   display: inline-block;
   max-width: 400px;
   border-radius: 4px;
-  font-size: var(--text-size-small);
   padding: 8px;
   background-color: var(--bg);
   color: var(--text-medium-emphasis);

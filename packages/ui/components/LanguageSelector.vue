@@ -64,7 +64,6 @@ export default {
   }
 
   .vs__dropdown-option {
-    font-family: 'NeueMachina-Regular', sans-serif;
     font-size: 16px;
     color: var(--language-selector-bg);
   }
@@ -86,7 +85,6 @@ export default {
   }
   .vs__selected {
     color: white;
-    font-family: 'NeueMachina-Regular', sans-serif;
     margin: 0;
     padding: 4px 0 0 0;
     font-size: 16px;

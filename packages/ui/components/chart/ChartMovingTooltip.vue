@@ -1,5 +1,5 @@
 <template>
-  <div class="tooltip">
+  <div class="tooltip font-bold">
     <p class="value">
       {{ value }}
     </p>
@@ -32,7 +32,6 @@ export default {
 <style scoped lang="scss">
 .tooltip {
   position: relative;
-  font-weight: bold;
   margin-top: -60px;
   font-size: 16px;
   background-color: $black;

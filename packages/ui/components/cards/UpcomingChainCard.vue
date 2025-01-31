@@ -1,7 +1,7 @@
 <template>
   <BaseCard>
     <a :href="path" target="_blank">
-      <div class="card-container">
+      <div class="card-container font-bold">
         <div class="title">
           <SvgIcon class="img" :name="img" />
           <p class="name title">{{ name }}</p>
@@ -48,7 +48,6 @@ a {
   align-items: center;
   width: 100%;
   height: max-content;
-  font-weight: bold;
   padding: 8px 16px;
   cursor: pointer;
   .title {
@@ -61,13 +60,6 @@ a {
       justify-content: center;
       align-self: center;
     }
-  }
-  .count {
-    color: var(--value-color);
-    font-size: var(--text-size-small);
-    font-style: italic;
-    justify-self: flex-end;
-    font-weight: normal;
   }
 }
 @media (max-width: 300px) {

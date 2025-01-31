@@ -6,7 +6,7 @@
           <SvgIcon class="img" :svg="svg" />
           <p class="name title">{{ name }}</p>
         </div>
-        <p class="count">{{ count }} {{ $t('feeds') }}</p>
+        <p class="count text-2-sm">{{ count }} {{ $t('feeds') }}</p>
       </div>
     </nuxt-link>
   </BaseCard>
@@ -53,7 +53,6 @@ a {
   justify-items: flex-start;
   width: 100%;
   min-height: 50px;
-  font-weight: bold;
   padding: 8px 16px;
   cursor: pointer;
   .title {
@@ -69,10 +68,7 @@ a {
   }
   .count {
     color: var(--value-color);
-    font-size: var(--text-size-small);
-    font-family: 'Avenir Next Variable W05 Itali', sans-serif;
     justify-self: flex-end;
-    font-weight: normal;
   }
 }
 @media (max-width: 300px) {

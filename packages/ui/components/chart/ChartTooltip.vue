@@ -1,16 +1,16 @@
 <template>
   <div class="tooltip-container">
-    <div class="tooltip">
+    <div class="tooltip title">
       <div class="feed-title">
         <SvgIcon v-if="logo" class="icon" :svg="logo" />
         <h2 v-if="name" class="title feed-name">
           {{ name.toUpperCase() }}
         </h2>
       </div>
-      <p class="value-title">{{ $t('chart.last_update') }}</p>
-      <p class="value">
+      <p class="text-small">{{ $t('chart.last_update') }}</p>
+      <p class="value text">
         {{ lastResultValue }}
-        <span class="time">{{ formattedTimestamp }}</span>
+        <span class="time text-2-sm">{{ formattedTimestamp }}</span>
       </p>
       <p v-if="timeToUpdate" class="value-title">{{ $t('chart.status') }}</p>
       <DataFeedStatus
@@ -81,8 +81,6 @@ export default {
   align-self: start;
 }
 .tooltip {
-  font-weight: bold;
-  font-size: var(--text-size-title);
   background-color: var(--bg);
   transition: background-color 0.3s ease;
   color: var(--text);
@@ -95,29 +93,13 @@ export default {
       display: flex;
     }
     .feed-name {
-      font-size: var(--text-size-title);
       margin-left: 8px;
     }
   }
-  .item {
-    font-size: var(--text-size);
-    margin-top: 8px;
-    color: var(--text-medium-emphasis);
-    display: flex;
-    .title {
-      font-size: var(--text-size);
-      margin-right: 10px;
-      color: var(--text-hover);
-    }
-  }
-  .value-title {
-    font-size: var(--text-size-small);
-  }
+
   .value {
-    font-size: var(--text-size);
     margin-bottom: 8px;
     .time {
-      font-size: var(--text-size-small);
       color: var(--text-medium-emphasis);
     }
   }

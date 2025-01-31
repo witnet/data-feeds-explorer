@@ -4,7 +4,7 @@
     :keypath="description.i18nPath"
     scope="global"
     tag="p"
-    class="feed-description"
+    class="feed-description text"
   >
     <template
       v-for="field in description.fields"
@@ -103,7 +103,6 @@ export default {
 
 <style lang="scss" scoped>
 .feed-description {
-  font-size: var(--text-size);
   padding: 16px;
   margin-top: 16px;
 }

@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  html {
+    @apply scroll-smooth;
+  }
+  /* Titles */
+  h1 {
+    @apply font-title text-4xl font-semibold sm:text-3xl;
+    line-height: 1.1;
+  }
+  .title {
+    @apply font-title text-2xl font-semibold sm:text-xl;
+    line-height: 1.1;
+  }
+  .text {
+    @apply text-lg;
+    line-height: 1.5;
+  }
+  .text-bold {
+    @apply text-lg font-bold;
+    line-height: 1.5;
+  }
+  .text-small {
+    @apply text-sm;
+    line-height: 1.5;
+  }
+  .text-small-bold {
+    @apply text-sm font-bold;
+    line-height: 1.5;
+  }
+  .text-2-sm {
+    @apply text-xs;
+    line-height: 1.5;
+  }
+  .text-2-sm-bold {
+    @apply text-xs font-bold;
+    line-height: 1.5;
+  }
+}

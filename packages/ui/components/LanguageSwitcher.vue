@@ -66,7 +66,6 @@ const languageCodes: ComputedRef<Array<Locale>> = computed(() => {
   }
 
   .vs__dropdown-option {
-    font-family: 'NeueMachina-Regular', sans-serif;
     font-size: 16px;
     color: $black;
   }
@@ -88,7 +87,6 @@ const languageCodes: ComputedRef<Array<Locale>> = computed(() => {
   }
   .vs__selected {
     color: $white;
-    font-family: 'NeueMachina-Regular', sans-serif;
     margin: 0;
     padding: 4px 0 0 0;
     font-size: 16px;
