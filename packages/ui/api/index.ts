@@ -34,7 +34,7 @@ export const getAllFeedsRequests = async ({
   }
 
 export const getEcosystems = async () => {
-  const result: { feeds: any } = await request(
+  const result: { feeds: unknown } = await request(
     getApiEndpoint(),
     ecosystemsQuery,
     {

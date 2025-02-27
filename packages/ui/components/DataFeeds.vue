@@ -1,11 +1,21 @@
 <template>
-  <div v-if="noFeedsAvailable" class="empty-state">
-    <i18n-t keypath="empty_feeds" tag="p" scope="global">
+  <div
+    v-if="noFeedsAvailable"
+    class="empty-state"
+  >
+    <i18n-t
+      keypath="empty_feeds"
+      tag="p"
+      scope="global"
+    >
       <span class="bold">{{ network.label }}</span>
     </i18n-t>
     <RequestDataFeedBtn />
   </div>
-  <div v-else-if="!loading" class="feeds-container">
+  <div
+    v-else-if="!loading"
+    class="feeds-container"
+  >
     <FeedCard
       v-for="feed in allFeeds"
       :key="feed.name + feed.network + feed.value + feed.color"
@@ -22,13 +32,21 @@
       :color="feed.color"
     />
   </div>
-  <div v-else class="feeds-container">
-    <FeedCard v-for="feed in ['1', '2', '3']" :key="feed" :empty="true" />
+  <div
+    v-else
+    class="feeds-container"
+  >
+    <FeedCard
+      v-for="feed in ['1', '2', '3']"
+      :key="feed"
+      :empty="true"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { formatSvgName } from '../utils/formatSvgName'
+import { type Ref } from 'vue'
 const store = useStore()
 const props = defineProps({
   network: {

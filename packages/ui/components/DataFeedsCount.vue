@@ -2,16 +2,28 @@
   <client-only>
     <div class="count-strip-container">
       <div class="item text-bold">
-        <p class="count">{{ feeds }}</p>
-        <p class="title">{{ $t('data_feeds') }}</p>
+        <p class="count">
+          {{ feeds }}
+        </p>
+        <p class="title">
+          {{ $t('data_feeds') }}
+        </p>
       </div>
       <div class="item text-bold">
-        <p class="count">{{ networks }}</p>
-        <p class="title">{{ $t('networks') }}</p>
+        <p class="count">
+          {{ networks }}
+        </p>
+        <p class="title">
+          {{ $t('networks') }}
+        </p>
       </div>
       <div class="item text-bold">
-        <p class="count">{{ chains }}</p>
-        <p class="title">{{ $t('chains') }}</p>
+        <p class="count">
+          {{ chains }}
+        </p>
+        <p class="title">
+          {{ $t('chains') }}
+        </p>
       </div>
     </div>
   </client-only>

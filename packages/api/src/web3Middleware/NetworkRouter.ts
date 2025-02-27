@@ -1,10 +1,10 @@
 import Web3 from 'web3'
-import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json'
-import { FeedInfo, Network, Repositories } from '../../types'
+import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json' assert { type: 'json' }
+import { FeedInfo, Network, Repositories } from '../../types.js'
 import { toHex } from 'web3-utils'
-import { createFeedFullName } from '../utils'
-import { PriceFeed } from './PriceFeed'
-import { Configuration } from './Configuration'
+import { createFeedFullName } from '../utils/index.js'
+import { PriceFeed } from './PriceFeed.js'
+import { Configuration } from './Configuration.js'
 
 enum ResultStatus {
   Void = 0,
@@ -77,7 +77,8 @@ export class NetworkRouter {
     const web3: Web3 = new this.Web3(new Web3.providers.HttpProvider(provider))
     // TODO: why this type isn't working?
     this.contract = new web3.eth.Contract(WitnetPriceFeedsABI as any, address)
-    ;(this.pollingPeriod = pollingPeriod), (this.repositories = repositories)
+    this.pollingPeriod = pollingPeriod
+    this.repositories = repositories
     this.network = key
     this.configuration = configuration
     this.provider = provider

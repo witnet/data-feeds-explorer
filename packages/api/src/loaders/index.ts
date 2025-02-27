@@ -1,10 +1,10 @@
 import DataLoader from 'dataloader'
-import { SvgCache } from '../svgCache'
+import { SvgCache } from '../svgCache.js'
 import {
   Loaders,
   Repositories,
   ResultRequestDbObjectNormalized,
-} from '../../types'
+} from '../../types.js'
 
 export class LoadersFactory {
   repositories: Repositories

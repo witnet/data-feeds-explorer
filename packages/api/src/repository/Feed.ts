@@ -1,12 +1,12 @@
-import { FeedsState } from './feedState'
+import { FeedsState } from './feedState.js'
 import {
   PaginatedFeedsObject,
   FeedInfo,
   ConfigByFullName,
   Network,
   FeedsFilters,
-} from '../../types'
-import { Configuration } from '../web3Middleware/Configuration'
+} from '../../types.js'
+import { Configuration } from '../web3Middleware/Configuration.js'
 
 export class FeedRepository {
   feedsState: FeedsState

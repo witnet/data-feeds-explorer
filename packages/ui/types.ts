@@ -1,6 +1,6 @@
 export enum localeCodes {
-  en = 'en-US',
-  es = 'es-ES',
+  en = 'en',
+  es = 'es',
 }
 
 export enum ThemeKey {
@@ -24,7 +24,7 @@ export type Locale = {
   iso: string
   name: string
   file: string
-  fnsLocale: any
+  fnsLocale: unknown
 }
 
 export interface LanguageDictionary {
@@ -83,7 +83,7 @@ export type Feed = {
 
 export interface DataStore {
   selectedEcosystem: Network[] | []
-  selectedEcosystemName: String
+  selectedEcosystemName: string
   networks: Array<Network | undefined>
   ecosystems: Ecosystem[] | []
   totalFeeds: number

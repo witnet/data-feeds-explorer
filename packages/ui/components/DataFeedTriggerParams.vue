@@ -1,10 +1,15 @@
 <template>
   <div class="info-container">
-    <div v-if="deviation" class="text-small-bold">
+    <div
+      v-if="deviation"
+      class="text-small-bold"
+    >
       <InfoTooltip :value="$t('chart.deviation_text')">
         <p>{{ $t('chart.deviation') }}</p>
       </InfoTooltip>
-      <div class="value">{{ deviation }}%</div>
+      <div class="value">
+        {{ deviation }}%
+      </div>
     </div>
     <div class="item text-small-bold">
       <InfoTooltip :value="$t('chart.heartbeat_text')">

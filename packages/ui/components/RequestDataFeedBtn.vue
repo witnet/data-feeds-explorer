@@ -1,5 +1,9 @@
 <template>
-  <a :href="urls.requestDataFeed" target="_blank" rel="nofollow">
+  <a
+    :href="urls.requestDataFeed"
+    target="_blank"
+    rel="nofollow"
+  >
     <CustomButton class="btn">{{
       $t('navbar.request_data_feed')
     }}</CustomButton>

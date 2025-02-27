@@ -1,11 +1,11 @@
-import { Network, Repositories, RouterDataFeedsConfig } from '../types'
+import { Network, Repositories, RouterDataFeedsConfig } from '../types.js'
 import {
   NetworkInfo,
   NetworkRouter,
   NetworkSnapshot,
-} from '../src/web3Middleware/NetworkRouter'
-import { Configuration } from '../src/web3Middleware/Configuration'
-import dataFeedsRouter from './web3Middleware/dataFeedsRouter.json'
+} from '../src/web3Middleware/NetworkRouter.js'
+import { Configuration } from '../src/web3Middleware/Configuration.js'
+import dataFeedsRouter from './web3Middleware/dataFeedsRouter.json' assert { type: 'json' }
 // FIXME: create a proper mock for web3
 import web3 from 'web3'
 

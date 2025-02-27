@@ -1,8 +1,11 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <!-- We are using v-html assuming we never use user-provided content -->
-  <!-- eslint-disable-next-line vue/no-v-html -->
-  <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-if="svg" class="icon" v-html="svg" />
+  <div
+    v-if="svg"
+    class="icon"
+    v-html="svg"
+  />
   <customIcon v-else-if="name" />
 </template>
 

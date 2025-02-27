@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   async up(db) {
     const resultRequestCollection = db.collection('result_request')
     const updateConfluxTethysPromises = (

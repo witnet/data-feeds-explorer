@@ -5,8 +5,8 @@ import {
   Collection,
   WithoutId,
   PaginatedRequests,
-} from '../../types'
-import { containFalsyValues } from './containFalsyValues'
+} from '../../types.js'
+import { containFalsyValues } from './containFalsyValues.js'
 
 export class ResultRequestRepository {
   // TODO: find a better way to deal with auto generated ids

@@ -1,4 +1,4 @@
-import { containFalsyValues } from '../src/repository/containFalsyValues'
+import { containFalsyValues } from '../src/repository/containFalsyValues.js'
 
 describe('containFalsyValues', () => {
   it('should return FALSE when no falsy value is found on the object', () => {

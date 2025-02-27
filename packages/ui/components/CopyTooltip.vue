@@ -1,5 +1,8 @@
 <template>
-  <div class="container" @mouseout="hide()">
+  <div
+    class="container"
+    @mouseout="hide()"
+  >
     <div
       v-if="showTooltip"
       class="tooltip"
@@ -7,7 +10,11 @@
     >
       {{ value }}
     </div>
-    <div :ref="label" class="value truncate" @mousemove="show()">
+    <div
+      :ref="label"
+      class="value truncate"
+      @mousemove="show()"
+    >
       {{ value }}
     </div>
     <div
@@ -31,7 +38,10 @@
       >
         {{ $t('copy') }}
       </div>
-      <font-awesome-icon class="icon" icon="copy" />
+      <font-awesome-icon
+        class="icon"
+        icon="copy"
+      />
     </div>
   </div>
 </template>

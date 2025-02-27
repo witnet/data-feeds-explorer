@@ -1,14 +1,14 @@
 // FIXME: create a proper mock for web3
 import Web3 from 'web3'
-import { FeedInfo, Db, RouterDataFeedsConfig } from '../../types'
-import { FeedRepository } from '../../src/repository/Feed'
-import { ResultRequestRepository } from '../../src/repository/ResultRequest'
-import { Web3Middleware } from '../../src/web3Middleware/index'
-import { normalizeConfig } from '../../src/utils'
-import dataFeedsRouter from './dataFeedsRouter.json'
+import { FeedInfo, Db, RouterDataFeedsConfig } from '../../types.js'
+import { FeedRepository } from '../../src/repository/Feed.js'
+import { ResultRequestRepository } from '../../src/repository/ResultRequest.js'
+import { Web3Middleware } from '../../src/web3Middleware/index.js'
+import { normalizeConfig } from '../../src/utils/index.js'
+import dataFeedsRouter from './dataFeedsRouter.json' assert { type: 'json' }
 import { ObjectId } from 'mongodb'
-import { Configuration } from '../../src/web3Middleware/Configuration'
-import { FeedsState } from '../../src/repository/feedState'
+import { Configuration } from '../../src/web3Middleware/Configuration.js'
+import { FeedsState } from '../../src/repository/feedState.js'
 
 const dataFeeds = normalizeConfig(dataFeedsRouter as RouterDataFeedsConfig)
 

@@ -1,6 +1,6 @@
-import { normalizeConfig } from '../src/utils/index'
-import dataFeedsRouterConfig from '../test/web3Middleware/dataFeedsRouter.json'
-import { RouterDataFeedsConfig } from '../types'
+import { normalizeConfig } from '../src/utils/index.js'
+import dataFeedsRouterConfig from '../test/web3Middleware/dataFeedsRouter.json' assert { type: 'json' }
+import { RouterDataFeedsConfig } from '../types.js'
 
 describe.skip('validateDataFeedsConfig', () => {
   it('check if the structure is correct', async () => {

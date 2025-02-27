@@ -1,5 +1,5 @@
-import { FeedInfo } from '../../types'
-import { Configuration } from '../web3Middleware/Configuration'
+import { FeedInfo } from '../../types.js'
+import { Configuration } from '../web3Middleware/Configuration.js'
 
 export class FeedsState {
   private legacyFeeds: Array<FeedInfo>

@@ -1,8 +1,10 @@
 <template>
   <div class="fieldset-container">
-    <h3 class="title text-bold">{{ title.toUpperCase() }}</h3>
+    <h3 class="title text-bold">
+      {{ title.toUpperCase() }}
+    </h3>
     <div class="content fieldset">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

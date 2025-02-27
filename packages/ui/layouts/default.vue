@@ -3,16 +3,17 @@
     :class="{
       'hide-scroll': hideScroll,
       bg: hideScroll,
-      preload,
       background: true,
-      [`${colorMode}-mode`]: true,
     }"
     class="component-root"
   >
     <div class="main-section-container">
       <div class="main-section">
         <NavBar @scroll="handleScroll" />
-        <div class="cover" :class="{ show: hideScroll, bg: hideScroll }"></div>
+        <div
+          class="cover"
+          :class="{ show: hideScroll, bg: hideScroll }"
+        />
         <BreadCrumbs />
         <slot />
         <client-only>
@@ -26,8 +27,7 @@
 
 <script setup>
 import { WFooter } from 'wit-vue-ui'
-import { ref, computed, watch } from 'vue'
-import { useColorMode } from '@vueuse/core'
+import { ref } from 'vue'
 // import { footerSections } from '../../constants'
 // import getFooterLinks from './getFooterLinks'
 
@@ -94,24 +94,7 @@ const footerLinks = [
 ]
 
 const hideScroll = ref(false)
-const preload = ref(true)
-const colorMode = ref('dark')
 
-const mode = useColorMode()
-
-const colorTheme = computed(() => mode.value)
-watch(colorTheme, (value) => {
-  colorMode.value = value
-})
-onBeforeMount(() => {
-  preload.value = false
-})
-// watch(created, () => {
-//   preload.value = false
-// })
-onMounted(() => {
-  colorMode.value = mode.value
-})
 function handleScroll(scroll) {
   hideScroll.value = scroll
 }

@@ -1,5 +1,7 @@
 <template>
-  <div class="placeholder">&nbsp;</div>
+  <div class="placeholder">
+&nbsp;
+  </div>
 </template>
 <script setup>
 defineProps({

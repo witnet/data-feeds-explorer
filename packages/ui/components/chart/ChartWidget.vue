@@ -42,7 +42,7 @@ import {
   type AreaData,
   type Time,
 } from 'lightweight-charts'
-import { type PropType } from 'vue'
+import { type PropType, type Ref } from 'vue'
 import { formatNumber } from '@/utils/formatNumber'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
@@ -94,7 +94,7 @@ const toolTipHeight: Ref<number> = ref(60)
 const ranges: Ref<any> = ref(CHART_RANGE)
 const container = ref()
 const currentRange = ref(
-  (process.browser ? localStorage.getItem('range') : '')?.toString(),
+  (import.meta.browser ? localStorage.getItem('range') : '')?.toString(),
 )
 const range = computed({
   get(): string | undefined {
@@ -182,7 +182,7 @@ const setData = () => {
   lineChart.value.setData(props.data as AreaData<Time>[])
 }
 const onItemClicked = (currentRange: any) => {
-  if (process.browser) {
+  if (import.meta.browser) {
     range.value = currentRange
   }
   emit('change-range', currentRange)

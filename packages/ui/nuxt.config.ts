@@ -108,7 +108,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
   components: [{ path: '~/components', pathPrefix: false }],
-
+  compatibilityDate: '2025-02-27',
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -124,8 +124,8 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@pinia/nuxt',
     '@nuxt/ui',
-    '@nuxtjs/color-mode',
     'nuxt-gtag',
+    'nuxt-module-eslint-config',
   ],
 
   colorMode: {
@@ -141,12 +141,11 @@ export default defineNuxtConfig({
 
   i18n: {
     lazy: true,
-    langDir: 'locales',
     strategy: 'prefix_except_default',
-    defaultLocale: 'en-US',
+    defaultLocale: 'en',
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected_2',
+      cookieKey: 'i18n_redirected',
       redirectOn: 'root',
     },
     locales: Object.values(LANGUAGE_LOCALES),
@@ -159,6 +158,7 @@ export default defineNuxtConfig({
   },
 
   css: [
+    'wit-vue-ui/style.css',
     '~/assets/styles/tailwind.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
@@ -185,10 +185,9 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData: '@use "~/assets/styles/main.scss" as *;',
+          api: 'modern-compiler',
         },
       },
     },
   },
-
-  compatibilityDate: '2024-07-16',
 })

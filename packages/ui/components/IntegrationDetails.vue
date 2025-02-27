@@ -1,19 +1,26 @@
 <template>
-  <div id="integrate" class="integration-details">
+  <div
+    id="integrate"
+    class="integration-details"
+  >
     <div class="border-r dark:border-black-950 border-white-50 left">
       <p class="title-details text">
         {{ $t('data_feed_details.integration_details_description', [network]) }}
       </p>
       <div class="bottom">
-        <a :href="urls.integrateThroughProxy" target="_blank">
+        <a
+          :href="urls.integrateThroughProxy"
+          target="_blank"
+        >
           <CustomButton class="btn">
-            {{ $t('data_feed_details.integrate_proxy') }}</CustomButton
-          >
+            {{ $t('data_feed_details.integrate_proxy') }}</CustomButton>
         </a>
-        <a :href="urls.integrateDirectly" target="_blank">
+        <a
+          :href="urls.integrateDirectly"
+          target="_blank"
+        >
           <CustomButton class="btn">
-            {{ $t('data_feed_details.integrate_directly') }}</CustomButton
-          >
+            {{ $t('data_feed_details.integrate_directly') }}</CustomButton>
         </a>
         <p class="subtitle testing">
           {{ $t('data_feed_details.recommended_for_testing') }}
@@ -24,10 +31,16 @@
       </div>
     </div>
     <div class="right">
-      <p v-if="isContractVersion2" class="title-address text-small-bold">
+      <p
+        v-if="isContractVersion2"
+        class="title-address text-small-bold"
+      >
         {{ $t('data_feed_details.contract_address_title').toUpperCase() }}
       </p>
-      <p v-else class="title-address text-small">
+      <p
+        v-else
+        class="title-address text-small"
+      >
         {{ $t('data_feed_details.proxy_address').toUpperCase() }}
       </p>
       <a
@@ -37,12 +50,25 @@
         class="contract-info text font-mono"
       >
         {{ proxyAddress }}
-        <font-awesome-icon class="icon" icon="external-link-alt" />
+        <font-awesome-icon
+          class="icon"
+          icon="external-link-alt"
+        />
       </a>
-      <div v-else class="contract-addresses">
-        <a :href="urlProxyContract" target="_blank" class="contract-info text">
+      <div
+        v-else
+        class="contract-addresses"
+      >
+        <a
+          :href="urlProxyContract"
+          target="_blank"
+          class="contract-info text"
+        >
           {{ proxyAddress }}
-          <font-awesome-icon class="icon" icon="external-link-alt" />
+          <font-awesome-icon
+            class="icon"
+            icon="external-link-alt"
+          />
         </a>
         <p class="title-address text-small">
           {{ $t('data_feed_details.underlying_feed_contract').toUpperCase() }}
@@ -53,13 +79,19 @@
           class="contract-info text"
         >
           {{ feedAddress }}
-          <font-awesome-icon class="icon" icon="external-link-alt" />
+          <font-awesome-icon
+            class="icon"
+            icon="external-link-alt"
+          />
         </a>
       </div>
       <p class="title-address text-small">
         {{ $t('data_feed_details.erc2362_asset_id').toUpperCase() }}
       </p>
-      <p target="_blank" class="contract-id text font-mono">
+      <p
+        target="_blank"
+        class="contract-id text font-mono"
+      >
         {{ contractId }}
       </p>
     </div>

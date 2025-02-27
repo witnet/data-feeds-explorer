@@ -1,6 +1,9 @@
 <template>
-  <button class="btn text-small-bold" :class="[type]">
-    <slot class="btn-content"> </slot>
+  <button
+    class="btn text-small-bold"
+    :class="[type]"
+  >
+    <slot class="btn-content" />
   </button>
 </template>
 

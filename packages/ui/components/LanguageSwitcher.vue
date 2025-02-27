@@ -47,12 +47,11 @@ const languageCodes: ComputedRef<Array<Locale>> = computed(() => {
 .language-selector {
   .vs__dropdown-toggle,
   .vs__dropdown-menu {
+    @apply border border-white-50 text-white-50;
     background: transparent;
     border: none;
-    border-bottom: 1px solid $white;
     box-shadow: none;
     border-radius: 0;
-    color: $white;
     min-width: max-content;
     font-size: 16px;
   }
@@ -60,24 +59,22 @@ const languageCodes: ComputedRef<Array<Locale>> = computed(() => {
     font-size: 8px;
   }
   .vs__dropdown-menu {
-    background: $white;
+    @apply border border-white-50 bg-white-50;
     top: -80px;
-    border: 2px solid $white;
   }
 
   .vs__dropdown-option {
     font-size: 16px;
-    color: $black;
+    @apply text-black-950;
   }
 
   .vs__dropdown-option--highlight {
-    color: $white;
-    background: $black;
+    @apply bg-black-950 text-white-50;
   }
 
   .vs__clear,
   .vs__open-indicator {
-    fill: $white;
+    @apply fill-white-50;
   }
 
   .image {
@@ -86,17 +83,17 @@ const languageCodes: ComputedRef<Array<Locale>> = computed(() => {
     vertical-align: middle;
   }
   .vs__selected {
-    color: $white;
+    @apply text-white-50;
     margin: 0;
     padding: 4px 0 0 0;
     font-size: 16px;
   }
   &:hover {
     .vs__selected {
-      color: $white;
+      @apply text-white-50;
     }
     .vs__open-indicator {
-      color: $white;
+      @apply text-white-50;
     }
   }
   // remove extra space

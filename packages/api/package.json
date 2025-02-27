@@ -1,16 +1,17 @@
 {
   "name": "api",
   "description": "",
-  "main": "index.js",
+  "exports": "./index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "codegen": "graphql-codegen --config ./codegen.yml",
-    "lint:js": "eslint --ext \".ts\" --ignore-path .gitignore .",
-    "lint:prettier": "prettier --check --ignore-path .gitignore .",
+    "lint:js": "eslint -c eslint.config.js --ext \".ts\" --ignore-pattern .gitignore .",
+    "lint:prettier": "prettier --check .",
     "lint": "pnpm lint:js && pnpm lint:prettier",
     "lintfix": "prettier --write --list-different . && pnpm lint:js --fix",
     "dev": "nodemon",
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "test": "jest --runInBand",
     "prepare": "pnpm run codegen",
     "docker:build": "docker build . -t witnet/data-feeds-explorer-api --no-cache"

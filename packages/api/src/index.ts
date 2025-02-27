@@ -1,23 +1,27 @@
-require('dotenv/config')
+import dotenv from 'dotenv'
+dotenv.config()
 
 import Web3 from 'web3'
-import { MongoManager } from './database'
-import { FeedRepository } from './repository/Feed'
-import { ResultRequestRepository } from './repository/ResultRequest'
-import { createServer } from './server'
+import { MongoManager } from './database.js'
+import { FeedRepository } from './repository/Feed.js'
+import { ResultRequestRepository } from './repository/ResultRequest.js'
+import { createServer } from './server.js'
 import {
   RouterDataFeedsConfig,
   Repositories,
   FeedInfo,
   NetworksConfig,
-} from '../types'
-import { Web3Middleware } from './web3Middleware/index'
-import { normalizeNetworkConfig } from './utils/index'
-import { fetchFeedsLegacy, fetchDataFeedsRouterConfig } from './readDataFeeds'
-import { SvgCache } from './svgCache'
-import { NetworkRouter } from './web3Middleware/NetworkRouter'
-import { Configuration } from './web3Middleware/Configuration'
-import { FeedsState } from './repository/feedState'
+} from '../types.js'
+import { Web3Middleware } from './web3Middleware/index.js'
+import { normalizeNetworkConfig } from './utils/index.js'
+import {
+  fetchFeedsLegacy,
+  fetchDataFeedsRouterConfig,
+} from './readDataFeeds.js'
+import { SvgCache } from './svgCache.js'
+import { NetworkRouter } from './web3Middleware/NetworkRouter.js'
+import { Configuration } from './web3Middleware/Configuration.js'
+import { FeedsState } from './repository/feedState.js'
 
 class DataFeedsExplorer {
   routers: Array<NetworkRouter>

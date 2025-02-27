@@ -2,5 +2,7 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": [".git", "node_modules"],
-  "exec": "./node_modules/.bin/ts-node --require dotenv/config ./src/index.ts"
+  "execMap": {
+    "ts": "pnpm node-ts -r dotenv/config ./src/index.ts"
+  }
 }

@@ -1,5 +1,5 @@
 import NodeCache from 'node-cache'
-import { DEFAULT_SVG, fetchSvgs } from './fetchSvgs'
+import { DEFAULT_SVG, fetchSvgs } from './fetchSvgs.js'
 
 export class SvgCache {
   cache: NodeCache

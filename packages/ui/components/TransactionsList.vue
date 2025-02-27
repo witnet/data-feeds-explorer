@@ -6,7 +6,9 @@
     <div class="collection collection-container">
       <div class="item-container item-blur">
         <div class="attribute-container values-time">
-          <div class="attribute">{{ $t('transactions_list.time') }}</div>
+          <div class="attribute">
+            {{ $t('transactions_list.time') }}
+          </div>
         </div>
         <div class="attribute-container links">
           <div class="attribute link">

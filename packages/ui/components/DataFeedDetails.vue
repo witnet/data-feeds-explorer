@@ -1,5 +1,8 @@
 <template>
-  <div v-if="normalizedFeed" class="content">
+  <div
+    v-if="normalizedFeed"
+    class="content"
+  >
     <client-only>
       <ChartWidget
         v-if="feed"
@@ -28,7 +31,7 @@
       <FieldsetCard
         v-if="
           !normalizedFeed.isRouted &&
-          (maxTimeToResolve || normalizedFeed.deviation)
+            (maxTimeToResolve || normalizedFeed.deviation)
         "
         :title="$t('data_feed_details.trigger_parameters')"
       >
@@ -74,6 +77,7 @@ import { formatNumber } from '@/utils/formatNumber'
 import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 import { AsyncInterval } from '@/utils/asyncInterval'
+import { type Ref } from 'vue'
 
 const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
 
