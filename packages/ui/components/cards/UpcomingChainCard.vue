@@ -32,15 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nuxt-link-exact-active {
-  color: var(--value-color);
-}
-.nuxt-link-active {
-  color: var(--value-color);
-}
-a {
-  color: var(--value-color);
-}
 .card-container {
   display: grid;
   grid-template-columns: 1fr;

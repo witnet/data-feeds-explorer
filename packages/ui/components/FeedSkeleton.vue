@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container bg-black-200 bg-opacity-10">
     <div class="title">
       <AnimatedPlaceholder
         class="img"
@@ -28,8 +28,3 @@
     />
   </div>
 </template>
-<style scoped>
-.card-container {
-  background-color: var(--placeholder-bg-color);
-}
-</style>

@@ -20,7 +20,7 @@
     >
       <div
         v-if="showTooltip"
-        class="info-tooltip text-2-sm"
+        class="info-tooltip bg text-2-sm"
         :class="{ hidden: showInResponsive }"
         :style="{ top: textTopPosition, left: textLeftPosition }"
       >
@@ -82,8 +82,6 @@ export default {
   max-width: 400px;
   border-radius: 4px;
   padding: 8px;
-  background-color: var(--bg);
-  color: var(--text-medium-emphasis);
   &.hidden {
     display: none;
   }

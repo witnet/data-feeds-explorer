@@ -104,26 +104,6 @@ export default {
 </script>
 
 <style lang="scss">
-.nuxt-link-exact-active {
-  color: var(--value-color);
-}
-.nuxt-link-active {
-  color: var(--value-color);
-}
-a {
-  color: var(--value-color);
-}
-.card-border {
-  &.operational {
-    border: var(--card-border);
-  }
-  &.delay {
-    border: var(--delay-status-border);
-  }
-  &.error {
-    border: var(--error-status-border);
-  }
-}
 .card-container {
   display: grid;
   grid-template-columns: 1fr max-content;
@@ -148,18 +128,15 @@ a {
     }
   }
   .timestamp {
-    color: var(--value-color);
     font-style: italic;
     justify-self: flex-end;
   }
   .name {
-    color: var(--name-color);
     font-size: 18px;
     display: flex;
     align-items: center;
   }
   .value {
-    color: var(--value-color);
     font-size: 18px;
     justify-self: flex-end;
   }

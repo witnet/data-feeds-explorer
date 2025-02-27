@@ -12,7 +12,7 @@
           <SvgIcon class="logo" :svg="selectedEcosystem[0].logo" />
           {{ selectedEcosystem[0].chain }}
         </h2>
-        <p class="subtitle text light-text bold">
+        <p class="subtitle text bold">
           {{ $t('main.network_subtitle') }}
           <span v-if="ecosystemNetworksNames.first" class="bold text">{{
             ecosystemNetworksNames.first
@@ -29,7 +29,7 @@
         :key="option.key"
         class="list-container"
       >
-        <h3 class="title light-text bold">{{ option.label }}</h3>
+        <h3 class="title bold">{{ option.label }}</h3>
         <DataFeeds
           :network="option"
           :network-index="index"

@@ -244,18 +244,18 @@ const updateTooltip = () => {
   justify-content: flex-end;
   margin-bottom: 32px;
   .item {
+    @apply text-black-950 dark:text-white-50;
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 4px;
     background-color: transparent;
-    color: var(--switcher-item-color);
     transition: all 0.3s ease;
     &:hover {
       opacity: 0.8;
     }
   }
   .active {
-    background-color: var(--switcher-item-background);
+    @apply bg-wit-blue-500 dark:text-black-950;
   }
 }
 @media (max-width: 850px) {

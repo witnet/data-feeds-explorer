@@ -19,14 +19,14 @@
     >
       <div
         v-if="copied"
-        class="copy-tooltip text"
+        class="copy-tooltip bg text"
         :style="{ top: copyTopPosition, left: copyLeftPosition }"
       >
         {{ $t('copied') }}
       </div>
       <div
         v-if="showCopyTooltip"
-        class="copy-tooltip"
+        class="copy-tooltip bg"
         :style="{ top: copyTopPosition, left: copyLeftPosition }"
       >
         {{ $t('copy') }}
@@ -105,8 +105,6 @@ export default {
   display: inline-block;
   padding: 8px;
   border-radius: 4px;
-  background-color: var(--bg);
-  color: var(--text);
 }
 .container {
   display: flex;

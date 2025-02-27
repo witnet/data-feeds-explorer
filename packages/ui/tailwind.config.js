@@ -63,6 +63,14 @@ export default {
           900: '#145765',
           950: '#063a46',
         },
+        orange: {
+          50: '#dfc44b',
+          950: '#dfc44b23',
+        },
+        red: {
+          50: '#df4b4b',
+          950: '#df4b4b23',
+        },
         transparent: 'transparent',
         'light-grey': '#bebebe',
         'w-black': '#2d2c39',

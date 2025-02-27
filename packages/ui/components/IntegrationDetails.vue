@@ -1,6 +1,6 @@
 <template>
   <div id="integrate" class="integration-details">
-    <div class="left">
+    <div class="border-r dark:border-black-950 border-white-50 left">
       <p class="title-details text">
         {{ $t('data_feed_details.integration_details_description', [network]) }}
       </p>
@@ -108,7 +108,6 @@ const isContractVersion2 = computed(
   column-gap: 16px;
   .left {
     text-align: center;
-    border-right: 1px solid var(--bg);
     padding-right: 16px;
     .title-details {
       margin-bottom: 16px;
@@ -141,7 +140,6 @@ const isContractVersion2 = computed(
       grid-gap: 8px;
     }
     .contract-info {
-      color: var(--text-hover);
       word-break: break-all;
       margin-bottom: 8px;
       cursor: pointer;
@@ -167,7 +165,6 @@ const isContractVersion2 = computed(
     .left {
       border-right: none;
       padding-bottom: 24px;
-      border-bottom: 1px solid var(--bg);
       .testing {
         grid-row: 2;
       }

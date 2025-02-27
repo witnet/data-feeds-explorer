@@ -104,9 +104,8 @@ const breadCumbsOptions = computed(() => {
 .breadcrumbs {
   height: min-content;
   display: flex;
-  color: var(--text);
   .breadcrumbs-label {
-    color: var(--selected-option);
+    @apply text-wit-blue-500;
     margin-right: 4px;
     transition: all 0.3 ease-in-out;
     &:hover {

@@ -7,9 +7,16 @@
     </div>
     <client-only>
       <div class="attribute-container links">
-        <a :href="witnetLink" target="_blank" class="link font-mono truncate">
+        <a
+          :href="witnetLink"
+          target="_blank"
+          class="link highlighted-text font-mono truncate"
+        >
           0x{{ drTxHash }}
-          <font-awesome-icon class="icon text-2-sm" icon="external-link-alt" />
+          <font-awesome-icon
+            class="icon highlighted-text text-2-sm"
+            icon="external-link-alt"
+          />
         </a>
         <InfoTooltip
           class="text value attribute"
@@ -71,10 +78,8 @@ export default {
 .value {
   padding: 8px 0;
   border-radius: 4px;
-  color: var(--text);
 }
 .link {
-  color: var(--witnet-transaction);
   transition: all 0.3 ease-in-out;
   display: flex;
   align-items: center;

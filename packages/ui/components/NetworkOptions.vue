@@ -129,11 +129,9 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
   grid-template-columns: repeat(auto-fit, 88px);
   grid-template-rows: 88px;
   grid-gap: 16px;
-  color: var(--light-text);
   .option {
     text-align: center;
     cursor: pointer;
-    color: var(--light-text);
     &.selected {
       border-radius: 4px;
     }
@@ -142,7 +140,6 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
 .show-more-btn {
   display: flex;
   background-color: var(--network-background);
-  color: var(--value-color);
   width: 100%;
   justify-content: center;
   border-radius: 4px;
@@ -169,7 +166,6 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
   .option {
     text-align: center;
     cursor: pointer;
-    color: var(--light-text);
   }
 }
 @media (max-width: 850px) {

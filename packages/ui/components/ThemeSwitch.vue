@@ -1,6 +1,6 @@
 <template>
   <div class="icon-container" @click="toggleMode">
-    <font-awesome-icon class="mode-icon" :icon="icon" />
+    <font-awesome-icon class="mode-icon logo" :icon="icon" />
   </div>
 </template>
 
@@ -31,7 +31,6 @@ const toggleMode = () => {
 
 <style scoped lang="scss">
 .mode-icon {
-  color: var(--icon-color);
   font-size: 20px;
   width: 20px;
   height: 20px;
@@ -40,8 +39,8 @@ const toggleMode = () => {
   }
 }
 .icon-container {
+  @apply bg-black-100 dark:bg-black-400;
   cursor: pointer;
-  background-color: var(--icon-background);
   width: 40px;
   height: 40px;
   display: flex;

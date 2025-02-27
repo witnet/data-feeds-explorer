@@ -50,10 +50,6 @@ export default {
   justify-items: center;
   .count {
     font-size: 32px;
-    color: var(--text);
-  }
-  .title {
-    color: var(--text-medium-emphasis);
   }
 }
 @media (max-width: 300px) {

@@ -43,17 +43,13 @@ defineProps({
   align-items: center;
   align-items: flex-end stretch;
   z-index: 1;
-  color: var(--network-color);
-  border: var(--network-border);
-  background: var(--network-background);
+  @apply text-black-950 dark:text-white-50 bg-black-300 dark:bg-black-950 border-black-950 dark:border-white-50;
 
   &:hover {
     opacity: 0.8;
   }
   &.nuxt-link-active {
-    color: var(--network-selected-color);
-    border: var(--network-selected-border);
-    background: var(--network-selected-background);
+    @apply text-black-950 dark:text-white-50 bg-white-50 dark:bg-black-950 border-black-950 dark:border-white-50;
     transition: all 0.3s;
     &:hover {
       opacity: 1;

@@ -1,6 +1,6 @@
 <template>
   <div class="tooltip-container">
-    <div class="tooltip title">
+    <div class="tooltip bg title">
       <div class="feed-title">
         <SvgIcon v-if="logo" class="icon" :svg="logo" />
         <h2 v-if="name" class="title feed-name">
@@ -81,9 +81,7 @@ export default {
   align-self: start;
 }
 .tooltip {
-  background-color: var(--bg);
   transition: background-color 0.3s ease;
-  color: var(--text);
   .feed-title {
     display: flex;
     align-items: center;
@@ -99,9 +97,6 @@ export default {
 
   .value {
     margin-bottom: 8px;
-    .time {
-      color: var(--text-medium-emphasis);
-    }
   }
 }
 @media screen and (max-width: 1100px) {

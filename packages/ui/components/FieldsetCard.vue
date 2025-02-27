@@ -1,7 +1,7 @@
 <template>
-  <div class="fieldset">
+  <div class="fieldset-container">
     <h3 class="title text-bold">{{ title.toUpperCase() }}</h3>
-    <div class="content">
+    <div class="content fieldset">
       <slot></slot>
     </div>
   </div>
@@ -20,18 +20,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.fieldset {
+.fieldset-container {
   display: grid;
   grid-template-rows: max-content max-content;
   max-width: 100vw;
   padding: 16px;
   .title {
-    color: var(--fieldset-title);
     padding: 16px 0 16px 0;
   }
   .content {
-    background: var(--fieldset-background);
-    box-shadow: var(--card-box-shadow);
     border-radius: 4px;
     height: max-content;
   }
