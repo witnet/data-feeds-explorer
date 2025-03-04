@@ -4,27 +4,37 @@ import feedQuery from './queries/feed'
 import feedsQuery from './queries/feeds'
 import networksQuery from './queries/networks'
 import feedRequestsQuery from './queries/requests'
-import type { Ecosystem, Feed, FeedRequests, Network } from '~/types'
+import type { Ecosystem, Feed, FeedRequest, Network } from '~/types'
 
 function getApiEndpoint() {
   return useRuntimeConfig().public.apiBase
 }
 
-export const getAllFeedsRequests = async ({ network }: { network: string }) =>
+export const getAllFeedsRequests = async ({
+  network,
+  mainnet,
+  pair,
+}: {
+  network: string | null
+  mainnet: boolean | null
+  pair: string | null
+}) =>
   (await request(
     getApiEndpoint(),
     feedsQuery,
     {
       network,
+      mainnet,
+      pair,
     },
     { accept: 'application/json' },
   )) as {
-    feeds: FeedRequests[]
+    feeds: FeedRequest[]
     total: number
   }
 
 export const getEcosystems = async () => {
-  const result: { feeds: any } = await request(
+  const result: { feeds: unknown } = await request(
     getApiEndpoint(),
     ecosystemsQuery,
     {
@@ -68,8 +78,8 @@ export const getFeedRequests = async ({
   feedFullName: string
   page: number
   size: number
-}) =>
-  (await request(
+}) => {
+  const result = (await request(
     getApiEndpoint(),
     feedRequestsQuery,
     {
@@ -79,5 +89,10 @@ export const getFeedRequests = async ({
     },
     { accept: 'application/json' },
   )) as {
-    requests: FeedRequests[]
+    requests: {
+      requests: FeedRequest[]
+      total: number
+    }
   }
+  return result.requests
+}

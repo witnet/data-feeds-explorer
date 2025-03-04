@@ -7,12 +7,19 @@
     </div>
     <client-only>
       <div class="attribute-container links">
-        <a :href="witnetLink" target="_blank" class="link truncate">
+        <a
+          :href="witnetLink"
+          target="_blank"
+          class="link highlighted-text font-mono truncate"
+        >
           0x{{ drTxHash }}
-          <font-awesome-icon class="icon" icon="external-link-alt" />
+          <font-awesome-icon
+            class="icon highlighted-text text-2-sm"
+            icon="external-link-alt"
+          />
         </a>
         <InfoTooltip
-          class="value attribute"
+          class="text value attribute"
           :value="value"
           :show-icon="false"
           :show-in-responsive="true"
@@ -69,16 +76,10 @@ export default {
   text-overflow: ellipsis;
 }
 .value {
-  font-size: var(--text-size);
   padding: 8px 0;
   border-radius: 4px;
-  color: var(--text);
 }
 .link {
-  color: var(--witnet-transaction);
-  font-family:
-    Roboto Mono,
-    monospace;
   transition: all 0.3 ease-in-out;
   display: flex;
   align-items: center;
@@ -90,7 +91,6 @@ export default {
   .icon {
     width: 10px;
     height: 10px;
-    font-size: var(--text-size-small);
     display: inline-block;
   }
 }

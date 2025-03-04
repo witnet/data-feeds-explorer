@@ -1,6 +1,6 @@
 export enum localeCodes {
-  en = 'en-US',
-  es = 'es-ES',
+  en = 'en',
+  es = 'es',
 }
 
 export enum ThemeKey {
@@ -24,7 +24,7 @@ export type Locale = {
   iso: string
   name: string
   file: string
-  fnsLocale: any
+  fnsLocale: unknown
 }
 
 export interface LanguageDictionary {
@@ -52,7 +52,7 @@ export type Ecosystem = {
   total: number
 }
 
-export type FeedRequests = {
+export type FeedRequest = {
   feedFullName: string
   result: string
   drTxHash: string
@@ -75,7 +75,7 @@ export type Feed = {
   proxyAddress: string
   heartbeat: string
   finality: string
-  requests: FeedRequests[]
+  requests: FeedRequest[]
   blockExplorer: string
   color: string
   logo: string
@@ -83,10 +83,13 @@ export type Feed = {
 
 export interface DataStore {
   selectedEcosystem: Network[] | []
-  selectedEcosystemName: String
+  selectedEcosystemName: string
   networks: Array<Network | undefined>
   ecosystems: Ecosystem[] | []
   totalFeeds: number
   feed: Feed | null
-  paginatedFeedRequest: FeedRequests[] | null
+  paginatedFeedRequest: {
+    requests: FeedRequest[]
+    total: number
+  } | null
 }

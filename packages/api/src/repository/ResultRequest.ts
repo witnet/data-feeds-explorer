@@ -4,8 +4,9 @@ import {
   Db,
   Collection,
   WithoutId,
-} from '../../types'
-import { containFalsyValues } from './containFalsyValues'
+  PaginatedRequests,
+} from '../../types.js'
+import { containFalsyValues } from './containFalsyValues.js'
 
 export class ResultRequestRepository {
   // TODO: find a better way to deal with auto generated ids
@@ -47,21 +48,49 @@ export class ResultRequestRepository {
       .map(this.normalizeId)
   }
 
+  async getFeedRequestsPageByPair(
+    pair: string,
+    page: number,
+    size: number,
+  ): Promise<PaginatedRequests> {
+    const query = { feedFullName: { $regex: pair } }
+    return {
+      requests: (
+        await this.collection
+          .find(query)
+          .sort({ timestamp: -1 })
+          .skip(size * (page - 1))
+          .limit(size)
+          .toArray()
+      ).map(this.normalizeId),
+      total: (await this.collection.find(query).toArray()).length,
+    }
+  }
+
   async getFeedRequestsPage(
     feedFullName: string,
     page: number,
     size: number,
-  ): Promise<Array<ResultRequestDbObjectNormalized>> {
-    return (
-      await this.collection
-        .find({
-          feedFullName,
-        })
-        .sort({ timestamp: -1 })
-        .skip(size * (page - 1))
-        .limit(size)
-        .toArray()
-    ).map(this.normalizeId)
+  ): Promise<PaginatedRequests> {
+    return {
+      requests: (
+        await this.collection
+          .find({
+            feedFullName,
+          })
+          .sort({ timestamp: -1 })
+          .skip(size * (page - 1))
+          .limit(size)
+          .toArray()
+      ).map(this.normalizeId),
+      total: (
+        await this.collection
+          .find({
+            feedFullName,
+          })
+          .toArray()
+      ).length,
+    }
   }
 
   async getLastResult(

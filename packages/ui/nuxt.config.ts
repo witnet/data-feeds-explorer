@@ -73,6 +73,12 @@ export default defineNuxtConfig({
         },
       ],
       link: [
+        {
+          rel: 'preload stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+          as: 'style',
+          type: 'text/css',
+        },
         { rel: 'apple-touch-icon', type: 'image/x-icon', href: '/favicon.ico' },
         {
           rel: 'icon',
@@ -102,7 +108,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
   components: [{ path: '~/components', pathPrefix: false }],
-
+  compatibilityDate: '2025-02-27',
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -118,8 +124,8 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@pinia/nuxt',
     '@nuxt/ui',
-    '@nuxtjs/color-mode',
     'nuxt-gtag',
+    'nuxt-module-eslint-config',
   ],
 
   colorMode: {
@@ -135,12 +141,11 @@ export default defineNuxtConfig({
 
   i18n: {
     lazy: true,
-    langDir: 'locales',
     strategy: 'prefix_except_default',
-    defaultLocale: 'en-US',
+    defaultLocale: 'en',
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected_2',
+      cookieKey: 'i18n_redirected',
       redirectOn: 'root',
     },
     locales: Object.values(LANGUAGE_LOCALES),
@@ -153,6 +158,7 @@ export default defineNuxtConfig({
   },
 
   css: [
+    'wit-vue-ui/style.css',
     '~/assets/styles/tailwind.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
@@ -179,10 +185,9 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData: '@use "~/assets/styles/main.scss" as *;',
+          api: 'modern-compiler',
         },
       },
     },
   },
-
-  compatibilityDate: '2024-07-16',
 })

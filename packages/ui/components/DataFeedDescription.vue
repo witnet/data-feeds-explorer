@@ -4,14 +4,18 @@
     :keypath="description.i18nPath"
     scope="global"
     tag="p"
-    class="feed-description"
+    class="feed-description text"
   >
     <template
       v-for="field in description.fields"
       :key="fieldToProp[field]"
       #[field]
     >
-      <span v-if="description.i18nPath" :key="field.i18nPath" class="bold">{{
+      <span
+        v-if="description.i18nPath"
+        :key="field.i18nPath"
+        class="bold"
+      >{{
         fieldToProp[field]
       }}</span>
     </template>
@@ -103,7 +107,6 @@ export default {
 
 <style lang="scss" scoped>
 .feed-description {
-  font-size: var(--text-size);
   padding: 16px;
   margin-top: 16px;
 }

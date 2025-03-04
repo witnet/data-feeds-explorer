@@ -1,8 +1,8 @@
 import axios from 'axios'
 import path from 'path'
 import fs from 'fs'
-import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types'
-import { normalizeConfig } from './utils'
+import { RouterDataFeedsConfig, FeedInfo, FeedInfoConfig } from '../types.js'
+import { normalizeConfig } from './utils/index.js'
 
 const CONFIG_URL = process.env.TEST_BRANCH
   ? `https://raw.github.com/witnet/data-feeds-explorer/${process.env.TEST_BRANCH}/packages/api/src/dataFeedsRouter.json`

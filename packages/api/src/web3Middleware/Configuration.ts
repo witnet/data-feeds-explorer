@@ -4,10 +4,13 @@ import {
   Network,
   NetworksConfig,
   RouterDataFeedsConfig,
-} from '../../types'
-import { getNetworksListByChain, sortAlphabeticallyByLabel } from '../utils'
-import { NetworkInfo } from './NetworkRouter'
-import { getProvider } from './provider'
+} from '../../types.js'
+import {
+  getNetworksListByChain,
+  sortAlphabeticallyByLabel,
+} from '../utils/index.js'
+import { NetworkInfo } from './NetworkRouter.js'
+import { getProvider } from './provider.js'
 
 export class Configuration {
   private configurationFile: RouterDataFeedsConfig

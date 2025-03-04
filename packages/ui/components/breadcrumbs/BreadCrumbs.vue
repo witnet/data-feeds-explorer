@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div class="breacrumbs-wrapper">
-      <div class="breadcrumbs container">
+      <div class="breadcrumbs container text-small">
         <nuxt-link
           v-for="option in breadCumbsOptions"
           :key="option.label"
@@ -11,8 +11,14 @@
           class="breadcrumbs-link"
         >
           <transition name="slide-in">
-            <h3 v-if="option.label" class="breadcrumbs">
-              <span class="breadcrumbs-label">{{ option.label }}</span> /
+            <h3
+              v-if="option.label"
+              class="breadcrumbs text-small"
+            >
+              <span class="breadcrumbs-label font-bold">{{
+                option.label
+              }}</span>
+              /
             </h3>
           </transition>
         </nuxt-link>
@@ -26,6 +32,7 @@
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
+const localeRoute = useLocaleRoute()
 
 onMounted(() => {
   if (!selected.value) {
@@ -101,12 +108,8 @@ const breadCumbsOptions = computed(() => {
 .breadcrumbs {
   height: min-content;
   display: flex;
-  color: var(--text);
-  font-size: var(--text-size-medium);
   .breadcrumbs-label {
-    color: var(--selected-option);
-    font-weight: bold;
-    font-size: var(--text-size-medium);
+    @apply text-wit-blue-500;
     margin-right: 4px;
     transition: all 0.3 ease-in-out;
     &:hover {

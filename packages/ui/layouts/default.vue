@@ -2,58 +2,101 @@
   <div
     :class="{
       'hide-scroll': hideScroll,
-      preload,
+      bg: hideScroll,
       background: true,
-      [`${colorMode}-mode`]: true,
     }"
     class="component-root"
   >
     <div class="main-section-container">
       <div class="main-section">
         <NavBar @scroll="handleScroll" />
-        <div class="cover" :class="{ show: hideScroll }"></div>
+        <div
+          class="cover"
+          :class="{ show: hideScroll, bg: hideScroll }"
+        />
         <BreadCrumbs />
         <slot />
         <client-only>
           <ThemeSwitch class="theme-switch" />
         </client-only>
       </div>
-      <FooterSection />
+      <WFooter :footer-sections="footerLinks" />
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      hideScroll: false,
-      preload: true,
-      colorMode: 'dark',
-    }
+<script setup>
+import { WFooter } from 'wit-vue-ui'
+import { ref } from 'vue'
+// import { footerSections } from '../../constants'
+// import getFooterLinks from './getFooterLinks'
+
+const footerLinks = [
+  {
+    title: 'Developers',
+    links: [
+      {
+        url: 'https://docs.witnet.io/smart-contracts/witnet-data-feeds/api-reference',
+        label: 'Reference',
+      },
+      {
+        url: 'https://docs.witnet.io/smart-contracts/witnet-randomness-oracle/generating-randomness',
+        label: 'Randomness',
+      },
+      {
+        url: 'https://docs.witnet.io/smart-contracts/supported-chains',
+        label: 'Supported chains',
+      },
+      {
+        url: 'https://www.npmjs.com/package/witnet-solidity',
+        label: 'Solidity SDK',
+      },
+    ],
   },
-  computed: {
-    colorTheme() {
-      return this.$colorMode.value
-    },
+  {
+    title: 'Ecosystem',
+    links: [
+      {
+        url: 'https://witnet.network',
+        label: 'Block Explorer',
+      },
+      {
+        url: 'https://feeds.witnet.io',
+        label: 'Data Feeds Explorer',
+      },
+      {
+        url: 'https://sheikah.app',
+        label: 'Sheikah',
+      },
+      {
+        url: 'https://mywitwallet.com',
+        label: 'myWitWallet',
+      },
+    ],
   },
-  watch: {
-    colorTheme(value) {
-      this.colorMode = value
-    },
+  {
+    title: 'Learn',
+    links: [
+      {
+        url: 'https://witnet.io/witnet-whitepaper.pdf',
+        label: 'Whitepaper',
+      },
+      {
+        url: 'https://medium.com/witnet',
+        label: 'Medium',
+      },
+      {
+        url: 'https://docs.witnet.io/intro/tutorials',
+        label: 'Tutorials',
+      },
+    ],
   },
-  created() {
-    this.preload = false
-  },
-  mounted() {
-    // Avoids Hydration class mismatch
-    this.colorMode = this.$colorMode.value
-  },
-  methods: {
-    handleScroll(scroll) {
-      this.hideScroll = scroll
-    },
-  },
+]
+
+const hideScroll = ref(false)
+
+function handleScroll(scroll) {
+  hideScroll.value = scroll
 }
 </script>
 <style lang="scss">
@@ -62,7 +105,6 @@ img {
   height: 100%;
 }
 html {
-  font-size: var(--text-size);
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -70,11 +112,10 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background-color: var(--bg);
 }
 .background {
-  background-color: var(--bg);
   transition: all 0.3s ease;
+  @apply bg-white-50 dark:bg-black-950;
   &.preload {
     transition: none !important;
     -webkit-transition: none !important;
@@ -87,7 +128,6 @@ html {
   height: 100vh;
   position: absolute;
   overflow-y: hidden;
-  background-color: var(--bg);
 }
 
 .cover {
@@ -97,7 +137,6 @@ html {
     min-height: 100%;
     min-width: 100vw;
     position: absolute;
-    background: var(--bg);
     z-index: 14;
   }
 }
@@ -113,15 +152,14 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
-.nuxt-link-exact-active {
-  color: var(--text);
-}
-.nuxt-link-active {
-  color: var(--text);
-}
+// .nuxt-link-exact-active {
+//   color: var(--text);
+// }
+// .nuxt-link-active {
+//   color: var(--text);
+// }
 
 a {
-  color: var(--text);
   text-decoration: none;
 }
 *,
@@ -138,7 +176,6 @@ a {
   grid-template-columns: 1fr;
 }
 .main-section {
-  color: var(--text);
   display: grid;
   min-height: max-content;
   grid-template-rows: max-content max-content 1fr max-content;

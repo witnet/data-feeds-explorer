@@ -1,9 +1,11 @@
 <template>
-  <div class="tooltip">
+  <div class="tooltip font-bold">
     <p class="value">
       {{ value }}
     </p>
-    <p class="time">{{ date }}</p>
+    <p class="time">
+      {{ date }}
+    </p>
   </div>
 </template>
 
@@ -31,21 +33,19 @@ export default {
 
 <style scoped lang="scss">
 .tooltip {
+  @apply bg-black-950 text-white-50;
   position: relative;
-  font-weight: bold;
   margin-top: -60px;
   font-size: 16px;
-  background-color: $black;
   padding: 8px 16px;
   border-radius: 4px;
-  color: $white;
   z-index: 13;
   .value {
     font-size: 16px;
   }
   .time {
+    @apply text-white-50;
     font-size: 12px;
-    color: $white;
   }
 }
 </style>

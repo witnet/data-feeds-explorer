@@ -1,5 +1,8 @@
 <template>
-  <div v-if="normalizedFeed" class="content">
+  <div
+    v-if="normalizedFeed"
+    class="content"
+  >
     <client-only>
       <ChartWidget
         v-if="feed"
@@ -28,13 +31,13 @@
       <FieldsetCard
         v-if="
           !normalizedFeed.isRouted &&
-          (maxTimeToResolve || normalizedFeed.deviation)
+            (maxTimeToResolve || normalizedFeed.deviation)
         "
         :title="$t('data_feed_details.trigger_parameters')"
       >
         <DataFeedTriggerParams
           :deviation="normalizedFeed.deviation"
-          :max-time-to-resolve="maxTimeToResolve"
+          :max-time-to-resolve="maxTimeToResolve ?? 0"
           :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
         />
       </FieldsetCard>
@@ -57,8 +60,8 @@
       :transactions="transactions"
     />
     <PaginationSection
-      v-if="itemsLength && itemsLength > 25"
-      :items-length="itemsLength"
+      v-if="totalItems && totalItems > itemsPerPage"
+      :items-length="totalItems"
       @change-page="handleCurrentChange"
     />
   </div>
@@ -74,6 +77,7 @@ import { formatNumber } from '@/utils/formatNumber'
 import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 import { AsyncInterval } from '@/utils/asyncInterval'
+import { type Ref } from 'vue'
 
 const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
 
@@ -186,9 +190,6 @@ const maxTimeToResolve = computed(() => {
   }
 })
 
-const itemsLength = computed(() => {
-  return feed.value?.requests.length
-})
 const feedName = computed(() => normalizedFeed.value?.name ?? '')
 const networkName = computed(() => normalizedFeed.value?.networkName ?? '')
 
@@ -209,12 +210,8 @@ const chartData: Ref<AreaData<Time>[]> = computed(() => {
   }
 })
 const transactions = computed(() => {
-  if (
-    feed.value &&
-    store.paginatedFeedRequest &&
-    store.paginatedFeedRequest.length > 0
-  ) {
-    return store.paginatedFeedRequest.map((request: any) => ({
+  if (store.paginatedFeedRequest && store.paginatedFeedRequest.total > 0) {
+    return store.paginatedFeedRequest.requests.map((request) => ({
       witnetLink: getWitnetBlockExplorerLink(request.drTxHash),
       drTxHash: request.drTxHash,
       data: {
@@ -228,6 +225,8 @@ const transactions = computed(() => {
     return null
   }
 })
+const totalItems = computed(() => store.paginatedFeedRequest?.total ?? 0)
+
 const handleCurrentChange = async (val: number) => {
   if (currentPage.value !== val) {
     currentPage.value = val

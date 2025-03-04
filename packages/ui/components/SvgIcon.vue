@@ -1,8 +1,11 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <!-- We are using v-html assuming we never use user-provided content -->
-  <!-- eslint-disable-next-line vue/no-v-html -->
-  <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-if="svg" class="icon" v-html="svg" />
+  <div
+    v-if="svg"
+    class="icon"
+    v-html="svg"
+  />
   <customIcon v-else-if="name" />
 </template>
 
@@ -43,7 +46,7 @@ const url = computed(() => `${props.name}`.trim())
   transition: all 0.3s ease;
 }
 .fill {
-  fill: var(--text);
+  @apply fill-black-950 dark:fill-white-100;
 }
 .partner-size {
   width: 140px;
@@ -51,16 +54,16 @@ const url = computed(() => `${props.name}`.trim())
 }
 .active {
   .fill {
-    fill: var(--witnet-green);
+    @apply fill-wit-blue-500;
   }
 }
 
 .reverse-fill {
-  fill: var(--bg);
+  @apply fill-white-50 dark:fill-black-950;
 }
 
 .border {
-  stroke: var(--text);
+  @apply stroke-black-950 dark:stroke-white-100;
 }
 @media (max-width: 300px) {
   .witnet-logo {

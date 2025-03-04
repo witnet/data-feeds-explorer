@@ -1,5 +1,7 @@
 <template>
-  <div class="placeholder">&nbsp;</div>
+  <div class="placeholder">
+&nbsp;
+  </div>
 </template>
 <script setup>
 defineProps({
@@ -27,13 +29,10 @@ defineProps({
   }
 }
 .placeholder {
-  background-color: var(--placeholder-bg-color);
   height: v-bind(height);
   width: v-bind(width);
   border-radius: v-bind(borderRadius);
-  background-image: var(--placeholder-gradient);
   background-size: 200% 200%;
-  box-shadow: var(--card-box-shadow);
   animation: bgAnimate 1.2s linear infinite;
 }
 </style>

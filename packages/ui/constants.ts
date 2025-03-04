@@ -3,17 +3,17 @@ import { localeCodes, type LanguageDictionary, type ChartRange } from './types'
 
 export const LANGUAGE_LOCALES: LanguageDictionary = {
   [localeCodes.en]: {
-    code: 'en-US',
-    iso: 'en-US',
+    code: 'en',
+    iso: 'en',
     name: 'English',
-    file: 'en-US.json',
+    file: 'en.json',
     fnsLocale: enGB,
   },
   [localeCodes.es]: {
-    code: 'es-ES',
-    iso: 'es-ES',
+    code: 'es',
+    iso: 'es',
     name: 'Español',
-    file: 'es-ES.json',
+    file: 'es.json',
     fnsLocale: es,
   },
 }
@@ -58,13 +58,13 @@ export const languages = [
   {
     name: 'English',
     code: 'en',
-    iso: 'en-US',
+    iso: 'en',
     isCatchallLocale: true,
   },
   {
     name: 'Español',
     code: 'es',
-    iso: 'es-ES',
+    iso: 'es',
   },
 ]
 

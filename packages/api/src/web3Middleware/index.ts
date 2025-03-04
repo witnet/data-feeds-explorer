@@ -7,11 +7,11 @@ import {
   FeedInfo,
   Repositories,
   ContractInfo,
-} from '../../types'
-import { isZeroAddress } from '../utils/index'
-import { getProvider } from './provider'
-import { NetworkRouter } from './NetworkRouter'
-import { Configuration } from './Configuration'
+} from '../../types.js'
+import { isZeroAddress } from '../utils/index.js'
+import { getProvider } from './provider.js'
+import { NetworkRouter } from './NetworkRouter.js'
+import { Configuration } from './Configuration.js'
 
 export class Web3Middleware {
   public repositories: Repositories

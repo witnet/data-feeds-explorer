@@ -1,20 +1,39 @@
 <template>
   <div :class="{ drop: isMenuVisible }">
-    <nav class="navbar" :class="{ open: isMenuVisible }">
+    <nav
+      class="navbar bg"
+      :class="{ open: isMenuVisible }"
+    >
       <div class="menu-container">
-        <nuxt-link :to="localePath('/')" aria-label="home">
-          <SvgIcon name="witnet-logo" class="logo" />
+        <nuxt-link
+          :to="localePath('/')"
+          aria-label="home"
+        >
+          <SvgIcon
+            name="witnet-logo"
+            class="logo"
+          />
         </nuxt-link>
-        <button aria-label="menu" class="responsive-menu" @click="toggleMenu">
-          <div class="target-burger" :class="{ visible: isMenuVisible }">
+        <button
+          aria-label="menu"
+          class="responsive-menu"
+          @click="toggleMenu"
+        >
+          <div
+            class="target-burger"
+            :class="{ visible: isMenuVisible }"
+          >
             <ul class="buns">
-              <li class="bun"></li>
-              <li class="bun"></li>
+              <li class="bun bg-black-950 dark:bg-white-100" />
+              <li class="bun bg-black-950 dark:bg-white-100" />
             </ul>
           </div>
         </button>
       </div>
-      <transition name="dropdown" class="dropdown">
+      <transition
+        name="dropdown"
+        class="dropdown"
+      >
         <div
           v-if="isMenuVisible"
           class="tab-container"
@@ -26,9 +45,15 @@
             :class="{ visible: isMenuVisible }"
             @click="closeMenu"
           >
-            <NetworkOptions type="navbar" :options="navBarOptions" />
+            <NetworkOptions
+              type="navbar bg"
+              :options="navBarOptions"
+            />
           </div>
-          <div class="tab last-item" @click="closeMenu">
+          <div
+            class="tab last-item"
+            @click="closeMenu"
+          >
             <RequestDataFeedBtn class="btn-container" />
           </div>
         </div>
@@ -41,6 +66,7 @@
 import { generateNavOptions } from '../utils/generateNavOptions'
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 const store = useStore()
+const localePath = useLocalePath()
 const { data } = await useAsyncData('networks', store.fetchNetworks)
 const emit = defineEmits(['update-selected', 'scroll'])
 
@@ -92,7 +118,6 @@ onMounted(() => window.addEventListener('resize', resizeHandler))
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bg);
   height: 100px;
   transition: background-color 0.3s ease;
   .responsive-menu {
@@ -107,19 +132,18 @@ onMounted(() => window.addEventListener('resize', resizeHandler))
     padding: 24px 0;
     .networks {
       &.visible {
-        background: var(--bg);
+        @apply bg-white-50 dark:bg-black-950;
         display: block;
         padding: 32px 0;
       }
     }
     &.visible {
-      background: var(--bg);
+      @apply bg-white-50 dark:bg-black-950;
       display: block;
       padding: 0;
     }
     .tab {
       font-size: 1rem;
-      font-weight: 600;
       display: flex;
       align-items: center;
       text-decoration: none;
@@ -254,11 +278,9 @@ onMounted(() => window.addEventListener('resize', resizeHandler))
       color 1s cubic-bezier(0.23, 1, 0.32, 1);
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    color: var(--text);
     .bun {
       width: 100%;
       height: 3px;
-      background-color: var(--text);
       position: absolute;
       top: 50%;
       margin-top: -0.75px;

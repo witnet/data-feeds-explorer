@@ -1,4 +1,5 @@
 import { ThemeKey } from '@/types'
+import { useColorMode } from '@vueuse/core'
 
 const colorMode = useColorMode()
 
@@ -14,5 +15,5 @@ export const themeFromColorValue = computed(() => {
 })
 
 export function changeColorMode(theme: ThemeKey) {
-  colorMode.preference = theme
+  colorMode.value = theme
 }

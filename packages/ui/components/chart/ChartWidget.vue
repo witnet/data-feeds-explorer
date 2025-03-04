@@ -42,7 +42,7 @@ import {
   type AreaData,
   type Time,
 } from 'lightweight-charts'
-import { type PropType } from 'vue'
+import { type PropType, type Ref } from 'vue'
 import { formatNumber } from '@/utils/formatNumber'
 import { CHART_RANGE } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
@@ -94,7 +94,7 @@ const toolTipHeight: Ref<number> = ref(60)
 const ranges: Ref<any> = ref(CHART_RANGE)
 const container = ref()
 const currentRange = ref(
-  (process.browser ? localStorage.getItem('range') : '')?.toString(),
+  (import.meta.browser ? localStorage.getItem('range') : '')?.toString(),
 )
 const range = computed({
   get(): string | undefined {
@@ -182,7 +182,7 @@ const setData = () => {
   lineChart.value.setData(props.data as AreaData<Time>[])
 }
 const onItemClicked = (currentRange: any) => {
-  if (process.browser) {
+  if (import.meta.browser) {
     range.value = currentRange
   }
   emit('change-range', currentRange)
@@ -244,31 +244,31 @@ const updateTooltip = () => {
   justify-content: flex-end;
   margin-bottom: 32px;
   .item {
+    @apply text-black-950 dark:text-white-50;
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 4px;
     background-color: transparent;
-    color: var(--switcher-item-color);
     transition: all 0.3s ease;
     &:hover {
       opacity: 0.8;
     }
   }
   .active {
-    background-color: var(--switcher-item-background);
+    @apply bg-wit-blue-500 dark:text-black-950;
   }
 }
 @media (max-width: 850px) {
   .tooltip {
     padding-left: 24px;
-    font-size: var(--text-size-title);
+    @apply text-2xl font-semibold sm:text-xl;
     .name {
-      font-size: var(--text-size);
+      @apply text-2xl font-semibold sm:text-xl;
     }
     .value {
-      font-size: var(--text-size-title);
+      @apply text-2xl font-semibold sm:text-xl;
       .date {
-        font-size: var(--text-size);
+        @apply text-lg;
       }
     }
   }

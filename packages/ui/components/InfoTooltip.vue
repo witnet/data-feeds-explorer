@@ -1,16 +1,20 @@
 <template>
   <div class="container">
-    <div v-if="showIcon" :ref="value" class="value truncate">
-      <slot></slot>
+    <div
+      v-if="showIcon"
+      :ref="value"
+      class="value truncate"
+    >
+      <slot />
     </div>
     <div
       v-else
       :ref="value"
-      class="value truncate show-info"
+      class="text value truncate show-info"
       @mousemove="showTooltip = true"
       @mouseleave="showTooltip = false"
     >
-      <slot></slot>
+      <slot />
     </div>
     <div
       ref="info"
@@ -20,14 +24,18 @@
     >
       <div
         v-if="showTooltip"
-        class="info-tooltip"
+        class="info-tooltip bg text-2-sm"
         :class="{ hidden: showInResponsive }"
         :style="{ top: textTopPosition, left: textLeftPosition }"
       >
         {{ value }}
       </div>
       <client-only>
-        <font-awesome-icon v-if="showIcon" class="icon" icon="info-circle" />
+        <font-awesome-icon
+          v-if="showIcon"
+          class="icon"
+          icon="info-circle"
+        />
       </client-only>
     </div>
   </div>
@@ -70,7 +78,6 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: var(--text-size);
   margin-right: 8px;
   &.show-info {
     margin-right: 0;
@@ -82,10 +89,7 @@ export default {
   display: inline-block;
   max-width: 400px;
   border-radius: 4px;
-  font-size: var(--text-size-small);
   padding: 8px;
-  background-color: var(--bg);
-  color: var(--text-medium-emphasis);
   &.hidden {
     display: none;
   }

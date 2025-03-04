@@ -1,10 +1,18 @@
 <template>
-  <BaseCard v-if="!empty" :class="dataFeedStatus.key">
+  <BaseCard
+    v-if="!empty"
+    :class="dataFeedStatus.key"
+  >
     <nuxt-link :to="localeRoute(detailsPath)">
-      <div class="card-container">
+      <div class="card-container font-bold">
         <div class="title">
-          <SvgIcon class="img" :svg="svg" />
-          <p class="name title">{{ name.toUpperCase() }}</p>
+          <SvgIcon
+            class="img"
+            :svg="svg"
+          />
+          <p class="name title">
+            {{ name.toUpperCase() }}
+          </p>
           <InfoTooltip
             v-if="dataFeedStatus.key !== 'operational'"
             :show-icon="false"
@@ -16,8 +24,10 @@
             />
           </InfoTooltip>
         </div>
-        <p class="value">{{ label }} {{ formatedValue }}</p>
-        <p class="timestamp">
+        <p class="value">
+          {{ label }} {{ formatedValue }}
+        </p>
+        <p class="timestamp text-2-sm">
           {{ formattedTimestamp }}
         </p>
       </div>
@@ -28,102 +38,78 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { formatNumber } from '@/utils/formatNumber'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
+const { locale } = useI18n()
+const localeRoute = useLocaleRoute()
 
-export default {
-  name: 'FeedCard',
-  props: {
-    empty: {
-      type: Boolean,
-      default: false,
-    },
-    detailsPath: {
-      type: Object,
-      default: () => {},
-    },
-    decimals: {
-      type: Number,
-      default: 2,
-    },
-    name: {
-      type: String,
-      default: 'Name',
-    },
-    svg: {
-      type: String,
-      default: 'svg',
-    },
-    value: {
-      type: String,
-      default: null,
-    },
-    label: {
-      type: String,
-      default: 'label',
-    },
-    lastResultTimestamp: {
-      type: String,
-      default: 'lastResultTimestamp',
-    },
-    timeToUpdate: {
-      type: Number,
-      default: null,
-    },
-    network: {
-      type: String,
-      default: 'Network',
-    },
-    color: {
-      type: String,
-      default: 'color',
-    },
+const props = defineProps({
+  empty: {
+    type: Boolean,
+    default: false,
   },
-  computed: {
-    formatedValue() {
-      const lastResult = parseFloat(this.value) / 10 ** this.decimals
-      const hasMeaningfullZeros =
-        `${lastResult.toFixed(3)}`.split('.')[1] === '000'
-      const adjustedDecimals =
-        lastResult < 1 || this.decimals < 3 || hasMeaningfullZeros
-          ? this.decimals
-          : 3
-      const formatedLastResult = lastResult.toFixed(adjustedDecimals)
-      return formatNumber(formatedLastResult)
-    },
-    dataFeedStatus() {
-      return getDataFeedStatus(this.timeToUpdate, this.lastResultTimestamp)
-    },
-    formattedTimestamp() {
-      return calculateTimeAgo(this.lastResultTimestamp, this.$i18n.locale)
-    },
+  detailsPath: {
+    type: Object,
+    default: () => {},
   },
-}
+  decimals: {
+    type: Number,
+    default: 2,
+  },
+  name: {
+    type: String,
+    default: 'Name',
+  },
+  svg: {
+    type: String,
+    default: 'svg',
+  },
+  value: {
+    type: String,
+    default: null,
+  },
+  label: {
+    type: String,
+    default: 'label',
+  },
+  lastResultTimestamp: {
+    type: String,
+    default: 'lastResultTimestamp',
+  },
+  timeToUpdate: {
+    type: Number,
+    default: null,
+  },
+  network: {
+    type: String,
+    default: 'Network',
+  },
+  color: {
+    type: String,
+    default: 'color',
+  },
+})
+const formatedValue = computed(() => {
+  const lastResult = parseFloat(props.value) / 10 ** props.decimals
+  const hasMeaningfullZeros = `${lastResult.toFixed(3)}`.split('.')[1] === '000'
+  const adjustedDecimals =
+    lastResult < 1 || props.decimals < 3 || hasMeaningfullZeros
+      ? props.decimals
+      : 3
+  const formatedLastResult = lastResult.toFixed(adjustedDecimals)
+  return formatNumber(formatedLastResult)
+})
+const dataFeedStatus = computed(() => {
+  return getDataFeedStatus(props.timeToUpdate, props.lastResultTimestamp)
+})
+const formattedTimestamp = computed(() => {
+  return calculateTimeAgo(props.lastResultTimestamp, locale.value)
+})
 </script>
 
 <style lang="scss">
-.nuxt-link-exact-active {
-  color: var(--value-color);
-}
-.nuxt-link-active {
-  color: var(--value-color);
-}
-a {
-  color: var(--value-color);
-}
-.card-border {
-  &.operational {
-    border: var(--card-border);
-  }
-  &.delay {
-    border: var(--delay-status-border);
-  }
-  &.error {
-    border: var(--error-status-border);
-  }
-}
 .card-container {
   display: grid;
   grid-template-columns: 1fr max-content;
@@ -132,7 +118,6 @@ a {
   justify-items: flex-start;
   width: 100%;
   height: max-content;
-  font-weight: bold;
   row-gap: 8px;
   padding: 8px 16px;
   transition: box-shadow 0.3s;
@@ -149,21 +134,15 @@ a {
     }
   }
   .timestamp {
-    color: var(--value-color);
-    font-size: var(--text-size-small);
     font-style: italic;
-    font-family: 'Avenir Next Variable W05 Itali', sans-serif;
     justify-self: flex-end;
-    font-weight: normal;
   }
   .name {
-    color: var(--name-color);
     font-size: 18px;
     display: flex;
     align-items: center;
   }
   .value {
-    color: var(--value-color);
     font-size: 18px;
     justify-self: flex-end;
   }

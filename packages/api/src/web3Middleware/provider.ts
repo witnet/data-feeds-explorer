@@ -1,4 +1,4 @@
-import { Network } from '../../types'
+import { Network } from '../../types.js'
 
 export function getProvider(network: Network) {
   // The provider env variable name should be the network name specified in the config plus '_PROVIDER' ex.MOONBEAM_MOONBASE_PROVIDER

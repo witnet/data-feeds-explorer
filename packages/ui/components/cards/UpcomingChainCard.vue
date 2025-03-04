@@ -1,9 +1,15 @@
 <template>
   <BaseCard>
-    <a :href="path" target="_blank">
-      <div class="card-container">
+    <a
+      :href="path"
+      target="_blank"
+    >
+      <div class="card-container font-bold">
         <div class="title">
-          <SvgIcon class="img" :name="img" />
+          <SvgIcon
+            class="img"
+            :name="img"
+          />
           <p class="name title">{{ name }}</p>
         </div>
       </div>
@@ -32,15 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nuxt-link-exact-active {
-  color: var(--value-color);
-}
-.nuxt-link-active {
-  color: var(--value-color);
-}
-a {
-  color: var(--value-color);
-}
 .card-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -48,7 +45,6 @@ a {
   align-items: center;
   width: 100%;
   height: max-content;
-  font-weight: bold;
   padding: 8px 16px;
   cursor: pointer;
   .title {
@@ -61,13 +57,6 @@ a {
       justify-content: center;
       align-self: center;
     }
-  }
-  .count {
-    color: var(--value-color);
-    font-size: var(--text-size-small);
-    font-style: italic;
-    justify-self: flex-end;
-    font-weight: normal;
   }
 }
 @media (max-width: 300px) {
