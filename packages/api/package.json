@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "codegen": "graphql-codegen --config ./codegen.yml",
-    "lint:js": "eslint -c eslint.config.js --ext \".ts\" --ignore-pattern .gitignore .",
+    "lint:js": "eslint -c eslint.config.js --ignore-pattern .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "pnpm lint:js && pnpm lint:prettier",
     "lintfix": "prettier --write --list-different . && pnpm lint:js --fix",
@@ -28,7 +28,8 @@
     "nodemon": "^3.1.4",
     "ts-jest": "29.2.2",
     "ts-node": "10.9.2",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "typescript-eslint": "^8.18.1"
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",

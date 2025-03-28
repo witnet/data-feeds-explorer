@@ -6,6 +6,7 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
+  { files: ['**/*.ts'] },
   {
     ignores: ['node_modules', 'dist', 'src/generated'],
   },
