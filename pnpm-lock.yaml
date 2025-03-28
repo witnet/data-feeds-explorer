@@ -126,6 +126,9 @@ importers:
       '@fortawesome/vue-fontawesome':
         specifier: ^3.0.8
         version: 3.0.8(@fortawesome/fontawesome-svg-core@6.7.2)(vue@3.5.13(typescript@5.7.3))
+      '@intlify/message-compiler':
+        specifier: ^11.1.2
+        version: 11.1.2
       '@nuxt/ui':
         specifier: ^2.17.0
         version: 2.21.0(axios@1.8.1)(change-case@5.4.4)(magicast@0.3.5)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.7.3))(typescript@5.7.3)(vite@6.2.0(@types/node@20.14.10)(jiti@2.4.2)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3))
@@ -1470,6 +1473,10 @@ packages:
 
   '@intlify/message-compiler@10.0.5':
     resolution: {integrity: sha512-6GT1BJ852gZ0gItNZN2krX5QAmea+cmdjMvsWohArAZ3GmHdnNANEcF9JjPXAMRtQ6Ux5E269ymamg/+WU6tQA==}
+    engines: {node: '>= 16'}
+
+  '@intlify/message-compiler@11.1.2':
+    resolution: {integrity: sha512-T/xbNDzi+Yv0Qn2Dfz2CWCAJiwNgU5d95EhhAEf4YmOgjCKktpfpiUSmLcBvK1CtLpPQ85AMMQk/2NCcXnNj1g==}
     engines: {node: '>= 16'}
 
   '@intlify/message-compiler@12.0.0-alpha.2':
@@ -9096,6 +9103,11 @@ snapshots:
   '@intlify/message-compiler@10.0.5':
     dependencies:
       '@intlify/shared': 10.0.5
+      source-map-js: 1.2.1
+
+  '@intlify/message-compiler@11.1.2':
+    dependencies:
+      '@intlify/shared': 11.1.2
       source-map-js: 1.2.1
 
   '@intlify/message-compiler@12.0.0-alpha.2':
