@@ -1,11 +1,7 @@
 <template>
   <div class="countdown">
-    <div v-if="distance > 0">
-      {{ hours }}:{{ minutes }}:{{ seconds }}
-    </div>
-    <div v-else>
-      00:00:00
-    </div>
+    <div v-if="distance > 0">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
+    <div v-else>00:00:00</div>
   </div>
 </template>
 

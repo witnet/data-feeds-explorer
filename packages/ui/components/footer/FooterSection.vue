@@ -2,11 +2,7 @@
   <div class="footer-background">
     <div class="footer">
       <div class="top">
-        <div
-          v-for="section in footerLinks"
-          :key="section.title"
-          class="links"
-        >
+        <div v-for="section in footerLinks" :key="section.title" class="links">
           <p class="title text">
             {{ $t(`footer.links.${section.title}.title`) }}
           </p>
@@ -21,10 +17,7 @@
           </a>
         </div>
         <div class="alliance-text text-small">
-          <SvgIcon
-            class="logo white"
-            name="ado_member"
-          />
+          <SvgIcon class="logo white" name="ado_member" />
           <i18n-t
             keypath="footer.ado_text"
             tag="p"
@@ -42,10 +35,7 @@
         </div>
       </div>
       <div class="bottom">
-        <SvgIcon
-          class="logo white"
-          name="witnet_dark"
-        />
+        <SvgIcon class="logo white" name="witnet_dark" />
         <i18n-t
           keypath="footer.copyright.base"
           class="copyright text-2-sm"
@@ -57,12 +47,14 @@
             class="link text-small"
             href="https://witnet.foundation"
             target="_blank"
-          >{{ $t('footer.copyright.witnet_foundation') }}</a>
+            >{{ $t('footer.copyright.witnet_foundation') }}</a
+          >
           <a
             class="link text-small"
             href="https://creativecommons.org/publicdomain/zero/1.0/"
             target="_blank"
-          >{{ $t('footer.copyright.license') }}</a>
+            >{{ $t('footer.copyright.license') }}</a
+          >
         </i18n-t>
         <!-- <LanguageSwitcher class="language-selector" /> -->
       </div>

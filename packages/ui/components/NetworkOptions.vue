@@ -1,37 +1,22 @@
 <template>
-  <div
-    class="nav-container"
-    :class="type"
-  >
+  <div class="nav-container" :class="type">
     <div class="networks">
       <div
         v-for="option in mainOptions"
         :key="option.name"
         class="option text-small-bold"
       >
-        <NetworkLink
-          :name="option.name"
-          :svg="option.logo"
-        />
+        <NetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
-    <transition
-      name="dropdown"
-      class="dropdown"
-    >
-      <div
-        v-if="showAll"
-        class="networks"
-      >
+    <transition name="dropdown" class="dropdown">
+      <div v-if="showAll" class="networks">
         <div
           v-for="option in hiddenEcosystems"
           :key="option.name"
           class="option text-small-bold"
         >
-          <NetworkLink
-            :name="option.name"
-            :svg="option.logo"
-          />
+          <NetworkLink :name="option.name" :svg="option.logo" />
         </div>
       </div>
     </transition>

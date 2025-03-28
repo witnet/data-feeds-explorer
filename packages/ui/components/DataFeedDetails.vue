@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="normalizedFeed"
-    class="content"
-  >
+  <div v-if="normalizedFeed" class="content">
     <client-only>
       <ChartWidget
         v-if="feed"
@@ -31,7 +28,7 @@
       <FieldsetCard
         v-if="
           !normalizedFeed.isRouted &&
-            (maxTimeToResolve || normalizedFeed.deviation)
+          (maxTimeToResolve || normalizedFeed.deviation)
         "
         :title="$t('data_feed_details.trigger_parameters')"
       >

@@ -1,15 +1,9 @@
 <template>
   <div class="networks">
-    <p
-      class="network text"
-      :style="{ color, border: `1px solid ${color}` }"
-    >
+    <p class="network text" :style="{ color, border: `1px solid ${color}` }">
       {{ formatedNetwork[0] }}
     </p>
-    <p
-      class="network text"
-      :style="{ color, border: `1px solid ${color}` }"
-    >
+    <p class="network text" :style="{ color, border: `1px solid ${color}` }">
       {{ formatedNetwork[1] }}
     </p>
   </div>

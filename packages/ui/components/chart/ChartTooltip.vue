@@ -2,15 +2,8 @@
   <div class="tooltip-container">
     <div class="tooltip bg title">
       <div class="feed-title">
-        <SvgIcon
-          v-if="logo"
-          class="icon"
-          :svg="logo"
-        />
-        <h2
-          v-if="name"
-          class="title feed-name"
-        >
+        <SvgIcon v-if="logo" class="icon" :svg="logo" />
+        <h2 v-if="name" class="title feed-name">
           {{ name.toUpperCase() }}
         </h2>
       </div>
@@ -21,10 +14,7 @@
         {{ lastResultValue }}
         <span class="time text-2-sm">{{ formattedTimestamp }}</span>
       </p>
-      <p
-        v-if="timeToUpdate"
-        class="value-title"
-      >
+      <p v-if="timeToUpdate" class="value-title">
         {{ $t('chart.status') }}
       </p>
       <DataFeedStatus
@@ -33,14 +23,8 @@
         :time-to-update="timeToUpdate"
       />
     </div>
-    <InnerLink
-      class="link"
-      hash="integrate"
-    >
-      <CustomButton
-        class="btn"
-        type="secondary"
-      >
+    <InnerLink class="link" hash="integrate">
+      <CustomButton class="btn" type="secondary">
         {{ $t('chart.use_data_feed') }}
       </CustomButton>
     </InnerLink>

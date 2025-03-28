@@ -1,10 +1,7 @@
 <template>
   <div class="main">
     <client-only>
-      <NetworkOptions
-        class="network-options"
-        :options="navBarOptions"
-      />
+      <NetworkOptions class="network-options" :options="navBarOptions" />
     </client-only>
     <div
       v-if="selectedEcosystem && selectedEcosystem.length"
@@ -12,27 +9,19 @@
     >
       <div class="title-container">
         <h2 class="title bold">
-          <SvgIcon
-            class="logo"
-            :svg="selectedEcosystem[0].logo"
-          />
+          <SvgIcon class="logo" :svg="selectedEcosystem[0].logo" />
           {{ selectedEcosystem[0].chain }}
         </h2>
         <p class="subtitle text bold">
           {{ $t('main.network_subtitle') }}
-          <span
-            v-if="ecosystemNetworksNames.first"
-            class="bold text"
-          >{{
+          <span v-if="ecosystemNetworksNames.first" class="bold text">{{
             ecosystemNetworksNames.first
           }}</span>
-          <span
-            v-if="ecosystemNetworksNames.first"
-            class="networks-separator"
-          >
+          <span v-if="ecosystemNetworksNames.first" class="networks-separator">
             {{ $t('and') }}
           </span>
-          <span class="bold text">{{ ecosystemNetworksNames.last }}</span>.
+          <span class="bold text">{{ ecosystemNetworksNames.last }}</span
+          >.
         </p>
       </div>
       <div

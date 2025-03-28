@@ -10,10 +10,7 @@
     <div class="main-section-container">
       <div class="main-section">
         <NavBar @scroll="handleScroll" />
-        <div
-          class="cover"
-          :class="{ show: hideScroll, bg: hideScroll }"
-        />
+        <div class="cover" :class="{ show: hideScroll, bg: hideScroll }" />
         <BreadCrumbs />
         <slot />
         <client-only>

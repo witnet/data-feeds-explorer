@@ -1,15 +1,9 @@
 <template>
   <BaseCard>
-    <a
-      :href="path"
-      target="_blank"
-    >
+    <a :href="path" target="_blank">
       <div class="card-container font-bold">
         <div class="title">
-          <SvgIcon
-            class="img"
-            :name="img"
-          />
+          <SvgIcon class="img" :name="img" />
           <p class="name title">{{ name }}</p>
         </div>
       </div>

@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="btn text-small-bold"
-    :class="[type]"
-  >
+  <button class="btn text-small-bold" :class="[type]">
     <slot class="btn-content" />
   </button>
 </template>

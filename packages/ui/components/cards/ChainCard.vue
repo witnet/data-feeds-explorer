@@ -3,17 +3,12 @@
     <nuxt-link :to="localeRoute(detailsPath)">
       <div class="card-container">
         <div class="title">
-          <SvgIcon
-            class="img"
-            :svg="svg"
-          />
+          <SvgIcon class="img" :svg="svg" />
           <p class="name title">
             {{ name }}
           </p>
         </div>
-        <p class="count text-2-sm">
-          {{ count }} {{ $t('feeds') }}
-        </p>
+        <p class="count text-2-sm">{{ count }} {{ $t('feeds') }}</p>
       </div>
     </nuxt-link>
   </BaseCard>

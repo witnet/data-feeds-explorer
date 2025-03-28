@@ -11,11 +11,7 @@
       :key="fieldToProp[field]"
       #[field]
     >
-      <span
-        v-if="description.i18nPath"
-        :key="field.i18nPath"
-        class="bold"
-      >{{
+      <span v-if="description.i18nPath" :key="field.i18nPath" class="bold">{{
         fieldToProp[field]
       }}</span>
     </template>

@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <div
-      v-if="showIcon"
-      :ref="value"
-      class="value truncate"
-    >
+    <div v-if="showIcon" :ref="value" class="value truncate">
       <slot />
     </div>
     <div
@@ -31,11 +27,7 @@
         {{ value }}
       </div>
       <client-only>
-        <font-awesome-icon
-          v-if="showIcon"
-          class="icon"
-          icon="info-circle"
-        />
+        <font-awesome-icon v-if="showIcon" class="icon" icon="info-circle" />
       </client-only>
     </div>
   </div>

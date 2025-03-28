@@ -11,10 +11,7 @@
           class="breadcrumbs-link"
         >
           <transition name="slide-in">
-            <h3
-              v-if="option.label"
-              class="breadcrumbs text-small"
-            >
+            <h3 v-if="option.label" class="breadcrumbs text-small">
               <span class="breadcrumbs-label font-bold">{{
                 option.label
               }}</span>
