@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config({ path: '.test.env' })
 
-import uuid from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 export default {
   preset: 'ts-jest',

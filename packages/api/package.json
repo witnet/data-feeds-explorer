@@ -29,7 +29,8 @@
     "ts-jest": "29.2.2",
     "ts-node": "10.9.2",
     "typescript": "^5.0.4",
-    "typescript-eslint": "^8.18.1"
+    "typescript-eslint": "^8.18.1",
+    "uuid": "^11.1.0"
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
