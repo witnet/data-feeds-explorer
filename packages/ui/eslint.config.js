@@ -40,6 +40,7 @@ export default [
           math: 'always',
         },
       ],
+      ...eslintConfigPrettier.rules,
     },
   },
   {
