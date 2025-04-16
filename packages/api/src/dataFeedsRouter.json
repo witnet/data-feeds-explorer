@@ -82,6 +82,7 @@
           "version": "2.0"
         },
         "boba.bnb.testnet": {
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Boba BNB/L2 Testnet",
           "blockExplorer": "https://testnet.bobascan.com/",
           "version": "2.0"
