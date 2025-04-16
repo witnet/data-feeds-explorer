@@ -7,7 +7,7 @@
           :key="option.label"
           :aria-label="option.label"
           :class="{ selected: option.selected }"
-          :to="localeRoute(option.path)"
+          :to="$localeRoute(option.path)"
           class="breadcrumbs-link"
         >
           <transition name="slide-in">

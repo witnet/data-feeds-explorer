@@ -21,10 +21,9 @@ export interface Themes {
 
 export type Locale = {
   code: string
-  iso: string
+  language: string
   name: string
   file: string
-  fnsLocale: any
 }
 
 export interface LanguageDictionary {

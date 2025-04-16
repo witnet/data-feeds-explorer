@@ -2,7 +2,7 @@
   <div :class="{ drop: isMenuVisible }">
     <nav class="navbar" :class="{ open: isMenuVisible }">
       <div class="menu-container">
-        <nuxt-link :to="localePath('/')" aria-label="home">
+        <nuxt-link :to="$localePath('/')" aria-label="home">
           <SvgIcon name="witnet-logo" class="logo" />
         </nuxt-link>
         <button aria-label="menu" class="responsive-menu" @click="toggleMenu">

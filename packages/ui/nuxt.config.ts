@@ -144,6 +144,9 @@ export default defineNuxtConfig({
       redirectOn: 'root',
     },
     locales: Object.values(LANGUAGE_LOCALES),
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   runtimeConfig: {

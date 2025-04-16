@@ -1,6 +1,6 @@
 <template>
   <BaseCard v-if="!empty" :class="dataFeedStatus.key">
-    <nuxt-link :to="localeRoute(detailsPath)">
+    <nuxt-link :to="$localeRoute(detailsPath)">
       <div class="card-container">
         <div class="title">
           <SvgIcon class="img" :svg="svg" />

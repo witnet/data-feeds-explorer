@@ -1,5 +1,5 @@
 import { formatDistanceToNowStrict } from 'date-fns'
-import { LANGUAGE_LOCALES } from '~/constants'
+import { getFnsLocale } from './getFnsLocale'
 import type { localeCodes } from '~/types'
 
 export function calculateTimeAgo(
@@ -11,7 +11,7 @@ export function calculateTimeAgo(
   const currentDate = new Date(Number(d))
   const formatedTime = formatDistanceToNowStrict(currentDate, {
     addSuffix: true,
-    locale: LANGUAGE_LOCALES[currentLocale].fnsLocale,
+    locale: getFnsLocale(currentLocale),
   })
   return `${formatedTime}`
 }

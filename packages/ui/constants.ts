@@ -1,20 +1,17 @@
-import { es, enGB } from 'date-fns/locale'
 import { localeCodes, type LanguageDictionary, type ChartRange } from './types'
 
 export const LANGUAGE_LOCALES: LanguageDictionary = {
   [localeCodes.en]: {
     code: 'en-US',
-    iso: 'en-US',
+    language: 'en-US',
     name: 'English',
     file: 'en-US.json',
-    fnsLocale: enGB,
   },
   [localeCodes.es]: {
     code: 'es-ES',
-    iso: 'es-ES',
+    language: 'es-ES',
     name: 'Español',
     file: 'es-ES.json',
-    fnsLocale: es,
   },
 }
 
@@ -58,13 +55,13 @@ export const languages = [
   {
     name: 'English',
     code: 'en',
-    iso: 'en-US',
+    language: 'en-US',
     isCatchallLocale: true,
   },
   {
     name: 'Español',
     code: 'es',
-    iso: 'es-ES',
+    language: 'es-ES',
   },
 ]
 
