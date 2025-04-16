@@ -44,6 +44,8 @@ const languageCodes: ComputedRef<Array<Locale>> = computed(() => {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/colors.scss' as *;
+
 .language-selector {
   .vs__dropdown-toggle,
   .vs__dropdown-menu {
