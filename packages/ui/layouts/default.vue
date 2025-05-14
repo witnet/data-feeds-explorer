@@ -1,17 +1,13 @@
 <template>
   <div
     :class="{
-      'hide-scroll': hideScroll,
-      bg: hideScroll,
       background: true,
     }"
     class="component-root"
   >
     <div class="main-section-container">
       <div class="main-section">
-        <NavBar @scroll="handleScroll" />
-        <div class="cover" :class="{ show: hideScroll, bg: hideScroll }" />
-        <BreadCrumbs />
+        <NavBar />
         <slot />
         <client-only>
           <ThemeSwitch class="theme-switch" />
@@ -24,9 +20,6 @@
 
 <script setup>
 import { WFooter } from 'wit-vue-ui'
-import { ref } from 'vue'
-// import { footerSections } from '../../constants'
-// import getFooterLinks from './getFooterLinks'
 
 const footerLinks = [
   {
@@ -89,12 +82,6 @@ const footerLinks = [
     ],
   },
 ]
-
-const hideScroll = ref(false)
-
-function handleScroll(scroll) {
-  hideScroll.value = scroll
-}
 </script>
 <style lang="scss">
 img {
@@ -149,13 +136,6 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
-// .nuxt-link-exact-active {
-//   color: var(--text);
-// }
-// .nuxt-link-active {
-//   color: var(--text);
-// }
-
 a {
   text-decoration: none;
 }

@@ -44,6 +44,9 @@ const url = computed(() => `${props.name}`.trim())
 .fill {
   @apply fill-black-950 dark:fill-white-100;
 }
+.reverse-fill {
+  @apply fill-white-50 dark:fill-black-950;
+}
 .partner-size {
   width: 140px;
   height: 40px;
@@ -52,10 +55,6 @@ const url = computed(() => `${props.name}`.trim())
   .fill {
     @apply fill-wit-blue-500;
   }
-}
-
-.reverse-fill {
-  @apply fill-white-50 dark:fill-black-950;
 }
 
 .border {

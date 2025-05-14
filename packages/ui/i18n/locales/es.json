@@ -1,4 +1,5 @@
 {
+  "documentation": "Documentación",
   "data_feed_details": {
     "contract_address": "Detalles de integración",
     "trigger_parameters": "Triggering conditions",

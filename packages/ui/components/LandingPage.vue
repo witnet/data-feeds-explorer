@@ -2,31 +2,26 @@
   <div class="landing-page">
     <div class="text">
       <h2 class="title">
-        {{ $t('landing.supported_chains.title') }}
+        {{ $t('landing.title') }}
       </h2>
       <p class="subtitle">
-        {{ $t('landing.supported_chains.subtitle') }}
+        {{ $t('landing.description') }}
       </p>
     </div>
-    <SupportedChains :chains="supportedChains" />
     <DataFeedsCount
       :chains="supportedChains.length"
       :networks="networks.length"
       :feeds="totalFeeds"
     />
-    <h2 class="title">
-      {{ $t('landing.upcoming_chains.title') }}
-    </h2>
-    <UpcomingChains />
-    <h2 class="title">
-      {{ $t('landing.partners.title') }}
-    </h2>
-    <PartnersSection />
+    <ClientOnly>
+      <WLatestUpdates />
+    </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
 import { generateSelectOptions } from '../utils/generateSelectOptions'
+import { WLatestUpdates } from 'wit-vue-ui'
 const store = useStore()
 const { data } = await useAsyncData('ecosystems', store.fetchEcosystems)
 const totalFeeds = computed(() => store.totalFeeds)
