@@ -1,31 +1,34 @@
 <template>
-  <div class="landing-page">
-    <div class="text">
-      <h2 class="title">
-        {{ $t('landing.title') }}
-      </h2>
-      <p class="subtitle">
-        {{ $t('landing.description') }}
-      </p>
-    </div>
-    <DataFeedsCount
-      :chains="supportedChains.length"
-      :networks="networks.length"
-      :feeds="totalFeeds"
-    />
-    <ClientOnly>
-      <WLatestUpdates />
-    </ClientOnly>
-  </div>
+  <WSection frame-classes="bg-black-900">
+    <template #content>
+      <div class="text">
+        <h2 class="title text-2xl">
+          {{ $t('landing.title') }}
+        </h2>
+        <p class="text">
+          {{ $t('landing.description') }}
+        </p>
+      </div>
+      <DataFeedsCount
+        :chains="supportedChains.length"
+        :networks="networks.length"
+        :feeds="totalFeeds"
+      />
+      <ClientOnly>
+        <WLatestUpdates />
+      </ClientOnly>
+    </template>
+  </WSection>
 </template>
 
 <script setup lang="ts">
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import { WLatestUpdates } from 'wit-vue-ui'
+import { WLatestUpdates, WSection } from 'wit-vue-ui'
 const store = useStore()
 const { data } = await useAsyncData('ecosystems', store.fetchEcosystems)
 const totalFeeds = computed(() => store.totalFeeds)
 const networks = computed(() => store.networks)
+
 const supportedChains = computed(() => {
   return Object.values(generateSelectOptions(networks.value))
     .filter((network: any) => network && network[0])
@@ -47,35 +50,4 @@ const supportedChains = computed(() => {
     })
     .sort((chainA, chainB) => chainA.name.localeCompare(chainB.name))
 })
-
-onMounted(() => {
-  store.updateSelectedNetwork({ networks: [] })
-})
 </script>
-
-<style lang="scss" scoped>
-.landing-page {
-  display: grid;
-  row-gap: 32px;
-  .text {
-    display: grid;
-    row-gap: 16px;
-  }
-}
-@media screen and (max-width: 1100px) {
-  .landing-page {
-    padding: 0 24px;
-  }
-}
-
-@media (max-width: 600px) {
-  .landing-page {
-    padding: 0 24px;
-  }
-}
-@media (max-width: 300px) {
-  .landing-page {
-    padding: 0 16px;
-  }
-}
-</style>

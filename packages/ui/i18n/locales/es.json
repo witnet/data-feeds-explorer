@@ -1,5 +1,11 @@
 {
   "documentation": "Documentación",
+  "landing": {
+    "title": "Welcome to Witnet data feeds",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur eros a pharetra semper. Duis eget consectetur erat. Morbi fermentum lacus a euismod ultricies. Suspendisse rhoncus, massa id cursus volutpat, neque libero pharetra mi, eget mollis ipsum nibh ac purus. Quisque at lectus elit. Nam quis mollis nisi, at lacinia augue."
+  },
+  "search": "Search for a feed",
+  "include_testnets": "Include testnets",
   "data_feed_details": {
     "contract_address": "Detalles de integración",
     "trigger_parameters": "Triggering conditions",
@@ -89,18 +95,6 @@
       "base": "© {0} by {1} and individual contributors. Content available under a {2}.",
       "witnet_foundation": "Witnet Foundation",
       "license": "Creative Commons License"
-    }
-  },
-  "landing": {
-    "supported_chains": {
-      "title": "Supported chains",
-      "subtitle": "Blockchains in which the Witnet oracle is currently available"
-    },
-    "upcoming_chains": {
-      "title": "Chains with upcoming support"
-    },
-    "partners": {
-      "title": "Users and Partners"
     }
   },
   "empty_feeds": "No hay feeds activos en {0}. ¡Solicita un nuevo data feed!",

@@ -16,6 +16,7 @@ export const useStore = defineStore('data', {
       networks: [],
       ecosystems: [],
       totalFeeds: 0,
+      feeds: [],
       feed: null,
       paginatedFeedRequest: null,
     }) as DataStore,
@@ -35,11 +36,39 @@ export const useStore = defineStore('data', {
       mainnet,
       pair = null,
     }: {
-      network?: string | null
+      network?: Network[] | null
       mainnet: boolean | null
       pair?: string | null
     }) {
-      return (await getAllFeedsRequests({ network, mainnet, pair })).feeds
+      let result
+      if (network) {
+        console.log('Get specific networks', network)
+        const allResults = await Promise.all(
+          network.map((network) =>
+            getAllFeedsRequests({ network: network.key, mainnet, pair }),
+          ),
+        )
+        result = allResults.reduce(
+          (acc, result) => {
+            return {
+              feeds: [...acc.feeds, ...result.feeds],
+              total: acc.total + result.total,
+            }
+          },
+          {
+            feeds: [],
+            total: 0,
+          },
+        )
+      } else {
+        console.log('Get all', network)
+        result = await getAllFeedsRequests({ network: 'all', mainnet, pair })
+      }
+      this.feeds = result.feeds
+      this.totalFeeds = result.total
+      console.log('feeds updated', this.feeds)
+      console.log('feeds updated total', this.totalFeeds)
+      return result
     },
     async fetchFeedInfo({
       feedFullName,

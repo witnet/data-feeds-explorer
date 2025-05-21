@@ -45,41 +45,6 @@
   .border {
     @apply border-solid border-black-950 dark:border-white-50;
   }
-  /* Use component library */
-  /* .pagination {
-
-  }
-  .tooltip {
-
-  } */
-  /* .select {
-
-  } */
-  /* .navbar {
-
-  } */
-  /* .button {
-
-  }
-  .footer {
-
-  } */
-  /* .language-selector {
-
-  } */
-  /* Create in component library */
-  /* .theme-switch {
-
-  } */
-  /* .switcher {
-
-  } */
-  /* .network-options-active {
-    @apply text-black-950 dark:text-white-50 bg-white-50 dark:bg-black-950 border-black-950 dark:border-white-50;
-  } */
-  /* .network-options-inactive {
-    @apply text-black-950 dark:text-white-50 bg-black-300 dark:bg-black-950 border-black-950 dark:border-white-50;
-  } */
   .feed-card {
     @apply border border-black-950 dark:border-wit-blue-500 bg-white-50 dark:bg-wit-blue-500 dark:bg-opacity-5;
   }
@@ -102,10 +67,6 @@
   .highlighted-text {
     @apply text-wit-blue-500;
   }
-  /* .contract-address {
-  } */
-  /* .breadcrubs {
-  } */
   .placeholder {
     @apply bg-black-500/5 dark:bg-black-200/5 bg-gradient-to-r from-black-500/5  to-black-600/10 dark:from-black-200/5 dark:to-black-300/10 dark:bg-opacity-5;
   }

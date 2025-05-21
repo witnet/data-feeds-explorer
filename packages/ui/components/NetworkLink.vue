@@ -1,23 +1,14 @@
 <template>
-  <nuxt-link
-    class="nav-link"
-    :to="
-      localeRoute({
-        name: 'network',
-        params: {
-          network: name.toLowerCase(),
-        },
-      })
-    "
-  >
+  <div class="nav-link" @click="setEcosystem">
     <SvgIcon :svg="svg" />
     {{ name }}
-  </nuxt-link>
+  </div>
 </template>
 
 <script setup lang="ts">
-const localeRoute = useLocaleRoute()
-defineProps({
+const store = useStore()
+const ecosystemsList = computed(() => generateSelectOptions(store.networks))
+const props = defineProps({
   name: {
     type: String,
     required: true,
@@ -27,6 +18,11 @@ defineProps({
     required: true,
   },
 })
+function setEcosystem() {
+  const selectedEcosystemNetworks =
+    ecosystemsList.value[props.name.toLocaleLowerCase()]
+  store.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
+}
 </script>
 
 <style lang="scss" scoped>

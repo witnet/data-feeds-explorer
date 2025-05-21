@@ -1,9 +1,6 @@
 <template>
-  <div v-if="noFeedsAvailable" class="empty-state">
-    <i18n-t keypath="empty_feeds" tag="p" scope="global">
-      <span class="bold">{{ network.label }}</span>
-    </i18n-t>
-    <RequestDataFeedBtn />
+  <div v-if="empty" class="empty-state">
+    <p class="text">EMPTY STATE</p>
   </div>
   <div v-else-if="!loading" class="feeds-container">
     <FeedCard
@@ -29,34 +26,34 @@
 
 <script setup lang="ts">
 import { formatSvgName } from '../utils/formatSvgName'
-import { type Ref } from 'vue'
-const store = useStore()
+import { type FeedInfo, type FormatedFeedInfo } from '@/types'
 const props = defineProps({
-  network: {
-    type: Object,
+  feeds: {
+    type: Object as PropType<FeedInfo[]>,
     required: true,
   },
-  networkIndex: {
+  totalFeeds: {
     type: Number,
     required: true,
   },
+  loading: {
+    type: Boolean,
+    default: true,
+  },
+  empty: {
+    type: Boolean,
+    default: false,
+  },
 })
 const route = useRoute()
-const loading = ref(true)
-const noFeedsAvailable = ref(false)
-const networkFeeds: Ref<any> = ref(null)
-const emptyFeeds = computed(() => allFeeds.value.length < 1)
 const allFeeds = computed(() => {
-  if (networkFeeds.value?.total) {
-    const feeds = networkFeeds.value?.feeds
-      .filter((feed: any) => {
+  console.log('props feeds tota', props.feeds)
+  if (props.totalFeeds) {
+    const feeds = props.feeds
+      .filter((feed: FeedInfo) => {
         return feed.lastResult && Number(feed.lastResultTimestamp) > 0
       })
-      .map((feed: any) => {
-        const heartbeat = Number(feed.heartbeat || '0')
-        const timeToUpdate =
-          heartbeat && !feed.isRouted ? heartbeat + Number(feed.finality) : null
-
+      .map((feed: FeedInfo) => {
         return {
           detailsPath: {
             name: 'network-id',
@@ -65,12 +62,14 @@ const allFeeds = computed(() => {
               id: feed.feedFullName,
             },
           },
-          decimals: parseInt(feed.feedFullName.split('_').pop()) || 3,
+          decimals: parseInt(feed.feedFullName.split('_').pop() ?? '3'),
           name: feed.name,
           value: feed.lastResult,
           lastResultTimestamp: feed.lastResultTimestamp || '0',
           label: feed.label,
-          timeToUpdate,
+          timeToUpdate: feed.heartbeat
+            ? Number(feed.heartbeat) + Number(feed.finality)
+            : undefined,
           img: {
             name: formatSvgName(feed.name),
             alt: feed.name,
@@ -82,24 +81,21 @@ const allFeeds = computed(() => {
           svg: feed.logo,
         }
       })
+      .reduce(
+        (acc: Record<string, FormatedFeedInfo[]>, feed: FormatedFeedInfo) => {
+          return {
+            ...acc,
+            [feed.name]: acc[feed.name] ? [...acc[feed.name], feed] : [feed],
+          } as Record<string, FormatedFeedInfo[]>
+        },
+        {},
+      )
+    return Object.values(feeds)
+      .map((feeds) => feeds[feeds.length - 1])
       .sort((feed1: any, feed2: any) => feed1.name.localeCompare(feed2.name))
-    return feeds
   } else {
     return []
   }
-})
-watch(networkFeeds, () => {
-  loading.value = false
-  if (emptyFeeds.value) {
-    noFeedsAvailable.value = true
-  }
-})
-onMounted(async () => {
-  const fetchedNetworks = await store.fetchFeeds({
-    network: props.network.key.toLowerCase(),
-    mainnet: null,
-  })
-  networkFeeds.value = fetchedNetworks
 })
 </script>
 

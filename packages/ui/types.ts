@@ -86,10 +86,59 @@ export interface DataStore {
   selectedEcosystemName: string
   networks: Array<Network | undefined>
   ecosystems: Ecosystem[] | []
+  feeds: FeedInfo[]
   totalFeeds: number
   feed: Feed | null
   paginatedFeedRequest: {
     requests: FeedRequest[]
     total: number
   } | null
+}
+
+export type FeedInfo = {
+  feedFullName: string
+  name: string
+  address: string
+  lastResult: string
+  lastResultTimestamp: string
+  network: string
+  label: string
+  chain: string
+  blockExplorer: string
+  color: string
+  heartbeat: string
+  finality: string
+  logo: string
+}
+
+export type FormatedFeedInfo = {
+  detailsPath: {
+    name: string
+    params: {
+      network: string | string[]
+      id: string
+    }
+  }
+  decimals: number
+  name: string
+  value: string
+  lastResultTimestamp: string
+  label: string
+  timeToUpdate?: number
+  img: {
+    name: string
+    alt: string
+  }
+  network: string
+  chain: string
+  color: string
+  blockExplorer: string
+  svg: string
+}
+
+export type FeedsRequestInfo = {
+  feeds: {
+    feeds: FeedInfo[]
+    total: number
+  }
 }

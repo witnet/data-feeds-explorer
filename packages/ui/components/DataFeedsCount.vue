@@ -1,27 +1,29 @@
 <template>
   <client-only>
-    <div class="count-strip-container">
+    <div
+      class="bg-black-950 rounded-[24px] grid grid-cols-[max-content_max-content_max-content] gap-xl justify-items-center justify-center w-max h-max px-lg py-sm"
+    >
       <div class="item text-bold">
-        <p class="count">
+        <p class="title text-2xl">
           {{ feeds }}
         </p>
-        <p class="title">
+        <p class="text">
           {{ $t('data_feeds') }}
         </p>
       </div>
       <div class="item text-bold">
-        <p class="count">
+        <p class="title text-2xl">
           {{ networks }}
         </p>
-        <p class="title">
+        <p class="text">
           {{ $t('networks') }}
         </p>
       </div>
       <div class="item text-bold">
-        <p class="count">
+        <p class="title text-2xl">
           {{ chains }}
         </p>
-        <p class="title">
+        <p class="text">
           {{ $t('chains') }}
         </p>
       </div>
@@ -60,9 +62,7 @@ export default {
 .item {
   display: grid;
   justify-items: center;
-  .count {
-    font-size: 32px;
-  }
+  @apply w-max;
 }
 @media (max-width: 300px) {
   .count-strip-container {

@@ -4,7 +4,13 @@ import feedQuery from './queries/feed'
 import feedsQuery from './queries/feeds'
 import networksQuery from './queries/networks'
 import feedRequestsQuery from './queries/requests'
-import type { Ecosystem, Feed, FeedRequest, Network } from '~/types'
+import type {
+  Ecosystem,
+  Feed,
+  FeedRequest,
+  FeedsRequestInfo,
+  Network,
+} from '~/types'
 
 function getApiEndpoint() {
   return useRuntimeConfig().public.apiBase
@@ -18,8 +24,8 @@ export const getAllFeedsRequests = async ({
   network: string | null
   mainnet: boolean | null
   pair: string | null
-}) =>
-  (await request(
+}) => {
+  const result = (await request(
     getApiEndpoint(),
     feedsQuery,
     {
@@ -28,10 +34,9 @@ export const getAllFeedsRequests = async ({
       pair,
     },
     { accept: 'application/json' },
-  )) as {
-    feeds: FeedRequest[]
-    total: number
-  }
+  )) as FeedsRequestInfo
+  return result.feeds
+}
 
 export const getEcosystems = async () => {
   const result: { feeds: unknown } = await request(
@@ -48,10 +53,12 @@ export const getEcosystems = async () => {
   }
 }
 
-export const getNetworks = async () =>
-  (await request(getApiEndpoint(), networksQuery)) as {
+export const getNetworks = async () => {
+  console.log('api endpont', getApiEndpoint())
+  return (await request(getApiEndpoint(), networksQuery)) as {
     networks: Network[]
   }
+}
 
 export const getFeedInfo = async ({
   timestamp,

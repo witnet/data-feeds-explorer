@@ -47,9 +47,8 @@ import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { generateNavOptions } from '../utils/generateNavOptions'
 
 const store = useStore()
-const router = useRouter()
-const route = useRoute()
-const currentEcosystem = ref(route.params.network.toString())
+
+// const currentEcosystem = ref(route.params.network.toString())
 const selectedEcosystem = computed(() => store.selectedEcosystem)
 const ecosystemsList = computed(() => generateSelectOptions(store.networks))
 const navBarOptions = computed(() => {
@@ -69,8 +68,9 @@ onMounted(async () => {
   if (store.networks.length < 1) {
     await store.fetchNetworks()
   }
-  const selectedEcosystemNetworks =
-    ecosystemsList.value[currentEcosystem.value.toLocaleLowerCase()]
+  const selectedEcosystemNetworks = Object.values(
+    ecosystemsList.value,
+  ) as Networks[]
   if (selectedEcosystemNetworks) {
     store.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
   } else {

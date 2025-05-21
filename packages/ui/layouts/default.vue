@@ -6,13 +6,11 @@
     class="component-root"
   >
     <div class="main-section-container">
-      <div class="main-section">
-        <NavBar />
-        <slot />
-        <client-only>
-          <ThemeSwitch class="theme-switch" />
-        </client-only>
-      </div>
+      <NavBar />
+      <slot />
+      <client-only>
+        <ThemeSwitch class="theme-switch" />
+      </client-only>
       <WFooter :footer-sections="footerLinks" />
     </div>
   </div>
@@ -152,21 +150,11 @@ a {
   grid-template-rows: 1fr max-content;
   grid-template-columns: 1fr;
 }
-.main-section {
-  display: grid;
-  min-height: max-content;
-  grid-template-rows: max-content max-content 1fr max-content;
-  grid-template-columns: 1fr;
-  width: 100vw;
-  max-width: var(--desktop-margin);
-  row-gap: 24px;
-  margin: 0 auto;
-  .theme-switch {
-    position: fixed;
-    bottom: 0;
-    z-index: 5;
-    right: 0;
-  }
+.theme-switch {
+  position: fixed;
+  bottom: 0;
+  z-index: 5;
+  right: 0;
 }
 @media (max-width: 850px) {
   .main-section {

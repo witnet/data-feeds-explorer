@@ -1,5 +1,8 @@
 <template>
-  <LandingPage />
+  <div class="w-screen h-max">
+    <HeroSection />>
+    <FeedsSection />
+  </div>
 </template>
 
 <script setup>
