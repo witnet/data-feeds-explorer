@@ -1,11 +1,8 @@
 <template>
   <div v-if="options.length" class="nav-container" :class="type">
     <div class="networks">
-      <div
-        v-for="option in mainOptions"
-        :key="option.name"
-        class="option text-small-bold"
-      >
+      <NetworkLink v-if="!hideAll" :name="'All'" />
+      <div v-for="option in mainOptions" :key="option.name" class="option">
         <NetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
@@ -41,6 +38,7 @@
 
 <script setup lang="ts">
 import { type Ref } from 'vue'
+import type { NetworkOption } from '~/types'
 const store = useStore()
 const props = defineProps({
   type: {
@@ -50,12 +48,17 @@ const props = defineProps({
       return ['navbar', 'sidebar'].includes(value)
     },
   },
+  hideAll: {
+    type: Boolean,
+    default: false,
+  },
   options: {
-    type: Array<{ name: string; logo: string }>,
+    type: Array<NetworkOption>,
     required: true,
   },
 })
 const priorityEcosystemNames: Array<string> = [
+  'all',
   'ethereum',
   'avalanche',
   'polygon',
@@ -89,14 +92,22 @@ const hiddenEcosystems = computed(() => {
 const networksLeft = computed(() => {
   return `(${hiddenEcosystems.value.length}+)`
 })
-const mainOptions = computed(() => {
+
+const maxOptionsNumber = computed(() => (props.hideAll ? 7 : 6))
+
+const mainOptions: Ref<NetworkOption[]> = computed(() => {
+  let options: NetworkOption[] = []
   if (
     priorityEcosystemNames.includes(selectedEcosystemName.value.toLowerCase())
   ) {
-    return priorityEcosystems.value
+    options = priorityEcosystems.value
   } else {
-    return [selectedEcosystem.value, ...priorityEcosystems.value]
+    options = [selectedEcosystem.value, ...priorityEcosystems.value]
   }
+  const spliceIdx = maxOptionsNumber.value - options.length
+  return options.length > maxOptionsNumber.value
+    ? options
+    : [...options, ...hiddenEcosystems.value.splice(0, spliceIdx)]
 })
 const toggleShowAll = () => (showAll.value = !showAll.value)
 </script>
@@ -127,8 +138,8 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
 }
 .networks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 88px);
-  grid-template-rows: 88px;
+  grid-template-columns: repeat(auto-fit, 95px);
+  grid-template-rows: 95px;
   grid-gap: 16px;
   .option {
     text-align: center;

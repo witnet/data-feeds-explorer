@@ -14,7 +14,7 @@ export const useStore = defineStore('data', {
       navBarSelection: [],
       includeTestnets: true,
       ecosystems: [],
-      selectedEcosystemName: 'ethereum',
+      selectedEcosystemName: 'all',
       selectedPair: null,
       selectedEcosystem: [],
       mainnetSelectedEcosystem: [],
@@ -39,28 +39,44 @@ export const useStore = defineStore('data', {
       this.networks = (await getNetworks()).networks
       return this.networks
     },
+    async fetchFilteredNetworks() {
+      await this.fetchAllNetworks()
+      await this.fetchFeeds({
+        mainnet: null,
+        pair: this.selectedPair,
+      })
+      const networksByPair = this.networks.filter((network: Network) =>
+        this.feeds.map((feed: FeedInfo) => feed.network).includes(network.key),
+      )
+      this.updateNavBarSelection(networksByPair)
+      this.selectEcosystem(networksByPair[0].chain)
+    },
     handleIncludeTestnets(value: boolean) {
       this.includeTestnets = value
     },
     setSelectedPair(pair: string | null) {
       this.selectedPair = pair
     },
-    async getFilteredFeeds() {
-      await this.fetchFeeds({
-        mainnet: !this.includeTestnets,
-        network: this.selectedEcosystem,
-        pair: this.selectedPair,
-      })
-    },
     async updateSelectedFeeds({
+      all = false,
       feeds,
       total,
     }: {
-      feeds: FeedInfo[]
-      total: number
+      all: boolean
+      feeds?: FeedInfo[]
+      total?: number
     }) {
-      this.feeds = feeds
-      this.totalFeeds = total
+      if (all) {
+        this.feeds = [...this.mainnetFeeds, ...this.testnetFeeds]
+        this.totalFeeds = this.totalMainnetFeeds + this.totalTestnetFeeds
+        this.selectedEcosystemName = 'all'
+      } else if (feeds && total) {
+        this.feeds = feeds
+        this.totalFeeds = total
+      } else {
+        this.feeds = []
+        this.totalFeeds = 0
+      }
     },
     async fetchAllFeeds() {
       const mainnetFeeds = await await getAllFeedsRequests({
@@ -70,7 +86,7 @@ export const useStore = defineStore('data', {
       })
       const testnetFeeds = await getAllFeedsRequests({
         network: 'all',
-        mainnet: true,
+        mainnet: false,
         pair: null,
       })
       this.mainnetFeeds = mainnetFeeds.feeds
@@ -108,7 +124,11 @@ export const useStore = defineStore('data', {
       } else {
         result = await getAllFeedsRequests({ network: 'all', mainnet, pair })
       }
-      this.updateSelectedFeeds({ feeds: result.feeds, total: result.total })
+      this.updateSelectedFeeds({
+        all: false,
+        feeds: result.feeds,
+        total: result.total,
+      })
       return result
     },
     async fetchFeedInfo({
@@ -141,21 +161,33 @@ export const useStore = defineStore('data', {
     updateNavBarSelection(navBarNetworks: Network[]) {
       this.navBarSelection = navBarNetworks
     },
-    updateSelectedNetwork({ networks }: { networks: Network[] | [] }) {
+    async updateSelectedNetwork({ networks }: { networks: Network[] }) {
       this.selectedEcosystem = networks
       if (networks.length) {
         this.selectedEcosystemName = networks[0].chain
         this.mainnetSelectedEcosystem = networks.filter((ecosystem) => {
           return ecosystem.label.toLocaleLowerCase().includes('mainnet')
         })
+        await this.fetchFeeds({
+          mainnet: this.includeTestnets ? null : true,
+          network: this.selectedEcosystem,
+          pair: this.selectedPair,
+        })
+      } else if (this.mainnetFeeds && this.testnetFeeds) {
+        this.feeds = [...this.mainnetFeeds, ...this.testnetFeeds]
+        this.totalFeeds = this.totalMainnetFeeds + this.totalTestnetFeeds
       }
-      this.getFilteredFeeds()
     },
     selectEcosystem(name: string) {
-      const selectedEcosystemNetworks = generateSelectOptions(this.networks)[
-        name.toLowerCase()
-      ]
-      this.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
+      if (name.toLowerCase() === 'all') {
+        this.updateSelectedNetwork({ networks: [] })
+        this.selectedEcosystemName = 'all'
+      } else {
+        const selectedEcosystemNetworks = generateSelectOptions(this.networks)[
+          name.toLowerCase()
+        ]
+        this.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
+      }
     },
     deleteEmptyNetwork({ index }: { index: number }) {
       this.selectedEcosystem.splice(index, 1)

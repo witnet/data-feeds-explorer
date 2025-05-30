@@ -3,11 +3,12 @@
     <WSection>
       <template #content>
         <FeedFilters @empty="handleEmpty" @loading="handleLoading" />
-        <div class="flex gap-md m-lg">
+        <div class="flex gap-md my-lg">
           <div
             v-for="network in selectedEcosystem"
             :key="network.key"
-            class="cursor-pointer title"
+            class="cursor-pointer text-small-bold dark:text-white-50 py-xs px-sm border-2 border-white-100 dark:border-white-500 rounded-full bg-black-100 dark:bg-black-900"
+            :class="{ active: isActiveNetwork(network) }"
             @click="selectFeed(network)"
           >
             {{ network.label }}
@@ -26,7 +27,8 @@ import { WSection } from 'wit-vue-ui'
 import type { FeedInfo, Network } from '~/types'
 const route = useRoute()
 const store = useStore()
-const feeds = computed(() => store.feeds)
+const { feeds } = storeToRefs(store)
+const selectedNetwork = ref('')
 const selectedFeed: Ref<FeedInfo | null> = ref(null)
 const currentPair = ref(route.params.pair.toString().replace('-', '/'))
 const currentEcosystemSeoFormat = ref(currentPair.value.toUpperCase())
@@ -35,19 +37,13 @@ const selectedEcosystem = computed(() =>
     ? store.selectedEcosystem
     : store.mainnetSelectedEcosystem,
 )
-watch(feeds, (value) => {
+watch(feeds, () => {
   selectedFeed.value = defaultFeed.value
 })
 onMounted(async () => {
   store.updateSelectedNetwork({ networks: [] })
   store.setSelectedPair(currentPair.value.toLowerCase())
-  await store.fetchAllNetworks()
-  await store.getFilteredFeeds()
-  const networksByPair = store.networks.filter((network: Network) =>
-    store.feeds.map((feed: FeedInfo) => feed.network).includes(network.key),
-  )
-  store.updateNavBarSelection(networksByPair)
-  store.selectEcosystem(networksByPair[0].chain)
+  await store.fetchFilteredNetworks()
   selectFeed(selectedEcosystem.value[0])
 })
 onBeforeUnmount(() => {
@@ -123,16 +119,22 @@ useSeoMeta({
 const loadingFeeds = ref(true)
 const noFeedsAvailable = ref(false)
 const defaultFeed = computed(() => {
-  return feeds.value.reduce((acc, feed) => {
-    const networkslist = selectedEcosystem.value.map(
-      (ecosystem) => ecosystem.key,
-    )
-    if (networkslist.includes(feed.network)) {
-      acc = feed
-    }
-    return acc
-  })
+  return feeds.value.length
+    ? feeds.value.reduce((acc, feed) => {
+        const networkslist = selectedEcosystem.value.map(
+          (ecosystem) => ecosystem.key,
+        )
+        if (networkslist.includes(feed.network)) {
+          acc = feed
+        }
+        return acc
+      })
+    : null
 })
+
+function isActiveNetwork(network: Network) {
+  return network.key === (selectedFeed.value?.network ?? selectedNetwork.value)
+}
 
 function handleEmpty(value: boolean) {
   noFeedsAvailable.value = value
@@ -142,8 +144,15 @@ function selectFeed(network: Network) {
     (feed: FeedInfo) => feed.network === network.key,
   )
   selectedFeed.value = selectedFeeds.length ? selectedFeeds[0] : null
+  selectedNetwork.value = network.key
 }
 function handleLoading(value: boolean) {
   loadingFeeds.value = value
 }
 </script>
+
+<style lang="scss">
+.active {
+  @apply bg-white-50 dark:bg-black-950 border-black-950 dark:border-white-50;
+}
+</style>

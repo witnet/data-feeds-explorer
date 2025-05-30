@@ -150,3 +150,8 @@ export type FeedsRequestInfo = {
     total: number
   }
 }
+
+export type NetworkOption = {
+  name: string
+  logo: string
+}

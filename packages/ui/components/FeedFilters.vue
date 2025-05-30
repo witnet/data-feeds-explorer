@@ -1,9 +1,9 @@
 <template>
-  <div class="flex gap-sm">
+  <div class="flex gap-sm mb-lg">
     <WSwitch v-model="includeTestnets" />
     <p class="subtitle font-bold">{{ $t('include_testnets') }}</p>
   </div>
-  <NetworkOptions :options="navBarOptions" />
+  <NetworkOptions :options="navBarOptions" :hide-all="hideAllOptions" />
 </template>
 
 <script setup lang="ts">
@@ -12,11 +12,20 @@ import { WSwitch } from 'wit-vue-ui'
 const store = useStore()
 const feeds = computed(() => store.feeds)
 const includeTestnets = ref(true)
+const route = useRoute()
+const hideAllOptions = computed(() => !!route.params?.pair)
 const emit = defineEmits(['loading', 'empty'])
+onMounted(() => {
+  includeTestnets.value = store.includeTestnets
+})
 watch(includeTestnets, async (valX, _valY) => {
   store.handleIncludeTestnets(valX)
   emit('loading', true)
-  store.getFilteredFeeds()
+  store.fetchFeeds({
+    mainnet: store.includeTestnets ? null : true,
+    network: store.selectedEcosystem,
+    pair: store.selectedPair,
+  })
   emit('loading', false)
 })
 

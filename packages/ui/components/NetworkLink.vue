@@ -1,7 +1,14 @@
 <template>
-  <div class="nav-link" @click="setEcosystem">
-    <SvgIcon :svg="svg" />
-    {{ name }}
+  <div
+    class="nav-link-container text-small-bold cursor-pointer"
+    :class="{ selected: isSelectedEcosystem }"
+    @click="setEcosystem"
+  >
+    <div class="nav-link h-full">
+      <SvgIcon v-if="svg" :svg="svg" />
+      <SvgIcon v-else :name="'all'" />
+      {{ name }}
+    </div>
   </div>
 </template>
 
@@ -14,29 +21,36 @@ const props = defineProps({
   },
   svg: {
     type: String,
-    required: true,
+    default: null,
   },
 })
+const { selectedEcosystemName } = storeToRefs(store)
+const isSelectedEcosystem = computed(
+  () => props.name.toLowerCase() === selectedEcosystemName.value.toLowerCase(),
+)
 function setEcosystem() {
   store.selectEcosystem(props.name.toLocaleLowerCase())
 }
 </script>
 
 <style lang="scss" scoped>
+.nav-link-container {
+  @apply border-2 rounded-[24px] border-white-100 dark:border-white-500 px-sm py-md h-full bg-black-100 dark:bg-black-900;
+  &.selected {
+    @apply bg-white-50 border-black-950 dark:bg-black-950 dark:border-white-50;
+  }
+}
 .nav-link {
   font-size: 14px;
-  padding: 8px 0;
-  height: 100%;
-  border-radius: 4px;
-  margin: 4px 0;
   display: grid;
   grid-template-rows: 1fr max-content;
   grid-gap: 4px;
   justify-content: center;
   align-items: center;
   align-items: flex-end stretch;
+  justify-items: center;
   z-index: 1;
-  @apply text-black-950 dark:text-white-50 bg-black-300 dark:bg-black-950 border-black-950 dark:border-white-50;
+  @apply text-black-950 dark:text-white-50 border-black-950 dark:border-white-50;
 
   &:hover {
     opacity: 0.8;

@@ -34,10 +34,7 @@ onMounted(async () => {
   if (store.mainnetFeeds.length < 1 && store.testnetFeeds.length < 1) {
     await store.fetchAllFeeds()
   }
-  store.updateSelectedFeeds({
-    feeds: [...store.mainnetFeeds, ...store.testnetFeeds],
-    total: store.totalMainnetFeeds + store.totalTestnetFeeds,
-  })
+  store.updateSelectedFeeds({ all: true })
 })
 
 function handleEmpty(value: boolean) {
