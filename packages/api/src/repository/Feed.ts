@@ -85,7 +85,11 @@ export class FeedRepository {
   }: FeedsFilters): Promise<PaginatedFeedsObject> {
     let feeds: Array<FeedInfo> = []
     if (network === 'all') {
-      feeds = this.feedsState.listFeeds()
+      if (pair) {
+        feeds = Object.values(this.dataFeeds[pair]).flat()
+      } else {
+        feeds = this.feedsState.listFeeds()
+      }
     } else {
       if (network && pair) {
         feeds = this.dataFeeds[pair][network]

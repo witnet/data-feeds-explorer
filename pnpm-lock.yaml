@@ -157,8 +157,8 @@ importers:
         specifier: 4.0.0-beta.6
         version: 4.0.0-beta.6(vue@3.5.13(typescript@5.8.3))
       wit-vue-ui:
-        specifier: file:../../../wit-vue-ui/wit-vue-ui-package
-        version: file:../wit-vue-ui/wit-vue-ui-package(graphql@16.11.0)(jiti@2.4.2)(postcss@8.5.3)(vue@3.5.13(typescript@5.8.3))
+        specifier: ^0.4.0
+        version: 0.4.0(graphql@16.11.0)(jiti@2.4.2)(postcss@8.5.3)(vue@3.5.13(typescript@5.8.3))
     devDependencies:
       autoprefixer:
         specifier: ^10.4.19
@@ -7843,8 +7843,8 @@ packages:
     resolution: {integrity: sha512-DLiFIXYC5fMPxaRg832S6F5mJYvePtmO5G9v9IgUFPhXm9/GkXarH/TUrBAVzhTCzAj9anE/+GjrgXp/54nOgw==}
     engines: {node: '>= 12.0.0'}
 
-  wit-vue-ui@file:../wit-vue-ui/wit-vue-ui-package:
-    resolution: {directory: ../wit-vue-ui/wit-vue-ui-package, type: directory}
+  wit-vue-ui@0.4.0:
+    resolution: {integrity: sha512-FvyDqcpPwWpKZt1Tji4jL6464KtW8YMLZFiYM9JsMddVgNHlQNci+eAHXAxYzmAl1mEvwcRLQ43O8EKyu3sj1Q==}
     peerDependencies:
       vue: 3.4.38
 
@@ -17819,7 +17819,7 @@ snapshots:
       triple-beam: 1.4.1
       winston-transport: 4.9.0
 
-  wit-vue-ui@file:../wit-vue-ui/wit-vue-ui-package(graphql@16.11.0)(jiti@2.4.2)(postcss@8.5.3)(vue@3.5.13(typescript@5.8.3)):
+  wit-vue-ui@0.4.0(graphql@16.11.0)(jiti@2.4.2)(postcss@8.5.3)(vue@3.5.13(typescript@5.8.3)):
     dependencies:
       date-fns: 3.6.0
       graphql-request: 6.1.0(graphql@16.11.0)
