@@ -45,9 +45,7 @@ const props = defineProps({
     default: false,
   },
 })
-const route = useRoute()
 const allFeeds = computed(() => {
-  console.log('props feeds tota', props.feeds)
   if (props.totalFeeds) {
     const feeds = props.feeds
       .filter((feed: FeedInfo) => {
@@ -56,10 +54,9 @@ const allFeeds = computed(() => {
       .map((feed: FeedInfo) => {
         return {
           detailsPath: {
-            name: 'network-id',
+            name: 'pair',
             params: {
-              network: route.params.network || 'ethereum',
-              id: feed.feedFullName,
+              pair: feed.name.replace('/', '-'),
             },
           },
           decimals: parseInt(feed.feedFullName.split('_').pop() ?? '3'),

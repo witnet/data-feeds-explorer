@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 const store = useStore()
-const ecosystemsList = computed(() => generateSelectOptions(store.networks))
 const props = defineProps({
   name: {
     type: String,
@@ -19,9 +18,7 @@ const props = defineProps({
   },
 })
 function setEcosystem() {
-  const selectedEcosystemNetworks =
-    ecosystemsList.value[props.name.toLocaleLowerCase()]
-  store.updateSelectedNetwork({ networks: selectedEcosystemNetworks })
+  store.selectEcosystem(props.name.toLocaleLowerCase())
 }
 </script>
 

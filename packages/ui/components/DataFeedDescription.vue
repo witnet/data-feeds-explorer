@@ -18,7 +18,7 @@
   </i18n-t>
 </template>
 
-<script>
+<script setup lang="ts">
 const fields = {
   name: 'name',
   network: 'network',
@@ -27,78 +27,72 @@ const fields = {
   heartbeat: 'heartbeat',
   deviation: 'deviation',
 }
+const props = defineProps({
+  deviation: {
+    type: String,
+    required: true,
+  },
+  isRouted: {
+    type: Boolean,
+    required: true,
+  },
+  feedTimeToUpdate: {
+    type: String,
+    default: null,
+  },
+  lastResultDate: {
+    type: String,
+    required: true,
+  },
+  lastResultValue: {
+    type: String,
+    required: true,
+  },
+  networkName: {
+    type: String,
+    required: true,
+  },
+  feedName: {
+    type: String,
+    required: true,
+  },
+})
 
-export default {
-  props: {
-    deviation: {
-      type: String,
-      required: true,
-    },
-    isRouted: {
-      type: Boolean,
-      required: true,
-    },
-    feedTimeToUpdate: {
-      type: String,
-      default: null,
-    },
-    lastResultDate: {
-      type: String,
-      required: true,
-    },
-    lastResultValue: {
-      type: String,
-      required: true,
-    },
-    networkName: {
-      type: String,
-      required: true,
-    },
-    feedName: {
-      type: String,
-      required: true,
-    },
-  },
-  data() {
+const fieldToProp = computed(() => {
+  return {
+    [fields.name]: props.feedName,
+    [fields.network]: props.networkName,
+    [fields.value]: props.lastResultValue,
+    [fields.date]: props.lastResultDate,
+    [fields.heartbeat]: props.feedTimeToUpdate,
+    [fields.deviation]: props.deviation,
+  }
+})
+const description = computed(() => {
+  const routedFeedFields = [
+    fields.name,
+    fields.network,
+    fields.value,
+    fields.date,
+    fields.heartbeat,
+  ]
+  if (props.isRouted && props.feedTimeToUpdate) {
     return {
-      fieldToProp: {
-        [fields.name]: this.feedName,
-        [fields.network]: this.networkName,
-        [fields.value]: this.lastResultValue,
-        [fields.date]: this.lastResultDate,
-        [fields.heartbeat]: this.feedTimeToUpdate,
-        [fields.deviation]: this.deviation,
-      },
+      i18nPath: 'data_feed_details.feed_description_routed_cached',
+      fields: routedFeedFields,
     }
-  },
-  computed: {
-    description() {
-      const routedFeedFields = [
-        fields.name,
-        fields.network,
-        fields.value,
-        fields.date,
-        fields.heartbeat,
-      ]
-      if (this.isRouted && this.feedTimeToUpdate) {
-        return {
-          i18nPath: 'data_feed_details.feed_description_routed_cached',
-          fields: routedFeedFields,
-        }
-      } else if (this.isRouted) {
-        return {
-          i18nPath: 'data_feed_details.feed_description_routed',
-          fields: routedFeedFields,
-        }
-      } else {
-        return {
-          i18nPath: 'data_feed_details.feed_description',
-          fields: [...routedFeedFields, fields.deviation],
-        }
-      }
-    },
-  },
-}
+  } else if (props.isRouted) {
+    return {
+      i18nPath: 'data_feed_details.feed_description_routed',
+      fields: routedFeedFields,
+    }
+  } else {
+    return {
+      i18nPath: 'data_feed_details.feed_description',
+      fields: [...routedFeedFields, fields.deviation],
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>

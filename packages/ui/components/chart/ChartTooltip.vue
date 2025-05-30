@@ -31,46 +31,45 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
+import type { localeCodes } from '~/types'
+const { locale } = useI18n()
 
-export default {
-  props: {
-    value: {
-      type: String,
-      default: '',
-    },
-    logo: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    date: {
-      type: String,
-      default: '',
-    },
-    timeToUpdate: {
-      type: Number,
-      default: null,
-    },
-    lastResultValue: {
-      type: String,
-      default: '',
-    },
-    lastResultTimestamp: {
-      type: String,
-      default: '',
-    },
+const props = defineProps({
+  value: {
+    type: String,
+    default: '',
   },
-  computed: {
-    formattedTimestamp() {
-      return calculateTimeAgo(this.lastResultTimestamp, this.$i18n.locale)
-    },
+  logo: {
+    type: String,
+    required: true,
   },
-}
+  name: {
+    type: String,
+    default: '',
+  },
+  date: {
+    type: String,
+    default: '',
+  },
+  timeToUpdate: {
+    type: Number,
+    default: null,
+  },
+  lastResultValue: {
+    type: String,
+    default: '',
+  },
+  lastResultTimestamp: {
+    type: String,
+    default: '',
+  },
+})
+
+const formattedTimestamp = computed(() =>
+  calculateTimeAgo(props.lastResultTimestamp, locale.value as localeCodes),
+)
 </script>
 
 <style scoped lang="scss">

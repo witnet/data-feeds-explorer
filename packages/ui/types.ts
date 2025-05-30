@@ -82,13 +82,22 @@ export type Feed = {
 }
 
 export interface DataStore {
-  selectedEcosystem: Network[] | []
+  //FIXME: delete selectedEcosystem??
+  navBarSelection: Network[] | []
   selectedEcosystemName: string
-  networks: Array<Network | undefined>
+  selectedPair: string | null
   ecosystems: Ecosystem[] | []
+  selectedEcosystem: Network[] | []
+  mainnetSelectedEcosystem: Network[] | []
+  networks: Array<Network>
   feeds: FeedInfo[]
+  mainnetFeeds: FeedInfo[]
+  testnetFeeds: FeedInfo[]
   totalFeeds: number
+  totalMainnetFeeds: number
+  totalTestnetFeeds: number
   feed: Feed | null
+  includeTestnets: boolean
   paginatedFeedRequest: {
     requests: FeedRequest[]
     total: number
@@ -115,8 +124,7 @@ export type FormatedFeedInfo = {
   detailsPath: {
     name: string
     params: {
-      network: string | string[]
-      id: string
+      pair: string
     }
   }
   decimals: number

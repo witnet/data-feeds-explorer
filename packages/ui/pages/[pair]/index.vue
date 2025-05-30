@@ -1,0 +1,149 @@
+<template>
+  <div>
+    <WSection>
+      <template #content>
+        <FeedFilters @empty="handleEmpty" @loading="handleLoading" />
+        <div class="flex gap-md m-lg">
+          <div
+            v-for="network in selectedEcosystem"
+            :key="network.key"
+            class="cursor-pointer title"
+            @click="selectFeed(network)"
+          >
+            {{ network.label }}
+          </div>
+        </div>
+        <DataFeedDetails
+          v-if="selectedFeed"
+          :feed-full-name="selectedFeed.feedFullName"
+        />
+      </template>
+    </WSection>
+  </div>
+</template>
+<script setup lang="ts">
+import { WSection } from 'wit-vue-ui'
+import type { FeedInfo, Network } from '~/types'
+const route = useRoute()
+const store = useStore()
+const feeds = computed(() => store.feeds)
+const selectedFeed: Ref<FeedInfo | null> = ref(null)
+const currentPair = ref(route.params.pair.toString().replace('-', '/'))
+const currentEcosystemSeoFormat = ref(currentPair.value.toUpperCase())
+const selectedEcosystem = computed(() =>
+  store.includeTestnets
+    ? store.selectedEcosystem
+    : store.mainnetSelectedEcosystem,
+)
+watch(feeds, (value) => {
+  selectedFeed.value = defaultFeed.value
+})
+onMounted(async () => {
+  store.updateSelectedNetwork({ networks: [] })
+  store.setSelectedPair(currentPair.value.toLowerCase())
+  await store.fetchAllNetworks()
+  await store.getFilteredFeeds()
+  const networksByPair = store.networks.filter((network: Network) =>
+    store.feeds.map((feed: FeedInfo) => feed.network).includes(network.key),
+  )
+  store.updateNavBarSelection(networksByPair)
+  store.selectEcosystem(networksByPair[0].chain)
+  selectFeed(selectedEcosystem.value[0])
+})
+onBeforeUnmount(() => {
+  store.setSelectedPair(null)
+  store.updateSelectedNetwork({ networks: [] })
+})
+useHead({
+  title: `Witnet Data Feeds for ${currentEcosystemSeoFormat.value}`,
+  meta: [
+    { charset: 'utf-8' },
+    {
+      name: 'viewport',
+      content: 'viewport-fit=cover, width=device-width, initial-scale=1',
+    },
+    {
+      name: 'title',
+      content: `Witnet Data Feeds for ${currentEcosystemSeoFormat.value}`,
+    },
+    {
+      name: 'description',
+      content: `Explore the list of decentralized data feeds for ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+    },
+    {
+      name: 'twitter:title',
+      content: `Witnet Data Feeds for ${currentEcosystemSeoFormat.value}`,
+    },
+    {
+      name: 'twitter:description',
+      content: `Explore the list of decentralized data feeds for ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://feeds.witnet.io/meta-image.png',
+    },
+    {
+      name: 'twitter:image:alt',
+      content: 'Witnet data feeds explorer',
+    },
+    {
+      property: 'og:title',
+      content: `Witnet Data Feeds for ${currentEcosystemSeoFormat.value}`,
+    },
+    {
+      property: 'og:description',
+      content: `Explore the list of decentralized data feeds for ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+    },
+    {
+      property: 'og:image',
+      content: 'https://feeds.witnet.io/meta-image.png',
+    },
+    {
+      property: 'og:image:secure_url',
+      content: 'https://feeds.witnet.io/meta-image.png',
+    },
+    {
+      property: 'og:image:alt',
+      content: 'Witnet data feeds explorer',
+    },
+  ],
+})
+useSeoMeta({
+  ogTitle: () => `Witnet Data Feeds for ${currentEcosystemSeoFormat.value}`,
+  title: () => `Witnet Data Feeds for ${currentEcosystemSeoFormat.value}`,
+  description: () =>
+    `Explore the list of decentralized data feeds for ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+  ogDescription: () =>
+    `Explore the list of decentralized data feeds for ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+  twitterTitle: () => `Witnet Data Feeds on ${currentEcosystemSeoFormat.value}`,
+  twitterDescription: () =>
+    `Explore the list of decentralized data feeds for ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
+})
+
+const loadingFeeds = ref(true)
+const noFeedsAvailable = ref(false)
+const defaultFeed = computed(() => {
+  return feeds.value.reduce((acc, feed) => {
+    const networkslist = selectedEcosystem.value.map(
+      (ecosystem) => ecosystem.key,
+    )
+    if (networkslist.includes(feed.network)) {
+      acc = feed
+    }
+    return acc
+  })
+})
+
+function handleEmpty(value: boolean) {
+  noFeedsAvailable.value = value
+}
+function selectFeed(network: Network) {
+  const selectedFeeds = feeds.value.filter(
+    (feed: FeedInfo) => feed.network === network.key,
+  )
+  selectedFeed.value = selectedFeeds.length ? selectedFeeds[0] : null
+}
+function handleLoading(value: boolean) {
+  loadingFeeds.value = value
+}
+</script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container" :class="type">
+  <div v-if="options.length" class="nav-container" :class="type">
     <div class="networks">
       <div
         v-for="option in mainOptions"
@@ -21,7 +21,7 @@
       </div>
     </transition>
     <div
-      v-if="type === 'sidebar'"
+      v-if="type === 'sidebar' && hiddenEcosystems.length"
       class="show-more-btn text-small-bold"
       @click="toggleShowAll"
     >
@@ -95,7 +95,7 @@ const mainOptions = computed(() => {
   ) {
     return priorityEcosystems.value
   } else {
-    return [...priorityEcosystems.value, selectedEcosystem.value]
+    return [selectedEcosystem.value, ...priorityEcosystems.value]
   }
 })
 const toggleShowAll = () => (showAll.value = !showAll.value)

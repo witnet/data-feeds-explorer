@@ -14,60 +14,49 @@ export default defineNuxtConfig({
           content: 'viewport-fit=cover, width=device-width, initial-scale=1',
         },
         {
-          hid: 'title',
           name: 'title',
           content: 'Data Feeds Explorer | Witnet',
         },
         {
-          hid: 'description',
           name: 'description',
           content:
             'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
         },
         {
-          hid: 'twitter:title',
           name: 'twitter:title',
           content: 'Data Feeds Explorer | Witnet',
         },
         {
-          hid: 'twitter:description',
           name: 'twitter:description',
           content:
             'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
         },
         {
-          hid: 'twitter:image',
           name: 'twitter:image',
           content: 'https://feeds.witnet.io/meta-image.png',
         },
         {
-          hid: 'twitter:image:alt',
           name: 'twitter:image:alt',
           content: 'Witnet data feeds explorer',
         },
         {
-          hid: 'og:title',
           property: 'og:title',
           content: 'Data Feeds Explorer | Witnet',
         },
         {
-          hid: 'og:description',
           property: 'og:description',
           content:
             'Explore the list of decentralized data feeds to connect your smart contracts to real world events, using the Witnet oracle network',
         },
         {
-          hid: 'og:image',
           property: 'og:image',
           content: 'https://feeds.witnet.io/meta-image.png',
         },
         {
-          hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
           content: 'https://feeds.witnet.io/meta-image.png',
         },
         {
-          hid: 'og:image:alt',
           property: 'og:image:alt',
           content: 'Witnet data feeds explorer',
         },
@@ -105,7 +94,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-
   devtools: { enabled: true },
   components: [{ path: '~/components', pathPrefix: false }],
   compatibilityDate: '2025-02-27',

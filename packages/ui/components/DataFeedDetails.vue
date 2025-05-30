@@ -1,6 +1,6 @@
 <template>
   <div v-if="normalizedFeed" class="content">
-    <client-only>
+    <ClientOnly>
       <ChartWidget
         v-if="feed"
         class="chart"
@@ -14,7 +14,7 @@
         :decimals="normalizedFeed.decimals"
         @change-range="updateQuery"
       />
-    </client-only>
+    </ClientOnly>
     <DataFeedDescription
       :is-routed="normalizedFeed.isRouted"
       :feed-name="normalizedFeed.name"
@@ -24,7 +24,7 @@
       :feed-time-to-update="feedTimeToUpdate ?? ''"
       :deviation="normalizedFeed.deviation"
     />
-    <client-only>
+    <ClientOnly>
       <FieldsetCard
         v-if="
           !normalizedFeed.isRouted &&
@@ -38,9 +38,9 @@
           :last-result-timestamp="transactions ? transactions[0].timestamp : ''"
         />
       </FieldsetCard>
-    </client-only>
+    </ClientOnly>
     <FieldsetCard :title="$t('data_feed_details.contract_address')">
-      <client-only>
+      <ClientOnly>
         <IntegrationDetails
           :network="normalizedFeed.networkName"
           :proxy-address="normalizedFeed.proxyAddress"
@@ -49,7 +49,7 @@
           :url-underlying-contract="normalizedFeed.urlUnderlyingContract"
           :url-proxy-contract="normalizedFeed.urlProxyContract"
         />
-      </client-only>
+      </ClientOnly>
     </FieldsetCard>
     <TransactionsList
       v-if="transactions"
@@ -75,11 +75,11 @@ import { formatMilliseconds } from '@/utils/formatMilliseconds'
 import { getTimestampByRange } from '@/utils/getTimestampByRange.js'
 import { AsyncInterval } from '@/utils/asyncInterval'
 import { type Ref } from 'vue'
+import { ClientOnly } from '#components'
 
 const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
 
 const store = useStore()
-const route = useRoute()
 const router = useRouter()
 const asyncFeedsInterval = new AsyncInterval(POLLER_MILLISECONDS)
 const timestamp = ref(getTimestampByRange(CHART_RANGE.w.value))
@@ -89,13 +89,20 @@ const currentPage = ref(1)
 const itemsPerPage = ref(25)
 const { locale, t } = useI18n({ useScope: 'global' })
 
+const props = defineProps({
+  feedFullName: {
+    type: String,
+    required: true,
+  },
+})
+
 const fetchData = async () => {
   await store.fetchFeedInfo({
-    feedFullName: route.params.id.toString(),
+    feedFullName: props.feedFullName,
     timestamp: timestamp.value,
   })
   await store.fetchPaginatedFeedRequests({
-    feedFullName: route.params.id.toString(),
+    feedFullName: props.feedFullName,
     page: currentPage.value,
     size: itemsPerPage.value,
   })
@@ -106,6 +113,7 @@ const fetchData = async () => {
     return true
   }
 }
+const feedId = computed(() => props.feedFullName)
 const { data, refresh } = await useAsyncData('feed', fetchData)
 onMounted(() => {
   asyncFeedsInterval.setAsyncInterval(refresh)
@@ -113,11 +121,13 @@ onMounted(() => {
 onBeforeUnmount(() => {
   asyncFeedsInterval.clearAsyncInterval()
 })
-const feed = computed(() => store.feed)
+watch(feedId, () => {
+  asyncFeedsInterval.clearAsyncInterval()
+  asyncFeedsInterval.setAsyncInterval(refresh)
+})
+const { feed } = storeToRefs(store)
 const normalizedFeed = computed(() => {
-  if (data && feed.value) {
-    emit('feed-name', feed.value.name?.toUpperCase())
-    emit('network', feed.value.networkName)
+  if (feed.value) {
     return {
       name: feed.value.name?.toUpperCase(),
       isRouted: feed.value.isRouted,
@@ -148,9 +158,9 @@ const normalizedFeed = computed(() => {
     return null
   }
 })
+
 const lastResultDate = computed(() => {
   if (normalizedFeed.value) {
-    emit('feed-date', formatTimestamp(normalizedFeed.value.lastResultTimestamp))
     return formatTimestamp(normalizedFeed.value.lastResultTimestamp)
   } else {
     return ''
@@ -173,7 +183,6 @@ const lastResultValue = computed(() => {
         10 ** parseInt(normalizedFeed.value.decimals.toString())
       ).toString(),
     )} `
-    emit('feed-value', dataFeedLastValue)
     return dataFeedLastValue
   } else {
     return null
@@ -228,7 +237,7 @@ const handleCurrentChange = async (val: number) => {
   if (currentPage.value !== val) {
     currentPage.value = val
     await store.fetchPaginatedFeedRequests({
-      feedFullName: route.params.id.toString(),
+      feedFullName: props.feedFullName,
       page: currentPage.value,
       size: itemsPerPage.value,
     })
@@ -244,30 +253,12 @@ const updateQuery = async (val: string) => {
     timestamp.value = getTimestampByRange(ranges[val].value)
     if (allowUpdateInfo) {
       await store.fetchFeedInfo({
-        feedFullName: route.params.id.toString(),
+        feedFullName: props.feedFullName,
         timestamp: timestamp.value,
       })
     }
   }
 }
-watch(
-  normalizedFeed,
-  (value) => {
-    if (value) {
-      store.updateSelectedNetwork({
-        networks: [
-          {
-            chain: value.chain,
-            key: value.network,
-            label: value.networkName,
-            logo: value.logo,
-          },
-        ],
-      })
-    }
-  },
-  { deep: true },
-)
 useHead({
   title: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
   meta: [
@@ -277,57 +268,46 @@ useHead({
       content: 'viewport-fit=cover, width=device-width, initial-scale=1',
     },
     {
-      hid: 'title',
       name: 'title',
       content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
     },
     {
-      hid: 'description',
       name: 'description',
       content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
     },
     {
-      hid: 'twitter:title',
       name: 'twitter:title',
       content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
     },
     {
-      hid: 'twitter:description',
       name: 'twitter:description',
       content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
     },
     {
-      hid: 'twitter:image',
       name: 'twitter:image',
       content: 'https://feeds.witnet.io/meta-image.png',
     },
     {
-      hid: 'twitter:image:alt',
       name: 'twitter:image:alt',
       content: 'Witnet data feeds explorer',
     },
     {
-      hid: 'og:title',
       property: 'og:title',
       content: `${feedName.value} Witnet Data Feed on ${networkName.value}`,
     },
     {
-      hid: 'og:description',
       property: 'og:description',
       content: `Last result of ${feedName.value} Witnet Data Feed on ${networkName.value} is ${lastResultValue.value} at ${lastResultDate.value}`,
     },
     {
-      hid: 'og:image',
       property: 'og:image',
       content: 'https://feeds.witnet.io/meta-image.png',
     },
     {
-      hid: 'og:image:secure_url',
       property: 'og:image:secure_url',
       content: 'https://feeds.witnet.io/meta-image.png',
     },
     {
-      hid: 'og:image:alt',
       property: 'og:image:alt',
       content: 'Witnet data feeds explorer',
     },
