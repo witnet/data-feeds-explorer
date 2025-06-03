@@ -1,6 +1,6 @@
-import { AbiItem, FeedInfo, Network } from '../../types'
+import { AbiItem, FeedInfo, Network } from '../../types.js'
 import { SupportedFeed } from './NetworkRouter.js'
-import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json' assert { type: 'json' }
+import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json' with { type: 'json' }
 import { createFeedFullName } from '../utils/index.js'
 import { Configuration } from './Configuration.js'
 

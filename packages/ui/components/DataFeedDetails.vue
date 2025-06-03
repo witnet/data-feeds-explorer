@@ -77,8 +77,6 @@ import { AsyncInterval } from '@/utils/asyncInterval'
 import { type Ref } from 'vue'
 import { ClientOnly } from '#components'
 
-const emit = defineEmits(['feed-name', 'network', 'feed-date', 'feed-value'])
-
 const store = useStore()
 const router = useRouter()
 const asyncFeedsInterval = new AsyncInterval(POLLER_MILLISECONDS)
@@ -131,6 +129,7 @@ const normalizedFeed = computed(() => {
     return {
       name: feed.value.name?.toUpperCase(),
       isRouted: feed.value.isRouted,
+      source: feed.value.sources,
       address: feed.value.address,
       proxyAddress: feed.value.proxyAddress,
       contractId: feed.value.contractId,

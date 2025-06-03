@@ -160,6 +160,17 @@ export function isZeroHash(hash: string) {
   )
 }
 
+export async function waitWithTimeout<T>(
+  promise: Promise<T>,
+  timeout: number,
+): Promise<T> {
+  const timeoutPromise = new Promise<never>((_, reject) =>
+    setTimeout(() => reject(new Error(`Timeout after ${timeout}ms`)), timeout),
+  )
+
+  return Promise.race([promise, timeoutPromise])
+}
+
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }

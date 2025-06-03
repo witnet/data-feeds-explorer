@@ -44,6 +44,10 @@ const resolvers = {
     lastResult: async (parent, _args, { loaders }: Context) => {
       return (await loaders.lastResult.load(parent.feedFullName))?.result
     },
+    // sources: async () => {
+    //   //TODO: get sources
+    //   // return await loaders.sources.load(parent.feedFullName)
+    // },
     lastResultTimestamp: async (parent, _args, { loaders }: Context) => {
       return (await loaders.lastResult.load(parent.feedFullName))?.timestamp
     },

@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb'
-import Web3 from 'web3'
+import { Web3, HttpProvider } from 'web3'
 import { toHex } from 'web3-utils'
 import {
   Contracts,
@@ -156,7 +156,7 @@ export class Web3Middleware {
           let web3: Web3 | undefined
           //FIXME: make timeout work
           if (provider) {
-            web3 = new this.Web3(new Web3.providers.HttpProvider(provider))
+            web3 = new this.Web3(new HttpProvider(provider))
           }
           //FIXME: use web3 timeout instead of custom
           setTimeout(() => {

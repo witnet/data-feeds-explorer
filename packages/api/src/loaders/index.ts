@@ -42,7 +42,13 @@ export class LoadersFactory {
             feedFullName,
           ),
       ),
-
+      //TODO: get sources
+      sources: this.genericLoader<Promise<ResultRequestDbObjectNormalized>>(
+        async (feedFullName: string) =>
+          await this.repositories.resultRequestRepository.getSources(
+            feedFullName,
+          ),
+      ),
       requests: this.genericLoader<
         Promise<Array<ResultRequestDbObjectNormalized>>
       >(async (filter: { feedFullName: string; timestamp: number }) => {

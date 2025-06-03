@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-import Web3 from 'web3'
+import { Web3 } from 'web3'
 import { MongoManager } from './database.js'
 import { FeedRepository } from './repository/Feed.js'
 import { ResultRequestRepository } from './repository/ResultRequest.js'
@@ -90,7 +90,7 @@ class DataFeedsExplorer {
 
     const web3Middleware = new Web3Middleware(
       this.configuration,
-      { repositories: this.repositories, Web3: Web3 },
+      { repositories: this.repositories, Web3 },
       legacyFeeds,
     )
 

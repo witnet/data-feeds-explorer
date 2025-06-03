@@ -1,11 +1,11 @@
 import { AbiItem } from 'web3-utils'
-import { ResultRequestDbObject } from './src/generated/types'
-import { FeedRepository } from './src/repository/Feed'
-import { ResultRequestRepository } from './src/repository/ResultRequest'
+import { ResultRequestDbObject } from './src/generated/types.js'
+import { FeedRepository } from './src/repository/Feed.js'
+import { ResultRequestRepository } from './src/repository/ResultRequest.js'
 import DataLoader from 'dataloader'
-import { Configuration } from './src/web3Middleware/Configuration'
+import { Configuration } from './src/web3Middleware/Configuration.js'
 
-export * from './src/generated/types'
+export * from './src/generated/types.js'
 export { Db, Collection, WithId } from 'mongodb'
 export { AbiItem } from 'web3-utils'
 export { Contract } from 'web3-eth-contract'
@@ -24,6 +24,7 @@ export type Loaders = {
     string
   >
   logos: DataLoader<string, string, string>
+  sources: DataLoader<string, SourceDbObject[], string>
 }
 
 export interface Context {
@@ -137,6 +138,11 @@ export type NetworksConfig = {
 }
 
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
+
+export type SourceDbObject = {
+  path: string
+  authority: string
+}
 
 export type FeedInfoConfig = FeedInfoGeneric<string>
 

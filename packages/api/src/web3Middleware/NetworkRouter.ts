@@ -1,8 +1,9 @@
-import Web3 from 'web3'
-import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json' assert { type: 'json' }
+import { Web3, HttpProvider } from 'web3'
+import WitnetPriceFeedsABI from './../abi/WitnetPriceFeeds.json' with { type: 'json' }
+import { Witnet } from '@witnet/sdk'
 import { FeedInfo, Network, Repositories } from '../../types.js'
 import { toHex } from 'web3-utils'
-import { createFeedFullName } from '../utils/index.js'
+import { createFeedFullName, waitWithTimeout } from '../utils/index.js'
 import { PriceFeed } from './PriceFeed.js'
 import { Configuration } from './Configuration.js'
 
@@ -38,7 +39,11 @@ export type NetworkInfo = {
 }
 export type NetworkSnapshot = {
   network: string
-  feeds: Array<SupportedFeed & LatestPrice>
+  feeds: Array<SupportedFeed & Sources & LatestPrice>
+}
+
+export type Sources = {
+  sources: Witnet.Radon.RadonRetrieval[]
 }
 
 // LatestPrice is missing when JSONRPC `isFeedWithPrice` call fails
@@ -74,7 +79,8 @@ export class NetworkRouter {
     if (!provider) {
       throw new Error(`Missing provider for ${networkName}`)
     }
-    const web3: Web3 = new this.Web3(new Web3.providers.HttpProvider(provider))
+    const httpProvider = new HttpProvider(provider)
+    const web3: Web3 = new this.Web3(httpProvider)
     // TODO: why this type isn't working?
     this.contract = new web3.eth.Contract(WitnetPriceFeedsABI as any, address)
     this.pollingPeriod = pollingPeriod
@@ -93,13 +99,14 @@ export class NetworkRouter {
       const snapshot = await this.getSnapshot()
       const insertPromises = snapshot.feeds
         .filter((feed) => isFeedWithPrice(feed) && feed.timestamp !== '0')
-        .map((feed: SupportedFeed & LatestPrice) => ({
+        .map((feed: SupportedFeed & Sources & LatestPrice) => ({
           feedFullName: createFeedFullName(
             this.network,
             feed.caption.split('-').reverse()[1],
             feed.caption.split('-').reverse()[0],
           ),
           drTxHash: toHex(feed.tallyHash).slice(2),
+          sources: feed.sources,
           // TODO: deprecate mandatory legacy field in database
           requestId: '0',
           result: feed.value.toString(),
@@ -132,10 +139,20 @@ export class NetworkRouter {
     const feedIds = supportedFeeds.map((feed) => feed.id)
     const latestPrices = await this.latestPrices(feedIds)
 
+    const radonRequests: Array<Witnet.Radon.RadonRequest> = await Promise.all(
+      feedIds.map((id) => {
+        return this.getRadonRequest({ id })
+      }),
+    )
+    const sources = radonRequests.map((request) => {
+      return request?.sources ?? []
+    })
+
     return {
       network: this.network,
       feeds: supportedFeeds.map((supportedFeed, index) => ({
         ...supportedFeed,
+        sources: sources[index],
         ...latestPrices[index],
       })),
     }
@@ -162,7 +179,7 @@ export class NetworkRouter {
   // Wrap supportedFeeds contract method
   async getSupportedFeeds(): Promise<Array<SupportedFeed>> {
     try {
-      const supportedFeeds = await Web3.utils.waitWithTimeout(
+      const supportedFeeds = await waitWithTimeout(
         this.contract.methods.supportedFeeds().call(),
         10000,
       )
@@ -177,6 +194,26 @@ export class NetworkRouter {
         e,
       )
       return []
+    }
+  }
+
+  // Wrap lookupWitnetBytecode contract method
+  async getRadonRequest({
+    id,
+  }: {
+    id: string
+  }): Promise<Witnet.Radon.RadonRequest | null> {
+    try {
+      const byteCode = await this.contract.methods
+        .lookupWitnetBytecode(id)
+        .call()
+      return Witnet.Radon.RadonRequest.fromBytecode(byteCode)
+    } catch (e) {
+      console.log(
+        `Error in lookupWitnetBytecode \n\tnetwork: ${this.network}\n\tprovider: ${this.provider}\n\taddress: ${this.address}\n\tError:`,
+        e,
+      )
+      return null
     }
   }
 

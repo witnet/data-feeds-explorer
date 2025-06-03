@@ -75,6 +75,7 @@ export type Feed = {
   proxyAddress: string
   heartbeat: string
   finality: string
+  sources: string[]
   requests: FeedRequest[]
   blockExplorer: string
   color: string
