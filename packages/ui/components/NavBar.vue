@@ -1,6 +1,10 @@
 <template>
   <div
-    :class="isLandingPage ? 'bg-black-900' : 'bg-black-950'"
+    :class="
+      isLandingPage
+        ? 'dark:bg-black-900 bg-white-50'
+        : 'dark:bg-black-950 bg-white-50'
+    "
     class="flex justify-center"
   >
     <div class="flex w-full justify-between py-md px-xl max-w-[1300px]">
@@ -8,7 +12,7 @@
         <SvgIcon name="witnet-logo" class="w-[284px]" />
       </nuxt-link>
       <a :href="urls.documentation" target="_blank" rel="nofollow">
-        <WButton :tyle="ButtonType.primary">{{ $t('documentation') }}</WButton>
+        <WButton :type="ButtonType.primary">{{ $t('documentation') }}</WButton>
       </a>
     </div>
   </div>

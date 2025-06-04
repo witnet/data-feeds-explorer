@@ -1,17 +1,17 @@
 <template>
-  <div class="info-container">
-    <div v-if="deviation" class="text-small-bold">
+  <div class="p-lg grid gap-md">
+    <div v-if="deviation" class="flex gap-md text-bold">
       <InfoTooltip :value="$t('chart.deviation_text')">
         <p>{{ $t('chart.deviation') }}</p>
       </InfoTooltip>
-      <div class="value">{{ deviation }}%</div>
+      <div class="text-highlighted">{{ deviation }}%</div>
     </div>
-    <div class="item text-small-bold">
+    <div class="flex gap-md text-bold">
       <InfoTooltip :value="$t('chart.heartbeat_text')">
         <p>{{ $t('chart.heartbeat') }}</p>
       </InfoTooltip>
       <HeartbeatInfo
-        class="value"
+        class="text-highlighted"
         :milliseconds="maxTimeToResolve"
         :last-result-timestamp="lastResultTimestamp"
       />
@@ -37,22 +37,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-.info-container {
-  padding: 16px;
-  display: grid;
-  grid-template-rows: max-content;
-  row-gap: 16px;
-  .item {
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 8px;
-    column-gap: 8px;
-    .value {
-      display: flex;
-      align-items: center;
-    }
-  }
-}
-</style>

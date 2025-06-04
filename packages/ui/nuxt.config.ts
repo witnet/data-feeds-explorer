@@ -146,8 +146,8 @@ export default defineNuxtConfig({
   },
 
   css: [
-    'wit-vue-ui/style.css',
     '~/assets/styles/tailwind.css',
+    'wit-vue-ui/style.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
 

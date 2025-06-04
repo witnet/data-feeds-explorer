@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-sm mb-lg">
     <WSwitch v-model="includeTestnets" />
-    <p class="subtitle font-bold">{{ $t('include_testnets') }}</p>
+    <p class="text-small text-bold">{{ $t('include_testnets') }}</p>
   </div>
   <NetworkOptions :options="navBarOptions" :hide-all="hideAllOptions" />
 </template>

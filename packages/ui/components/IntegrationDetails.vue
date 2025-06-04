@@ -1,73 +1,77 @@
 <template>
-  <div id="integrate" class="integration-details">
-    <div class="border-r dark:border-black-950 border-white-50 left">
+  <div id="integrate" class="p-lg">
+    <div class="border-b dark:border-black-950 border-white-50 pb-lg">
       <p class="title-details text">
         {{ $t('data_feed_details.integration_details_description', [network]) }}
       </p>
-      <div class="bottom">
-        <a :href="urls.integrateThroughProxy" target="_blank">
-          <CustomButton class="btn">
-            {{ $t('data_feed_details.integrate_proxy') }}</CustomButton
+      <div
+        class="mt-md grid grid-cols-[max-content_max-content] md:grid-cols-1 justify-center md:justify-start gap-x-lg gap-y-sm items-center"
+      >
+        <div class="grid gap-sm">
+          <a
+            :href="urls.integrateThroughProxy"
+            target="_blank"
+            class="flex justify-center [&&]:md:justify-start"
           >
-        </a>
-        <a :href="urls.integrateDirectly" target="_blank">
-          <CustomButton class="btn">
-            {{ $t('data_feed_details.integrate_directly') }}</CustomButton
+            <WButton :type="ButtonType.arrow">
+              {{ $t('data_feed_details.integrate_proxy') }}</WButton
+            >
+          </a>
+          <p class="text-highlighted">
+            {{ $t('data_feed_details.recommended_for_testing') }}
+          </p>
+        </div>
+        <div class="grid gap-sm">
+          <a
+            :href="urls.integrateDirectly"
+            target="_blank"
+            class="flex justify-center [&&]:md:justify-start"
           >
-        </a>
-        <p class="subtitle testing">
-          {{ $t('data_feed_details.recommended_for_testing') }}
-        </p>
-        <p class="subtitle optimized">
-          {{ $t('data_feed_details.optimized_for_gas_cost') }}
-        </p>
+            <WButton :type="ButtonType.arrow">
+              {{ $t('data_feed_details.integrate_directly') }}
+            </WButton>
+          </a>
+          <p class="text-highlighted">
+            {{ $t('data_feed_details.optimized_for_gas_cost') }}
+          </p>
+        </div>
       </div>
     </div>
-    <div class="right">
-      <p v-if="isContractVersion2" class="title-address text-small-bold">
-        {{ $t('data_feed_details.contract_address_title').toUpperCase() }}
-      </p>
-      <p v-else class="title-address text-small">
-        {{ $t('data_feed_details.proxy_address').toUpperCase() }}
-      </p>
-      <a
-        v-if="isContractVersion2"
-        :href="urlProxyContract"
-        target="_blank"
-        class="contract-info text font-mono"
-      >
-        {{ proxyAddress }}
-        <font-awesome-icon class="icon" icon="external-link-alt" />
-      </a>
-      <div v-else class="contract-addresses">
-        <a :href="urlProxyContract" target="_blank" class="contract-info text">
-          {{ proxyAddress }}
-          <font-awesome-icon class="icon" icon="external-link-alt" />
-        </a>
-        <p class="title-address text-small">
-          {{ $t('data_feed_details.underlying_feed_contract').toUpperCase() }}
-        </p>
-        <a
-          :href="urlUnderlyingContract"
-          target="_blank"
-          class="contract-info text"
-        >
-          {{ feedAddress }}
-          <font-awesome-icon class="icon" icon="external-link-alt" />
-        </a>
+    <div class="mt-lg grid grid-cols-2 md:grid-cols-1 gap-lg">
+      <div class="grid gap-sm">
+        <div v-if="isContractVersion2">
+          <p class="text-bold">
+            {{ $t('data_feed_details.contract_address_title').toUpperCase() }}
+          </p>
+          <ExternalLink :label="proxyAddress" :url="urlProxyContract" />
+        </div>
+        <div v-else>
+          <p class="text-bold">
+            {{ $t('data_feed_details.proxy_address').toUpperCase() }}
+          </p>
+          <ExternalLink :label="proxyAddress" :url="urlProxyContract" />
+          <p class="text-bold mt-md">
+            {{ $t('data_feed_details.underlying_feed_contract').toUpperCase() }}
+          </p>
+          <ExternalLink :label="feedAddress" :url="urlUnderlyingContract" />
+        </div>
       </div>
-      <p class="title-address text-small">
-        {{ $t('data_feed_details.erc2362_asset_id').toUpperCase() }}
-      </p>
-      <p target="_blank" class="contract-id text font-mono">
-        {{ contractId }}
-      </p>
+      <div class="grid grid-rows-[max-content_max-content]">
+        <p class="text-bold h-max">
+          {{ $t('data_feed_details.erc2362_asset_id').toUpperCase() }}
+        </p>
+        <p target="_blank" class="text-highlighted font-mono h-max">
+          {{ contractId }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { urls } from '../constants'
+import { WButton, ButtonType } from 'wit-vue-ui'
+import ExternalLink from './ExternalLink.vue'
 const props = defineProps({
   network: {
     type: String,
@@ -98,81 +102,3 @@ const isContractVersion2 = computed(
   () => props.feedAddress === props.proxyAddress,
 )
 </script>
-
-<style lang="scss" scoped>
-.integration-details {
-  padding: 16px;
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 16px;
-  .left {
-    text-align: center;
-    padding-right: 16px;
-    .title-details {
-      margin-bottom: 16px;
-    }
-    .bottom {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 8px;
-      grid-template-rows: max-content max-content;
-      .btn {
-        height: max-content;
-      }
-    }
-  }
-  .right {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 8px;
-    .title-address {
-      margin-top: 8px;
-    }
-    .contract-id {
-      margin-bottom: 8px;
-      word-break: break-all;
-      max-width: 400px;
-    }
-    .contract-addresses {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-gap: 8px;
-    }
-    .contract-info {
-      word-break: break-all;
-      margin-bottom: 8px;
-      cursor: pointer;
-      display: flex;
-      gap: 4px;
-      align-items: center;
-    }
-    .icon {
-      font-size: 10px;
-      width: 10px;
-      height: 10px;
-      display: inline-block;
-    }
-  }
-}
-@media (max-width: 850px) {
-  .integration-details {
-    grid-template-columns: 1fr;
-    grid-gap: 16px;
-    .right {
-      border-right: none;
-    }
-    .left {
-      border-right: none;
-      padding-bottom: 24px;
-      .testing {
-        grid-row: 2;
-      }
-      .bottom {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-    }
-  }
-}
-</style>

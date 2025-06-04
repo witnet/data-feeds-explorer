@@ -152,9 +152,9 @@ const lineChart = computed(() => {
   chart.value.timeScale().fitContent()
 
   return chart.value.addAreaSeries({
-    topColor: '#41BEA556',
-    bottomColor: '#41BEA504',
-    lineColor: '#41BEA5',
+    topColor: '#00E2ED56',
+    bottomColor: '#00E2ED04',
+    lineColor: '#00E2ED',
     lineWidth: 2,
     priceFormat: { type: 'price', minMove: 0.001, precision: 3 },
   })

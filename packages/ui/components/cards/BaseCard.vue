@@ -7,7 +7,7 @@
 <style lang="scss" scoped>
 .card-border {
   width: 100%;
-  border-radius: 4px;
+  border-radius: 24px;
   cursor: pointer;
   height: max-content;
   transition: all 0.3s ease;

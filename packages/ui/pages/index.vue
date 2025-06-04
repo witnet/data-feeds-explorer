@@ -1,6 +1,6 @@
 <template>
   <div class="w-screen h-max">
-    <!-- <HeroSection /> -->
+    <HeroSection />
     <FeedsSection />
   </div>
 </template>

@@ -56,17 +56,19 @@
       class="transactions"
       :transactions="transactions"
     />
-    <PaginationSection
+    <WPagination
       v-if="totalItems && totalItems > itemsPerPage"
-      :items-length="totalItems"
-      @change-page="handleCurrentChange"
+      v-model:page="currentPage"
+      :total="totalItems"
+      :page-size="itemsPerPage"
+      class="justify-center"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { AreaData, Time } from 'lightweight-charts'
-import PaginationSection from './PaginationSection.vue'
+import { WPagination } from 'wit-vue-ui'
 import { getWitnetBlockExplorerLink } from '@/utils/getWitnetBlockExplorerLink'
 import { CHART_RANGE, POLLER_MILLISECONDS } from '@/constants'
 import { formatTimestamp } from '@/utils/formatTimestamp'
@@ -86,6 +88,10 @@ const currentRange: Ref<number | null> = ref(null)
 const currentPage = ref(1)
 const itemsPerPage = ref(25)
 const { locale, t } = useI18n({ useScope: 'global' })
+
+watch(currentPage, (valX, _valY) => {
+  handleCurrentChange()
+})
 
 const props = defineProps({
   feedFullName: {
@@ -232,15 +238,12 @@ const transactions = computed(() => {
 })
 const totalItems = computed(() => store.paginatedFeedRequest?.total ?? 0)
 
-const handleCurrentChange = async (val: number) => {
-  if (currentPage.value !== val) {
-    currentPage.value = val
-    await store.fetchPaginatedFeedRequests({
-      feedFullName: props.feedFullName,
-      page: currentPage.value,
-      size: itemsPerPage.value,
-    })
-  }
+const handleCurrentChange = async () => {
+  await store.fetchPaginatedFeedRequests({
+    feedFullName: props.feedFullName,
+    page: currentPage.value,
+    size: itemsPerPage.value,
+  })
 }
 const updateQuery = async (val: string) => {
   let allowUpdateInfo: boolean = false

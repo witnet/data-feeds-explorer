@@ -1,13 +1,16 @@
 <template>
-  <WSection>
+  <WSection frame-classes="bg-wit-blue-500 dark:bg-black-950">
     <template #content>
+      <!-- //TODO: Implement filter function
       <WInput
         :type="InputType.Icon"
         :placeholder="$t('search')"
         :outlined="true"
         content-type="text"
-      />
-      <FeedFilters @empty="handleEmpty" @loading="handleLoading" />
+      /> -->
+      <div class="mb-lg">
+        <FeedFilters @empty="handleEmpty" @loading="handleLoading" />
+      </div>
       <DataFeeds
         :feeds="feeds"
         :total-feeds="totalFeeds"
@@ -19,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { WSection, WInput, InputType } from 'wit-vue-ui'
+import { WSection } from 'wit-vue-ui'
 
 const store = useStore()
 const loadingFeeds = ref(true)

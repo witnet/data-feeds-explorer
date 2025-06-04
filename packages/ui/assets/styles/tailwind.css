@@ -15,12 +15,20 @@
     @apply font-title text-2xl font-semibold sm:text-xl text-black-950 dark:text-white-100;
     line-height: 1.1;
   }
+  .title-small {
+    @apply font-title text-lg font-semibold sm:text-sm text-black-950 dark:text-white-100;
+    line-height: 1.1;
+  }
   .text {
-    @apply text-lg text-black-800 dark:text-black-300;
+    @apply text-base text-black-800 dark:text-black-300;
+    line-height: 1.5;
+  }
+  .text-highlighted {
+    @apply text-base font-bold text-black-900 dark:text-white-100;
     line-height: 1.5;
   }
   .text-bold {
-    @apply text-lg font-bold text-black-800 dark:text-black-300;
+    @apply text-base font-bold text-black-800 dark:text-black-300;
     line-height: 1.5;
   }
   .text-small {
@@ -46,26 +54,26 @@
     @apply border-solid border-black-950 dark:border-white-50;
   }
   .feed-card {
-    @apply border border-black-950 dark:border-wit-blue-500 bg-white-50 dark:bg-wit-blue-500 dark:bg-opacity-5;
+    @apply border-2 border-black-950 dark:border-wit-blue-500 bg-white-50 dark:bg-wit-blue-500 dark:bg-opacity-5;
   }
   .operational {
-    @apply border border-black-950 dark:border-wit-blue-500;
+    @apply border-2 border-black-950 dark:border-wit-blue-500;
   }
   .delay {
-    @apply border border-orange-50 dark:border-orange-950;
+    @apply border-2 border-orange-50 dark:border-orange-950;
   }
   .error {
-    @apply border border-red-50 dark:border-red-950;
+    @apply border-2 border-red-50 dark:border-red-950;
   }
   .fieldset {
-    @apply dark:bg-white-100 dark:bg-opacity-5 bg-opacity-5 bg-black-800;
+    @apply bg-white-100 dark:bg-black-800;
   }
   .logo {
     @apply fill-black-950 dark:fill-white-50;
   }
   /* applied to --witnet-transaction, --contract-address and --selected-option */
-  .highlighted-text {
-    @apply text-wit-blue-500;
+  .link-text {
+    @apply dark:text-wit-blue-500 text-wit-blue-600;
   }
   .placeholder {
     @apply bg-black-500/5 dark:bg-black-200/5 bg-gradient-to-r from-black-500/5  to-black-600/10 dark:from-black-200/5 dark:to-black-300/10 dark:bg-opacity-5;

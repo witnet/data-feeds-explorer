@@ -2,9 +2,9 @@
   <BaseCard v-if="!empty" :class="dataFeedStatus.key">
     <nuxt-link :to="localeRoute(detailsPath)">
       <div class="card-container font-bold">
-        <div class="title">
+        <div class="header">
           <SvgIcon class="img" :svg="svg" />
-          <p class="name title">
+          <p class="title-small">
             {{ name.toUpperCase() }}
           </p>
           <InfoTooltip
@@ -18,10 +18,22 @@
             />
           </InfoTooltip>
         </div>
-        <p class="value">{{ label }} {{ formatedValue }}</p>
+        <p class="justify-self-end title-small">
+          {{ label }} {{ formatedValue }}
+        </p>
         <p class="timestamp text-2-sm">
           {{ formattedTimestamp }}
         </p>
+      </div>
+      <div class="flex gap-md py-sm px-md justify-end text-small">
+        <p class="timestamp text-2-sm">{{ sources }} {{ t('sources') }}</p>
+        <p class="timestamp text-2-sm">
+          {{ networks.length }} {{ t('networks') }}
+        </p>
+        <div class="flex">
+          <SvgIcon :name="'all'" />
+          ...
+        </div>
       </div>
     </nuxt-link>
   </BaseCard>
@@ -34,7 +46,7 @@
 import { formatNumber } from '@/utils/formatNumber'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localeRoute = useLocaleRoute()
 
 const props = defineProps({
@@ -74,9 +86,13 @@ const props = defineProps({
     type: Number,
     default: null,
   },
-  network: {
-    type: String,
-    default: 'Network',
+  networks: {
+    type: Array,
+    required: true,
+  },
+  sources: {
+    type: Number,
+    default: 0,
   },
   color: {
     type: String,
@@ -97,7 +113,11 @@ const dataFeedStatus = computed(() => {
   return getDataFeedStatus(props.timeToUpdate, props.lastResultTimestamp)
 })
 const formattedTimestamp = computed(() => {
-  return calculateTimeAgo(props.lastResultTimestamp, locale.value)
+  if (props.lastResultTimestamp.length < 11 && locale.value) {
+    return calculateTimeAgo(props.lastResultTimestamp, locale.value)
+  } else {
+    return 'NaN time ago'
+  }
 })
 </script>
 
@@ -113,7 +133,7 @@ const formattedTimestamp = computed(() => {
   row-gap: 8px;
   padding: 8px 16px;
   transition: box-shadow 0.3s;
-  .title {
+  .header {
     grid-row: 1 / span 2;
     justify-content: center;
     align-items: center;
@@ -133,10 +153,6 @@ const formattedTimestamp = computed(() => {
     font-size: 18px;
     display: flex;
     align-items: center;
-  }
-  .value {
-    font-size: 18px;
-    justify-self: flex-end;
   }
 }
 @media (max-width: 300px) {

@@ -14,19 +14,29 @@
       :value="feed.value"
       :last-result-timestamp="feed.lastResultTimestamp"
       :label="feed.label"
-      :network="feed.network"
+      :networks="feed.availableNetworks"
+      :sources="feed.sources.length"
       :chain="feed.chain"
       :color="feed.color"
     />
   </div>
   <div v-else class="feeds-container">
-    <FeedCard v-for="feed in ['1', '2', '3']" :key="feed" :empty="true" />
+    <FeedCard
+      v-for="feed in ['1', '2', '3']"
+      :key="feed"
+      :empty="true"
+      :networks="[]"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { formatSvgName } from '../utils/formatSvgName'
-import { type FeedInfo, type FormatedFeedInfo } from '@/types'
+import {
+  type FeedInfo,
+  type GeneralFeedInfo,
+  type FormatedFeedInfo,
+} from '@/types'
 const props = defineProps({
   feeds: {
     type: Object as PropType<FeedInfo[]>,
@@ -79,11 +89,24 @@ const allFeeds = computed(() => {
         }
       })
       .reduce(
-        (acc: Record<string, FormatedFeedInfo[]>, feed: FormatedFeedInfo) => {
+        (
+          acc: Record<string, Array<FormatedFeedInfo & GeneralFeedInfo>>,
+          feed: FormatedFeedInfo,
+        ) => {
+          const feedWithSourceAndNetwork = {
+            ...feed,
+            //TODO: retrieve sources
+            sources: [],
+            availableNetworks: acc[feed.name]
+              ? [...acc[feed.name][0].availableNetworks, ...feed.network]
+              : [feed.network],
+          }
           return {
             ...acc,
-            [feed.name]: acc[feed.name] ? [...acc[feed.name], feed] : [feed],
-          } as Record<string, FormatedFeedInfo[]>
+            [feed.name]: acc[feed.name]
+              ? [...acc[feed.name], feedWithSourceAndNetwork]
+              : [feedWithSourceAndNetwork],
+          } as Record<string, Array<FormatedFeedInfo & GeneralFeedInfo>>
         },
         {},
       )
@@ -101,8 +124,8 @@ const allFeeds = computed(() => {
   display: grid;
   grid-gap: 16px;
   width: 100%;
-  grid-template-rows: repeat(auto-fill, 80px);
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fill, 105px);
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
   justify-content: flex-start;
   align-items: center;
 }
@@ -122,7 +145,7 @@ const allFeeds = computed(() => {
 }
 @media screen and (max-width: 900px) {
   .feeds-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     padding: 0;
   }
 }

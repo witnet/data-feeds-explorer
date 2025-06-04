@@ -92,6 +92,7 @@ export const useStore = defineStore('data', {
       this.mainnetFeeds = mainnetFeeds.feeds
       this.totalMainnetFeeds = mainnetFeeds.total
       this.testnetFeeds = testnetFeeds.feeds
+      this.totalTestnetFeeds = testnetFeeds.total
     },
     async fetchFeeds({
       network = null,

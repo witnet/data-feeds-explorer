@@ -10,11 +10,13 @@
       <p class="text-small">
         {{ $t('chart.last_update') }}
       </p>
-      <p class="value text">
+      <p class="text text-black-950 dark:text-white-50">
         {{ lastResultValue }}
-        <span class="time text-2-sm">{{ formattedTimestamp }}</span>
+        <span class="time text-2-sm text-black-950 dark:text-white-50">{{
+          formattedTimestamp
+        }}</span>
       </p>
-      <p v-if="timeToUpdate" class="value-title">
+      <p v-if="timeToUpdate" class="text-small">
         {{ $t('chart.status') }}
       </p>
       <DataFeedStatus
@@ -24,9 +26,9 @@
       />
     </div>
     <InnerLink class="link" hash="integrate">
-      <CustomButton class="btn" type="secondary">
+      <WButton :type="ButtonType.primary">
         {{ $t('chart.use_data_feed') }}
-      </CustomButton>
+      </WButton>
     </InnerLink>
   </div>
 </template>
@@ -34,6 +36,7 @@
 <script setup lang="ts">
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
 import type { localeCodes } from '~/types'
+import { WButton, ButtonType } from 'wit-vue-ui'
 const { locale } = useI18n()
 
 const props = defineProps({
@@ -96,10 +99,6 @@ const formattedTimestamp = computed(() =>
     .feed-name {
       margin-left: 8px;
     }
-  }
-
-  .value {
-    margin-bottom: 8px;
   }
 }
 @media screen and (max-width: 1100px) {

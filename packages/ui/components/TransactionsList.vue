@@ -3,92 +3,100 @@
     :title="$t('transactions_list.transactions')"
     class="transactions-container"
   >
-    <div class="collection collection-container">
-      <div class="item-container item-blur">
-        <div class="attribute-container values-time">
-          <div class="attribute">
-            {{ $t('transactions_list.time') }}
-          </div>
-        </div>
-        <div class="attribute-container links">
-          <div class="attribute link">
-            {{ $t('transactions_list.witnet_explorer') }}
-          </div>
-          <div class="attribute value">
-            {{ $t('transactions_list.value') }}
-          </div>
-        </div>
-      </div>
-      <TransactionItem
-        v-for="(transaction, index) in transactions"
-        :key="transaction.timestamp + index"
-        :class="{ ['item-blur']: index % 2 }"
-        :witnet-link="transaction.witnetLink"
-        :data="transaction.data"
-        :timestamp="transaction.timestamp"
-        :dr-tx-hash="transaction.drTxHash"
-      />
+    <div>
+      <WTable :data="table" :labels="labels" :long="false" />
     </div>
   </FieldsetCard>
 </template>
 
-<script>
-export default {
-  name: 'FeedCard',
-  props: {
-    transactions: {
-      type: Array,
-      required: true,
-    },
+<script setup lang="ts">
+import { formatNumber } from '@/utils/formatNumber'
+import { formatTimestamp } from '@/utils/formatTimestamp'
+
+import {
+  Sort,
+  WTable,
+  type Column,
+  type Row,
+  type Label,
+  type Chip,
+} from 'wit-vue-ui'
+
+const props = defineProps({
+  transactions: {
+    type: Array,
+    required: true,
   },
+})
+
+type Transaction = {
+  timestamp: string
+  data: any
+  witnetLink: string
+  drTxHash: string
+}
+
+const getValue = (data: { label: string; value: string; decimals: number }) => {
+  return `${data.label} ${formatNumber(
+    (parseFloat(data.value) / 10 ** data.decimals).toString(),
+  )}`
+}
+
+const table = computed(() => {
+  return eventsListToTableRows(props.transactions as Transaction[])
+})
+const labels: Array<Label> = [
+  {
+    sortType: Sort.alphabetically,
+    break: false,
+    label: 'Time',
+    index: 0,
+  },
+  {
+    sortType: Sort.alphabetically,
+    break: true,
+    label: 'Transaction in Witnet Block Explorer',
+    index: 1,
+  },
+  {
+    sortType: Sort.ascentant,
+    label: 'Value',
+    break: false,
+    index: 2,
+  },
+]
+
+function eventsListToTableRows(transaction: Transaction[]): Row[] {
+  return transaction.map((tx: Transaction) => [
+    valueToCol(formatTimestamp(tx.timestamp), labels[0].label),
+    valueToCol('0x' + tx.drTxHash, labels[1].label, tx.witnetLink),
+    valueToCol(getValue(tx.data), labels[2].label),
+  ])
+}
+function valueToCol(
+  value: string | number | Chip[],
+  label: string,
+  url?: string,
+): Column {
+  if (typeof value === 'object') {
+    return {
+      chips: value,
+      label: label,
+    }
+  } else {
+    return {
+      value: value,
+      label: label,
+      url: url,
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-.item-container {
-  padding: 16px;
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  align-items: center;
-  column-gap: 16px;
-  row-gap: 24px;
-  &.item-blur {
-    background-color: var(--transaction-blur-background);
-  }
-
-  .attribute-container {
-    display: grid;
-    grid-template-columns: 1fr max-content;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 16px;
-    row-gap: 24px;
-  }
-  .value {
-    --column-width-min: max-content;
-  }
-  .links {
-    --column-width-min: 100px;
-  }
-  .values-time {
-    --column-width-min: 100px;
-  }
-}
-
-@media (max-width: 850px) {
-  .collection-container {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 600px) {
-  .item-container {
-    .attribute-container {
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(var(--column-width-min), 1fr)
-      );
-    }
+td {
+  a {
+    @apply font-mono font-bold break-all;
   }
 }
 </style>

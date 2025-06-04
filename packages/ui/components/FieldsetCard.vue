@@ -1,7 +1,7 @@
 <template>
   <div class="fieldset-container">
-    <h3 class="title text-bold">
-      {{ title.toUpperCase() }}
+    <h3 class="title">
+      {{ title }}
     </h3>
     <div class="content fieldset">
       <slot />
@@ -31,7 +31,7 @@ export default {
     padding: 16px 0 16px 0;
   }
   .content {
-    border-radius: 4px;
+    border-radius: 24px;
     height: max-content;
   }
 }

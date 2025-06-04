@@ -138,11 +138,21 @@ export type FormatedFeedInfo = {
     name: string
     alt: string
   }
-  network: string
   chain: string
+  network: string
   color: string
   blockExplorer: string
   svg: string
+}
+
+export type GeneralFeedInfo = {
+  sources: Source[]
+  availableNetworks: string[]
+}
+
+export type Source = {
+  name: string
+  url: string
 }
 
 export type FeedsRequestInfo = {

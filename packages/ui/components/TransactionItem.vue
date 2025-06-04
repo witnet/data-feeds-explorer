@@ -10,11 +10,11 @@
         <a
           :href="witnetLink"
           target="_blank"
-          class="link highlighted-text font-mono truncate"
+          class="link link-text font-mono truncate"
         >
           0x{{ drTxHash }}
           <font-awesome-icon
-            class="icon highlighted-text text-2-sm"
+            class="icon link-text text-2-sm"
             icon="external-link-alt"
           />
         </a>
