@@ -118,32 +118,6 @@ export class ResultRequestRepository {
     return this.normalizeId(lastResultRequest)
   }
 
-  //TODO: sources
-  async getSources(
-    feedFullName: string,
-  ): Promise<ResultRequestDbObjectNormalized | null> {
-    const sources = await this.collection
-      .findOne(
-        {
-          feedFullName,
-        },
-        {
-          sort: {
-            timestamp: -1,
-          },
-          collation: {
-            locale: 'en_US',
-            numericOrdering: true,
-          },
-        },
-      )
-      .catch((e) => {
-        console.log(`Error in getLastResult: ${feedFullName}`, e)
-        return null
-      })
-    return this.normalizeId(sources)
-  }
-
   async insert(
     resultRequest: WithoutId<ResultRequestDbObject>,
   ): Promise<ResultRequestDbObjectNormalized | null> {

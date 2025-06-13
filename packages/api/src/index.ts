@@ -22,6 +22,7 @@ import { SvgCache } from './svgCache.js'
 import { NetworkRouter } from './web3Middleware/NetworkRouter.js'
 import { Configuration } from './web3Middleware/Configuration.js'
 import { FeedsState } from './repository/feedState.js'
+import { SourcesRepository } from './repository/Sources.js'
 
 class DataFeedsExplorer {
   routers: Array<NetworkRouter>
@@ -83,6 +84,7 @@ class DataFeedsExplorer {
     this.repositories = {
       feedRepository: new FeedRepository(this.feedsState),
       resultRequestRepository: new ResultRequestRepository(db),
+      sourcesRepository: new SourcesRepository(db),
     }
     this.repositories.feedRepository.setLegacyFeeds(legacyFeeds)
     this.repositories.feedRepository.setV2Feeds(v2Feeds)

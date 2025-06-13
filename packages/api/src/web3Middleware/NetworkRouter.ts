@@ -39,7 +39,7 @@ export type NetworkInfo = {
 }
 export type NetworkSnapshot = {
   network: string
-  feeds: Array<SupportedFeed & Sources & LatestPrice>
+  feeds: Array<SupportedFeed & LatestPrice>
 }
 
 export type Sources = {
@@ -99,7 +99,7 @@ export class NetworkRouter {
       const snapshot = await this.getSnapshot()
       const insertPromises = snapshot.feeds
         .filter((feed) => isFeedWithPrice(feed) && feed.timestamp !== '0')
-        .map((feed: SupportedFeed & Sources & LatestPrice) => ({
+        .map((feed: SupportedFeed & {sources: Array<string>} & LatestPrice) => ({
           feedFullName: createFeedFullName(
             this.network,
             feed.caption.split('-').reverse()[1],
@@ -113,6 +113,7 @@ export class NetworkRouter {
           timestamp: feed.timestamp.toString(),
         }))
         .map((resultRequest) => {
+          this.repositories.sourcesRepository.insertSources(resultRequest.feedFullName, resultRequest.sources)
           return this.repositories.resultRequestRepository.insertIfLatest(
             resultRequest,
           )
@@ -144,16 +145,14 @@ export class NetworkRouter {
         return this.getRadonRequest({ id })
       }),
     )
-    const sources = radonRequests.map((request) => {
-      return request?.sources ?? []
-    })
+    const sources = radonRequests.map((request) => request?.sources.map(source => source?.url) ?? [])
 
     return {
       network: this.network,
       feeds: supportedFeeds.map((supportedFeed, index) => ({
         ...supportedFeed,
-        sources: sources[index],
         ...latestPrices[index],
+        sources: sources[index],
       })),
     }
   }

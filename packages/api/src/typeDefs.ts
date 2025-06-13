@@ -22,6 +22,7 @@ const typeDefs = gql`
     finality: String!
     requests(timestamp: Int!): [ResultRequest]!
     logo: String!
+    sources: [String!]!
   }
 
   type Total {
@@ -54,12 +55,6 @@ const typeDefs = gql`
     requests: [ResultRequest]
     total: Int!
   }
-
-  # type DataRequest @entity(embedded: true) {
-  #   retrieval: String! @column
-  #   aggregation: String! @column
-  #   tally: String! @column
-  # }
 
   type Query {
     feed(feedFullName: String!): Feed

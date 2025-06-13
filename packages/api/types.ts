@@ -1,9 +1,11 @@
+import { ObjectId } from 'mongodb';
 import { AbiItem } from 'web3-utils'
 import { ResultRequestDbObject } from './src/generated/types.js'
 import { FeedRepository } from './src/repository/Feed.js'
 import { ResultRequestRepository } from './src/repository/ResultRequest.js'
 import DataLoader from 'dataloader'
 import { Configuration } from './src/web3Middleware/Configuration.js'
+import { SourcesRepository } from './src/repository/Sources.js'
 
 export * from './src/generated/types.js'
 export { Db, Collection, WithId } from 'mongodb'
@@ -24,7 +26,7 @@ export type Loaders = {
     string
   >
   logos: DataLoader<string, string, string>
-  sources: DataLoader<string, SourceDbObject[], string>
+  sources: DataLoader<string, SourcesDbObject[], string>
 }
 
 export interface Context {
@@ -139,9 +141,10 @@ export type NetworksConfig = {
 
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
 
-export type SourceDbObject = {
-  path: string
-  authority: string
+export type SourcesDbObject = {
+  _id: ObjectId,
+  feedFullName: string,
+  urls: Array<string>,
 }
 
 export type FeedInfoConfig = FeedInfoGeneric<string>
@@ -168,6 +171,7 @@ export type PaginatedRequests = {
 export type Repositories = {
   feedRepository: FeedRepository
   resultRequestRepository: ResultRequestRepository
+  sourcesRepository?: SourcesRepository
 }
 
 export type ContractsState = {

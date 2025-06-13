@@ -4,6 +4,7 @@ import {
   Loaders,
   Repositories,
   ResultRequestDbObjectNormalized,
+  SourcesDbObject
 } from '../../types.js'
 
 export class LoadersFactory {
@@ -42,10 +43,9 @@ export class LoadersFactory {
             feedFullName,
           ),
       ),
-      //TODO: get sources
-      sources: this.genericLoader<Promise<ResultRequestDbObjectNormalized>>(
+      sources: this.genericLoader<Promise<SourcesDbObject>>(
         async (feedFullName: string) =>
-          await this.repositories.resultRequestRepository.getSources(
+          await this.repositories.sourcesRepository.getSources(
             feedFullName,
           ),
       ),
