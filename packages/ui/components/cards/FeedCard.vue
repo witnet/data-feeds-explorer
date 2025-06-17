@@ -1,5 +1,5 @@
 <template>
-  <BaseCard v-if="!empty" :class="dataFeedStatus.key">
+  <BaseCard v-if="!empty">
     <nuxt-link :to="localeRoute(detailsPath)">
       <div class="card-container font-bold">
         <div class="header">
@@ -7,16 +7,6 @@
           <p class="title-small">
             {{ name.toUpperCase() }}
           </p>
-          <InfoTooltip
-            v-if="dataFeedStatus.key !== 'operational'"
-            :show-icon="false"
-            :value="$t(`chart.${dataFeedStatus.key}`)"
-          >
-            <WarningStatus
-              v-if="dataFeedStatus.key !== 'operational'"
-              :color="dataFeedStatus.color"
-            />
-          </InfoTooltip>
         </div>
         <p class="justify-self-end title-small">
           {{ label }} {{ formatedValue }}
@@ -45,7 +35,6 @@
 <script setup>
 import { formatNumber } from '@/utils/formatNumber'
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
-import { getDataFeedStatus } from '@/utils/getDataFeedStatus'
 const { locale, t } = useI18n()
 const localeRoute = useLocaleRoute()
 
@@ -82,10 +71,6 @@ const props = defineProps({
     type: String,
     default: 'lastResultTimestamp',
   },
-  timeToUpdate: {
-    type: Number,
-    default: null,
-  },
   networks: {
     type: Array,
     required: true,
@@ -93,10 +78,6 @@ const props = defineProps({
   sources: {
     type: Number,
     default: 0,
-  },
-  color: {
-    type: String,
-    default: 'color',
   },
 })
 const formatedValue = computed(() => {
@@ -108,9 +89,6 @@ const formatedValue = computed(() => {
       : 3
   const formatedLastResult = lastResult.toFixed(adjustedDecimals)
   return formatNumber(formatedLastResult)
-})
-const dataFeedStatus = computed(() => {
-  return getDataFeedStatus(props.timeToUpdate, props.lastResultTimestamp)
 })
 const formattedTimestamp = computed(() => {
   if (props.lastResultTimestamp.length < 11 && locale.value) {

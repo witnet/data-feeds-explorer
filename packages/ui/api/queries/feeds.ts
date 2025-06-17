@@ -18,6 +18,7 @@ export default gql`
         heartbeat
         finality
         logo
+        sources
       }
       total
     }

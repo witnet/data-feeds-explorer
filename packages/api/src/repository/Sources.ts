@@ -1,33 +1,22 @@
-import {
-  SourcesDbObject,
-  Db,
-  Collection,
-  WithoutId,
-} from '../../types.js'
+import { SourcesDbObject, Db, Collection, WithoutId } from '../../types.js'
 
 export class SourcesRepository {
-  collection: Collection<
-    SourcesDbObject | WithoutId<SourcesDbObject>
-  >
+  collection: Collection<SourcesDbObject | WithoutId<SourcesDbObject>>
 
   constructor(db: Db) {
     this.collection = db.collection('sources')
   }
 
-  async getSources(
-    feedFullName: string,
-  ): Promise<SourcesDbObject | null> {
+  async getSources(feedFullName: string): Promise<Array<string> | null> {
     const sources = await this.collection
-      .findOne(
-        {
-          feedFullName,
-        },
-      )
+      .findOne({
+        feedFullName,
+      })
       .catch((e) => {
         console.log(`Error in getSources: ${feedFullName}`, e)
         return null
       })
-    return sources
+    return sources.sources
   }
 
   async insertSources(
@@ -39,21 +28,20 @@ export class SourcesRepository {
         {
           feedFullName,
         },
-        { 
-            $set: {
-                feedFullName,
-                sources, 
-            },
+        {
+          $set: {
+            feedFullName,
+            sources,
+          },
         },
         {
-            upsert: true
+          upsert: true,
         },
       )
       .catch((e) => {
         console.log(`Error in insertSources: ${feedFullName}`, e)
         return null
       })
-      return null
+    return null
   }
-
 }

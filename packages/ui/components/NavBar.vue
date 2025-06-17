@@ -8,7 +8,7 @@
     class="flex justify-center"
   >
     <div class="flex w-full justify-between py-md px-xl max-w-[1300px]">
-      <nuxt-link :to="localePath('/')" aria-label="home">
+      <nuxt-link :to="'/'" aria-label="home">
         <SvgIcon name="witnet-logo" class="w-[284px]" />
       </nuxt-link>
       <a :href="urls.documentation" target="_blank" rel="nofollow">
@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-const localePath = useLocalePath()
 const route = useRoute()
 import { urls } from '../constants'
 import { WButton, ButtonType } from 'wit-vue-ui'

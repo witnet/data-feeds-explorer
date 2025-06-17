@@ -19,6 +19,7 @@
     "underlying_feed_contract": "Underlying feed contract address",
     "erc2362_asset_id": "ERC2362 asset ID",
     "integration_details_description": "Witnet price feeds can be integrated into your own {0} contracts in two different ways:",
+    "feed_sources": "The data was retrieved from {0} key sources:",
     "feed_description": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time the price changes by more than {deviation}%.",
     "feed_description_routed": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated as soon as any of the related data feeds update.",
     "feed_description_routed_cached": "This is a Witnet powered {name} data feed available on {network}. Last reported value is {value} (updated on {date}). This data feed is updated every {heartbeat}, or every time any of the related data feeds update."

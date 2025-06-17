@@ -13,13 +13,13 @@
           </div>
           <DataFeedsCount
             :chains="supportedChains.length"
-            :networks="networks"
+            :networks="networks.length"
             :feeds="totalFeeds"
           />
         </div>
-        <ClientOnly>
+        <!-- <ClientOnly>
           <WLatestUpdates />
-        </ClientOnly>
+        </ClientOnly> -->
       </div>
     </template>
   </WSection>
@@ -29,14 +29,21 @@
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { WLatestUpdates, WSection } from 'wit-vue-ui'
 const store = useStore()
+const {
+  mainnetFeeds,
+  testnetFeeds,
+  totalTestnetFeeds,
+  totalMainnetFeeds,
+  networks,
+} = storeToRefs(store)
 const { data } = await useAsyncData('ecosystems', store.fetchEcosystems)
-const totalFeeds = computed(() => store.totalFeeds)
-const networks = computed(
-  () => store.totalMainnetFeeds + store.totalTestnetFeeds,
+const totalFeeds = computed(
+  () => totalTestnetFeeds.value + totalMainnetFeeds.value,
 )
+const allFeeds = computed(() => [...mainnetFeeds.value, ...testnetFeeds.value])
 
 const supportedChains = computed(() => {
-  return Object.values(generateSelectOptions(networks.value))
+  return Object.values(generateSelectOptions(allFeeds.value))
     .filter((network: any) => network && network[0])
     .map((network: any) => {
       const chain = network[0].chain

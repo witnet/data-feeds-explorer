@@ -27,6 +27,7 @@ export default gql`
       blockExplorer
       color
       logo
+      sources
     }
   }
 `

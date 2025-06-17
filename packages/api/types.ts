@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb'
 import { AbiItem } from 'web3-utils'
 import { ResultRequestDbObject } from './src/generated/types.js'
 import { FeedRepository } from './src/repository/Feed.js'
@@ -26,7 +26,7 @@ export type Loaders = {
     string
   >
   logos: DataLoader<string, string, string>
-  sources: DataLoader<string, SourcesDbObject[], string>
+  sources: DataLoader<string, string[], string>
 }
 
 export interface Context {
@@ -142,9 +142,9 @@ export type NetworksConfig = {
 export type FeedInfo = FeedInfoGeneric<Array<AbiItem>>
 
 export type SourcesDbObject = {
-  _id: ObjectId,
-  feedFullName: string,
-  urls: Array<string>,
+  _id: ObjectId
+  feedFullName: string
+  urls: Array<string>
 }
 
 export type FeedInfoConfig = FeedInfoGeneric<string>

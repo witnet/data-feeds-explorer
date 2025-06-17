@@ -9,15 +9,12 @@
       :details-path="feed.detailsPath"
       :name="feed.name"
       :decimals="feed.decimals"
-      :time-to-update="feed.timeToUpdate"
       :svg="feed.svg"
       :value="feed.value"
       :last-result-timestamp="feed.lastResultTimestamp"
       :label="feed.label"
       :networks="feed.availableNetworks"
       :sources="feed.sources.length"
-      :chain="feed.chain"
-      :color="feed.color"
     />
   </div>
   <div v-else class="feeds-container">
@@ -81,6 +78,7 @@ const allFeeds = computed(() => {
             name: formatSvgName(feed.name),
             alt: feed.name,
           },
+          sources: feed.sources,
           network: feed.network,
           chain: feed.chain,
           color: feed.color,
@@ -90,29 +88,30 @@ const allFeeds = computed(() => {
       })
       .reduce(
         (
-          acc: Record<string, Array<FormatedFeedInfo & GeneralFeedInfo>>,
+          acc: Record<string, FormatedFeedInfo & GeneralFeedInfo>,
           feed: FormatedFeedInfo,
         ) => {
-          const feedWithSourceAndNetwork = {
-            ...feed,
-            //TODO: retrieve sources
-            sources: [],
-            availableNetworks: acc[feed.name]
-              ? [...acc[feed.name][0].availableNetworks, ...feed.network]
-              : [feed.network],
-          }
           return {
             ...acc,
             [feed.name]: acc[feed.name]
-              ? [...acc[feed.name], feedWithSourceAndNetwork]
-              : [feedWithSourceAndNetwork],
-          } as Record<string, Array<FormatedFeedInfo & GeneralFeedInfo>>
+              ? {
+                  ...feed,
+                  availableNetworks: [
+                    ...acc[feed.name].availableNetworks,
+                    feed.network,
+                  ],
+                }
+              : {
+                  ...feed,
+                  availableNetworks: [feed.network],
+                },
+          } as Record<string, FormatedFeedInfo & GeneralFeedInfo>
         },
         {},
       )
-    return Object.values(feeds)
-      .map((feeds) => feeds[feeds.length - 1])
-      .sort((feed1: any, feed2: any) => feed1.name.localeCompare(feed2.name))
+    return Object.values(feeds).sort((feed1: any, feed2: any) =>
+      feed1.name.localeCompare(feed2.name),
+    )
   } else {
     return []
   }

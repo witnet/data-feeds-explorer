@@ -23,6 +23,7 @@
       :last-result-date="lastResultDate"
       :feed-time-to-update="feedTimeToUpdate ?? ''"
       :deviation="normalizedFeed.deviation"
+      :sources="normalizedFeed.sources"
     />
     <ClientOnly>
       <FieldsetCard
@@ -135,7 +136,7 @@ const normalizedFeed = computed(() => {
     return {
       name: feed.value.name?.toUpperCase(),
       isRouted: feed.value.isRouted,
-      source: feed.value.sources,
+      sources: feed.value.sources,
       address: feed.value.address,
       proxyAddress: feed.value.proxyAddress,
       contractId: feed.value.contractId,

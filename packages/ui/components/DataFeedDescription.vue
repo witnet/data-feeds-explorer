@@ -11,17 +11,30 @@
       :key="fieldToProp[field]"
       #[field]
     >
-      <span
-        v-if="description.i18nPath"
-        :key="field.i18nPath"
-        class="text-highlighted"
-        >{{ fieldToProp[field] }}</span
-      >
+      <span v-if="description.i18nPath" class="text-highlighted">{{
+        fieldToProp[field]
+      }}</span>
     </template>
   </i18n-t>
+  <p class="p-md pt-0 text inline">
+    {{ $t('data_feed_details.feed_sources', [sources.length]) }}
+    <a
+      v-for="(link, index) in sources"
+      :key="link.toString()"
+      :href="link.toString()"
+      target="_blank"
+      class="text-highlighted"
+      >{{ formatedLink(link.toString())
+      }}<span v-if="index != sources.length - 1">, </span></a
+    >.
+  </p>
 </template>
 
 <script setup lang="ts">
+type LocalizationField = {
+  i18nPath: string
+  fields: string[]
+}
 const fields = {
   name: 'name',
   network: 'network',
@@ -59,9 +72,13 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  sources: {
+    type: Array<String>,
+    required: true,
+  },
 })
 
-const fieldToProp = computed(() => {
+const fieldToProp: Ref<Record<string, any>> = computed(() => {
   return {
     [fields.name]: props.feedName,
     [fields.network]: props.networkName,
@@ -71,7 +88,7 @@ const fieldToProp = computed(() => {
     [fields.deviation]: props.deviation,
   }
 })
-const description = computed(() => {
+const description: Ref<LocalizationField> = computed(() => {
   const routedFeedFields = [
     fields.name,
     fields.network,
@@ -96,6 +113,10 @@ const description = computed(() => {
     }
   }
 })
+function formatedLink(url: string) {
+  const match = url.match(/(?<=\/\/)[^/]+(?=\/)/)
+  return match ? match[0] : url
+}
 </script>
 
 <style lang="scss" scoped>

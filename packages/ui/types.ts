@@ -119,6 +119,7 @@ export type FeedInfo = {
   heartbeat: string
   finality: string
   logo: string
+  sources: string[]
 }
 
 export type FormatedFeedInfo = {
@@ -143,10 +144,10 @@ export type FormatedFeedInfo = {
   color: string
   blockExplorer: string
   svg: string
+  sources: string[]
 }
 
 export type GeneralFeedInfo = {
-  sources: Source[]
   availableNetworks: string[]
 }
 
