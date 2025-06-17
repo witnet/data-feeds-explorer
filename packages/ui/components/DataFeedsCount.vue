@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div
-      class="bg-white-100 dark:bg-black-950 rounded-[24px] grid grid-cols-[max-content_max-content_max-content] gap-xl justify-items-center justify-center w-max h-max px-lg py-sm"
+      class="w-full bg-white-100 dark:bg-black-950 rounded-[24px] grid grid-cols-[max-content_max-content_max-content] gap-xl [&&]:sm:gap-md justify-items-center justify-center h-max px-lg py-sm"
     >
       <div class="item text-bold">
         <p class="title text-2xl">

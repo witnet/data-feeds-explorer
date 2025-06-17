@@ -1,10 +1,17 @@
 <template>
-  <WSection frame-classes="dark:bg-black-900">
+  <WSection
+    frame-classes="dark:bg-black-900"
+    content-classes="[&&]:sm:p-[32px_32px_70px_32px]"
+  >
     <template #content>
-      <div class="grid gap-lg">
-        <div class="grid gap-lg">
-          <div class="text h-max max-w-[500px]">
-            <h2 class="title text-2xl">
+      <div
+        class="grid grid-cols-2 md:grid-cols-none justify-center gap-lg items-center"
+      >
+        <div
+          class="grid grid-rows-[max-content_max-content] justify-center items-center gap-lg sm:mb-md"
+        >
+          <div class="text h-max max-w-[500px] sm:px-md">
+            <h2 class="title text-2xl mb-md">
               {{ $t('landing.title') }}
             </h2>
             <p class="text">
@@ -17,9 +24,9 @@
             :feeds="totalFeeds"
           />
         </div>
-        <!-- <ClientOnly>
-          <WLatestUpdates />
-        </ClientOnly> -->
+        <ClientOnly>
+          <WLatestUpdates class="justify-self-center w-full sm:px-md" />
+        </ClientOnly>
       </div>
     </template>
   </WSection>
@@ -27,7 +34,7 @@
 
 <script setup lang="ts">
 import { generateSelectOptions } from '../utils/generateSelectOptions'
-import { WLatestUpdates, WSection } from 'wit-vue-ui'
+import { WSection } from 'wit-vue-ui'
 const store = useStore()
 const {
   mainnetFeeds,

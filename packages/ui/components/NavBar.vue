@@ -7,7 +7,9 @@
     "
     class="flex justify-center"
   >
-    <div class="flex w-full justify-between py-md px-xl max-w-[1300px]">
+    <div
+      class="flex w-full justify-between py-md px-xl [&&]:xs:px-md sm:flex-col sm:gap-lg max-w-[1300px]"
+    >
       <nuxt-link :to="'/'" aria-label="home">
         <SvgIcon name="witnet-logo" class="w-[284px]" />
       </nuxt-link>

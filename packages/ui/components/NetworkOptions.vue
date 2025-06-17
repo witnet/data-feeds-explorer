@@ -2,11 +2,15 @@
   <div v-if="options.length" class="nav-container" :class="type">
     <div class="networks">
       <NetworkLink v-if="!hideAll" :name="'All'" />
-      <div v-for="option in mainOptions" :key="option.name" class="option">
+      <div
+        v-for="option in aggregatedOptions"
+        :key="option.name"
+        class="option"
+      >
         <NetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
-    <transition name="dropdown" class="dropdown">
+    <!-- <transition name="dropdown" class="dropdown">
       <div v-if="showAll" class="networks">
         <div
           v-for="option in hiddenEcosystems"
@@ -16,10 +20,10 @@
           <NetworkLink :name="option.name" :svg="option.logo" />
         </div>
       </div>
-    </transition>
+    </transition> -->
     <div
-      v-if="type === 'sidebar' && hiddenEcosystems.length"
-      class="show-more-btn text-small-bold"
+      v-if="hiddenEcosystems.length"
+      class="show-more-btn text-small-bold mt-md"
       @click="toggleShowAll"
     >
       <p v-if="showAll">
@@ -41,13 +45,6 @@ import { type Ref } from 'vue'
 import type { NetworkOption } from '~/types'
 const store = useStore()
 const props = defineProps({
-  type: {
-    type: String,
-    default: 'sidebar',
-    validator(value: string) {
-      return ['navbar', 'sidebar'].includes(value)
-    },
-  },
   hideAll: {
     type: Boolean,
     default: false,
@@ -63,13 +60,22 @@ const priorityEcosystemNames: Array<string> = [
   'avalanche',
   'polygon',
 ]
-const showAll: Ref<boolean> = ref(props.type === 'navbar')
+const showAll: Ref<boolean> = ref(false)
 const selectedEcosystemName = computed(() => store.selectedEcosystemName)
+const aggregatedOptions = computed(() =>
+  showAll.value
+    ? [...mainOptions.value, ...hiddenEcosystems.value]
+    : mainOptions.value,
+)
 
 const priorityEcosystems = computed(() => {
   return props.options.filter((option) => {
     return priorityEcosystemNames.includes(option.name.toLowerCase())
   })
+})
+
+const networksLeft = computed(() => {
+  return `(${hiddenEcosystems.value.length}+)`
 })
 
 const selectedEcosystem = computed(() => {
@@ -88,9 +94,6 @@ const hiddenEcosystems = computed(() => {
       option.name.toLowerCase() !== selectedEcosystemName.value.toLowerCase()
     )
   })
-})
-const networksLeft = computed(() => {
-  return `(${hiddenEcosystems.value.length}+)`
 })
 
 const maxOptionsNumber = computed(() => (props.hideAll ? 7 : 6))
@@ -138,7 +141,8 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
 }
 .networks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 95px);
+  grid-template-columns: repeat(auto-fit, 90px);
+  margin-bottom: 16px;
   grid-template-rows: 95px;
   grid-gap: 16px;
   .option {
@@ -185,9 +189,6 @@ const toggleShowAll = () => (showAll.value = !showAll.value)
     .networks {
       grid-template-columns: repeat(6, 88px);
     }
-  }
-  .sidebar {
-    display: none;
   }
 }
 @media (max-width: 600px) {

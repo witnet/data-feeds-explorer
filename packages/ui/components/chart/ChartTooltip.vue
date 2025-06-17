@@ -35,9 +35,7 @@
 
 <script setup lang="ts">
 import { calculateTimeAgo } from '@/utils/calculateTimeAgo'
-import type { localeCodes } from '~/types'
 import { WButton, ButtonType } from 'wit-vue-ui'
-const { locale } = useI18n()
 
 const props = defineProps({
   value: {
@@ -71,7 +69,7 @@ const props = defineProps({
 })
 
 const formattedTimestamp = computed(() =>
-  calculateTimeAgo(props.lastResultTimestamp, locale.value as localeCodes),
+  calculateTimeAgo(props.lastResultTimestamp),
 )
 </script>
 

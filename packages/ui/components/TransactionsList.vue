@@ -59,7 +59,7 @@ const labels: Array<Label> = [
     index: 1,
   },
   {
-    sortType: Sort.ascentant,
+    sortType: Sort.descendant,
     label: 'Value',
     break: false,
     index: 2,
