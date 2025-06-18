@@ -2,7 +2,7 @@
 <template>
   <!-- We are using v-html assuming we never use user-provided content -->
   <div v-if="svg" class="icon" v-html="svg" />
-  <customIcon v-else-if="name" />
+  <customIcon v-else-if="name" :class="twStyles" />
 </template>
 
 <script setup lang="ts">
@@ -12,14 +12,24 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  twStyles: {
+    type: String,
+    default: '',
+  },
   name: {
     type: String,
     default: null,
   },
 })
-const customIcon = defineAsyncComponent(
-  () => import(`@/assets/svg/${url.value}.svg`),
-)
+const customIcon = defineAsyncComponent(() => {
+  try {
+    const icon = import(`@/assets/svg/${url.value}.svg`)
+    return icon
+  } catch (err) {
+    console.log('Error getting svg', err)
+    return import(`@/assets/svg/ethereum.svg`)
+  }
+})
 const url = computed(() => `${props.name}`.trim())
 </script>
 

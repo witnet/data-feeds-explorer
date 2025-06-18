@@ -10,17 +10,6 @@
         <NetworkLink :name="option.name" :svg="option.logo" />
       </div>
     </div>
-    <!-- <transition name="dropdown" class="dropdown">
-      <div v-if="showAll" class="networks">
-        <div
-          v-for="option in hiddenEcosystems"
-          :key="option.name"
-          class="option text-small-bold"
-        >
-          <NetworkLink :name="option.name" :svg="option.logo" />
-        </div>
-      </div>
-    </transition> -->
     <div
       v-if="hiddenEcosystems.length"
       class="show-more-btn text-small-bold mt-md"

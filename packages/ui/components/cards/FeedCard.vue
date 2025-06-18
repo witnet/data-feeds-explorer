@@ -20,10 +20,7 @@
         <p class="timestamp text-2-sm">
           {{ networks.length }} {{ t('networks') }}
         </p>
-        <div class="flex">
-          <SvgIcon :name="'all'" />
-          ...
-        </div>
+        <NetworksCard :icons="icons" :show-more="availableChains.length > 4" />
       </div>
     </nuxt-link>
   </BaseCard>
@@ -79,6 +76,14 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+})
+const availableChains = computed(() =>
+  props.networks.map((network) => {
+    return network.match(/^[^-]+/)[0]
+  }),
+)
+const icons = computed(() => {
+  return [...new Set(availableChains.value)].slice(0, 4)
 })
 const formatedValue = computed(() => {
   const lastResult = parseFloat(props.value) / 10 ** props.decimals
