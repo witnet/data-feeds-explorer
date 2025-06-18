@@ -10,7 +10,6 @@
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { WSwitch } from 'wit-vue-ui'
 const store = useStore()
-const feeds = computed(() => store.feeds)
 const includeTestnets = ref(true)
 const route = useRoute()
 const hideAllOptions = computed(() => !!route.params?.pair)
@@ -27,17 +26,6 @@ watch(includeTestnets, async (valX, _valY) => {
     pair: store.selectedPair,
   })
   emit('loading', false)
-})
-
-watch(feeds, (value) => {
-  if (value) {
-    emit('loading', false)
-    if (value.length < 1) {
-      emit('empty', true)
-    } else {
-      emit('empty', false)
-    }
-  }
 })
 
 const ecosystemsList = computed(() =>

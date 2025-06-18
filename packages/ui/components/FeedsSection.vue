@@ -9,7 +9,7 @@
         content-type="text"
       /> -->
       <div class="mb-lg">
-        <FeedFilters @empty="handleEmpty" @loading="handleLoading" />
+        <FeedFilters />
       </div>
       <DataFeeds
         :feeds="feeds"
@@ -25,8 +25,10 @@
 import { WSection } from 'wit-vue-ui'
 
 const store = useStore()
-const loadingFeeds = ref(true)
-const noFeedsAvailable = ref(false)
+const { loadingFeeds } = storeToRefs(store)
+const noFeedsAvailable = computed(
+  () => !loadingFeeds.value && feeds.value.length < 1,
+)
 const feeds = computed(() => store.feeds)
 const totalFeeds = computed(() => store.totalFeeds)
 
@@ -39,11 +41,4 @@ onMounted(async () => {
   }
   store.updateSelectedFeeds({ all: true })
 })
-
-function handleEmpty(value: boolean) {
-  noFeedsAvailable.value = value
-}
-function handleLoading(value: boolean) {
-  loadingFeeds.value = value
-}
 </script>

@@ -1,8 +1,13 @@
 <template>
-  <div v-if="empty" class="empty-state">
-    <p class="text">EMPTY STATE</p>
+  <div v-if="loading" class="feeds-container">
+    <FeedCard
+      v-for="feed in ['1', '2', '3']"
+      :key="feed"
+      :empty="true"
+      :networks="[]"
+    />
   </div>
-  <div v-else-if="!loading" class="feeds-container">
+  <div v-else-if="allFeeds.length" class="feeds-container">
     <FeedCard
       v-for="feed in allFeeds"
       :key="feed.name + feed.network + feed.value + feed.color"
@@ -17,13 +22,8 @@
       :sources="feed.sources.length"
     />
   </div>
-  <div v-else class="feeds-container">
-    <FeedCard
-      v-for="feed in ['1', '2', '3']"
-      :key="feed"
-      :empty="true"
-      :networks="[]"
-    />
+  <div v-else-if="empty" class="empty-state">
+    <p class="text">EMPTY STATE</p>
   </div>
 </template>
 

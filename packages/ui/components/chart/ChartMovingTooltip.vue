@@ -35,6 +35,7 @@ export default {
 .tooltip {
   @apply bg-black-950 text-white-50;
   position: relative;
+  width: max-content;
   margin-top: -60px;
   font-size: 16px;
   padding: 8px 16px;

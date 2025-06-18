@@ -11,6 +11,7 @@ import {
 export const useStore = defineStore('data', {
   state: () =>
     ({
+      loadingFeeds: true,
       navBarSelection: [],
       includeTestnets: true,
       ecosystems: [],
@@ -77,6 +78,7 @@ export const useStore = defineStore('data', {
         this.feeds = []
         this.totalFeeds = 0
       }
+      this.loadingFeeds = false
     },
     async fetchAllFeeds() {
       const mainnetFeeds = await await getAllFeedsRequests({
@@ -103,6 +105,7 @@ export const useStore = defineStore('data', {
       mainnet: boolean | null
       pair?: string | null
     }) {
+      this.loadingFeeds = true
       let result
       if (network && network.length) {
         const allResults = await Promise.all(

@@ -26,7 +26,6 @@ export default {
   display: grid;
   grid-template-rows: max-content max-content;
   max-width: 100vw;
-  padding: 16px;
   .title {
     padding: 16px 0 16px 0;
   }

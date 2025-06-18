@@ -1,6 +1,8 @@
 <template>
   <div>
-    <WSection>
+    <WSection
+      content-classes="[&&]:p-[45px_100px] [&&]:sm:p-[32px_32px_70px_32px] [&&]:xs:p-[32px_16px_70px_16px]"
+    >
       <template #content>
         <FeedFilters @empty="handleEmpty" @loading="handleLoading" />
         <div class="flex gap-md my-lg">
@@ -18,16 +20,29 @@
           v-if="selectedFeed"
           :feed-full-name="selectedFeed.feedFullName"
         />
+        <div
+          v-else-if="navBarSelection.length"
+          class="grid gap-md justify-center justify-items-center w-full pb-2xl"
+        >
+          <SvgIcon name="empty" tw-styles="w-[250px] h-auto" />
+          <p class="text">No available feed found for this network!</p>
+          <a :href="URLS.requestDataFeed" target="_blank">
+            <WButton :type="ButtonType.primary">
+              {{ $t('navbar.request_data_feed') }}
+            </WButton>
+          </a>
+        </div>
       </template>
     </WSection>
   </div>
 </template>
 <script setup lang="ts">
-import { WSection } from 'wit-vue-ui'
+import { WSection, WButton, ButtonType } from 'wit-vue-ui'
+import { URLS } from '@/constants'
 import type { FeedInfo, Network } from '~/types'
 const route = useRoute()
 const store = useStore()
-const { feeds } = storeToRefs(store)
+const { feeds, navBarSelection } = storeToRefs(store)
 const selectedNetwork = ref('')
 const selectedFeed: Ref<FeedInfo | null> = ref(null)
 const currentPair = ref(route.params.pair.toString().replace('-', '/'))

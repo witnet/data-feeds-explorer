@@ -111,9 +111,10 @@ const allFeeds: Ref<FormatedFeedInfo[]> = computed(() => {
           Number(feed2.lastResultTimestamp) - Number(feed1.lastResultTimestamp)
         )
       })
+      .splice(0, 4)
 
     // TODO: delete suffle function and retrieved lates results
-    return shuffle(feeds).splice(0, 4) as FormatedFeedInfo[]
+    return feeds as FormatedFeedInfo[]
   } else {
     return []
   }

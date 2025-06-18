@@ -84,6 +84,7 @@ export type Feed = {
 
 export interface DataStore {
   //FIXME: delete selectedEcosystem??
+  loadingFeeds: boolean
   navBarSelection: Network[] | []
   selectedEcosystemName: string
   selectedPair: string | null
