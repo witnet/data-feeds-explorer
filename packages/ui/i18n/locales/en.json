@@ -1,7 +1,7 @@
 {
   "documentation": "Documentation",
   "landing": {
-    "title": "Welcome to Witnet data feeds",
+    "title": "Welcome to Wit/Feeds",
     "description": "Unlock the power of trustless data with Witnet Data Feeds — your gateway to real-time, tamper-proof price and real-world information on-chain. Seamlessly integrate decentralized oracles into your dApps with plug-and-play smart contract interfaces."
   },
   "search": "Search for a feed",
