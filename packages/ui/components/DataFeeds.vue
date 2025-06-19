@@ -22,9 +22,7 @@
       :sources="feed.sources.length"
     />
   </div>
-  <div v-else-if="empty" class="empty-state">
-    <p class="text">EMPTY STATE</p>
-  </div>
+  <EmptyState v-else-if="empty" :text="t('ecosystem_empty_state')" />
 </template>
 
 <script setup lang="ts">
@@ -52,6 +50,7 @@ const props = defineProps({
     default: false,
   },
 })
+const { t } = useI18n()
 const allFeeds = computed(() => {
   if (props.totalFeeds) {
     const feeds = props.feeds

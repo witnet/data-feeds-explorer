@@ -6,6 +6,8 @@
   },
   "search": "Search for a feed",
   "include_testnets": "Include testnets",
+  "network_empty_state": "No available feed found for this network!",
+  "ecosystem_empty_state": "No available feeds found for this ecosystem!",
   "data_feed_details": {
     "contract_address": "Detalles de integración",
     "trigger_parameters": "Triggering conditions",

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="options.length" class="nav-container" :class="type">
+  <div v-if="options.length" class="nav-container">
     <div class="networks">
       <NetworkLink v-if="!hideAll" :name="'All'" />
       <div

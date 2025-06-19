@@ -4,7 +4,7 @@
       content-classes="[&&]:p-[45px_100px] [&&]:sm:p-[32px_32px_70px_32px] [&&]:xs:p-[32px_16px_70px_16px]"
     >
       <template #content>
-        <FeedFilters @empty="handleEmpty" @loading="handleLoading" />
+        <FeedFilters />
         <div class="flex gap-md my-lg">
           <div
             v-for="network in selectedEcosystem"
@@ -20,29 +20,25 @@
           v-if="selectedFeed"
           :feed-full-name="selectedFeed.feedFullName"
         />
-        <div
-          v-else-if="navBarSelection.length"
-          class="grid gap-md justify-center justify-items-center w-full pb-2xl"
-        >
-          <SvgIcon name="empty" tw-styles="w-[250px] h-auto" />
-          <p class="text">No available feed found for this network!</p>
-          <a :href="URLS.requestDataFeed" target="_blank">
-            <WButton :type="ButtonType.primary">
-              {{ $t('navbar.request_data_feed') }}
-            </WButton>
-          </a>
-        </div>
+        <EmptyState
+          v-else-if="noFeedsAvailable"
+          :text="t('network_empty_state')"
+        />
       </template>
     </WSection>
   </div>
 </template>
 <script setup lang="ts">
-import { WSection, WButton, ButtonType } from 'wit-vue-ui'
-import { URLS } from '@/constants'
+import { WSection } from 'wit-vue-ui'
 import type { FeedInfo, Network } from '~/types'
 const route = useRoute()
 const store = useStore()
-const { feeds, navBarSelection } = storeToRefs(store)
+const { t } = useI18n()
+const { loadingFeeds } = storeToRefs(store)
+const { feeds } = storeToRefs(store)
+const noFeedsAvailable = computed(
+  () => !loadingFeeds.value && !selectedFeed.value,
+)
 const selectedNetwork = ref('')
 const selectedFeed: Ref<FeedInfo | null> = ref(null)
 const currentPair = ref(route.params.pair.toString().replace('-', '/'))
@@ -131,8 +127,6 @@ useSeoMeta({
     `Explore the list of decentralized data feeds for ${currentEcosystemSeoFormat.value}, using the Witnet oracle network`,
 })
 
-const loadingFeeds = ref(true)
-const noFeedsAvailable = ref(false)
 const defaultFeed = computed(() => {
   return feeds.value.length
     ? feeds.value.reduce((acc, feed) => {
@@ -151,18 +145,12 @@ function isActiveNetwork(network: Network) {
   return network.key === (selectedFeed.value?.network ?? selectedNetwork.value)
 }
 
-function handleEmpty(value: boolean) {
-  noFeedsAvailable.value = value
-}
 function selectFeed(network: Network) {
   const selectedFeeds = feeds.value.filter(
     (feed: FeedInfo) => feed.network === network.key,
   )
   selectedFeed.value = selectedFeeds.length ? selectedFeeds[0] : null
   selectedNetwork.value = network.key
-}
-function handleLoading(value: boolean) {
-  loadingFeeds.value = value
 }
 </script>
 
