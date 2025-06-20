@@ -4,6 +4,7 @@
     "title": "Welcome to Wit/Feeds",
     "description": "Unlock the power of trustless data with Witnet Data Feeds — your gateway to real-time, tamper-proof price and real-world information on-chain. Seamlessly integrate decentralized oracles into your dApps with plug-and-play smart contract interfaces."
   },
+  "routed_pricefeed": "Routed feed",
   "search": "Search for a feed",
   "sources": "Sources",
   "include_testnets": "Include testnets",

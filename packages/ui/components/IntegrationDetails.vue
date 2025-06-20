@@ -37,7 +37,9 @@
         </div>
       </div>
     </div>
-    <div class="mt-lg grid grid-cols-2 md:grid-cols-1 gap-lg">
+    <div
+      class="mt-lg grid grid-cols-[max-content_max-content] md:grid-cols-1 gap-lg"
+    >
       <div class="grid gap-sm">
         <div v-if="isContractVersion2">
           <p class="text-bold">

@@ -1,20 +1,22 @@
 <template>
-  <div class="card-border">
-    <div class="card-container">
-      <div class="feed-title">
-        <FeedIcon class="img" :class="{ placeholder: loading }" :svg="svg" />
-        <p class="name text feed-title" :class="{ placeholder: loading }">
-          {{ name.toUpperCase() }}
+  <nuxt-link :to="localeRoute(feedPath)">
+    <div class="card-border">
+      <div class="card-container">
+        <div class="feed-title">
+          <FeedIcon class="img" :class="{ placeholder: loading }" :svg="svg" />
+          <p class="name text feed-title" :class="{ placeholder: loading }">
+            {{ name.toUpperCase() }}
+          </p>
+        </div>
+        <p class="value text" :class="{ placeholder: loading }">
+          {{ label }} {{ formatedValue }}
+        </p>
+        <p class="timestamp small-text" :class="{ placeholder: loading }">
+          {{ formattedTimestamp }}
         </p>
       </div>
-      <p class="value text" :class="{ placeholder: loading }">
-        {{ label }} {{ formatedValue }}
-      </p>
-      <p class="timestamp small-text" :class="{ placeholder: loading }">
-        {{ formattedTimestamp }}
-      </p>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script setup lang="ts">
@@ -58,6 +60,15 @@ const props = defineProps({
     type: String,
     default: '',
   },
+})
+const localeRoute = useLocaleRoute()
+const feedPath = computed(() => {
+  return {
+    name: 'pair',
+    params: {
+      pair: props.name.replace('/', '-'),
+    },
+  }
 })
 const formatedValue = computed(() => {
   const lastResult = parseFloat(props.value) / 10 ** props.decimals

@@ -16,7 +16,7 @@
       }}</span>
     </template>
   </i18n-t>
-  <p class="p-md pt-0 text inline">
+  <p class="pt-0 text inline">
     {{ $t('data_feed_details.feed_sources', [sources.length]) }}
     <a
       v-for="(link, index) in sources"
@@ -121,7 +121,6 @@ function formatedLink(url: string) {
 
 <style lang="scss" scoped>
 .feed-description {
-  padding: 16px;
   margin-top: 16px;
 }
 </style>

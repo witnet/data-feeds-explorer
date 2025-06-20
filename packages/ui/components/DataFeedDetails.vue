@@ -1,5 +1,5 @@
 <template>
-  <div v-if="normalizedFeed" class="content">
+  <div v-if="status === 'success' && normalizedFeed" class="content">
     <ClientOnly>
       <ChartWidget
         v-if="feed"
@@ -62,9 +62,9 @@
       v-model:page="currentPage"
       :total="totalItems"
       :page-size="itemsPerPage"
-      class="justify-center"
     />
   </div>
+  <DetailsSkeleton v-else />
 </template>
 
 <script setup lang="ts">
@@ -119,7 +119,7 @@ const fetchData = async () => {
   }
 }
 const feedId = computed(() => props.feedFullName)
-const { data, refresh } = await useAsyncData('feed', fetchData)
+const { status, refresh } = await useAsyncData('feed', fetchData)
 onMounted(() => {
   asyncFeedsInterval.setAsyncInterval(refresh)
 })
@@ -334,6 +334,7 @@ useSeoMeta({
 .content {
   display: grid;
   grid-template: max-content max-content max-content max-content 1fr / 1fr;
+  @apply gap-md;
   .pagination {
     padding-bottom: 16px;
     justify-self: center;

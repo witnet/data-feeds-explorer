@@ -4,6 +4,7 @@
     "title": "Explorador de Wit/Feeds",
     "description": "Desbloquea el poder de los datos confiables con Witnet Data Feeds — tu puerta de entrada a información y precios en tiempo real e inalterables en la cadena. Integra oráculos descentralizados en tus dApps fácilmente con interfaces de contratos inteligentes plug-and-play."
   },
+  "routed_pricefeed": "Routed feed",
   "search": "Buscar un feed",
   "sources": "Fuentes",
   "include_testnets": "Incluir testnets",

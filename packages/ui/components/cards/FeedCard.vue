@@ -16,7 +16,10 @@
         </p>
       </div>
       <div class="flex gap-md py-sm px-md justify-end text-small">
-        <p class="timestamp text-2-sm">{{ sources }} {{ t('sources') }}</p>
+        <p v-if="sources" class="timestamp text-2-sm">
+          {{ sources }} {{ t('sources') }}
+        </p>
+        <p v-else class="timestamp text-2-sm">{{ t('routed_pricefeed') }}</p>
         <p class="timestamp text-2-sm">
           {{ networks.length }} {{ t('networks') }}
         </p>

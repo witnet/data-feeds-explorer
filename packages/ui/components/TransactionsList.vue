@@ -37,7 +37,7 @@ type Transaction = {
 }
 
 const getValue = (data: { label: string; value: string; decimals: number }) => {
-  return `${data.label} ${formatNumber(
+  return `${data.label}${formatNumber(
     (parseFloat(data.value) / 10 ** data.decimals).toString(),
   )}`
 }
@@ -59,7 +59,7 @@ const labels: Array<Label> = [
     index: 1,
   },
   {
-    sortType: Sort.descendant,
+    sortType: Sort.alphabetically,
     label: 'Value',
     break: false,
     index: 2,

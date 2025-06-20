@@ -154,12 +154,14 @@ export const useStore = defineStore('data', {
       page: number
       size: number
     }) {
+      this.loadingFeeds = true
       const result = await getFeedRequests({
         feedFullName,
         page,
         size,
       })
       this.paginatedFeedRequest = result
+      this.loadingFeeds = false
       return this.paginatedFeedRequest
     },
     updateNavBarSelection(navBarNetworks: Network[]) {

@@ -24,6 +24,7 @@
           v-else-if="noFeedsAvailable"
           :text="t('network_empty_state')"
         />
+        <DetailsSkeleton v-else-if="!selectedFeed" />
       </template>
     </WSection>
   </div>
