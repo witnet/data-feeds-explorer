@@ -60,6 +60,7 @@
     <WPagination
       v-if="totalItems && totalItems > itemsPerPage"
       v-model:page="currentPage"
+      class="justify-self-center"
       :total="totalItems"
       :page-size="itemsPerPage"
     />
