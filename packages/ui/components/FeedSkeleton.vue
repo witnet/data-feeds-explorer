@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-wit-blue-800 dark:bg-black-200 bg-opacity-10 rounded-[24px]">
+  <div
+    class="bg-wit-blue-800 dark:bg-black-200 bg-opacity-10 dark:bg-opacity-10 rounded-[24px]"
+  >
     <div class="card-container font-bold">
       <div class="header">
         <AnimatedPlaceholder
