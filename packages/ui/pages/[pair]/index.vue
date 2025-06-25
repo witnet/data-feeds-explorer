@@ -16,15 +16,12 @@
             {{ network.label }}
           </div>
         </div>
+        <DetailsSkeleton v-if="loadingFeeds" />
+        <EmptyState v-if="noFeedsAvailable" :text="t('network_empty_state')" />
         <DataFeedDetails
           v-if="selectedFeed"
           :feed-full-name="selectedFeed.feedFullName"
         />
-        <EmptyState
-          v-else-if="noFeedsAvailable"
-          :text="t('network_empty_state')"
-        />
-        <DetailsSkeleton v-else-if="!selectedFeed" />
       </template>
     </WSection>
   </div>

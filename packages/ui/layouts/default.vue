@@ -11,7 +11,7 @@
       <client-only>
         <ThemeSwitch class="theme-switch" />
       </client-only>
-      <WFooter :footer-sections="footerLinks" />
+      <WFooter class="[&&]:dark:bg-black-900" :footer-sections="footerLinks" />
     </div>
   </div>
 </template>
