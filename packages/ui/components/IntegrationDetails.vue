@@ -5,9 +5,9 @@
         {{ $t('data_feed_details.integration_details_description', [network]) }}
       </p>
       <div
-        class="mt-md grid grid-cols-[max-content_max-content] md:grid-cols-1 justify-center md:justify-start gap-x-lg gap-y-sm items-center"
+        class="mt-lg grid grid-cols-[max-content_max-content] md:grid-cols-1 justify-center md:justify-start gap-x-lg gap-y-sm items-center"
       >
-        <div class="grid gap-sm">
+        <div class="grid gap-md">
           <a
             :href="urls.integrateThroughProxy"
             target="_blank"
@@ -21,7 +21,7 @@
             {{ $t('data_feed_details.recommended_for_testing') }}
           </p>
         </div>
-        <div class="grid gap-sm">
+        <div class="grid gap-md">
           <a
             :href="urls.integrateDirectly"
             target="_blank"
