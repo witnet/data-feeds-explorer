@@ -71,7 +71,6 @@
   .logo {
     @apply fill-black-950 dark:fill-white-50;
   }
-  /* applied to --witnet-transaction, --contract-address and --selected-option */
   .link-text {
     @apply dark:text-wit-blue-500 text-wit-blue-600;
   }

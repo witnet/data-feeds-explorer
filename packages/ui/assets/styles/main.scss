@@ -4,6 +4,8 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
+  color: white;
+  background-color: #3d3d3d;
 }
 
 :root {
@@ -17,268 +19,21 @@ html {
 }
 
 .dark-mode {
-  --bg: #2d2c39;
-  --responsive-menu: #fdfdfd;
-  --text: #fdfdfd;
-  --light-text: #bebebe;
-  --link: #e54343;
-  --text-background: #2d2c39d3;
-  --default-border: 1px solid #fdfdfd;
-  --white-text: #fdfdfd;
   --brightness-theme: 0.7;
   --light-icon: #bebebe5f;
 
-  //Pagination
-
-  --pagination-number: #fdfdfd;
-  --pagination-button-active: #41bea5;
-  --pagination-number-active: #41bea5;
-  --pagination-number-active-text: #2d2c39;
-  --app-background-color: #2d2c39;
-  --pagination-button: #fdfdfd;
-
-  //Tooltip
-
-  --tooltip-background: #ffffff10;
-  --tooltip-bg: #2d2c39;
-
-  // Select
-
-  --selected-background: #37414c;
-  --selected-text: #fdfdfd;
-  --selected-icon: #62b1b058;
-  --selected-border: 2px solid #62b1b015;
-  --selected-options-background: #37414c;
-  --selected-options-text: #fdfdfd;
-  --selected-options-border: 2px solid #62b1b015;
-  --selected-options-shadow: 1px 1px 10 2px #62b1b029;
-  --selected-options-highlight: #62b1b015;
-
   // Network options
 
-  --network-color: #bebebe;
-  --network-border: 1px solid transparent;
   --network-background: #bebebe0d;
-  --network-selected-color: #fdfdfd;
-  --network-selected-border: 1px solid #00d4aa22;
-  --network-selected-background: #00d4aa16;
-
-  // FeedCard
-
-  --card-border: 1px solid #00d4aa22;
-  --delay-status-border: 1px solid #dfc44b23;
-  --error-status-border: 1px solid #df4b4b23;
-  --card-background: #00d4aa08;
-  --card-box-selected-shadow: 0 0 11px #cacaca18;
-  //Fieledset
-
-  --fieldset-title: #fdfdfd;
-  --fieldset-background: #ffffff10;
-
-  //Logo
-
-  --logo-main: #fdfdfd;
-  --logo-dot: #41bea5;
-
-  //NavBar
-
-  --nav-bar-background: #2d2c39;
-  --nav-bar-slash-color: #5fbfae;
-
-  // links
-
-  --text-hover: #41bea5;
-  --text-medium-emphasis: #fdfdfdc0;
-
-  // links
-
-  --transaction-blur-background: #ffffff08;
-
-  //Transaction
-
-  --witnet-transaction: #41bea5;
-
-  //ContractAddress
-
-  --contract-address: #41bea5;
-
-  //Switcher
-
-  --switcher-item-background: #41bea5;
-  --switcher-item-color: white;
-
-  //Button
-
-  --btn-primary-color: #ededed;
-  --btn-primary-background-color: #00d4aa16;
-  --btn-primary-background-color-active: #00d4aa36;
-  --btn-primary-border-color: #00d4aa16;
-  --btn-secondary-color: #4ab6a1;
-  --btn-secondary-background-color: #4ab6a1;
-  --btn-secondary-border-color: #4ab6a1;
-
-  //footer
-  --footer-bg: #4ab6a02c;
-  --footer-border: 8px solid #00d4aa16;
-
-  //language selector
-  --language-selector-bg: #2d2c39;
-
-  //sidebar
-  --tab-gradient: linear-gradient(90deg, #2d2c39d3 95%, #4ab6a02c);
-  --tab-background: #2d2c39;
-  --tab-gradient-selected: linear-gradient(
-    90deg,
-    rgba(45, 44, 57, 0) 0%,
-    rgba(74, 182, 160, 0.05) 20%,
-    rgba(74, 182, 160, 0.1) 24%,
-    rgba(74, 182, 160, 0.15) 30%,
-    rgba(74, 182, 160, 0.2) 35%
-  );
-
-  //breadcrumbs
-  --selected-option: #4ab6a1;
-
-  //Placeholder
-  --placeholder-bg-color: #bebebe0d;
-  --placeholder-gradient: linear-gradient(
-    to right,
-    rgba(84, 84, 85, 0) 0%,
-    rgba(84, 84, 85, 0.07) 20%,
-    rgba(84, 84, 85, 0.12) 24%,
-    rgba(84, 84, 85, 0.17) 30%,
-    rgba(84, 84, 85, 0.22) 35%
-  );
 }
 
 .light-mode {
-  --bg: #fdfdfd;
-  --responsive-menu: #2d2c39;
-  --text: #112338;
-  --light-text: #666;
-  --link: #e54343;
-  --text-background: #ffffffd3;
-  --default-border: 1px solid #2d2c39;
-  --white-text: #fdfdfd;
   --brightness-theme: 0.1;
   --light-icon: #94939374;
 
-  //Pagination
-
-  --pagination-number: #2d2c39;
-  --pagination-button-active: #41bea5;
-  --pagination-number-active: #41bea5;
-  --pagination-number-active-text: #fdfdfd;
-  --pagination-button: #2d2c39;
-
-  //Tooltip
-
-  --tooltip-background: #2d2c3910;
-  --tooltip-bg: #f6f6f7;
-
-  // Select
-
-  --selected-background: linear-gradient(90deg, #3f92a5 0%, #41bea5 57%);
-  --selected-text: #fdfdfd;
-  --selected-icon: #fdfdfd;
-  --selected-border: none;
-  --selected-options-background: #f6f6f6;
-  --selected-options-text: #1f1f24;
-  --selected-options-border: 1px solid #fdfdfd;
-  --selected-options-shadow: 1px 1px 10 2px #1f1f24;
-  --selected-options-highlight: #1f1f2414;
-
   // Network options
 
-  --network-color: #999;
-  --network-border: 1px solid transparent;
   --network-background: #bbb3;
-  --network-selected-color: #41bea5;
-  --network-selected-border: 1px solid #41bea5;
-  --network-selected-background: #fdfdfd;
-
-  // FeedCard
-
-  --card-border: 1px solid #41bea5;
-  --delay-status-border: 1px solid #dfc44b;
-  --error-status-border: 1px solid #df4b4b;
-  --card-background: transparent;
-  --name-color: #2d2c39;
-  --value-color: #2d2c39;
-  --card-box-shadow: #98979716 0 4px 4px;
-  --card-box-selected-shadow: 0 0 11px rgba(152, 151, 151, 0.271);
-
-  //Fieledset
-
-  --fieldset-title: #2d2c39;
-  --fieldset-background: #11233808;
-
-  //Logo
-  --logo-dot: #41bea5;
-  --logo-main: #112338;
-
-  //NavBar
-
-  --nav-bar-background: #fdfdfd;
-  --nav-bar-slash-color: #5fbfae;
-
-  // links
-
-  --text-hover: #41bea5;
-  --text-medium-emphasis: #112338a9;
-
-  // links
-
-  --transaction-blur-background: #11233805;
-
-  //ThemeSwitch
-
-  --icon-color: #2d2c39;
-  --icon-background: #ffffffd3;
-
-  //Transaction
-
-  --witnet-transaction: #41bea5;
-
-  //ContractAddress
-
-  --contract-address: #41bea5;
-
-  //switcher
-
-  --switcher-item-background: #41bea5;
-  --switcher-item-color: #2d2c39;
-
-  //Button
-
-  --btn-primary-color: #fdfdfd;
-  --btn-primary-background-color: #41bea5;
-  --btn-primary-background-color-active: #41bea5dd;
-  --btn-primary-border-color: #41bea5;
-  --btn-secondary-color: #41bea5;
-  --btn-secondary-background-color: #41bea5;
-  --btn-secondary-border-color: hsl(168, 43%, 50%);
-
-  //footer
-  --footer-bg: #112338;
-  --footer-border: 8px solid #41bea5;
-
-  //language selector
-  --language-selector-bg: #112338;
-
-  //breadcrumbs
-  --selected-option: #41bea5;
-
-  //Placeholder
-  --placeholder-bg-color: rgba(128, 128, 128, 0.051);
-  --placeholder-gradient: linear-gradient(
-    to right,
-    rgba(128, 128, 128, 0) 0%,
-    rgba(128, 128, 128, 0.001) 20%,
-    rgba(128, 128, 128, 0.005) 24%,
-    rgba(128, 128, 128, 0.008) 30%,
-    rgba(128, 128, 128, 0.03) 35%
-  );
 }
 
 body {
@@ -286,44 +41,10 @@ body {
   color: rgba(0, 0, 0, 0.8);
 }
 
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  color: white;
-  background-color: black;
-}
-
-// h1 {
-//   font-weight: bold;
-//   font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
-// }
-// p {
-//   font-family: 'Almarai', sans-serif;
-//   line-height: 1.5;
-//   &.title {
-//     font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
-//   }
-// }
-// .btn {
-//   font-family: 'Almarai', sans-serif;
-// }
-// .title {
-//   font-family: 'Avenir Next Variable W05835004', Arial, Helvetica, sans-serif;
-// }
 .bold {
   font-weight: bold;
 }
-// .light-text {
-//   color: var(--light-text);
-// }
-// .text {
-//   color: var(--text);
-// }
-// a {
-//   text-decoration: none;
-//   font-size: 1rem;
-// }
+
 .tv-lightweight-charts {
   a#tv-attr-logo {
     display: none;

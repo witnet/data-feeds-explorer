@@ -87,7 +87,6 @@ const formattedTimestamp = computed(() => {
 
 <style lang="scss" scoped>
 .card-border {
-  @apply border-b-[0.5px] border-b-white-200 dark:border-b-black-800;
   width: 100%;
   cursor: pointer;
   height: max-content;
@@ -96,6 +95,7 @@ const formattedTimestamp = computed(() => {
   }
 }
 .card-container {
+  @apply border border-white-200 dark:border-black-800 border-t-0 border-x-0;
   display: grid;
   grid-template-columns: 1fr max-content;
   grid-template-rows: max-content max-content;
