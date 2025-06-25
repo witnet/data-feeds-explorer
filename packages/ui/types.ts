@@ -24,7 +24,7 @@ export type Locale = {
   iso: string
   name: string
   file: string
-  fnsLocale: unknown
+  fnsLocaleCode: string
 }
 
 export interface LanguageDictionary {

@@ -7,14 +7,14 @@ export const LANGUAGE_LOCALES: LanguageDictionary = {
     iso: 'en',
     name: 'English',
     file: 'en.json',
-    fnsLocale: enGB,
+    fnsLocaleCode: enGB.code,
   },
   [localeCodes.es]: {
     code: 'es',
     iso: 'es',
     name: 'Español',
     file: 'es.json',
-    fnsLocale: es,
+    fnsLocaleCode: es.code,
   },
 }
 
