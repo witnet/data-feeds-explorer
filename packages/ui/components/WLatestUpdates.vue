@@ -4,27 +4,36 @@
       <IntermitentDot />
       <h2 class="title-h6">Latest updates</h2>
     </div>
-    <div
-      v-if="data == null"
-      class="feeds-container bg-white-500 dark:bg-black-950 rounded-[24px]"
-    >
-      <WFeedCard v-for="feed in 4" :key="feed" :loading="true" />
-    </div>
-    <TransitionGroup v-else tag="ul" name="fade" class="feeds-container">
-      <WFeedCard
-        v-for="feed in list"
-        :key="feed.name + feed.network + feed.value + feed.color"
-        :name="feed.name"
-        :decimals="feed.decimals"
-        :time-to-update="feed.timeToUpdate ?? 0"
-        :svg="feed.svg"
-        :value="feed.value"
-        :last-result-timestamp="feed.lastResultTimestamp"
-        :label="feed.label"
-        :network="feed.network"
-        :chain="feed.chain"
-      />
-    </TransitionGroup>
+    <ClientOnly>
+      <div
+        v-if="data == null"
+        class="feeds-container bg-white-500 dark:bg-black-950 rounded-[24px]"
+      >
+        <WFeedCard v-for="feed in 4" :key="feed" :loading="true" />
+      </div>
+      <TransitionGroup v-else tag="ul" name="fade" class="feeds-container">
+        <WFeedCard
+          v-for="feed in list"
+          :key="feed.name + feed.network + feed.value + feed.color"
+          :name="feed.name"
+          :decimals="feed.decimals"
+          :time-to-update="feed.timeToUpdate ?? 0"
+          :svg="feed.svg"
+          :value="feed.value"
+          :last-result-timestamp="feed.lastResultTimestamp"
+          :label="feed.label"
+          :network="feed.network"
+          :chain="feed.chain"
+        />
+      </TransitionGroup>
+      <template #fallback>
+        <div
+          class="feeds-container bg-white-500 dark:bg-black-950 rounded-[24px]"
+        >
+          <WFeedCard v-for="feed in 4" :key="feed" :loading="true" />
+        </div>
+      </template>
+    </ClientOnly>
   </div>
 </template>
 
@@ -146,6 +155,9 @@ const list: Ref<FormatedFeedInfo[]> = ref(allFeeds.value)
     display: grid;
     position: relative;
     padding: 0;
+    .card-border:last-of-type {
+      @apply border-0;
+    }
   }
 }
 </style>

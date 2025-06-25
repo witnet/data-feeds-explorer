@@ -10,11 +10,13 @@
 import { generateSelectOptions } from '../utils/generateSelectOptions'
 import { WSwitch } from 'wit-vue-ui'
 const store = useStore()
+const { navBarSelection } = storeToRefs(store)
 const includeTestnets = ref(true)
 const route = useRoute()
 const hideAllOptions = computed(() => !!route.params?.pair)
 const emit = defineEmits(['loading', 'empty'])
 onMounted(() => {
+  store.updateNavBarSelection([])
   includeTestnets.value = store.includeTestnets
 })
 watch(includeTestnets, async (valX, _valY) => {
@@ -29,7 +31,7 @@ watch(includeTestnets, async (valX, _valY) => {
 })
 
 const ecosystemsList = computed(() =>
-  generateSelectOptions(store.navBarSelection),
+  generateSelectOptions(navBarSelection.value),
 )
 const navBarOptions = computed(() => {
   return generateNavOptions(Object.values(ecosystemsList.value))

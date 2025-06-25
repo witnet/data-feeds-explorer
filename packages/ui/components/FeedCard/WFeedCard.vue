@@ -1,6 +1,6 @@
 <template>
-  <nuxt-link :to="localeRoute(feedPath)">
-    <div class="card-border">
+  <div class="card-border">
+    <nuxt-link :to="localeRoute(feedPath)">
       <div class="card-container">
         <div class="feed-title">
           <FeedIcon class="img" :class="{ placeholder: loading }" :svg="svg" />
@@ -15,8 +15,8 @@
           {{ formattedTimestamp }}
         </p>
       </div>
-    </div>
-  </nuxt-link>
+    </nuxt-link>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -87,15 +87,12 @@ const formattedTimestamp = computed(() => {
 
 <style lang="scss" scoped>
 .card-border {
+  @apply border border-white-200 dark:border-black-800 border-t-0 border-x-0;
   width: 100%;
   cursor: pointer;
   height: max-content;
-  &:last-of-type {
-    border-bottom: none;
-  }
 }
 .card-container {
-  @apply border border-white-200 dark:border-black-800 border-t-0 border-x-0;
   display: grid;
   grid-template-columns: 1fr max-content;
   grid-template-rows: max-content max-content;
@@ -132,7 +129,7 @@ const formattedTimestamp = computed(() => {
     justify-self: flex-end;
   }
   .placeholder {
-    background-color: grey;
+    @apply bg-gray-50 dark:bg-black-900 bg-opacity-60;
     border-radius: 24px;
     color: transparent;
   }

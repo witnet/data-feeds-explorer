@@ -1,6 +1,6 @@
 <template>
-  <div v-if="options.length" class="nav-container">
-    <div class="networks">
+  <div class="nav-container">
+    <div v-if="options.length" class="networks">
       <NetworkLink v-if="!hideAll" :name="'All'" />
       <div
         v-for="option in aggregatedOptions"
@@ -9,6 +9,15 @@
       >
         <NetworkLink :name="option.name" :svg="option.logo" />
       </div>
+    </div>
+    <div v-else class="networks">
+      <WLoadingPlaceholder
+        v-for="network in [1, 2, 3]"
+        :key="network"
+        width="90px"
+        height="95px"
+        border-radius="24px"
+      />
     </div>
     <div
       v-if="hiddenEcosystems.length"
@@ -32,6 +41,7 @@
 <script setup lang="ts">
 import { type Ref } from 'vue'
 import type { NetworkOption } from '~/types'
+import { WLoadingPlaceholder } from 'wit-vue-ui'
 const store = useStore()
 const props = defineProps({
   hideAll: {

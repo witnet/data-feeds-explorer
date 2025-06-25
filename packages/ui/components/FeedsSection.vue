@@ -1,5 +1,5 @@
 <template>
-  <WSection frame-classes="bg-wit-blue-500 dark:bg-black-950">
+  <NuxtLayout name="section" frame-classes="bg-wit-blue-500 dark:bg-black-950">
     <template #content>
       <!-- //TODO: Implement filter function
       <WInput
@@ -18,22 +18,18 @@
         :empty="noFeedsAvailable"
       />
     </template>
-  </WSection>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { WSection } from 'wit-vue-ui'
-
 const store = useStore()
-const { loadingFeeds } = storeToRefs(store)
+const { loadingFeeds, feeds, totalFeeds } = storeToRefs(store)
 const noFeedsAvailable = computed(
   () => !loadingFeeds.value && feeds.value.length < 1,
 )
-const feeds = computed(() => store.feeds)
-const totalFeeds = computed(() => store.totalFeeds)
 
 onMounted(async () => {
-  store.updateSelectedNetwork({ networks: [] })
+  store.updateNavBarSelection([])
   await store.fetchAllNetworks()
   store.updateNavBarSelection(store.networks)
   if (store.mainnetFeeds.length < 1 && store.testnetFeeds.length < 1) {

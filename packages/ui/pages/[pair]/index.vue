@@ -1,8 +1,6 @@
 <template>
   <div>
-    <WSection
-      content-classes="[&&]:p-[45px_100px] [&&]:sm:p-[32px_32px_70px_32px] [&&]:xs:p-[32px_16px_70px_16px]"
-    >
+    <NuxtLayout name="section">
       <template #content>
         <FeedFilters />
         <div class="flex gap-md my-lg">
@@ -23,11 +21,10 @@
           :feed-full-name="selectedFeed.feedFullName"
         />
       </template>
-    </WSection>
+    </NuxtLayout>
   </div>
 </template>
 <script setup lang="ts">
-import { WSection } from 'wit-vue-ui'
 import type { FeedInfo, Network } from '~/types'
 const route = useRoute()
 const store = useStore()

@@ -81,6 +81,7 @@ export const useStore = defineStore('data', {
       this.loadingFeeds = false
     },
     async fetchAllFeeds() {
+      this.loadingFeeds = true
       const mainnetFeeds = await await getAllFeedsRequests({
         network: 'all',
         mainnet: true,
@@ -95,6 +96,7 @@ export const useStore = defineStore('data', {
       this.totalMainnetFeeds = mainnetFeeds.total
       this.testnetFeeds = testnetFeeds.feeds
       this.totalTestnetFeeds = testnetFeeds.total
+      this.loadingFeeds = false
     },
     async fetchFeeds({
       network = null,
