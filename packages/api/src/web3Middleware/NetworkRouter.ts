@@ -42,10 +42,6 @@ export type NetworkSnapshot = {
   feeds: Array<SupportedFeed & LatestPrice>
 }
 
-export type Sources = {
-  sources: Witnet.Radon.RadonRetrieval[]
-}
-
 // LatestPrice is missing when JSONRPC `isFeedWithPrice` call fails
 export type PartialNetworkSnapshot = {
   network: string
@@ -146,9 +142,7 @@ export class NetworkRouter {
     const latestPrices = await this.latestPrices(feedIds)
 
     const radonRequests: Array<Witnet.Radon.RadonRequest> = await Promise.all(
-      feedIds.map((id) => {
-        return this.getRadonRequest({ id })
-      }),
+      feedIds.map((id) => this.getRadonRequest({ id })),
     )
     const sources = radonRequests.map(
       (request) => request?.sources.map((source) => source?.url) ?? [],
