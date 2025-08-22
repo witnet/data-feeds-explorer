@@ -44,7 +44,7 @@ export const urls = {
   randomness: 'https://docs.witnet.io/smart-contracts/witnet-randomness-oracle',
   getPostRequest:
     'https://docs.witnet.io/smart-contracts/apis-and-http-get-post-oracle',
-  requestDataFeed: 'https://tally.so/r/mOP09R',
+  requestDataFeed: 'https://tally.so/r/w46p6O',
   integrateDirectly:
     'https://docs.witnet.io/smart-contracts/witnet-data-feeds/using-witnet-data-feeds#reading-last-price-and-timestamp-from-a-price-feed-contract-serving-a-specific-pair',
   integrateThroughProxy:
