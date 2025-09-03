@@ -82,6 +82,7 @@ class DataFeedsExplorer {
     }
     this.repositories.feedRepository.setLegacyFeeds(legacyFeeds)
     this.repositories.feedRepository.setV2Feeds(v2Feeds)
+    this.repositories.feedRepository.setConfiguration(this.configuration)
 
     const web3Middleware = new Web3Middleware(
       this.configuration,
