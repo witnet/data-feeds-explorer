@@ -461,12 +461,6 @@
           "name": "Polygon Mainnet",
           "blockExplorer": "https://polygonscan.com/address/{address}",
           "version": "2.0"
-        },
-        "polygon.zkevm.mainnet": {
-          "mainnet": true,
-          "name": "Polygon zkEVM Mainnet",
-          "blockExplorer": "https://zkevm.polygonscan.com/address/{address}",
-          "version": "2.0"
         }
       }
     },
