@@ -80,15 +80,15 @@
     "celo": {
       "name": "Celo",
       "networks": {
-        "celo.alfajores": {
-          "name": "Celo Alfajores",
-          "blockExplorer": "https://alfajores.celoscan.io/address/{address}",
-          "version": "2.0"
-        },
         "celo.mainnet": {
           "mainnet": true,
           "name": "Celo Mainnet",
           "blockExplorer": "https://explorer.celo.org/address/{address}",
+          "version": "2.0"
+        },
+        "celo.sepolia": {
+          "name": "Celo Sepolia Testnet",
+          "blockExplorer": "https://sepolia.celoscan.io/address/{address}",
           "version": "2.0"
         }
       }
