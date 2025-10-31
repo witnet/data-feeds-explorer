@@ -557,6 +557,18 @@
           "version": "2.0"
         }
       }
+    },
+    "zksync": {
+      "name": "ZKsync",
+      "networks": {
+        "zksync.sepolia": {
+          "address": "0xc5b27bC02D5579f64E8BeC0DcC8d2a1dc4C0d750",
+          "blockExplorer": "https://sepolia.explorer.zksync.io/address/{address}",
+          "name": "ZKsync Sepolia",
+          "pollingPeriod": "60000",
+          "version": "2.0"
+        }
+      }
     }
   },
   "conditions": {
