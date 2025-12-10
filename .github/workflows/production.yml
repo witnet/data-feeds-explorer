@@ -69,7 +69,7 @@ jobs:
           ansible-galaxy install -r requirements.yml
           export ANSIBLE_CONFIG=./ansible.cfg
           export ANSIBLE_FORCE_COLOR=True
-          export ANSIBLE_STDOUT_CALLBACK=yaml
+          export ANSIBLE_CALLBACK_RESULT_FORMAT=yaml
           export FORCE_COLOR=1
           export TERM=xterm-color
           ansible-playbook playbook.yml -vv
