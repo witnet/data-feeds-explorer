@@ -118,40 +118,16 @@
           }
         },
         "conflux.core.testnet": {
-          "address": "0x8ba3C59e1029cd90010e8C731461ddFC5f49091b",
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Conflux Core Testnet",
           "blockExplorer": "https://testnet.confluxscan.io/address/{address}",
-          "version": "2.0",
-          "feeds": {
-            "Price-CFX/USDT-6": {
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            },
-            "Price-BTC/USD-6": {
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            },
-            "Price-ETH/USD-6": {
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 3600,
-              "minSecsBetweenUpdates": 300
-            }
-          }
+          "version": "2.0"
         },
         "conflux.espace.testnet": {
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Conflux e-Space Testnet",
           "blockExplorer": "https://evmtestnet.confluxscan.io/address/{address}",
-          "version": "2.0",
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "deviationPercentage": 0.1
-            },
-            "Price-ETH/USD-6": {
-              "deviationPercentage": 0.1
-            }
-          }
+          "version": "2.0"
         }
       }
     },
@@ -204,14 +180,7 @@
           "mainnet": true,
           "name": "Dogechain Mainnet",
           "blockExplorer": "https://explorer.dogechain.dog/address/{address}",
-          "version": "2.0",
-          "feeds": {
-            "Price-DOGE/USD-6": {
-              "deviationPercentage": 1.0,
-              "maxSecsBetweenUpdates": 86400,
-              "minSecsBetweenUpdates": 3600
-            }
-          }
+          "version": "2.0"
         }
       }
     },
@@ -282,17 +251,10 @@
       "name": "KCC",
       "networks": {
         "kcc.testnet": {
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "KCC Testnet",
           "blockExplorer": "https://scan-testnet.kcc.network/address/{address}",
-          "version": "2.0",
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "deviationPercentage": 0.5
-            },
-            "Price-ETH/USD-6": {
-              "deviationPercentage": 0.5
-            }
-          }
+          "version": "2.0"
         },
         "kcc.mainnet": {
           "mainnet": true,
@@ -330,6 +292,7 @@
       "name": "Mantle",
       "networks": {
         "mantle.sepolia": {
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Mantle Sepolia",
           "blockExplorer": "https://explorer.sepolia.mantle.xyz/address/{address}",
           "version": "2.0"
@@ -352,6 +315,7 @@
           "version": "2.0"
         },
         "metis.sepolia": {
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Metis Sepolia",
           "blockExplorer": "https://sepolia-explorer.metisdevops.link/address/{address}",
           "version": "2.0"
@@ -388,28 +352,13 @@
           }
         },
         "moonbeam.moonbase": {
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Moonbase Alpha",
           "blockExplorer": "https://moonbase.moonscan.io/address/{address}",
-          "version": "2.0",
-          "feeds": {
-            "Price-BTC/USD-6": {
-              "deviationPercentage": 1.0
-            },
-            "Price-ETH/USD-6": {
-              "deviationPercentage": 1.0
-            },
-            "Price-GLINT/USDC-6": {
-              "deviationPercentage": 1.0
-            },
-            "Price-GLMR/USDT-6": {
-              "deviationPercentage": 1.0
-            },
-            "Price-STELLA/USDT-6": {
-              "deviationPercentage": 1.0
-            }
-          }
+          "version": "2.0"
         },
         "moonbeam.moonriver": {
+          "address": "0x0000000000000000000000000000000000000000",
           "mainnet": true,
           "name": "Moonriver",
           "blockExplorer": "https://moonriver.moonscan.io/address/{address}",
@@ -520,6 +469,7 @@
       "name": "Ultron",
       "networks": {
         "ultron.testnet": {
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Ultron Testnet",
           "blockExplorer": "https://explorer.ultron-dev.io/address/{address}",
           "version": "2.0"
