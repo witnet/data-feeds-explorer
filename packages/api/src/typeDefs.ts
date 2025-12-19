@@ -50,6 +50,11 @@ const typeDefs = gql`
     timestamp: String! @column
   }
 
+  type PaginatedResultRequest {
+    requests: [ResultRequest]
+    total: Int!
+  }
+
   # type DataRequest @entity(embedded: true) {
   #   retrieval: String! @column
   #   aggregation: String! @column
@@ -58,8 +63,12 @@ const typeDefs = gql`
 
   type Query {
     feed(feedFullName: String!): Feed
-    feeds(network: String): FeedsPage!
-    requests(feedFullName: String!, page: Int!, size: Int!): [ResultRequest]!
+    feeds(network: String, mainnet: Boolean, pair: String): FeedsPage!
+    requests(
+      feedFullName: String!
+      page: Int!
+      size: Int!
+    ): PaginatedResultRequest!
     networks: [NetworksConfig]!
   }
 `

@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request'
 
 export default gql`
-  query feeds($network: String!) {
-    feeds(network: $network) {
+  query feeds($network: String, $mainnet: Boolean, $pair: String) {
+    feeds(network: $network, mainnet: $mainnet, pair: $pair) {
       feeds {
         isRouted
         feedFullName
