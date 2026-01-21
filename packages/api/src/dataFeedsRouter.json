@@ -179,6 +179,7 @@
         "dogechain.mainnet": {
           "mainnet": true,
           "name": "Dogechain Mainnet",
+          "address": "0x0000000000000000000000000000000000000000",
           "blockExplorer": "https://explorer.dogechain.dog/address/{address}",
           "version": "2.0"
         }
@@ -190,6 +191,7 @@
         "elastos.mainnet": {
           "mainnet": true,
           "name": "Elastos Mainnet",
+          "address": "0x0000000000000000000000000000000000000000",
           "blockExplorer": "https://esc.elastos.io/address/{address}",
           "version": "2.0"
         }
@@ -310,6 +312,7 @@
       "networks": {
         "metis.mainnet": {
           "mainnet": true,
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Metis Andromeda Mainnet",
           "blockExplorer": "https://explorer.metis.io/address/{address}",
           "version": "2.0"
@@ -328,7 +331,6 @@
         "meter.mainnet": {
           "mainnet": true,
           "name": "Meter Mainnet",
-          "address": "0x27EF7A3e155F96e68A9988EAdBF8bd3eFdba1438",
           "blockExplorer": "https://scan.meter.io/address/{address}",
           "version": "2.0"
         }
@@ -476,6 +478,7 @@
         },
         "ultron.mainnet": {
           "mainnet": true,
+          "address": "0x0000000000000000000000000000000000000000",
           "name": "Ultron Mainnet",
           "blockExplorer": "https://ulxscan.com/address/{address}",
           "version": "2.0"
