@@ -532,7 +532,6 @@
     },
     "Price-CFX/USDT-6": {
       "deviationPercentage": 1.0,
-      "maxSecsBetweenUpdates": 3600,
       "minSecsBetweenUpdates": 300
     },
     "Price-DAI/USD-6": {
@@ -551,8 +550,7 @@
       "deviationPercentage": 0.5
     },
     "Price-KCS/USDT-6": {
-      "deviationPercentage": 0.5,
-      "maxSecsBetweenUpdates": 3600
+      "deviationPercentage": 0.5
     },
     "Price-MJT/KCS-9": {
       "deviationPercentage": 0.5
