@@ -30,8 +30,16 @@ export const useStore = defineStore('data', {
       this.networks = (await getNetworks()).networks
       return this.networks
     },
-    async fetchFeeds({ network }: { network: any }) {
-      return (await getAllFeedsRequests({ network })).feeds
+    async fetchFeeds({
+      network = null,
+      mainnet,
+      pair = null,
+    }: {
+      network?: string | null
+      mainnet: boolean | null
+      pair?: string | null
+    }) {
+      return (await getAllFeedsRequests({ network, mainnet, pair })).feeds
     },
     async fetchFeedInfo({
       feedFullName,
@@ -57,7 +65,7 @@ export const useStore = defineStore('data', {
         page,
         size,
       })
-      this.paginatedFeedRequest = result.requests
+      this.paginatedFeedRequest = result
       return this.paginatedFeedRequest
     },
     updateSelectedNetwork({ networks }: { networks: Network[] | [] }) {

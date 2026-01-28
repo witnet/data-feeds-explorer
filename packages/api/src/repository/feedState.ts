@@ -1,8 +1,10 @@
 import { FeedInfo } from '../../types'
+import { Configuration } from '../web3Middleware/Configuration'
 
 export class FeedsState {
   private legacyFeeds: Array<FeedInfo>
   private v2Feeds: Array<FeedInfo>
+  private configuration: Configuration
 
   constructor() {
     this.legacyFeeds = []
@@ -17,8 +19,16 @@ export class FeedsState {
     this.legacyFeeds = legacyFeeds
   }
 
+  setConfiguration(configuration: Configuration) {
+    this.configuration = configuration
+  }
+
   getV2Feeds(): Array<FeedInfo> {
     return this.v2Feeds
+  }
+
+  getConfiguration(): Configuration {
+    return this.configuration
   }
 
   getLegacyFeeds(): Array<FeedInfo> {

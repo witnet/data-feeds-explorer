@@ -3,7 +3,11 @@ import { Context } from '../types'
 const resolvers = {
   Query: {
     feeds: async (_parent, args, { feedRepository }: Context) => {
-      return await feedRepository.getFeedsByNetwork(args.network)
+      return await feedRepository.getFilteredFeeds({
+        network: args.network,
+        pair: args.pair,
+        mainnet: args.mainnet,
+      })
     },
 
     networks: (_parent, _args, { config }: Context) => {

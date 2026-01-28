@@ -51,7 +51,7 @@ export type Ecosystem = {
   total: number
 }
 
-export type FeedRequests = {
+export type FeedRequest = {
   feedFullName: string
   result: string
   drTxHash: string
@@ -74,7 +74,7 @@ export type Feed = {
   proxyAddress: string
   heartbeat: string
   finality: string
-  requests: FeedRequests[]
+  requests: FeedRequest[]
   blockExplorer: string
   color: string
   logo: string
@@ -87,5 +87,8 @@ export interface DataStore {
   ecosystems: Ecosystem[] | []
   totalFeeds: number
   feed: Feed | null
-  paginatedFeedRequest: FeedRequests[] | null
+  paginatedFeedRequest: {
+    requests: FeedRequest[]
+    total: number
+  } | null
 }

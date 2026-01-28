@@ -94,9 +94,11 @@ watch(networkFeeds, () => {
   }
 })
 onMounted(async () => {
-  networkFeeds.value = await store.fetchFeeds({
+  const fetchedNetworks = await store.fetchFeeds({
     network: props.network.key.toLowerCase(),
+    mainnet: null,
   })
+  networkFeeds.value = fetchedNetworks
 })
 </script>
 
